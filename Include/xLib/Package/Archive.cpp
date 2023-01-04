@@ -17,15 +17,15 @@ namespace
 {
 
 // TODO: bins - use CMake
-std::ctstring_t zipPath    = xT("zip");
-std::ctstring_t zip7Path   = xT("7z");
-std::ctstring_t tarPath    = xT("tar");
+std::ctstring_t zipPath    = xT("/usr/bin/zip");
+std::ctstring_t zip7Path   = xT("/usr/bin/7z");
+std::ctstring_t tarPath    = xT("/usr/bin/tar");
 
-std::ctstring_t unzipPath  = xT("unzip");
-std::ctstring_t unrarPath  = xT("unrar");
-std::ctstring_t gunzipPath = xT("gunzip");
+std::ctstring_t unzipPath  = xT("/usr/bin/unzip");
+std::ctstring_t unrarPath  = xT("/usr/bin/unrar");
+std::ctstring_t gunzipPath = xT("/usr/bin/gunzip");
 
-std::ctstring_t chmodPath  = xT("chmod");
+std::ctstring_t chmodPath  = xT("/usr/bin/chmod");
 }
 //-------------------------------------------------------------------------------------------------
 
