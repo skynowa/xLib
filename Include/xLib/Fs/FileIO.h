@@ -91,7 +91,7 @@ public:
         ///< get native file descriptor associated with a stream
     std::tstring_t path() const;
         ///< get file path
-    void_t         attach(const HandleStdFile &handle, std::ctstring_t &filePath);
+    void_t         attach(cHandleStdFile &handle, std::ctstring_t &filePath);
         ///< attach to stream
     HandleStdFile &detach();
         ///< detach from stream
@@ -166,7 +166,7 @@ private:
     int_t          _nativeHandle(std::FILE *file);
         ///< gets the file descriptor associated with a stream
     static
-    std::FILE*     _stdHandle(int_t fileHandle, cOpenMode mode);
+    std::FILE*     _stdHandle(cint_t fileHandle, cOpenMode mode);
         ///< get stream by handle
     static
     std::tstring_t _openMode(cOpenMode mode);
