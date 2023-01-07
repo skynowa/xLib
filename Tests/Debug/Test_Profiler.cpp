@@ -40,7 +40,7 @@ Test_Profiler::unit()
         profiler.setLogPath(filePath);
 
         m_sRv = profiler.logPath();
-        xTEST_EQ(filePath, m_sRv);
+        xTEST_EQ(m_sRv, filePath);
 
         profiler.start();
 
