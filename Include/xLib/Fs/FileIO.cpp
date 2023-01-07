@@ -563,8 +563,8 @@ FileIO::_setVBuffDefault(
 	cbool_t a_isBuffering
 ) const
 {
-    const BufferingMode mode     = a_isBuffering ? BufferingMode::Full : BufferingMode::No;
-    std::csize_t        buffSize = a_isBuffering ? BUFSIZ              : 0;
+    cBufferingMode mode     = a_isBuffering ? BufferingMode::Full : BufferingMode::No;
+    std::csize_t   buffSize = a_isBuffering ? BUFSIZ              : 0;
 
     setVBuff(mode, nullptr, buffSize);
 }
