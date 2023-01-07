@@ -68,13 +68,11 @@ public:
         ///< is enough space
 
 xPUBLIC_STATIC:
-    static
-    void_t space(std::ctstring_t &dirPath, ulonglong_t *totalBytes, ulonglong_t *availableBytes,
-				ulonglong_t *freeBytes);
+    static void_t space(std::ctstring_t &dirPath, ulonglong_t *totalBytes,
+                    ulonglong_t *availableBytes, ulonglong_t *freeBytes);
         ///< get free space
-    static
-    void_t currentSpace(ulonglong_t *totalBytes, ulonglong_t *availableBytes,
-				ulonglong_t *freeBytes);
+    static void_t currentSpace(ulonglong_t *totalBytes, ulonglong_t *availableBytes,
+					ulonglong_t *freeBytes);
         ///< get free space of current valume
     static
     void_t paths(std::vec_tstring_t *volumePaths);
@@ -93,11 +91,9 @@ xPLATFORM_IMPL:
     void_t          _unMount_impl(cbool_t isForce) const;
 
 xPRIVATE_STATIC:
-    static
-    void_t _space_impl(std::ctstring_t &dirPath, ulonglong_t* &totalBytes,
-				ulonglong_t* &availableBytes, ulonglong_t* &freeBytes);
-    static
-    void_t _paths_impl(std::vec_tstring_t *volumePaths);
+    static void_t _space_impl(std::ctstring_t &dirPath, ulonglong_t* &totalBytes,
+						ulonglong_t* &availableBytes, ulonglong_t* &freeBytes);
+    static void_t _paths_impl(std::vec_tstring_t *volumePaths);
 };
 
 } // namespace
