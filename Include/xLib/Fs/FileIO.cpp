@@ -95,8 +95,8 @@ FileIO::path() const
 //-------------------------------------------------------------------------------------------------
 void_t
 FileIO::attach(
-    const HandleStdFile &a_handle,
-    std::ctstring_t     &a_filePath
+    cHandleStdFile  &a_handle,
+    std::ctstring_t &a_filePath
 )
 {
     xTEST(a_handle.isValid());
@@ -510,7 +510,7 @@ FileIO::_nativeHandle(
 /* static */
 std::FILE *
 FileIO::_stdHandle(
-    int_t     a_fileHandle,
+    cint_t    a_fileHandle,
     cOpenMode a_mode
 )
 {
@@ -563,10 +563,11 @@ FileIO::_setVBuffDefault(
 	cbool_t a_isBuffering
 ) const
 {
-    cBufferingMode mode     = a_isBuffering ? BufferingMode::Full : BufferingMode::No;
-    std::csize_t   buffSize = a_isBuffering ? BUFSIZ              : 0;
+    cBufferingMode  mode     = a_isBuffering ? BufferingMode::Full : BufferingMode::No;
+    char           *buff     = nullptr;
+    std::csize_t    buffSize = a_isBuffering ? BUFSIZ : 0;
 
-    setVBuff(mode, nullptr, buffSize);
+    setVBuff(mode, buff, buffSize);
 }
 //-------------------------------------------------------------------------------------------------
 
