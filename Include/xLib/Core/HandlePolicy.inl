@@ -232,7 +232,6 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 		BOOL blRes = ::CloseHandle(a_handle);
 		xTEST_DIFF(blRes, FALSE);
 	#elif xENV_UNIX
-		// REVIEW: hvNative
 		int_t iRv = ::close(a_handle);
 		xTEST_DIFF(iRv, -1);
 	#endif
@@ -242,7 +241,6 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 		BOOL blRes = ::CloseHandle(a_handle);
 		xTEST_DIFF(blRes, FALSE);
 	#elif xENV_UNIX
-		// REVIEW: hvNativeInvalid
 		int_t iRv = ::close(a_handle);
 		xTEST_DIFF(iRv, -1);
 	#endif
@@ -289,7 +287,6 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 		int_t iRv = ::shutdown(a_handle, SHUT_RDWR);
 		xTEST_DIFF(iRv, xSOCKET_ERROR);
 
-		// REVIEW: hvSocket
 		int_t iRv = ::close(a_handle);
 		xTEST_DIFF(iRv, xSOCKET_ERROR);
 	#endif
