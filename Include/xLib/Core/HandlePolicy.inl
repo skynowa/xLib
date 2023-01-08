@@ -197,7 +197,7 @@ HandlePolicy<T, type>::_isValid_impl(const T a_handle)
 		cbool_t cond5 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xFEEEFEEE) ));
 		// deleted
 		cbool_t cond6 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xDDDDDDDD) ));
-		//
+		// compare with error handle value
 		cbool_t cond7 = (a_handle != null());
 
 		return (cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7);
