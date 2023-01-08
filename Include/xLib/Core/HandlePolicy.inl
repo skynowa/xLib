@@ -204,8 +204,10 @@ HandlePolicy<T, type>::_isValid_impl(const T a_handle)
 		bool_t cond5 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xFEEEFEEE) ));
 		// deleted
 		bool_t cond6 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xDDDDDDDD) ));
+		//
+		bool_t cond7 = (a_handle != null());
 
-		bRv = cond1 && cond2 && cond3 && cond4 && cond5 && cond6;
+		bRv = cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7;
 
 		return bRv;
 	}
@@ -213,11 +215,11 @@ HandlePolicy<T, type>::_isValid_impl(const T a_handle)
 		return (a_handle >= 0);
 	}
 	else {
-
+		///
 	}
+#elif xENV_UNIX
+	return (a_handle != null());
 #endif
-
-    return (a_handle != null());
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType type>
