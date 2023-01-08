@@ -150,8 +150,8 @@ Process::_create_impl(
 		#else
 			cint_t status = 0;
 
-			Cout()    << "ChildOk - Stop execve (cout), " << xTRACE_VAR(status);
-			std::cerr << "ChildOk - Stop execve (cerr), " << xTRACE_VAR(status) << std::endl;
+			Cout()    << "ChildOk - Stop execve (cout), " << xSTD_TRACE_VAR(status);
+			std::cerr << "ChildOk - Stop execve (cerr), " << xSTD_TRACE_VAR(status) << std::endl;
 		#endif
 
 			if (out_stdOut != nullptr) {
@@ -326,6 +326,9 @@ Process::_name_impl() const
     Utils::free(proc, std::free);
 
     return sRv;
+#elif xENV_APPLE
+    /// TOOD: [Apple] _name_impl
+    return {};
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -339,6 +342,8 @@ Process::_setName_impl(
     xTEST_DIFF(iRv, - 1);
 #elif xENV_BSD
     (void_t)::setproctitle("%s", xT2A(a_name).c_str());
+#elif xENV_APPLE
+    /// TOOD: [Apple] _setName_impl
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -354,7 +359,7 @@ Process::_isExists_impl() const
 	int_t iRv = ::kill(_pid, sigExistence);
 	xTEST_DIFF(iRv, - 1);
 
-	// Cout() << xTRACE_VAR_4(_pid, iRv, errno, isRunning(_pid)) << std::endl;
+	// Cout() << xSTD_TRACE_VAR_4(_pid, iRv, errno, isRunning(_pid)) << std::endl;
 
 	if (iRv >= 0) {
 		return true;

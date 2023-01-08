@@ -95,7 +95,7 @@ FormatT<StreamT>::_format(
 
 		out_posPrev = pos + _specifier.size();
 	}
-};
+}
 //-------------------------------------------------------------------------------------------------
 template<typename StreamT>
 /* static */
@@ -130,22 +130,22 @@ FormatT<StreamT>::_testFmt(
 	}
 
 	if (specifierOpenNum != specifierCloseNum) {
-		xTEST_MSG(false, xT("specifierOpenNum != specifierCloseNum"));
+		xTEST_FAIL_MSG(xT("specifierOpenNum != specifierCloseNum"));
 		return false;
 	}
 
 	if (specifierOpenNum < a_argsSize) {
-		xTEST_MSG(false, xT("specifierOpenNum < a_argsSize"));
+		xTEST_FAIL_MSG(xT("specifierOpenNum < a_argsSize"));
 		return false;
 	}
 
 	if (specifierOpenNum > a_argsSize) {
-		xTEST_MSG(false, xT("specifierOpenNum > a_argsSize"));
+		xTEST_FAIL_MSG(xT("specifierOpenNum > a_argsSize"));
 		return false;
 	}
 
 	if (a_argsSize != a_specifiersFound) {
-		xTEST_MSG(false, xT("a_argsSize != a_specifiersFound"));
+		xTEST_FAIL_MSG(xT("a_argsSize != a_specifiersFound"));
 		return false;
 	}
 

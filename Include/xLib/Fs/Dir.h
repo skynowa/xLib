@@ -8,13 +8,13 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Const.h>
-#include <xLib/Interface/IPrint.h>
+#include <xLib/Interface/IPrinter.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
 
 class Dir :
-	public IPrint<std::tostream_t>
+	public IPrinter<std::tostream_t>
     /// directory
 {
 public:
@@ -65,8 +65,7 @@ public:
         ///< deletion dir find all content of it
 
 xPUBLIC_STATIC:
-    static
-    void_t setCurrent(std::ctstring_t &dirPath);
+    static void_t setCurrent(std::ctstring_t &dirPath);
         ///< set current
 
 private:
@@ -74,15 +73,11 @@ private:
 
 xPLATFORM_IMPL:
     // static
-	static
-	std::ctstring_t _dirTmp();
+	static std::ctstring_t _dirTmp();
 		///< temporary directory path
-    static
-    std::tstring_t  _current_impl();
-    static
-    void_t          _setCurrent_impl(std::ctstring_t &dirPath);
-    static
-    std::tstring_t  _temp_impl();
+    static std::tstring_t  _current_impl();
+    static void_t          _setCurrent_impl(std::ctstring_t &dirPath);
+    static std::tstring_t  _temp_impl();
 
     bool_t          _isRoot_impl() const;
     void_t          _create_impl() const;

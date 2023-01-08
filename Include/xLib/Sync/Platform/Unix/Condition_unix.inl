@@ -64,8 +64,8 @@ Condition::_wait_impl(
         if (a_timeoutMs == xTIMEOUT_INFINITE) {
             iRv = ::pthread_cond_wait(&_handle, &_mutex);
         } else {
-            timespec timeoutMs = {0, 0};
-            timeval  timeNow   = {0, 0};
+            timespec timeoutMs {};
+            timeval  timeNow   {};
 
             iRv = ::gettimeofday(&timeNow, nullptr);
             xTEST_DIFF(iRv, - 1);

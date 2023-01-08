@@ -13,8 +13,8 @@ namespace xl::patterns
 {
 
 template<typename T>
-class xNO_VTABLE IObserver
-    /// observer interface
+class IObserver
+    /// observer
 {
 public:
 ///\name ctors, dtor

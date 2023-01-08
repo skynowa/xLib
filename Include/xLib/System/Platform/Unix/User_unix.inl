@@ -19,8 +19,7 @@ namespace xl::system
 uint_t
 User::_id_impl() const
 {
-    uid_t uiRv;
-
+    uid_t uiRv {};
     _passwd(nullptr, nullptr, &uiRv, nullptr, nullptr, nullptr);
 
     return static_cast<uint_t>(uiRv);
@@ -35,8 +34,7 @@ User::_effectiveId_impl() const
 uint_t
 User::_groupId_impl() const
 {
-    gid_t uiRv;
-
+    gid_t uiRv {};
     _passwd(nullptr, nullptr, nullptr, &uiRv, nullptr, nullptr);
 
     return static_cast<uint_t>(uiRv);
@@ -45,7 +43,7 @@ User::_groupId_impl() const
 bool_t
 User::_isAdmin_impl() const
 {
-    const uid_t rootId {0};
+    constexpr uid_t rootId {0};
 
     xCHECK_RET(id()        != rootId, false);
     xCHECK_RET(::geteuid() != rootId, false);
@@ -61,11 +59,30 @@ User::_loginName_impl() const
     // try API
     {
     #if cmHAVE_GETLOGIN_R
-        constexpr int_t buffSize       {LOGIN_NAME_MAX + 1};
-        char            buff[buffSize] {};
+    	std::size_t buffSize {};
+        {
+        #if   defined(LOGIN_NAME_MAX)
+            buffSize = LOGIN_NAME_MAX + 1U;
+		#elif defined(_SC_LOGIN_NAME_MAX)
+			clong_t liRv = ::sysconf(_SC_LOGIN_NAME_MAX);
+			if (liRv == - 1L) {
+				buffSize = 256U;
+			} else {
+				buffSize = static_cast<std::size_t>(liRv);
+			}
+		#endif
 
-        int_t iRv = ::getlogin_r(buff, buffSize);
+            xTEST_GR(buffSize, std::size_t{0});
+        }
+
+        std::string buff;
+        buff.resize(buffSize);
+
+        int_t iRv = ::getlogin_r(&buff[0], buffSize);
         if (iRv == 0) {
+            // '\0' - trim
+            buff.assign(buff.c_str());
+
             sRv = xA2T(buff);
             return sRv;
         }
@@ -80,7 +97,7 @@ User::_loginName_impl() const
 
     // try system environment
 	{
-		const std::array envVars{xT("LOGNAME"), xT("USER")};
+		constexpr std::array envVars{xT("LOGNAME"), xT("USER")};
 
 		for (const auto &it_envVar : envVars) {
 			Environment env(it_envVar);
@@ -139,7 +156,7 @@ User::_passwd(
     struct passwd *pwRv {};
 
 #if cmHAVE_GETPWUID_R
-    long_t buffSize = - 1L;
+    long_t buffSize {- 1L};
     {
         buffSize = ::sysconf(_SC_GETPW_R_SIZE_MAX);
         if (buffSize == - 1L) {

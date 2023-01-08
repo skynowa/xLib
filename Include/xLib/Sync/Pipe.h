@@ -8,7 +8,6 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
-#include <xLib/Core/HandlePolicy.h>
 #include <xLib/Interface/ISync.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::sync

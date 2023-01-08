@@ -8,7 +8,7 @@
 
 #include <xLib/Core/SysDefines.h>
 
-#if xOS_WIN
+#if xENV_WIN
 	#include <BaseTsd.h>	// SSIZE_T
 #endif
 //-------------------------------------------------------------------------------------------------
@@ -167,10 +167,9 @@ namespace xl
 	xUSING_PTR_CONST(uchar_t);
 
 	// sighandler_t
-#if xENV_BSD
-	#if !defined(sighandler_t)
-		using sighandler_t = void (*)(int);
-	#endif
+	// TODO: [Apple] sighandler_t - review
+#if !defined(sighandler_t)
+	using sighandler_t = void (*)(int);
 #endif
 
 } // namespace
@@ -196,7 +195,7 @@ namespace std
 	xUSING_CONST(uintptr_t);
 ///\}
 
-    // std::size_t
+    // std::size_t / std::ssize_t
 #if   xENV_WIN
     using ssize_t = SSIZE_T;
 #elif xENV_UNIX

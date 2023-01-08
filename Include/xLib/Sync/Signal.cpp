@@ -7,17 +7,10 @@
 #include "Signal.h"
 
 #if   xENV_WIN
-    /// #include "Platform/Win/Signal_win.inl"
+	/// TODO: [Win] Signal_win - impl
+    // #include "Platform/Win/Signal_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/Signal_unix.inl"
-
-    #if   xENV_LINUX
-        // #include "Platform/Unix/Signal_linux.inl"
-    #elif xENV_BSD
-        // #include "Platform/Unix/Signal_bsd.inl"
-    #elif xENV_APPLE
-        // #include "Platform/Unix/Signal_apple.inl"
-    #endif
 #endif
 
 #include <xLib/Core/Format.h>
@@ -48,7 +41,7 @@ Signal::state() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Signal::setState(
-    const std::sig_atomic_t &a_state	///<
+    const std::sig_atomic_t a_state	///<
 )
 {
     // ANDROID: SIG_ATOMIC_MIN, SIG_ATOMIC_MAX
@@ -76,7 +69,12 @@ Signal::connect(
 	{
 		action.sa_handler = a_onSignals;
 
+		/// TODO: [xENV_APPLE]
+	#if xENV_APPLE
+		iRv = sigemptyset(&action.sa_mask);
+	#else
 		iRv = ::sigemptyset(&action.sa_mask);
+	#endif
 		xTEST_DIFF(iRv, - 1);
 
 		action.sa_flags = SA_RESTART | SA_SIGINFO;
@@ -153,7 +151,12 @@ Signal::connectInfo(
 		// Block other terminal-generated signals while handler runs
 		sigset_t blockMask;
 		{
+			/// TODO: [xENV_APPLE]
+		#if xENV_APPLE
+			iRv = sigemptyset(&blockMask);
+		#else
 			iRv = ::sigemptyset(&blockMask);
+		#endif
 			xTEST_DIFF(iRv, - 1);
 
 			for (const auto &it : a_signalNums) {
@@ -161,7 +164,12 @@ Signal::connectInfo(
 					continue;
 				}
 
+				/// TODO: [xENV_APPLE]
+			#if xENV_APPLE
+				iRv = sigaddset(&blockMask, it);
+			#else
 				iRv = ::sigaddset(&blockMask, it);
+			#endif
 				xTEST_DIFF(iRv, - 1);
 			}
 		}
@@ -254,7 +262,7 @@ Signal::connectUnexpected(
 //-------------------------------------------------------------------------------------------------
 void_t
 Signal::raise(
-    cint_t &a_signalNum	///<
+    cint_t a_signalNum	///<
 ) const
 {
     int_t iRv = std::raise(a_signalNum);
@@ -272,7 +280,7 @@ Signal::raise(
 /* static */
 bool_t
 Signal::isValid(
-    cint_t &a_signalNum ///< signal number
+    cint_t a_signalNum ///< signal number
 )
 {
 	return (::sigaction(a_signalNum, nullptr, nullptr) == 0);
@@ -300,10 +308,10 @@ Signal::infoDescription(
 	std::tstring_t sRv;
 	cint_t         _KERNEL = - 1;
 
-	const _SignalInfo signalInfos[] =
+	constexpr _SignalInfo signalInfos[] =
 	{
 		// _KERNEL
-	#if !xENV_BSD
+	#if !xENV_BSD && !xENV_APPLE
 		{_KERNEL, SI_ASYNCNL,    xLEX_TO_STR(SI_ASYNCNL),    xT("Sent by asynch name lookup completion")},
 		{_KERNEL, SI_TKILL,      xLEX_TO_STR(SI_TKILL),      xT("Sent by tkill")},
 		{_KERNEL, SI_SIGIO,      xLEX_TO_STR(SI_SIGIO),      xT("Sent by queued SIGIO")},
@@ -313,7 +321,9 @@ Signal::infoDescription(
 		{_KERNEL, SI_TIMER,      xLEX_TO_STR(SI_TIMER),      xT("Sent by timer expiration")},
 		{_KERNEL, SI_QUEUE,      xLEX_TO_STR(SI_QUEUE),      xT("Sent by sigqueue")},
 		{_KERNEL, SI_USER,       xLEX_TO_STR(SI_USER),       xT("Sent by kill, sigsend")},
+	#if !xENV_APPLE
 		{_KERNEL, SI_KERNEL,     xLEX_TO_STR(SI_KERNEL),     xT("Send by kernel")},
+	#endif
 
 		// SIGILL
 		{SIGILL,  ILL_ILLOPC,    xLEX_TO_STR(ILL_ILLOPC),    xT("Illegal opcode")},
@@ -343,7 +353,7 @@ Signal::infoDescription(
 		{SIGBUS,  BUS_ADRALN,    xLEX_TO_STR(BUS_ADRALN),    xT("Invalid address alignment")},
 		{SIGBUS,  BUS_ADRERR,    xLEX_TO_STR(BUS_ADRERR),    xT("Non-existant physical address")},
 		{SIGBUS,  BUS_OBJERR,    xLEX_TO_STR(BUS_OBJERR),    xT("Object specific hardware error")},
-	#if !xENV_BSD
+	#if !xENV_BSD && !xENV_APPLE
 		{SIGBUS,  BUS_MCEERR_AR, xLEX_TO_STR(BUS_MCEERR_AR), xT("Hardware memory error: action required")},
 		{SIGBUS,  BUS_MCEERR_AO, xLEX_TO_STR(BUS_MCEERR_AO), xT("Hardware memory error: action optional")},
 	#endif
@@ -361,7 +371,7 @@ Signal::infoDescription(
 		{SIGCHLD, CLD_CONTINUED, xLEX_TO_STR(CLD_CONTINUED), xT("Stopped child has continued")}
 
 		// SIGPOLL
-	#if !xENV_BSD
+	#if !xENV_BSD && !xENV_APPLE
 		,
 		{SIGPOLL, POLL_IN,       xLEX_TO_STR(POLL_IN),       xT("Data input available")},
 		{SIGPOLL, POLL_OUT,      xLEX_TO_STR(POLL_OUT),      xT("Output buffers available")},
@@ -411,7 +421,7 @@ Signal::infoDescription(
 /* static */
 std::tstring_t
 Signal::decription(
-    cint_t &a_signalNum ///< signal number
+    cint_t a_signalNum ///< signal number
 )
 {
     return Format::str(xT("{} - {}"), a_signalNum, _decription_impl(a_signalNum));

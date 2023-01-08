@@ -1,48 +1,9 @@
 #--------------------------------------------------------------------------------------------------
 # \file  Configure.cmake
-# \brief configure xLib sources
+# \brief xLib - configure sources
 #--------------------------------------------------------------------------------------------------
 
 
-#--------------------------------------------------------------------------------------------------
-# unset cache
-
-# libs
-unset(cmMYSQL_FOUND CACHE)
-unset(cmEXECINFO_FOUND CACHE)
-unset(cmXCB_FOUND CACHE)
-unset(cmADDR2LINE_FOUND CACHE)
-unset(cmADDR2LINE_FILE_PATH  CACHE)
-unset(cmGIT_REVISION_FOUND CACHE)
-unset(cmGIT_REVISION_BRANCH CACHE)
-unset(cmGIT_REVISION_HASH CACHE)
-unset(cmCOMPILER_FLAGS CACHE)
-unset(cmCS_GNU_LIBPTHREAD_VERSION_FOUND CACHE)
-unset(cmGNU_GET_LIBC_FOUND CACHE)
-
-# haves
-unset(cmHAVE_FEATURES_H CACHE)
-unset(cmHAVE_PR_SET_DUMPABLE CACHE)
-unset(cmHAVE_RLIMIT_CORE CACHE)
-unset(cmHAVE_PT_DENY_ATTACH CACHE)
-unset(cmHAVE_SCHED_GETCPU CACHE)
-unset(cmHAVE_GETCPU CACHE)
-unset(cmHAVE_GETLOGIN_R CACHE)
-unset(cmHAVE_SCHED_SETAFFINITY CACHE)
-unset(cmHAVE_GETSID CACHE)
-unset(cmHAVE_GETPWUID_R CACHE)
-unset(cmHAVE_SETMNTENT CACHE)
-unset(cmHAVE_GETMNTENT_R CACHE)
-unset(cmHAVE_ENDMNTENT CACHE)
-unset(cmHAVE_RAND_R CACHE)
-unset(cmHAVE_SRANDOM_R CACHE)
-unset(cmHAVE_RANDOM_R CACHE)
-
-# internal
-unset(_xGNU_GET_LIBC_VERSION CACHE)
-unset(_xGNU_GET_LIBC_RELEASE CACHE)
-unset(_xCONFSTR CACHE)
-unset(_xCS_GNU_LIBPTHREAD_VERSION CACHE)
 #--------------------------------------------------------------------------------------------------
 # includes
 include(CheckFunctionExists)
@@ -56,7 +17,6 @@ include(CheckCXXSourceCompiles)
 #--------------------------------------------------------------------------------------------------
 # find packages
 
-
 # System
 find_package(Threads     QUIET REQUIRED)
 find_package(OpenSSL     QUIET REQUIRED)
@@ -66,18 +26,20 @@ find_package(LibXml2     QUIET REQUIRED)
 # Custom (CMakeLib)
 find_package(CMakeLib    QUIET REQUIRED) # at 1-st
 find_package(OS          QUIET REQUIRED)
-find_package(xLibData    QUIET REQUIRED)
 find_package(GitRevision QUIET REQUIRED)
 find_package(MySQL       QUIET REQUIRED)
 find_package(Ssh2        QUIET REQUIRED)
 find_package(Iconv       QUIET REQUIRED)
-find_package(Event2      QUIET REQUIRED)
 
 if (ENV_UNIX)
     # Custom (CMakeLib)
-    find_package(ExecInfo  QUIET REQUIRED)
-    find_package(XCB       QUIET REQUIRED)
-    find_package(Addr2Line QUIET REQUIRED)
+    find_package(ExecInfo QUIET REQUIRED)
+
+    if (ENV_APPLE)
+        find_package(Atos QUIET REQUIRED)
+    else()
+        find_package(Addr2Line QUIET REQUIRED)
+    endif()
 
     # cmGNU_GET_LIBC_FOUND
     CHECK_FUNCTION_EXISTS(gnu_get_libc_version _xGNU_GET_LIBC_VERSION)
@@ -93,6 +55,9 @@ if (ENV_UNIX)
         set(cmCS_GNU_LIBPTHREAD_VERSION_FOUND 1)
     endif()
 endif()
+#--------------------------------------------------------------------------------------------------
+# includes (CMakeLib)
+include(WarningFlags)
 #--------------------------------------------------------------------------------------------------
 # configure
 if     (ENV_WIN)
@@ -145,7 +110,9 @@ elseif (ENV_UNIX)
 endif()
 #--------------------------------------------------------------------------------------------------
 # config
-configure_file(
-    ${XLIB_LOCATION}/Include/xLib/Config.h.in
-    ${XLIB_LOCATION}/Include/xLib/Config.h)
+if (DEFINED XLIB_LOCATION)
+    set(CONFIG_PATH "${XLIB_LOCATION}/Include/xLib/Config.h")
+
+    configure_file("${CONFIG_PATH}.in" ${CONFIG_PATH})
+endif()
 #--------------------------------------------------------------------------------------------------

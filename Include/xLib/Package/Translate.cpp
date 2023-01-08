@@ -21,7 +21,7 @@ namespace xl::package
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Translate::execute(
+Translate::run(
     std::ctstring_t &a_textFrom,		///< source text
     std::tstring_t  *out_textToBrief,	///< [out] target brief translate
     std::tstring_t  *out_textToDetail,	///< [out] target detail translate
@@ -39,7 +39,7 @@ Translate::execute(
 
     bool_t bRv {};
 
-	curl::DataIn baseDataIn;
+	curl::DataIn dataIn;
 	{
 		std::ctstring_t encoding = xT("UTF-8");
 
@@ -58,11 +58,11 @@ Translate::execute(
 		* </form>
 		*/
 
-		baseDataIn.url            = xT("https://translate.google.com/m");
-		baseDataIn.accept         = xT("text/html");
-		baseDataIn.acceptEncoding = xT("gzip, deflate");
-		baseDataIn.acceptLanguage = xT("en-us,en");
-		baseDataIn.acceptCharset  = encoding;
+		dataIn.url            = xT("https://translate.google.com/m");
+		dataIn.accept         = xT("text/html");
+		dataIn.acceptEncoding = xT("gzip, deflate");
+		dataIn.acceptLanguage = xT("en-us,en");
+		dataIn.acceptCharset  = encoding;
 
 		// TODO: curl::HttpClient::Request::Post
 	#if 0
@@ -71,10 +71,10 @@ Translate::execute(
 			{"content-type", "application/x-www-form-urlencoded"}
 		};
 
-		baseDataIn.addHeaders = headers;
+		dataIn.addHeaders = headers;
 	#endif
 
-		// baseDataIn.request
+		// dataIn.request
 		{
 		   /**
 			* Google Translate query params
@@ -119,7 +119,7 @@ Translate::execute(
 			std::ctstring_t  encodingOut  = encoding;
 
 			xCHECK_DO(query.size() > querySizeMax,
-				Cout() << xT("Warning: ") << xTRACE_VAR_2(querySizeMax, query.size()));
+				Cout() << xT("Warning: ") << xSTD_TRACE_VAR_2(querySizeMax, query.size()));
 
 			const std::map_tstring_t request
 			{
@@ -131,13 +131,13 @@ Translate::execute(
 				{xT("q"),  query}
 			};
 
-			// Cout() << xTRACE_VAR(request);
+			// Cout() << xSTD_TRACE_VAR(request);
 
 			for (const auto &[param, value] : request) {
-				baseDataIn.request += param + xT("=") + _http.escape(value) + xT("&");
+				dataIn.request += param + xT("=") + _http.escape(value) + xT("&");
 			}
 
-			baseDataIn.request = String::trimRightChars(baseDataIn.request, xT("&"));
+			dataIn.request = String::trimRightChars(dataIn.request, xT("&"));
 
 			// [out]
 			*out_langFrom = sourceLang;
@@ -147,10 +147,10 @@ Translate::execute(
 
 	// TODO: curl::HttpClient::Request::Post
 	curl::DataOut dataOut;
-	bRv = _http.request(curl::HttpClient::Request::Get, baseDataIn, &dataOut);
+	bRv = _http.get(dataIn, &dataOut);
 	xTEST(bRv);
 	if ( !_http.isSuccess(dataOut) ) {
-		// Cout() << xTRACE_VAR(dataOut.body);
+		// Cout() << xSTD_TRACE_VAR(dataOut.body);
 
 		*out_textToBrief  = Format::str(xT("Error: {}"), dataOut.responseCode);
 		*out_textToDetail = Format::str(xT("Error: {}"), dataOut.responseCode);
@@ -167,16 +167,16 @@ Translate::execute(
 
 #if 0
 	Cout()
-		<< xTRACE_VAR(baseDataIn.request)   << std::endl
+		<< xSTD_TRACE_VAR(dataIn.request)   << std::endl
 		<< xT("\n")
-		<< xTRACE_VAR(dataOut.contentType)  << std::endl
-		<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
-		<< xTRACE_VAR(dataOut.responseCode) << std::endl
-		<< xTRACE_VAR(dataOut.totalTimeSec) << std::endl
+		<< xSTD_TRACE_VAR(dataOut.contentType)  << std::endl
+		<< xSTD_TRACE_VAR(dataOut.effectiveUrl) << std::endl
+		<< xSTD_TRACE_VAR(dataOut.responseCode) << std::endl
+		<< xSTD_TRACE_VAR(dataOut.totalTimeSec) << std::endl
 		<< xT("\n")
-		<< xTRACE_VAR(dataOut.headers)      << std::endl
-		<< xTRACE_VAR(dataOut.body.size())  << std::endl
-		<< xTRACE_VAR(dataOut.body)         << std::endl;
+		<< xSTD_TRACE_VAR(dataOut.headers)      << std::endl
+		<< xSTD_TRACE_VAR(dataOut.body.size())  << std::endl
+		<< xSTD_TRACE_VAR(dataOut.body)         << std::endl;
 #endif
 
      _responseParse(dataOut, out_textToBrief, out_textToDetail, out_textToRaw);
@@ -266,8 +266,8 @@ Translate::_langsDetect(
         *out_langFrom = Translate::Language::Unknown;
         *out_langTo   = Translate::Language::Unknown;
 
-        Cout() << xTRACE_VAR(countEn);
-        Cout() << xTRACE_VAR(countRu);
+        Cout() << xSTD_TRACE_VAR(countEn);
+        Cout() << xSTD_TRACE_VAR(countRu);
 
         xTEST(false);
     }

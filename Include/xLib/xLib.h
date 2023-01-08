@@ -1,6 +1,6 @@
 /**
  * \file  xLib.h
- * \brief header for xLib
+ * \brief All header
  */
 
 
@@ -19,7 +19,6 @@
 #include <xLib/Core/Type/Type.h>
 #include <xLib/Core/Functions.h>
 #include <xLib/Core/ScopeExit.h>
-#include <xLib/Core/Win/Com.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Double.h>
@@ -56,9 +55,7 @@
 #include <xLib/Crypt/Random.h>
 
 // Db
-#if cmMYSQL_FOUND
-    #include <xLib/Db/MySql/Common.h>
-#endif
+#include <xLib/Db/MySql/Common.h>
 
 // Debug
 #include <xLib/Debug/Debug.h>
@@ -87,9 +84,6 @@
 #include <xLib/Fs/Backup.h>
 #include <xLib/Fs/Config.h>
 #include <xLib/Fs/FsWatcher.h>
-
-// Ui
-#include <xLib/Ui/MsgBox.h>
 
 // Log
 #include <xLib/Log/ILog.h>
@@ -124,7 +118,6 @@
 #include <xLib/Sync/Thread.h>
 #include <xLib/Sync/ThreadPool.h>
 #include <xLib/Sync/ThreadStorage.h>
-#include <xLib/Sync/WaitableTimer.h>
 #include <xLib/Sync/Process.h>
 #include <xLib/Sync/Signal.h>
 
@@ -133,13 +126,20 @@
 #include <xLib/System/Console.h>
 #include <xLib/System/Environment.h>
 #include <xLib/System/ProcessInfo.h>
-#include <xLib/System/SystemInfo.h>
 #include <xLib/System/User.h>
+
+#include <xLib/System/Info/Cpu.h>
+#include <xLib/System/Info/Host.h>
+#include <xLib/System/Info/Libs.h>
+#include <xLib/System/Info/Net.h>
+#include <xLib/System/Info/Os.h>
+#include <xLib/System/Info/PowerSupply.h>
+#include <xLib/System/Info/Ram.h>
+#include <xLib/System/Info/Storage.h>
 
 // Test
 #include <xLib/Test/Data.h>
 #include <xLib/Test/Unit.h>
-#include <xLib/Test/Manager.h>
 #include <xLib/Test/Test.h>
 
 // Package
@@ -155,7 +155,6 @@
 #include <xLib/Package/Xml.h>
 #include <xLib/Package/Translate.h>
 #include <xLib/Package/GitClient.h>
-#include <xLib/Package/PrivatBankApi.h>
 
 #include <xLib/Package/Curl/Types.h>
 #include <xLib/Package/Curl/Version.h>

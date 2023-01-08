@@ -14,6 +14,11 @@ xTEST_UNIT(Test_Translate)
 bool_t
 Test_Translate::unit()
 {
+	if ( isGithubCI() ) {
+		Cout() << "GithubCI - skip";
+		return true;
+	}
+
 	xTEST_CASE("Translate")
 	{
 		const data2_tstring_t datas[]
@@ -31,17 +36,16 @@ Test_Translate::unit()
 			std::tstring_t langFrom;
 			std::tstring_t langTo;
 
-			translate.execute(it_data.test, &textToBrief, &textToDetail, &textToRaw,
-				&langFrom, &langTo);
+			translate.run(it_data.test, &textToBrief, &textToDetail, &textToRaw, &langFrom, &langTo);
 			xTEST_EQ(textToBrief, it_data.expect);
 			xTEST_EQ(textToDetail, std::tstring_t(xT("n/a")));
 			xTEST(!textToRaw.empty());
 			xTEST(!langFrom.empty());
 			xTEST(!langTo.empty());
 
-			// Trace() << xTRACE_VAR(textToBrief);
-			// Trace() << xTRACE_VAR(textToDetail);
-			// Trace() << xTRACE_VAR(textToRaw);
+			// Trace() << xSTD_TRACE_VAR(textToBrief);
+			// Trace() << xSTD_TRACE_VAR(textToDetail);
+			// Trace() << xSTD_TRACE_VAR(textToRaw);
 		} // for (datas)
 	}
 

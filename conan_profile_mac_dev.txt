@@ -1,0 +1,11 @@
+include(conan_profile.txt)
+
+[settings]
+arch=armv8
+arch_build=armv8
+
+os=Macos
+os_build=Macos
+compiler=apple-clang
+compiler.version=14
+compiler.libcxx=libc++

@@ -1,6 +1,9 @@
 /**
  * \file  DateTime.h
  * \brief date, time
+ *
+ * Libs:
+ * - https://howardhinnant.github.io/date/date.html
  */
 
 
@@ -24,36 +27,23 @@ public:
 	xNO_COPY_ASSIGN(DateTimeValidator);
 ///\}
 
-	static
-	bool_t year(cint_t year);
-	static
-	bool_t month(cint_t month);
-	static
-	bool_t day(cint_t day);
-	static
-	bool_t hour(cint_t hour);
-	static
-	bool_t minute(cint_t minute);
-	static
-	bool_t second(cint_t second);
-	static
-	bool_t msec(cint_t msec);
+	static bool_t year(cint_t year);
+	static bool_t month(cint_t month);
+	static bool_t day(cint_t day);
+	static bool_t hour(cint_t hour);
+	static bool_t minute(cint_t minute);
+	static bool_t second(cint_t second);
+	static bool_t msec(cint_t msec);
 
-	static
-	bool_t weekDay(cint_t weekDay);
+	static bool_t weekDay(cint_t weekDay);
 
-	static
-	bool_t time(cint_t hour, cint_t minute, cint_t second, cint_t msec);
-	static
-	bool_t date(cint_t year, cint_t month, cint_t day);
-	static
-	bool_t datetime(cint_t year, cint_t month, cint_t day, cint_t hour,
-			   cint_t minute, cint_t second, cint_t msec);
-	static
-	bool_t datetime(const DateTime &datetime);
-	static
-	bool_t dateOrTime(cint_t year, cint_t month, cint_t day, cint_t hour, cint_t minute,
-				cint_t second, cint_t msec);
+	static bool_t time(cint_t hour, cint_t minute, cint_t second, cint_t msec);
+	static bool_t date(cint_t year, cint_t month, cint_t day);
+	static bool_t datetime(cint_t year, cint_t month, cint_t day, cint_t hour,
+					cint_t minute, cint_t second, cint_t msec);
+	static bool_t datetime(const DateTime &datetime);
+	static bool_t dateOrTime(cint_t year, cint_t month, cint_t day, cint_t hour, cint_t minute,
+					cint_t second, cint_t msec);
 };
 //-------------------------------------------------------------------------------------------------
 class DateTime
@@ -69,7 +59,7 @@ public:
 			 DateTime(cint_t year, cint_t month, cint_t day);
 			 DateTime(cint_t year, cint_t month, cint_t day, cint_t hour, cint_t minute,
 				 cint_t second, cint_t msec);
-	virtual ~DateTime() {}
+	virtual ~DateTime() = default;
 ///\}
 
     // comparison operators
@@ -97,21 +87,10 @@ public:
         ///< get datetime data
     int_t           dayOfWeek() const;
         ///< get day of week, days since Sunday 0-6
-    void_t          set(culonglong_t msec);
-        ///< set DateTime by milliseconds
-    void_t          set(cint_t year, cint_t month, cint_t day,
-                        cint_t hour, cint_t minute, cint_t second, cint_t msec);
-        ///< set DateTime by datetime data
 
     // converting
     ulonglong_t     toMsec() const;
         ///< convert DateTime to milliseconds
-
-    // TODO: [skynowa] ToUniversalTime, ToLocalTime
-#if xTODO
-	ToUniversalTime();
-	ToLocalTime();
-#endif
 
     // formatting
     std::tstring_t  format(std::ctstring_t &format, std::ctstring_t &formatMsec = xT(".%03d")) const;
@@ -164,6 +143,8 @@ private:
 
     ulonglong_t _thisMSec {};///< datetime in milliseconds
 
+    void_t      _construct(culonglong_t msec);
+        ///< set DateTime by milliseconds
     ulonglong_t _toMsec() const;
         ///< convert to milliseconds
 
@@ -177,4 +158,10 @@ xPLATFORM_IMPL:
 };
 
 } // namespace
+//-------------------------------------------------------------------------------------------------
+/**
+ * TODO:
+ *
+ * - ToUniversalTime, ToLocalTime
+ */
 //-------------------------------------------------------------------------------------------------

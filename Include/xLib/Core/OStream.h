@@ -109,6 +109,11 @@ public:
     template<typename... Args>
     OStream & operator << (const std::tuple<Args...> &value);
 
+///\name LibC
+///\{
+    OStream & operator << (const std::tm &value);
+///\}
+
 #if xLIB_QT
     OStream & operator << (const QString &value);
 #endif

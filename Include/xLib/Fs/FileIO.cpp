@@ -95,8 +95,8 @@ FileIO::path() const
 //-------------------------------------------------------------------------------------------------
 void_t
 FileIO::attach(
-    const HandleStdFile &a_handle,
-    std::ctstring_t     &a_filePath
+    cHandleStdFile  &a_handle,
+    std::ctstring_t &a_filePath
 )
 {
     xTEST(a_handle.isValid());
@@ -223,6 +223,25 @@ FileIO::read(
 }
 //-------------------------------------------------------------------------------------------------
 int_t
+FileIO::scanf(
+    cptr_ctchar_t a_format,	///<
+	...						///< [out]
+) const
+{
+    int_t iRv {};
+
+	va_list args;
+	xVA_START(args, a_format);
+
+	iRv = xTVFSCANF(_handle.get(), a_format, args);
+	xTEST_GR(iRv, - 1);
+
+	xVA_END(args);
+
+	return iRv;
+}
+//-------------------------------------------------------------------------------------------------
+int_t
 FileIO::write(
     cptr_ctchar_t a_format, ...
 ) const
@@ -233,7 +252,7 @@ FileIO::write(
     xVA_START(args, a_format);
 
     int_t iRv = xTVFPRINTF(_handle.get(), a_format, args);
-    xTEST_LESS(- 1, iRv);
+    xTEST_GR(iRv, - 1);
 
     xVA_END(args);
 
@@ -250,7 +269,7 @@ FileIO::writeV(
     xTEST_NA(a_args);
 
     int_t iRv = xTVFPRINTF(_handle.get(), a_format, a_args);
-    xTEST_LESS(- 1, iRv);
+    xTEST_GR(iRv, - 1);
 
     return iRv;
 }
@@ -299,7 +318,7 @@ FileIO::readChar() const
 //-------------------------------------------------------------------------------------------------
 void_t
 FileIO::writeChar(
-    ctchar_t &a_ch
+    ctchar_t a_ch
 ) const
 {
     xTEST_NA(a_ch);
@@ -311,7 +330,7 @@ FileIO::writeChar(
 //-------------------------------------------------------------------------------------------------
 void_t
 FileIO::ungetChar(
-    ctchar_t &a_ch
+    ctchar_t a_ch
 ) const
 {
     xTEST_NA(a_ch);
@@ -491,7 +510,7 @@ FileIO::_nativeHandle(
 /* static */
 std::FILE *
 FileIO::_stdHandle(
-    int_t     a_fileHandle,
+    cint_t    a_fileHandle,
     cOpenMode a_mode
 )
 {
@@ -544,10 +563,11 @@ FileIO::_setVBuffDefault(
 	cbool_t a_isBuffering
 ) const
 {
-    const BufferingMode mode     = a_isBuffering ? BufferingMode::Full : BufferingMode::No;
-    std::csize_t        buffSize = a_isBuffering ? BUFSIZ              : 0;
+    cBufferingMode  mode     = a_isBuffering ? BufferingMode::Full : BufferingMode::No;
+    char           *buff     = nullptr;
+    std::csize_t    buffSize = a_isBuffering ? BUFSIZ : 0;
 
-    setVBuff(mode, nullptr, buffSize);
+    setVBuff(mode, buff, buffSize);
 }
 //-------------------------------------------------------------------------------------------------
 

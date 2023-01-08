@@ -10,21 +10,21 @@
 // _xREPORT_TYPE
 #if   cmOPTION_DEBUG_MODE_STDOUT
     #define _xREPORT_TYPE ErrorReport::Type::Stdout
-#elif cmOPTION_DEBUG_MODE_MSGBOX
-    #define _xREPORT_TYPE ErrorReport::Type::Msgbox
 #elif cmOPTION_DEBUG_MODE_LOG
     #define _xREPORT_TYPE ErrorReport::Type::Log
 #elif cmOPTION_DEBUG_MODE_STDOUT_LOG
     #define _xREPORT_TYPE ErrorReport::Type::StdoutLog
 #elif cmOPTION_DEBUG_MODE_EXCEPTION
     #define _xREPORT_TYPE ErrorReport::Type::Exception
+#else
+	#error "xLib: cmOPTION_DEBUG_MODE_<unknown>"
 #endif
 //-------------------------------------------------------------------------------------------------
 #define xTEST_EQ_MSG_PRIVATE(op, reportType, val1, val2, msg) \
 	if ( !((val1) op (val2)) ) { \
-		culong_t         nativeError    { NativeError::get() }; \
+		culong_t         nativeError__ { NativeError::get() }; \
 		\
-		cSourceInfoData  sourceInfoData \
+		cSourceInfoData  sourceInfoData__ \
 		{ \
 			xFILE, xLINE, xFUNCTION, xCOUNTER, \
 			xT(#val1), xT(#val2), \
@@ -32,18 +32,18 @@
 			xLEX_TO_STR(op) \
 		}; \
 		\
-		SourceInfo       sourceInfo(sourceInfoData); \
-		std::ctstring_t &stackTrace = StackTrace().str(); \
+		SourceInfo       sourceInfo__(sourceInfoData__); \
+		std::ctstring_t &stackTrace__ = StackTrace().str(); \
 		\
-		ErrorReport report(reportType, nativeError, sourceInfo, stackTrace, (msg)); \
-		Debugger().reportMake(report); \
+		ErrorReport report__(reportType, nativeError__, sourceInfo__, stackTrace__, (msg)); \
+		Debugger().reportMake(report__); \
 	}
 
 #define xTEST_PTR_MSG_PRIVATE(op, reportType, ptr, msg) \
     if ( !(ptr op nullptr) ) { \
-        culong_t         nativeError    { NativeError::get() }; \
+        culong_t         nativeError__ { NativeError::get() }; \
         \
-        cSourceInfoData  sourceInfoData \
+        cSourceInfoData  sourceInfoData__ \
         { \
             xFILE, xLINE, xFUNCTION, xCOUNTER, \
             xT(#ptr), xLEX_TO_STR(nullptr), \
@@ -51,11 +51,11 @@
             xLEX_TO_STR(op) \
         }; \
         \
-        SourceInfo       sourceInfo(sourceInfoData); \
-        std::ctstring_t &stackTrace = StackTrace().str(); \
+        SourceInfo       sourceInfo__(sourceInfoData__); \
+        std::ctstring_t &stackTrace__ = StackTrace().str(); \
         \
-        ErrorReport report(reportType, nativeError, sourceInfo, stackTrace, (msg)); \
-        Debugger().reportMake(report); \
+        ErrorReport report__(reportType, nativeError__, sourceInfo__, stackTrace__, (msg)); \
+        Debugger().reportMake(report__); \
     }
 
 #define xTEST_EQ_MSG_IMPL(reportType, val1, val2, msg) \
@@ -78,14 +78,14 @@
 
 #define xTEST_FAIL_MSG_IMPL(reportType, msg) \
     if (true) { \
-        culong_t         nativeError    { NativeError::get() }; \
-        cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER, \
+        culong_t         nativeError__    { NativeError::get() }; \
+        cSourceInfoData  sourceInfoData__ {xFILE, xLINE, xFUNCTION, xCOUNTER, \
             xLEX_TO_STR(false), {}, {}, {}, {}}; \
-        SourceInfo       sourceInfo(sourceInfoData); \
-        std::ctstring_t &stackTrace     = StackTrace().str(); \
+        SourceInfo       sourceInfo__(sourceInfoData__); \
+        std::ctstring_t &stackTrace__ = StackTrace().str(); \
         \
-        ErrorReport report(reportType, nativeError, sourceInfo, stackTrace, (msg)); \
-        Debugger().reportMake(report); \
+        ErrorReport report__(reportType, nativeError__, sourceInfo__, stackTrace__, (msg)); \
+        Debugger().reportMake(report__); \
     }
 
 #define xTEST_EQ(val1, val2) \
@@ -224,7 +224,7 @@
 
 #define xTEST_CASE(caseName) \
 	Trace() << xT("\tCase: ") << xT(caseName); \
-	for (size_t caseLoops = 0; caseLoops < getData().caseLoops; ++ caseLoops)
+	for (size_t caseLoops = 0; caseLoops < data().caseLoops; ++ caseLoops)
     ///< test case
 
 #define xTEST_UNIT(unitClassName) \
@@ -234,9 +234,14 @@
 		public Unit \
 	{ \
 	public: \
-			   unitClassName() = default; \
-			  ~unitClassName() = default; \
-		bool_t unit() override; \
+		unitClassName(const UnitData &a_data) : \
+			Unit(a_data) \
+		{ \
+		} \
+		\
+	   ~unitClassName() = default; \
+		\
+		bool_t unit() final; \
 	}; \
 	\
     int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[]) \
@@ -250,11 +255,10 @@
         unitData.name        = xLEX_TO_STR(unitClassName); \
         unitData.unitLoops   = 1; \
         unitData.caseLoops   = 1; \
-        unitData.testDirPath = cmXLIB_DATA_DIR xT("/Tests"); \
+        unitData.testDirPath = cmXLIB_DATA_DIR; \
         unitData.tempDirPath = {}; \
         \
-        unitClassName unit; \
-        unit.setData(unitData); \
+        unitClassName unit(unitData); \
         \
         try {  \
             bRv = unit.run(); \

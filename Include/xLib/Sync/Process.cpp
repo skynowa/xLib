@@ -25,7 +25,7 @@
     #elif xENV_BSD
         #include "Platform/Bsd/Process_bsd.inl"
     #elif xENV_APPLE
-        #include "Platform/Unix/Process_apple.inl"
+        #include "Platform/Apple/Process_apple.inl"
     #endif
 #endif
 
@@ -59,9 +59,9 @@ Process::create(
 )
 {
 #if 0
-	Cout() << xTRACE_VAR(a_filePath) << std::endl;
-	Cout() << xTRACE_VAR(a_params) << std::endl;
-	Cout() << xTRACE_VAR(a_envs) << std::endl;
+	Cout() << xSTD_TRACE_VAR(a_filePath) << std::endl;
+	Cout() << xSTD_TRACE_VAR(a_params) << std::endl;
+	Cout() << xSTD_TRACE_VAR(a_envs) << std::endl;
 #endif
 
     xTEST_EQ(a_filePath.empty(), false);
@@ -71,9 +71,9 @@ Process::create(
     xTEST_NA(out_stdError);
 
 	xCHECK_DO(!FileInfo(a_filePath).isExists(),
-		Cout() << xTRACE_VAR(a_filePath) << xT(" not exists"); return);
+		Cout() << xSTD_TRACE_VAR(a_filePath) << xT(" not exists"); return);
 	xCHECK_DO(!FileType(a_filePath).isExecutable(),
-		Cout() << xTRACE_VAR(a_filePath) << xT(" not executable"); return);
+		Cout() << xSTD_TRACE_VAR(a_filePath) << xT(" not executable"); return);
 
     _create_impl(a_filePath, a_params, a_envs, out_stdOut, out_stdError);
 }
@@ -97,7 +97,7 @@ Process::kill(
 		return;
 	}
 
-	Cout() << xT("Kill: ") << xTRACE_VAR(_pid) << std::endl;
+	Cout() << xT("Kill: ") << xSTD_TRACE_VAR(_pid) << std::endl;
 
     _kill_impl(a_timeoutMsec);
 }
@@ -266,7 +266,12 @@ Process::currenQuicktExit(
     cuint_t &a_exitCode
 )
 {
-    std::quick_exit( static_cast<int_t>(a_exitCode) );
+	/// TOOD: [xENV_APPLE] currenQuicktExit
+#if xENV_APPLE
+	std::exit( static_cast<int_t>(a_exitCode) );
+#else
+	std::quick_exit( static_cast<int_t>(a_exitCode) );
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -293,6 +298,27 @@ Process::execute(
     xCHECK_DO(!proc.isValid(), return);
 
     Process::cWaitStatus wrRes = proc.wait(a_waitTimeoutMsec);
+    xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Ok);
+    xTEST_DIFF((int)wrRes, (int)Process::WaitStatus::Abandoned);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+Process::execute(
+    std::ctstring_t     &a_filePath,  ///< binary file path
+    std::cvec_tstring_t &a_params,    ///< command line params
+    std::tstring_t      *out_stdOut,  ///< [out] std::cout (maybe as nullptr)
+    std::tstring_t      *out_stdError ///< [out] std::cerr (maybe as nullptr)
+)
+{
+	const std::set<std::pair_tstring_t> envs;
+	culong_t                            waitTimeoutMsec {xTIMEOUT_INFINITE};
+
+    Process proc;
+    proc.create(a_filePath, a_params, envs, out_stdOut, out_stdError);
+    xCHECK_DO(!proc.isValid(), return);
+
+    Process::cWaitStatus wrRes = proc.wait(waitTimeoutMsec);
     xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Ok);
     xTEST_DIFF((int)wrRes, (int)Process::WaitStatus::Abandoned);
 }

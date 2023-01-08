@@ -4,6 +4,7 @@
  */
 
 
+#include <xLib/Core/FormatC.h>
 #include <xLib/Fs/Path.h>
 
 #if cmEXECINFO_FOUND
@@ -137,7 +138,7 @@ StackTrace::_addr2Line(
     ulong_t        *out_sourceLine
 )
 {
-#if cmADDR2LINE_FOUND
+#if cmADDR2LINE_FOUND || cmATOS_FOUND
    /**
     * FAQ: addr2line
     *
@@ -157,11 +158,14 @@ StackTrace::_addr2Line(
 
     constexpr int_t buffSize {1024};
 
-    std::ctstring_t cmdLine = Format::str(
-        xT("{} -e {} -f -C {}"), cmADDR2LINE_FILE_PATH, Path::exe().str(), a_symbolAddress);
-
-    // TODO: [skynowa] [apple]
-    //// sprintf(addr2line_cmd,"atos -o %.256s %p", program_name, addr);
+    std::tstring_t cmdLine;
+	{
+	#if   cmADDR2LINE_FOUND
+		cmdLine = Format::str(xT("{} -e {} -f -C {}"), cmADDR2LINE_FILE_PATH, Path::exe().str(), a_symbolAddress);
+	#elif cmATOS_FOUND
+		cmdLine = FormatC::str(xT("%s -o %.256s %p"), cmATOS_FILE_PATH, Path::exe().str().c_str(), a_symbolAddress);
+	#endif
+	}
 
 	auto pipe = autoPipe(cmdLine, "r");
 	xTEST_PTR(pipe.get());

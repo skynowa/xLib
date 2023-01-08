@@ -6,7 +6,6 @@
 
 // lib: -lrt
 
-
 namespace xl::sync
 {
 

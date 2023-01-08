@@ -38,7 +38,6 @@ ErrorReport::ErrorReport(
     _construct(a_type, a_sourceInfo, a_nativeError, a_stackTrace, a_comment);
 
     switch (a_type) {
-    case Type::Msgbox:
     case Type::Stdout:
     case Type::Log:
     case Type::StdoutLog:
@@ -74,7 +73,7 @@ void_t
 ErrorReport::_construct(
     cType             a_type,
     const SourceInfo &a_sourceInfo,
-    culong_t         &a_nativeError,
+    culong_t          a_nativeError,
     std::ctstring_t  &a_stackTrace,
     std::ctstring_t  &a_comment
 )

@@ -75,13 +75,13 @@ Type::name(
     std::tstring_t sRv;
 
 #if 0
-	if      (std::is_same<T, int>::value)
+	if      (std::is_same_v<T, int>)
 		sRv = "int";
-	else if (std::is_same<T, std::string>::value)
+	else if (std::is_same_v<T, std::string>)
 		sRv = "std::string";
-	else if (std::is_same<T, std::map_tstring_t>::value)
+	else if (std::is_same_v<T, std::map_tstring_t>)
 		sRv = "std::map_tstring_t";
-	else if (std::is_same<T, std::mmap_tstring_t>::value)
+	else if (std::is_same_v<T, std::mmap_tstring_t>)
 		sRv = "std::mmap_tstring_t";
 	else
 		sRv = xT("unknown");
@@ -94,13 +94,13 @@ Type::name(
 //-------------------------------------------------------------------------------------------------
 template<typename T1, class T2>
 /* static */
-bool_t
+constexpr bool_t
 Type::isEqual(
-    const T1 &a_obj1T,
-    const T2 &a_obj2T
+    const T1 /* a_obj1T */,
+    const T2 /* a_obj2T */
 )
 {
-	return std::is_same<T1, T2>::value;
+	return std::is_same_v<T1, T2>;
 }
 //-------------------------------------------------------------------------------------------------
 

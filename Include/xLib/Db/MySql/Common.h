@@ -9,6 +9,8 @@
  * - https://github.com/mysql/mysql-connector-cpp
  * - https://tangentsoft.com/mysqlpp/
  * - https://libtabula.org/
+ *
+ * - https://github.com/Kmykhail/SqlWrapper/blob/master/wrapper/SqlWrapper.h
  */
 
 
@@ -18,6 +20,10 @@
 #include <xLib/Core/Handle.h>
 
 #if xENV_WIN
+	#include <mysql.h>
+	#include <errmsg.h>
+	#include <mysqld_error.h>
+#elif xENV_APPLE
 	#include <mysql.h>
 	#include <errmsg.h>
 	#include <mysqld_error.h>

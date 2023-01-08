@@ -10,14 +10,6 @@
     #include "Platform/Win/AtomicLongInt_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/AtomicLongInt_unix.inl"
-
-    #if   xENV_LINUX
-        // #include "Platform/Linux/AtomicLongInt_linux.inl"
-    #elif xENV_BSD
-        // #include "Platform/Bsd/AtomicLongInt_bsd.inl"
-    #elif xENV_APPLE
-        // #include "Platform/Unix/AtomicLongInt_apple.inl"
-    #endif
 #endif
 
 

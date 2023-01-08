@@ -18,6 +18,7 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/System/Environment.h>
+#include <xLib/System/Info/Net.h>
 
 
 namespace xl::test
@@ -29,7 +30,10 @@ namespace xl::test
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Unit::Unit()
+Unit::Unit(
+	const UnitData &a_data
+) :
+	_data{a_data}
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -38,28 +42,24 @@ Unit::~Unit() /* = 0 */
 {
 }
 //-------------------------------------------------------------------------------------------------
-UnitData &
-Unit::getData()
+const UnitData &
+Unit::data() const
 {
-	return _data;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Unit::setData(
-    cUnitData &a_data
-)
-{
-    _data.name        = a_data.name;
-    _data.unitLoops   = a_data.unitLoops;
-    _data.caseLoops   = a_data.caseLoops;
-    _data.testDirPath = a_data.testDirPath;
-    _data.tempDirPath = a_data.tempDirPath;
+   return _data;
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
 Unit::isGithubCI() const
 {
 	return Environment(xT("GITHUB_WORKSPACE")).isExists();
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Unit::isVpnActive() const
+{
+	info::Net net;
+
+	return net.isVpnActive();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -89,6 +89,7 @@ Unit::run()
 
     cbool_t isRandomPostfix {true};
     cbool_t isAutoDelete    {true};
+
     DirTemp dirTemp(tempDirPath, isRandomPostfix, isAutoDelete);
     dirTemp.create();
 

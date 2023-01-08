@@ -68,7 +68,7 @@ Pipe::readAll() const
 		char buff[buffSize + 1] {};
 		readSize = _read_impl(handleRead(), buff, buffSize);
 
-		// Cout() << "ParentOk - Stop read, " << xTRACE_VAR(readSize);
+		// Cout() << "ParentOk - Stop read, " << xSTD_TRACE_VAR(readSize);
 
 		if (readSize == - 1L) {
 			xTEST_FAIL;

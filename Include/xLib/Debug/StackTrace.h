@@ -1,6 +1,8 @@
 /**
  * \file   StackTrace.h
  * \brief  stackrace of the caller function
+ *
+ * https://gist.github.com/jvranish/4441299
  */
 
 

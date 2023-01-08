@@ -8,7 +8,6 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
-#include <xLib/Core/HandlePolicy.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
@@ -92,7 +91,7 @@ public:
         ///< get native file descriptor associated with a stream
     std::tstring_t path() const;
         ///< get file path
-    void_t         attach(const HandleStdFile &handle, std::ctstring_t &filePath);
+    void_t         attach(cHandleStdFile &handle, std::ctstring_t &filePath);
         ///< attach to stream
     HandleStdFile &detach();
         ///< detach from stream
@@ -110,19 +109,22 @@ public:
         ///< write from std::ustring_t
     void_t         read(std::tstring_t *buff) const;
         ///< read to std::tstring_t
+    int_t          scanf(cptr_ctchar_t format, ...) const;
+        ///< read formatted variables (as vfscanf)
     int_t          write(cptr_ctchar_t format, ...) const;
         ///< write formatted output to stream
     int_t          writeV(cptr_ctchar_t format, va_list arg) const;
         ///< write formatted variable argument list to stream
+
     void_t         readLine(std::tstring_t *str, std::csize_t maxCount) const;
         ///< read string to newline or to the end of file
     void_t         writeLine(std::ctstring_t &str) const;
         ///< write string and end of line
     tchar_t        readChar() const;
         ///< get character
-    void_t         writeChar(ctchar_t &ch) const;
+    void_t         writeChar(ctchar_t ch) const;
         ///< write character
-    void_t         ungetChar(ctchar_t &ch) const;
+    void_t         ungetChar(ctchar_t ch) const;
         ///< unget character from stream
     void_t         clear() const;
         ///< clear content
@@ -164,7 +166,7 @@ private:
     int_t          _nativeHandle(std::FILE *file);
         ///< gets the file descriptor associated with a stream
     static
-    std::FILE*     _stdHandle(int_t fileHandle, cOpenMode mode);
+    std::FILE*     _stdHandle(cint_t fileHandle, cOpenMode mode);
         ///< get stream by handle
     static
     std::tstring_t _openMode(cOpenMode mode);

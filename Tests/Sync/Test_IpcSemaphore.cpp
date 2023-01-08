@@ -53,15 +53,15 @@ Test_IpcSemaphore::unit()
 
     xTEST_CASE("create")
     {
-        std::ctstring_t name = Format::str(xT("{}-SemaName"), getData().name);
+        std::ctstring_t name = Format::str(xT("{}-SemaName"), data().name);
         /// std::ctstring_t name = xT("sema_name");
 
 		semaphore.create(4, name);
 		xTEST_PTR(semaphore.handle());
 
 	#if   xENV_WIN
-		uintptr_t puiRv = ::_beginthreadex(nullptr, 0, &Worker::exec, &semaphore, 0, nullptr);
-		xTEST_PTR(puiRv);
+		HANDLE puiRv = (HANDLE)::_beginthreadex(nullptr, 0, &Worker::exec, &semaphore, 0, nullptr);
+		xTEST(puiRv != 0);
 	#elif xENV_UNIX
 		pthread_t id {};
 		int_t iRv = ::pthread_create(&id, nullptr, &Worker::exec, &semaphore);

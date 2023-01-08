@@ -47,21 +47,6 @@
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
-// xNO_VTABLE
-#if   xENV_WIN
-	#if xCOMPILER_MINGW
-		#define xNO_VTABLE \
-			xNOT_AVAILABLE
-	#else
-		#define xNO_VTABLE \
-			__declspec(novtable)
-	#endif
-#elif xENV_UNIX
-    #define xNO_VTABLE \
-        xNOT_AVAILABLE
-#endif
-    ///< disable class virtual table (only: Windows)
-//-------------------------------------------------------------------------------------------------
 // xSTDCALL
 #if   xENV_WIN
     #define xSTDCALL \

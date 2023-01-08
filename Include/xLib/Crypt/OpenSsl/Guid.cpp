@@ -35,7 +35,7 @@ Guid::str() const
 
 	union
 	{
-		struct
+		struct Rnd
 		{
 			uint32_t time_low;
 			uint16_t time_mid;
@@ -44,21 +44,23 @@ Guid::str() const
 			uint8_t  clk_seq_low;
 			uint8_t  node[6];
 		};
+
+		Rnd     __Rnd {};
 		uint8_t __rnd[16];
 	} uuid {};
 
 	int_t iRv = ::RAND_bytes(uuid.__rnd, sizeof(uuid));
 	xTEST_EQ(iRv, 1);
 
-	uuid.clk_seq_hi_res      = static_cast<uint8_t> ((uuid.clk_seq_hi_res      & 0x3F)   | 0x80);
-	uuid.time_hi_and_version = static_cast<uint16_t>((uuid.time_hi_and_version & 0x0FFF) | 0x4000);
+	uuid.__Rnd.clk_seq_hi_res      = static_cast<uint8_t> ((uuid.__Rnd.clk_seq_hi_res      & 0x3F)   | 0x80);
+	uuid.__Rnd.time_hi_and_version = static_cast<uint16_t>((uuid.__Rnd.time_hi_and_version & 0x0FFF) | 0x4000);
 
 	std::ctstring_t sRv = FormatC::str(xT("%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x"),
-		uuid.time_low,
-		uuid.time_mid,
-		uuid.time_hi_and_version,
-		uuid.clk_seq_hi_res, uuid.clk_seq_low,
-		uuid.node[0], uuid.node[1], uuid.node[2], uuid.node[3], uuid.node[4], uuid.node[5]);
+		uuid.__Rnd.time_low,
+		uuid.__Rnd.time_mid,
+		uuid.__Rnd.time_hi_and_version,
+		uuid.__Rnd.clk_seq_hi_res, uuid.__Rnd.clk_seq_low,
+		uuid.__Rnd.node[0], uuid.__Rnd.node[1], uuid.__Rnd.node[2], uuid.__Rnd.node[3], uuid.__Rnd.node[4], uuid.__Rnd.node[5]);
 	xTEST_EQ(sRv.size(), guidHyphenatedSize);
 
 	return sRv;

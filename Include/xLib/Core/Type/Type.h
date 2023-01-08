@@ -120,7 +120,7 @@ public:
 
     template<typename T1, class T2>
     static
-    bool_t         isEqual(const T1 &obj1T, const T2 &obj2T);
+	constexpr bool_t isEqual(const T1 /* obj1T */, const T2 /* obj2T */);
         ///< is equals
 };
 

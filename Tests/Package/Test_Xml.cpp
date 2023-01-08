@@ -6,7 +6,6 @@
 
 #include <xLib/xLib.h>
 
-
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Xml)
 //-------------------------------------------------------------------------------------------------
@@ -18,8 +17,8 @@ Test_Xml::unit()
 
     xTEST_CASE("1.xml")
     {
-        std::ctstring_t filePath = getData().testDirPath + "/Package/Xml/1.xml";
-		xTEST(FileInfo(filePath).isExists());
+        std::ctstring_t filePath = data().testDirPath + "/Package/Xml/1.xml";
+        xTEST(FileInfo(filePath).isExists());
 
         XmlDoc doc("UTF-8");
         doc.parseFile(filePath);
@@ -122,7 +121,7 @@ Test_Xml::unit()
     xTEST_CASE("code, str")
     {
 	#if xTEST_IGNORE
-		std::ctstring_t filePath = getData().testDirPath + "/Package/Xml/bad.xml";
+		std::ctstring_t filePath = data().testDirPath + "/Package/Xml/bad.xml";
 
 		XmlDoc doc("UTF-8");
 		doc.parseFile(filePath);
@@ -151,7 +150,7 @@ Test_Xml::unit()
 
     xTEST_CASE("XmlNode::childrenMap")
     {
-        std::ctstring_t filePath = getData().testDirPath + "/Package/Xml/2.xml";
+        std::ctstring_t filePath = data().testDirPath + "/Package/Xml/2.xml";
 
         std::cmap_tstring_t expect
         {

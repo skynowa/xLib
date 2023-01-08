@@ -27,9 +27,8 @@ public:
 	xNO_COPY_ASSIGN(Translate)
 ///\}
 
-    void_t execute(std::ctstring_t &textFrom, std::tstring_t *textToBrief,
-				std::tstring_t *textToDetail, std::tstring_t *textToRaw,
-				std::tstring_t *langFrom, std::tstring_t *langTo);
+    void_t run(std::ctstring_t &textFrom, std::tstring_t *textToBrief, std::tstring_t *textToDetail,
+                std::tstring_t *textToRaw, std::tstring_t *langFrom, std::tstring_t *langTo);
         ///< translate text
 
 private:

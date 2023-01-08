@@ -41,34 +41,45 @@
     #define xIOCTLSOCKET ::ioctl
 #endif
 
-// xGETADDRINFO
+// xADDR_INFO_GET
 #if   xCOMPILER_MINGW
-    #define xGETADDRINFO     ::getaddrinfo
+    #define xADDR_INFO_GET     ::getaddrinfo
 #elif xCOMPILER_MS
-    #define xGETADDRINFO     ::GetAddrInfo
+    #define xADDR_INFO_GET     ::GetAddrInfo
 #elif xCOMPILER_GNUC
     #if xUNICODE
-        #define xGETADDRINFO xl::core::getaddrinfoW
+        #define xADDR_INFO_GET xl::core::getaddrinfoW
     #else
-        #define xGETADDRINFO ::getaddrinfo
+        #define xADDR_INFO_GET ::getaddrinfo
     #endif
 #else
-    #define xGETADDRINFO     ::getaddrinfo
+    #define xADDR_INFO_GET     ::getaddrinfo
 #endif
 
-// xGETNAMEINFO
+// xADDR_INFO_FREE
+#if   xENV_WIN
+	#if xCOMPILER_MS
+		#define xADDR_INFO_FREE ::FreeAddrInfo
+	#else
+		#define xADDR_INFO_FREE ::freeaddrinfo
+	#endif
+#elif xENV_UNIX
+	#define xADDR_INFO_FREE ::freeaddrinfo
+#endif
+
+// xNAME_INFO_GET
 #if   xCOMPILER_MINGW
-    #define xGETNAMEINFO     ::getnameinfo
+    #define xNAME_INFO_GET     ::getnameinfo
 #elif xCOMPILER_MS
-    #define xGETNAMEINFO     ::GetNameInfo
+    #define xNAME_INFO_GET     ::GetNameInfo
 #elif xCOMPILER_GNUC
     #if xUNICODE
-        #define xGETNAMEINFO xl::core::getnameinfoW
+        #define xNAME_INFO_GET xl::core::getnameinfoW
     #else
-        #define xGETNAMEINFO ::getnameinfo
+        #define xNAME_INFO_GET ::getnameinfo
     #endif
 #else
-    #define xGETNAMEINFO     ::getnameinfo
+    #define xNAME_INFO_GET     ::getnameinfo
 #endif
 
 // xSTATVFS (struct and function)
@@ -86,7 +97,7 @@
     #elif xENV_BSD
         #define xSTATVFS     ::statvfs
     #elif xENV_APPLE
-        #define xSTATVFS     ::statfs64
+        #define xSTATVFS     statfs	/// TODO: ::statfs64
     #endif
 #endif
     ///< filesystem statfs (struct and function)
@@ -103,5 +114,15 @@
 	#define xFILENO ::_fileno
 #elif xENV_UNIX
 	#define xFILENO ::fileno
+#endif
+
+// Sem API
+#if xENV_APPLE
+int sem_init(sem_t *psem, int flags, unsigned count);
+int sem_destroy(sem_t *psem);
+int sem_post(sem_t *psem);
+int sem_trywait(sem_t *psem);
+int sem_wait(sem_t *psem);
+int sem_timedwait(sem_t *psem, const struct timespec *abstim);
 #endif
 //-------------------------------------------------------------------------------------------------

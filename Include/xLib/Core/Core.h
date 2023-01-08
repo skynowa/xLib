@@ -13,11 +13,9 @@
  * \author  author:  skynowa \n
  *          e-mail:  skynowa@gmail.com \n
  *          skype:   skynowa777 \n
- *          jabber:  skynowa@jabber.ru \n
- *          ICQ:     627713628 \n
  *          web:     https://github.com/skynowa/xLib
  *
- * \date    2008 - 2016
+ * \date    2008 - 2023
  *
  * \section sec_code_convention Code conventions
  */
@@ -47,13 +45,12 @@ namespace xl
 {
 
 namespace core {}
+namespace interface_ {}
 namespace crypt {}
 namespace db {}
 namespace debug {}
 namespace fs {}
-namespace interface {}
-namespace algos {};
-namespace ui {}
+namespace algos {}
 namespace log {}
 namespace net {}
 namespace patterns {}
@@ -65,13 +62,12 @@ namespace package {}
 } // namespace xl
 
 using namespace xl::core;
+using namespace xl::interface_;
 using namespace xl::crypt;
 using namespace xl::db;
 using namespace xl::debug;
 using namespace xl::fs;
-using namespace xl::interface;
 using namespace xl::algos;
-using namespace xl::ui;
 using namespace xl::log;
 using namespace xl::net;
 using namespace xl::patterns;

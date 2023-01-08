@@ -34,17 +34,13 @@ public:
         ///< delete var
 
 xPUBLIC_STATIC:
-    static
-    void_t         setVars(const std::set<std::pair_tstring_t> &vars);
+    static void_t         setVars(const std::set<std::pair_tstring_t> &vars);
         ///< set or change values
-    static
-    void_t         vars(std::vec_tstring_t *values);
+    static void_t         vars(std::vec_tstring_t *values);
         ///< get all values
-    static
-    std::tstring_t expandVars(std::ctstring_t &strWithVars);
+    static std::tstring_t expandVars(std::ctstring_t &strWithVars);
         ///< expands strings by separator "%"
-    static
-    void_t         varPath(std::vec_tstring_t *dirPaths);
+    static void_t         varPath(std::vec_tstring_t *dirPaths);
         ///< get PATH value (/usr/bin ... pathes)
 
 private:
@@ -66,9 +62,26 @@ xPLATFORM_IMPL:
     void_t         _setVar_impl(std::ctstring_t &value) const;
     void_t         _removeVar_impl() const;
 
-    static
-    void_t         _vars_impl(std::vec_tstring_t *values);
+    static void_t _vars_impl(std::vec_tstring_t *values);
 };
 
 } // namespace
+//-------------------------------------------------------------------------------------------------
+/**
+ * TODO:
+ *
+ * [ ] Dll path (LD_LIBRARY_PATH)
+ *
+ * Imports - https://docs.conan.io/en/latest/using_packages/conanfile_txt.html#imports-txt
+ * There are some differences between shared libraries on Linux (*.so), Windows (*.dll) and
+ * MacOS (*.dylib). The shared libraries must be located in a folder where they can be found,
+ * either by the linker, or by the OS runtime.
+ * You can add the libraries’ folders to the path (LD_LIBRARY_PATH environment variable in Linux,
+ * DYLD_LIBRARY_PATH in OSX, or system PATH in Windows), or copy those shared libraries to
+ * some system folder where they can be found by the OS. But these operations are only related
+ * to the deployment or installation of apps; they are not relevant during development.
+ * Conan is intended for developers, so it avoids such manipulation of the OS environment.
+ * In Windows and OSX, the simplest approach is to copy the shared libraries to the executable
+ * folder, so they are found by the executable, without having to modify the path.
+ */
 //-------------------------------------------------------------------------------------------------

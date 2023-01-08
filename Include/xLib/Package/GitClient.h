@@ -42,6 +42,9 @@ public:
 	void_t         modifiedFiles(std::cvec_tstring_t &filterFileExts,
 						std::vec_tstring_t *filePathes) const;
 		///< get modified files
+	void_t         trackedFiles(std::cvec_tstring_t &filterFileExts,
+						std::vec_tstring_t *filePathes) const;
+		///< get tracked files
 	void_t         modifiedFilesLineFilter() const;
 		///< get modified lines line filter (JSON)
 

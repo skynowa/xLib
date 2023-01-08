@@ -134,11 +134,14 @@ namespace xl::core
 /* static */
 bool_t
 StringCI::_compare_impl(
-    std::ctstring_t &a_str1,                    ///< source string
-    std::ctstring_t &a_str2,                    ///< target string
-    const xTLOCALE   &a_locale /* = xTLOCALE() */ ///< locale
+    std::ctstring_t &a_str1,                     ///< source string
+    std::ctstring_t &a_str2,                     ///< target string
+    const xTLOCALE  &a_locale /* = xTLOCALE() */ ///< locale
 )
 {
+	// TODO: a_locale - impl
+	xUNUSED(a_locale);
+
     int_t iRv = ::lstrcmpi(a_str1.c_str(), a_str2.c_str());
     xCHECK_RET(0 != iRv, false);
 

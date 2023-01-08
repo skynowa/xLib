@@ -100,7 +100,11 @@ TcpClient::setTimeout(
     xTEST_NA(a_microsec);
 
     _timeout.tv_sec  = a_seconds;
-    _timeout.tv_usec = a_microsec;
+#if xENV_APPLE
+	_timeout.tv_usec = static_cast<int_t>(a_microsec);	/// TODO: review
+#else
+	_timeout.tv_usec = a_microsec;
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 

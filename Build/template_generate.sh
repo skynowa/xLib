@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
+#
+# \file  template_generate.sh
+# \brief Generate class template(s)
+#
 
 
 # vars
-DIR_XLIB="../xLib"
-DIR_BUILD="../../xLib_eclipse"
+PROJECT_NAME="xLib"
+DIR_PROJECT="../${PROJECT_NAME}"
+DIR_BUILD="../../${PROJECT_NAME}_build"
 
-mkdir -p $DIR_BUILD
-cd $DIR_BUILD
+# prepare
+mkdir -p ${DIR_BUILD}
+cd ${DIR_BUILD}
 
-make template
+# build
+cmake --build . --target template

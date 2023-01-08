@@ -24,6 +24,7 @@
     #define xTVSPRINTF    std::vsprintf
     #define xTVPRINTF     std::vprintf
     #define xTVFPRINTF    std::vfprintf
+    #define xTVFSCANF     std::vfscanf
     #define xTFGETC       std::getc
     #define xTPUTS        std::puts
     #define xTPUTCHAR     std::putchar

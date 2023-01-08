@@ -1,0 +1,211 @@
+#--------------------------------------------------------------------------------------------------
+# \file  ci.yml
+# \brief Github CI
+#
+# Runners: https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+#
+# https://gist.github.com/NickNaso/ff50ecd38becbadafb1c40a5f2a49c87
+# https://gist.github.com/NickNaso/0d478f1481686d5bcc868cac06620a60
+# https://github.com/jkalias/functional_vector/blob/main/.github/workflows/cmake.yml
+#
+# https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
+# # https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/adding-a-workflow-status-badge
+# https://github.com/sdras/awesome-actions#github-tools-and-management
+# https://github.com/marketplace
+#
+# Win:
+# - https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-170
+#--------------------------------------------------------------------------------------------------
+
+
+name: CI
+#--------------------------------------------------------------------------------------------------
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+#--------------------------------------------------------------------------------------------------
+jobs:
+  build:
+    name:    ${{matrix.config.name}}
+    runs-on: ${{matrix.config.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - {
+            name:             "Ubuntu-20.04 (GCC)",
+            os:               ubuntu-20.04,
+            cc:               "gcc",
+            cxx:              "g++",
+            gen_script:       "./gen_eclipse.sh",
+            gen_tests_script: "./gen_tests_eclipse.sh",
+            conan_profile:    "conan_profile_ubuntu_gcc.txt",
+            conan_file:       "conan_file.txt"
+          }
+
+        # - {
+        #     name:             "Ubuntu-20.04 (Clang)",
+        #     os:                ubuntu-20.04,
+        #     cc:               "clang",
+        #     cxx:              "clang++",
+        #     gen_script:       "./gen_eclipse.sh",
+        #     gen_tests_script: "./gen_tests_eclipse.sh",
+        #     conan_profile:    "conan_profile_ubuntu_clang.txt",
+        #     conan_file:       "conan_file.txt"
+        #   }
+
+        - {
+            name:             "Windows-2019 (VS)",
+            os:               windows-2019,
+            cc:               "cl",
+            cxx:              "cl",
+            gen_script:       "./gen_vs2019.sh",
+            gen_tests_script: "./gen_tests_vs2019.sh",
+            conan_profile:    "conan_profile_win_vs.txt",
+            conan_file:       "conan_file.txt"
+          }
+
+        # - {
+        #     name:             "Windows-2019 (GCC)",
+        #     os:                windows-2019,
+        #     cc:               "gcc",
+        #     cxx:              "g++",
+        #     gen_script:       "./gen_eclipse.sh",
+        #     gen_tests_script: "./gen_tests_eclipse.sh",
+        #     conan_profile:    "conan_profile_win_gcc.txt",
+        #     conan_file:       "conan_file.txt"
+        #   }
+
+        # - {
+        #     name:             "Windows-2019 (Clang)",
+        #     os:                windows-2019,
+        #     cc:               "clang",
+        #     cxx:              "clang++",
+        #     gen_script:       "./gen_eclipse.sh",
+        #     gen_tests_script: "./gen_tests_eclipse.sh",
+        #     conan_profile:    "conan_profile_win_clang.txt",
+        #     conan_file:       "conan_file.txt"
+        #   }
+
+        - {
+            name:             "MacOS-11 (Clang)",
+            os:               macos-11,  # 10.15, 11
+            cc:               "clang",
+            cxx:              "clang++",
+            gen_script:       "./gen_eclipse.sh",
+            gen_tests_script: "./gen_tests_eclipse.sh",
+            conan_profile:    "conan_profile_macos_clang.txt",
+            conan_file:       "conan_file.txt"
+          }
+
+    steps:
+      ##############################################################################################
+      # Cancel
+      - name: Previous Runs - Cancel
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{github.token}}
+
+      ##############################################################################################
+      # Env
+
+      # GITHUB_ENV
+      - name: GITHUB_ENV
+        run: |
+          # echo "ENVs: $(printenv)"
+          echo "GITHUB_ENV: ${GITHUB_ENV}"
+          echo "OS: $(uname -s)"
+          echo ""
+          echo "CC=${{matrix.config.cc}}"   >> $GITHUB_ENV
+          echo "CXX=${{matrix.config.cxx}}" >> $GITHUB_ENV
+        shell: bash
+
+      # Conan - Install
+      - name: Conan - Install
+        run: |
+          if [[ "${{ matrix.config.os }}" =~ "macos" ]]; then
+            brew install conan
+          else
+            pip install conan --upgrade
+            pip show conan
+          fi
+        shell: bash
+
+      # Conan - Setup
+      - name: Conan - Setup
+        run: |
+          CC="${{matrix.config.cc}}"
+          CXX="${{matrix.config.cxx}}"
+
+          conan --version
+          # conan profile new default --detect --force
+          # conan profile show default
+          conan profile list
+        shell: bash
+
+      ##############################################################################################
+      # CMakeLib
+
+      # Checkout
+      - name: CMakeLib - Checkout
+        uses: actions/checkout@v3
+        with:
+          repository:  skynowa/CMakeLib
+          path:        ${{github.workspace}}/CMakeLib
+          fetch-depth: 1
+
+      # Install
+      - name:  CMakeLib - Install
+        run:   cd "${{github.workspace}}/CMakeLib" && ./install.sh
+        shell: bash
+
+      ##############################################################################################
+      # xLib
+
+      # Checkout
+      - name: ${{github.event.repository.name}} - Checkout
+        uses: actions/checkout@v3
+        with:
+          repository:  ${{github.repository}} # skynowa/xLib
+          path:        ${{github.workspace}}/${{github.event.repository.name}}
+          fetch-depth: 1
+
+      # Libs (Extra)
+      - name: Libs (Extra) - Install
+        run: >-
+            conan install
+            "${{github.workspace}}/${{github.event.repository.name}}/${{matrix.config.conan_file}}"
+            --install-folder "${{github.workspace}}/${{github.event.repository.name}}_conan"
+            --output-folder  "${{github.workspace}}/${{github.event.repository.name}}_conan"
+            --profile "${{github.workspace}}/${{github.event.repository.name}}/${{matrix.config.conan_profile}}"
+            --build=missing
+            --update
+        shell: bash
+
+      # Generate
+      - name:  ${{github.event.repository.name}} - Generate
+        run:   cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ${{matrix.config.gen_script}}
+        shell: bash
+
+      # Build
+      - name:  ${{github.event.repository.name}} - Build
+        run:   cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ./build.sh
+        shell: bash
+
+      # Deploy
+      - name:  ${{github.event.repository.name}} - Deploy
+        run:   cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ./deploy.sh
+        shell: bash
+
+      # Tests (Generate)
+      - name:  ${{github.event.repository.name}} - Tests (Generate)
+        run:   cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ${{matrix.config.gen_tests_script}}
+        shell: bash
+
+      # Tests
+      - name:  ${{github.event.repository.name}} - Tests
+        run:   cd "${{github.workspace}}/${{github.event.repository.name}}/Build" && ./tests.sh
+        shell: bash
+#--------------------------------------------------------------------------------------------------

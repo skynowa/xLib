@@ -34,7 +34,7 @@ FileType::_set_impl(
 void_t
 FileType::_clear_impl() const
 {
-    set( static_cast<ctypes_t>(Type::RegularFile) );
+    set( static_cast<types_t>(Type::RegularFile) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

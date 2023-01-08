@@ -8,7 +8,7 @@
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Utils.h>
-#include <xLib/System/SystemInfo.h>
+#include <xLib/System/Info/Cpu.h>
 #include <xLib/System/User.h>
 #include <xLib/Log/Trace.h>
 
@@ -16,14 +16,6 @@
     #include "Platform/Win/Thread_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/Thread_unix.inl"
-
-    #if   xENV_LINUX
-        // #include "Platform/Linux/Thread_linux.inl"
-    #elif xENV_BSD
-        // #include "Platform/Bsd/Thread_bsd.inl"
-    #elif xENV_APPLE
-        // #include "Platform/Unix/Thread_apple.inl"
-    #endif
 #endif
 
 
@@ -70,7 +62,7 @@ Thread::~Thread()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::setTag(
-    culong_t &a_tag
+    culong_t a_tag
 )
 {
     _tag = a_tag;
@@ -84,16 +76,12 @@ Thread::tag() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::create(
-    cbool_t a_isPaused,
-    cuint_t &a_stackSizeBytes,
+    cbool_t  a_isPaused,
+    cuint_t  a_stackSizeBytes,
     void_t  *a_param
 )
 {
-#if   xENV_WIN
-    xTEST_EQ(_handle != xNATIVE_HANDLE_NULL, false);
-#elif xENV_UNIX
-
-#endif
+    xTEST(!isHandleValid());
     xTEST_NA(a_isPaused);
     xTEST_NA(a_stackSizeBytes);
     xTEST_NA(a_param);
@@ -101,16 +89,17 @@ Thread::create(
     _param = a_param;
 
     // events
-    _eventStarter = new Event(true, false);
-    xTEST_PTR(_eventStarter);
-
+    cbool_t isAutoReset {true};
+	cbool_t isSignaled  {false};
+    _eventStarter = new Event(isAutoReset, isSignaled);
     _eventStarter->create();
+
     _eventPause.create();
     _eventExit.create();
 
     // start
     _create_impl(a_stackSizeBytes);
-    xTEST_EQ(isCurrent(_id), false);
+    xTEST(!isCurrent(_id));
 
     // states
     {
@@ -131,54 +120,42 @@ Thread::create(
 void_t
 Thread::resume()
 {
-#if   xENV_WIN
-    xTEST(_handle != xNATIVE_HANDLE_NULL);
-#elif xENV_UNIX
-
-#endif
+    xTEST(isHandleValid());
 
     _eventPause.set();
 
     // states
     {
-        /* _state.isCreated */// n/a
-        /* _state.isRunning */// n/a
+        // _state.isCreated - n/a
+        // _state.isRunning - n/a
     }
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::pause()
 {
-#if   xENV_WIN
-    xTEST_MSG(_handle != xNATIVE_HANDLE_NULL, String::cast(_handle));
-#elif xENV_UNIX
-
-#endif
+    xTEST(isHandleValid());
 
     _eventPause.reset();
 
     // states
     {
-        /* _state.isCreated */// n/a
-        /* _state.isRunning */// n/a
+        // _state.isCreated - n/a
+        // _state.isRunning - n/a
     }
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::exit()
 {
-#if   xENV_WIN
-    xTEST(_handle != xNATIVE_HANDLE_NULL);
-#elif xENV_UNIX
-
-#endif
+    xTEST(isHandleValid());
 
     _eventExit.set();
 
     // states
     {
-        /* _state.isCreated */// n/a
-        /* _state.isRunning */// n/a
+        // _state.isCreated - n/a
+        // _state.isRunning - n/a
 
         xCHECK_DO(isPaused(), resume());
     }
@@ -186,7 +163,7 @@ Thread::exit()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::kill(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 )
 {
     _kill_impl(a_timeoutMsec);
@@ -195,7 +172,7 @@ Thread::kill(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::wait(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 ) const
 {
     _wait_impl(a_timeoutMsec);
@@ -251,7 +228,7 @@ Thread::isExited()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::setPriority(
-    const Priority a_priority
+    cPriority a_priority
 ) const
 {
     _setPriority_impl(a_priority);
@@ -260,51 +237,15 @@ Thread::setPriority(
 Thread::Priority
 Thread::priority() const
 {
-#if   xENV_WIN
-    xTEST(_handle != xNATIVE_HANDLE_NULL);
-#elif xENV_UNIX
-
-#endif
+    xTEST(isHandleValid());
 
     return _priority_impl();
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Thread::priorityString() const
-{
-    // n/a
-
-    auto iRv = priority();
-    switch (iRv) {
-    case Priority::tpIdle:
-        return xT("Idle");
-    case Priority::tpLowest:
-        return xT("Lowest");
-    case Priority::tpBelowNormal:
-        return xT("Below normal");
-    case Priority::tpNormal:
-        return xT("Normal");
-    case Priority::tpAboveNormal:
-        return xT("Above normal");
-    case Priority::tpHighest:
-        return xT("Highest");
-    case Priority::tpTimeCritical:
-        return xT("Time critical");
-    case Priority::tpError:
-        return xT("<Error>");
-    }
-
-    return xT("N/A");
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::priorityUp() const
 {
-#if   xENV_WIN
-    xTEST(_handle != xNATIVE_HANDLE_NULL);
-#elif xENV_UNIX
-
-#endif
+    xTEST(isHandleValid());
 
     Priority tpOldLevel  = Priority::tpError;
     Priority tpiNewLevel = Priority::tpError;
@@ -343,11 +284,7 @@ Thread::priorityUp() const
 void_t
 Thread::priorityDown() const
 {
-#if   xENV_WIN
-    xTEST(_handle != xNATIVE_HANDLE_NULL);
-#elif xENV_UNIX
-
-#endif
+    xTEST(isHandleValid());
 
     Priority tpOldLevel  = Priority::tpError;
     Priority tpiNewLevel = Priority::tpError;
@@ -407,7 +344,7 @@ Thread::setPriorityBoost(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::setCpuAffinity(
-    cint_t &a_procNum
+    cint_t a_procNum
 ) const
 {
     _setCpuAffinity_impl(a_procNum);
@@ -415,7 +352,7 @@ Thread::setCpuAffinity(
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::setCpuIdeal(
-    culong_t &a_idealCpu    ///< value is zero-based
+    culong_t a_idealCpu    ///< value is zero-based
 ) const
 {
     _setCpuIdeal_impl(a_idealCpu);
@@ -424,11 +361,7 @@ Thread::setCpuIdeal(
 ulong_t
 Thread::cpuIdeal() const
 {
-#if   xENV_WIN
-    xTEST(_handle != xNATIVE_HANDLE_NULL);
-#elif xENV_UNIX
-
-#endif
+    xTEST(isHandleValid());
 
     return _cpuIdeal_impl();
 }
@@ -437,12 +370,74 @@ Thread::cpuIdeal() const
 ulong_t
 Thread::cpuCount()
 {
-    ulong_t ulRv = SystemInfo().cpusNum();
+    ulong_t ulRv = info::Cpu().num();
     xCHECK_RET(ulRv < 1UL || ulRv > 32UL, 1UL);
 
     // TODO: [skynowa] Thread::cpuCount() - make constant 32UL
 
     return ulRv;
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   public: Checks
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+bool_t
+Thread::isHandleValid() const
+{
+    return isHandleValid(_handle);
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Thread::isIdValid() const
+{
+    return isIdValid(_id);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+Thread::isHandleValid(
+	chandle_t &a_handle
+)
+{
+	bool_t bRv {};
+
+#if   xENV_WIN
+	bRv = (a_handle != xNATIVE_HANDLE_NULL);
+#elif xENV_UNIX
+	#if xENV_APPLE
+		bRv = (a_handle != nullptr);
+	#else
+		bRv = (a_handle > 0);
+	#endif
+#endif
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+Thread::isIdValid(
+	const id_t &a_id
+)
+{
+	bool_t bRv {};
+
+#if   xENV_WIN
+	bRv = (a_id > 0UL);
+#elif xENV_UNIX
+	#if xENV_APPLE
+		bRv = (a_id != nullptr);
+	#else
+		bRv = (a_id > 0);
+	#endif
+#endif
+
+    return bRv;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -462,11 +457,7 @@ Thread::handle() const
 Thread::id_t
 Thread::id() const
 {
-#if   xENV_WIN
-    xTEST(_handle != xNATIVE_HANDLE_NULL);
-#elif xENV_UNIX
-
-#endif
+    xTEST(isHandleValid());
 
     return _id;
 }
@@ -488,7 +479,7 @@ Thread::setDebugName(
     std::ctstring_t &a_name
 ) const
 {
-    xTEST_GR(_id, static_cast<id_t>( 0 ));
+    xTEST(isIdValid());
     xTEST_LESS_EQ(a_name.size(), xTHREAD_NAME_LENGTH_MAX);
 
     std::tstring_t name = a_name;
@@ -513,14 +504,14 @@ Thread::setDebugName(
 /* static */
 Thread::handle_t
 Thread::open(
-    culong_t &a_access,
+    culong_t  a_access,
     cbool_t   a_isInheritHandle,
-    culong_t &a_id
+    cid_t    &a_id
 )
 {
     xTEST_NA(a_access);
     xTEST_NA(a_isInheritHandle);
-    xTEST_LESS(0UL, a_id);
+    xTEST(isIdValid(a_id));
 
     return _open_impl(a_access, a_isInheritHandle, a_id);
 }
@@ -567,7 +558,7 @@ Thread::currentYield()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::currentSleep(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 )
 {
     // n/a
@@ -595,7 +586,7 @@ Thread::onRun(
 
     xTEST_FAIL_MSG(xT("It's virtual method"));
 
-    uint_t uiRv = 0U;
+    uint_t uiRv {};
 
 #if xTEMP_DISABLED
     for ( ; ; ) {
@@ -630,7 +621,7 @@ Thread::isTimeToExit()
 
     // pause / resume
     bRv = isPaused();
-    xCHECK_RET(bRv, ! _waitResumption());
+    xCHECK_RET(bRv, !_waitResumption());
 
     // states
     // n/a
@@ -648,7 +639,7 @@ Thread::isTimeToExit()
 //-------------------------------------------------------------------------------------------------
 /* static */
 Thread::exit_status_t xSTDCALL
-Thread::_s_jobEntry(
+Thread::_func(
     void_t *a_param
 )
 {
@@ -665,8 +656,7 @@ Thread::_s_jobEntry(
     currentSleep(waitVaildHandleTimeoutMsec);
 
     Event::ObjectState osRv = self->_eventStarter->wait(notInfiniteTimeoutMsec);
-    // TODO: [skynowa] StdStreamV2
-    ///-- xTEST_EQ(Event::osSignaled, osRv);
+    xTEST(osRv == Event::ObjectState::osSignaled);
 
     Utils::ptrDeleteT(self->_eventStarter);
 
@@ -676,18 +666,18 @@ Thread::_s_jobEntry(
         xTEST_EQ(bRv, true);
     }
 
-    static uint_t exitStatus = 0U;
+    static uint_t exitStatus {};
     {
         {
-            // TODO: [skynowa] Thread::_s_jobEntry() - begin of thread function
+            // TODO: [skynowa] Thread::_func() - begin of thread function
         }
 
         // run thread function
         try {
             exitStatus = self->onRun(self->_param);
         }
-        catch (std::exception &e) {
-            std::string what = e.what();
+        catch (std::exception &a_exc) {
+            std::cstring_t &what = a_exc.what();
             xTEST_FAIL_MSG(xA2T(what));
         }
         catch (...) {
@@ -695,7 +685,7 @@ Thread::_s_jobEntry(
         }
 
         {
-            // TODO: [skynowa] Thread::_s_jobEntry() - end of thread function
+            // TODO: [skynowa] Thread::_func() - end of thread function
         }
     }
 
@@ -703,9 +693,9 @@ Thread::_s_jobEntry(
     xCHECK_DO(self->_isAutoDelete, Utils::ptrDeleteT(self));
 
 #if   xENV_WIN
-    exit_status_t esRv = exitStatus;
+    cexit_status_t esRv = exitStatus;
 #elif xENV_UNIX
-    exit_status_t esRv = &exitStatus;
+    cexit_status_t esRv = &exitStatus;
 #endif
 
     return esRv;
@@ -716,11 +706,11 @@ Thread::_waitResumption()
 {
     // states
     {
-        /* _state.isCreated */// n/a
-        /* _state.isRunning */// n/a
+        // _state.isCreated - n/a
+        // _state.isRunning - n/a
     }
 
-    Event::ObjectState osRv = _eventPause.wait();
+    const Event::ObjectState osRv = _eventPause.wait();
     // TODO: [skynowa] StdStreamV2
     ///-- xTEST_DIFF(Event::ObjectState::osFailed, osRv);
     ///-- xTEST_DIFF(Event::ObjectState::osTimeout, osRv);
@@ -731,12 +721,12 @@ Thread::_waitResumption()
 //-------------------------------------------------------------------------------------------------
 void_t
 Thread::_clear(
-    cuint_t &a_exitStatus
+    cuint_t a_exitStatus
 )
 {
     _tag        = 0UL;
 
-#if   xENV_WIN1
+#if   xENV_WIN
     ::CloseHandle(_handle);
     _handle = xNATIVE_HANDLE_NULL;
 #elif xENV_UNIX

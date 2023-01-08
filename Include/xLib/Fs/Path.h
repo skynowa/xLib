@@ -9,13 +9,13 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Interface/IPrint.h>
+#include <xLib/Interface/IPrinter.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
 
 class Path :
-	public IPrint<std::tostream_t>
+	public IPrinter<std::tostream_t>
     /// file system path
 {
 public:
@@ -128,33 +128,25 @@ xPUBLIC_STATIC:
 	};
 	xUSING_CONST(FileExt);
 
-    static
-    std::tstring_t fileExt(cFileExt fileExt);
+    static std::tstring_t fileExt(cFileExt fileExt);
         ///< get standard extension
-    static
-    std::tstring_t fileDotExt(cFileExt fileExt);
+    static std::tstring_t fileDotExt(cFileExt fileExt);
         ///< get standard extension with dot (if needed, for "exe" - n/n)
 
-    static
-    bool_t         isValid(std::ctstring_t &filePath, std::tstring_t *filePathValid);
+    static bool_t         isValid(std::ctstring_t &filePath, std::tstring_t *filePathValid);
         ///< path validation
-    static
-    bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid);
+    static bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid);
         ///< name validation
 
-    static
-    size_t         maxSize();
+    static size_t         maxSize();
         ///< get max path length in symbols
-    static
-    size_t         nameMaxSize();
+    static size_t         nameMaxSize();
         ///< get max name length in symbols
 
 #if xENV_UNIX
-    static
-    void_t         proc(std::ctstring_t &procPath, std::vec_tstring_t *fileLines);
+    static void_t         proc(std::ctstring_t &procPath, std::vec_tstring_t *fileLines);
         ///< get file lines from UNIX proc file
-    static
-    std::tstring_t procValue(std::ctstring_t &procPath, std::ctstring_t &key);
+    static std::tstring_t procValue(std::ctstring_t &procPath, std::ctstring_t &key);
         ///< get value by data from UNIX proc file
 #endif
 
@@ -163,33 +155,24 @@ private:
 
 xPLATFORM_IMPL:
 	// files
-	static
-	std::tstring_t _exe_impl();
-	static
-	std::tstring_t _dll_impl();
-    static
-    std::tstring_t _shell_impl();
+	static std::tstring_t _exe_impl();
+	static std::tstring_t _dll_impl();
+    static std::tstring_t _shell_impl();
 
     // dirs
-    static
-    std::tstring_t _homeDir_impl();
-    static
-    std::tstring_t _trashDir_impl();
+    static std::tstring_t _homeDir_impl();
+    static std::tstring_t _trashDir_impl();
 
     std::tstring_t _volume_impl() const;
     void_t         _toNative_impl(std::tstring_t *filePath) const;
     bool_t         _isAbsolute_impl() const;
     std::tstring_t _absolute_impl() const;
 
-    static
-    std::tstring_t _fileExt_impl(cFileExt fileExt);
-    static
-    bool_t         _isNameValid_impl(std::ctstring_t &fileName,
-                      std::tstring_t *fileNameValid = nullptr);
-    static
-    size_t         _maxSize_impl();
-    static
-    size_t         _nameMaxSize_impl();
+    static std::tstring_t _fileExt_impl(cFileExt fileExt);
+    static bool_t         _isNameValid_impl(std::ctstring_t &fileName,
+                              std::tstring_t *fileNameValid = nullptr);
+    static size_t         _maxSize_impl();
+    static size_t         _nameMaxSize_impl();
 };
 
 } // namespace

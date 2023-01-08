@@ -17,8 +17,6 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Test/Test.h>
-
-
 //-------------------------------------------------------------------------------------------------
 namespace
 {

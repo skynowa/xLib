@@ -6,15 +6,13 @@
 
 #include "Crc32.h"
 
-#include <xLib/Core/FormatC.h>
-#include <xLib/Core/Format.h>
-#include <xLib/Fs/File.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Test/Test.h>
+#include <xLib/Fs/File.h>
 
 
 namespace xl::crypt
@@ -29,7 +27,7 @@ namespace xl::crypt
 ulong_t
 Crc32::calc(
     uchar_t  *a_buff,
-    culong_t &a_buffSize
+    culong_t  a_buffSize
 )
 {
     xTEST_PTR(a_buff);
@@ -140,7 +138,7 @@ Crc32::calcFile(
     File(a_filePath).binRead(&file);
     xCHECK_RET(file.empty(), 0UL);
 
-    _crc32 = calc(&file.at(0), static_cast<culong_t>( file.size() ));
+    _crc32 = calc(&file.at(0), static_cast<ulong_t>( file.size() ));
 
     return _crc32;
 }

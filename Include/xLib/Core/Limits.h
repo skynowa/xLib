@@ -40,8 +40,13 @@
     #define xUSER_NAME_MAX \
         ( UNLEN )
 #elif xENV_UNIX
-    #define xUSER_NAME_MAX \
-        ( L_cuserid )
+	#if defined(L_cuserid)
+		#define xUSER_NAME_MAX \
+			( L_cuserid )
+	#else
+		#define xUSER_NAME_MAX \
+			( 9 ) // custom define
+	#endif
 #endif
     ///< max user name length
 //-------------------------------------------------------------------------------------------------

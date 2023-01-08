@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Crc32)
 bool_t
 Test_Crc32::unit()
 {
-    std::ctstring_t filePath = getData().tempDirPath  + Const::slash() + xT("Crc32.txt");
+    std::ctstring_t filePath = data().tempDirPath  + Const::slash() + xT("Crc32.txt");
 
     // Prepare
     {

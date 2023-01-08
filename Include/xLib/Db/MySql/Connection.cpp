@@ -99,7 +99,7 @@ Connection::close()
 //-------------------------------------------------------------------------------------------------
 void_t
 Connection::kill(
-	std::cuint64_t a_pid
+	culong_t a_pid
 )
 {
     xTEST_GR(a_pid, 0UL);

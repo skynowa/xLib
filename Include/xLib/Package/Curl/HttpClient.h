@@ -14,7 +14,7 @@ namespace xl::package::curl
 {
 
 struct DataIn :
-	public interface::IDataPrint
+	public interface_::IDataPrint
 	/// Incoming data
 {
 	std::tstring_t url;
@@ -71,7 +71,7 @@ protected:
 xUSING_CONST(DataIn);
 //-------------------------------------------------------------------------------------------------
 struct DataOut :
-	public interface::IDataPrint
+	public interface_::IDataPrint
 	/// Outcoming data
 {
 	std::tstring_t      contentType;
@@ -93,20 +93,6 @@ class HttpClient :
     /// HTTP client
 {
 public:
-	enum class Request
-	{
-		Unknown = 0,
-		Get     = 1,
-		Head    = 2,
-		Post    = 3,
-		Put     = 4,
-		Delete  = 5,
-		Connect = 6,
-		Options = 7,
-		Trace   = 8
-	};
-	xUSING_CONST(Request);
-
 	enum class HttpCode
 		/// HTTP response code
 	{
@@ -127,19 +113,48 @@ public:
 	xNO_COPY_ASSIGN(HttpClient)
 ///\}
 
-    bool_t   request(cRequest type, DataIn &dataIn, DataOut *dataOut);
-		///< send request
+///\name Requests
+///\{
+    bool_t get(DataIn &dataIn, DataOut *dataOut);
+    bool_t head(DataIn &dataIn, DataOut *dataOut);
+    bool_t post(DataIn &dataIn, DataOut *dataOut);
+    bool_t put(DataIn &dataIn, DataOut *dataOut);
+    bool_t del(DataIn &dataIn, DataOut *dataOut);
+    bool_t connect(DataIn &dataIn, DataOut *dataOut);
+    bool_t options(DataIn &dataIn, DataOut *dataOut);
+    bool_t trace(DataIn &dataIn, DataOut *dataOut);
+///\}
+
+///\name HTTP result
+///\{
 	HttpCode httpCode(cDataOut &dataOut) const;
-		///< get HTTP state code
-    bool_t   isSuccess(cDataOut &dataOut) const;
-		///< is HTTP state code OK
+	bool_t   isSuccess(cDataOut &dataOut) const;
+///\}
 
 protected:
-    void_t   setOptionsDefault(DataIn *dataIn, std::ctstring_t &buffRead,
-				std::tstring_t *buffHeader, std::tstring_t *buffData);
+    void_t setOptionsDefault(DataIn *dataIn, std::ctstring_t &buffRead, std::tstring_t *buffHeader,
+				std::tstring_t *buffData);
         ///< set options in
-    void_t   getInfos(DataOut *dataOut);
+    void_t getInfos(DataOut *dataOut);
         ///< get options out
+
+private:
+	enum class Request
+	{
+		Unknown = 0,
+		Get     = 1,
+		Head    = 2,
+		Post    = 3,
+		Put     = 4,
+		Delete  = 5,
+		Connect = 6,
+		Options = 7,
+		Trace   = 8
+	};
+	xUSING_CONST(Request);
+
+    bool_t _request(cRequest type, DataIn &dataIn, DataOut *dataOut);
+		///< send request
 };
 
 } // namespace

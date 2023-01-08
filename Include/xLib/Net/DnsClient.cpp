@@ -30,11 +30,11 @@ namespace xl::net
 void_t
 DnsClient::hostAddrByName(
     std::ctstring_t &a_hostName,
-    std::tstring_t  *a_hostAddr
+    std::tstring_t  *out_hostAddr
 )
 {
-    xTEST_EQ(a_hostName.empty(), false);
-    xTEST_PTR(a_hostAddr);
+    xTEST(!a_hostName.empty());
+    xTEST_PTR(out_hostAddr);
 
     std::tstring_t sRv;
 
@@ -42,42 +42,40 @@ DnsClient::hostAddrByName(
     xTEST_PTR(host);
     xCHECK_DO(host == nullptr, return);
 
-    struct in_addr **addrList = reinterpret_cast<struct in_addr **>(host->h_addr_list);
+    auto addrList = reinterpret_cast<struct in_addr **>(host->h_addr_list);
 
     for (std::size_t i = 0; addrList[i] != nullptr; ++ i) {
-        sRv = inet_ntoa(*addrList[i]);
-
-        break;
+        sRv = Format::str(xT("{} "), ::inet_ntoa(*addrList[i]));
     }
 
-    xTEST_EQ(sRv.empty(), false);
+    sRv = String::trimSpace(sRv);
+    xTEST(!sRv.empty());
 
     if (host->h_name != nullptr) {
-        const std::string hostName = host->h_name;
-        xTEST_EQ(hostName.empty(), false);
+        std::cstring_t hostName = host->h_name;
+        xTEST(!hostName.empty());
     }
 
-    *a_hostAddr = sRv;
+    *out_hostAddr = sRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
 DnsClient::hostNameByAddr(
     std::ctstring_t              &a_hostAddr,
-    const ISocket::AddressFamily &a_family,
-    std::tstring_t               *a_hostName
+    const ISocket::AddressFamily  a_family,
+    std::tstring_t               *out_hostName
 )
 {
-    xTEST_EQ(a_hostAddr.empty(), false);
-    xTEST_PTR(a_hostName);
+    xTEST(!a_hostAddr.empty());
+    xTEST_PTR(out_hostName);
 
-    hostent *host = nullptr;
+    hostent *host {};
 
     switch (a_family) {
     case ISocket::AddressFamily::afInet:
 		{
-			in_addr iaAddr = {0};
-
+			in_addr iaAddr {};
 			iaAddr.s_addr = ::inet_addr( xT2A(a_hostAddr).c_str() );
 			xTEST_DIFF(iaAddr.s_addr, INADDR_NONE);
 
@@ -90,12 +88,11 @@ DnsClient::hostNameByAddr(
     case ISocket::AddressFamily::afInet6:
 		{
 		#if xTODO
-			IN6_ADDR iaAddr6 = {0};
-
+			IN6_ADDR iaAddr6 {};
 			iRv = ::inet_pton(afInet6, a_casHostAddr.c_str(), &iaAddr6);
 			xTEST_DIFF(iRv, 0);
 
-			host = ::gethostbyaddr(reinterpret_cast<char *>( &iaAddr6 ), 16,
+			*out_hostName = ::gethostbyaddr(reinterpret_cast<char *>( &iaAddr6 ), 16,
 				static_cast<std::size_t>(ISocket::AddressFamily::afInet6));
 			xTEST_PTR(host);
 		#endif
@@ -104,7 +101,7 @@ DnsClient::hostNameByAddr(
 #endif
     default:
 		{
-			*a_hostName = xA2T("");
+			*out_hostName = xA2T("");
 			return;
 		}
     	break;
@@ -112,16 +109,16 @@ DnsClient::hostNameByAddr(
 
     xCHECK_DO(host == nullptr, return);
 
-    *a_hostName = xA2T(host->h_name);
+    *out_hostName = xA2T(host->h_name);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
 DnsClient::localHostName(
-    std::tstring_t *a_hostName
+    std::tstring_t *out_hostName
 )
 {
-    xTEST_PTR(a_hostName);
+    xTEST_PTR(out_hostName);
 
     std::string asRv(xHOST_NAME_MAX, '0');
 
@@ -136,21 +133,21 @@ DnsClient::localHostName(
 
     asRv.assign(asRv.c_str());    // trim '0' from end
 
-    *a_hostName = xA2T(asRv);
+    *out_hostName = xA2T(asRv);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
 DnsClient::nameInfo(
-    ISocket::cAddressFamily &a_family,		///< address family
+    ISocket::cAddressFamily  a_family,		///< address family
     std::ctstring_t         &a_hostAddr,	///< IP address
-    cushort_t               &a_hostPort,	///< port
+    cushort_t                a_hostPort,	///< port
 	std::tstring_t          *out_name,		///< [out] host name
 	std::tstring_t          *out_port		///< [out] service name
 )
 {
     xTEST_NA(a_family);
-    xTEST_EQ(a_hostAddr.empty(), false);
+    xTEST(!a_hostAddr.empty());
     xTEST_GR(a_hostPort, static_cast<ushort_t>(0));
 	xTEST_NA(out_name);
 	xTEST_NA(out_port);
@@ -163,7 +160,7 @@ DnsClient::nameInfo(
     tchar_t hostName[NI_MAXHOST + 1] = {0};
     tchar_t hostPort[NI_MAXSERV + 1] = {0};
 
-    int_t iRv = xGETNAMEINFO(reinterpret_cast<sockaddr *>(&socketAddr), sizeof(socketAddr),
+    int_t iRv = xNAME_INFO_GET(reinterpret_cast<sockaddr *>(&socketAddr), sizeof(socketAddr),
         &hostName[0], NI_MAXHOST, &hostPort[0], NI_MAXSERV, NI_NUMERICSERV);
 #if   xENV_WIN
     xTEST_EQ(iRv, 0);
@@ -188,16 +185,16 @@ void_t
 DnsClient::hostAddrInfo(
     std::ctstring_t  &a_hostName,
     std::ctstring_t  &a_port,
-    caddrinfo_t      *a_hints,		///< maybe nullptr
-    addrinfo_t      **a_addrInfo
+    caddrinfo_t      *out_hints,		///< maybe nullptr
+    addrinfo_t      **out_addrInfo
 )
 {
-    xTEST_EQ(a_hostName.empty(), false);
-    xTEST_EQ(a_port.empty(), false);
-    xTEST_NA(a_hints);
-    xTEST_PTR(a_addrInfo);
+    xTEST(!a_hostName.empty());
+    xTEST(!a_port.empty());
+    xTEST_NA(out_hints);
+    xTEST_PTR(out_addrInfo);
 
-    int_t iRv = xGETADDRINFO(a_hostName.c_str(), a_port.c_str(), a_hints, a_addrInfo);
+    int_t iRv = xADDR_INFO_GET(a_hostName.c_str(), a_port.c_str(), out_hints, out_addrInfo);
 #if   xENV_WIN
     xTEST_EQ(iRv, 0);
 #elif xENV_UNIX
@@ -210,14 +207,14 @@ void_t
 DnsClient::protocolByName(
     std::ctstring_t    &a_protocolName,
     std::tstring_t     *a_name,
-    std::vec_tstring_t *a_aliases,
-    int_t              *a_number
+    std::vec_tstring_t *out_aliases,
+    int_t              *out_number
 )
 {
-    xTEST_EQ(a_protocolName.empty(), false);
+    xTEST(!a_protocolName.empty());
     xTEST_NA(a_name);
-    xTEST_NA(a_aliases);
-    xTEST_NA(a_number);
+    xTEST_NA(out_aliases);
+    xTEST_NA(out_number);
 
     protoent/*PROTOENT*/ *info = ::getprotobyname( xT2A(a_protocolName).c_str() );
     xTEST_PTR(info);
@@ -228,23 +225,23 @@ DnsClient::protocolByName(
         *a_name = xA2T(info->p_name);
     }
 
-    // a_aliases
-    if (a_aliases != nullptr) {
-        a_aliases->clear();
+    // out_aliases
+    if (out_aliases != nullptr) {
+        out_aliases->clear();
 
         for (char **s = info->p_aliases; s && *s; ++ s) {
-            a_aliases->push_back( xA2T(*s) );
+            out_aliases->push_back( xA2T(*s) );
         }
     }
 
     // a_number
-    Utils::ptrAssignT(a_number, *a_number = info->p_proto);
+    Utils::ptrAssignT(out_number, *out_number = info->p_proto);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 void_t
 DnsClient::protocolByNumber(
-    cint_t             &a_number,
+    cint_t              a_number,
     std::tstring_t     *a_name,
     std::vec_tstring_t *a_aliases,
     int_t              *a_number_rv
@@ -288,8 +285,8 @@ DnsClient::serviceByName(
     std::tstring_t     *a_protocolName_rv
 )
 {
-    xTEST_EQ(a_serviceName.empty(), false);
-    xTEST_EQ(a_protocolName.empty(), false);
+    xTEST(!a_serviceName.empty());
+    xTEST(!a_protocolName.empty());
     xTEST_NA(a_name);
     xTEST_NA(a_aliases);
     xTEST_NA(a_port);
@@ -325,7 +322,7 @@ DnsClient::serviceByName(
 /* static */
 void_t
 DnsClient::serviceByPort(
-    cushort_t          &a_port,
+    cushort_t           a_port,
     std::ctstring_t    &a_protocolName,
     std::tstring_t     *a_name,
     std::vec_tstring_t *a_aliases,
@@ -334,7 +331,7 @@ DnsClient::serviceByPort(
 )
 {
     xTEST_GR(a_port, static_cast<ushort_t>(0));
-    xTEST_EQ(a_protocolName.empty(), false);
+    xTEST(!a_protocolName.empty());
     xTEST_NA(a_name);
     xTEST_NA(a_aliases);
     xTEST_NA(a_port_rv);
@@ -370,10 +367,10 @@ DnsClient::serviceByPort(
 /* static */
 bool_t
 DnsClient::isOnLan(
-    cuint_t &a_ip
+    cuint_t a_ip
 )
 {
-    cuint_t localIp = INADDR_ANY;  // IP of local interface (network order)
+    cuint_t localIp = INADDR_ANY;  // IP of local interfaCe (network order)
     cuint_t netMask = INADDR_NONE; // net mask for IP (network order)
 
     return (((ntohl(a_ip) ^ ntohl(localIp)) & ntohl(netMask)) == 0UL);
@@ -382,7 +379,7 @@ DnsClient::isOnLan(
 /* static */
 bool_t
 DnsClient::isBroadcast(
-    cuint_t &a_ip
+    cuint_t a_ip
 )
 {
     cuint_t netMask = INADDR_NONE; // net mask for IP (network order)

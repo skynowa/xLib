@@ -13,7 +13,7 @@ xTEST_UNIT(Test_FileIO)
 bool_t
 Test_FileIO::unit()
 {
-    std::ctstring_t filePath = getData().tempDirPath + Const::slash() + xT("Test.txt");
+    std::ctstring_t filePath = data().tempDirPath + Const::slash() + xT("Test.txt");
 
     /*******************************************************************************
     *    prepare
@@ -170,7 +170,7 @@ Test_FileIO::unit()
 
         // write
         {
-            std::ctstring_t dataNewPath = getData().tempDirPath + Const::slash() + xT("DataNew.dat");
+            std::ctstring_t dataNewPath = data().tempDirPath + Const::slash() + xT("DataNew.dat");
 
             FileIO file(dataNewPath);
             file.open(FileIO::OpenMode::BinWrite);
@@ -280,7 +280,7 @@ Test_FileIO::unit()
         xTEST_EQ(content.size(), size_t(iRv));
     }
 
-    xTEST_CASE("writeV")
+    xTEST_CASE("writeV, scanf")
     {
         struct Writer
         {
@@ -297,9 +297,29 @@ Test_FileIO::unit()
             };
         };
 
-        FileIO file(filePath);
-        file.open(FileIO::OpenMode::ReadWrite);
-        Writer::doV(file, xT("%s"), xT("zzz"));
+        std::ctstring_t content = xT("zzz");
+
+        // writeV
+		{
+			FileIO file(filePath);
+			file.open(FileIO::OpenMode::ReadWrite);
+
+			Writer::doV(file, xT("%s"), content.c_str());
+		}
+
+		// scanf
+		{
+			FileIO file(filePath);
+			file.open(FileIO::OpenMode::ReadOnly);
+
+			std::tstring_t buff;
+			buff.resize(content.size() + 1);
+
+			file.scanf(xT("%s"), &buff[0]);
+
+			std::ctstring_t buffStr(&buff[0]);
+			xTEST_EQ(buffStr, content);
+		}
     }
 
     /*******************************************************************************

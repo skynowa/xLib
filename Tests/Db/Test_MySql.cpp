@@ -13,8 +13,16 @@ class FabricaOptions :
 {
 public:
 	FabricaOptions() :
-		mysql::Options(xT("mysql-api-master.office.fabrica.net.ua"), xT("triptake"), xT("inae4Ees"),
-			xT("triptake"), 3306, {}, xT("utf8mb4"), true, {})
+		mysql::Options(
+			xT("mysql-api-master.office.fabrica.net.ua"),
+			xT("triptake"),
+			xT("inae4Ees"),
+			xT("triptake"),
+			3306,
+			{},
+			xT("utf8mb4"),
+			true,
+			{})
 	{
 	}
 
@@ -28,9 +36,18 @@ public:
 bool_t
 Test_MySql::unit()
 {
+	if ( isGithubCI() ) {
+		Cout() << "GithubCI - skip";
+		return true;
+	}
+
+	if ( !isVpnActive() ) {
+		Cout() << "VPN off - skip";
+		return true;
+	}
+
 	using namespace mysql;
 
-#if cmMYSQL_FOUND
 	FabricaOptions options;
 	Db             db(options);
 	Connection     conn(options);
@@ -47,15 +64,15 @@ Test_MySql::unit()
 			std::vec_tstring_t dbNames;
 
 			db.show(xT("%a%"), &dbNames);
-			// Cout() << xTRACE_VAR(dbNames);
+			// Cout() << xSTD_TRACE_VAR(dbNames);
 			xTEST(!dbNames.empty());
 
 			db.show(xT("%XXXXXXXXXXx%"), &dbNames);
-			// Cout() << xTRACE_VAR(dbNames);
+			// Cout() << xSTD_TRACE_VAR(dbNames);
 			xTEST(dbNames.empty());
 
 			db.show(&dbNames);
-			// Cout() << xTRACE_VAR(dbNames);
+			// Cout() << xSTD_TRACE_VAR(dbNames);
 			xTEST(!dbNames.empty());
 		}
 
@@ -154,7 +171,7 @@ Test_MySql::unit()
 			result.fetchRows(&rows);
 
 			for (const auto &it_row : rows) {
-				Cout() << xTRACE_VAR(it_row);
+				Cout() << xSTD_TRACE_VAR(it_row);
 			}
 
 		}
@@ -183,7 +200,6 @@ Test_MySql::unit()
 			xTEST_EQ(m_sRv, it_expect);
 		}
 	}
-#endif
 
     return true;
 }

@@ -13,9 +13,22 @@ xTEST_UNIT(Test_Profiler)
 bool_t
 Test_Profiler::unit()
 {
+    xTEST_CASE("ctor")
+    {
+        Profiler profiler;
+        profiler.start();
+
+        for (size_t i = 0; i < 4; ++ i) {
+            Thread::currentSleep(5UL);
+            m_stRv = profiler.restart(xT("\tVar i: %") xPR_SIZET, i);
+        }
+
+        m_stRv = profiler.stop(xT(""));
+    }
+
     xTEST_CASE("setLogPath")
     {
-        std::ctstring_t filePath = getData().tempDirPath + Const::slash() + xT("ProfilerLog.log");
+        std::ctstring_t filePath = data().tempDirPath + Const::slash() + xT("ProfilerLog.log");
 
 		{
 			FileIO file(filePath);
@@ -27,24 +40,11 @@ Test_Profiler::unit()
         profiler.setLogPath(filePath);
 
         m_sRv = profiler.logPath();
-        xTEST_EQ(filePath, m_sRv);
+        xTEST_EQ(m_sRv, filePath);
 
         profiler.start();
 
-        for (size_t i = 0; i < 10; ++ i) {
-            Thread::currentSleep(5UL);
-            m_stRv = profiler.restart(xT("\tVar i: %") xPR_SIZET, i);
-        }
-
-        m_stRv = profiler.stop(xT(""));
-    }
-
-    xTEST_CASE("Profiler")
-    {
-        Profiler profiler;
-        profiler.start();
-
-        for (size_t i = 0; i < 10; ++ i) {
+        for (size_t i = 0; i < 4; ++ i) {
             Thread::currentSleep(5UL);
             m_stRv = profiler.restart(xT("\tVar i: %") xPR_SIZET, i);
         }

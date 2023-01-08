@@ -6,6 +6,8 @@
 
 #include "Functions.h"
 
+#include <xLib/Core/Core.h>
+
 #if   xENV_WIN
     #include "Platform/Win/Functions_win.inl"
 #elif xENV_UNIX
@@ -20,6 +22,6 @@
     #elif xENV_BSD
         #include "Platform/Bsd/Functions_bsd.inl"
     #elif xENV_APPLE
-        // #include "Platform/Apple/Functions_apple.inl"
+        #include "Platform/Apple/Functions_apple.inl"
     #endif
 #endif

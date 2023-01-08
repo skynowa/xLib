@@ -14,7 +14,7 @@ xTEST_UNIT(Test_FileInfo)
 bool_t
 Test_FileInfo::unit()
 {
-	std::ctstring_t filePath = getData().tempDirPath + Const::slash() + xT("Test.txt");
+	std::ctstring_t filePath = data().tempDirPath + Const::slash() + xT("Test.txt");
 
     xTEST_CASE("size")
     {
@@ -99,7 +99,7 @@ Test_FileInfo::unit()
         m_bRv = FileInfo(filePath + xT("wrong_path")).isExists();
         xTEST(!m_bRv);
 
-        m_bRv = FileInfo(getData().tempDirPath).isExists();
+        m_bRv = FileInfo(data().tempDirPath).isExists();
         xTEST(!m_bRv);
     }
 

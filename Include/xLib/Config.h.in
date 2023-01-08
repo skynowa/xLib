@@ -1,5 +1,5 @@
 /**
- * \file  Config_gen.h
+ * \file  Config.h
  * \brief configurations for xLib
  */
 
@@ -9,9 +9,7 @@
 //-------------------------------------------------------------------------------------------------
 ///@name project type: executable binary, static library, share (dynamic-link) library
 ///@{
-#cmakedefine cmOPTION_PROJECT_LIB_STATIC 1
-#cmakedefine cmOPTION_PROJECT_LIB_SHARE 1
-#cmakedefine cmOPTION_PROJECT_LIB_MODULE 1
+#cmakedefine cmOPTION_PROJECT_LIB_TYPE xT("@cmOPTION_PROJECT_LIB_TYPE@")
 ///@}
 
 #cmakedefine cmOPTION_BUILD_MSG 1
@@ -20,8 +18,6 @@
 ///@name debug mode (only one mode can be activated)
 ///@{
 // log mode (only one mode can be activated)
-#cmakedefine cmOPTION_DEBUG_MODE_MSGBOX 1
-    ///< debug mode "message box"
 #cmakedefine cmOPTION_DEBUG_MODE_STDOUT 1
     ///< debug mode "std::cout"
 #cmakedefine cmOPTION_DEBUG_MODE_LOG 1
@@ -34,7 +30,7 @@
     ///< debug mode "no debugging"
 ///@}
 //-------------------------------------------------------------------------------------------------
-#cmakedefine CMAKE_BUILD_TYPE xT("@CMAKE_BUILD_TYPE@")
+#cmakedefine cmCMAKE_BUILD_TYPE xT("@cmCMAKE_BUILD_TYPE@")
 
 ///@name Git information
 ///@{
@@ -45,9 +41,9 @@
 
 #cmakedefine cmXLIB_COMPILER_FLAGS xT("@cmXLIB_COMPILER_FLAGS@")
     ///< Compiler flags
-#cmakedefine cmXLIB_LIBRARIES      xT("@cmXLIB_LIBRARIES@")
+#cmakedefine cmXLIB_LIBRARIES xT("@cmXLIB_LIBRARIES@")
     ///< xLib linked libraries
-#cmakedefine cmCMAKE_VERSION       xT("@cmCMAKE_VERSION@")
+#cmakedefine cmCMAKE_VERSION xT("@cmCMAKE_VERSION@")
     ///< CMake version
 
 ///@name detecting features
@@ -78,8 +74,12 @@
 #cmakedefine cmMYSQL_FOUND 1
 #cmakedefine cmEXECINFO_FOUND 1
 #cmakedefine cmXCB_FOUND 1
+
 #cmakedefine cmADDR2LINE_FOUND 1
 #cmakedefine cmADDR2LINE_FILE_PATH xT("@cmADDR2LINE_FILE_PATH@")
+
+#cmakedefine cmATOS_FOUND 1
+#cmakedefine cmATOS_FILE_PATH xT("@cmATOS_FILE_PATH@")
 ///@}
 //-------------------------------------------------------------------------------------------------
 ///@name OS specific defines
@@ -106,10 +106,10 @@
         ///< don't complain about all the deprecated functions
 
     #if xCOMPILER_MS
-        #if !defined(VC_EXTRALEAN)
-            #define VC_EXTRALEAN 1
-        #endif
-            ///< exclude rarely-used stuff from Windows headers
+         #if !defined(VC_EXTRALEAN)
+             #define VC_EXTRALEAN 1
+         #endif
+             ///< exclude rarely-used stuff from Windows headers
     #endif
 #elif xENV_UNIX
     #if !defined(_GNU_SOURCE)

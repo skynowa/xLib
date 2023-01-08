@@ -13,8 +13,8 @@ xTEST_UNIT(Test_Backup)
 bool_t
 Test_Backup::unit()
 {
-    std::ctstring_t filePath  = getData().tempDirPath + Const::slash() + xT("test.txt");
-    std::ctstring_t backupDir = getData().tempDirPath + Const::slash() + xT("Backup_dir");
+    std::ctstring_t filePath  = data().tempDirPath + Const::slash() + xT("test.txt");
+    std::ctstring_t backupDir = data().tempDirPath + Const::slash() + xT("Backup_dir");
 
     xTEST_CASE("fileExec")
     {
@@ -25,10 +25,10 @@ Test_Backup::unit()
             file.setSize(100L);
 
         #if 0
-            Tracer() << xTRACE_VAR(DateTime::current().format(xT("%Y-%m-%d_%H"), xT("")));
-            Tracer() << xTRACE_VAR(DateTime::current().format(xT("%Y-%m-%d"), xT("")));
-            Tracer() << xTRACE_VAR(DateTime::current().format(xT("%Y_%U"), xT("")));
-            Tracer() << xTRACE_VAR(DateTime::current().format(xT("%Y-%m"), xT("")));
+            Tracer() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m-%d_%H"), xT("")));
+            Tracer() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m-%d"), xT("")));
+            Tracer() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y_%U"), xT("")));
+            Tracer() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m"), xT("")));
         #endif
         }
 

@@ -56,10 +56,10 @@ public:
 	xNO_COPY_ASSIGN(FsWatcher)
 ///\}
 
-    bool_t         openFiles(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &cmds);
-    bool_t         openDirs(std::cvec_tstring_t &dirPaths, std::cmap_tstring_t &cmds);
-    void_t         watch(culong_t timeoutMsec);
-    void_t         close();
+    bool_t openFiles(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &cmds);
+    bool_t openDirs(std::cvec_tstring_t &dirPaths, std::cmap_tstring_t &cmds);
+    void_t watch(culong_t timeoutMsec);
+    void_t close();
 
     virtual void_t onEvent(std::ctstring_t &fsName, cEvent event) = 0;
 
