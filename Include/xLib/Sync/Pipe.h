@@ -39,7 +39,7 @@ public:
     void_t          closeWrite();
 
 private:
-    HandleNative _handle {};    ///< native handle
+    HandleNative _handle;    ///< native handle
 
 #if   xENV_WIN
 	// TODO: native handles
