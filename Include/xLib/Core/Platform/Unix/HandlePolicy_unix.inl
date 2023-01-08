@@ -24,7 +24,7 @@ namespace xl::core
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 std::size_t
-HandlePolicy<T, HandlePolicyType type>::_openMax_impl()
+HandlePolicy<T, HandlePolicyType::hvNative>::_openMax_impl()
 {
     rlimit limit {};
 
@@ -37,7 +37,7 @@ HandlePolicy<T, HandlePolicyType type>::_openMax_impl()
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 T
-HandlePolicy<T, HandlePolicyType type>::_clone_impl(const T a_handle)
+HandlePolicy<T, HandlePolicyType::hvNative>::_clone_impl(const T a_handle)
 {
     return ::dup(a_handle);
 }
