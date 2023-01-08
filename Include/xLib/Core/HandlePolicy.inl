@@ -231,65 +231,45 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 	#if   xENV_WIN
 		BOOL blRes = ::CloseHandle(a_handle);
 		xTEST_DIFF(blRes, FALSE);
-
-		a_handle = null();
 	#elif xENV_UNIX
 		// TODO: hvNative - impl
-		a_handle = null();
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::hvNativeInvalid) {
 	#if   xENV_WIN
 		BOOL blRes = ::CloseHandle(a_handle);
 		xTEST_DIFF(blRes, FALSE);
-
-		a_handle = null();
 	#elif xENV_UNIX
 		// TODO: hvNativeInvalid - impl
-		a_handle = null();
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::hvDll) {
 	#if   xENV_WIN
 		BOOL blRv = ::FreeLibrary(a_handle);
 		xTEST_DIFF(blRv, FALSE);
-
-		a_handle = null();
 	#elif xENV_UNIX
 		// TODO: hvDll - impl
-		a_handle = null();
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::hvStdFile) {
 	    int_t iRv = std::fclose(a_handle);
 	    xTEST_DIFF(iRv, xTEOF);
-
-	    a_handle = null();
 	}
 	else if constexpr (type == HandlePolicyType::hvMySqlConn) {
 	    (void_t)::mysql_close(a_handle);
-
-	    a_handle = null();
 	}
 	else if constexpr (type == HandlePolicyType::hvMySqlResult) {
 	    (void_t)::mysql_free_result(a_handle);
-
-	    a_handle = null();
 	}
 	else if constexpr (type == HandlePolicyType::hvCurl) {
 	    (void_t)::curl_easy_cleanup(a_handle);
-
-	    a_handle = null();
 	}
 	else if constexpr (type == HandlePolicyType::hvFindDir) {
 	#if   xENV_WIN
 		BOOL blRv = ::FindClose(a_handle);
 		xTEST_DIFF(blRv, FALSE);
-
-		a_handle = null();
 	#elif xENV_UNIX
 		// TODO: hvFindDir - impl
-		a_handle = null();
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::hvSocket) {
@@ -299,11 +279,8 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 
 		iRv = ::closesocket(a_handle);
 		xTEST_DIFF(iRv, xSOCKET_ERROR);
-
-		a_handle = null();
 	#elif xENV_UNIX
 		// TODO: hvSocket - impl
-		a_handle = null();
 	#endif
 	}
 	else {
