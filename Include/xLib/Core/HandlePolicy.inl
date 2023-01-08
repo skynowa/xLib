@@ -216,7 +216,7 @@ HandlePolicy<T, type>::_isValid_impl(const T a_handle)
 	}
 	else {
 		/// TODO: _isValid_impl
-		return false;
+		return (a_handle != null());
 	}
 #elif xENV_UNIX
 	return (a_handle != null());
