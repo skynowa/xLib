@@ -12,6 +12,13 @@
     #include "Platform/Functions_ansi.h"
 #endif
 //-------------------------------------------------------------------------------------------------
+// xDUP2
+#if   xENV_WIN
+	#define xDUP2 ::_dup2
+#elif xENV_UNIX
+	#define xDUP2 ::dup2
+#endif
+
 // xLOCKING
 #if   xCOMPILER_MINGW
     #define xLOCKING ::_locking

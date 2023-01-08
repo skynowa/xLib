@@ -137,18 +137,13 @@ HandlePolicy<T, type>::_clone_impl(const T a_handle)
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::hvStdFile) {
-	    int_t handleDup{};
+	    int_t handleDup {};
 
 	    int_t handle = ::fileno(a_handle);
 	    xTEST_DIFF(handle, -1);
 
-	#if   xENV_WIN
-		int_t iRv = ::_dup2(handle, handleDup);
+		int_t iRv = xDUP2(handle, handleDup);
 		xTEST_DIFF(iRv, -1);
-	#elif xENV_UNIX
-		int_t iRv = ::dup2(handle, handleDup);
-		xTEST_DIFF(iRv, -1);
-	#endif
 
 	    return static_cast<T>(xTFDOPEN(handleDup, xT("r+")));  // TODO: [skynowa] clone - open mode
 	}
@@ -211,7 +206,6 @@ HandlePolicy<T, type>::_isValid_impl(const T a_handle)
 		return (a_handle >= 0);
 	}
 	else {
-		/// TODO: _isValid_impl
 		return (a_handle != null());
 	}
 #elif xENV_UNIX
