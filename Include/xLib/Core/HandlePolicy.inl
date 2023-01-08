@@ -212,6 +212,9 @@ HandlePolicy<T, type>::_isValid_impl(const T a_handle)
 	else if constexpr (type == HandlePolicyType::hvSocket) {
 		return (a_handle >= 0);
 	}
+	else {
+
+	}
 #endif
 
     return (a_handle != null());
