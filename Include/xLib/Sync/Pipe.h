@@ -27,8 +27,8 @@ public:
 ///\}
 
     cHandleNative & handle() const override;
-	cint_t        & handleRead() const;
-	cint_t        & handleWrite() const;
+	cint_t          handleRead() const;
+	cint_t          handleWrite() const;
 
     void_t          create() override;
 
@@ -48,17 +48,16 @@ private:
         Read  = 0,
         Write = 1
     };
-
-	std::vector<int_t> _handles;	///< native handles
 #elif xENV_UNIX
 	enum FdIndex : std::size_t
 	{
 		Read  = 0,
 		Write = 1
 	};
+#endif
+	xUSING_CONST(FdIndex);
 
 	std::vector<int_t> _handles;	///< native handles
-#endif
 
 xPLATFORM_IMPL:
     void_t _create_impl();
