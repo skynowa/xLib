@@ -73,7 +73,7 @@ HandlePolicy<T, type>::_openMax_impl()
 	    return 0;
 	}
 	else {
-		static_assert(false);
+		/// static_assert(false);
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -119,7 +119,7 @@ HandlePolicy<T, type>::_clone_impl(const T a_handle)
 		return a_handle;
 	}
 	else {
-		static_assert(false);
+		/// static_assert(false);
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -173,7 +173,7 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 		a_handle = null();
 	}
 	else {
-		static_assert(false);
+		/// static_assert(false);
 	}
 }
 //-------------------------------------------------------------------------------------------------
