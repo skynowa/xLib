@@ -6,7 +6,11 @@
 
 #pragma once
 
-#if xENV_WIN
+#if   xENV_WIN
+	#include <mysql.h>
+	#include <errmsg.h>
+	#include <mysqld_error.h>
+#elif xENV_APPLE
 	#include <mysql.h>
 	#include <errmsg.h>
 	#include <mysqld_error.h>
