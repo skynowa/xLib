@@ -148,11 +148,5 @@ xUSING_CONST(HandleSocket);
 } // namespace
 //-------------------------------------------------------------------------------------------------
 #include "HandlePolicy.inl"
-
-#if   xENV_WIN
-    /// #include "Platform/Win/HandlePolicy_win.inl"
-#elif xENV_UNIX
-    /// #include "Platform/Unix/HandlePolicy_unix.inl"
-#endif
 //-------------------------------------------------------------------------------------------------
 
