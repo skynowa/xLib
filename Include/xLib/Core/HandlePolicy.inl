@@ -107,10 +107,12 @@ HandlePolicy<T, type>::_clone_impl(const T a_handle)
 	    return ::curl_easy_duphandle(a_handle);
 	}
 	else if constexpr (type == HandlePolicyType::hvFindDir) {
-
+		// TODO: hvFindDir - impl
+		return a_handle;
 	}
 	else if constexpr (type == HandlePolicyType::hvSocket) {
-
+		// TODO: hvSocket - impl
+		return a_handle;
 	}
 	else {
 		/// static_assert(false);
@@ -159,10 +161,12 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 	    a_handle = null();
 	}
 	else if constexpr (type == HandlePolicyType::hvFindDir) {
-
+		// TODO: hvFindDir - impl
+		return a_handle;
 	}
 	else if constexpr (type == HandlePolicyType::hvSocket) {
-
+		// TODO: hvSocket - impl
+		return a_handle;
 	}
 	else {
 		/// static_assert(false);
