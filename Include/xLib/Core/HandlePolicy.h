@@ -31,15 +31,15 @@ namespace xl::core
 enum class HandlePolicyType
     /// error handle type
 {
-    hvNative = 0,       ///< like "null"
-    hvNativeInvalid,    ///< like "invalid" (-1)
-    hvDll,              ///< DLL
-    hvStdFile,          ///< like nullptr
-    hvMySqlConn,        ///< MySQL connection
-    hvMySqlResult,      ///< MySQL result
-    hvCurl,             ///< CURL
-    hvFindDir,          ///< Dir find
-    hvSocket            ///< Socket
+    hvNative        = 0, ///< like "null"
+    hvNativeInvalid = 1, ///< like "invalid" (-1)
+    hvDll           = 2, ///< DLL
+    hvStdFile       = 3, ///< like nullptr
+    hvMySqlConn     = 4, ///< MySQL connection
+    hvMySqlResult   = 5, ///< MySQL result
+    hvCurl          = 6, ///< CURL
+    hvFindDir       = 7, ///< Dir find
+    hvSocket        = 8  ///< Socket
 };
 
 template<typename T, HandlePolicyType valueT>
