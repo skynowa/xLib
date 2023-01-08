@@ -232,7 +232,9 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 		BOOL blRes = ::CloseHandle(a_handle);
 		xTEST_DIFF(blRes, FALSE);
 	#elif xENV_UNIX
-		// TODO: hvNative - impl
+		// TODO: hvNative - review
+		int_t iRv = ::close(a_handle);
+		xTEST_DIFF(iRv, xSOCKET_ERROR);
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::hvNativeInvalid) {
@@ -240,7 +242,9 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 		BOOL blRes = ::CloseHandle(a_handle);
 		xTEST_DIFF(blRes, FALSE);
 	#elif xENV_UNIX
-		// TODO: hvNativeInvalid - impl
+		// TODO: hvNativeInvalid - review
+		int_t iRv = ::close(a_handle);
+		xTEST_DIFF(iRv, xSOCKET_ERROR);
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::hvDll) {
@@ -248,7 +252,8 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 		BOOL blRv = ::FreeLibrary(a_handle);
 		xTEST_DIFF(blRv, FALSE);
 	#elif xENV_UNIX
-		// TODO: hvDll - impl
+		int_t iRv = ::dlclose(a_handle);
+		xTEST_EQ(iRv, 0);
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::hvStdFile) {
@@ -269,7 +274,8 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 		BOOL blRv = ::FindClose(a_handle);
 		xTEST_DIFF(blRv, FALSE);
 	#elif xENV_UNIX
-		// TODO: hvFindDir - impl
+		int_t iRv = ::closedir(a_handle);
+		xTEST_DIFF(iRv, -1);
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::hvSocket) {
@@ -280,7 +286,9 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 		iRv = ::closesocket(a_handle);
 		xTEST_DIFF(iRv, xSOCKET_ERROR);
 	#elif xENV_UNIX
-		// TODO: hvSocket - impl
+		// TODO: hvSocket - review
+		int_t iRv = ::close(a_handle);
+		xTEST_DIFF(iRv, xSOCKET_ERROR);
 	#endif
 	}
 	else {
