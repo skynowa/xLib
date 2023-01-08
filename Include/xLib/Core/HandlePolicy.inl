@@ -206,8 +206,10 @@ HandlePolicy<T, type>::_isValid_impl(const T a_handle)
 		return (a_handle >= 0);
 	}
 	else {
-		return (a_handle != null());
+		// n/a - as compile-time test
 	}
+
+	return (a_handle != null());
 #elif xENV_UNIX
 	return (a_handle != null());
 #endif
