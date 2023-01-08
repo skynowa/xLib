@@ -48,8 +48,6 @@ class Handle;
 //-------------------------------------------------------------------------------------------------
 ///\name Factory
 ///\{
-// TODO: isValid - add const
-/// #define xHANDLE_POLICY_FACTORY(type, null_value)
 template<typename T, HandlePolicyType type>
 struct HandlePolicy
 {
@@ -83,7 +81,7 @@ struct HandlePolicy
 			return xSOCKET_HANDLE_INVALID;
 		}
 		else {
-			/// static_assert(false);
+			// n/a - as compile-time test
 		}
 	}
 
