@@ -6,6 +6,11 @@
 
 #pragma once
 
+#include <xLib/Core/Core.h>
+#include <xLib/Core/Format.h>
+
+#include <curl/curl.h>
+
 #if   xENV_WIN
 	#include <mysql.h>
 	#include <errmsg.h>
@@ -19,11 +24,6 @@
 	#include <mysql/errmsg.h>
 	#include <mysql/mysqld_error.h>
 #endif
-
-#include <curl/curl.h>
-
-#include <xLib/Core/Core.h>
-#include <xLib/Core/Format.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
 {
