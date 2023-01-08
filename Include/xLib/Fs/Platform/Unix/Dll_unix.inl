@@ -19,7 +19,7 @@ Dll::_load_impl(
 )
 {
     _handle = ::dlopen(xT2A(a_dllPath).c_str(), RTLD_LAZY | RTLD_GLOBAL);
-    xTEST_EQ_MSG(_handle.isValid(), true, NativeError::format());
+    xTEST_MSG(_handle.isValid(), NativeError::format());
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -27,9 +27,9 @@ Dll::_isProcExists_impl(
     std::ctstring_t &a_procName
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+    xTEST(_handle.isValid());
 
-    const char *error = nullptr;
+    const char *error {};
 
     error = ::dlerror();
     xTEST_PTR_FAIL(error);
@@ -49,7 +49,7 @@ Dll::_procAddress_impl(
 {
     xTEST_EQ(_handle.isValid(), true);
 
-    const char *error = nullptr;
+    const char *error {};
 
     error = ::dlerror();
     xTEST_PTR_FAIL(error);

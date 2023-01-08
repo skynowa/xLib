@@ -190,26 +190,22 @@ HandlePolicy<T, type>::_isValid_impl(const T a_handle)
 {
 #if xENV_WIN
 	if constexpr (type == HandlePolicyType::hvNativeInvalid) {
-		bool_t bRv {};
-
 		// created but not initialised
-		bool_t cond1 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xCDCDCDCD) ));
+		cbool_t cond1 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xCDCDCDCD) ));
 		// uninitialized locals in VC6 when you compile w/ /GZ
-		bool_t cond2 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xCCCCCCCC) ));
+		cbool_t cond2 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xCCCCCCCC) ));
 		// indicate an uninitialized variable
-		bool_t cond3 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xBAADF00D) ));
+		cbool_t cond3 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xBAADF00D) ));
 		// no man's land (normally outside of a process)
-		bool_t cond4 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xFDFDFDFD) ));
+		cbool_t cond4 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xFDFDFDFD) ));
 		// freed memory set by NT's heap manager
-		bool_t cond5 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xFEEEFEEE) ));
+		cbool_t cond5 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xFEEEFEEE) ));
 		// deleted
-		bool_t cond6 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xDDDDDDDD) ));
+		cbool_t cond6 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xDDDDDDDD) ));
 		//
-		bool_t cond7 = (a_handle != null());
+		cbool_t cond7 = (a_handle != null());
 
-		bRv = cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7;
-
-		return bRv;
+		return (cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7);
 	}
 	else if constexpr (type == HandlePolicyType::hvSocket) {
 		return (a_handle >= 0);
