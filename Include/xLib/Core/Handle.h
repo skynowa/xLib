@@ -25,7 +25,6 @@ class Debugger;
 #include <xLib/Core/Core.h>
 #include <xLib/Core/HandlePolicy.h>
 #include <xLib/Interface/IHandle.h>
-#include <xLib/Core/HandlePolicyType.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
 {
