@@ -234,7 +234,7 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 	#elif xENV_UNIX
 		// REVIEW: hvNative
 		int_t iRv = ::close(a_handle);
-		xTEST_DIFF(iRv, xSOCKET_ERROR);
+		xTEST_DIFF(iRv, -1);
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::hvNativeInvalid) {
@@ -244,7 +244,7 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 	#elif xENV_UNIX
 		// REVIEW: hvNativeInvalid
 		int_t iRv = ::close(a_handle);
-		xTEST_DIFF(iRv, xSOCKET_ERROR);
+		xTEST_DIFF(iRv, -1);
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::hvDll) {
