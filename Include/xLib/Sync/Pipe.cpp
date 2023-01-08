@@ -37,13 +37,13 @@ Pipe::handle() const
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-cint_t &
+cint_t
 Pipe::handleRead() const
 {
     return _handles[FdIndex::Read];
 }
 //-------------------------------------------------------------------------------------------------
-cint_t &
+cint_t
 Pipe::handleWrite() const
 {
     return _handles[FdIndex::Write];
