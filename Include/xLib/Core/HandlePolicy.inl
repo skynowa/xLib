@@ -82,13 +82,16 @@ T
 HandlePolicy<T, type>::_clone_impl(const T a_handle)
 {
 	if      constexpr (type == HandlePolicyType::hvNative) {
-
+		// TODO: hvNative - impl
+		return a_handle;
 	}
 	else if constexpr (type == HandlePolicyType::hvNativeInvalid) {
-
+		// TODO: hvNativeInvalid - impl
+		return a_handle;
 	}
 	else if constexpr (type == HandlePolicyType::hvDll) {
-
+		// TODO: hvDll - impl
+		return a_handle;
 	}
 	else if constexpr (type == HandlePolicyType::hvStdFile) {
 	    int_t handleDup{};
@@ -135,13 +138,16 @@ void_t
 HandlePolicy<T, type>::_close_impl(T &a_handle)
 {
 	if      constexpr (type == HandlePolicyType::hvNative) {
-
+		// TODO: hvNative - impl
+		a_handle = null();
 	}
 	else if constexpr (type == HandlePolicyType::hvNativeInvalid) {
-
+		// TODO: hvNativeInvalid - impl
+		a_handle = null();
 	}
 	else if constexpr (type == HandlePolicyType::hvDll) {
-
+		// TODO: hvDll - impl
+		a_handle = null();
 	}
 	else if constexpr (type == HandlePolicyType::hvStdFile) {
 	    int_t iRv = std::fclose(a_handle);
