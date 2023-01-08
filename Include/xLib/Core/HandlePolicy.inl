@@ -208,11 +208,9 @@ HandlePolicy<T, type>::_isValid_impl(const T a_handle)
 	else {
 		// n/a - as compile-time test
 	}
+#endif
 
 	return (a_handle != null());
-#elif xENV_UNIX
-	return (a_handle != null());
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType type>
