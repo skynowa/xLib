@@ -11,7 +11,6 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
 
-
 namespace xl::core
 {
 
@@ -21,173 +20,153 @@ namespace xl::core
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename T, HandlePolicyType type>
 std::size_t
-HandlePolicy<T, HandlePolicyType::hvStdFile>::_openMax_impl()
+HandlePolicy<T, type>::_openMax_impl()
 {
-    return HandlePolicy<native_handle_t, HandlePolicyType::hvNative>::openMax();
+	if      constexpr (type == HandlePolicyType::hvNative ||
+					   type == HandlePolicyType::hvNativeInvalid ||
+					   type == HandlePolicyType::hvDll ||
+					   type == HandlePolicyType::hvStdFile)
+	{
+		rlimit limit {};
+
+		int_t iRv = ::getrlimit(RLIMIT_NOFILE, &limit);
+		xTEST_EQ(iRv, 0);
+		xTEST_GR(static_cast<std::size_t>(limit.rlim_cur), 0UL);
+
+		return static_cast<std::size_t>( limit.rlim_cur );
+	}
+	else if constexpr (type == HandlePolicyType::hvMySqlConn) {
+		// TODO: [skynowa] _openMax_impl
+
+	   /**
+		* show variables like "max_connections"
+		*
+	    * +-----------------+-------+
+	    * | Variable_name   | Value |
+	    * +-----------------+-------+
+	    * | max_connections | 100   |
+	    * +-----------------+-------+
+	    *
+	    * set global max_connections = 200;
+	    */
+
+	    return 0;
+	}
+	else if constexpr (type == HandlePolicyType::hvMySqlResult) {
+		// TODO: [skynowa] _openMax_impl
+
+	    return 0;
+	}
+	else if constexpr (type == HandlePolicyType::hvCurl) {
+	    return static_cast<std::size_t>(CURLOPT_MAXCONNECTS);
+	}
+	else if constexpr (type == HandlePolicyType::hvFindDir) {
+
+	}
+	else if constexpr (type == HandlePolicyType::hvSocket) {
+
+	}
+	else {
+		/// static_assert(false);
+	}
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename T, HandlePolicyType type>
 T
-HandlePolicy<T, HandlePolicyType::hvStdFile>::_clone_impl(const T a_handle)
+HandlePolicy<T, type>::_clone_impl(const T a_handle)
 {
-    int_t handleDup{};
+	if      constexpr (type == HandlePolicyType::hvNative) {
 
-    int_t handle = ::fileno(a_handle);
-    xTEST_DIFF(handle, -1);
+	}
+	else if constexpr (type == HandlePolicyType::hvNativeInvalid) {
 
-    int_t iRv = ::dup2(handle, handleDup);
-    xTEST_DIFF(iRv, -1);
+	}
+	else if constexpr (type == HandlePolicyType::hvDll) {
 
-    return static_cast<T>(xTFDOPEN(handleDup, xT("r+")));  // TODO: [skynowa] clone - open mode
+	}
+	else if constexpr (type == HandlePolicyType::hvStdFile) {
+	    int_t handleDup{};
+
+	    int_t handle = ::fileno(a_handle);
+	    xTEST_DIFF(handle, -1);
+
+	    int_t iRv = ::dup2(handle, handleDup);
+	    xTEST_DIFF(iRv, -1);
+
+	    return static_cast<T>(xTFDOPEN(handleDup, xT("r+")));  // TODO: [skynowa] clone - open mode
+	}
+	else if constexpr (type == HandlePolicyType::hvMySqlConn) {
+	    return a_handle;
+	}
+	else if constexpr (type == HandlePolicyType::hvMySqlResult) {
+	    return a_handle;
+	}
+	else if constexpr (type == HandlePolicyType::hvCurl) {
+	    return ::curl_easy_duphandle(a_handle);
+	}
+	else if constexpr (type == HandlePolicyType::hvFindDir) {
+
+	}
+	else if constexpr (type == HandlePolicyType::hvSocket) {
+
+	}
+	else {
+		/// static_assert(false);
+	}
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename T, HandlePolicyType type>
 bool_t
-HandlePolicy<T, HandlePolicyType::hvStdFile>::_isValid_impl(const T a_handle)
+HandlePolicy<T, type>::_isValid_impl(const T a_handle)
 {
     return (a_handle != null());
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename T, HandlePolicyType type>
 void_t
-HandlePolicy<T, HandlePolicyType::hvStdFile>::_close_impl(T &a_handle)
+HandlePolicy<T, type>::_close_impl(T &a_handle)
 {
-    int_t iRv = std::fclose(a_handle);
-    xTEST_DIFF(iRv, xTEOF);
+	if      constexpr (type == HandlePolicyType::hvNative) {
 
-    a_handle = null();
-}
-//-------------------------------------------------------------------------------------------------
+	}
+	else if constexpr (type == HandlePolicyType::hvNativeInvalid) {
 
+	}
+	else if constexpr (type == HandlePolicyType::hvDll) {
 
-/**************************************************************************************************
-*    public - HandlePolicy hvMySqlConn
-*
-**************************************************************************************************/
+	}
+	else if constexpr (type == HandlePolicyType::hvStdFile) {
+	    int_t iRv = std::fclose(a_handle);
+	    xTEST_DIFF(iRv, xTEOF);
 
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-std::size_t
-HandlePolicy<T, HandlePolicyType::hvMySqlConn>::_openMax_impl()
-{
-	// TODO: [skynowa] _openMax_impl
+	    a_handle = null();
+	}
+	else if constexpr (type == HandlePolicyType::hvMySqlConn) {
+	    (void_t)::mysql_close(a_handle);
 
-   /**
-	* show variables like "max_connections"
-	*
-    * +-----------------+-------+
-    * | Variable_name   | Value |
-    * +-----------------+-------+
-    * | max_connections | 100   |
-    * +-----------------+-------+
-    *
-    * set global max_connections = 200;
-    */
+	    a_handle = null();
+	}
+	else if constexpr (type == HandlePolicyType::hvMySqlResult) {
+	    (void_t)::mysql_free_result(a_handle);
 
-    return 0;
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-T
-HandlePolicy<T, HandlePolicyType::hvMySqlConn>::_clone_impl(const T a_handle)
-{
-    return a_handle;
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-bool_t
-HandlePolicy<T, HandlePolicyType::hvMySqlConn>::_isValid_impl(const T a_handle)
-{
-    return (a_handle != null());
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-void_t
-HandlePolicy<T, HandlePolicyType::hvMySqlConn>::_close_impl(T &a_handle)
-{
-    (void_t)::mysql_close(a_handle);
+	    a_handle = null();
+	}
+	else if constexpr (type == HandlePolicyType::hvCurl) {
+	    (void_t)::curl_easy_cleanup(a_handle);
 
-    a_handle = null();
-}
-//-------------------------------------------------------------------------------------------------
+	    a_handle = null();
+	}
+	else if constexpr (type == HandlePolicyType::hvFindDir) {
 
+	}
+	else if constexpr (type == HandlePolicyType::hvSocket) {
 
-/**************************************************************************************************
-*    public - HandlePolicy hvMySqlResult
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-std::size_t
-HandlePolicy<T, HandlePolicyType::hvMySqlResult>::_openMax_impl()
-{
-	// TODO: [skynowa] _openMax_impl
-
-    return 0;
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-T
-HandlePolicy<T, HandlePolicyType::hvMySqlResult>::_clone_impl(const T a_handle)
-{
-    return a_handle;
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-bool_t
-HandlePolicy<T, HandlePolicyType::hvMySqlResult>::_isValid_impl(const T a_handle)
-{
-    return (a_handle != null());
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-void_t
-HandlePolicy<T, HandlePolicyType::hvMySqlResult>::_close_impl(T &a_handle)
-{
-    (void_t)::mysql_free_result(a_handle);
-
-    a_handle = null();
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*    public - HandlePolicy hvCurl
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-std::size_t
-HandlePolicy<T, HandlePolicyType::hvCurl>::_openMax_impl()
-{
-    return static_cast<std::size_t>(CURLOPT_MAXCONNECTS);
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-T
-HandlePolicy<T, HandlePolicyType::hvCurl>::_clone_impl(const T a_handle)
-{
-    return ::curl_easy_duphandle(a_handle);
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-bool_t
-HandlePolicy<T, HandlePolicyType::hvCurl>::_isValid_impl(const T a_handle)
-{
-    return (a_handle != null());
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-void_t
-HandlePolicy<T, HandlePolicyType::hvCurl>::_close_impl(T &a_handle)
-{
-    (void_t)::curl_easy_cleanup(a_handle);
-
-    a_handle = null();
+	}
+	else {
+		/// static_assert(false);
+	}
 }
 //-------------------------------------------------------------------------------------------------
 
