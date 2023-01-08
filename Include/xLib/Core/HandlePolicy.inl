@@ -91,7 +91,7 @@ HandlePolicy<T, type>::_openMax_impl()
 	#endif
 	}
 	else {
-		/// static_assert(false);
+		// n/a - as compile-time test
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -180,7 +180,7 @@ HandlePolicy<T, type>::_clone_impl(const T a_handle)
 	#endif
 	}
 	else {
-		/// static_assert(false);
+		// n/a - as compile-time test
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -307,7 +307,7 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 	#endif
 	}
 	else {
-		/// static_assert(false);
+		// n/a - as compile-time test
 	}
 }
 //-------------------------------------------------------------------------------------------------
