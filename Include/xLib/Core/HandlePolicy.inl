@@ -280,12 +280,15 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 	}
 	else if constexpr (type == HandlePolicyType::hvSocket) {
 	#if   xENV_WIN
-		int_t iRv = shutdown(a_handle, SD_BOTH);
+		int_t iRv = ::shutdown(a_handle, SD_BOTH);
 		xTEST_DIFF(iRv, xSOCKET_ERROR);
 
 		iRv = ::closesocket(a_handle);
 		xTEST_DIFF(iRv, xSOCKET_ERROR);
 	#elif xENV_UNIX
+		int_t iRv = ::shutdown(a_handle, SHUT_RDWR);
+		xTEST_DIFF(iRv, xSOCKET_ERROR);
+
 		// REVIEW: hvSocket
 		int_t iRv = ::close(a_handle);
 		xTEST_DIFF(iRv, xSOCKET_ERROR);
