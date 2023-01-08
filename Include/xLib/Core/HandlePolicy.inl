@@ -36,7 +36,6 @@ HandlePolicy<T, type>::_openMax_impl()
 		return static_cast<std::size_t>(iRv);
 	#elif xENV_UNIX
 		rlimit limit {};
-
 		int_t iRv = ::getrlimit(RLIMIT_NOFILE, &limit);
 		xTEST_EQ(iRv, 0);
 		xTEST_GR(static_cast<std::size_t>(limit.rlim_cur), 0UL);
@@ -217,16 +216,9 @@ template<typename T, HandlePolicyType type>
 void_t
 HandlePolicy<T, type>::_close_impl(T &a_handle)
 {
-	if      constexpr (type == HandlePolicyType::hvNative) {
-	#if   xENV_WIN
-		BOOL blRes = ::CloseHandle(a_handle);
-		xTEST_DIFF(blRes, FALSE);
-	#elif xENV_UNIX
-		int_t iRv = ::close(a_handle);
-		xTEST_DIFF(iRv, -1);
-	#endif
-	}
-	else if constexpr (type == HandlePolicyType::hvNativeInvalid) {
+	if      constexpr (type == HandlePolicyType::hvNative ||
+					   type == HandlePolicyType::hvNativeInvalid)
+	{
 	#if   xENV_WIN
 		BOOL blRes = ::CloseHandle(a_handle);
 		xTEST_DIFF(blRes, FALSE);
