@@ -102,6 +102,8 @@ xPLATFORM_IMPL:
 namespace xl::core
 {
 
+#if 0
+
 ///\name Aliases
 ///\{
 using file_t      = FILE *;
@@ -136,6 +138,8 @@ xUSING_CONST(HandleFindDir);
 using HandleSocket        = Handle<socket_t,          HandlePolicyType::hvSocket>;
 xUSING_CONST(HandleSocket);
 ///\}
+
+#endif
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
