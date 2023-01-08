@@ -63,13 +63,17 @@ HandlePolicy<T, type>::_openMax_impl()
 	    return static_cast<std::size_t>(CURLOPT_MAXCONNECTS);
 	}
 	else if constexpr (type == HandlePolicyType::hvFindDir) {
+		// TODO: [skynowa] hvFindDir
 
+	    return 0;
 	}
 	else if constexpr (type == HandlePolicyType::hvSocket) {
+		// TODO: [skynowa] hvSocket
 
+	    return 0;
 	}
 	else {
-		/// static_assert(false);
+		static_assert(false);
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -115,7 +119,7 @@ HandlePolicy<T, type>::_clone_impl(const T a_handle)
 		return a_handle;
 	}
 	else {
-		/// static_assert(false);
+		static_assert(false);
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -162,14 +166,14 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 	}
 	else if constexpr (type == HandlePolicyType::hvFindDir) {
 		// TODO: hvFindDir - impl
-		return a_handle;
+		a_handle = null();
 	}
 	else if constexpr (type == HandlePolicyType::hvSocket) {
 		// TODO: hvSocket - impl
-		return a_handle;
+		a_handle = null();
 	}
 	else {
-		/// static_assert(false);
+		static_assert(false);
 	}
 }
 //-------------------------------------------------------------------------------------------------
