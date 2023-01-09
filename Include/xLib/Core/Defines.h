@@ -99,7 +99,7 @@
     ( sizeof(a) / sizeof((a)[0]) )
     ///< get array size
 #define xSWITCH_CASE_RETURN_STR(x) \
-    case (x): return (#x)
+    case x: return (#x)
     ///< help for switch (not for `enum class`)
 ///\}
 //-------------------------------------------------------------------------------------------------
