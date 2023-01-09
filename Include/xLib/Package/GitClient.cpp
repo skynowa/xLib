@@ -16,14 +16,6 @@ namespace xl::package
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-GitClient::GitClient()
-{
-}
-//-------------------------------------------------------------------------------------------------
-GitClient::~GitClient()
-{
-}
-//-------------------------------------------------------------------------------------------------
 bool
 GitClient::isGitDir() const
 {
@@ -52,7 +44,7 @@ GitClient::isGitDir() const
 std::tstring_t
 GitClient::repoUrlName() const
 {
-	/// xCHECK_RET(!isGitDir(), xT(""));
+	xCHECK_RET(!isGitDir(), xT(""));
 
 	std::tstring_t sRv;
 
@@ -83,7 +75,7 @@ GitClient::repoUrlName() const
 std::tstring_t
 GitClient::repoName() const
 {
-	/// xCHECK_RET(!isGitDir(), xT(""));
+	xCHECK_RET(!isGitDir(), xT(""));
 
 	std::tstring_t sRv;
 
@@ -101,7 +93,7 @@ GitClient::repoName() const
 std::tstring_t
 GitClient::branchName() const
 {
-	/// xCHECK_RET(!isGitDir(), xT(""));
+	xCHECK_RET(!isGitDir(), xT(""));
 
 	std::tstring_t sRv;
 
@@ -129,7 +121,7 @@ GitClient::branchName() const
 std::size_t
 GitClient::localBranchesNum() const
 {
-	/// xCHECK_RET(!isGitDir(), 0);
+	xCHECK_RET(!isGitDir(), 0);
 
 	std::cvec_tstring_t  params {"branch"};
 	std::tstring_t       stdOut;
@@ -189,7 +181,7 @@ GitClient::localBranchesNum() const
 std::tstring_t
 GitClient::filesStatuses() const
 {
-	/// xCHECK_RET(!isGitDir(), xT(""));
+	xCHECK_RET(!isGitDir(), xT(""));
 
 	std::cvec_tstring_t params {"status"};
 	std::tstring_t      stdOut;
@@ -262,7 +254,7 @@ GitClient::commitsAheadBehind(
 	Utils::ptrAssignT(out_aheadNum,  std::size_t{});
 	Utils::ptrAssignT(out_behindNum, std::size_t{});
 
-	/// xCHECK_DO(!isGitDir(), return);
+	xCHECK_DO(!isGitDir(), return);
 
 	std::cvec_tstring_t params {"rev-list", "--left-right", "--count", "origin/master..." + branchName()};
 	std::tstring_t      stdOut;
@@ -283,7 +275,7 @@ GitClient::commitsAheadBehind(
 std::size_t
 GitClient::stashesNum() const
 {
-	/// xCHECK_RET(!isGitDir(), 0);
+	xCHECK_RET(!isGitDir(), 0);
 
 	std::cvec_tstring_t params {"stash", "list"};
 	std::tstring_t      stdOut;
@@ -303,8 +295,8 @@ GitClient::modifiedFiles(
 	std::vec_tstring_t  *out_filePathes		///< [out]
 ) const
 {
-	/// xCHECK_RET(!isGitDir(), 0);
 	xCHECK_DO(out_filePathes == nullptr, return);
+	xCHECK_DO(!isGitDir(), return);
 
 	out_filePathes->clear();
 
@@ -345,8 +337,8 @@ GitClient::trackedFiles(
 	std::vec_tstring_t  *out_filePathes		///< [out]
 ) const
 {
-	/// xCHECK_RET(!isGitDir(), 0);
 	xCHECK_DO(out_filePathes == nullptr, return);
+	xCHECK_DO(!isGitDir(), return);
 
 	out_filePathes->clear();
 
@@ -387,69 +379,69 @@ GitClient::trackedFiles(
 void_t
 GitClient::modifiedFilesLineFilter() const
 {
-#if 0
-def getGitModifiedFilesLineFilter(self):
-	"" Get current GIT modified lines line filter (JSON) ""
+	xCHECK_DO(!isGitDir(), return);
 
-	# strip the smallest prefix containing P slashes
-	p      = 1
-	iregex = r'.*\.(h|hh|hpp|inl|cc|cpp|cxx)'
-
-	cmd = "git diff -U0 HEAD".split()
-
-	out = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-
-	## result = stderr.strip().decode("utf8")
-	# print("stderr: ", result)
-
-	# extract changed lines for each file
-	filename      = None
-	lines_by_file = {}
-
-	for it_line in iter(out.stdout.readline, ''):
-		line = it_line.decode("utf-8")
-		if (not line):
-			break
-
-		match = re.search('^\+\+\+\ \"?(.*?/){%s}([^ \t\n\"]*)' % p, line)
-		if (match):
-			filename = match.group(2)
-
-		if (filename == None):
-			continue
-
-		if (not re.match('^%s$' % iregex, filename, re.IGNORECASE)):
-			continue
-
-		# print("C++ filename: ", filename)
-
-		match = re.search('^@@.*\+(\d+)(,(\d+))?', line)
-		if (match):
-			start_line = int(match.group(1))
-			line_count = 1
-
-			if (match.group(3)):
-				line_count = int(match.group(3))
-
-			if (line_count == 0):
-				continue
-
-			end_line = start_line + line_count - 1;
-			lines_by_file.setdefault(filename, []).append([start_line, end_line])
-	# for (out.stdout)
-
-	if (len(lines_by_file) == 0):
-		print("No diffs")
-		sys.exit(0)
-
-	line_filter_json = json.dumps(
-		[{"name" : name, "lines" : lines_by_file[name]} for name in lines_by_file],
-		separators = (',', ':'))
-
-	return line_filter_json
-#else
-
-#endif
+   /**
+	* def getGitModifiedFilesLineFilter(self):
+	* 	"" Get current GIT modified lines line filter (JSON) ""
+	*
+	* 	# strip the smallest prefix containing P slashes
+	* 	p      = 1
+	* 	iregex = r'.*\.(h|hh|hpp|inl|cc|cpp|cxx)'
+	*
+	* 	cmd = "git diff -U0 HEAD".split()
+	*
+	* 	out = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+	*
+	* 	## result = stderr.strip().decode("utf8")
+	* 	# print("stderr: ", result)
+	*
+	* 	# extract changed lines for each file
+	* 	filename      = None
+	* 	lines_by_file = {}
+	*
+	* 	for it_line in iter(out.stdout.readline, ''):
+	* 		line = it_line.decode("utf-8")
+	* 		if (not line):
+	* 			break
+	*
+	* 		match = re.search('^\+\+\+\ \"?(.*?/){%s}([^ \t\n\"]*)' % p, line)
+	* 		if (match):
+	* 			filename = match.group(2)
+	*
+	* 		if (filename == None):
+	* 			continue
+	*
+	* 		if (not re.match('^%s$' % iregex, filename, re.IGNORECASE)):
+	* 			continue
+	*
+	* 		# print("C++ filename: ", filename)
+	*
+	* 		match = re.search('^@@.*\+(\d+)(,(\d+))?', line)
+	* 		if (match):
+	* 			start_line = int(match.group(1))
+	* 			line_count = 1
+	*
+	* 			if (match.group(3)):
+	* 				line_count = int(match.group(3))
+	*
+	* 			if (line_count == 0):
+	* 				continue
+	*
+	* 			end_line = start_line + line_count - 1;
+	* 			lines_by_file.setdefault(filename, []).append([start_line, end_line])
+	* 	# for (out.stdout)
+	*
+	* 	if (len(lines_by_file) == 0):
+	* 		print("No diffs")
+	* 		sys.exit(0)
+	*
+	* 	line_filter_json = json.dumps(
+	* 		[{"name" : name, "lines" : lines_by_file[name]} for name in lines_by_file],
+	* 		separators = (',', ':'))
+	*
+	* 	return line_filter_json
+	*/
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -488,7 +480,6 @@ GitClient::_gitPath() const
 	};
 
 	cbool_t isRecursively {false};
-
 	sRv = Finder::file(dirPaths, gitName, isRecursively);
 	xTEST(!sRv.empty());
 
