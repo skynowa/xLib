@@ -81,7 +81,7 @@ Finder::_moveNext_impl()
 
         // filter by pattern
         iRv = ::fnmatch(xT2A(shellFilter()).c_str(), xT2A(entryName()).c_str(), 0);
-        xTEST_EQ((iRv == 0) || (iRv == FNM_NOMATCH), true);
+        xTEST((iRv == 0) || (iRv == FNM_NOMATCH));
 
         xCHECK_DO(iRv == FNM_NOMATCH, continue);
         xCHECK_DO(iRv == 0,           break);

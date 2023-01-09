@@ -27,7 +27,7 @@ Dll::_isProcExists_impl(
     std::ctstring_t &a_procName
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+	xTEST(_handle.isValid());
 
     proc_address_t paRv = ::GetProcAddress(_handle.get(), xT2A(a_procName).c_str());
     xCHECK_RET(paRv == nullptr, false);

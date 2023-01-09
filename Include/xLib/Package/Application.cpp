@@ -154,7 +154,7 @@ Application::Application(
     _isDevel{::isDevel},
     _appGuid{a_appGuid}
 {
-    xTEST_EQ(a_appGuid.empty(), false);
+	xTEST(!a_appGuid.empty());
     xTEST_NA(a_locale);
 
     Locale locale;

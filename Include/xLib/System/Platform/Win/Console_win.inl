@@ -379,7 +379,7 @@ Console::setFullScreen() const
     xTEST(_stdOut.isValid());
 
     COORD coord = ::GetLargestConsoleWindowSize(_stdOut.get());
-    xTEST_EQ(coord.X != 0 && coord.Y != 0, true);
+    xTEST(coord.X != 0 && coord.Y != 0);
 
     coord.X -= 2;
     coord.Y -= 2;
@@ -409,7 +409,7 @@ Console::enableClose(
     xTEST(_stdOut.isValid());
 
     _menu = _menuHandle(false);
-    xTEST_EQ(_menu != nullptr, true);
+    xTEST(_menu != nullptr);
 
     if (!a_flag) {
         BOOL blRv = ::DeleteMenu(_menu, SC_CLOSE, MF_BYCOMMAND);
@@ -444,7 +444,7 @@ Console::_wndHandle()
 
     // fetch current window title.
     oldWndTitle = title();
-    xTEST_EQ(oldWndTitle.empty(), false);
+    xTEST(!oldWndTitle.empty());
 
     // format a "unique" szNewWndTitle.
     newWndTitle = Format::str(xT("{}/{}"), ::GetTickCount(), ::GetCurrentProcessId());
@@ -473,9 +473,9 @@ Console::_menuHandle(
     _menu = ::GetSystemMenu(_wnd, a_isRevert);
 
     if (a_isRevert) {
-        xTEST_EQ(_menu == nullptr, true);
+    	xTEST(_menu == nullptr);
     } else {
-        xTEST_EQ(_menu != nullptr, true);
+    	xTEST(_menu != nullptr);
     }
 
     return _menu;

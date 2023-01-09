@@ -346,7 +346,7 @@ File::textRead(
     std::vec_tstring_t vsRv;
 
     bRv = textRead(filePath, &vsRv);
-    xTEST_EQ(bRv, true);
+    xTEST(bRv);
 
     for (const auto it = vsRv.cbegin(); it != vsRv.cend(); ++ it) {
         std::vec_tstring_t lines;

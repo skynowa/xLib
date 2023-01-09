@@ -429,7 +429,7 @@ ThreadPool<T>::onRun(
 
         Thread::currentSleep(500UL);
     }
-    xTEST_EQ(_tasks.empty(), true);
+    xTEST(_tasks.empty());
 
     _s_log.write(xT("ThreadPool: Exit thread function"));
     _s_log.write(xT("ThreadPool: List size: %u"), _tasks.size());
@@ -478,7 +478,7 @@ ThreadPool<T>::_taskRemove(
 {
     T *task = static_cast<T *>( a_item );
     xTEST_PTR(task);
-    xTEST_EQ(task->isRunning(), true);
+    xTEST(task->isRunning());
 
     //-------------------------------------
     // _semaphore
@@ -504,7 +504,7 @@ ThreadPool<T>::_onEnterTask(
 )
 {
     xTEST_PTR(a_sender);
-    xTEST_EQ(a_sender->isRunning(), true);
+    xTEST(a_sender->isRunning());
 
     //...
 
@@ -518,7 +518,7 @@ ThreadPool<T>::_onExitTask(
 )
 {
     xTEST_PTR(a_sender);
-    xTEST_EQ(a_sender->isRunning(), true);
+    xTEST(a_sender->isRunning());
 
     _taskRemove(a_sender);
 

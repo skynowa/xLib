@@ -150,7 +150,7 @@ Test_Application::unit()
 
         std::vec_tstring_t args1;
         application.args(false, &args1);
-        xTEST_EQ(args1.empty(), false);
+        xTEST(!args1.empty());
 
         std::vec_tstring_t args2;
         application.args(true, &args2);

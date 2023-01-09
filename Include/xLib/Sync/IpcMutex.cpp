@@ -35,7 +35,8 @@ IpcMutex::create(
     std::ctstring_t &a_name
 )
 {
-    ////xTEST_EQ(_handle.isValid(), false);
+	/// xTEST(!_handle.isValid());
+
 #if   xENV_WIN
     // name
 #elif xENV_UNIX
@@ -58,7 +59,7 @@ IpcMutex::lock(
     culong_t &a_timeoutMsec
 ) const
 {
-    ////xTEST_EQ(_handle.isValid(), true);
+    /// xTEST(_handle.isValid());
     xTEST_NA(a_timeoutMsec);
 
     _lock_impl(a_timeoutMsec);
@@ -67,7 +68,7 @@ IpcMutex::lock(
 void_t
 IpcMutex::unlock() const
 {
-    ////xTEST_EQ(_handle.isValid(), true);
+    /// xTEST(_handle.isValid());
 
     _unlock_impl();
 }

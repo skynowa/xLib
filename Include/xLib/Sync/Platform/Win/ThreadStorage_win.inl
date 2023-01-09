@@ -47,7 +47,7 @@ void_t *
 ThreadStorage::_value_impl() const
 {
     void_t *pvRv = ::TlsGetValue(_index);
-    xTEST_EQ((pvRv != nullptr) && (NativeError::get() == ERROR_SUCCESS), true);
+    xTEST((pvRv != nullptr) && (NativeError::get() == ERROR_SUCCESS));
 
     return pvRv;
 }

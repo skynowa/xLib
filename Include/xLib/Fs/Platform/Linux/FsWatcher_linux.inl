@@ -22,7 +22,7 @@ FsWatcher::_watch_impl()
 
 	// Create inotify instance
 	_inotifyFd = ::inotify_init();
-	xTEST_EQ(_inotifyFd.isValid(), true);
+	xTEST(_inotifyFd.isValid());
 
 	// add a watch for all events
 	for (std::size_t i = 0; i < _filePaths.size(); ++ i) {

@@ -64,7 +64,7 @@ Process::create(
 	Cout() << xSTD_TRACE_VAR(a_envs) << std::endl;
 #endif
 
-    xTEST_EQ(a_filePath.empty(), false);
+	xTEST(!a_filePath.empty());
     xTEST_NA(a_params);
     xTEST_NA(a_envs);
     xTEST_NA(out_stdOut);

@@ -279,7 +279,7 @@ Path::_maxSize_impl()
 
     liRv        = ::pathconf("/", _PC_PATH_MAX);
     nativeError = NativeError::get();
-    xTEST_EQ(liRv == - 1L && savedError != 0UL, true);
+    xTEST(liRv == - 1L && savedError != 0UL);
 
     if (liRv == - 1L && savedError == nativeError) {
         // system does not have a limit for the requested resource

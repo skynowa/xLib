@@ -86,7 +86,7 @@ Environment::setVar(
     std::ctstring_t &a_value
 ) const
 {
-    xTEST_EQ(_isValueValid(a_value), true);
+	xTEST(_isValueValid(a_value));
 
     _setVar_impl(a_value);
 }
@@ -155,7 +155,7 @@ Environment::expandVars(
 
         // copy %var% to temp string
         std::ctstring_t &rawEnvVar = String::cut(sRv, startSepPos, stopSepPos + sep.size());
-        xTEST_EQ(rawEnvVar.empty(), false);
+        xTEST(!rawEnvVar.empty());
 
         std::ctstring_t &envVar = String::trimChars(rawEnvVar, sep);
 

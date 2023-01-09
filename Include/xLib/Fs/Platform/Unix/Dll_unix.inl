@@ -47,7 +47,7 @@ Dll::_procAddress_impl(
     std::ctstring_t &a_procName
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+	xTEST(_handle.isValid());
 
     const char *error {};
 

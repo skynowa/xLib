@@ -56,7 +56,7 @@ Cpu::_vendor_impl() const
     *reinterpret_cast<int_t *>( &man[8] ) = cpuInfo[2];
 
     value = std::string(man);
-    xTEST_EQ(value.empty(), false);
+    xTEST(!value.empty());
 #endif
 
     return value;

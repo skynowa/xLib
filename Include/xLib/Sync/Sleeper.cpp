@@ -30,7 +30,7 @@ Sleeper::sleep(
     // n/a
 
     Event::ObjectState osRv = _event.wait(a_timeoutMsec);
-    xTEST_EQ(osRv == Event::ObjectState::osSignaled || osRv == Event::ObjectState::osTimeout, true);
+    xTEST(osRv == Event::ObjectState::osSignaled || osRv == Event::ObjectState::osTimeout);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
