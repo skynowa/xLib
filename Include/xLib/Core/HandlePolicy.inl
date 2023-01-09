@@ -17,7 +17,7 @@ namespace xl::core
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType type>
 T
-HandlePolicy<T, type>::_clone_impl(const T a_handle)
+HandlePolicy<T, type>::clone(const T a_handle)
 {
 	if      constexpr (type == HandlePolicyType::Native) {
 	#if   xENV_WIN
@@ -106,7 +106,7 @@ HandlePolicy<T, type>::_clone_impl(const T a_handle)
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType type>
 bool_t
-HandlePolicy<T, type>::_isValid_impl(const T a_handle)
+HandlePolicy<T, type>::isValid(const T a_handle)
 {
 #if xENV_WIN
 	if constexpr (type == HandlePolicyType::NativeInvalid) {
@@ -140,7 +140,7 @@ HandlePolicy<T, type>::_isValid_impl(const T a_handle)
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType type>
 void_t
-HandlePolicy<T, type>::_close_impl(T &a_handle)
+HandlePolicy<T, type>::close(T &a_handle)
 {
 	if      constexpr (type == HandlePolicyType::Native ||
 					   type == HandlePolicyType::NativeInvalid)
@@ -205,8 +205,44 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType type>
+T
+HandlePolicy<T, type>::null()
+{
+	if      constexpr (type == HandlePolicyType::Native) {
+		return xNATIVE_HANDLE_NULL;
+	}
+	else if constexpr (type == HandlePolicyType::NativeInvalid) {
+		return xNATIVE_HANDLE_INVALID;
+	}
+	else if constexpr (type == HandlePolicyType::Dll) {
+		return nullptr;
+	}
+	else if constexpr (type == HandlePolicyType::StdFile) {
+		return nullptr;
+	}
+	else if constexpr (type == HandlePolicyType::MySqlConn) {
+		return nullptr;
+	}
+	else if constexpr (type == HandlePolicyType::MySqlResult) {
+		return nullptr;
+	}
+	else if constexpr (type == HandlePolicyType::Curl) {
+		return nullptr;
+	}
+	else if constexpr (type == HandlePolicyType::FindDir) {
+		return xFIND_DIR_HANDLE_NULL;
+	}
+	else if constexpr (type == HandlePolicyType::Socket) {
+		return xSOCKET_HANDLE_INVALID;
+	}
+	else {
+		// n/a - as compile-time test
+	}
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T, HandlePolicyType type>
 std::size_t
-HandlePolicy<T, type>::_openMax_impl()
+HandlePolicy<T, type>::openMax()
 {
 	if      constexpr (type == HandlePolicyType::Native ||
 					   type == HandlePolicyType::NativeInvalid ||
