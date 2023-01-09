@@ -13,11 +13,11 @@ namespace xl::fs
 {
 
 class FileIO
-    /// file
+    /// File input/output
 {
 public:
     enum class OpenMode
-        /// open mode
+        /// Open mode
     {
         // Text
         ReadOnly,         ///< "r" (no file - error)
@@ -40,7 +40,7 @@ public:
     xUSING_CONST(OpenMode);
 
     enum class PointerPosition
-        /// pointer position
+        /// Pointer position
     {
         Error = - 1L,
         Begin = SEEK_SET,
@@ -50,7 +50,7 @@ public:
     xUSING_CONST(PointerPosition);
 
     enum class BufferingMode
-        /// buffering mode
+        /// Buffering mode
     {
         No   = _IONBF,
         Line = _IOLBF,
@@ -59,7 +59,7 @@ public:
     xUSING_CONST(BufferingMode);
 
     enum class LockingMode
-        /// locking mode
+        /// Locking mode
     {
     #if   xENV_WIN
         Lock    = LK_NBLCK,
