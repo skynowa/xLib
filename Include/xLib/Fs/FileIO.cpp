@@ -93,32 +93,6 @@ FileIO::path() const
     return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
-void_t
-FileIO::attach(
-    cHandleStdFile  &a_handle,
-    std::ctstring_t &a_filePath
-)
-{
-    xTEST(a_handle.isValid());
-    xTEST_NA(a_filePath);
-
-    close();
-
-    _handle   = a_handle;
-    _filePath = a_filePath;
-}
-//-------------------------------------------------------------------------------------------------
-HandleStdFile &
-FileIO::detach()
-{
-    HandleStdFile &handle = _handle;
-
-    _handle = nullptr;
-    _filePath.clear();
-
-    return handle;
-}
-//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
