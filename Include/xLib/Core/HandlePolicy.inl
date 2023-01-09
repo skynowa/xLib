@@ -108,8 +108,11 @@ HandlePolicy<T, type>::_clone_impl(const T a_handle)
 
 		return hRv;
 	#elif xENV_UNIX
-		// TODO: [skynowa] Native
-		return a_handle;
+		int_t handleDup {};
+		int_t iRv = xDUP2(a_handle, handleDup);
+		xTEST_DIFF(iRv, -1);
+
+		return handleDup;
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::NativeInvalid) {
@@ -122,8 +125,11 @@ HandlePolicy<T, type>::_clone_impl(const T a_handle)
 
 		return hRv;
 	#elif xENV_UNIX
-		// TODO: [skynowa] NativeInvalid
-		return a_handle;
+		int_t handleDup {};
+		int_t iRv = xDUP2(a_handle, handleDup);
+		xTEST_DIFF(iRv, -1);
+
+		return handleDup;
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::Dll) {
@@ -136,11 +142,10 @@ HandlePolicy<T, type>::_clone_impl(const T a_handle)
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::StdFile) {
-	    int_t handleDup {};
-
 	    int_t handle = ::fileno(a_handle);
 	    xTEST_DIFF(handle, -1);
 
+	    int_t handleDup {};
 		int_t iRv = xDUP2(handle, handleDup);
 		xTEST_DIFF(iRv, -1);
 
