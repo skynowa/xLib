@@ -17,8 +17,8 @@ class GitClient
 public:
 ///\name ctors, dtor
 ///\{
-             GitClient();
-    virtual ~GitClient();
+             GitClient() = default;
+    virtual ~GitClient() = default;
 
     xNO_COPY_ASSIGN(GitClient)
 ///\}
