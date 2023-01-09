@@ -129,9 +129,9 @@ FileIO::detach()
 //-------------------------------------------------------------------------------------------------
 void_t
 FileIO::setVBuff(
-    cBufferingMode a_mode,
-    char          *a_buff,
-    std::csize_t   a_size
+    cBufferingMode  a_mode,
+    char           *a_buff,
+    std::csize_t    a_size
 ) const
 {
     xTEST_NA(a_mode);
