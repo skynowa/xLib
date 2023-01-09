@@ -51,6 +51,21 @@ class Handle;
 template<typename T, HandlePolicyType type>
 struct HandlePolicy
 {
+	static T clone(const T a_handle)
+	{
+		return _clone_impl(a_handle);
+	}
+
+	static bool_t isValid(const T a_handle)
+	{
+		return _isValid_impl(a_handle);
+	}
+
+	static void close(T &a_handle)
+	{
+		_close_impl(a_handle);
+	}
+
 	static T null()
 	{
 		if      constexpr (type == HandlePolicyType::Native) {
@@ -88,21 +103,6 @@ struct HandlePolicy
 	static std::size_t openMax()
 	{
 		return _openMax_impl();
-	}
-
-	static T clone(const T a_handle)
-	{
-		return _clone_impl(a_handle);
-	}
-
-	static bool_t isValid(const T a_handle)
-	{
-		return _isValid_impl(a_handle);
-	}
-
-	static void close(T &a_handle)
-	{
-		_close_impl(a_handle);
 	}
 
 xPLATFORM_IMPL:
