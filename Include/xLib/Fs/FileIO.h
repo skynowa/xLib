@@ -91,10 +91,6 @@ public:
         ///< get native file descriptor associated with a stream
     std::tstring_t path() const;
         ///< get file path
-    void_t         attach(cHandleStdFile &handle, std::ctstring_t &filePath);
-        ///< attach to stream
-    HandleStdFile &detach();
-        ///< detach from stream
 
     // read, write
     void_t         setVBuff(cBufferingMode mode, char *buff, std::csize_t size) const;

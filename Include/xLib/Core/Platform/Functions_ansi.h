@@ -35,14 +35,16 @@
     #define xSTRFTIME     std::strftime
 
     // xTMKSTEMP
-#if   xCOMPILER_MINGW
-    #define xTMKSTEMP     ::_mktemp
-#elif xCOMPILER_MS
-    #define xTMKSTEMP     ::_tmktemp_s
-#elif xCOMPILER_GNUC
-    #define xTMKSTEMP     ::mkstemp
-#else
-    #define xTMKSTEMP     std::mktemp
+#if 0
+	#if   xCOMPILER_MINGW
+		#define xTMKSTEMP     ::_mktemp
+	#elif xCOMPILER_MS
+		#define xTMKSTEMP     ::_tmktemp_s
+	#elif xCOMPILER_GNUC
+		#define xTMKSTEMP     ::mkstemp
+	#else
+		#define xTMKSTEMP     std::mktemp
+	#endif
 #endif
 
     #define xTRENAME      std::rename

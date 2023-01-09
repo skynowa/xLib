@@ -80,27 +80,6 @@ Test_FileIO::unit()
         }
     }
 
-    // TDOO: test
-    xTEST_CASE("attach")
-    {
-    #if xTEMP_DISABLED
-        HandleStdFile handle(stdout);
-
-        std::ctstring_t filePath;
-
-        FileIO file;
-        file.attach(handle, filePath);
-
-        m_bRv = file.isValid();
-        xTEST(m_bRv);
-
-        HandleStdFile stdFile;
-        stdFile = file.detach();
-        xTEST(stdFile.isValid());
-        xTEST_EQ(stdout, stdFile.get());
-    #endif
-    }
-
     xTEST_CASE("get")
     {
         FileIO file(filePath);
