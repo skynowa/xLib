@@ -55,6 +55,10 @@ public:
 ///\name ctors, dtor
 ///\{
 	explicit HandlePolicy(const T a_handle);
+    virtual ~HandlePolicy() = default;
+
+    xNO_DEFAULT_CONSTRUCT(HandlePolicy)
+    xNO_COPY_ASSIGN(HandlePolicy)
 ///\}
 
 	T      clone() const;
@@ -66,7 +70,7 @@ xPUBLIC_STATIC:
 	static std::size_t openMax();
 
 private:
-	T _handle {};
+	const T _handle {};
 };
 ///\}
 //-------------------------------------------------------------------------------------------------
