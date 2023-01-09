@@ -81,6 +81,7 @@ Handle<T, valueT>::operator = (
     ///-- close();
 
     _handle = a_handle;
+    _policy.set(_handle);
 
     return *this;
 }
@@ -93,14 +94,13 @@ Handle<T, valueT>::operator = (
 {
     xTEST_NA(a_handle);
 
-    if (this == &a_handle) {
-        return *this;
-    }
+    xCHECK_RET(this == &a_handle, *this);
 
     close();
 
     _handle = a_handle.clone();
     xTEST_NA(_handle);
+    _policy.set(_handle);
 
     return *this;
 }
@@ -180,6 +180,7 @@ Handle<T, valueT>::attach(
     close();
 
     _handle = a_handle;
+    _policy.set(_handle);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
@@ -189,6 +190,7 @@ Handle<T, valueT>::detach()
     T hRv = _handle;
 
     _handle = null();
+    _policy.set(_handle);
 
     return hRv;
 }
@@ -199,11 +201,13 @@ Handle<T, valueT>::close()
 {
     if ( !isValid() ) {
         _handle = null();
+        _policy.set(_handle);
         return;
     }
 
     _policy.close();
     _handle = null();
+    _policy.set(_handle);
 }
 //-------------------------------------------------------------------------------------------------
 
