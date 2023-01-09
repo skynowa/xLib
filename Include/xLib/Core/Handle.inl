@@ -24,7 +24,8 @@ namespace xl::core
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
 Handle<T, valueT>::Handle() :
-    _handle( null() )
+    _handle( null() ),
+    _policy{_handle}
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -32,7 +33,8 @@ template<typename T, HandlePolicyType valueT>
 Handle<T, valueT>::Handle(
     const T &a_handle
 ) :
-    _handle(a_handle)
+    _handle(a_handle),
+    _policy{_handle}
 {
     xTEST_NA(a_handle);
 }
@@ -41,7 +43,8 @@ template<typename T, HandlePolicyType valueT>
 Handle<T, valueT>::Handle(
     const Handle &a_handle
 ) :
-    _handle( null() )
+    _handle( null() ),
+    _policy{_handle}
 {
     xTEST_NA(a_handle);
 
@@ -90,7 +93,9 @@ Handle<T, valueT>::operator = (
 {
     xTEST_NA(a_handle);
 
-    xCHECK_RET(this == &a_handle, *this);
+    if (this == &a_handle) {
+        return *this;
+    }
 
     close();
 
@@ -124,7 +129,7 @@ Handle<T, valueT>::clone() const
 {
     xCHECK_RET(!isValid(), null());
 
-    return handle_policy_t::clone(_handle);
+    return _policy.clone();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
@@ -160,7 +165,7 @@ template<typename T, HandlePolicyType valueT>
 bool_t
 Handle<T, valueT>::isValid() const
 {
-    return handle_policy_t::isValid(_handle);
+    return _policy.isValid();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType valueT>
@@ -197,7 +202,7 @@ Handle<T, valueT>::close()
         return;
     }
 
-    handle_policy_t::close(_handle);
+    _policy.close();
     _handle = null();
 }
 //-------------------------------------------------------------------------------------------------
