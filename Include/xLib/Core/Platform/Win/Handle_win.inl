@@ -34,7 +34,7 @@ Handle<T, valueT>::info() const
 {
     xTEST(isValid());
 
-    DWORD flags = 0UL;
+    DWORD flags {};
 
     BOOL blRes = ::GetHandleInformation(_handle, &flags);
     xTEST_DIFF(blRes, FALSE);
@@ -46,8 +46,8 @@ Handle<T, valueT>::info() const
 template<typename T, HandlePolicyType valueT>
 void_t
 Handle<T, valueT>::setInfo(
-    culong_t &a_mask,
-    culong_t &a_flags
+    culong_t a_mask,
+    culong_t a_flags
 )
 {
 	xTEST(isValid());
