@@ -52,10 +52,10 @@ template<typename T, HandlePolicyType type>
 class HandlePolicy
 {
 public:
-	explicit HandlePolicy(const T a_handle) :
-		_handle{a_handle}
-	{
-	}
+///\name ctors, dtor
+///\{
+	explicit HandlePolicy(const T a_handle);
+///\}
 
 	T      clone() const;
 	bool_t isValid() const;

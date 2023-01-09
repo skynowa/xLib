@@ -16,6 +16,14 @@ namespace xl::core
 
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType type>
+HandlePolicy<T, type>::HandlePolicy(
+	const T a_handle
+) :
+	_handle{a_handle}
+{
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T, HandlePolicyType type>
 T
 HandlePolicy<T, type>::clone() const
 {
