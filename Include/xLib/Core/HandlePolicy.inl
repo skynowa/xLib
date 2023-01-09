@@ -24,10 +24,10 @@ template<typename T, HandlePolicyType type>
 std::size_t
 HandlePolicy<T, type>::_openMax_impl()
 {
-	if      constexpr (type == HandlePolicyType::hvNative ||
-					   type == HandlePolicyType::hvNativeInvalid ||
-					   type == HandlePolicyType::hvDll ||
-					   type == HandlePolicyType::hvStdFile)
+	if      constexpr (type == HandlePolicyType::Native ||
+					   type == HandlePolicyType::NativeInvalid ||
+					   type == HandlePolicyType::Dll ||
+					   type == HandlePolicyType::StdFile)
 	{
 	#if   xENV_WIN
 		cint_t iRv = _getmaxstdio();
@@ -43,7 +43,7 @@ HandlePolicy<T, type>::_openMax_impl()
 		return static_cast<std::size_t>( limit.rlim_cur );
 	#endif
 	}
-	else if constexpr (type == HandlePolicyType::hvMySqlConn) {
+	else if constexpr (type == HandlePolicyType::MySqlConn) {
 		// TODO: [skynowa] _openMax_impl
 
 	   /**
@@ -60,32 +60,32 @@ HandlePolicy<T, type>::_openMax_impl()
 
 	    return 0;
 	}
-	else if constexpr (type == HandlePolicyType::hvMySqlResult) {
-		// TODO: [skynowa] hvMySqlResult
+	else if constexpr (type == HandlePolicyType::MySqlResult) {
+		// TODO: [skynowa] MySqlResult
 	    return 0;
 	}
-	else if constexpr (type == HandlePolicyType::hvCurl) {
+	else if constexpr (type == HandlePolicyType::Curl) {
 	    return static_cast<std::size_t>(CURLOPT_MAXCONNECTS);
 	}
-	else if constexpr (type == HandlePolicyType::hvFindDir) {
+	else if constexpr (type == HandlePolicyType::FindDir) {
 	#if   xENV_WIN
 		cint_t iRv = _getmaxstdio();
 		xTEST_GR(iRv, 0);
 
 		return static_cast<std::size_t>(iRv);
 	#elif xENV_UNIX
-		// TODO: [skynowa] hvFindDir
+		// TODO: [skynowa] FindDir
 		return 0;
 	#endif
 	}
-	else if constexpr (type == HandlePolicyType::hvSocket) {
+	else if constexpr (type == HandlePolicyType::Socket) {
 	#if   xENV_WIN
 		cint_t iRv = _getmaxstdio();
 		xTEST_GR(iRv, 0);
 
 		return static_cast<std::size_t>(iRv);
 	#elif xENV_UNIX
-		// TODO: [skynowa] hvFindDir
+		// TODO: [skynowa] FindDir
 		return 0;
 	#endif
 	}
@@ -98,7 +98,7 @@ template<typename T, HandlePolicyType type>
 T
 HandlePolicy<T, type>::_clone_impl(const T a_handle)
 {
-	if      constexpr (type == HandlePolicyType::hvNative) {
+	if      constexpr (type == HandlePolicyType::Native) {
 	#if   xENV_WIN
 		T hRv = null();
 
@@ -108,11 +108,11 @@ HandlePolicy<T, type>::_clone_impl(const T a_handle)
 
 		return hRv;
 	#elif xENV_UNIX
-		// TODO: [skynowa] hvNative
+		// TODO: [skynowa] Native
 		return a_handle;
 	#endif
 	}
-	else if constexpr (type == HandlePolicyType::hvNativeInvalid) {
+	else if constexpr (type == HandlePolicyType::NativeInvalid) {
 	#if   xENV_WIN
 		T hRv = null();
 
@@ -122,20 +122,20 @@ HandlePolicy<T, type>::_clone_impl(const T a_handle)
 
 		return hRv;
 	#elif xENV_UNIX
-		// TODO: [skynowa] hvNativeInvalid
+		// TODO: [skynowa] NativeInvalid
 		return a_handle;
 	#endif
 	}
-	else if constexpr (type == HandlePolicyType::hvDll) {
+	else if constexpr (type == HandlePolicyType::Dll) {
 	#if   xENV_WIN
-		// TODO: [skynowa] hvDll
+		// TODO: [skynowa] Dll
 		return a_handle;
 	#elif xENV_UNIX
-		// TODO: [skynowa] hvDll
+		// TODO: [skynowa] Dll
 		return a_handle;
 	#endif
 	}
-	else if constexpr (type == HandlePolicyType::hvStdFile) {
+	else if constexpr (type == HandlePolicyType::StdFile) {
 	    int_t handleDup {};
 
 	    int_t handle = ::fileno(a_handle);
@@ -146,30 +146,30 @@ HandlePolicy<T, type>::_clone_impl(const T a_handle)
 
 	    return static_cast<T>(xTFDOPEN(handleDup, xT("r+")));  // TODO: [skynowa] clone - open mode
 	}
-	else if constexpr (type == HandlePolicyType::hvMySqlConn) {
+	else if constexpr (type == HandlePolicyType::MySqlConn) {
 	    return a_handle;
 	}
-	else if constexpr (type == HandlePolicyType::hvMySqlResult) {
+	else if constexpr (type == HandlePolicyType::MySqlResult) {
 	    return a_handle;
 	}
-	else if constexpr (type == HandlePolicyType::hvCurl) {
+	else if constexpr (type == HandlePolicyType::Curl) {
 	    return ::curl_easy_duphandle(a_handle);
 	}
-	else if constexpr (type == HandlePolicyType::hvFindDir) {
+	else if constexpr (type == HandlePolicyType::FindDir) {
 	#if   xENV_WIN
-		// TODO: [skynowa] hvFindDir
+		// TODO: [skynowa] FindDir
 		return a_handle;
 	#elif xENV_UNIX
-		// TODO: [skynowa] hvFindDir
+		// TODO: [skynowa] FindDir
 		return a_handle;
 	#endif
 	}
-	else if constexpr (type == HandlePolicyType::hvSocket) {
+	else if constexpr (type == HandlePolicyType::Socket) {
 	#if   xENV_WIN
-		// TODO: [skynowa] hvSocket
+		// TODO: [skynowa] Socket
 		return a_handle;
 	#elif xENV_UNIX
-		// TODO: [skynowa] hvSocket
+		// TODO: [skynowa] Socket
 		return a_handle;
 	#endif
 	}
@@ -183,7 +183,7 @@ bool_t
 HandlePolicy<T, type>::_isValid_impl(const T a_handle)
 {
 #if xENV_WIN
-	if constexpr (type == HandlePolicyType::hvNativeInvalid) {
+	if constexpr (type == HandlePolicyType::NativeInvalid) {
 		// created but not initialised
 		cbool_t cond1 = (a_handle != reinterpret_cast<T>( static_cast<intptr_t>(0xCDCDCDCD) ));
 		// uninitialized locals in VC6 when you compile w/ /GZ
@@ -201,7 +201,7 @@ HandlePolicy<T, type>::_isValid_impl(const T a_handle)
 
 		return (cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7);
 	}
-	else if constexpr (type == HandlePolicyType::hvSocket) {
+	else if constexpr (type == HandlePolicyType::Socket) {
 		return (a_handle >= 0);
 	}
 	else {
@@ -216,8 +216,8 @@ template<typename T, HandlePolicyType type>
 void_t
 HandlePolicy<T, type>::_close_impl(T &a_handle)
 {
-	if      constexpr (type == HandlePolicyType::hvNative ||
-					   type == HandlePolicyType::hvNativeInvalid)
+	if      constexpr (type == HandlePolicyType::Native ||
+					   type == HandlePolicyType::NativeInvalid)
 	{
 	#if   xENV_WIN
 		BOOL blRes = ::CloseHandle(a_handle);
@@ -227,7 +227,7 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 		xTEST_DIFF(iRv, -1);
 	#endif
 	}
-	else if constexpr (type == HandlePolicyType::hvDll) {
+	else if constexpr (type == HandlePolicyType::Dll) {
 	#if   xENV_WIN
 		BOOL blRv = ::FreeLibrary(a_handle);
 		xTEST_DIFF(blRv, FALSE);
@@ -236,20 +236,20 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 		xTEST_EQ(iRv, 0);
 	#endif
 	}
-	else if constexpr (type == HandlePolicyType::hvStdFile) {
+	else if constexpr (type == HandlePolicyType::StdFile) {
 	    int_t iRv = std::fclose(a_handle);
 	    xTEST_DIFF(iRv, xTEOF);
 	}
-	else if constexpr (type == HandlePolicyType::hvMySqlConn) {
+	else if constexpr (type == HandlePolicyType::MySqlConn) {
 	    (void_t)::mysql_close(a_handle);
 	}
-	else if constexpr (type == HandlePolicyType::hvMySqlResult) {
+	else if constexpr (type == HandlePolicyType::MySqlResult) {
 	    (void_t)::mysql_free_result(a_handle);
 	}
-	else if constexpr (type == HandlePolicyType::hvCurl) {
+	else if constexpr (type == HandlePolicyType::Curl) {
 	    (void_t)::curl_easy_cleanup(a_handle);
 	}
-	else if constexpr (type == HandlePolicyType::hvFindDir) {
+	else if constexpr (type == HandlePolicyType::FindDir) {
 	#if   xENV_WIN
 		BOOL blRv = ::FindClose(a_handle);
 		xTEST_DIFF(blRv, FALSE);
@@ -258,7 +258,7 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 		xTEST_DIFF(iRv, -1);
 	#endif
 	}
-	else if constexpr (type == HandlePolicyType::hvSocket) {
+	else if constexpr (type == HandlePolicyType::Socket) {
 	#if   xENV_WIN
 		int_t iRv = ::shutdown(a_handle, SD_BOTH);
 		xTEST_DIFF(iRv, xSOCKET_ERROR);

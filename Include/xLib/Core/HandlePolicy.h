@@ -31,15 +31,15 @@ namespace xl::core
 enum class HandlePolicyType
     /// error handle type
 {
-    hvNative        = 0, ///< like "null"
-    hvNativeInvalid = 1, ///< like "invalid" (-1)
-    hvDll           = 2, ///< DLL
-    hvStdFile       = 3, ///< like nullptr
-    hvMySqlConn     = 4, ///< MySQL connection
-    hvMySqlResult   = 5, ///< MySQL result
-    hvCurl          = 6, ///< CURL
-    hvFindDir       = 7, ///< Dir find
-    hvSocket        = 8  ///< Socket
+    Native        = 0, ///< like "null"
+    NativeInvalid = 1, ///< like "invalid" (-1)
+    Dll           = 2, ///< DLL
+    StdFile       = 3, ///< like nullptr
+    MySqlConn     = 4, ///< MySQL connection
+    MySqlResult   = 5, ///< MySQL result
+    Curl          = 6, ///< CURL
+    FindDir       = 7, ///< Dir find
+    Socket        = 8  ///< Socket
 };
 
 template<typename T, HandlePolicyType valueT>
@@ -53,31 +53,31 @@ struct HandlePolicy
 {
 	static T null()
 	{
-		if      constexpr (type == HandlePolicyType::hvNative) {
+		if      constexpr (type == HandlePolicyType::Native) {
 			return xNATIVE_HANDLE_NULL;
 		}
-		else if constexpr (type == HandlePolicyType::hvNativeInvalid) {
+		else if constexpr (type == HandlePolicyType::NativeInvalid) {
 			return xNATIVE_HANDLE_INVALID;
 		}
-		else if constexpr (type == HandlePolicyType::hvDll) {
+		else if constexpr (type == HandlePolicyType::Dll) {
 			return nullptr;
 		}
-		else if constexpr (type == HandlePolicyType::hvStdFile) {
+		else if constexpr (type == HandlePolicyType::StdFile) {
 			return nullptr;
 		}
-		else if constexpr (type == HandlePolicyType::hvMySqlConn) {
+		else if constexpr (type == HandlePolicyType::MySqlConn) {
 			return nullptr;
 		}
-		else if constexpr (type == HandlePolicyType::hvMySqlResult) {
+		else if constexpr (type == HandlePolicyType::MySqlResult) {
 			return nullptr;
 		}
-		else if constexpr (type == HandlePolicyType::hvCurl) {
+		else if constexpr (type == HandlePolicyType::Curl) {
 			return nullptr;
 		}
-		else if constexpr (type == HandlePolicyType::hvFindDir) {
+		else if constexpr (type == HandlePolicyType::FindDir) {
 			return xFIND_DIR_HANDLE_NULL;
 		}
-		else if constexpr (type == HandlePolicyType::hvSocket) {
+		else if constexpr (type == HandlePolicyType::Socket) {
 			return xSOCKET_HANDLE_INVALID;
 		}
 		else {
@@ -120,31 +120,31 @@ using mysql_t     = MYSQL *;
 using mysql_res_t = MYSQL_RES *;
 using curl_t      = CURL *;
 
-using HandleNative        = Handle<native_handle_t,   HandlePolicyType::hvNative>;
+using HandleNative        = Handle<native_handle_t,   HandlePolicyType::Native>;
 xUSING_CONST(HandleNative);
 
-using HandleNativeInvalid = Handle<native_handle_t,   HandlePolicyType::hvNativeInvalid>;
+using HandleNativeInvalid = Handle<native_handle_t,   HandlePolicyType::NativeInvalid>;
 xUSING_CONST(HandleNativeInvalid);
 
-using HandleDll           = Handle<dll_handle_t,      HandlePolicyType::hvDll>;
+using HandleDll           = Handle<dll_handle_t,      HandlePolicyType::Dll>;
 xUSING_CONST(HandleDll);
 
-using HandleStdFile       = Handle<file_t,            HandlePolicyType::hvStdFile>;
+using HandleStdFile       = Handle<file_t,            HandlePolicyType::StdFile>;
 xUSING_CONST(HandleStdFile);
 
-using HandleMySqlConn     = Handle<mysql_t,           HandlePolicyType::hvMySqlConn>;
+using HandleMySqlConn     = Handle<mysql_t,           HandlePolicyType::MySqlConn>;
 xUSING_CONST(HandleMySqlConn);
 
-using HandleMySqlResult   = Handle<mysql_res_t,       HandlePolicyType::hvMySqlResult>;
+using HandleMySqlResult   = Handle<mysql_res_t,       HandlePolicyType::MySqlResult>;
 xUSING_CONST(HandleMySqlResult);
 
-using HandleCurl          = Handle<curl_t,            HandlePolicyType::hvCurl>;
+using HandleCurl          = Handle<curl_t,            HandlePolicyType::Curl>;
 xUSING_CONST(HandleCurl);
 
-using HandleFindDir       = Handle<find_dir_handle_t, HandlePolicyType::hvFindDir>;
+using HandleFindDir       = Handle<find_dir_handle_t, HandlePolicyType::FindDir>;
 xUSING_CONST(HandleFindDir);
 
-using HandleSocket        = Handle<socket_t,          HandlePolicyType::hvSocket>;
+using HandleSocket        = Handle<socket_t,          HandlePolicyType::Socket>;
 xUSING_CONST(HandleSocket);
 ///\}
 //-------------------------------------------------------------------------------------------------
