@@ -82,8 +82,10 @@ xPUBLIC_STATIC:
 
 private:
     using handle_policy_t = HandlePolicy<T, valueT>;
+    xUSING_CONST(handle_policy_t);
 
-    T _handle {};    ///< handle
+    T                _handle {}; ///< handle
+    chandle_policy_t _policy;    ///< handle policy
 
 xPLATFORM_IMPL:
     void_t _setCloseOnExec_impl(cbool_t flag);

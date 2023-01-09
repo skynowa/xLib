@@ -29,34 +29,48 @@ namespace xl::core
 {
 
 enum class HandlePolicyType
-    /// error handle type
+	/// error handle type
 {
-    Native        = 0, ///< like "null"
-    NativeInvalid = 1, ///< like "invalid" (-1)
-    Dll           = 2, ///< DLL
-    StdFile       = 3, ///< like nullptr
-    MySqlConn     = 4, ///< MySQL connection
-    MySqlResult   = 5, ///< MySQL result
-    Curl          = 6, ///< CURL
-    FindDir       = 7, ///< Dir find
-    Socket        = 8  ///< Socket
+	Native        = 0, ///< like "null"
+	NativeInvalid = 1, ///< like "invalid" (-1)
+	Dll           = 2, ///< DLL
+	StdFile       = 3, ///< like nullptr
+	MySqlConn     = 4, ///< MySQL connection
+	MySqlResult   = 5, ///< MySQL result
+	Curl          = 6, ///< CURL
+	FindDir       = 7, ///< Dir find
+	Socket        = 8  ///< Socket
 };
 
 template<typename T, HandlePolicyType valueT>
 class Handle;
-    /// handle
+	/// handle
 //-------------------------------------------------------------------------------------------------
 ///\name Factory
 ///\{
 template<typename T, HandlePolicyType type>
-struct HandlePolicy
+class HandlePolicy
 {
-	static T           clone(const T a_handle);
-	static bool_t      isValid(const T a_handle);
-	static void        close(T &a_handle);
+public:
+///\name ctors, dtor
+///\{
+	explicit HandlePolicy(const T a_handle);
+	virtual ~HandlePolicy() = default;
 
+	xNO_DEFAULT_CONSTRUCT(HandlePolicy)
+	xNO_COPY_ASSIGN(HandlePolicy)
+///\}
+
+	T      clone() const;
+	bool_t isValid() const;
+	void   close() const;
+
+xPUBLIC_STATIC:
 	static T           null();
 	static std::size_t openMax();
+
+private:
+	const T _handle {};
 };
 ///\}
 //-------------------------------------------------------------------------------------------------
