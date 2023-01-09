@@ -158,9 +158,10 @@ private:
     HandleStdFile   _handle;   ///< file handle
     std::ctstring_t _filePath; ///< file path
 
-	void_t         _setVBuffDefault(cbool_t isBuffering) const;
+	void_t _setVBuffDefault(cbool_t isBuffering) const;
 		///< change stream buffering with deafault buffer size
 
+xPRIVATE_STATIC:
     static int_t          _nativeHandle(std::FILE *file);
         ///< gets the file descriptor associated with a stream
     static std::FILE*     _stdHandle(cint_t fileHandle, cOpenMode mode);
