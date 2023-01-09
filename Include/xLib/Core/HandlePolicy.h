@@ -49,14 +49,24 @@ class Handle;
 ///\name Factory
 ///\{
 template<typename T, HandlePolicyType type>
-struct HandlePolicy
+class HandlePolicy
 {
-	static T           clone(const T a_handle);
-	static bool_t      isValid(const T a_handle);
-	static void        close(T &a_handle);
+public:
+	explicit HandlePolicy(const T a_handle) :
+		_handle{a_handle}
+	{
+	}
 
+	T      clone() const;
+	bool_t isValid() const;
+	void   close() const;
+
+xPUBLIC_STATIC:
 	static T           null();
 	static std::size_t openMax();
+
+private:
+	T _handle {};
 };
 ///\}
 //-------------------------------------------------------------------------------------------------
