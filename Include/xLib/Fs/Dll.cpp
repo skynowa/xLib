@@ -42,7 +42,7 @@ Dll::load(
 )
 {
     xTESTS_NA;
-    xTEST_EQ(a_dllPath.empty(), false);
+    xTEST(!a_dllPath.empty());
 
     close();
 
