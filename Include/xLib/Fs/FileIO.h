@@ -155,27 +155,24 @@ public:
         ///< close
 
 private:
-    HandleStdFile  _handle;   ///< file handle
-    std::tstring_t _filePath; ///< file path
+    HandleStdFile   _handle;   ///< file handle
+    std::ctstring_t _filePath; ///< file path
 
-    static
-    int_t          _nativeHandle(std::FILE *file);
-        ///< gets the file descriptor associated with a stream
-    static
-    std::FILE*     _stdHandle(cint_t fileHandle, cOpenMode mode);
-        ///< get stream by handle
-    static
-    std::tstring_t _openMode(cOpenMode mode);
-        ///< get open mode as string, by default use "r"
 	void_t         _setVBuffDefault(cbool_t isBuffering) const;
 		///< change stream buffering with deafault buffer size
+
+    static int_t          _nativeHandle(std::FILE *file);
+        ///< gets the file descriptor associated with a stream
+    static std::FILE*     _stdHandle(cint_t fileHandle, cOpenMode mode);
+        ///< get stream by handle
+    static std::tstring_t _openMode(cOpenMode mode);
+        ///< get open mode as string, by default use "r"
 
     friend class FileTemp;  ///< temporary file
 };
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-// TODO: [skynowa] _filePath - make as const
 // TODO: [skynowa] get objects (Path, FileInfo)
 
 // TODO: [skynowa] - xNO ...
