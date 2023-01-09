@@ -70,7 +70,7 @@ public:
 #if xENV_WIN
     ulong_t info() const;
         ///< get certain properties of an object handle
-    void_t  setInfo(culong_t &mask, culong_t &flags);
+    void_t  setInfo(culong_t mask, culong_t flags);
         ///< set information
 #endif
 
