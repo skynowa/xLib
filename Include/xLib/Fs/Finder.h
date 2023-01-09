@@ -69,7 +69,7 @@ private:
     std::ctstring_t _shellFilter;         ///< shell wild card filter
     bool_t          _isMoveFirst {true};  ///< is first movement
 
-    bool_t            _moveFirst();
+    bool_t _moveFirst();
         ///< move first entry
 
 xPLATFORM_IMPL:
