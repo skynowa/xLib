@@ -59,6 +59,8 @@ public:
 
 	xNO_DEFAULT_CONSTRUCT(HandlePolicy)
 	xNO_COPY_ASSIGN(HandlePolicy)
+
+	void_t set(const T a_handle);
 ///\}
 
 	T      clone() const;
@@ -70,7 +72,7 @@ xPUBLIC_STATIC:
 	static std::size_t openMax();
 
 private:
-	const T _handle {};
+	T _handle {};
 };
 ///\}
 //-------------------------------------------------------------------------------------------------

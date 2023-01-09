@@ -24,6 +24,15 @@ HandlePolicy<T, type>::HandlePolicy(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType type>
+void_t
+HandlePolicy<T, type>::set(
+	const T a_handle
+)
+{
+	_handle = a_handle;
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T, HandlePolicyType type>
 T
 HandlePolicy<T, type>::clone() const
 {
