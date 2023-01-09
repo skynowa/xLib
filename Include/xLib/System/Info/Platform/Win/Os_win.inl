@@ -164,7 +164,7 @@ Os::_desktopName_impl() const
         // TODO: [skynowa] Os::desktopName() - checks for detecting Windows shell
     }
 
-    xTEST_EQ(sRv.empty(), false);
+    xTEST(!sRv.empty());
 #else
     sRv = nativeDesktop;
 #endif

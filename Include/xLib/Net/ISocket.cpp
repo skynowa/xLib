@@ -54,7 +54,7 @@ ISocket::create(
 HandleSocket &
 ISocket::handle()
 {
-    xTEST_EQ(_handle.isValid(), true);
+	xTEST(_handle.isValid());
 
     return _handle;
 }

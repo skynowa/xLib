@@ -659,7 +659,7 @@ Test_String::unit()
         xTEST_EQ(m_vsRv.at(1),  std::tstring_t());
 
         String::split(xT(""), xT("+"), &m_vsRv);
-        xTEST_EQ(m_vsRv.empty(), true);
+        xTEST(m_vsRv.empty());
     }
 
 	xTEST_CASE("split (maps)")

@@ -55,7 +55,7 @@ Profiler::logPath() const
 void_t
 Profiler::start()
 {
-    xTEST_EQ(_isStarted, false);
+    xTEST(!_isStarted);
 
     _reset();
 
@@ -75,7 +75,7 @@ Profiler::stop(
     cptr_ctchar_t a_comment, ...
 )
 {
-    xTEST_EQ(_isStarted, true);
+	xTEST(_isStarted);
 
     // stop, get duration
     {

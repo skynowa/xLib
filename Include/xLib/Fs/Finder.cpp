@@ -43,9 +43,9 @@ Finder::Finder(
     _rootDirPath( Path(a_rootDirPath).toNative(false).str() ),
     _shellFilter(a_shellFilter)
 {
-    xTEST_EQ(_entry.handle.isValid(), false);
-    xTEST_EQ(a_rootDirPath.empty(),   false);
-    xTEST_EQ(a_shellFilter.empty(),   false);
+    xTEST(!_entry.handle.isValid());
+    xTEST(!a_rootDirPath.empty());
+    xTEST(!a_shellFilter.empty());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -57,7 +57,7 @@ Finder::~Finder()
 std::ctstring_t &
 Finder::rootDirPath() const
 {
-    xTEST_EQ(_rootDirPath.empty(), false);
+	xTEST(!_rootDirPath.empty());
 
     return _rootDirPath;
 }
@@ -65,7 +65,7 @@ Finder::rootDirPath() const
 std::ctstring_t &
 Finder::shellFilter() const
 {
-    xTEST_EQ(_shellFilter.empty(), false);
+	xTEST(!_shellFilter.empty());
 
     return _shellFilter;
 }
@@ -73,10 +73,10 @@ Finder::shellFilter() const
 std::tstring_t
 Finder::entryName() const
 {
-    xTEST_EQ(_entry.handle.isValid(), true);
+	xTEST(_entry.handle.isValid());
 
     std::tstring_t sRv = _entryName_impl();
-    xTEST_EQ(sRv.empty(), false);
+    xTEST(!sRv.empty());
 
     return sRv;
 }
@@ -84,7 +84,7 @@ Finder::entryName() const
 std::tstring_t
 Finder::entryPath() const
 {
-    xTEST_EQ(_entry.handle.isValid(), true);
+	xTEST(_entry.handle.isValid());
 
     std::tstring_t sRv;
 
@@ -96,7 +96,7 @@ Finder::entryPath() const
 FileType::types_t
 Finder::fileTypes() const
 {
-    xTEST_EQ(_entry.handle.isValid(), true);
+	xTEST(_entry.handle.isValid());
 
     return _fileTypes_impl();
 }
@@ -110,7 +110,7 @@ Finder::moveNext()
         bRv = _moveFirst();
         xCHECK_RET(!bRv, false);
     } else {
-        xTEST_EQ(_entry.handle.isValid(), true);
+    	xTEST(_entry.handle.isValid());
 
         bRv = _moveNext_impl();
         xCHECK_RET(!bRv, false);
@@ -146,8 +146,8 @@ Finder::dirs(
     std::vec_tstring_t *a_dirPaths       ///< result dir paths
 )
 {
-    xTEST_EQ(a_rootDirPath.empty(), false);
-    xTEST_EQ(a_shellFilter.empty(), false);
+    xTEST(!a_rootDirPath.empty());
+    xTEST(!a_shellFilter.empty());
     xTEST_NA(a_isRecursively);
     xTEST_PTR(a_dirPaths);
 
@@ -182,8 +182,8 @@ Finder::files(
     std::vec_tstring_t *a_filePaths      ///< result file paths
 )
 {
-    xTEST_EQ(a_rootDirPath.empty(), false);
-    xTEST_EQ(a_shellFilter.empty(), false);
+	xTEST(!a_rootDirPath.empty());
+	xTEST(!a_shellFilter.empty());
     xTEST_NA(a_isRecursively);
     xTEST_PTR(a_filePaths);
 
@@ -258,7 +258,7 @@ Finder::fileInEnvPath(
 bool_t
 Finder::_moveFirst()
 {
-    xTEST_EQ(_entry.handle.isValid(), false);
+    xTEST(!_entry.handle.isValid());
 
     _isMoveFirst = false;
 

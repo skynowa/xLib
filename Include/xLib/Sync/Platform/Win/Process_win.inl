@@ -193,7 +193,7 @@ Process::_idByName_impl(
     processEntry.dwSize = sizeof(PROCESSENTRY32);
 
     snapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
-    xTEST_EQ(snapshot.isValid(), true);
+    xTEST(snapshot.isValid());
 
     BOOL blRv = ::Process32First(snapshot.get(), &processEntry);
     xTEST_DIFF(blRv, FALSE);
@@ -226,7 +226,7 @@ Process::_ids_impl(
     processEntry.dwSize = sizeof(PROCESSENTRY32);
 
     snapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
-    xTEST_EQ(snapshot.isValid(), true);
+    xTEST(snapshot.isValid());
 
     BOOL blRv = ::Process32First(snapshot.get(), &processEntry);
     xTEST_DIFF(blRv, FALSE);
@@ -312,7 +312,7 @@ Process::_currentParentId_impl()
     // TODO: [skynowa] ProcessBasicInformation (for x64)
     NTSTATUS ntsRv = DllNtQueryInformationProcess(currentHandle(), infoClass, &processInformation,
         sizeof(processInformation), &returnSizeBytes);
-    xTEST_EQ(NT_SUCCESS(ntsRv), true);
+    xTEST(NT_SUCCESS(ntsRv));
     xTEST_EQ(size_t(returnSizeBytes), sizeof(processInformation));
 
     ulRv = processInformation[5];

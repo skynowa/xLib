@@ -84,7 +84,7 @@ Path::_homeDir_impl()
     tchar_t buff[MAX_PATH + 1] {};
 
     HRESULT hrRv = SHGetFolderPath(nullptr, CSIDL_PROFILE, nullptr, 0UL, &buff[0]);
-    xTEST_EQ(S_OK == hrRv, true);
+    xTEST(S_OK == hrRv);
 
     sRv.assign(buff);
 

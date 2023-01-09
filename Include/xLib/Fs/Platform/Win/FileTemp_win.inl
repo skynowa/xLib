@@ -25,7 +25,7 @@ FileTemp::_create_impl(
     xTEST_PTR(file);
 
     a_stdFile = xTFOPEN(file, FileIO::_openMode(FileIO::BinReadWrite).c_str());
-    xTEST_EQ(a_stdFile.isValid(), true);
+    xTEST(a_stdFile.isValid());
 #else
     _filePath.resize(_filePath.size() + 1);
 
@@ -33,7 +33,7 @@ FileTemp::_create_impl(
     xTEST_EQ(0, error);
 
     a_stdFile = xTFOPEN(_filePath.c_str(), FileIO::_openMode(FileIO::OpenMode::BinReadWrite).c_str());
-    xTEST_EQ(a_stdFile.isValid(), true);
+    xTEST(a_stdFile.isValid());
 #endif
 }
 //-------------------------------------------------------------------------------------------------

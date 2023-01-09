@@ -24,7 +24,7 @@ TcpServer::bind(
     cushort_t &a_port
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+	xTEST(_handle.isValid());
     xTEST_NA(a_port);
 
     sockaddr_in sockAddr {};
@@ -50,7 +50,7 @@ TcpServer::listen(
     cint_t &a_backlog /* = xSOCKET_LISTEN_CONNECTIONS_MAX */
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+	xTEST(_handle.isValid());
 
     int_t iRv = ::listen(_handle.get(), a_backlog);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
@@ -62,7 +62,7 @@ TcpServer::accept(
     std::tstring_t *a_fromIp
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+	xTEST(_handle.isValid());
     xTEST_PTR(a_serverSocket);
     xTEST_PTR(a_fromIp);
 

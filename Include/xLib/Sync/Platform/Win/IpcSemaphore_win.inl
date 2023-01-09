@@ -22,7 +22,7 @@ IpcSemaphore::_construct_impl()
 void_t
 IpcSemaphore::_destruct_impl()
 {
-    xTEST_EQ(_isValid(), true);
+	xTEST(_isValid());
 
     xNA;
 }

@@ -157,7 +157,7 @@ Volume::space(
     std::ctstring_t dirPath = a_dirPath.empty() ? Path::exe().dir() : a_dirPath;
 
     bool_t bRv = Dir(dirPath).isExists();
-    xTEST_EQ(bRv, true);
+    xTEST(bRv);
 
     _space_impl(dirPath, a_totalBytes, a_availableBytes, a_freeBytes);
 }

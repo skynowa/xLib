@@ -33,7 +33,7 @@ Test_FileIO::unit()
     {
         for (size_t i = 0; i < 10; ++ i) {
             HandleStdFile _handle;
-            xTEST_EQ(_handle.isValid(), false);
+            xTEST(!_handle.isValid());
 
             {
                 std::FILE *file = xTFOPEN(filePath.c_str(), "w+");
@@ -41,11 +41,11 @@ Test_FileIO::unit()
 
                 _handle = file;
                 xTEST_EQ(file, _handle.get());
-                xTEST_EQ(_handle.isValid(), true);
+                xTEST(_handle.isValid());
 
                 twint_t iRv = std::fclose(_handle.get()); _handle = nullptr;
                 xTEST_DIFF(iRv, xTEOF);
-                xTEST_EQ(_handle.isValid(), false);
+                xTEST(!_handle.isValid());
             }
 
             {
@@ -54,11 +54,11 @@ Test_FileIO::unit()
 
                 _handle = file;
                 xTEST_EQ(file, _handle.get());
-                xTEST_EQ(_handle.isValid(), true);
+                xTEST(_handle.isValid());
 
                 twint_t iRv = std::fclose(_handle.get()); _handle = nullptr;
                 xTEST_DIFF(iRv, xTEOF);
-                xTEST_EQ(_handle.isValid(), false);
+                xTEST(!_handle.isValid());
             }
         }
 
@@ -96,7 +96,7 @@ Test_FileIO::unit()
 
         HandleStdFile stdFile;
         stdFile = file.detach();
-        xTEST_EQ(stdFile.isValid(), true);
+        xTEST(stdFile.isValid());
         xTEST_EQ(stdout, stdFile.get());
     #endif
     }

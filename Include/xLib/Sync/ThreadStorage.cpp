@@ -33,21 +33,21 @@ namespace xl::sync
 //-------------------------------------------------------------------------------------------------
 ThreadStorage::ThreadStorage()
 {
-    xTEST_EQ(isValid(), false);
+	xTEST(!isValid());
 
     _construct_impl();
 
-    xTEST_EQ(isValid(), true);
+    xTEST(isValid());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 ThreadStorage::~ThreadStorage()
 {
-    xTEST_EQ(isValid(), true);
+    xTEST(isValid());
 
     _destruct_impl();
 
-    xTEST_EQ(isValid(), false);
+    xTEST(!isValid());
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -65,7 +65,7 @@ ThreadStorage::isSet() const
 void_t *
 ThreadStorage::value() const
 {
-    xTEST_EQ(isValid(), true);
+	xTEST(isValid());
 
     return _value_impl();
 }
@@ -77,7 +77,7 @@ ThreadStorage::setValue(
 {
     xTEST_PTR(a_value);
     xTEST_PTR(*a_value);
-    xTEST_EQ(isValid(), true);
+    xTEST(isValid());
 
     _setValue_impl(a_value);
 }

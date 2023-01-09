@@ -149,7 +149,7 @@
 		}                                       \
 		catch (...) {                           \
 		}                                       \
-		xTEST_EQ(isExpected, true);             \
+		xTEST(isExpected);                      \
 	}
 #define xTEST_THROW_MSG(expr, exception_t, msg) \
 	{                                           \
@@ -174,7 +174,7 @@
 		catch (...) {                           \
 			isExpected = true;                  \
 		}                                       \
-		xTEST_EQ(isExpected, true);             \
+		xTEST(isExpected);                      \
 	}
 #define xTEST_THROW_ALL_MSG(expr, msg)          \
 	{                                           \
@@ -197,7 +197,7 @@
 		catch (...) {                           \
 			isExpected = false;                 \
 		}                                       \
-		xTEST_EQ(isExpected, true);             \
+		xTEST(isExpected);                      \
 	}
 #define xTEST_THROW_NO_MSG(expr, msg)           \
 	{                                           \

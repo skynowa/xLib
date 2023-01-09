@@ -35,24 +35,24 @@ Test_ApplicationInfo::unit()
 		applicationInfo.vendorJabber    = xT("[vendorJabber]");
 		applicationInfo.vendorIcq       = xT("[vendorIcq]");
 
-		xTEST_EQ(applicationInfo.name.empty(), false);
-		xTEST_EQ(applicationInfo.decription.empty(), false);
-		xTEST_EQ(applicationInfo.copyrightYears.empty(), false);
-		xTEST_EQ(applicationInfo.usage.empty(), false);
-		xTEST_EQ(applicationInfo.help.empty(), false);
-		xTEST_EQ(applicationInfo.versionMajor.empty(), false);
-		xTEST_EQ(applicationInfo.versionMinor.empty(), false);
-		xTEST_EQ(applicationInfo.versionPatch.empty(), false);
-		xTEST_EQ(applicationInfo.versionType.empty(), false);
-		xTEST_EQ(applicationInfo.versionRevision.empty(), false);
-		xTEST_EQ(applicationInfo.vendorName.empty(), false);
-		xTEST_EQ(applicationInfo.vendorDomain.empty(), false);
-		xTEST_EQ(applicationInfo.vendorAuthor.empty(), false);
-		xTEST_EQ(applicationInfo.vendorUrl.empty(), false);
-		xTEST_EQ(applicationInfo.vendorEmail.empty(), false);
-		xTEST_EQ(applicationInfo.vendorSkype.empty(), false);
-		xTEST_EQ(applicationInfo.vendorJabber.empty(), false);
-		xTEST_EQ(applicationInfo.vendorIcq.empty(), false);
+		xTEST(!applicationInfo.name.empty());
+		xTEST(!applicationInfo.decription.empty());
+		xTEST(!applicationInfo.copyrightYears.empty());
+		xTEST(!applicationInfo.usage.empty());
+		xTEST(!applicationInfo.help.empty());
+		xTEST(!applicationInfo.versionMajor.empty());
+		xTEST(!applicationInfo.versionMinor.empty());
+		xTEST(!applicationInfo.versionPatch.empty());
+		xTEST(!applicationInfo.versionType.empty());
+		xTEST(!applicationInfo.versionRevision.empty());
+		xTEST(!applicationInfo.vendorName.empty());
+		xTEST(!applicationInfo.vendorDomain.empty());
+		xTEST(!applicationInfo.vendorAuthor.empty());
+		xTEST(!applicationInfo.vendorUrl.empty());
+		xTEST(!applicationInfo.vendorEmail.empty());
+		xTEST(!applicationInfo.vendorSkype.empty());
+		xTEST(!applicationInfo.vendorJabber.empty());
+		xTEST(!applicationInfo.vendorIcq.empty());
     }
 
     return true;

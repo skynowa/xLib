@@ -43,9 +43,9 @@ TcpClient::connect(
     cushort_t       &a_port
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
-    xTEST_EQ(a_ip.empty(), false);
-    xTEST_EQ((65535 > a_port) && (0 < a_port), true);
+    xTEST(_handle.isValid());
+    xTEST(!a_ip.empty());
+    xTEST((65535 > a_port) && (0 < a_port));
 
     sockaddr_in sockAddr {};
     sockAddr.sin_family      = static_cast<sa_family_t>(_family);
@@ -63,7 +63,7 @@ TcpClient::ioctl(
     ulong_t *a_args
 ) const
 {
-    xTEST_EQ(_handle.isValid(), true);
+	xTEST(_handle.isValid());
 
     int_t iRv = xIOCTLSOCKET(_handle.get(), static_cast<ulong_t>(a_command), a_args);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
@@ -122,8 +122,8 @@ TcpClient::isServerAlive(
     cushort_t       &a_port
 )
 {
-    xTEST_EQ(a_ip.empty(), false);
-    xTEST_EQ((65535 > a_port) && (0 < a_port), true);
+	xTEST(!a_ip.empty());
+	xTEST((65535 > a_port) && (0 < a_port));
 
     TcpClient client;
     client.create(ISocket::AddressFamily::afInet, ISocket::Type::tpStream, ISocket::Protocol::ptIp);

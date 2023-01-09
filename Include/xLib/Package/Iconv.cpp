@@ -49,8 +49,8 @@ Iconv::Iconv(
 	_isSkipErrors  (a_isSkipErrors),
 	_isSkipEncoding(!a_isForceEncoding && (a_charsetIn == a_charsetOut))
 {
-	xTEST_EQ(a_charsetIn.empty(), false);
-	xTEST_EQ(a_charsetOut.empty(), false);
+	xTEST(!a_charsetIn.empty());
+	xTEST(!a_charsetOut.empty());
 	xTEST_DIFF(a_buffSize, (std::size_t)0);
 	xTEST_NA(a_isSkipErrors);
 	xTEST_NA(a_isForceEncoding);

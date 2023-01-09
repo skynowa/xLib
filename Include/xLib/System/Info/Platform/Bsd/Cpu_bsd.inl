@@ -73,7 +73,7 @@ Cpu::_vendor_impl() const
     cpuInfo[3] = 0;
 
     value = std::string(Utils::reinterpretCastT<char *>( &cpuInfo[0] ));
-    xTEST_EQ(value.empty(), false);
+    xTEST(!value.empty());
 
     return value;
 }

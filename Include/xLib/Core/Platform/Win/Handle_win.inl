@@ -32,7 +32,7 @@ template<typename T, HandlePolicyType valueT>
 ulong_t
 Handle<T, valueT>::info() const
 {
-    xTEST_EQ(isValid(), true);
+    xTEST(isValid());
 
     DWORD flags = 0UL;
 
@@ -50,7 +50,7 @@ Handle<T, valueT>::setInfo(
     culong_t &a_flags
 )
 {
-    xTEST_EQ(isValid(), true);
+	xTEST(isValid());
     xTEST_NA(a_mask);
     xTEST_NA(a_flags);
 

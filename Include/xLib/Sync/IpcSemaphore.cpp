@@ -80,7 +80,7 @@ IpcSemaphore::open(
 void_t
 IpcSemaphore::post() const
 {
-    xTEST_EQ(_isValid(), true);
+	xTEST(_isValid());
 
     _post_impl();
 }

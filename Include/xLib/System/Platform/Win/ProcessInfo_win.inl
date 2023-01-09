@@ -148,7 +148,7 @@ ProcessInfo::_commandLine_impl(
 
             // TODO: [skynowa] ProcessBasicInformation (for x64)
             NTSTATUS nsRv = func(a_process, info, &basicInfo, basicInfoSize, &returnSizeBytes);
-            xTEST_EQ(NT_SUCCESS(nsRv), true);
+            xTEST(NT_SUCCESS(nsRv));
             xTEST_EQ(basicInfoSize, returnSizeBytes);
             xTEST_PTR(basicInfo.PebBaseAddress);
 
@@ -163,7 +163,7 @@ ProcessInfo::_commandLine_impl(
 
     processHandle = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE,
         static_cast<DWORD>( _id ));
-    xTEST_EQ(processHandle.isValid(), true);
+    xTEST(processHandle.isValid());
 
     PVOID pebAddress               = _Functor::pebAddress(processHandle.get());
     PVOID rtlUserProcParamsAddress {};

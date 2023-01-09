@@ -282,7 +282,7 @@ Console::prompt(
     std::tstring_t  *a_answer		///< [out] answer
 ) const
 {
-    xTEST_EQ(a_prompt.empty(), false);
+	xTEST(!a_prompt.empty());
     xTEST_PTR(a_answer);
 
 	if ( !a_isVisible ) {

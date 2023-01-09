@@ -663,7 +663,7 @@ Thread::_func(
     // if created suspended thread - wait for resumption
     if ( self->isPaused() ) {
         bool_t bRv = self->_waitResumption();
-        xTEST_EQ(bRv, true);
+        xTEST(bRv);
     }
 
     static uint_t exitStatus {};
