@@ -71,23 +71,23 @@ HandlePolicy<T, type>::clone() const
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::StdFile) {
-	    int_t handle = ::fileno(_handle);
-	    xTEST_DIFF(handle, -1);
+		int_t handle = ::fileno(_handle);
+		xTEST_DIFF(handle, -1);
 
-	    int_t handleDup {};
+		int_t handleDup {};
 		int_t iRv = xDUP2(handle, handleDup);
 		xTEST_DIFF(iRv, -1);
 
-	    return static_cast<T>(xTFDOPEN(handleDup, xT("r+")));  // TODO: [skynowa] clone - open mode
+		return static_cast<T>(xTFDOPEN(handleDup, xT("r+")));  // TODO: [skynowa] clone - open mode
 	}
 	else if constexpr (type == HandlePolicyType::MySqlConn) {
-	    return _handle;
+		return _handle;
 	}
 	else if constexpr (type == HandlePolicyType::MySqlResult) {
-	    return _handle;
+		return _handle;
 	}
 	else if constexpr (type == HandlePolicyType::Curl) {
-	    return ::curl_easy_duphandle(_handle);
+		return ::curl_easy_duphandle(_handle);
 	}
 	else if constexpr (type == HandlePolicyType::FindDir) {
 	#if   xENV_WIN
@@ -171,17 +171,17 @@ HandlePolicy<T, type>::close() const
 	#endif
 	}
 	else if constexpr (type == HandlePolicyType::StdFile) {
-	    int_t iRv = std::fclose(_handle);
-	    xTEST_DIFF(iRv, xTEOF);
+		int_t iRv = std::fclose(_handle);
+		xTEST_DIFF(iRv, xTEOF);
 	}
 	else if constexpr (type == HandlePolicyType::MySqlConn) {
-	    (void_t)::mysql_close(_handle);
+		(void_t)::mysql_close(_handle);
 	}
 	else if constexpr (type == HandlePolicyType::MySqlResult) {
-	    (void_t)::mysql_free_result(_handle);
+		(void_t)::mysql_free_result(_handle);
 	}
 	else if constexpr (type == HandlePolicyType::Curl) {
-	    (void_t)::curl_easy_cleanup(_handle);
+		(void_t)::curl_easy_cleanup(_handle);
 	}
 	else if constexpr (type == HandlePolicyType::FindDir) {
 	#if   xENV_WIN
@@ -277,23 +277,23 @@ HandlePolicy<T, type>::openMax()
 	   /**
 		* show variables like "max_connections"
 		*
-	    * +-----------------+-------+
-	    * | Variable_name   | Value |
-	    * +-----------------+-------+
-	    * | max_connections | 100   |
-	    * +-----------------+-------+
-	    *
-	    * set global max_connections = 200;
-	    */
+		* +-----------------+-------+
+		* | Variable_name   | Value |
+		* +-----------------+-------+
+		* | max_connections | 100   |
+		* +-----------------+-------+
+		*
+		* set global max_connections = 200;
+		*/
 
-	    return 0;
+		return 0;
 	}
 	else if constexpr (type == HandlePolicyType::MySqlResult) {
 		// TODO: [skynowa] MySqlResult
-	    return 0;
+		return 0;
 	}
 	else if constexpr (type == HandlePolicyType::Curl) {
-	    return static_cast<std::size_t>(CURLOPT_MAXCONNECTS);
+		return static_cast<std::size_t>(CURLOPT_MAXCONNECTS);
 	}
 	else if constexpr (type == HandlePolicyType::FindDir) {
 	#if   xENV_WIN

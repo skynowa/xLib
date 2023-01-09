@@ -29,22 +29,22 @@ namespace xl::core
 {
 
 enum class HandlePolicyType
-    /// error handle type
+	/// error handle type
 {
-    Native        = 0, ///< like "null"
-    NativeInvalid = 1, ///< like "invalid" (-1)
-    Dll           = 2, ///< DLL
-    StdFile       = 3, ///< like nullptr
-    MySqlConn     = 4, ///< MySQL connection
-    MySqlResult   = 5, ///< MySQL result
-    Curl          = 6, ///< CURL
-    FindDir       = 7, ///< Dir find
-    Socket        = 8  ///< Socket
+	Native        = 0, ///< like "null"
+	NativeInvalid = 1, ///< like "invalid" (-1)
+	Dll           = 2, ///< DLL
+	StdFile       = 3, ///< like nullptr
+	MySqlConn     = 4, ///< MySQL connection
+	MySqlResult   = 5, ///< MySQL result
+	Curl          = 6, ///< CURL
+	FindDir       = 7, ///< Dir find
+	Socket        = 8  ///< Socket
 };
 
 template<typename T, HandlePolicyType valueT>
 class Handle;
-    /// handle
+	/// handle
 //-------------------------------------------------------------------------------------------------
 ///\name Factory
 ///\{
@@ -55,10 +55,10 @@ public:
 ///\name ctors, dtor
 ///\{
 	explicit HandlePolicy(const T a_handle);
-    virtual ~HandlePolicy() = default;
+	virtual ~HandlePolicy() = default;
 
-    xNO_DEFAULT_CONSTRUCT(HandlePolicy)
-    xNO_COPY_ASSIGN(HandlePolicy)
+	xNO_DEFAULT_CONSTRUCT(HandlePolicy)
+	xNO_COPY_ASSIGN(HandlePolicy)
 ///\}
 
 	T      clone() const;
