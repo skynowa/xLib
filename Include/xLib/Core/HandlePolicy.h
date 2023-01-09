@@ -51,65 +51,12 @@ class Handle;
 template<typename T, HandlePolicyType type>
 struct HandlePolicy
 {
-	static T clone(const T a_handle)
-	{
-		return _clone_impl(a_handle);
-	}
+	static T           clone(const T a_handle);
+	static bool_t      isValid(const T a_handle);
+	static void        close(T &a_handle);
 
-	static bool_t isValid(const T a_handle)
-	{
-		return _isValid_impl(a_handle);
-	}
-
-	static void close(T &a_handle)
-	{
-		_close_impl(a_handle);
-	}
-
-	static T null()
-	{
-		if      constexpr (type == HandlePolicyType::Native) {
-			return xNATIVE_HANDLE_NULL;
-		}
-		else if constexpr (type == HandlePolicyType::NativeInvalid) {
-			return xNATIVE_HANDLE_INVALID;
-		}
-		else if constexpr (type == HandlePolicyType::Dll) {
-			return nullptr;
-		}
-		else if constexpr (type == HandlePolicyType::StdFile) {
-			return nullptr;
-		}
-		else if constexpr (type == HandlePolicyType::MySqlConn) {
-			return nullptr;
-		}
-		else if constexpr (type == HandlePolicyType::MySqlResult) {
-			return nullptr;
-		}
-		else if constexpr (type == HandlePolicyType::Curl) {
-			return nullptr;
-		}
-		else if constexpr (type == HandlePolicyType::FindDir) {
-			return xFIND_DIR_HANDLE_NULL;
-		}
-		else if constexpr (type == HandlePolicyType::Socket) {
-			return xSOCKET_HANDLE_INVALID;
-		}
-		else {
-			// n/a - as compile-time test
-		}
-	}
-
-	static std::size_t openMax()
-	{
-		return _openMax_impl();
-	}
-
-xPLATFORM_IMPL:
-	static std::size_t _openMax_impl();
-	static T           _clone_impl(const T handle);
-	static bool_t      _isValid_impl(const T handle);
-	static void_t      _close_impl(T &handle);
+	static T           null();
+	static std::size_t openMax();
 };
 ///\}
 //-------------------------------------------------------------------------------------------------
