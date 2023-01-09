@@ -70,8 +70,9 @@ FsWatcher::openFiles(
         _filePaths.push_back(it_filePath);
         _fileHandles.push_back( file.getNative() );
 
-        HandleStdFile &handle = file.detach();
-        xUNUSED(handle);
+        // FileIO::detach - removed
+        // HandleStdFile &handle = file.detach();
+        // xUNUSED(handle);
     }
 
     if ( _filePaths.empty() ) {
