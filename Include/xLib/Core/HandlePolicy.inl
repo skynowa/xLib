@@ -14,85 +14,6 @@
 namespace xl::core
 {
 
-/**************************************************************************************************
-*    public - HandlePolicy Std
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-template<typename T, HandlePolicyType type>
-std::size_t
-HandlePolicy<T, type>::_openMax_impl()
-{
-	if      constexpr (type == HandlePolicyType::Native ||
-					   type == HandlePolicyType::NativeInvalid ||
-					   type == HandlePolicyType::Dll ||
-					   type == HandlePolicyType::StdFile)
-	{
-	#if   xENV_WIN
-		cint_t iRv = _getmaxstdio();
-		xTEST_GR(iRv, 0);
-
-		return static_cast<std::size_t>(iRv);
-	#elif xENV_UNIX
-		rlimit limit {};
-		int_t iRv = ::getrlimit(RLIMIT_NOFILE, &limit);
-		xTEST_EQ(iRv, 0);
-		xTEST_GR(static_cast<std::size_t>(limit.rlim_cur), 0UL);
-
-		return static_cast<std::size_t>( limit.rlim_cur );
-	#endif
-	}
-	else if constexpr (type == HandlePolicyType::MySqlConn) {
-		// TODO: [skynowa] _openMax_impl
-
-	   /**
-		* show variables like "max_connections"
-		*
-	    * +-----------------+-------+
-	    * | Variable_name   | Value |
-	    * +-----------------+-------+
-	    * | max_connections | 100   |
-	    * +-----------------+-------+
-	    *
-	    * set global max_connections = 200;
-	    */
-
-	    return 0;
-	}
-	else if constexpr (type == HandlePolicyType::MySqlResult) {
-		// TODO: [skynowa] MySqlResult
-	    return 0;
-	}
-	else if constexpr (type == HandlePolicyType::Curl) {
-	    return static_cast<std::size_t>(CURLOPT_MAXCONNECTS);
-	}
-	else if constexpr (type == HandlePolicyType::FindDir) {
-	#if   xENV_WIN
-		cint_t iRv = _getmaxstdio();
-		xTEST_GR(iRv, 0);
-
-		return static_cast<std::size_t>(iRv);
-	#elif xENV_UNIX
-		// TODO: [skynowa] FindDir
-		return 0;
-	#endif
-	}
-	else if constexpr (type == HandlePolicyType::Socket) {
-	#if   xENV_WIN
-		cint_t iRv = _getmaxstdio();
-		xTEST_GR(iRv, 0);
-
-		return static_cast<std::size_t>(iRv);
-	#elif xENV_UNIX
-		// TODO: [skynowa] FindDir
-		return 0;
-	#endif
-	}
-	else {
-		// n/a - as compile-time test
-	}
-}
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandlePolicyType type>
 T
@@ -276,6 +197,80 @@ HandlePolicy<T, type>::_close_impl(T &a_handle)
 
 		iRv = ::close(a_handle);
 		xTEST_DIFF(iRv, xSOCKET_ERROR);
+	#endif
+	}
+	else {
+		// n/a - as compile-time test
+	}
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T, HandlePolicyType type>
+std::size_t
+HandlePolicy<T, type>::_openMax_impl()
+{
+	if      constexpr (type == HandlePolicyType::Native ||
+					   type == HandlePolicyType::NativeInvalid ||
+					   type == HandlePolicyType::Dll ||
+					   type == HandlePolicyType::StdFile)
+	{
+	#if   xENV_WIN
+		cint_t iRv = _getmaxstdio();
+		xTEST_GR(iRv, 0);
+
+		return static_cast<std::size_t>(iRv);
+	#elif xENV_UNIX
+		rlimit limit {};
+		int_t iRv = ::getrlimit(RLIMIT_NOFILE, &limit);
+		xTEST_EQ(iRv, 0);
+		xTEST_GR(static_cast<std::size_t>(limit.rlim_cur), 0UL);
+
+		return static_cast<std::size_t>( limit.rlim_cur );
+	#endif
+	}
+	else if constexpr (type == HandlePolicyType::MySqlConn) {
+		// TODO: [skynowa] _openMax_impl
+
+	   /**
+		* show variables like "max_connections"
+		*
+	    * +-----------------+-------+
+	    * | Variable_name   | Value |
+	    * +-----------------+-------+
+	    * | max_connections | 100   |
+	    * +-----------------+-------+
+	    *
+	    * set global max_connections = 200;
+	    */
+
+	    return 0;
+	}
+	else if constexpr (type == HandlePolicyType::MySqlResult) {
+		// TODO: [skynowa] MySqlResult
+	    return 0;
+	}
+	else if constexpr (type == HandlePolicyType::Curl) {
+	    return static_cast<std::size_t>(CURLOPT_MAXCONNECTS);
+	}
+	else if constexpr (type == HandlePolicyType::FindDir) {
+	#if   xENV_WIN
+		cint_t iRv = _getmaxstdio();
+		xTEST_GR(iRv, 0);
+
+		return static_cast<std::size_t>(iRv);
+	#elif xENV_UNIX
+		// TODO: [skynowa] FindDir
+		return 0;
+	#endif
+	}
+	else if constexpr (type == HandlePolicyType::Socket) {
+	#if   xENV_WIN
+		cint_t iRv = _getmaxstdio();
+		xTEST_GR(iRv, 0);
+
+		return static_cast<std::size_t>(iRv);
+	#elif xENV_UNIX
+		// TODO: [skynowa] FindDir
+		return 0;
 	#endif
 	}
 	else {
