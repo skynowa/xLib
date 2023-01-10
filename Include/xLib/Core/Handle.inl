@@ -426,10 +426,10 @@ template<typename T, HandleType typeT>
 std::size_t
 Handle<T, typeT>::openMax()
 {
-	if      constexpr (typeT == HandleType::Native ||
-					   typeT == HandleType::NativeInvalid ||
-					   typeT == HandleType::Dll ||
-					   typeT == HandleType::StdFile)
+	if constexpr (typeT == HandleType::Native ||
+				  typeT == HandleType::NativeInvalid ||
+				  typeT == HandleType::Dll ||
+				  typeT == HandleType::StdFile)
 	{
 	#if   xENV_WIN
 		cint_t iRv = _getmaxstdio();
