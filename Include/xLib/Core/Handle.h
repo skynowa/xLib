@@ -23,13 +23,43 @@ class Debugger;
 } // namespace
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
-#include <xLib/Core/HandlePolicy.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Interface/IHandle.h>
+
+#if   xENV_WIN
+	#include <mysql.h>
+	#include <errmsg.h>
+	#include <mysqld_error.h>
+#elif xENV_APPLE
+	#include <mysql.h>
+	#include <errmsg.h>
+	#include <mysqld_error.h>
+#else
+	#include <mysql/mysql.h>
+	#include <mysql/errmsg.h>
+	#include <mysql/mysqld_error.h>
+#endif
+
+#include <curl/curl.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
 {
 
-template<typename T, HandlePolicyType valueT>
+enum class HandleType
+	/// Handle type
+{
+	Native        = 0, ///< like "null"
+	NativeInvalid = 1, ///< like "invalid" (-1)
+	Dll           = 2, ///< DLL
+	StdFile       = 3, ///< like nullptr
+	MySqlConn     = 4, ///< MySQL connection
+	MySqlResult   = 5, ///< MySQL result
+	Curl          = 6, ///< CURL
+	FindDir       = 7, ///< Dir find
+	Socket        = 8  ///< Socket
+};
+
+template<typename T, HandleType typeT>
 class Handle :
     public IHandle<T>
     /// handle
@@ -81,11 +111,7 @@ xPUBLIC_STATIC:
 		///< maximum open handles
 
 private:
-    using handle_policy_t = HandlePolicy<T, valueT>;
-    xUSING_CONST(handle_policy_t);
-
-    T               _handle {}; ///< handle
-    handle_policy_t _policy;    ///< handle policy
+    T _handle {}; ///< handle
 
 xPLATFORM_IMPL:
     void_t _setCloseOnExec_impl(cbool_t flag);
@@ -98,4 +124,34 @@ xPLATFORM_IMPL:
 #if xENV_WIN
     #include "Platform/Win/Handle_win.inl"
 #endif
+//-------------------------------------------------------------------------------------------------
+///\name Aliases
+///\{
+using HandleNative        = Handle<xl::native_handle_t,   HandleType::Native>;
+xUSING_CONST(HandleNative);
+
+using HandleNativeInvalid = Handle<xl::native_handle_t,   HandleType::NativeInvalid>;
+xUSING_CONST(HandleNativeInvalid);
+
+using HandleDll           = Handle<xl::dll_handle_t,      HandleType::Dll>;
+xUSING_CONST(HandleDll);
+
+using HandleStdFile       = Handle<std::FILE *,           HandleType::StdFile>;
+xUSING_CONST(HandleStdFile);
+
+using HandleMySqlConn     = Handle<::MYSQL *,             HandleType::MySqlConn>;
+xUSING_CONST(HandleMySqlConn);
+
+using HandleMySqlResult   = Handle<::MYSQL_RES *,         HandleType::MySqlResult>;
+xUSING_CONST(HandleMySqlResult);
+
+using HandleCurl          = Handle<::CURL *,              HandleType::Curl>;
+xUSING_CONST(HandleCurl);
+
+using HandleFindDir       = Handle<xl::find_dir_handle_t, HandleType::FindDir>;
+xUSING_CONST(HandleFindDir);
+
+using HandleSocket        = Handle<xl::socket_t,          HandleType::Socket>;
+xUSING_CONST(HandleSocket);
+///\}
 //-------------------------------------------------------------------------------------------------
