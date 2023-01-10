@@ -209,7 +209,7 @@ Handle<T, typeT>::clone() const
 		else {
 			// n/a - as compile-time test
 		}
-	}
+	} // Impl
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandleType typeT>
@@ -371,7 +371,7 @@ Handle<T, typeT>::close()
 		else {
 			// n/a - as compile-time test
 		}
-    }
+    } // Impl
 
     _handle = null();
 }
