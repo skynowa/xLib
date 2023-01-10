@@ -6,8 +6,6 @@
 
 #pragma once
 
-#ifndef HANDLE_H
-#define HANDLE_H
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
 {
@@ -157,4 +155,3 @@ using HandleSocket        = Handle<xl::socket_t,          HandleType::Socket>;
 xUSING_CONST(HandleSocket);
 ///\}
 //-------------------------------------------------------------------------------------------------
-#endif // HANDLE_H
