@@ -129,11 +129,6 @@ xPLATFORM_IMPL:
 //-------------------------------------------------------------------------------------------------
 ///\name Aliases
 ///\{
-using std_file_t  = std::FILE *;
-using mysql_t     = ::MYSQL *;
-using mysql_res_t = ::MYSQL_RES *;
-using curl_t      = ::CURL *;
-
 using HandleNative        = Handle<xl::native_handle_t,   HandleType::Native>;
 xUSING_CONST(HandleNative);
 
@@ -143,16 +138,16 @@ xUSING_CONST(HandleNativeInvalid);
 using HandleDll           = Handle<xl::dll_handle_t,      HandleType::Dll>;
 xUSING_CONST(HandleDll);
 
-using HandleStdFile       = Handle<std_file_t,            HandleType::StdFile>;
+using HandleStdFile       = Handle<std::FILE *,           HandleType::StdFile>;
 xUSING_CONST(HandleStdFile);
 
-using HandleMySqlConn     = Handle<mysql_t,               HandleType::MySqlConn>;
+using HandleMySqlConn     = Handle<::MYSQL *,             HandleType::MySqlConn>;
 xUSING_CONST(HandleMySqlConn);
 
-using HandleMySqlResult   = Handle<mysql_res_t,           HandleType::MySqlResult>;
+using HandleMySqlResult   = Handle<::MYSQL_RES *,         HandleType::MySqlResult>;
 xUSING_CONST(HandleMySqlResult);
 
-using HandleCurl          = Handle<curl_t,                HandleType::Curl>;
+using HandleCurl          = Handle<::CURL *,              HandleType::Curl>;
 xUSING_CONST(HandleCurl);
 
 using HandleFindDir       = Handle<xl::find_dir_handle_t, HandleType::FindDir>;
