@@ -59,10 +59,9 @@ public:
 
 	xNO_DEFAULT_CONSTRUCT(HandlePolicy)
 	xNO_COPY_ASSIGN(HandlePolicy)
-
-	void_t set(const T a_handle);
 ///\}
 
+	void_t set(const T a_handle);
 	T      clone() const;
 	bool_t isValid() const;
 	void   close() const;
