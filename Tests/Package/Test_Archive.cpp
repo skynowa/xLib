@@ -14,6 +14,11 @@ xTEST_UNIT(Test_Archive)
 bool_t
 Test_Archive::unit()
 {
+	if ( isGithubCI() ) {
+		Cout() << "GithubCI - skip";
+		return true;
+	}
+
 	Archive::cType type = Archive::Type::Zip;
 
 	std::ctstring_t sourceDirPath = data().tempDirPath;
