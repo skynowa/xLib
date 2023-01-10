@@ -16,9 +16,9 @@ namespace xl::core
 {
 
 //-------------------------------------------------------------------------------------------------
-template<typename T, HandlePolicyType valueT>
+template<typename T, HandleType typeT>
 void_t
-Handle<T, valueT>::_setCloseOnExec_impl(
+Handle<T, typeT>::_setCloseOnExec_impl(
 	cbool_t a_flag
 )
 {
@@ -28,9 +28,9 @@ Handle<T, valueT>::_setCloseOnExec_impl(
 	xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, HandlePolicyType valueT>
+template<typename T, HandleType typeT>
 ulong_t
-Handle<T, valueT>::info() const
+Handle<T, typeT>::info() const
 {
     xTEST(isValid());
 
@@ -43,9 +43,9 @@ Handle<T, valueT>::info() const
     return flags;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T, HandlePolicyType valueT>
+template<typename T, HandleType typeT>
 void_t
-Handle<T, valueT>::setInfo(
+Handle<T, typeT>::setInfo(
     culong_t a_mask,
     culong_t a_flags
 )

@@ -16,7 +16,7 @@ namespace xl::core
 {
 
 //-------------------------------------------------------------------------------------------------
-template<typename T, HandlePolicyType valueT>
+template<typename T, HandleType typeT>
 void_t
 Handle<T, valueT>::_setCloseOnExec_impl(
 	cbool_t a_flag
