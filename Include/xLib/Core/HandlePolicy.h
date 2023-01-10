@@ -78,10 +78,10 @@ private:
 //-------------------------------------------------------------------------------------------------
 ///\name Aliases
 ///\{
-using file_t      = FILE *;
-using mysql_t     = MYSQL *;
-using mysql_res_t = MYSQL_RES *;
-using curl_t      = CURL *;
+using std_file_t  = std::FILE *;
+using mysql_t     = ::MYSQL *;
+using mysql_res_t = ::MYSQL_RES *;
+using curl_t      = ::CURL *;
 
 using HandleNative        = Handle<native_handle_t,   HandlePolicyType::Native>;
 xUSING_CONST(HandleNative);
@@ -92,7 +92,7 @@ xUSING_CONST(HandleNativeInvalid);
 using HandleDll           = Handle<dll_handle_t,      HandlePolicyType::Dll>;
 xUSING_CONST(HandleDll);
 
-using HandleStdFile       = Handle<file_t,            HandlePolicyType::StdFile>;
+using HandleStdFile       = Handle<std_file_t,        HandlePolicyType::StdFile>;
 xUSING_CONST(HandleStdFile);
 
 using HandleMySqlConn     = Handle<mysql_t,           HandlePolicyType::MySqlConn>;
