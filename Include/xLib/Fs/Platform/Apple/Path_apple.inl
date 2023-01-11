@@ -17,11 +17,11 @@ namespace xl::fs
 std::tstring_t
 Path::_exe_impl()
 {
-	std::tstring_t sRv;
-
 	// TODO: [skynowa] Path::_exe_impl()
 
-	return sRv;
+	std::ctstring_t procFile = Format::str(xT("/proc/{}/exe"), ::getpid());
+
+    return Utils::readSymLink(procFile);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
