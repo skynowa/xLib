@@ -71,12 +71,20 @@ StackTrace::_get_impl(
                 symbolName = dlinfo.dli_sname;
             }
 
+            Cout() << xSTD_TRACE_VAR(status);
+            Cout() << xSTD_TRACE_VAR(symbolName);
+
             std::tstring_t _filePath;
             std::tstring_t _functionName;
             ulong_t        _sourceLine {};
 
             _addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
             xUNUSED(_functionName);
+
+            Cout() << xSTD_TRACE_VAR(dlinfo.dli_saddr);
+            Cout() << xSTD_TRACE_VAR(_filePath);
+            Cout() << xSTD_TRACE_VAR(_functionName);
+            Cout() << xSTD_TRACE_VAR(_sourceLine);
 
             modulePath   = (dlinfo.dli_fname == nullptr) ? dataNotFound : xA2T(dlinfo.dli_fname);
             filePath     = _filePath.empty()             ? dataNotFound : _filePath;
@@ -166,6 +174,7 @@ StackTrace::_addr2Line(
 		cmdLine = FormatC::str(xT("%s -o %.256s -l %p"), cmATOS_FILE_PATH, Path::exe().str().c_str(), a_symbolAddress);
 	#endif
 
+		Cout() << xSTD_TRACE_VAR(a_symbolAddress);
 		Cout() << xSTD_TRACE_VAR(cmdLine);
 	}
 
