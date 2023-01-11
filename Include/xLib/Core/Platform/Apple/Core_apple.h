@@ -18,6 +18,7 @@
 #include <sys/msg.h>
 
 // Fs
+#include <mach-o/dyld.h> // _NSGetExecutablePath
 #include <sys/param.h>
 #include <sys/mount.h>
 
