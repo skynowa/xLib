@@ -60,7 +60,7 @@ NativeError::get()
 /* static */
 void_t
 NativeError::set(
-    culong_t &a_code
+    culong_t a_code
 )
 {
     _set_impl(a_code);
@@ -83,7 +83,7 @@ NativeError::format()
 /* static */
 std::tstring_t
 NativeError::format(
-    culong_t &a_code
+    culong_t a_code
 )
 {
     return Format::str(xT("{} - {}"), a_code, _format_impl(a_code));

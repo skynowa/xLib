@@ -16,7 +16,7 @@ namespace xl::debug
 /* static */
 std::tstring_t
 NativeError::_format_impl(
-    culong_t &a_code
+    culong_t a_code
 )
 {
     std::tstring_t sRv;
