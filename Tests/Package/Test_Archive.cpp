@@ -19,7 +19,7 @@ Test_Archive::unit()
 		return true;
 	}
 
-	Archive::cType type = Archive::Type::Zip;
+	Archive archive(Archive::Type::Zip);
 
 	std::ctstring_t sourceDirPath = data().tempDirPath;
 
@@ -35,7 +35,7 @@ Test_Archive::unit()
 
 		xTEST_CASE("fileCompress")
 		{
-			m_bRv = Archive::fileCompress(type, filePath, zipFilePath, false);
+			m_bRv = archive.fileCompress(filePath, zipFilePath, false);
 			xTEST(m_bRv);
 			xTEST(FileInfo(zipFilePath).isExists());
 		}
@@ -44,7 +44,7 @@ Test_Archive::unit()
 		{
 			std::ctstring_t txtfilePath = destDirPath + Const::slash() + xT("Archive.txt");
 
-			m_bRv = Archive::fileUncompress(type, zipFilePath, destDirPath, true, false);
+			m_bRv = archive.fileUncompress(zipFilePath, destDirPath, true, false);
 			xTEST(m_bRv);
 			xTEST(FileInfo(filePath).isExists());
 
@@ -68,7 +68,7 @@ Test_Archive::unit()
 		{
 			std::ctstring_t zipFilePath = data().tempDirPath + Const::slash() + xT("ArchiveNew.zip");
 
-			m_bRv = Archive::dirCompress(type, destDirPath, zipFilePath, true);
+			m_bRv = archive.dirCompress(destDirPath, zipFilePath, true);
 			xTEST(m_bRv);
 		}
 
@@ -76,7 +76,7 @@ Test_Archive::unit()
 		{
 			std::ctstring_t destDirPathNew = data().tempDirPath + Const::slash() + "ArchiveNew";
 
-			m_bRv = Archive::dirUncompress(type, sourceDirPath, "*.zip", destDirPathNew, false, false);
+			m_bRv = archive.dirUncompress(sourceDirPath, "*.zip", destDirPathNew, false, false);
 			xTEST(m_bRv);
 
 			std::ctstring_t txtfilePath = destDirPathNew + Const::slash() + xT("Archive.txt");
@@ -87,17 +87,19 @@ Test_Archive::unit()
 		}
 	}
 
+	xTEST_CASE("fileUncompress")
 	{
-	#if 0
-		xTEST_CASE("fileUncompress")
-		{
+		// TEST: fileUncompress
+		if (0) {
 			std::ctstring_t filePathRar = xT("/media/skynowa/Disk/Foto/SriLanka.rar");
 			std::ctstring_t destDirPath = xT("/media/skynowa/Disk/Foto/SriLanka");
 
-			m_bRv = Archive::fileUncompress(Archive::Type::Rar, filePathRar, destDirPath, false);
+			Archive archiveRar(Archive::Type::Rar);
+			m_bRv = archiveRar.fileUncompress(filePathRar, destDirPath, false);
 			xTEST(m_bRv);
+		} else {
+			Cout() << "[TODO]";
 		}
-	#endif
 	}
 
     return true;

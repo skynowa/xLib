@@ -38,16 +38,22 @@ namespace xl::package
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+Archive::Archive(
+	const Type a_type
+) :
+	_type{a_type}
+{
+}
+//-------------------------------------------------------------------------------------------------
 /* static */
 bool_t
 Archive::fileCompress(
-	const Type       a_type,              ///< archive type
 	std::ctstring_t &a_sourceFilePath,    ///< source path
 	std::ctstring_t &a_destFilePath,      ///< destination archive path
 	cbool_t          a_isRemoveSourceFile ///< is remove source dir
 )
 {
-	xTEST_DIFF((int_t)a_type, (int_t)Type::Unknown);
+	xTEST_DIFF((int_t)_type, (int_t)Type::Unknown);
 	xTEST(!a_sourceFilePath.empty());
 	xTEST(!a_destFilePath.empty());
 	xTEST_NA(a_isRemoveSourceFile);
@@ -58,7 +64,7 @@ Archive::fileCompress(
 	std::tstring_t     binPath;
 	std::vec_tstring_t params;
 	{
-		switch (a_type) {
+		switch (_type) {
 		case Type::Zip:
 			binPath = ::zipPath;
 			params  = {"-9", "-Dj", a_destFilePath, a_sourceFilePath};
@@ -100,13 +106,12 @@ Archive::fileCompress(
 /* static */
 bool_t
 Archive::dirCompress(
-	const Type       a_type,             ///< archive type
 	std::ctstring_t &a_sourceDirPath,	 ///< source path
 	std::ctstring_t &a_destFilePath,	 ///< destination archive path
 	cbool_t          a_isRemoveSourceDir ///< is remove source dir
 )
 {
-	xTEST_DIFF((int_t)a_type, (int_t)Type::Unknown);
+	xTEST_DIFF((int_t)_type, (int_t)Type::Unknown);
 	xTEST(Dir(a_sourceDirPath).isExists());
 	xTEST(!a_destFilePath.empty());
 	xTEST_NA(a_isRemoveSourceDir);
@@ -117,7 +122,7 @@ Archive::dirCompress(
 	std::tstring_t     binPath;
 	std::vec_tstring_t params;
 	{
-		switch (a_type) {
+		switch (_type) {
 		case Type::Zip:
 			binPath = ::zipPath;
 			params  = {"-9", "-r", "-Dj", a_destFilePath, a_sourceDirPath};
@@ -159,7 +164,6 @@ Archive::dirCompress(
 /* static */
 bool_t
 Archive::fileUncompress(
-	const Type       a_type,              	///< archive type
 	std::ctstring_t &a_sourceFilePath,    	///< file path
 	std::ctstring_t &a_destDirPath,       	///< destination dir
 	cbool_t          a_isRemoveSourceFile,	///< is remove source archive file
@@ -167,7 +171,7 @@ Archive::fileUncompress(
 )
 {
 	if ( !a_isAutoDetectType ) {
-		xTEST_DIFF((int_t)a_type, (int_t)Type::Unknown);
+		xTEST_DIFF((int_t)_type, (int_t)Type::Unknown);
 	}
 	xTEST(!a_sourceFilePath.empty());
 	xTEST(!a_destDirPath.empty());
@@ -175,7 +179,7 @@ Archive::fileUncompress(
 
 	Dir(a_destDirPath).pathCreate();
 
-	const auto type = a_isAutoDetectType ? _detectType(a_sourceFilePath) : a_type;
+	const auto type = a_isAutoDetectType ? _detectType(a_sourceFilePath) : _type;
 
 	std::tstring_t     binPath;
 	std::vec_tstring_t params;
@@ -238,7 +242,6 @@ Archive::fileUncompress(
 /* static */
 bool_t
 Archive::dirUncompress(
-	const Type       a_type,                ///< archive type
 	std::ctstring_t &a_sourceDirPath,      	///< dir path
 	std::ctstring_t &a_fileShellFilter,    	///< shell wildcard pattern
 	std::ctstring_t &a_destDirPath,        	///< destination dir
@@ -256,8 +259,8 @@ Archive::dirUncompress(
 	}
 
 	for (const auto &it_archive_file : archive_files) {
-		bRv = fileUncompress(a_type, it_archive_file, a_destDirPath, a_isRemoveSourceFiles,
-					a_isAutoDetectType);
+		bRv = fileUncompress(it_archive_file, a_destDirPath, a_isRemoveSourceFiles,
+			a_isAutoDetectType);
 		if (!bRv) {
 			xTEST(false);
 			return false;
@@ -278,7 +281,7 @@ Archive::dirUncompress(
 /* static */
 Archive::Type
 Archive::_detectType(
-	std::ctstring_t &sourceFilePath
+	std::ctstring_t &a_sourceFilePath
 )
 {
 	static const std::map<std::tstring_t, Type> types
@@ -291,7 +294,7 @@ Archive::_detectType(
 		{xT("tarbz2"), Type::TarBz2}
 	};
 
-	std::ctstring_t fileExt = Path(sourceFilePath).ext();
+	std::ctstring_t fileExt = Path(a_sourceFilePath).ext();
 
 	auto it = types.find(fileExt);
 	xCHECK_RET(it == types.cend(), Type::Unknown);

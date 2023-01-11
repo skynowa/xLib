@@ -29,26 +29,29 @@ public:
 
 ///\name ctors, dtor
 ///\{
+	explicit  Archive(const Type type);
+			 ~Archive() = default;
+
 	xNO_DEFAULT_CONSTRUCT(Archive)
 	xNO_COPY_ASSIGN(Archive)
 ///\}
 
-	static bool_t fileCompress(const Type type, std::ctstring_t &sourceFilePath,
-				std::ctstring_t &destFilePath, cbool_t isRemoveSourceFile);
-		///< compress file
-	static bool_t dirCompress(const Type type, std::ctstring_t &sourceDirPath,
-				std::ctstring_t &destFilePath, cbool_t isRemoveSourceDir);
-		///< compress dir
+	// Compress
+	bool_t fileCompress(std::ctstring_t &sourceFilePath, std::ctstring_t &destFilePath,
+				cbool_t isRemoveSourceFile);
+	bool_t dirCompress(std::ctstring_t &sourceDirPath, std::ctstring_t &destFilePath,
+				cbool_t isRemoveSourceDir);
 
-	static bool_t fileUncompress(const Type type, std::ctstring_t &sourceFilePath,
-				std::ctstring_t &destDirPath, cbool_t isRemoveSourceFile, cbool_t isAutoDetectType);
-		///< uncompress file
-	static bool_t dirUncompress(const Type type, std::ctstring_t &sourceDirPath,
-				std::ctstring_t &fileShellFilter, std::ctstring_t &destDirPath,
-				cbool_t isRemoveSourceFiles, cbool_t isAutoDetectType);
-		///< uncompress dir
+	// Uncompress
+	bool_t fileUncompress(std::ctstring_t &sourceFilePath, std::ctstring_t &destDirPath,
+				cbool_t isRemoveSourceFile, cbool_t isAutoDetectType);
+	bool_t dirUncompress(std::ctstring_t &sourceDirPath, std::ctstring_t &fileShellFilter,
+				std::ctstring_t &destDirPath, cbool_t isRemoveSourceFiles, cbool_t isAutoDetectType);
 
 private:
+	cType _type {};
+
+xPRIVATE_STATIC:
     static Type _detectType(std::ctstring_t &sourceFilePath);
     	///< auto detect archive type by file extention
 };
