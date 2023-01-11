@@ -165,6 +165,8 @@ StackTrace::_addr2Line(
 	#elif cmATOS_FOUND
 		cmdLine = FormatC::str(xT("%s -o %.256s %p"), cmATOS_FILE_PATH, Path::exe().str().c_str(), a_symbolAddress);
 	#endif
+
+		Cout() << xSTD_TRACE_VAR(cmdLine);
 	}
 
 	auto pipe = autoPipe(cmdLine, "r");
@@ -174,6 +176,7 @@ StackTrace::_addr2Line(
     {
         tchar_t buff[buffSize + 1] {};
         cptr_ctchar_t functionName = xTFGETS(buff, buffSize, pipe.get());
+        Cout() << xSTD_TRACE_VAR(functionName);
         STD_VERIFY(functionName != nullptr);
 
         out_functionName->assign(functionName);
@@ -183,6 +186,7 @@ StackTrace::_addr2Line(
     {
         tchar_t buff[buffSize + 1] {};
         cptr_ctchar_t fileAndLine = xTFGETS(buff, buffSize, pipe.get());
+        Cout() << xSTD_TRACE_VAR(fileAndLine);
         STD_VERIFY(fileAndLine != nullptr);
 
        /**
@@ -192,6 +196,7 @@ StackTrace::_addr2Line(
         */
         std::vec_tstring_t line;
         String::split(fileAndLine, xT(":"), &line);
+        Cout() << xSTD_TRACE_VAR(line);
         STD_VERIFY(line.size() == 2U);
 
         // out
