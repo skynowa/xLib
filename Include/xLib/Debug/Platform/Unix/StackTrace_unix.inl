@@ -163,7 +163,7 @@ StackTrace::_addr2Line(
 	#if   cmADDR2LINE_FOUND
 		cmdLine = Format::str(xT("{} -e {} -f -C {}"), cmADDR2LINE_FILE_PATH, Path::exe().str(), a_symbolAddress);
 	#elif cmATOS_FOUND
-		cmdLine = FormatC::str(xT("%s -o %.256s %p"), cmATOS_FILE_PATH, Path::exe().str().c_str(), a_symbolAddress);
+		cmdLine = FormatC::str(xT("%s -o %.256s -l %p"), cmATOS_FILE_PATH, Path::exe().str().c_str(), a_symbolAddress);
 	#endif
 
 		Cout() << xSTD_TRACE_VAR(cmdLine);
