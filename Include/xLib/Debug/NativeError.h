@@ -28,7 +28,7 @@ public:
     ulong_t        get();
         ///< get the calling thread's last-error code value
     static
-    void_t         set(culong_t &code);
+    void_t         set(culong_t code);
         ///< set the last error code for the calling thread
     static
     void_t         reset();
@@ -37,7 +37,7 @@ public:
     std::tstring_t format();
         ///< get as string
     static
-    std::tstring_t format(culong_t &code);
+    std::tstring_t format(culong_t code);
         ///< get last error as string
 
 private:
@@ -51,9 +51,9 @@ xPLATFORM_IMPL:
     static
     ulong_t        _get_impl();
     static
-    void_t         _set_impl(culong_t &code);
+    void_t         _set_impl(culong_t code);
     static
-    std::tstring_t _format_impl(culong_t &a_code);
+    std::tstring_t _format_impl(culong_t a_code);
     static
     ulong_t        _nativeCodeSuccess_impl();
 };

@@ -34,7 +34,7 @@ NativeError::_get_impl()
 /* static */
 void_t
 NativeError::_set_impl(
-    culong_t &a_code
+    culong_t a_code
 )
 {
     errno = static_cast<int_t>( a_code );
