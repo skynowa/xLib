@@ -95,7 +95,11 @@ Test_Archive::unit()
 			std::ctstring_t destDirPath = xT("/media/skynowa/Disk/Foto/SriLanka");
 
 			Archive archiveRar(Archive::Type::Rar);
-			m_bRv = archiveRar.fileUncompress(filePathRar, destDirPath, false);
+
+			cbool_t isRemoveSourceFile {false};
+			cbool_t isAutoDetectType   {true};
+			m_bRv = archiveRar.fileUncompress(filePathRar, destDirPath, isRemoveSourceFile,
+				isAutoDetectType);
 			xTEST(m_bRv);
 		} else {
 			Cout() << "[TODO]";
