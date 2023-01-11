@@ -174,7 +174,6 @@ StackTrace::_addr2Line(
 		cmdLine = FormatC::str(xT("%s -o %.256s %p"), cmATOS_FILE_PATH, Path::exe().str().c_str(), a_symbolAddress);
 	#endif
 
-		Cout() << xSTD_TRACE_VAR(a_symbolAddress);
 		Cout() << xSTD_TRACE_VAR(cmdLine);
 	}
 
@@ -185,41 +184,45 @@ StackTrace::_addr2Line(
     {
         tchar_t buff[buffSize + 1] {};
         cptr_ctchar_t functionName = xTFGETS(buff, buffSize, pipe.get());
-        Cout() << xSTD_TRACE_VAR(functionName);
-        STD_VERIFY(functionName != nullptr);
 
-        out_functionName->assign(functionName);
+		if (functionName == nullptr) {
+			out_functionName->assign( Const::strUnknown() );
+		} else {
+			out_functionName->assign(functionName);
+		}
     }
 
     // get file and line
     {
         tchar_t buff[buffSize + 1] {};
         cptr_ctchar_t fileAndLine = xTFGETS(buff, buffSize, pipe.get());
-        Cout() << xSTD_TRACE_VAR(fileAndLine);
-        STD_VERIFY(fileAndLine != nullptr);
 
-       /**
-        * Parse that variants of fileAndLine string:
-        *   - /home/skynowa/Projects/xLib/Build/Debug/../../../../Tests/Source/./Test.inl:108
-        *   - ??:0
-        */
-        std::vec_tstring_t line;
-        String::split(fileAndLine, xT(":"), &line);
-        Cout() << xSTD_TRACE_VAR(line);
-        STD_VERIFY(line.size() == 2U);
+		if (fileAndLine == nullptr) {
+			*out_filePath   = Const::strUnknown();
+			*out_sourceLine = 0UL;
+		} else {
+		   /**
+			* Parse that variants of fileAndLine string:
+			*   - /home/skynowa/Projects/xLib/Build/Debug/../../../../Tests/Source/./Test.inl:108
+			*   - ??:0
+			*/
+			std::vec_tstring_t line;
+			String::split(fileAndLine, xT(":"), &line);
+			STD_VERIFY(line.size() == 2U);
 
-        // out
-        STD_VERIFY(std::feof(pipe.get()) == 0);
+			// out
+			STD_VERIFY(std::feof(pipe.get()) == 0);
 
-        *out_filePath   = line.at(0);
-        *out_sourceLine = String::cast<ulong_t>( line.at(1) );
+			*out_filePath   = line.at(0);
+			*out_sourceLine = String::cast<ulong_t>( line.at(1) );
+		}
     }
 #else
     xUNUSED(a_symbolAddress);
 
     *out_filePath     = Const::strUnknown();
     *out_functionName = Const::strUnknown();
-    *out_sourceLine   = 0;
+    *out_sourceLine   = 0UL;
 #endif
 }
 //-------------------------------------------------------------------------------------------------
