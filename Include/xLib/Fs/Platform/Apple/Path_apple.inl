@@ -4,8 +4,6 @@
  */
 
 
-#include <mach-o/dyld.h>
-
 namespace xl::fs
 {
 
