@@ -27,7 +27,7 @@ Path::_exe_impl()
 
 	iRv = ::_NSGetExecutablePath(&buff[0], &buffSize);
 	if (iRv != 0) {
-		buffer.resize(buffSize);
+		buff.resize(buffSize);
 
 		iRv = ::_NSGetExecutablePath(&buff[0], &buffSize);
 		xCHECK_RET(iRv == -1, std::tstring_t());
