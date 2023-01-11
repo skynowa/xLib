@@ -13,71 +13,93 @@ xTEST_UNIT(Test_Mutex)
 bool_t
 Test_Mutex::unit()
 {
-    size_t uiVal = 0;
+    int_t value {};
+
+    auto worker = [](int *out_value) -> void_t
+	{
+		++ (* out_value);
+	};
 
     xTEST_CASE("lock, unlock")
     {
-        Mutex csCS;
+        Mutex mutex;
+        mutex.create();
 
-        csCS.create();
-        csCS.lock();
+        // Lock
+		{
+			mutex.lock();
 
-        ++ uiVal;
+			worker(&value);
 
-        csCS.unlock();
+			mutex.unlock();
+		}
+
+        xTEST_EQ(value, 1);
     }
 
     xTEST_CASE("tryLock, unlock")
     {
-        Mutex csCS;
+        Mutex mutex;
+        mutex.create();
 
-        csCS.create();
+        // Lock
+		{
+			m_bRv = mutex.tryLock();
+			xTEST(m_bRv);
 
-        m_bRv = csCS.tryLock();
-        xTEST(m_bRv);
+			worker(&value);
 
-        ++ uiVal;
+			mutex.unlock();
+		}
 
-        csCS.unlock();
+        xTEST_EQ(value, 2);
     }
 
     xTEST_CASE("lock, unlock")
     {
-        Mutex csCS;
+        std::csize_t locksNum = 10;
 
-        std::csize_t cuiLocks = 10;
+        Mutex mutex;
+        mutex.create();
 
-        csCS.create();
+        // Lock
+		{
+			for (std::size_t i = 0; i < locksNum; ++ i) {
+				mutex.lock();
+			}
 
-        for (size_t i = 0; i < cuiLocks; ++ i) {
-            csCS.lock();
-        }
+			worker(&value);
 
-        ++ uiVal;
+			for (size_t i = 0; i < locksNum; ++ i) {
+				mutex.unlock();
+			}
+		}
 
-        for (size_t i = 0; i < cuiLocks; ++ i) {
-            csCS.unlock();
-        }
+        xTEST_EQ(value, 3);
     }
 
     xTEST_CASE("tryLock, unlock")
     {
-        Mutex csCS;
+        std::csize_t locksNum = 10;
 
-        std::csize_t cuiLocks = 10;
+        Mutex mutex;
+        mutex.create();
 
-        csCS.create();
+        // Lock
+		{
+			for (std::size_t i = 0; i < locksNum; ++ i) {
+				m_bRv = mutex.tryLock();
+				xTEST(m_bRv);
+			}
 
-        for (size_t i = 0; i < cuiLocks; ++ i) {
-            m_bRv = csCS.tryLock();
-            xTEST(m_bRv);
-        }
+			worker(&value);
 
-        ++ uiVal;
+			for (size_t i = 0; i < locksNum; ++ i) {
+				mutex.unlock();
+			}
+		}
 
-        for (size_t i = 0; i < cuiLocks; ++ i) {
-            csCS.unlock();
-        }
+        xTEST_EQ(value, 4);
     }
 
     return true;
