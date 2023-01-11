@@ -34,16 +34,17 @@ jobs:
       fail-fast: false
       matrix:
         config:
-        - {
-            name:             "Ubuntu-20.04 (GCC)",
-            os:               ubuntu-20.04,
-            cc:               "gcc",
-            cxx:              "g++",
-            gen_script:       "./gen_eclipse.sh",
-            gen_tests_script: "./gen_tests_eclipse.sh",
-            conan_profile:    "conan_profile_ubuntu_gcc.txt",
-            conan_file:       "conan_file.txt"
-          }
+        # +++
+        # - {
+        #     name:             "Ubuntu-20.04 (GCC)",
+        #     os:               ubuntu-20.04,
+        #     cc:               "gcc",
+        #     cxx:              "g++",
+        #     gen_script:       "./gen_eclipse.sh",
+        #     gen_tests_script: "./gen_tests_eclipse.sh",
+        #     conan_profile:    "conan_profile_ubuntu_gcc.txt",
+        #     conan_file:       "conan_file.txt"
+        #   }
 
         # - {
         #     name:             "Ubuntu-20.04 (Clang)",
@@ -91,16 +92,16 @@ jobs:
         #   }
 
         # +++
-        # - {
-        #     name:             "MacOS-11 (Clang)",
-        #     os:               macos-11,  # 10.15, 11
-        #     cc:               "clang",
-        #     cxx:              "clang++",
-        #     gen_script:       "./gen_eclipse.sh",
-        #     gen_tests_script: "./gen_tests_eclipse.sh",
-        #     conan_profile:    "conan_profile_macos_clang.txt",
-        #     conan_file:       "conan_file.txt"
-        #   }
+        - {
+            name:             "MacOS-11 (Clang)",
+            os:               macos-11,  # 10.15, 11
+            cc:               "clang",
+            cxx:              "clang++",
+            gen_script:       "./gen_eclipse.sh",
+            gen_tests_script: "./gen_tests_eclipse.sh",
+            conan_profile:    "conan_profile_macos_clang.txt",
+            conan_file:       "conan_file.txt"
+          }
 
     steps:
       ##############################################################################################
