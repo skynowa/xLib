@@ -22,18 +22,18 @@ Path::_exe_impl()
 	// TODO: [skynowa] Path::_exe_impl()
 	int iRv {};
 
-	std::uint32_t  bufferSize = PATH_MAX;
-	std::tstring_t buffer(bufferSize + 1, xT('\0'));
+	std::uint32_t  buffSize = PATH_MAX;
+	std::tstring_t buff(buffSize + 1, xT('\0'));
 
 	iRv = ::_NSGetExecutablePath(&buff[0], &buffSize);
 	if (iRv != 0) {
-		buffer.resize(bufferSize);
+		buffer.resize(buffSize);
 
 		iRv = ::_NSGetExecutablePath(&buff[0], &buffSize);
 		xCHECK_RET(iRv == -1, std::tstring_t());
 	}
 
-	return buffer.c_str();	// Trim '\0'
+	return buff.c_str();	// Trim '\0'
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
