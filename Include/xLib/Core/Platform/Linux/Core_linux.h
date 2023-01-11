@@ -14,7 +14,7 @@
 #include <mntent.h>
 
 #if cmHAVE_GETCPU
-    /// #include <linux/getcpu.h>
+    #include <linux/getcpu.h>
 #endif
 
 // POSIX
@@ -27,9 +27,3 @@
 
 // socket
 #include <netdb.h>
-
-// GUI
-#if xTEMP_DISABLED
-    #include <linux/kd.h>   // beep
-    #include <X11/Xlib.h>   // beep -lX11
-#endif
