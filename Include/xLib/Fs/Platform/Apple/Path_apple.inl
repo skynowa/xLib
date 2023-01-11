@@ -23,7 +23,7 @@ Path::_exe_impl()
 	int iRv {};
 
 	std::uint32_t  bufferSize = PATH_MAX;
-	std::tstring_t buffer(bufferSize + 1);
+	std::tstring_t buffer(bufferSize + 1, xT('\0'));
 
 	iRv = ::_NSGetExecutablePath(&buff[0], &buffSize);
 	if (iRv != 0) {
@@ -33,7 +33,7 @@ Path::_exe_impl()
 		xCHECK_RET(iRv == -1, std::tstring_t());
 	}
 
-	return buffer;
+	return buffer.c_str();	// Trim '\0'
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
