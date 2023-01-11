@@ -4,6 +4,8 @@
  */
 
 
+#include <mach-o/dyld.h>
+
 namespace xl::fs
 {
 
@@ -18,10 +20,20 @@ std::tstring_t
 Path::_exe_impl()
 {
 	// TODO: [skynowa] Path::_exe_impl()
+	int iRv {};
 
-	std::ctstring_t procFile = Format::str(xT("/proc/{}/exe"), ::getpid());
+	std::uint32_t  bufferSize = PATH_MAX;
+	std::tstring_t buffer(bufferSize + 1);
 
-    return Utils::readSymLink(procFile);
+	iRv = ::_NSGetExecutablePath(&buff[0], &buffSize);
+	if (iRv != 0) {
+		buffer.resize(bufferSize);
+
+		iRv = ::_NSGetExecutablePath(&buff[0], &buffSize);
+		xCHECK_RET(iRv == -1, std::tstring_t());
+	}
+
+	return buffer;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
