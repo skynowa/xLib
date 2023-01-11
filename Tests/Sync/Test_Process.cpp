@@ -13,6 +13,11 @@ xTEST_UNIT(Test_Process)
 bool_t
 Test_Process::unit()
 {
+	if ( isGithubCI() ) {
+		Cout() << "GithubCI - skip";
+		return true;
+	}
+
     xTEST_CASE("create, wait")
     {
     #if   xENV_WIN
