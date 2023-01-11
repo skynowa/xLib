@@ -19,13 +19,10 @@ namespace xl::fs
 std::tstring_t
 Path::_exe_impl()
 {
-	// TODO: [skynowa] Path::_exe_impl()
-	int iRv {};
-
 	std::uint32_t  buffSize = PATH_MAX;
 	std::tstring_t buff(buffSize + 1, xT('\0'));
 
-	iRv = ::_NSGetExecutablePath(&buff[0], &buffSize);
+	int_t iRv = ::_NSGetExecutablePath(&buff[0], &buffSize);
 	if (iRv != 0) {
 		buff.resize(buffSize);
 
