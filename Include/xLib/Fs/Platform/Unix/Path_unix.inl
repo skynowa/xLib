@@ -180,6 +180,7 @@ Path::_isNameValid_impl(
         if (pos != std::tstring_t::npos) {
             xCHECK_RET(a_fileNameValid == nullptr, false);
 
+            // Normalize
             for ( ; ; ) {
                 sRv.erase(pos, 1);
                 pos = sRv.find_first_of(exceptedChars, pos);
@@ -207,6 +208,7 @@ Path::_isNameValid_impl(
         if (pos != std::tstring_t::npos) {
             xCHECK_RET(a_fileNameValid == nullptr, false);
 
+            // Normalize
             for ( ; ; ) {
                 sRv.erase(pos, 1);
                 pos = sRv.find_first_of(exceptedChars, pos);
