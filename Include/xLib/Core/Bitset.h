@@ -5,6 +5,7 @@
  * like std::bitset
  * https://codereview.stackexchange.com/questions/86623/c-bitset-implementation
  * https://raw.githubusercontent.com/m-peko/bitflags/master/include/bitflags/bitflags.hpp
+ * https://github.com/mostsignificant/util/blob/master/src/flags.cpp
  */
 
 
