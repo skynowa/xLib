@@ -26,7 +26,6 @@ Path::_exe_impl()
 
 		iRv = ::_NSGetExecutablePath(&buff[0], &buffSize);
 		xTEST_EQ(iRv, 0);
-		xCHECK_RET(iRv != 0, std::tstring_t());
 	}
 
 	return buff.c_str();	// Trim '\0'
