@@ -332,6 +332,8 @@ Handle<T, typeT>::close()
 		#endif
 		}
 		else if constexpr (typeT == HandleType::StdFile) {
+			Cout() << xSTD_TRACE_VAR(_handle);
+
 			int_t iRv {};
 
 			iRv = std::fflush(_handle);
