@@ -127,6 +127,10 @@
     }
     ///< trace not implemented message
 #define xNOT_IMPLEMENTED \
-    { xTEST_FAIL_MSG(xT("Not implemented")); }
+    { \
+		std::cout \
+			<< "[xNOT_IMPLEMENTED] " << __FILE__ << ": " << __LINE__ << ", " \
+			<< __FUNCTION__ << " - " << "Not implemented" << ")" << std::endl; \
+    }
     ///< show not implemented message
 //-------------------------------------------------------------------------------------------------
