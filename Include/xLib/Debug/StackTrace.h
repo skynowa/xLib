@@ -28,7 +28,7 @@ class StackTrace
 public:
 ///\name ctors, dtor
 ///\{
-			  StackTrace() = default;
+			  StackTrace();
 	explicit  StackTrace(cStackTraceData &data);
 	virtual  ~StackTrace() = default;
 
