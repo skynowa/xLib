@@ -197,12 +197,9 @@ ProcessInfo::_commandLine_impl(
 
 ERROR_B:
     free(procargs);
+    fprintf(stderr, "ERROR_B: failed\n");
 ERROR_A:
-    // fprintf(stderr, "Sorry, failed\n");
-	args.clear();
-
-    // out
-    out_args->swap(args);
+    fprintf(stderr, "ERROR_A: failed\n");
 }
 //-------------------------------------------------------------------------------------------------
 
