@@ -53,7 +53,7 @@ ProcessInfo::_commandLine_impl(
     }
 
     /* Allocate space for the arguments. */
-    procargs = (char *)malloc(argmax);
+    procargs = (char *)malloc( (size_t)argmax );
     if (procargs == nullptr) {
       goto ERROR_A;
     }
