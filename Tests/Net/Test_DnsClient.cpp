@@ -49,9 +49,9 @@ Test_DnsClient::unit()
 		std::tstring_t name;
 		std::tstring_t port;
         DnsClient::nameInfo(family, hostAddr, hostPort, &name, &port);
-        Cout() << xSTD_TRACE_VAR_2(name, port) << std::endl;
-        xTEST(!name.empty());
-        xTEST(!port.empty());
+        // Cout() << xSTD_TRACE_VAR_2(name, port) << std::endl;
+        xTEST_EQ(name, std::tstring_t(xT("localhost")));
+        xTEST_EQ(port, hostPort);
     }
 
     xTEST_CASE("hostAddrInfo")
