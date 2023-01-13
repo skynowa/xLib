@@ -651,10 +651,7 @@ Test_Path::unit()
 
             {
         	#if xENV_UNIX
-                std::string data;
-                data.push_back('x');
-                data.push_back('\0');
-                data.push_back('y');
+                std::ctstring_t data {xT('x'), xT('\0'), xT('y')};
 
                 m_bRv = Path::isNameValid(data, nullptr);
                 xTEST(!m_bRv);

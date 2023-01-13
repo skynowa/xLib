@@ -161,8 +161,8 @@ Path::_volume_impl() const
 /* static */
 bool_t
 Path::_isNameValid_impl(
-    std::ctstring_t &a_fileName,                    ///< file, directory name
-    std::tstring_t  *a_fileNameValid /* = nullptr */   ///< [out] normalized name
+    std::ctstring_t &a_fileName,                     ///< file, directory name
+    std::tstring_t  *a_fileNameValid /* = nullptr */ ///< [out] normalized name
 )
 {
     std::tstring_t sRv(a_fileName);
@@ -174,7 +174,7 @@ Path::_isNameValid_impl(
     * : (colon)
     */
     {
-        std::ctstring_t exceptedChars = xT("/:");
+        std::ctstring_t exceptedChars  {xT('/'), xT(':')};
 
         std::size_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
