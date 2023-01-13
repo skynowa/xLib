@@ -150,7 +150,7 @@ ProcessInfo::_commandLine_impl(
     char *np {};
     int   c {};
 
-    for (char *np = nullptr; c < nargs && cp < &procargs[size]; ++ cp) {
+    for (np = nullptr; c < nargs && cp < &procargs[size]; ++ cp) {
       if (*cp == '\0') {
         ++ c;
 
