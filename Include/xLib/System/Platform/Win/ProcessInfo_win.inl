@@ -49,8 +49,7 @@ ProcessInfo::_ioBytes_impl() const
 std::tstring_t
 ProcessInfo::_exeName_impl() const
 {
-    std::tstring_t sRv;
-    sRv.resize( Path::maxSize());
+    std::tstring_t sRv(Path::maxSize() + 1, {});
 
     Process::handle_t handle = Process::handleById(_id);
 
