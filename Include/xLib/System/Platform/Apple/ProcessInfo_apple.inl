@@ -35,13 +35,18 @@ ProcessInfo::_commandLine_impl(
     std::vec_tstring_t args;
 
 
-    auto pid = ::getpid();
+    const auto pid = ::getpid();
 
-    int          mib[3], nargs, c = 0;
+    int          mib[3] {};
+	int          nargs {};
+	int          c {};
     std::size_t  argsMax {};
     size_t       size {};
-    char        *procargs, *sp, *np, *cp;
-    int          show_args = 1;
+    char        *procargs {};
+	char        *sp {};
+	char        *np {};
+	char        *cp {};
+    bool         isShowArgs {true};
 
     fprintf(stderr, "Getting argv of PID %d\n", pid);
 
@@ -157,7 +162,7 @@ ProcessInfo::_commandLine_impl(
         /* Note location of current '\0'. */
         np = cp;
 
-        if (!show_args) {
+        if (!isShowArgs) {
             /*
              * Don't convert '\0' characters to ' '.
              * However, we needed to know that the
@@ -184,6 +189,10 @@ ProcessInfo::_commandLine_impl(
 
     /* Clean up. */
     free(procargs);
+
+    // out
+    out_args->swap(args);
+
     return;
 
 ERROR_B:
