@@ -50,13 +50,13 @@ ProcessInfo::_commandLine_impl(
 
 		size = sizeof(argsMax);
 		if (sysctl(mib, 2, &argsMax, &size, nullptr, 0) == -1) {
-		  goto ERROR_A;
+		      fprintf(stderr, "ERROR_A: failed\n");
 		}
 
 		/* Allocate space for the arguments. */
 		procargs = (char *)malloc(argsMax);
 		if (procargs == nullptr) {
-		  goto ERROR_A;
+		      fprintf(stderr, "ERROR_A: failed\n");
 		}
 
 		/*
@@ -209,11 +209,6 @@ ProcessInfo::_commandLine_impl(
 
     // out
     out_args->swap(args);
-
-    return;
-
-ERROR_A:
-    fprintf(stderr, "ERROR_A: failed\n");
 }
 //-------------------------------------------------------------------------------------------------
 
