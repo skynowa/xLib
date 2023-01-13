@@ -44,7 +44,6 @@ ProcessInfo::_commandLine_impl(
     size_t       size {};
     char        *procargs {};
 	char        *sp {};
-	char        *np {};
 	char        *cp {};
     bool         isShowArgs {true};
 
@@ -150,15 +149,24 @@ ProcessInfo::_commandLine_impl(
      * know where the command arguments end and the environment strings
      * start, which is why the '=' character is searched for as a heuristic.
      */
-    for (np = nullptr; c < nargs && cp < &procargs[size]; cp++) {
+    for (char *np = nullptr; c < nargs && cp < &procargs[size]; ++ cp) {
       if (*cp == '\0') {
-        c++;
+        ++ c;
+
+        string arg;
+
         if (np != nullptr) {
+        	arg.assign(cp, cp - np);
+
             /* Convert previous '\0'. */
             *np = ' ';
         } else {
             /* *argv0len = cp - sp; */
+        	arg.assign(sp, cp - np);
         }
+
+        std::cout << xSTD_TRACE_VAR(arg);
+
         /* Note location of current '\0'. */
         np = cp;
 
