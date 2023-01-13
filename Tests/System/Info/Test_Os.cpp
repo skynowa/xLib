@@ -39,11 +39,13 @@ Test_Os::unit()
 
             xTEST(m_bRv);
         #elif xENV_UNIX
-            #if xOS_FREEBSD
-                xTEST_EQ((int)otType, (int)info::Os::Type::FreeBSD);
-            #else
+			#if   xENV_LINUX
                 xTEST_EQ((int)otType, (int)info::Os::Type::Linux);
-            #endif
+			#elif xENV_BSD
+                xTEST_EQ((int)otType, (int)info::Os::Type::FreeBSD);
+			#elif xENV_APPLE
+                xTEST_EQ((int)otType, (int)info::Os::Type::Mac);
+			#endif
         #endif
     }
 
