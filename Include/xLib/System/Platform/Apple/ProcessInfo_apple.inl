@@ -180,7 +180,7 @@ ProcessInfo::_commandLine_impl(
 
     /* Make a copy of the string. */
     printf("%s\n", sp);
-    args->push_back(sp);
+    args.push_back(sp);
 
     /* Clean up. */
     free(procargs);
@@ -190,7 +190,7 @@ ERROR_B:
     free(procargs);
 ERROR_A:
     // fprintf(stderr, "Sorry, failed\n");
-	args->clear();
+	args.clear();
 
     // out
     out_args->swap(args);
