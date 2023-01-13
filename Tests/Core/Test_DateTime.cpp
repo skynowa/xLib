@@ -134,9 +134,12 @@ Test_DateTime::unit()
     {
         DateTime datetime(1000 * 60 * 60);
 
-        m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        Cout() << xSTD_TRACE_VAR(m_sRv);
-        xTEST_EQ(m_sRv, std::tstring_t(xT("00-00-0 01:00:00.000")));
+	#if xENV_APPLE
+		m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
+	#else
+		m_sRv = datetime.format(xT("%d-%m-%4Y %H:%M:%S"));
+	#endif
+        xTEST_EQ(m_sRv, std::tstring_t(xT("00-00-0000 01:00:00.000")));
     }
 
     xTEST_CASE("DateTime(cushort_t, cushort_t, cushort_t, cushort_t)")
