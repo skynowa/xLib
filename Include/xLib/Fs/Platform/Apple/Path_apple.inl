@@ -17,7 +17,7 @@ namespace xl::fs
 std::tstring_t
 Path::_exe_impl()
 {
-	std::uint32_t  buffSize =  maxSize();
+	auto           buffSize = static_cast<std::uint32_t>( maxSize() );
 	std::tstring_t buff(buffSize + 1, {});
 
 	int_t iRv = ::_NSGetExecutablePath(&buff[0], &buffSize);
