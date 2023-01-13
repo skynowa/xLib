@@ -17,24 +17,28 @@ Test_Dll::unit()
 
     xTEST_CASE("Dll")
     {
-        #if   xENV_WIN
-            const data2_tstring_t data[] = {
-                {xT("kernel32.dll"), xT("Beep")}
-            };
-        #elif xENV_UNIX
-            #if xOS_FREEBSD
-                // TEST: if -static Dll::load() don't load any 'so'-libraries
-                return false;
+		#if   xENV_WIN
+			const data2_tstring_t data[] = {
+				{xT("kernel32.dll"), xT("Beep")}
+			};
+		#elif xENV_UNIX
+			#if   xENV_LINUX
+				const data2_tstring_t data[] = {
+					{xT("libm.so.6"), xT("cos")}
+				};
+			#elif xENV_BSD
+				// TEST: if -static Dll::load() don't load any 'so'-libraries
+				return false;
 
-                const data2_tstring_t data[] = {
-                    {xT("libm.so.6"), xT("cos")}
-                };
-            #else
-                const data2_tstring_t data[] = {
-                    {xT("libm.so.6"), xT("cos")}
-                };
-            #endif
-        #endif
+				const data2_tstring_t data[] = {
+					{xT("libm.so.6"), xT("cos")}
+				};
+			#elif xENV_APPLE
+				const data2_tstring_t data[] = {
+					{xT("libm.dylib"), xT("cos")}
+				};
+			#endif
+		#endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
             Dll dll;
