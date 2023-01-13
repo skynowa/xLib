@@ -34,8 +34,8 @@ ProcessInfo::_commandLine_impl(
 	auto procFile = autoFile(procPath, "r");
 	xTEST_PTR(procFile.get());
 
-    constexpr std::size_t bufferSize {2048};
-    char      buff[bufferSize] {};
+    constexpr std::csize_t bufferSize {2048};
+    char                   buff[bufferSize] {};
 
     while ( std::fgets(buff, static_cast<int_t>(bufferSize), procFile.get()) ) {
         for (size_t pos = 0; pos < bufferSize && buff[pos] != '\0'; ) {
