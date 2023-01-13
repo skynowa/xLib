@@ -17,15 +17,16 @@ namespace xl::fs
 std::tstring_t
 Path::_exe_impl()
 {
-	std::uint32_t  buffSize = PATH_MAX;
-	std::tstring_t buff(buffSize + 1, xT('\0'));
+	std::uint32_t  buffSize =  maxSize();
+	std::tstring_t buff(buffSize + 1, {});
 
 	int_t iRv = ::_NSGetExecutablePath(&buff[0], &buffSize);
 	if (iRv != 0) {
 		buff.resize(buffSize);
 
 		iRv = ::_NSGetExecutablePath(&buff[0], &buffSize);
-		xCHECK_RET(iRv == -1, std::tstring_t());
+		xTEST_EQ(iRv, 0);
+		xCHECK_RET(iRv != 0, std::tstring_t());
 	}
 
 	return buff.c_str();	// Trim '\0'
