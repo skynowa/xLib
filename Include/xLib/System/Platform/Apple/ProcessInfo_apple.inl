@@ -38,13 +38,8 @@ ProcessInfo::_commandLine_impl(
     const auto pid = ::getpid();
 
     int          mib[3] {};
-	int          nargs {};
     std::size_t  argsMax {};
     size_t       size {};
-    char        *procargs {};
-	char        *sp {};
-	char        *cp {};
-	int          c {};
     bool         isShowArgs {true};
 
     fprintf(stderr, "Getting argv of PID %d\n", pid);
@@ -58,11 +53,10 @@ ProcessInfo::_commandLine_impl(
     }
 
     /* Allocate space for the arguments. */
-    procargs = (char *)malloc(argsMax);
+    char *procargs = (char *)malloc(argsMax);
     if (procargs == nullptr) {
       goto ERROR_A;
     }
-
 
     /*
      * Make a sysctl() call to get the raw argument space of the process.
@@ -109,12 +103,17 @@ ProcessInfo::_commandLine_impl(
     mib[1] = KERN_PROCARGS2;
     mib[2] = pid;
 
-
     size = argsMax;
     if (sysctl(mib, 3, procargs, &size, nullptr, 0) == -1) {
       goto ERROR_B;
     }
 
+    // Parse
+	char *sp {};
+	char *cp {};
+	int   c {};
+
+	int nargs {};
     memcpy(&nargs, procargs, sizeof(nargs));
     cp = procargs + sizeof(nargs);
 
