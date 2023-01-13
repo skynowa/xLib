@@ -197,7 +197,7 @@ Test_FileIO::unit()
         ctchar_t ch = xT('W');
 
         FileIO file(filePath);
-        file.open(FileIO::OpenMode::ReadWrite);
+        file.open(FileIO::OpenMode::BinReadWrite);
         file.writeChar(ch);
         file.setPosition(0, FileIO::PointerPosition::Begin);
 
