@@ -46,7 +46,7 @@ ProcessInfo::_commandLine_impl(
 		mib[0] = CTL_KERN;
 		mib[1] = KERN_ARGMAX;
 
-		std::size_t argsMax {};
+		int argsMax {};
 
 		size = sizeof(argsMax);
 		if (::sysctl(mib, 2, &argsMax, &size, nullptr, 0) == -1) {
@@ -55,7 +55,7 @@ ProcessInfo::_commandLine_impl(
 		}
 
 		// Allocate space for the arguments
-		procargs = (char *)malloc(argsMax);
+		procargs = (char *)malloc((std::size_t)argsMax);
 		if (procargs == nullptr) {
 			fprintf(stderr, "ERROR_A: failed\n");
 			return;
@@ -107,7 +107,7 @@ ProcessInfo::_commandLine_impl(
 		mib[1] = KERN_PROCARGS2;
 		mib[2] = pid;
 
-		size = argsMax;
+		size = (std::size_t)argsMax;
 		if (::sysctl(mib, 3, procargs, &size, nullptr, 0) == -1) {
 			free(procargs);
 			fprintf(stderr, "ERROR_B: failed\n");
