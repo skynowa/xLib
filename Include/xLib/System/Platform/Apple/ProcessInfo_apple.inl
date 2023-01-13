@@ -39,12 +39,12 @@ ProcessInfo::_commandLine_impl(
 
     int          mib[3] {};
 	int          nargs {};
-	int          c {};
     std::size_t  argsMax {};
     size_t       size {};
     char        *procargs {};
 	char        *sp {};
 	char        *cp {};
+	int          c {};
     bool         isShowArgs {true};
 
     fprintf(stderr, "Getting argv of PID %d\n", pid);
@@ -156,13 +156,13 @@ ProcessInfo::_commandLine_impl(
         std::tstring_t arg;
 
         if (np != nullptr) {
-        	arg.assign(cp, cp - np);
+        	arg.assign(cp, static_cast<std::size_t>(cp - np));
 
             /* Convert previous '\0'. */
             *np = ' ';
         } else {
             /* *argv0len = cp - sp; */
-        	arg.assign(sp, cp - np);
+        	arg.assign(sp, static_cast<std::size_t>(cp - np));
         }
 
         std::cout << xSTD_TRACE_VAR(arg);
