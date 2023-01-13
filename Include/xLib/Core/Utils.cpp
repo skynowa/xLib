@@ -23,13 +23,12 @@ Utils::readSymLink(
 	std::ctstring_t &a_symLinkPath
 )
 {
-    std::string asRv;
-
     bool_t bRv = FileInfo(a_symLinkPath).isExists();
     xCHECK_RET(!bRv, std::tstring_t());
 
+    std::string asRv(Path::maxSize() + 1, {});
+
     ssize_t readed {- 1};
-    asRv.resize( Path::maxSize() );
 
     for ( ; ; ) {
         readed = ::readlink(xT2A(a_symLinkPath).c_str(), &asRv.at(0), asRv.size() *

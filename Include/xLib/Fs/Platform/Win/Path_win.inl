@@ -19,8 +19,7 @@ Path::_exe_impl()
 {
 	// REVIEW: QueryFullProcessImageName on xOS_WIN_VER > xOS_WIN_S03
 
-	std::tstring_t sRv;
-	sRv.resize( maxSize() );
+	std::tstring_t sRv(maxSize() + 1, {});
 
 	DWORD stored = ::GetModuleFileName(nullptr, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
 	xTEST_DIFF(stored, 0UL);
@@ -41,8 +40,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 std::tstring_t
 Path::_dll_impl()
 {
-    std::tstring_t sRv;
-    sRv.resize( maxSize() );
+    std::tstring_t sRv(maxSize() + 1, {});
 
     HMODULE procAddress = reinterpret_cast<HMODULE>( &__ImageBase );
 

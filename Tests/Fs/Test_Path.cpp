@@ -1109,7 +1109,7 @@ Test_Path::unit()
     xTEST_CASE("maxSize")
     {
         m_stRv = Path::maxSize();
-        xTEST_LESS(size_t(0), m_stRv);
+        xTEST_GR(m_stRv, std::size_t{0});
     }
 
     xTEST_CASE("nameMaxSize")
