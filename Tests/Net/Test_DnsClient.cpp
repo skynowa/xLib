@@ -51,7 +51,7 @@ Test_DnsClient::unit()
         DnsClient::nameInfo(family, hostAddr, hostPort, &name, &port);
         // Cout() << xSTD_TRACE_VAR_2(name, port) << std::endl;
         xTEST_EQ(name, std::tstring_t(xT("localhost")));
-        xTEST_EQ(port, hostPort);
+        xTEST_EQ(port, std::to_string(hostPort));
     }
 
     xTEST_CASE("hostAddrInfo")
