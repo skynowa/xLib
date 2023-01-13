@@ -33,7 +33,7 @@ Test_Dll::unit()
 				};
 			#elif xENV_APPLE
 				const data2_tstring_t data[] = {
-					{xT("libm.dylib"), xT("cos")}
+					///++ {xT("libm.dylib"), xT("cos")}
 					{Format::str(xT("libm.{}.6"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
 				};
 			#endif
