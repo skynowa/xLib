@@ -650,12 +650,19 @@ Test_Path::unit()
             }
 
             {
-        	#if xENV_UNIX
-                std::ctstring_t data {xT('x'), xT('\0'), xT('y')};
+			#if xENV_UNIX
+				#if xENV_APPLE
+					std::ctstring_t data {xT('x'), xT('\0'), xT('/'), xT(':')};
 
-                m_bRv = Path::isNameValid(data, nullptr);
-                xTEST(!m_bRv);
-        	#endif
+					m_bRv = Path::isNameValid(data, nullptr);
+					xTEST(!m_bRv);
+				#else
+					std::ctstring_t data {xT('x'), xT('\0'), xT('y')};
+
+					m_bRv = Path::isNameValid(data, nullptr);
+					xTEST(!m_bRv);
+				#endif
+			#endif
             }
         }
 
