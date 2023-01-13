@@ -21,17 +21,17 @@ Test_Debugger::unit()
         Debugger debugger;
 
         m_bRv = debugger.isEnabled();
-        xTEST_EQ(cbTrue, m_bRv);
+        xTEST_EQ(m_bRv, cbTrue);
 
         debugger.setEnabled(cbFalse);
 
         m_bRv = debugger.isEnabled();
-        xTEST_EQ(cbFalse, m_bRv);
+        xTEST_EQ(m_bRv, cbFalse);
 
         debugger.setEnabled(cbTrue);
 
         m_bRv = debugger.isEnabled();
-        xTEST_EQ(cbTrue, m_bRv);
+        xTEST_EQ(m_bRv, cbTrue);
     }
 
     xTEST_CASE("isActive")
