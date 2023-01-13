@@ -37,23 +37,24 @@ ProcessInfo::_commandLine_impl(
 
     auto pid = ::getpid();
 
-    int    mib[3], argmax, nargs, c = 0;
-    size_t    size;
-    char    *procargs, *sp, *np, *cp;
-    int show_args = 1;
+    int          mib[3], nargs, c = 0;
+    std::size_t  argsMax {};
+    size_t       size {};
+    char        *procargs, *sp, *np, *cp;
+    int          show_args = 1;
 
     fprintf(stderr, "Getting argv of PID %d\n", pid);
 
     mib[0] = CTL_KERN;
     mib[1] = KERN_ARGMAX;
 
-    size = sizeof(argmax);
-    if (sysctl(mib, 2, &argmax, &size, nullptr, 0) == -1) {
+    size = sizeof(argsMax);
+    if (sysctl(mib, 2, &argsMax, &size, nullptr, 0) == -1) {
       goto ERROR_A;
     }
 
     /* Allocate space for the arguments. */
-    procargs = (char *)malloc( (size_t)argmax );
+    procargs = (char *)malloc(argsMax);
     if (procargs == nullptr) {
       goto ERROR_A;
     }
@@ -105,7 +106,7 @@ ProcessInfo::_commandLine_impl(
     mib[2] = pid;
 
 
-    size = (size_t)argmax;
+    size = argsMax;
     if (sysctl(mib, 3, procargs, &size, nullptr, 0) == -1) {
       goto ERROR_B;
     }
