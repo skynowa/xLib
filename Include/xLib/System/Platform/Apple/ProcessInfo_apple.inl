@@ -153,7 +153,7 @@ ProcessInfo::_commandLine_impl(
       if (*cp == '\0') {
         ++ c;
 
-        string arg;
+        std::tstring_t arg;
 
         if (np != nullptr) {
         	arg.assign(cp, cp - np);
