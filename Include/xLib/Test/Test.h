@@ -279,12 +279,12 @@
         return bRv ? EXIT_SUCCESS : EXIT_FAILURE; \
     }
 //-------------------------------------------------------------------------------------------------
-// REVIEW: STD_VERIFY
-#define STD_VERIFY(expr) \
+// REVIEW: xSTD_VERIFY
+#define xSTD_VERIFY(expr) \
     { \
         if ( !(expr) ) { \
             std::cout \
-                << "[STD_VERIFY] " << __FILE__ << ": " << __LINE__ << ", " \
+                << "[xSTD_VERIFY] " << __FILE__ << ": " << __LINE__ << ", " \
                 << __FUNCTION__ << ": (" << #expr << ")" << std::endl; \
         } \
     }
