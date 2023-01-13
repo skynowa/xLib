@@ -167,5 +167,11 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     )
 
     add_test(NAME ${TEST_NAME} COMMAND "${TEST_NAME}")
+
+	# Targets - Build, run single test
+	add_custom_target(test_${TEST_NAME}
+		COMMAND           ${TEST_NAME}
+		DEPENDS           ${TEST_NAME}
+		WORKING_DIRECTORY ${CMAKE_PROJECT_DIR})
 endforeach()
 #--------------------------------------------------------------------------------------------------
