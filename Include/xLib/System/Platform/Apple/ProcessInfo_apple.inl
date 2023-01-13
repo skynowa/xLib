@@ -51,12 +51,14 @@ ProcessInfo::_commandLine_impl(
 		size = sizeof(argsMax);
 		if (::sysctl(mib, 2, &argsMax, &size, nullptr, 0) == -1) {
 			fprintf(stderr, "ERROR_A: failed\n");
+			return;
 		}
 
 		// Allocate space for the arguments
 		procargs = (char *)malloc(argsMax);
 		if (procargs == nullptr) {
 			fprintf(stderr, "ERROR_A: failed\n");
+			return;
 		}
 
 	   /**
@@ -109,6 +111,7 @@ ProcessInfo::_commandLine_impl(
 		if (::sysctl(mib, 3, procargs, &size, nullptr, 0) == -1) {
 			free(procargs);
 			fprintf(stderr, "ERROR_B: failed\n");
+			return;
 		}
 	}
 
@@ -129,6 +132,7 @@ ProcessInfo::_commandLine_impl(
 		if (cp == &procargs[size]) {
 			free(procargs);
 			fprintf(stderr, "ERROR_B: failed\n");
+			return;
 		}
 
 		// Skip trailing '\0' characters.
@@ -142,6 +146,7 @@ ProcessInfo::_commandLine_impl(
 		if (cp == &procargs[size]) {
 			free(procargs);
 			fprintf(stderr, "ERROR_B: failed\n");
+			return;
 		}
 	}
 
@@ -156,7 +161,7 @@ ProcessInfo::_commandLine_impl(
 	* start, which is why the '=' character is searched for as a heuristic.
 	*/
 	char *np {};
-	int   c {};
+	int   c  {};
 
 	for (np = nullptr; c < nargs && cp < &procargs[size]; ++ cp) {
 	  if (*cp == '\0') {
@@ -195,10 +200,13 @@ ProcessInfo::_commandLine_impl(
 	* sp points to the beginning of the arguments/environment string, and
 	* np should point to the '\0' terminator for the string
 	*/
-	if (np == nullptr || np == sp) {
+	if (np == nullptr ||
+		np == sp)
+	{
 		// Empty or unterminated string
 		free(procargs);
 		fprintf(stderr, "ERROR_B: failed\n");
+		return;
 	}
 
 	// Make a copy of the string
