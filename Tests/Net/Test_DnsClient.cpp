@@ -198,6 +198,7 @@ Test_DnsClient::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+        	Cout() << xSTD_TRACE_VAR(data[i].test);
             m_bRv = DnsClient::isAddressIpv4(data[i].test);
             xTEST_EQ(m_bRv, data[i].expect);
         }
