@@ -13,6 +13,13 @@ xTEST_UNIT(Test_DateTime)
 bool_t
 Test_DateTime::unit()
 {
+	std::ctstring_t dtFormat =
+	#if xENV_APPLE
+		xT("%d-%m-%Y %H:%M:%S");
+	#else
+		xT("%d-%m-%4Y %H:%M:%S");
+	#endif
+
     xTEST_CASE("DateTimeValidator")
     {
         // TEST: DateTimeValidator::year()
@@ -113,8 +120,8 @@ Test_DateTime::unit()
     xTEST_CASE("DateTime")
     {
         DateTime datetime;
-        m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        /// TODO: xTEST_EQ(m_sRv, std::tstring_t(xT("01-01-0 00:00:00.000")));
+        m_sRv = datetime.format(dtFormat);
+        /// TODO: xTEST_EQ(m_sRv, std::tstring_t(xT("01-01-0000 00:00:00.000")));
     }
 
     xTEST_CASE("DateTime(const DateTime &)")
@@ -122,11 +129,11 @@ Test_DateTime::unit()
         DateTime datetime1(2010, 7, 8, 3, 15, 6, 111);
         DateTime datetime2(datetime1);
 
-        m_sRv = datetime2.format(xT("%d-%m-%Y %H:%M:%S"));
+        m_sRv = datetime2.format(dtFormat);
         xTEST_EQ(m_sRv, std::tstring_t(xT("08-07-2010 03:15:06.111")));
 
         DateTime datetime(2010, 1, 14, 17, 0, 55, 666);
-        m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
+        m_sRv = datetime.format(dtFormat);
         xTEST_EQ(m_sRv, std::tstring_t(xT("14-01-2010 17:00:55.666")));
     }
 
@@ -134,11 +141,7 @@ Test_DateTime::unit()
     {
         DateTime datetime(1000 * 60 * 60);
 
-	#if xENV_APPLE
-		m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-	#else
-		m_sRv = datetime.format(xT("%d-%m-%4Y %H:%M:%S"));
-	#endif
+		m_sRv = datetime.format(dtFormat);
         xTEST_EQ(m_sRv, std::tstring_t(xT("00-00-0000 01:00:00.000")));
     }
 
@@ -146,15 +149,15 @@ Test_DateTime::unit()
     {
         DateTime datetime(12, 20, 37, 555);
 
-        m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(m_sRv, std::tstring_t(xT("00-00-0 12:20:37.555")));
+        m_sRv = datetime.format(dtFormat);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("00-00-0000 12:20:37.555")));
     }
 
     xTEST_CASE("DateTime(cushort_t, cushort_t, cushort_t)")
     {
         DateTime datetime(2010, 7, 8);
 
-        m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
+        m_sRv = datetime.format(dtFormat);
         xTEST_EQ(m_sRv, std::tstring_t(xT("08-07-2010 00:00:00.000")));
     }
 
@@ -162,7 +165,7 @@ Test_DateTime::unit()
     {
         DateTime datetime(2010, 8, 18, 14, 0, 5, 777);
 
-        m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
+        m_sRv = datetime.format(dtFormat);
         xTEST_EQ(m_sRv, std::tstring_t(xT("18-08-2010 14:00:05.777")));
     }
 
@@ -245,8 +248,8 @@ Test_DateTime::unit()
         culonglong_t msec = (1000 * 60) * 60; // 1 hour
 
         datetime = msec;
-        m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(m_sRv, std::tstring_t(xT("00-00-0 01:00:00.000")));
+        m_sRv = datetime.format(dtFormat);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("00-00-0000 01:00:00.000")));
     }
 
     xTEST_CASE("operator (=, +, -)")
@@ -256,12 +259,12 @@ Test_DateTime::unit()
 		DateTime datetime;
 
 		datetime = DateTime() + DateTime(1000 * 60 * 60);
-		m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-		xTEST_EQ(m_sRv, std::tstring_t(xT("00-01-0 01:00:00.000")));
+		m_sRv = datetime.format(dtFormat);
+		xTEST_EQ(m_sRv, std::tstring_t(xT("00-01-0000 01:00:00.000")));
 
 		datetime = datetime - DateTime(1000 * 60 * 60 / 2);
-		m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-		xTEST_EQ(m_sRv, std::tstring_t(xT("00-01-0 00:30:00.000")));
+		m_sRv = datetime.format(dtFormat);
+		xTEST_EQ(m_sRv, std::tstring_t(xT("00-01-0000 00:30:00.000")));
 	#endif
     }
 
@@ -271,8 +274,8 @@ Test_DateTime::unit()
         DateTime datetime2(1, 30, 0, 0);
 
         datetime1 += datetime2;
-        m_sRv = datetime1.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(m_sRv, std::tstring_t(xT("00-00-0 02:30:00.000")));
+        m_sRv = datetime1.format(dtFormat);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("00-00-0000 02:30:00.000")));
     }
 
     xTEST_CASE("operator -=")
@@ -281,8 +284,8 @@ Test_DateTime::unit()
         DateTime datetime2(1, 30, 0, 0);
 
         datetime1 -= datetime2;
-        m_sRv = datetime1.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(m_sRv, std::tstring_t(xT("00-00-0 00:20:00.000")));
+        m_sRv = datetime1.format(dtFormat);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("00-00-0000 00:20:00.000")));
     }
 
 
@@ -393,7 +396,7 @@ Test_DateTime::unit()
         {
             DateTime datetimeNow;
 
-            m_sRv = datetimeNow.current().format(xT("%d-%m-%Y %H:%M:%S"));
+            m_sRv = datetimeNow.current().format(dtFormat);
             xTEST_DIFF(m_sRv, std::tstring_t(xT("00-00-0000 0:00:00:000")));
         }
 
