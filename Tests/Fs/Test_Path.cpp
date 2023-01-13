@@ -244,9 +244,13 @@ Test_Path::unit()
 
         m_sRv = Path::fileExt(Path::FileExt::Dll);
         #if   xENV_WIN
-            xTEST_EQ(std::tstring_t(xT("dll")), m_sRv);
+            xTEST_EQ(m_sRv, std::tstring_t(xT("dll")));
         #elif xENV_UNIX
-            xTEST_EQ(std::tstring_t(xT("so")), m_sRv);
+			#if xENV_APPLE
+				xTEST_EQ(m_sRv, std::tstring_t(xT("dylib")));
+			#else
+				xTEST_EQ(m_sRv, std::tstring_t(xT("so")));
+			#endif
         #endif
 
         m_sRv = Path::fileExt(Path::FileExt::Lib);
