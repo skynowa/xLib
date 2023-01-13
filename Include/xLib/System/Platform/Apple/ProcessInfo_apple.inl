@@ -109,9 +109,7 @@ ProcessInfo::_commandLine_impl(
     }
 
     // Parse
-	char *sp {};
 	char *cp {};
-	int   c {};
 
 	int nargs {};
     memcpy(&nargs, procargs, sizeof(nargs));
@@ -138,8 +136,9 @@ ProcessInfo::_commandLine_impl(
     if (cp == &procargs[size]) {
       goto ERROR_B;
     }
+
     /* Save where the argv[0] string starts. */
-    sp = cp;
+    char *sp = cp;
 
     /*
      * Iterate through the '\0'-terminated strings and convert '\0' to ' '
@@ -148,6 +147,9 @@ ProcessInfo::_commandLine_impl(
      * know where the command arguments end and the environment strings
      * start, which is why the '=' character is searched for as a heuristic.
      */
+    char *np {};
+    int   c {};
+
     for (char *np = nullptr; c < nargs && cp < &procargs[size]; ++ cp) {
       if (*cp == '\0') {
         ++ c;
