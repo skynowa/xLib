@@ -28,7 +28,8 @@ class StackTrace
 public:
 ///\name ctors, dtor
 ///\{
-	explicit  StackTrace(cStackTraceData &data = cStackTraceData());
+	explicit  StackTrace() = default;
+	explicit  StackTrace(cStackTraceData &data);
 	virtual  ~StackTrace() = default;
 
     xNO_COPY_ASSIGN(StackTrace)
