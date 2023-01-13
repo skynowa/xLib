@@ -200,10 +200,8 @@ Path::_isNameValid_impl(
     * \0 (nullptr character)
     */
     {
-        std::tstring_t exceptedChars;
-        exceptedChars.push_back(xT('/'));
-        exceptedChars.push_back(xT('\0'));
-        xTEST_EQ(size_t(2), exceptedChars.size());
+        std::ctstring_t exceptedChars {xT('/'), xT('\0')};
+        xTEST_EQ(exceptedChars.size(), size_t(2));
 
         std::size_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
