@@ -39,7 +39,7 @@ public:
         ///< get stack trace with format output
 
 private:
-    cStackTraceData _data; ///< data
+    cStackTraceData _data {}; ///< data
 
     void_t _format(std::vector<std::vec_tstring_t> &stack, std::tstring_t *stackStr) const;
         ///< format stack trace
