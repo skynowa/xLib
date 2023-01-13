@@ -268,7 +268,9 @@ Path::_maxSize_impl()
 {
 	std::size_t uiRv {};
 
-#if defined(PATH_MAX)
+#if   defined(MAXPATHLEN)
+    uiRv = MAXPATHLEN;
+#elif defined(PATH_MAX)
     uiRv = PATH_MAX;
 #else
     culong_t savedError  {};
