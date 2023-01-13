@@ -59,8 +59,8 @@ FormatC::strV(
         cint_t iRv = xTVSNPRINTF(nullptr, 0, a_format, args);
         xVA_END(args);
 
-        STD_VERIFY(iRv != - 1);
-        STD_VERIFY(iRv > - 1);
+        xSTD_VERIFY(iRv != - 1);
+        xSTD_VERIFY(iRv > - 1);
 
         if (iRv <= - 1) {
             buffSize = 0;
@@ -81,9 +81,9 @@ FormatC::strV(
         cint_t iRv = xTVSNPRINTF(&buff.at(0), buffSize, a_format, args);
         xVA_END(args);
 
-        STD_VERIFY(iRv != - 1);
-        STD_VERIFY(iRv > - 1);
-        STD_VERIFY(iRv == static_cast<int_t>(buffSize) - 1);
+        xSTD_VERIFY(iRv != - 1);
+        xSTD_VERIFY(iRv > - 1);
+        xSTD_VERIFY(iRv == static_cast<int_t>(buffSize) - 1);
 
         buff.resize( static_cast<std::size_t>(iRv) );
     }

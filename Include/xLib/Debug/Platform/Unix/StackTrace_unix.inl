@@ -113,7 +113,7 @@ StackTrace::_get_impl(
             if (pos1 != std::tstring_t::npos &&
                 pos2 != std::tstring_t::npos)
             {
-                STD_VERIFY(pos1 < pos2);
+                xSTD_VERIFY(pos1 < pos2);
 
                 functionName = functionName.substr(0, pos1 + 1) + functionName.substr(pos2);
             }
@@ -212,10 +212,10 @@ StackTrace::_addr2Line(
 			*/
 			std::vec_tstring_t line;
 			String::split(fileAndLine, xT(":"), &line);
-			STD_VERIFY(line.size() == 2U);
+			xSTD_VERIFY(line.size() == 2U);
 
 			// out
-			STD_VERIFY(std::feof(pipe.get()) == 0);
+			xSTD_VERIFY(std::feof(pipe.get()) == 0);
 
 			*out_filePath   = line.at(0);
 			*out_sourceLine = String::cast<ulong_t>( line.at(1) );
