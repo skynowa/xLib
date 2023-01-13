@@ -332,7 +332,12 @@ Handle<T, typeT>::close()
 		#endif
 		}
 		else if constexpr (typeT == HandleType::StdFile) {
-			int_t iRv = std::fclose(_handle);
+			int_t iRv {};
+
+			iRv = std::fflush(_handle);
+			xTEST_DIFF(iRv, xTEOF);
+
+			iRv = std::fclose(_handle);
 			xTEST_DIFF(iRv, xTEOF);
 		}
 		else if constexpr (typeT == HandleType::MySqlConn) {
