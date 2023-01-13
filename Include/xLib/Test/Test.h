@@ -279,6 +279,13 @@
         return bRv ? EXIT_SUCCESS : EXIT_FAILURE; \
     }
 //-------------------------------------------------------------------------------------------------
-// TODO: STD_VERIFY - fix
-#define STD_VERIFY(x) \
-    assert(x)
+// REVIEW: STD_VERIFY
+#define STD_VERIFY(expr) \
+    { \
+        if ( !(expr) ) { \
+            std::cout \
+                << "[STD_VERIFY] " << __FILE__ << ": " << __LINE__ << ", " \
+                << __FUNCTION__ << ": (" << #expr << ")" << std::endl; \
+        } \
+    }
+//-------------------------------------------------------------------------------------------------
