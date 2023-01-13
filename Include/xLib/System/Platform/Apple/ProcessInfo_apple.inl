@@ -32,110 +32,117 @@ ProcessInfo::_commandLine_impl(
 	* https://gist.github.com/nonowarn/770696
 	*/
 
+    bool isShowArgs {true};
+
     std::vec_tstring_t args;
 
+    int     mib[3]   {};
+    char   *procargs {};
+    size_t  size     {};
+	{
+    	const auto pid = ::getpid();
+	    fprintf(stderr, "Getting argv of PID %d\n", pid);
 
-    const auto pid = ::getpid();
+		mib[0] = CTL_KERN;
+		mib[1] = KERN_ARGMAX;
 
-    int          mib[3] {};
-    std::size_t  argsMax {};
-    size_t       size {};
-    bool         isShowArgs {true};
+    	std::size_t argsMax {};
 
-    fprintf(stderr, "Getting argv of PID %d\n", pid);
+		size = sizeof(argsMax);
+		if (sysctl(mib, 2, &argsMax, &size, nullptr, 0) == -1) {
+		  goto ERROR_A;
+		}
 
-    mib[0] = CTL_KERN;
-    mib[1] = KERN_ARGMAX;
+		/* Allocate space for the arguments. */
+		procargs = (char *)malloc(argsMax);
+		if (procargs == nullptr) {
+		  goto ERROR_A;
+		}
 
-    size = sizeof(argsMax);
-    if (sysctl(mib, 2, &argsMax, &size, nullptr, 0) == -1) {
-      goto ERROR_A;
-    }
+		/*
+		 * Make a sysctl() call to get the raw argument space of the process.
+		 * The layout is documented in start.s, which is part of the Csu
+		 * project.  In summary, it looks like:
+		 *
+		 * /---------------\ 0x00000000
+		 * :               :
+		 * :               :
+		 * |---------------|
+		 * | argc          |
+		 * |---------------|
+		 * | arg[0]        |
+		 * |---------------|
+		 * :               :
+		 * :               :
+		 * |---------------|
+		 * | arg[argc - 1] |
+		 * |---------------|
+		 * | 0             |
+		 * |---------------|
+		 * | env[0]        |
+		 * |---------------|
+		 * :               :
+		 * :               :
+		 * |---------------|
+		 * | env[n]        |
+		 * |---------------|
+		 * | 0             |
+		 * |---------------| <-- Beginning of data returned by sysctl() is here.
+		 * | argc          |
+		 * |---------------|
+		 * | exec_path     |
+		 * |:::::::::::::::|
+		 * |               |
+		 * | String area.  |
+		 * |               |
+		 * |---------------| <-- Top of stack.
+		 * :               :
+		 * :               :
+		 * \---------------/ 0xffffffff
+		 */
+		mib[0] = CTL_KERN;
+		mib[1] = KERN_PROCARGS2;
+		mib[2] = pid;
 
-    /* Allocate space for the arguments. */
-    char *procargs = (char *)malloc(argsMax);
-    if (procargs == nullptr) {
-      goto ERROR_A;
-    }
-
-    /*
-     * Make a sysctl() call to get the raw argument space of the process.
-     * The layout is documented in start.s, which is part of the Csu
-     * project.  In summary, it looks like:
-     *
-     * /---------------\ 0x00000000
-     * :               :
-     * :               :
-     * |---------------|
-     * | argc          |
-     * |---------------|
-     * | arg[0]        |
-     * |---------------|
-     * :               :
-     * :               :
-     * |---------------|
-     * | arg[argc - 1] |
-     * |---------------|
-     * | 0             |
-     * |---------------|
-     * | env[0]        |
-     * |---------------|
-     * :               :
-     * :               :
-     * |---------------|
-     * | env[n]        |
-     * |---------------|
-     * | 0             |
-     * |---------------| <-- Beginning of data returned by sysctl() is here.
-     * | argc          |
-     * |---------------|
-     * | exec_path     |
-     * |:::::::::::::::|
-     * |               |
-     * | String area.  |
-     * |               |
-     * |---------------| <-- Top of stack.
-     * :               :
-     * :               :
-     * \---------------/ 0xffffffff
-     */
-    mib[0] = CTL_KERN;
-    mib[1] = KERN_PROCARGS2;
-    mib[2] = pid;
-
-    size = argsMax;
-    if (sysctl(mib, 3, procargs, &size, nullptr, 0) == -1) {
-      goto ERROR_B;
-    }
+		size = argsMax;
+		if (sysctl(mib, 3, procargs, &size, nullptr, 0) == -1) {
+		    free(procargs);
+		    fprintf(stderr, "ERROR_B: failed\n");
+		}
+	}
 
     // Parse
-	char *cp {};
+	char *cp   {};
+	int  nargs {};
+	{
+	    memcpy(&nargs, procargs, sizeof(nargs));
+		cp = procargs + sizeof(nargs);
 
-	int nargs {};
-    memcpy(&nargs, procargs, sizeof(nargs));
-    cp = procargs + sizeof(nargs);
+		/* Skip the saved exec_path. */
+		for (; cp < &procargs[size]; cp++) {
+		  if (*cp == '\0') {
+			/* End of exec_path reached. */
+			break;
+		  }
+		}
+		if (cp == &procargs[size]) {
+		    free(procargs);
+		    fprintf(stderr, "ERROR_B: failed\n");
+		}
 
-    /* Skip the saved exec_path. */
-    for (; cp < &procargs[size]; cp++) {
-      if (*cp == '\0') {
-        /* End of exec_path reached. */
-        break;
-      }
-    }
-    if (cp == &procargs[size]) {
-      goto ERROR_B;
-    }
+		/* Skip trailing '\0' characters. */
+		for (; cp < &procargs[size]; cp++) {
+		  if (*cp != '\0') {
+			/* Beginning of first argument reached. */
+			break;
+		  }
+		}
 
-    /* Skip trailing '\0' characters. */
-    for (; cp < &procargs[size]; cp++) {
-      if (*cp != '\0') {
-        /* Beginning of first argument reached. */
-        break;
-      }
-    }
-    if (cp == &procargs[size]) {
-      goto ERROR_B;
-    }
+		if (cp == &procargs[size]) {
+		    free(procargs);
+		    fprintf(stderr, "ERROR_B: failed\n");
+		}
+	}
 
     /* Save where the argv[0] string starts. */
     char *sp = cp;
@@ -189,7 +196,8 @@ ProcessInfo::_commandLine_impl(
      */
     if (np == nullptr || np == sp) {
       /* Empty or unterminated string. */
-      goto ERROR_B;
+        free(procargs);
+        fprintf(stderr, "ERROR_B: failed\n");
     }
 
     /* Make a copy of the string. */
@@ -204,9 +212,6 @@ ProcessInfo::_commandLine_impl(
 
     return;
 
-ERROR_B:
-    free(procargs);
-    fprintf(stderr, "ERROR_B: failed\n");
 ERROR_A:
     fprintf(stderr, "ERROR_A: failed\n");
 }
