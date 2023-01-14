@@ -1040,7 +1040,7 @@ Test_Path::unit()
 
     xTEST_CASE("homeAsBrief")
     {
-        std::ctstring_t &homeDir = Path::homeDir();
+        std::ctstring_t &homeDir = Path::homeDir().str();
         Cout() << xSTD_TRACE_VAR_2(homeDir, User().name());
 
 	#if   xENV_WIN
