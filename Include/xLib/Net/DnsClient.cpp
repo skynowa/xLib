@@ -398,7 +398,7 @@ DnsClient::isAddressIpv4(
     sockaddr_in sa {};
     iRv = ::inet_pton(AF_INET, xT2A(a_ip).c_str(), &sa.sin_addr);
     xTEST_DIFF(iRv, -1);
-    xTEST_DIFF_MSG(iRv, 0, Format::str(xT("Invalid IPv4: {}"), a_ip));
+    // xTEST_DIFF_MSG(iRv, 0, Format::str(xT("Invalid IPv4: {}"), a_ip)); - skip
 
     return (iRv > 0);
 }
@@ -414,7 +414,7 @@ DnsClient::isAddressIpv6(
 	sockaddr_in6 sa {};
     iRv = ::inet_pton(AF_INET6, xT2A(a_ip).c_str(), &sa.sin6_addr);
     xTEST_DIFF(iRv, -1);
-    xTEST_DIFF_MSG(iRv, 0, Format::str(xT("Invalid IPv6: {}"), a_ip));
+    // xTEST_DIFF_MSG(iRv, 0, Format::str(xT("Invalid IPv6: {}"), a_ip)); - skip
 
     return (iRv > 0);
 }
