@@ -143,7 +143,7 @@ Debugger::_stdoutPlain(
     xCHECK_DO(!isEnabled(), return);
 
     Console console;
-    Console::ModalResult mrRv = console.msgBox(a_report.str(), xT("xLib"), 0);
+    Console::cModalResult mrRv = console.msgBox(a_report.str(), xT("xLib"), 0);
     switch (mrRv) {
     case Console::ModalResult::Abort:
         (void_t)::exit(EXIT_FAILURE);
@@ -154,7 +154,7 @@ Debugger::_stdoutPlain(
         if ( isActive() ) {
             breakPoint();
         } else {
-            (void_t)console.msgBox(xT("OS debugger is not present.\nThe application will be terminated."), xT("xLib"), 0);
+            (void_t)console.msgBox(xT("OS debugger is not detected. Abort."), xT("xLib"), 0);
 
             (void_t)::exit(EXIT_FAILURE);
         }
