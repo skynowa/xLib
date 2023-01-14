@@ -81,6 +81,7 @@ Path::_homeDir_impl()
     std::string asRv;
 
     User()._passwd(nullptr, nullptr, nullptr, nullptr, &asRv, nullptr);
+    Cout() << xPRINT_VAR(asRv);
     xCHECK_RET(!asRv.empty(), xA2T(asRv));
 
     // try to get from system environment
