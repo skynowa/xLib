@@ -1048,9 +1048,15 @@ Test_Path::unit()
 
 		m_sRv = Path(filePath).homeAsBrief().str();
 	#if   xENV_WIN
-		xTEST_EQ(std::tstring_t(xT("~\test")), m_sRv);
+		xTEST_EQ(m_sRv, std::tstring_t(xT("~\test")));
 	#elif xENV_UNIX
-		xTEST_EQ(std::tstring_t(xT("~/tmp")), m_sRv);
+		Cout() << xSTD_TRACE_VAR(Path::homeDir());
+
+		if ( User().isAdmin() ) {
+			xTEST_EQ(m_sRv, std::tstring_t(xT("~/tmp")));
+		} else {
+			xTEST_EQ(m_sRv, std::tstring_t(xT("~/tmp")));
+		}
 	#endif
     }
 
