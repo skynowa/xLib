@@ -115,8 +115,19 @@ Path::_trashDir_impl()
 			std::ctstring_t &home = homeDir().str();
 
 			paths.emplace_back(home + xT("/.local/share/Trash"));
-			paths.emplace_back(home + xT("/.Trash"));
 			paths.emplace_back(home + xT("/.trash"));
+
+		#if xENV_APPLE
+		   /**
+			* https://stackoverflow.com/questions/64663834/determine-if-a-file-is-inside-any-macos-trash-folder
+			*/
+			paths.emplace_back(home + xT("/.Trash"));
+			paths.emplace_back(xT("/.Trashes"));
+
+			// "/Users/[user]/.Trash"     - any other user's trash - n/a
+			// "/Volumes/[user]/.Trashes" - n/a
+			// "~/Library/Mobile Documents/com~apple~CloudDocs/.Trash" - iCloud - n/a
+		#endif
 		}
 
 		// detect
