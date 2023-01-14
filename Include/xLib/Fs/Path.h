@@ -22,7 +22,7 @@ public:
 ///\name ctors, dtor
 ///\{
 	explicit  Path(std::ctstring_t &filePath);
-	virtual  ~Path() = default;
+	virtual  ~Path();
 
 	xNO_DEFAULT_CONSTRUCT(Path)
 	xNO_COPY_ASSIGN(Path)
