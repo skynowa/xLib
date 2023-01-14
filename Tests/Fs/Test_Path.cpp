@@ -771,8 +771,12 @@ Test_Path::unit()
                 {xT("/opt/test/"), xT("opttest")},
                 {xT("////////"),   xT("")},
                 {xT("\\\\\\\\\\"), xT("\\\\\\\\\\")},
-                {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"),
-                	xT("?V|||:*?\"<>|||a:l:*?\"<>|:*?\"<>|:*?\"<>|\\i?dT*e:*?\"<>|stN:*?\"<>|ame")},
+				{xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"),
+				#if xENV_APPLE
+					xT("?V|||*?\"<>|||al*?\"<>|*?\"<>|*?\"<>|\\i?dT*e*?\"<>|stN*?\"<>|ame")},
+				#else
+					xT("?V|||:*?\"<>|||a:l:*?\"<>|:*?\"<>|:*?\"<>|\\i?dT*e:*?\"<>|stN:*?\"<>|ame")},
+				#endif
             };
         #endif
 
@@ -780,7 +784,7 @@ Test_Path::unit()
                 std::tstring_t str;
                 m_bRv = Path::isNameValid(data[i].test, &str);
                 xTEST(m_bRv);
-                xTEST_EQ(str,   data[i].expect);
+                xTEST_EQ(str, data[i].expect);
 
                 // TODO: [skynowa] Tests - Path::isNameValid()
             }
