@@ -224,6 +224,8 @@ ProcessInfo::_commandLine_impl(
 
         pos += std::strlen(buff + pos) + 1;
     }
+
+    Cout() << xSTD_TRACE_VAR(args);
 #endif
 
 	// Clean up
