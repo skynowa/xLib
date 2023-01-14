@@ -160,6 +160,7 @@ ProcessInfo::_commandLine_impl(
 	* know where the command arguments end and the environment strings
 	* start, which is why the '=' character is searched for as a heuristic.
 	*/
+#if 0
 	char *np {};
 	int   c  {};
 
@@ -214,6 +215,16 @@ ProcessInfo::_commandLine_impl(
 	// Make a copy of the string
 	printf("%s\n", sp);
 	args.push_back(sp);
+#else
+	constexpr std::csize_t  bufferSize {2048};
+	char                   *buff = sp;
+
+    for (size_t pos = 0; pos < bufferSize && buff[pos] != '\0'; ) {
+        args.push_back( xA2T(buff + pos) );
+
+        pos += std::strlen(buff + pos) + 1;
+    }
+#endif
 
 	// Clean up
 	free(procargs);
