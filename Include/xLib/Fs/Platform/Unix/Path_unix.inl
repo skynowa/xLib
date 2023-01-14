@@ -115,6 +115,7 @@ Path::_trashDir_impl()
 			std::ctstring_t &home = homeDir().str();
 
 			paths.emplace_back(home + xT("/.local/share/Trash"));
+			paths.emplace_back(home + xT("/.Trash"));
 			paths.emplace_back(home + xT("/.trash"));
 		}
 
