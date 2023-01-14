@@ -1040,23 +1040,20 @@ Test_Path::unit()
 
     xTEST_CASE("homeAsBrief")
     {
+        std::ctstring_t &homeDir = Path::homeDir();
+        Cout() << xSTD_TRACE_VAR_2(homeDir, User().name());
+
 	#if   xENV_WIN
-		std::ctstring_t filePath = Format::str(xT("C:\\Users\\{}\\test"), User().name());
+		std::ctstring_t filePath = Format::str(xT("{}\\test"), homeDir);
 	#elif xENV_UNIX
-		std::ctstring_t filePath = Format::str(xT("/home/{}/tmp"), User().name());
+		std::ctstring_t filePath = Format::str(xT("{}/tmp"), homeDir);
 	#endif
 
 		m_sRv = Path(filePath).homeAsBrief().str();
 	#if   xENV_WIN
 		xTEST_EQ(m_sRv, std::tstring_t(xT("~\test")));
 	#elif xENV_UNIX
-		Cout() << xSTD_TRACE_VAR(Path::homeDir());
-
-		if ( User().isAdmin() ) {
-			xTEST_EQ(m_sRv, std::tstring_t(xT("~/tmp")));
-		} else {
-			xTEST_EQ(m_sRv, std::tstring_t(xT("~/tmp")));
-		}
+		xTEST_EQ(m_sRv, std::tstring_t(xT("~/tmp")));
 	#endif
     }
 
