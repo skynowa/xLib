@@ -169,6 +169,8 @@ ProcessInfo::_commandLine_impl(
 
 		std::tstring_t arg;
 
+		std::cout << xSTD_TRACE_VAR((cp - np));
+
 		if (np != nullptr) {
 			arg.assign(cp, static_cast<std::size_t>(cp - np));
 
