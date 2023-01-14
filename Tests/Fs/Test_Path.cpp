@@ -1040,8 +1040,12 @@ Test_Path::unit()
 
     xTEST_CASE("homeAsBrief")
     {
+    	std::cout << "========================" << std::endl;
         std::ctstring_t &homeDir = Path::homeDir().str();
-        Cout() << xSTD_TRACE_VAR_2(homeDir, User().name());
+        std::cout << "========================" << std::endl;
+
+        xSTD_VERIFY(!homeDir.empty());
+        Cout() << std::endl;
 
 	#if   xENV_WIN
 		std::ctstring_t filePath = Format::str(xT("{}\\test"), homeDir);

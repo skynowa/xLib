@@ -78,11 +78,12 @@ Path::_homeDir_impl()
     */
 
     // try to get from API
-    std::string asRv;
+	{
+		std::string asRv;
 
-    User()._passwd(nullptr, nullptr, nullptr, nullptr, &asRv, nullptr);
-    Cout() << xPRINT_VAR(asRv);
-    xCHECK_RET(!asRv.empty(), xA2T(asRv));
+		User()._passwd(nullptr, nullptr, nullptr, nullptr, &asRv, nullptr);
+		xCHECK_RET(!asRv.empty(), xA2T(asRv));
+	}
 
     // try to get from system environment
     std::ctstring_t sRv = Environment(xT("HOME")).var();
