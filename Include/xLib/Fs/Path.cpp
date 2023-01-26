@@ -90,11 +90,9 @@ Path::shell()
 Path
 Path::homeDir()
 {
-    std::ctstring_t &path_ = _homeDir_impl();
+    std::ctstring_t &path = _homeDir_impl();
 
-    Path path(path_);
-
-    return path;
+    return Path(path);
 }
 //-------------------------------------------------------------------------------------------------
 /**
