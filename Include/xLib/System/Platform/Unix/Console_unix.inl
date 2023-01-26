@@ -246,5 +246,25 @@ Console::_setTitle_impl(
     write( _escapeValue(Format::str(xT("\033]0;{}\a"), a_title)) );
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+Console::_setStdinEcho_impl(
+    cbool_t a_isEnable
+) const
+{
+    struct termios tty {};
+
+    int_t iRv = ::tcgetattr(STDIN_FILENO, &tty);
+    xTEST_DIFF(iRv, -1);
+
+    if (a_isEnable) {
+        tty.c_lflag |= static_cast<uint_t>(ECHO);
+    } else {
+        tty.c_lflag &= static_cast<uint_t>(~ECHO);
+    }
+
+    iRv = ::tcsetattr(STDIN_FILENO, TCSANOW, &tty);
+    xTEST_DIFF(iRv, -1);
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace

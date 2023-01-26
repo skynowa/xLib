@@ -129,6 +129,21 @@ public:
     *
     *******************************************************************************/
 
+    enum class ModalResult
+        /// modal result
+    {
+        Abort  = 3,
+        Ignore = 5,
+        Retry  = 4
+    };
+    xUSING_CONST(ModalResult);
+
+    ModalResult    msgBox(std::ctstring_t &text, std::ctstring_t &title, cuint_t &type) const;
+        ///< show console message dialog
+    void_t         prompt(std::ctstring_t &prompt, cbool_t isVisible, std::tstring_t *answer)
+                       const;
+        ///< show console prompt dialog
+
     void_t         setTitle(std::ctstring_t &title) const;
         ///< set title string
 #if xENV_WIN
@@ -168,6 +183,11 @@ private:
     bool_t _isAtty(std::ctostream_t &stream) const;
         ///< Test whether a given `std::ostream` object refers to a terminal
 
+	std::tstring_t _msgBoxLine(std::ctstring_t &text, std::csize_t &width) const;
+		///< build MsgBox text line
+	void_t         _setStdinEcho(cbool_t isEnable) const;
+		///< set stdin echo on/off
+
 	std::tstring_t _escapeValue(std::ctstring_t &value) const;
 		///< escape by "\[...\]"
 
@@ -181,6 +201,7 @@ xPLATFORM_IMPL:
     void_t         _write_impl(std::ctstring_t &str) const;
     void_t         _clear_impl() const;
     void_t         _setTitle_impl(std::ctstring_t &title) const;
+    void_t         _setStdinEcho_impl(cbool_t isEnable) const;
 };
 
 } // namespace
@@ -217,5 +238,54 @@ xPLATFORM_IMPL:
     #ifdef DEBUG
       create_console();
     #endif // DEBUG
+#endif
+
+#if xTODO
+    #ifdef __unix__
+        #include <curses.h>
+    #elif __WIN32__ || _MSC_VER
+        #include <conio.h>
+    #endif
+
+    inline void_t
+    CtsConsole::promptPassword(char* const pwdBuffer, bool_t visible) {
+    #if __WIN32__ || _MSC_VER
+        bool_t     passwordEntered = false;
+        char     ch;
+        size_t   idx = 0;
+        while (passwordEntered == false) {
+            ch = _getch();
+            if (visible) {
+                printf("*");
+            }
+            if (ch == 0x0D) {
+                passwordEntered = true;
+                printf("\n");
+            }
+            pwdBuffer[idx++] = ch;
+        }
+        pwdBuffer[idx] = '\0';
+    #elif __unix__
+
+        #define CTS_KEYCODE_ENTER   10
+
+        initscr();             /* start curses mode */
+        cbreak();
+        keypad(stdscr, true);  /* enable keyboard mapping */
+        noecho();              /* turn off echoing */
+
+        int_t key = 0;
+        int_t idx = 0;
+        for ( ;; ) {
+          key = getch();
+          if (key == CTS_KEYCODE_ENTER)  {
+              endwin();
+              break;
+          }
+          pwdBuffer[idx++] = key;
+        }
+        pwdBuffer[idx] = '\0';
+    #endif
+    };
 #endif
 //-------------------------------------------------------------------------------------------------

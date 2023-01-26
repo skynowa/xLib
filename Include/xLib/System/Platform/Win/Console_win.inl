@@ -481,5 +481,24 @@ Console::_menuHandle(
     return _menu;
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+Console::_setStdinEcho_impl(
+    cbool_t a_isEnable
+) const
+{
+    DWORD mode {};
+    BOOL blRv = ::GetConsoleMode(_stdIn.get(), &mode);
+    xTEST_DIFF(blRv, FALSE);
+
+    if (a_isEnable) {
+        mode |= ENABLE_ECHO_INPUT;
+    } else {
+        mode &= ~ENABLE_ECHO_INPUT;
+    }
+
+    blRv = ::SetConsoleMode(_stdIn.get(), mode);
+    xTEST_DIFF(blRv, FALSE);
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace

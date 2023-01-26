@@ -10,7 +10,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/DateTime.h>
-#include <xLib/System/ConsoleUI.h>
+#include <xLib/System/Console.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Log/Trace.h>
@@ -142,20 +142,19 @@ Debugger::_stdoutPlain(
 {
     xCHECK_DO(!isEnabled(), return);
 
-    ConsoleUI ui;
-
-    ConsoleUI::cResult rRv = ui.msgBox(xLIB_NAME, a_report.str());
-    switch (rRv) {
-    case ConsoleUI::Result::Abort:
+    Console console;
+    Console::cModalResult mrRv = console.msgBox(a_report.str(), xT("xLib"), 0);
+    switch (mrRv) {
+    case Console::ModalResult::Abort:
         (void_t)::exit(EXIT_FAILURE);
         break;
-    case ConsoleUI::Result::Ignore:
+    case Console::ModalResult::Ignore:
         break;
-    case ConsoleUI::Result::Retry:
+    case Console::ModalResult::Retry:
         if ( isActive() ) {
             breakPoint();
         } else {
-            (void_t)ui.msgBox(xLIB_NAME, xT("OS debugger is not detected. Abort."));
+            (void_t)console.msgBox(xT("OS debugger is not detected. Abort."), xT("xLib"), 0);
 
             (void_t)::exit(EXIT_FAILURE);
         }
