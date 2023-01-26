@@ -84,38 +84,6 @@ Test_Console::unit()
 	#endif
     }
 
-    xTEST_CASE("msgBox")
-    {
-	#if xTEST_IGNORE
-		std::ctstring_t title = xT("iMsgBox_title");
-		std::ctstring_t text  = xT("iMsgBox_text\nddddddddd\nRRRRRRRRRRRRR")
-			xT(" AAAA BBBB CCCC DDDD EEEE FFFF GGGG HHHH JJJJ KKKK LLLL ZZZZ XXXX CCCC VVVV BBBB");
-		cuint_t         type  = 0U;
-
-		Console console;
-
-		Console::ModalResult mrRes = console.msgBox(text, title, type);
-		xUNUSED(mrRes);
-    #else
-        Trace() << xT("[skip]");
-	#endif
-    }
-
-    xTEST_CASE("prompt")
-    {
-	#if xTEST_IGNORE
-		std::ctstring_t prompt    = xT("Prompt_simple_prompt");
-		cbool_t         isVisible = false;
-		std::tstring_t  answer    = xT("Answer_bla-bla-bla");
-
-		Console console;
-
-		console.prompt(prompt, isVisible, &answer);
-    #else
-        Trace() << xT("[skip]");
-	#endif
-    }
-
     xTEST_CASE("pause")
     {
 	#if xTEST_IGNORE
