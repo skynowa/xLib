@@ -155,7 +155,7 @@ Debugger::_stdoutPlain(
         if ( isActive() ) {
             breakPoint();
         } else {
-            (void_t)ui.msgBox(xT("OS debugger is not detected. Abort."), xT("xLib"));
+            (void_t)ui.msgBox(xT("xLib"), xT("OS debugger is not detected. Abort."));
 
             (void_t)::exit(EXIT_FAILURE);
         }
