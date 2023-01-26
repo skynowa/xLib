@@ -45,6 +45,7 @@ get_filename_component(cmXLIB_DATA_DIR "./Data" ABSOLUTE)
 #--------------------------------------------------------------------------------------------------
 # Trace
 message("-------------------------------------------------")
+message(STATUS "CMAKE_PROJECT_NAME             : ${CMAKE_PROJECT_NAME}")
 message(STATUS "PROJECT_NAME                   : ${PROJECT_NAME}")
 message("CMake")
 message(STATUS "CMAKE_VERSION                  : ${CMAKE_VERSION}")
