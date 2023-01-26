@@ -182,44 +182,6 @@ xPLATFORM_IMPL:
     void_t         _clear_impl() const;
     void_t         _setTitle_impl(std::ctstring_t &title) const;
 };
-//-------------------------------------------------------------------------------------------------
-class ConsoleUI
-    /// Shell console
-{
-public:
-///\name ctors, dtor
-///\{
-			 ConsoleUI() = default;
-	virtual ~ConsoleUI() = default;
-
-	xNO_COPY_ASSIGN(ConsoleUI)
-///\}
-    enum class Result
-        /// modal result
-    {
-        Abort  = 0,
-        Ignore = 1,
-        Retry  = 2
-    };
-    xUSING_CONST(Result);
-
-    Result msgBox(std::ctstring_t &title, std::ctstring_t &text) const;
-        ///< show console message dialog
-    void_t promptBox(std::ctstring_t &title, std::ctstring_t &text, cbool_t isVisible,
-                std::tstring_t *answer) const;
-        ///< show console prompt dialog
-
-private:
-    Console _console;
-
-	std::tstring_t _msgBoxLine(std::ctstring_t &text, std::csize_t width) const;
-		///< build MsgBox text line
-	void_t         _setStdinEcho(cbool_t isEnable) const;
-		///< set stdin echo on/off
-
-xPLATFORM_IMPL:
-	void_t _setStdinEcho_impl(cbool_t isEnable) const;
-};
 
 } // namespace
 //-------------------------------------------------------------------------------------------------

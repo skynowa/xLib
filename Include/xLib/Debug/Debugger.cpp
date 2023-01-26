@@ -10,7 +10,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/DateTime.h>
-#include <xLib/System/Console.h>
+#include <xLib/System/ConsoleUI.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Log/Trace.h>

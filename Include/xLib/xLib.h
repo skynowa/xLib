@@ -123,6 +123,7 @@
 // System
 #include <xLib/System/CmdOptions.h>
 #include <xLib/System/Console.h>
+#include <xLib/System/ConsoleUI.h>
 #include <xLib/System/Environment.h>
 #include <xLib/System/ProcessInfo.h>
 #include <xLib/System/User.h>
