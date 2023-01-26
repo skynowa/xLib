@@ -365,7 +365,7 @@ ConsoleUI::msgBox(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-ConsoleUI::prompt(
+ConsoleUI::promptBox(
     std::ctstring_t &a_prompt,		///< input text
     cbool_t          a_isVisible,	///< is input text visible
     std::tstring_t  *a_answer		///< [out] answer

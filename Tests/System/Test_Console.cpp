@@ -101,7 +101,7 @@ Test_Console::unit()
 	#endif
     }
 
-    xTEST_CASE("prompt")
+    xTEST_CASE("promptBox")
     {
 	#if xTEST_IGNORE
 		std::ctstring_t prompt    = xT("Prompt_simple_prompt");
@@ -110,7 +110,7 @@ Test_Console::unit()
 
 		Console console;
 
-		console.prompt(prompt, isVisible, &answer);
+		console.promptBox(prompt, isVisible, &answer);
     #else
         Trace() << xT("[skip]");
 	#endif
