@@ -13,9 +13,9 @@
 #include <xLib/Sync/Thread.h>
 
 #if   xENV_WIN
-    #include "Platform/Win/Console_win.inl"
+    #include "Platform/Win/ConsoleUI_win.inl"
 #elif xENV_UNIX
-    #include "Platform/Unix/Console_unix.inl"
+    #include "Platform/Unix/ConsoleUI_unix.inl"
 #endif
 
 namespace xl::system
