@@ -31,8 +31,6 @@
     ///< xLib home page
 #define xLIB_EMAIL          xT("skynowa@gmail.com")
     ///< xLib email
-#define xLIB_JABBER         xT("skynowa@jabber.ru")
-    ///< xLib jabber
 #define xLIB_SKYPE          xT("skynowa777")
     ///< xLib skype
 //-------------------------------------------------------------------------------------------------
