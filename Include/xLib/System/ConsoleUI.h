@@ -18,7 +18,7 @@ namespace xl::system
 {
 
 class ConsoleUI
-    /// Shell console
+	/// Shell console
 {
 public:
 ///\name ctors, dtor
@@ -28,23 +28,23 @@ public:
 
 	xNO_COPY_ASSIGN(ConsoleUI)
 ///\}
-    enum class Result
-        /// modal result
-    {
-        Abort  = 0,
-        Ignore = 1,
-        Retry  = 2
-    };
-    xUSING_CONST(Result);
+	enum class Result
+		/// modal result
+	{
+		Abort  = 0,
+		Ignore = 1,
+		Retry  = 2
+	};
+	xUSING_CONST(Result);
 
-    Result msgBox(std::ctstring_t &title, std::ctstring_t &text) const;
-        ///< show console message dialog
-    void_t promptBox(std::ctstring_t &title, std::ctstring_t &text, cbool_t isVisible,
-                std::tstring_t *answer) const;
-        ///< show console prompt dialog
+	Result msgBox(std::ctstring_t &title, std::ctstring_t &text) const;
+		///< show console message dialog
+	void_t promptBox(std::ctstring_t &title, std::ctstring_t &text, cbool_t isVisible,
+				std::tstring_t *answer) const;
+		///< show console prompt dialog
 
 private:
-    Console _console;
+	Console _console;
 
 	std::tstring_t _msgBoxLine(std::ctstring_t &text, std::csize_t width) const;
 		///< build MsgBox text line
@@ -63,80 +63,80 @@ xPLATFORM_IMPL:
  */
 
 #if xTODO
-    #include <io.h>
-    #include <fcntl.h>
-    #include <stdio.h>
-    #include <windows.h>
+	#include <io.h>
+	#include <fcntl.h>
+	#include <stdio.h>
+	#include <windows.h>
 
-    bool_t
-    create_console() {
-      FreeConsole();
-      if (AllocConsole()) {
-        int_t hCrt = _open_osfhandle((long_t) GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT);
-        *stdout = *(::_fdopen(hCrt, "w"));
-        ::setvbuf(stdout, nullptr, _IONBF, 0);
+	bool_t
+	create_console() {
+	  FreeConsole();
+	  if (AllocConsole()) {
+		int_t hCrt = _open_osfhandle((long_t) GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT);
+		*stdout = *(::_fdopen(hCrt, "w"));
+		::setvbuf(stdout, nullptr, _IONBF, 0);
 
-        *stderr = *(::_fdopen(hCrt, "w"));
-        ::setvbuf(stderr, nullptr, _IONBF, 0);
+		*stderr = *(::_fdopen(hCrt, "w"));
+		::setvbuf(stderr, nullptr, _IONBF, 0);
 
-        return true;
-      }
-      return false;
-    }
+		return true;
+	  }
+	  return false;
+	}
 
-    usage:
+	usage:
 
-    #ifdef DEBUG
-      create_console();
-    #endif // DEBUG
+	#ifdef DEBUG
+	  create_console();
+	#endif // DEBUG
 #endif
 
 #if xTODO
-    #ifdef __unix__
-        #include <curses.h>
-    #elif __WIN32__ || _MSC_VER
-        #include <conio.h>
-    #endif
+	#ifdef __unix__
+		#include <curses.h>
+	#elif __WIN32__ || _MSC_VER
+		#include <conio.h>
+	#endif
 
-    inline void_t
-    CtsConsole::promptPassword(char* const pwdBuffer, bool_t visible) {
-    #if __WIN32__ || _MSC_VER
-        bool_t     passwordEntered = false;
-        char     ch;
-        size_t   idx = 0;
-        while (passwordEntered == false) {
-            ch = _getch();
-            if (visible) {
-                printf("*");
-            }
-            if (ch == 0x0D) {
-                passwordEntered = true;
-                printf("\n");
-            }
-            pwdBuffer[idx++] = ch;
-        }
-        pwdBuffer[idx] = '\0';
-    #elif __unix__
+	inline void_t
+	CtsConsole::promptPassword(char* const pwdBuffer, bool_t visible) {
+	#if __WIN32__ || _MSC_VER
+		bool_t     passwordEntered = false;
+		char     ch;
+		size_t   idx = 0;
+		while (passwordEntered == false) {
+			ch = _getch();
+			if (visible) {
+				printf("*");
+			}
+			if (ch == 0x0D) {
+				passwordEntered = true;
+				printf("\n");
+			}
+			pwdBuffer[idx++] = ch;
+		}
+		pwdBuffer[idx] = '\0';
+	#elif __unix__
 
-        #define CTS_KEYCODE_ENTER   10
+		#define CTS_KEYCODE_ENTER   10
 
-        initscr();             /* start curses mode */
-        cbreak();
-        keypad(stdscr, true);  /* enable keyboard mapping */
-        noecho();              /* turn off echoing */
+		initscr();             /* start curses mode */
+		cbreak();
+		keypad(stdscr, true);  /* enable keyboard mapping */
+		noecho();              /* turn off echoing */
 
-        int_t key = 0;
-        int_t idx = 0;
-        for ( ;; ) {
-          key = getch();
-          if (key == CTS_KEYCODE_ENTER)  {
-              endwin();
-              break;
-          }
-          pwdBuffer[idx++] = key;
-        }
-        pwdBuffer[idx] = '\0';
-    #endif
-    };
+		int_t key = 0;
+		int_t idx = 0;
+		for ( ;; ) {
+		  key = getch();
+		  if (key == CTS_KEYCODE_ENTER)  {
+			  endwin();
+			  break;
+		  }
+		  pwdBuffer[idx++] = key;
+		}
+		pwdBuffer[idx] = '\0';
+	#endif
+	};
 #endif
 //-------------------------------------------------------------------------------------------------

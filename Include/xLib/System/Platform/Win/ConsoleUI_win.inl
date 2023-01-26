@@ -15,21 +15,21 @@ namespace xl::system
 //-------------------------------------------------------------------------------------------------
 void_t
 ConsoleUI::_setStdinEcho_impl(
-    cbool_t a_isEnable
+	cbool_t a_isEnable
 ) const
 {
-    DWORD mode {};
-    BOOL blRv = ::GetConsoleMode(_stdIn.get(), &mode);
-    xTEST_DIFF(blRv, FALSE);
+	DWORD mode {};
+	BOOL blRv = ::GetConsoleMode(_stdIn.get(), &mode);
+	xTEST_DIFF(blRv, FALSE);
 
-    if (a_isEnable) {
-        mode |= ENABLE_ECHO_INPUT;
-    } else {
-        mode &= ~ENABLE_ECHO_INPUT;
-    }
+	if (a_isEnable) {
+		mode |= ENABLE_ECHO_INPUT;
+	} else {
+		mode &= ~ENABLE_ECHO_INPUT;
+	}
 
-    blRv = ::SetConsoleMode(_stdIn.get(), mode);
-    xTEST_DIFF(blRv, FALSE);
+	blRv = ::SetConsoleMode(_stdIn.get(), mode);
+	xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
 
