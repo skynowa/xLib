@@ -189,8 +189,8 @@ class ConsoleUI
 public:
 ///\name ctors, dtor
 ///\{
-			 ConsoleUI();
-	virtual ~ConsoleUI();
+			 ConsoleUI() = default;
+	virtual ~ConsoleUI() = default;
 
 	xNO_COPY_ASSIGN(ConsoleUI)
 ///\}
