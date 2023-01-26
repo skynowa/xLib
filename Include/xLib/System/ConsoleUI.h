@@ -58,38 +58,9 @@ xPLATFORM_IMPL:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO: Console
+ * TODO: ConsoleUI
  *
  */
-
-#if xTODO
-	#include <io.h>
-	#include <fcntl.h>
-	#include <stdio.h>
-	#include <windows.h>
-
-	bool_t
-	create_console() {
-	  FreeConsole();
-	  if (AllocConsole()) {
-		int_t hCrt = _open_osfhandle((long_t) GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT);
-		*stdout = *(::_fdopen(hCrt, "w"));
-		::setvbuf(stdout, nullptr, _IONBF, 0);
-
-		*stderr = *(::_fdopen(hCrt, "w"));
-		::setvbuf(stderr, nullptr, _IONBF, 0);
-
-		return true;
-	  }
-	  return false;
-	}
-
-	usage:
-
-	#ifdef DEBUG
-	  create_console();
-	#endif // DEBUG
-#endif
 
 #if xTODO
 	#ifdef __unix__
