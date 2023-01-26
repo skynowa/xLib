@@ -20,9 +20,9 @@ Test_ConsoleUI::unit()
 		std::ctstring_t text  = xT("iMsgBox_text\nddddddddd\nRRRRRRRRRRRRR")
 			xT(" AAAA BBBB CCCC DDDD EEEE FFFF GGGG HHHH JJJJ KKKK LLLL ZZZZ XXXX CCCC VVVV BBBB");
 
-		Console console;
+		ConsoleUI ui;
 
-		ConsoleUI::Result rRes = console.msgBox(title, text);
+		ConsoleUI::Result rRes = ui.msgBox(title, text);
 		xUNUSED(rRes);
 	#else
 		Trace() << xT("[skip]");
@@ -37,9 +37,9 @@ Test_ConsoleUI::unit()
 		cbool_t         isVisible = false;
 		std::tstring_t  answer    = xT("Answer_bla-bla-bla");
 
-		Console console;
+		ConsoleUI ui;
 
-		console.promptBox(title, text, isVisible, &answer);
+		ui.promptBox(title, text, isVisible, &answer);
 	#else
 		Trace() << xT("[skip]");
 	#endif
