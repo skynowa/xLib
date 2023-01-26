@@ -22,7 +22,7 @@ Test_ConsoleUI::unit()
 
 		Console console;
 
-		Console::Result rRes = console.msgBox(title, text);
+		ConsoleUI::Result rRes = console.msgBox(title, text);
 		xUNUSED(rRes);
 	#else
 		Trace() << xT("[skip]");
