@@ -144,7 +144,7 @@ Debugger::_stdoutPlain(
 
     ConsoleUI ui;
 
-    ConsoleUI::cResult rRv = ui.msgBox(xT("xLib"), a_report.str());
+    ConsoleUI::cResult rRv = ui.msgBox(cmXLIB_NAME, a_report.str());
     switch (rRv) {
     case ConsoleUI::Result::Abort:
         (void_t)::exit(EXIT_FAILURE);
@@ -155,7 +155,7 @@ Debugger::_stdoutPlain(
         if ( isActive() ) {
             breakPoint();
         } else {
-            (void_t)ui.msgBox(xT("xLib"), xT("OS debugger is not detected. Abort."));
+            (void_t)ui.msgBox(cmXLIB_NAME, xT("OS debugger is not detected. Abort."));
 
             (void_t)::exit(EXIT_FAILURE);
         }
@@ -190,7 +190,7 @@ Debugger::_loggingPlain(
         std::ctstring_t msg = Format::str(
             xT("\n")
             xT("####################################################################################################\n")
-            xT(" xLib\n")
+            xT(" ") cmXLIB_NAME xT("\n")
             xT("{}\n")
             xT("####################################################################################################\n"),
             a_report.str()

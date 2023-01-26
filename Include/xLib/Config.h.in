@@ -30,6 +30,7 @@
     ///< debug mode "no debugging"
 ///@}
 //-------------------------------------------------------------------------------------------------
+#define cmXLIB_NAME xT("${PROJECT_NAME}")
 #cmakedefine cmCMAKE_BUILD_TYPE xT("@cmCMAKE_BUILD_TYPE@")
 
 ///@name Git information
