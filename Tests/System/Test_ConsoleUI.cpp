@@ -11,7 +11,7 @@ xTEST_UNIT(Test_ConsoleUI)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_Console::unit()
+Test_ConsoleUI::unit()
 {
 	xTEST_CASE("msgBox")
 	{
