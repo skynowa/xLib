@@ -1,6 +1,6 @@
 /**
  * \file  ConsoleUI.cpp
- * \brief Shell console
+ * \brief Shell console UI
  */
 
 
