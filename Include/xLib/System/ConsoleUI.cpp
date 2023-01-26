@@ -38,7 +38,7 @@ ConsoleUI::msgBox(
 	ctchar_t     cmdIgnore {xT('i')};
 	ctchar_t     cmdRetry  {xT('r')};
 
-	std::ctstring_t title = _msgBoxLine(a_title, width) + Const::nl();
+	std::ctstring_t title = _boxLine(a_title, width) + Const::nl();
 
 	std::tstring_t multiText;
 	{
@@ -46,7 +46,7 @@ ConsoleUI::msgBox(
 		String::split(a_text, Const::nl(), &text);
 
 		for (const auto &it : text) {
-			multiText += _msgBoxLine(it, width) + Const::nl();
+			multiText += _boxLine(it, width) + Const::nl();
 		}
 	}
 
@@ -134,7 +134,7 @@ ConsoleUI::promptBox(
 
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-ConsoleUI::_msgBoxLine(
+ConsoleUI::_boxLine(
 	std::ctstring_t &a_text,	///< text
 	std::csize_t     a_width	///< msgbox width
 ) const
