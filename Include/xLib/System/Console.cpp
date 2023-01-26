@@ -304,8 +304,8 @@ Console::_escapeValue(
 //-------------------------------------------------------------------------------------------------
 ConsoleUI::Result
 ConsoleUI::msgBox(
-    std::ctstring_t &a_text,
-    std::ctstring_t &a_title
+    std::ctstring_t &a_title,
+    std::ctstring_t &a_text
 ) const
 {
     Result rRv {};
@@ -366,6 +366,7 @@ ConsoleUI::msgBox(
 //-------------------------------------------------------------------------------------------------
 void_t
 ConsoleUI::promptBox(
+    std::ctstring_t &a_title,		///< title
     std::ctstring_t &a_text,		///< input text
     cbool_t          a_isVisible,	///< is input text visible
     std::tstring_t  *a_answer		///< [out] answer

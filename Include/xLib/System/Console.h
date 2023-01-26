@@ -203,9 +203,10 @@ public:
     };
     xUSING_CONST(Result);
 
-    Result msgBox(std::ctstring_t &text, std::ctstring_t &title) const;
+    Result msgBox(std::ctstring_t &title, std::ctstring_t &text) const;
         ///< show console message dialog
-    void_t promptBox(std::ctstring_t &text, cbool_t isVisible, std::tstring_t *answer) const;
+    void_t promptBox(std::ctstring_t &title, std::ctstring_t &text, cbool_t isVisible,
+                std::tstring_t *answer) const;
         ///< show console prompt dialog
 
 private:

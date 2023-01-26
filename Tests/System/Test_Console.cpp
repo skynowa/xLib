@@ -94,7 +94,7 @@ Test_Console::unit()
 
 		Console console;
 
-		Console::Result mrRes = console.msgBox(text, title, type);
+		Console::Result mrRes = console.msgBox(title, text, type);
 		xUNUSED(mrRes);
     #else
         Trace() << xT("[skip]");
@@ -104,13 +104,14 @@ Test_Console::unit()
     xTEST_CASE("promptBox")
     {
 	#if xTEST_IGNORE
+		std::ctstring_t title     = xT("Prompt_title");
 		std::ctstring_t text      = xT("Prompt_simple_prompt");
 		cbool_t         isVisible = false;
 		std::tstring_t  answer    = xT("Answer_bla-bla-bla");
 
 		Console console;
 
-		console.promptBox(text, isVisible, &answer);
+		console.promptBox(title, text, isVisible, &answer);
     #else
         Trace() << xT("[skip]");
 	#endif

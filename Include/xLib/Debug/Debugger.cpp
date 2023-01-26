@@ -144,7 +144,7 @@ Debugger::_stdoutPlain(
 
     ConsoleUI ui;
 
-    ConsoleUI::cResult rRv = ui.msgBox(a_report.str(), xT("xLib"));
+    ConsoleUI::cResult rRv = ui.msgBox(xT("xLib"), a_report.str());
     switch (rRv) {
     case ConsoleUI::Result::Abort:
         (void_t)::exit(EXIT_FAILURE);
