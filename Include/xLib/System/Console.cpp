@@ -366,12 +366,12 @@ ConsoleUI::msgBox(
 //-------------------------------------------------------------------------------------------------
 void_t
 ConsoleUI::promptBox(
-    std::ctstring_t &a_prompt,		///< input text
+    std::ctstring_t &a_text,		///< input text
     cbool_t          a_isVisible,	///< is input text visible
     std::tstring_t  *a_answer		///< [out] answer
 ) const
 {
-	xTEST(!a_prompt.empty());
+	xTEST(!a_text.empty());
     xTEST_PTR(a_answer);
 
 	if ( !a_isVisible ) {
@@ -379,7 +379,7 @@ ConsoleUI::promptBox(
 	}
 
     for ( ; ; ) {
-    	_console.write(a_prompt + xT(": "));
+        _console.write(a_text + xT(": "));
 
         for ( ; ; ) {
             ctchar_t ch = static_cast<tchar_t>( std::tcin.get() );

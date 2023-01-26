@@ -19,8 +19,8 @@ Test_Console::unit()
 
         std::tstring_t text = xT("AAA BBB CCC 123456 !@##$%^%^&*!!!");
 
-        Console::Foreground foreground = Console::Foreground::Green;
-        Console::Background background = Console::Background::Default;
+        Console::cForeground foreground = Console::Foreground::Green;
+        Console::cBackground background = Console::Background::Default;
         cint_t              attributes =
 			static_cast<int_t>(Console::Attribute::Bold) |
 			static_cast<int_t>(Console::Attribute::Underline) |
@@ -104,13 +104,13 @@ Test_Console::unit()
     xTEST_CASE("promptBox")
     {
 	#if xTEST_IGNORE
-		std::ctstring_t prompt    = xT("Prompt_simple_prompt");
+		std::ctstring_t text      = xT("Prompt_simple_prompt");
 		cbool_t         isVisible = false;
 		std::tstring_t  answer    = xT("Answer_bla-bla-bla");
 
 		Console console;
 
-		console.promptBox(prompt, isVisible, &answer);
+		console.promptBox(text, isVisible, &answer);
     #else
         Trace() << xT("[skip]");
 	#endif
