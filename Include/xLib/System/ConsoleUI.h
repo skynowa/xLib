@@ -1,6 +1,6 @@
 /**
  * \file  ConsoleUI.h
- * \brief Shell console
+ * \brief Shell console UI
  *
  * \see
  * https://github.com/ikalnytskyi/termcolor/blob/master/include/termcolor/termcolor.hpp
