@@ -19,8 +19,8 @@ Test_Console::unit()
 
         std::tstring_t text = xT("AAA BBB CCC 123456 !@##$%^%^&*!!!");
 
-        Console::Foreground foreground = Console::Foreground::Green;
-        Console::Background background = Console::Background::Default;
+        Console::cForeground foreground = Console::Foreground::Green;
+        Console::cBackground background = Console::Background::Default;
         cint_t              attributes =
 			static_cast<int_t>(Console::Attribute::Bold) |
 			static_cast<int_t>(Console::Attribute::Underline) |
