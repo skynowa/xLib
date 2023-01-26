@@ -308,7 +308,7 @@ ConsoleUI::msgBox(
     std::ctstring_t &a_title
 ) const
 {
-    Result mrRv {};
+    Result rRv {};
 
     std::csize_t width     {100};
     ctchar_t     cmdAbort  {xT('a')};
@@ -344,24 +344,24 @@ ConsoleUI::msgBox(
 
     switch (consoleCmd) {
     case cmdAbort:
-        mrRv = Result::Abort;
+    	rRv = Result::Abort;
         _console.writeLine(xT("Abort..."));
         break;
     case cmdIgnore:
-        mrRv = Result::Ignore;
+    	rRv = Result::Ignore;
         _console.writeLine(xT("Ignore..."));
         break;
     case cmdRetry:
-        mrRv = Result::Retry;
+    	rRv = Result::Retry;
         _console.writeLine(xT("Retry..."));
         break;
     default:
-        mrRv = Result::Retry;
+    	rRv = Result::Retry;
         _console.writeLine(xT("Retry..."));
         break;
     }
 
-    return mrRv;
+    return rRv;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
