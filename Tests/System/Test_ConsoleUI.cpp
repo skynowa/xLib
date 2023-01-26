@@ -17,7 +17,7 @@ Test_ConsoleUI::unit()
 
 	xTEST_CASE("msgBox")
 	{
-	#if xTEST_IGNORE || 1
+	#if xTEST_IGNORE
 		std::ctstring_t title = xT("iMsgBox_title");
 		std::ctstring_t text  = xT("iMsgBox_text\nddddddddd\nRRRRRRRRRRRRR")
 			xT(" AAAA BBBB CCCC DDDD EEEE FFFF GGGG HHHH JJJJ KKKK LLLL ZZZZ XXXX CCCC VVVV BBBB");
@@ -30,7 +30,7 @@ Test_ConsoleUI::unit()
 
 	xTEST_CASE("promptBox")
 	{
-	#if xTEST_IGNORE || 1
+	#if xTEST_IGNORE
 		std::ctstring_t title     = xT("Prompt_title");
 		std::ctstring_t text      = xT("Prompt_simple_prompt");
 		cbool_t         isVisible = false;
