@@ -142,19 +142,20 @@ Debugger::_stdoutPlain(
 {
     xCHECK_DO(!isEnabled(), return);
 
-    Console console;
-    Console::cModalResult mrRv = console.msgBox(a_report.str(), xT("xLib"), 0);
-    switch (mrRv) {
-    case Console::ModalResult::Abort:
+    ConsoleUI ui;
+
+    ConsoleUI::cResult rRv = ui.msgBox(a_report.str(), xT("xLib"));
+    switch (rRv) {
+    case ConsoleUI::Result::Abort:
         (void_t)::exit(EXIT_FAILURE);
         break;
-    case Console::ModalResult::Ignore:
+    case ConsoleUI::Result::Ignore:
         break;
-    case Console::ModalResult::Retry:
+    case ConsoleUI::Result::Retry:
         if ( isActive() ) {
             breakPoint();
         } else {
-            (void_t)console.msgBox(xT("OS debugger is not detected. Abort."), xT("xLib"), 0);
+            (void_t)ui.msgBox(xT("OS debugger is not detected. Abort."), xT("xLib"));
 
             (void_t)::exit(EXIT_FAILURE);
         }

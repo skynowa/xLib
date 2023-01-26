@@ -94,7 +94,7 @@ Test_Console::unit()
 
 		Console console;
 
-		Console::ModalResult mrRes = console.msgBox(text, title, type);
+		Console::Result mrRes = console.msgBox(text, title, type);
 		xUNUSED(mrRes);
     #else
         Trace() << xT("[skip]");

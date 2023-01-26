@@ -211,107 +211,6 @@ Console::clear() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Console::ModalResult
-Console::msgBox(
-    std::ctstring_t &a_text,
-    std::ctstring_t &a_title,
-    cuint_t         &a_type
-) const
-{
-    xUNUSED(a_type);
-
-    ModalResult mrRv {};
-
-    std::csize_t width     {100};
-    ctchar_t     cmdAbort  {xT('a')};
-    ctchar_t     cmdIgnore {xT('i')};
-    ctchar_t     cmdRetry  {xT('r')};
-
-    std::ctstring_t title = _msgBoxLine(a_title, width) + Const::nl();
-
-    std::tstring_t multiText;
-    {
-    	std::vec_tstring_t text;
-		String::split(a_text, Const::nl(), &text);
-
-		for (const auto &it : text) {
-			multiText += _msgBoxLine(it, width) + Const::nl();
-		}
-    }
-
-    writeLine();
-    writeLine(Format::str(xT("+{}+"), std::tstring_t(width - 2, xT('-'))));
-    writeLine(Format::str(xT("|{}|"), std::tstring_t(width - 2, xT(' '))));
-    write(title);
-    writeLine(Format::str(xT("|{}|"), std::tstring_t(width - 2, xT(' '))));
-    write(multiText);
-    writeLine(Format::str(xT("|{}|"), std::tstring_t(width - 2, xT(' '))));
-    writeLine(Format::str(xT("+{}+"), std::tstring_t(width - 2, xT('-'))));
-    writeLine();
-    write(Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "), cmdAbort, cmdIgnore, cmdRetry));
-
-    ctchar_t consoleCmd = CharT( static_cast<tchar_t>(std::tcin.get()) ).toLower();
-    std::tcin.ignore();
-
-    switch (consoleCmd) {
-    case cmdAbort:
-        mrRv = ModalResult::Abort;
-        writeLine(xT("Abort..."));
-        break;
-    case cmdIgnore:
-        mrRv = ModalResult::Ignore;
-        writeLine(xT("Ignore..."));
-        break;
-    case cmdRetry:
-        mrRv = ModalResult::Retry;
-        writeLine(xT("Retry..."));
-        break;
-    default:
-        mrRv = ModalResult::Retry;
-        writeLine(xT("Retry..."));
-        break;
-    }
-
-    return mrRv;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Console::prompt(
-    std::ctstring_t &a_prompt,		///< input text
-    cbool_t          a_isVisible,	///< is input text visible
-    std::tstring_t  *a_answer		///< [out] answer
-) const
-{
-	xTEST(!a_prompt.empty());
-    xTEST_PTR(a_answer);
-
-	if ( !a_isVisible ) {
-		_setStdinEcho(false);
-	}
-
-    for ( ; ; ) {
-        write(a_prompt + xT(": "));
-
-        for ( ; ; ) {
-            ctchar_t ch = static_cast<tchar_t>( std::tcin.get() );
-            xCHECK_DO(ch == 10, break);	// ENTER
-            xCHECK_DO(ch == 0x8, a_answer->clear(); continue);	// BACKSPACE
-
-            a_answer->push_back(ch);
-        }
-
-        writeLine(Const::strEmpty());
-
-        xCHECK_DO(a_answer->empty(), continue);
-
-        break;
-    }
-
-	if ( !a_isVisible ) {
-		_setStdinEcho(true);
-	}
-}
-//-------------------------------------------------------------------------------------------------
 void_t
 Console::setTitle(
     std::ctstring_t &a_title
@@ -382,9 +281,137 @@ Console::_isAtty(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::_msgBoxLine(
+Console::_escapeValue(
+	std::ctstring_t &a_value
+) const
+{
+#if xENV_UNIX
+	xCHECK_RET(!_isEscapeValues, a_value);
+
+	return xT("\\[") + a_value + xT("\\]");
+#else
+	return a_value;
+#endif
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   ConsoleUI
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+ConsoleUI::Result
+ConsoleUI::msgBox(
+    std::ctstring_t &a_text,
+    std::ctstring_t &a_title
+) const
+{
+    Result mrRv {};
+
+    std::csize_t width     {100};
+    ctchar_t     cmdAbort  {xT('a')};
+    ctchar_t     cmdIgnore {xT('i')};
+    ctchar_t     cmdRetry  {xT('r')};
+
+    std::ctstring_t title = _msgBoxLine(a_title, width) + Const::nl();
+
+    std::tstring_t multiText;
+    {
+    	std::vec_tstring_t text;
+		String::split(a_text, Const::nl(), &text);
+
+		for (const auto &it : text) {
+			multiText += _msgBoxLine(it, width) + Const::nl();
+		}
+    }
+
+    _console.writeLine();
+    _console.writeLine(Format::str(xT("+{}+"), std::tstring_t(width - 2, xT('-'))));
+    _console.writeLine(Format::str(xT("|{}|"), std::tstring_t(width - 2, xT(' '))));
+    _console.write(title);
+    _console.writeLine(Format::str(xT("|{}|"), std::tstring_t(width - 2, xT(' '))));
+    _console.write(multiText);
+    _console.writeLine(Format::str(xT("|{}|"), std::tstring_t(width - 2, xT(' '))));
+    _console.writeLine(Format::str(xT("+{}+"), std::tstring_t(width - 2, xT('-'))));
+    _console.writeLine();
+    _console.write(Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "), cmdAbort, cmdIgnore, cmdRetry));
+
+    ctchar_t consoleCmd = CharT( static_cast<tchar_t>(std::tcin.get()) ).toLower();
+    std::tcin.ignore();
+
+    switch (consoleCmd) {
+    case cmdAbort:
+        mrRv = Result::Abort;
+        _console.writeLine(xT("Abort..."));
+        break;
+    case cmdIgnore:
+        mrRv = Result::Ignore;
+        _console.writeLine(xT("Ignore..."));
+        break;
+    case cmdRetry:
+        mrRv = Result::Retry;
+        _console.writeLine(xT("Retry..."));
+        break;
+    default:
+        mrRv = Result::Retry;
+        _console.writeLine(xT("Retry..."));
+        break;
+    }
+
+    return mrRv;
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+ConsoleUI::prompt(
+    std::ctstring_t &a_prompt,		///< input text
+    cbool_t          a_isVisible,	///< is input text visible
+    std::tstring_t  *a_answer		///< [out] answer
+) const
+{
+	xTEST(!a_prompt.empty());
+    xTEST_PTR(a_answer);
+
+	if ( !a_isVisible ) {
+		_setStdinEcho(false);
+	}
+
+    for ( ; ; ) {
+    	_console.write(a_prompt + xT(": "));
+
+        for ( ; ; ) {
+            ctchar_t ch = static_cast<tchar_t>( std::tcin.get() );
+            xCHECK_DO(ch == 10, break);	// ENTER
+            xCHECK_DO(ch == 0x8, a_answer->clear(); continue);	// BACKSPACE
+
+            a_answer->push_back(ch);
+        }
+
+        _console.writeLine(Const::strEmpty());
+
+        xCHECK_DO(a_answer->empty(), continue);
+
+        break;
+    }
+
+	if ( !a_isVisible ) {
+		_setStdinEcho(true);
+	}
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   ConsoleUI / private
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+ConsoleUI::_msgBoxLine(
 	std::ctstring_t &a_text,	///< text
-	std::csize_t    &a_width	///< msgbox width
+	std::csize_t     a_width	///< msgbox width
 ) const
 {
 	std::ctstring_t border      = xT("|");
@@ -411,26 +438,13 @@ Console::_msgBoxLine(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Console::_setStdinEcho(
+ConsoleUI::_setStdinEcho(
 	cbool_t a_isEnable
 ) const
 {
     _setStdinEcho_impl(a_isEnable);
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
-Console::_escapeValue(
-	std::ctstring_t &a_value
-) const
-{
-#if xENV_UNIX
-	xCHECK_RET(!_isEscapeValues, a_value);
 
-	return xT("\\[") + a_value + xT("\\]");
-#else
-	return a_value;
-#endif
-}
-//-------------------------------------------------------------------------------------------------
 
 } // namespace

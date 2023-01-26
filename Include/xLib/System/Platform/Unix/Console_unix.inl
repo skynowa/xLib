@@ -247,7 +247,7 @@ Console::_setTitle_impl(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Console::_setStdinEcho_impl(
+ConsoleUI::_setStdinEcho_impl(
     cbool_t a_isEnable
 ) const
 {
