@@ -13,16 +13,15 @@ xTEST_UNIT(Test_ConsoleUI)
 bool_t
 Test_ConsoleUI::unit()
 {
+	ConsoleUI ui;
+
 	xTEST_CASE("msgBox")
 	{
 	#if xTEST_IGNORE || 1
 		std::ctstring_t title = xT("iMsgBox_title");
 		std::ctstring_t text  = xT("iMsgBox_text\nddddddddd\nRRRRRRRRRRRRR")
 			xT(" AAAA BBBB CCCC DDDD EEEE FFFF GGGG HHHH JJJJ KKKK LLLL ZZZZ XXXX CCCC VVVV BBBB");
-
-		ConsoleUI ui;
-
-		ConsoleUI::Result rRes = ui.msgBox(title, text);
+		ConsoleUI::cResult rRes = ui.msgBox(title, text);
 		xUNUSED(rRes);
 	#else
 		Trace() << xT("[skip]");
@@ -36,8 +35,6 @@ Test_ConsoleUI::unit()
 		std::ctstring_t text      = xT("Prompt_simple_prompt");
 		cbool_t         isVisible = false;
 		std::tstring_t  answer    = xT("Answer_bla-bla-bla");
-
-		ConsoleUI ui;
 
 		ui.promptBox(title, text, isVisible, &answer);
 	#else
