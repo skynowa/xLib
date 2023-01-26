@@ -9,8 +9,6 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
-#include <xLib/Core/Bitset.h>
-#include <xLib/Sync/Thread.h>
 
 #if   xENV_WIN
     #include "Platform/Win/ConsoleUI_win.inl"
