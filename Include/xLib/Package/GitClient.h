@@ -49,6 +49,8 @@ public:
 		///< get modified lines line filter (JSON)
 
 private:
+	std::ctstring_t _gitPath;
+
 	std::tstring_t _gitPath() const;
 		///< path to binary file
 };
