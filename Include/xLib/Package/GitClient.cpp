@@ -128,9 +128,9 @@ GitClient::localBranchesNum() const
 {
 	xCHECK_RET(!isGitDir(), 0);
 
-	std::cvec_tstring_t  params {"branch"};
-	std::tstring_t       stdOut;
-	std::tstring_t       stdError;
+	std::cvec_tstring_t params {"branch"};
+	std::tstring_t      stdOut;
+	std::tstring_t      stdError;
 
 	Process::execute(_gitPath, params, &stdOut, &stdError);
 
