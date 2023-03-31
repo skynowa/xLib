@@ -34,6 +34,9 @@ public:
 		///< get repo URL name
 	std::tstring_t repoName() const;
 		///< get repository name
+
+	std::tstring_t gitlabRepoGroupName() const;
+		///< Gitalb: get group repository name
 ///@}
 
 ///@name Branch
