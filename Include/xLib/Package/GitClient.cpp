@@ -106,6 +106,18 @@ GitClient::repoName() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
+GitClient::gitlabRepoGroupName() const
+{
+	xCHECK_RET(!isGitDir(), xT(""));
+
+	std::tstring_t sRv;
+
+	///
+
+	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
 GitClient::branchName() const
 {
 	xCHECK_RET(!isGitDir(), xT(""));
