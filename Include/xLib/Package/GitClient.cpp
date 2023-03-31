@@ -47,7 +47,7 @@ GitClient::isGitDir() const
  * - https://skynowa@git.code.sf.net/p/x-lib/code
  */
 std::tstring_t
-GitClient::repoUrlName() const
+GitClient::repoUrl() const
 {
 	xCHECK_RET(!isGitDir(), xT(""));
 
@@ -59,7 +59,17 @@ GitClient::repoUrlName() const
 
 	Process::execute(_gitPath, params, &stdOut, &stdError);
 
-	std::ctstring_t &url = String::trimSpace(stdOut);
+	sRv = String::trimSpace(stdOut);
+
+	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+GitClient::repoUrlName() const
+{
+	xCHECK_RET(!isGitDir(), xT(""));
+
+	std::ctstring_t &url = repoUrl();
 
 	constexpr std::array protos
 	{
