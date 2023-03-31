@@ -126,7 +126,7 @@ GitClient::gitlabRepoGroupName() const
 	* ssh://git@gitlab.maklai.dev:8999/tripnet/services.git
 	*/
 	std::ctstring_t &url = repoUrl();
-	Cout() << xSTD_TRACE_VAR(url);
+	// Cout() << xSTD_TRACE_VAR(url);
 
 	constexpr std::array protos
 	{
@@ -136,28 +136,29 @@ GitClient::gitlabRepoGroupName() const
 	for (const auto &it_proto : protos) {
 		xCHECK_DO(url.find(it_proto) == std::tstring_t::npos, continue);
 
+		// Parse
 		{
 			std::ctstring_t a_str      = url;
-			std::ctstring_t a_sepLeft  = xT("/");
 			std::ctstring_t a_sepRight = xT("/");
+			std::ctstring_t a_sepLeft  = xT("/");
 
 			xTEST_NA(a_str);
 			xTEST_NA(a_sepLeft);
 			xTEST_NA(a_sepRight);
 
-			size_t delimPosStart = a_str.rfind(a_sepLeft);
-			Cout() << xSTD_TRACE_VAR(delimPosStart);
-			xCHECK_RET(delimPosStart == std::tstring_t::npos, std::tstring_t());
-
-			delimPosStart += a_sepLeft.size() - 1;
-
-			size_t delimPosStop  = a_str.rfind(a_sepRight, delimPosStart);
-			Cout() << xSTD_TRACE_VAR(delimPosStop);
+			size_t delimPosStop = a_str.rfind(a_sepRight);
+			// Cout() << xSTD_TRACE_VAR(delimPosStop);
 			xCHECK_RET(delimPosStop == std::tstring_t::npos, std::tstring_t());
-			/// xCHECK_RET(delimPosStart >= delimPosStop,        std::tstring_t());
 
-			sRv = a_str.substr(delimPosStop, delimPosStart - delimPosStop);
-			Cout() << xSTD_TRACE_VAR(sRv);
+			delimPosStop += a_sepRight.size() - 1;
+
+			size_t delimPosStart  = a_str.rfind(a_sepLeft, delimPosStop - 1);
+			// Cout() << xSTD_TRACE_VAR(delimPosStart);
+			xCHECK_RET(delimPosStart == std::tstring_t::npos, std::tstring_t());
+			xCHECK_RET(delimPosStart >= delimPosStop,         std::tstring_t());
+
+			sRv = a_str.substr(delimPosStart + a_sepLeft.size(), delimPosStop - delimPosStart - 1);
+			// Cout() << xSTD_TRACE_VAR(sRv);
 
 			return sRv;
 		}
