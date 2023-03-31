@@ -17,7 +17,7 @@ class GitClient
 public:
 ///\name ctors, dtor
 ///\{
-             GitClient() = default;
+             GitClient();
     virtual ~GitClient() = default;
 
     xNO_COPY_ASSIGN(GitClient)
@@ -51,7 +51,7 @@ public:
 private:
 	std::ctstring_t _gitPath;
 
-	std::tstring_t _gitPath() const;
+	std::tstring_t _binPath() const;
 		///< path to binary file
 };
 
