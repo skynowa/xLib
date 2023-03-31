@@ -17,7 +17,7 @@ namespace xl::package
 
 //-------------------------------------------------------------------------------------------------
 GitClient::GitClient() :
-	_gitPath( _gitPath() )
+	_gitPath( _binPath() )
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -458,11 +458,11 @@ GitClient::modifiedFilesLineFilter() const
 
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-GitClient::_gitPath() const
+GitClient::_binPath() const
 {
 	std::tstring_t sRv;
 
-	std::ctstring_t gitName =
+	std::ctstring_t binName =
 	#if   xENV_WIN
 		xT("git.exe");
 	#elif xENV_UNIX
@@ -482,7 +482,7 @@ GitClient::_gitPath() const
 	};
 
 	cbool_t isRecursively {false};
-	sRv = Finder::file(dirPaths, gitName, isRecursively);
+	sRv = Finder::file(dirPaths, binName, isRecursively);
 	xTEST(!sRv.empty());
 
 	return sRv;
