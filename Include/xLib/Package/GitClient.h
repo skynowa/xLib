@@ -26,7 +26,7 @@ public:
 	bool           isGitDir() const;
 		///< check Git directory
 
-///@name Repository
+///@name Repositories
 ///@{
 	std::tstring_t repoUrl() const;
 		///< get repo URL
@@ -39,7 +39,7 @@ public:
 		///< Gitalb: get group repository name
 ///@}
 
-///@name Branch
+///@name Branches
 ///@{
 	std::tstring_t branchName() const;
 		///< get brach name
