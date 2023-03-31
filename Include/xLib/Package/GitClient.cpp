@@ -460,10 +460,7 @@ GitClient::modifiedFilesLineFilter() const
 std::tstring_t
 GitClient::_gitPath() const
 {
-	static std::tstring_t sRv;
-	if ( !sRv.empty() ) {
-		return sRv;
-	}
+	std::tstring_t sRv;
 
 	std::ctstring_t gitName =
 	#if   xENV_WIN
