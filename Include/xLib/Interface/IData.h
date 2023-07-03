@@ -1,6 +1,6 @@
 /**
  * \file   IData.h
- * \brief  Data struct
+ * \brief  DTO (Data transfer object)
  */
 
 
