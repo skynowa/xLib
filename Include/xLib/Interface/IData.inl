@@ -1,6 +1,6 @@
 /**
  * \file  IData.inl
- * \brief Data struct
+ * \brief  DTO (Data transfer object)
  */
 
 
