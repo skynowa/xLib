@@ -201,13 +201,13 @@ Translate::_langsDetect(
     xTEST_PTR(out_langFrom);
     xTEST_PTR(out_langTo);
 
-    std::ctstring_t lettersEn = xT("abcdefghijklmnopqrstuvwxyz");
-    std::ctstring_t lettersRu = xT("абвгдеёжзийклмнопрстуфхцчшщъыьэюя");
-
     std::size_t countEn {};
     std::size_t countRu {};
 	{
-	    for (std::size_t i = 0; i < a_text.size(); ++ i) {
+		std::ctstring_t lettersEn = xT("abcdefghijklmnopqrstuvwxyz");
+		std::ctstring_t lettersRu = xT("абвгдеёжзийклмнопрстуфхцчшщъыьэюя");
+
+		for (std::size_t i = 0; i < a_text.size(); ++ i) {
 			core::CharT letter( a_text.at(i)/*.toLower()*/ );
 			xCHECK_DO(!letter.isAlpha(), continue);
 
