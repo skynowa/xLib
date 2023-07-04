@@ -208,11 +208,13 @@ Translate::_langsDetect(
 		std::ctstring_t lettersRu = xT("абвгдеёжзийклмнопрстуфхцчшщъыьэюя");
 
 		for (std::size_t i = 0; i < a_text.size(); ++ i) {
-			core::CharT letter( a_text.at(i)/*.toLower()*/ );
-			xCHECK_DO(!letter.isAlpha(), continue);
+			core::cCharT letter( a_text.at(i) );
 
-			xCHECK_DO(lettersEn.find(letter.character()) != std::tstring_t::npos, ++ countEn);
-			xCHECK_DO(lettersRu.find(letter.character()) != std::tstring_t::npos, ++ countRu);
+			core::cCharT letterLower( letter.toLower() );
+			xCHECK_DO(!letterLower.isAlpha(), continue);
+
+			xCHECK_DO(lettersEn.find(letterLower.character()) != std::tstring_t::npos, ++ countEn);
+			xCHECK_DO(lettersRu.find(letterLower.character()) != std::tstring_t::npos, ++ countRu);
 		}
 	}
 
