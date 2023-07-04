@@ -216,9 +216,9 @@ Translate::_langsDetect(
 		}
 	}
 
-    cbool_t isEn      = (countEn != 0 && countRu == 0);
-    cbool_t isRu      = (countEn == 0 && countRu != 0);
-    cbool_t isMixed   = (countEn != 0 && countRu != 0);
+    cbool_t isEn      = (countEn > 0  && countRu == 0);
+    cbool_t isRu      = (countEn == 0 && countRu > 0);
+    cbool_t isMixed   = (countEn > 0  && countRu > 0);
     cbool_t isUnknown = (countEn == 0 && countRu == 0);
 
     if      (isEn) {
