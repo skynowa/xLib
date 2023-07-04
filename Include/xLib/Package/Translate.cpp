@@ -201,6 +201,13 @@ Translate::_langsDetect(
     xTEST_PTR(out_langFrom);
     xTEST_PTR(out_langTo);
 
+    cbool_t is_log = false;
+
+	if (is_log) {
+		Cout() << xSTD_TRACE_VAR(a_text);
+		Cout() << xSTD_TRACE_VAR(a_text.size());
+	}
+
     std::size_t countEn {};
     std::size_t countRu {};
 	{
@@ -211,10 +218,19 @@ Translate::_langsDetect(
 			core::cCharT letter( a_text.at(i) );
 
 			core::cCharT letterLower( letter.toLower() );
-			xCHECK_DO(!letterLower.isAlpha(), continue);
+			/// TODO: letterLower.isAlpha() - for RU text not work
+			if (0) {
+				Cout() << xSTD_TRACE_VAR(letterLower.isAlpha());
+				xCHECK_DO(!letterLower.isAlpha(), continue);
+			}
 
 			xCHECK_DO(lettersEn.find(letterLower.character()) != std::tstring_t::npos, ++ countEn);
 			xCHECK_DO(lettersRu.find(letterLower.character()) != std::tstring_t::npos, ++ countRu);
+
+			if (is_log) {
+				Cout() << xSTD_TRACE_VAR(countEn);
+				Cout() << xSTD_TRACE_VAR(countRu);
+			}
 		}
 	}
 
@@ -227,16 +243,22 @@ Translate::_langsDetect(
         *out_langFrom = Translate::Language::En;
         *out_langTo   = Translate::Language::Ru;
 
-        // Cout() << "Langs: en-ru";
+		if (is_log) {
+			Cout() << "Langs: en-ru";
+		}
     }
     else if (isRu) {
         *out_langFrom = Translate::Language::Ru;
         *out_langTo   = Translate::Language::En;
 
-        // Cout() << "Langs: ru-en";
+		if (is_log) {
+			Cout() << "Langs: ru-en";
+		}
     }
     else if (isMixed) {
-        // Cout() << "Langs: mixed-mixed";
+		if (is_log) {
+			Cout() << "Langs: mixed-mixed";
+		}
 
         cbool_t isPreferEn = (countEn >= countRu);
         cbool_t isPreferRu = (countRu >  countEn);
@@ -245,13 +267,17 @@ Translate::_langsDetect(
             *out_langFrom = Translate::Language::En;
             *out_langTo   = Translate::Language::Ru;
 
-            // Cout() << "Langs (prefer): en-ru";
+			if (is_log) {
+				Cout() << "Langs (prefer): en-ru";
+			}
         }
         else if (isPreferRu) {
             *out_langFrom = Translate::Language::Ru;
             *out_langTo   = Translate::Language::En;
 
-            // Cout() << "Langs (prefer): ru-en";
+			if (is_log) {
+				Cout() << "Langs (prefer): ru-en";
+			}
         }
         else {
             xTEST(false);
@@ -262,14 +288,16 @@ Translate::_langsDetect(
         *out_langFrom = Translate::Language::Auto;
         *out_langTo   = Translate::Language::Auto;
 
-        // Cout() << "Langs: unknown-unknown";
+		if (is_log) {
+			Cout() << "Langs: unknown-unknown";
+		}
     }
     else {
         *out_langFrom = Translate::Language::Unknown;
         *out_langTo   = Translate::Language::Unknown;
 
-        Cout() << xSTD_TRACE_VAR(countEn);
-        Cout() << xSTD_TRACE_VAR(countRu);
+		Cout() << xSTD_TRACE_VAR(countEn);
+		Cout() << xSTD_TRACE_VAR(countRu);
 
         xTEST(false);
     }
