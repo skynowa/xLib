@@ -240,16 +240,16 @@ Translate::_langsDetect(
     cbool_t isUnknown = (countEn == 0 && countRu == 0);
 
     if      (isEn) {
-        *out_langFrom = Translate::Language::En;
-        *out_langTo   = Translate::Language::Ru;
+        *out_langFrom = Language::En;
+        *out_langTo   = Language::Ru;
 
 		if (is_log) {
 			Cout() << "Langs: en-ru";
 		}
     }
     else if (isRu) {
-        *out_langFrom = Translate::Language::Ru;
-        *out_langTo   = Translate::Language::En;
+        *out_langFrom = Language::Ru;
+        *out_langTo   = Language::En;
 
 		if (is_log) {
 			Cout() << "Langs: ru-en";
@@ -264,16 +264,16 @@ Translate::_langsDetect(
         cbool_t isPreferRu = (countRu >  countEn);
 
         if      (isPreferEn) {
-            *out_langFrom = Translate::Language::En;
-            *out_langTo   = Translate::Language::Ru;
+            *out_langFrom = Language::En;
+            *out_langTo   = Language::Ru;
 
 			if (is_log) {
 				Cout() << "Langs (prefer): en-ru";
 			}
         }
         else if (isPreferRu) {
-            *out_langFrom = Translate::Language::Ru;
-            *out_langTo   = Translate::Language::En;
+            *out_langFrom = Language::Ru;
+            *out_langTo   = Language::En;
 
 			if (is_log) {
 				Cout() << "Langs (prefer): ru-en";
@@ -285,16 +285,16 @@ Translate::_langsDetect(
     }
     else if (isUnknown) {
         // TODO: defaults for isUnknown
-        *out_langFrom = Translate::Language::Auto;
-        *out_langTo   = Translate::Language::Auto;
+        *out_langFrom = Language::Auto;
+        *out_langTo   = Language::Auto;
 
 		if (is_log) {
 			Cout() << "Langs: unknown-unknown";
 		}
     }
     else {
-        *out_langFrom = Translate::Language::Unknown;
-        *out_langTo   = Translate::Language::Unknown;
+        *out_langFrom = Language::Unknown;
+        *out_langTo   = Language::Unknown;
 
 		Cout() << xSTD_TRACE_VAR(countEn);
 		Cout() << xSTD_TRACE_VAR(countRu);
@@ -354,7 +354,7 @@ Translate::_langCode(
 	cLanguage a_lang
 ) const
 {
-	static const std::map<Translate::Language, std::tstring_t> langToCodes
+	static const std::map<Language, std::tstring_t> langToCodes
 	{
 		{Language::Unknown, xT("")},
 		{Language::Auto,    xT("auto")},
