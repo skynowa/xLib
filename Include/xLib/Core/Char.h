@@ -54,9 +54,9 @@ public:
     bool_t         isUpper() const;
         ///< Check is uppercase letter
 
-    T              toLower() const;
+    Char<T>        toLower() const;
         ///< Convert to lowercase
-    T              toUpper() const;
+    Char<T>        toUpper() const;
         ///< Convert to uppercase
     std::tstring_t symbol() const;
         ///< char as symbol

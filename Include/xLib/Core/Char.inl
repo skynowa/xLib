@@ -122,17 +122,17 @@ Char<T>::isUpper() const
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline T
+inline Char<T>
 Char<T>::toLower() const
 {
-    return xTTOLOWER_L(_char, _locale);
+    return Char( xTTOLOWER_L(_char, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline T
+inline Char<T>
 Char<T>::toUpper() const
 {
-    return xTTOUPPER_L(_char, _locale);
+    return Char( xTTOUPPER_L(_char, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
