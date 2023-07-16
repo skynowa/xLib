@@ -39,7 +39,7 @@ Char<T>::Char(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline T
-Char<T>::character() const
+Char<T>::get() const
 {
     return _char;
 }

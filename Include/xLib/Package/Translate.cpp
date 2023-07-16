@@ -217,7 +217,7 @@ Translate::_langsDetect(
 		for (std::size_t i = 0; i < a_text.size(); ++ i) {
 			core::cCharT letter( a_text.at(i) );
 
-			const auto letterLower = letter.toLower().character();
+			const auto letterLower = letter.toLower().get();
 			/// TODO: letterLower.isAlpha() - for RU text not work
 			if (0) {
 				Cout() << xSTD_TRACE_VAR(letter.isAlpha());

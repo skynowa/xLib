@@ -62,7 +62,7 @@ ConsoleUI::msgBox(
 	_console.write(Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "),
 		cmdAbort, cmdIgnore, cmdRetry));
 
-	ctchar_t consoleCmd = CharT( static_cast<tchar_t>(std::tcin.get()) ).toLower().character();
+	ctchar_t consoleCmd = CharT( static_cast<tchar_t>(std::tcin.get()) ).toLower().get();
 	std::tcin.ignore();
 
 	switch (consoleCmd) {

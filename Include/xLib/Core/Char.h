@@ -26,7 +26,7 @@ public:
 	xNO_COPY_ASSIGN(Char)
 ///\}
 
-    T              character() const;
+    T              get() const;
         ///< get character
 
     bool_t         isAlphaNum() const;
