@@ -217,15 +217,15 @@ Translate::_langsDetect(
 		for (std::size_t i = 0; i < a_text.size(); ++ i) {
 			core::cCharT letter( a_text.at(i) );
 
-			core::cCharT letterLower( letter.toLower() );
+			const auto letterLower = letter.toLower().character();
 			/// TODO: letterLower.isAlpha() - for RU text not work
 			if (0) {
-				Cout() << xSTD_TRACE_VAR(letterLower.isAlpha());
-				xCHECK_DO(!letterLower.isAlpha(), continue);
+				Cout() << xSTD_TRACE_VAR(letter.isAlpha());
+				xCHECK_DO(!letter.isAlpha(), continue);
 			}
 
-			xCHECK_DO(lettersEn.find(letterLower.character()) != std::tstring_t::npos, ++ countEn);
-			xCHECK_DO(lettersRu.find(letterLower.character()) != std::tstring_t::npos, ++ countRu);
+			xCHECK_DO(lettersEn.find(letterLower) != std::tstring_t::npos, ++ countEn);
+			xCHECK_DO(lettersRu.find(letterLower) != std::tstring_t::npos, ++ countRu);
 
 			if (is_log) {
 				Cout() << xSTD_TRACE_VAR(countEn);
