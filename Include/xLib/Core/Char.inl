@@ -144,7 +144,7 @@ Char<T>::toUpper() const
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline std::tstring_t
-Char<T>::symbol()
+Char<T>::symbol() const
 {
     if (_char > 0 && _char < 32) {
         struct CharData
