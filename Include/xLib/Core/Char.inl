@@ -45,13 +45,6 @@ Char<T>::character() const
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline const xTLOCALE &
-Char<T>::locale() const
-{
-    return _locale;
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
 inline bool_t
 Char<T>::isAlphaNum() const
 {
