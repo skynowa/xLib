@@ -26,39 +26,39 @@ public:
 	xNO_COPY_ASSIGN(Char)
 ///\}
 
-    T               character() const;
+    T              character() const;
         ///< get character
 
-    bool_t          isAlphaNum() const;
+    bool_t         isAlphaNum() const;
         ///< Check is alphanumeric
-    bool_t          isAlpha() const;
+    bool_t         isAlpha() const;
         ///< Check is alphabetic
-    bool_t          isControl() const;
+    bool_t         isControl() const;
         ///< Check is a control ch
-    bool_t          isDigitDec() const;
+    bool_t         isDigitDec() const;
         ///< Check is decimal digit
-    bool_t          isDigitHex() const;
+    bool_t         isDigitHex() const;
         ///< Check is hexadecimal digit
 
-    bool_t          isGraph() const;
+    bool_t         isGraph() const;
         ///< Check has graphical representation
-    bool_t          isPrint() const;
+    bool_t         isPrint() const;
         ///< Check is printable
-    bool_t          isPunct() const;
+    bool_t         isPunct() const;
         ///< Check is a punctuation
-    bool_t          isSpace() const;
+    bool_t         isSpace() const;
         ///< Check is a white-space
 
-    bool_t          isLower() const;
+    bool_t         isLower() const;
         ///< Check is lowercase letter
-    bool_t          isUpper() const;
+    bool_t         isUpper() const;
         ///< Check is uppercase letter
 
-    T               toLower() const;
+    T              toLower() const;
         ///< Convert to lowercase
-    T               toUpper() const;
+    T              toUpper() const;
         ///< Convert to uppercase
-    std::tstring_t  symbol() const;
+    std::tstring_t symbol() const;
         ///< char as symbol
 
 private:
