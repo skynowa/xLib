@@ -60,7 +60,7 @@ public:
         ///< Convert to lowercase
     T               toUpper() const;
         ///< Convert to uppercase
-    std::tstring_t  symbol();
+    std::tstring_t  symbol() const;
         ///< char as symbol
 
 private:
