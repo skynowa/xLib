@@ -28,8 +28,6 @@ public:
 
     T               character() const;
         ///< get character
-    const xTLOCALE& locale() const;
-        ///< get locale
 
     bool_t          isAlphaNum() const;
         ///< Check is alphanumeric
