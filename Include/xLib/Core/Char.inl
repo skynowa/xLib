@@ -45,13 +45,6 @@ Char<T>::character() const
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline const xTLOCALE &
-Char<T>::locale() const
-{
-    return _locale;
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
 inline bool_t
 Char<T>::isAlphaNum() const
 {
@@ -144,7 +137,7 @@ Char<T>::toUpper() const
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline std::tstring_t
-Char<T>::symbol()
+Char<T>::symbol() const
 {
     if (_char > 0 && _char < 32) {
         struct CharData

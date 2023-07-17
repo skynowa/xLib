@@ -16,6 +16,11 @@ namespace xl::package
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+GitClient::GitClient() :
+	_gitPath( _binPath() )
+{
+}
+//-------------------------------------------------------------------------------------------------
 bool
 GitClient::isGitDir() const
 {
@@ -23,12 +28,20 @@ GitClient::isGitDir() const
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath(), params, &stdOut, &stdError);
+	Process::execute(_gitPath, params, &stdOut, &stdError);
 	xCHECK_RET(!stdError.empty(), false);
 	xCHECK_RET((stdOut.find(xT(".git")) == std::tstring_t::npos), false);
 
 	return true;
 }
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   Repositories
+*
+**************************************************************************************************/
+
 //-------------------------------------------------------------------------------------------------
 /**
  * HTTP(s)/Git proto
@@ -42,7 +55,7 @@ GitClient::isGitDir() const
  * - https://skynowa@git.code.sf.net/p/x-lib/code
  */
 std::tstring_t
-GitClient::repoUrlName() const
+GitClient::repoUrl() const
 {
 	xCHECK_RET(!isGitDir(), xT(""));
 
@@ -52,9 +65,19 @@ GitClient::repoUrlName() const
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath(), params, &stdOut, &stdError);
+	Process::execute(_gitPath, params, &stdOut, &stdError);
 
-	std::ctstring_t &url = String::trimSpace(stdOut);
+	sRv = String::trimSpace(stdOut);
+
+	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+GitClient::repoUrlName() const
+{
+	xCHECK_RET(!isGitDir(), xT(""));
+
+	std::ctstring_t &url = repoUrl();
 
 	constexpr std::array protos
 	{
@@ -83,12 +106,74 @@ GitClient::repoName() const
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath(), params, &stdOut, &stdError);
+	Process::execute(_gitPath, params, &stdOut, &stdError);
 
 	sRv = String::trimSpace( Path(stdOut).fileBaseName() );
 
 	return sRv;
 }
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+GitClient::gitlabRepoGroupName() const
+{
+	xCHECK_RET(!isGitDir(), xT(""));
+
+	std::tstring_t sRv;
+
+   /**
+	* URL
+	*
+	* ssh://git@gitlab.maklai.dev:8999/tripnet/services.git
+	*/
+	std::ctstring_t &url = repoUrl();
+	// Cout() << xSTD_TRACE_VAR(url);
+
+	constexpr std::array protos
+	{
+		xT("git@gitlab")	// without protos
+	};
+
+	for (const auto &it_proto : protos) {
+		xCHECK_DO(url.find(it_proto) == std::tstring_t::npos, continue);
+
+		// Parse
+		{
+			std::ctstring_t a_str      = url;
+			std::ctstring_t a_sepRight = xT("/");
+			std::ctstring_t a_sepLeft  = xT("/");
+
+			xTEST_NA(a_str);
+			xTEST_NA(a_sepLeft);
+			xTEST_NA(a_sepRight);
+
+			size_t delimPosStop = a_str.rfind(a_sepRight);
+			// Cout() << xSTD_TRACE_VAR(delimPosStop);
+			xCHECK_RET(delimPosStop == std::tstring_t::npos, std::tstring_t());
+
+			delimPosStop += a_sepRight.size() - 1;
+
+			size_t delimPosStart  = a_str.rfind(a_sepLeft, delimPosStop - 1);
+			// Cout() << xSTD_TRACE_VAR(delimPosStart);
+			xCHECK_RET(delimPosStart == std::tstring_t::npos, std::tstring_t());
+			xCHECK_RET(delimPosStart >= delimPosStop,         std::tstring_t());
+
+			sRv = a_str.substr(delimPosStart + a_sepLeft.size(), delimPosStop - delimPosStart - 1);
+			// Cout() << xSTD_TRACE_VAR(sRv);
+
+			return sRv;
+		}
+	}
+
+	return {};
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   Branches
+*
+**************************************************************************************************/
+
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 GitClient::branchName() const
@@ -101,7 +186,7 @@ GitClient::branchName() const
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath(), params, &stdOut, &stdError);
+	Process::execute(_gitPath, params, &stdOut, &stdError);
 
 	if      ( stdOut.empty() ) {
 		sRv = xT("");
@@ -123,11 +208,11 @@ GitClient::localBranchesNum() const
 {
 	xCHECK_RET(!isGitDir(), 0);
 
-	std::cvec_tstring_t  params {"branch"};
-	std::tstring_t       stdOut;
-	std::tstring_t       stdError;
+	std::cvec_tstring_t params {"branch"};
+	std::tstring_t      stdOut;
+	std::tstring_t      stdError;
 
-	Process::execute(_gitPath(), params, &stdOut, &stdError);
+	Process::execute(_gitPath, params, &stdOut, &stdError);
 
 	std::vec_tstring_t values;
 	String::split(String::trimSpace(stdOut), Const::nl(), &values);
@@ -136,6 +221,14 @@ GitClient::localBranchesNum() const
 	// without "master"
 	return values.size() - 1;
 }
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   Statuses
+*
+**************************************************************************************************/
+
 //-------------------------------------------------------------------------------------------------
 /**
  git_states=""
@@ -187,7 +280,7 @@ GitClient::filesStatuses() const
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath(), params, &stdOut, &stdError);
+	Process::execute(_gitPath, params, &stdOut, &stdError);
 
 	cbool_t isNoCommit  = StringCI::contains(stdOut, xT("nothing to commit"));
 	cbool_t isModified  = StringCI::contains(stdOut, xT("modified:"));
@@ -260,7 +353,7 @@ GitClient::commitsAheadBehind(
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath(), params, &stdOut, &stdError);
+	Process::execute(_gitPath, params, &stdOut, &stdError);
 
 	std::vec_tstring_t values;
 	String::split(stdOut, Const::ht(), &values);
@@ -281,7 +374,7 @@ GitClient::stashesNum() const
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath(), params, &stdOut, &stdError);
+	Process::execute(_gitPath, params, &stdOut, &stdError);
 
 	std::vec_tstring_t values;
 	String::split(String::trimSpace(stdOut), Const::nl(), &values);
@@ -306,7 +399,7 @@ GitClient::modifiedFiles(
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath(), params, &stdOut, &stdError);
+	Process::execute(_gitPath, params, &stdOut, &stdError);
 #if 0
 	Cout() << xSTD_TRACE_VAR(stdOut);
 	Cout() << xSTD_TRACE_VAR(stdError);
@@ -351,7 +444,7 @@ GitClient::trackedFiles(
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath(), params_master_diff, &stdOut, &stdError);
+	Process::execute(_gitPath, params_master_diff, &stdOut, &stdError);
 #if 0
 	Cout() << xSTD_TRACE_VAR(stdOut);
 	Cout() << xSTD_TRACE_VAR(stdError);
@@ -453,14 +546,11 @@ GitClient::modifiedFilesLineFilter() const
 
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-GitClient::_gitPath() const
+GitClient::_binPath() const
 {
-	static std::tstring_t sRv;
-	if ( !sRv.empty() ) {
-		return sRv;
-	}
+	std::tstring_t sRv;
 
-	std::ctstring_t gitName =
+	std::ctstring_t binName =
 	#if   xENV_WIN
 		xT("git.exe");
 	#elif xENV_UNIX
@@ -480,7 +570,7 @@ GitClient::_gitPath() const
 	};
 
 	cbool_t isRecursively {false};
-	sRv = Finder::file(dirPaths, gitName, isRecursively);
+	sRv = Finder::file(dirPaths, binName, isRecursively);
 	xTEST(!sRv.empty());
 
 	return sRv;
