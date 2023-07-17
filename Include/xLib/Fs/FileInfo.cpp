@@ -8,7 +8,6 @@
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
-#include <xLib/Core/Locale.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Fs/FileIO.h>
