@@ -64,7 +64,7 @@ public:
         cCharT ch1(a_ch1, _locale);
         cCharT ch2(a_ch2, _locale);
 
-        return (ch1.toLower().get()  == ch2.toLower().get());
+        return (ch1.toLower().get() == ch2.toLower().get());
     }
 
     bool_t operator () (
