@@ -6,7 +6,6 @@
 
 #include "File.h"
 
-#include <xLib/Core/Locale.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Fs/Path.h>
