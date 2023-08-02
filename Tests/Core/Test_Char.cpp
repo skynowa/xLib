@@ -274,7 +274,7 @@ Test_Char::unit()
 
         for (size_t i = 0; i < dataUpper.size(); ++ i) {
             m_chRv = CharT(dataUpper.at(i)).toLower().get();
-            xTEST_EQ(dataLow.at(i), m_chRv);
+            xTEST_EQ(m_chRv, dataLow.at(i));
         }
     }
 
@@ -285,7 +285,7 @@ Test_Char::unit()
 
         for (size_t i = 0; i < dataLow.size(); ++ i) {
             m_chRv = CharT(dataLow.at(i)).toUpper().get();
-            xTEST_EQ(dataUpper.at(i), m_chRv);
+            xTEST_EQ(m_chRv, dataUpper.at(i));
         }
     }
 
