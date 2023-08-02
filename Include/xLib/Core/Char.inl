@@ -190,7 +190,7 @@ Char<T>::symbol() const
         return data[_char].symbol;
     }
 
-    return std::tstring_t(1,  static_cast<tchar_t>(_char) );
+    return std::tstring_t(1, static_cast<tchar_t>(_char));
 }
 //-------------------------------------------------------------------------------------------------
 
