@@ -62,8 +62,8 @@ public:
         ///< char as symbol
 
 private:
-    const T         _char {};
-    const xTLOCALE  _locale;
+    const T        _char {};
+    const xTLOCALE _locale;
 };
 
 using CharA = Char<char>;
