@@ -19,8 +19,8 @@ class IGet
 public:
 ///\name operators
 ///\{
-			 IGet() = default;
-	virtual ~IGet() = default;
+             IGet() = default;
+    virtual ~IGet() = default;
 ///\}
 
     virtual T get() const = 0;
