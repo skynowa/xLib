@@ -454,13 +454,13 @@ OStream::_unprintableChar(
 
     Char<T> ch(a_value);
 
-    if      ( Algos::isInBounds<T>(ch.character(), 0, 31) ) {
+    if      ( Algos::isInBounds<T>(ch.get(), 0, 31) ) {
         return xT("<") + ch.symbol() + xT(">");
     }
-    else if ( Algos::isInBounds<T>(ch.character(), 32, 126) ) {
+    else if ( Algos::isInBounds<T>(ch.get(), 32, 126) ) {
         return ch.symbol();
     }
-    else if ( Algos::isInBounds<T>(ch.character(), 127, 255) ) {
+    else if ( Algos::isInBounds<T>(ch.get(), 127, 255) ) {
         return xT("?");
     }
     else {

@@ -7,12 +7,14 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Interface/IGet.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
 {
 
 template<typename T>
-class Char
+class Char :
+	public IGet<T>
     /// character
 {
 public:
@@ -26,7 +28,7 @@ public:
 	xNO_COPY_ASSIGN(Char)
 ///\}
 
-    T              character() const;
+    T              get() const final;
         ///< get character
 
     bool_t         isAlphaNum() const;
@@ -54,9 +56,9 @@ public:
     bool_t         isUpper() const;
         ///< Check is uppercase letter
 
-    T              toLower() const;
+    Char<T>        toLower() const;
         ///< Convert to lowercase
-    T              toUpper() const;
+    Char<T>        toUpper() const;
         ///< Convert to uppercase
     std::tstring_t symbol() const;
         ///< char as symbol
