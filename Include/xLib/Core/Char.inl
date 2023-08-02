@@ -138,11 +138,11 @@ template<typename T>
 inline std::tstring_t
 Char<T>::symbol() const
 {
-	constexpr std::size_t charMin {0};
-	constexpr std::size_t charMax {32};
+    constexpr std::size_t charMin {0};
+    constexpr std::size_t charMax {31};
 
     if (_char >= charMin &&
-        _char <  charMax)
+        _char <= charMax)
     {
         struct CharData
         {
@@ -151,7 +151,7 @@ Char<T>::symbol() const
             std::tstring_t htmlCode;
         };
 
-        static const CharData data[charMax] =
+        static const CharData data[charMax + 1] =
         {
             {0,  xT("NUL"), xT("&#000;")}, // Null char
             {1,  xT("SOH"), xT("&#001;")}, // Start of Heading
