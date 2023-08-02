@@ -37,6 +37,7 @@
 
 // Interface
 #include <xLib/Interface/ICompare.h>
+#include <xLib/Interface/IGet.h>
 #include <xLib/Interface/IData.h>
 #include <xLib/Interface/IHandle.h>
 #include <xLib/Interface/ILastError.h>
