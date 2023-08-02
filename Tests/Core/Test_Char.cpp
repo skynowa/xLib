@@ -169,8 +169,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CharT(dataFalse.at(i)).isPrint();
-                // TEST: CharT::isPrint()
-                // xTEST(!m_bRv);
+                xTEST(!m_bRv);
             }
         }
     }
