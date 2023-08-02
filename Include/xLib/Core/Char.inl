@@ -124,14 +124,18 @@ template<typename T>
 inline Char<T>
 Char<T>::toLower() const
 {
-    return Char( xTTOLOWER_L(_char, _locale) );
+	const auto ch = xTTOLOWER_L(_char, _locale);
+
+    return Char(ch, _locale);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline Char<T>
 Char<T>::toUpper() const
 {
-    return Char( xTTOUPPER_L(_char, _locale) );
+	const auto ch = xTTOUPPER_L(_char, _locale);
+
+    return Char(ch, _locale);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
