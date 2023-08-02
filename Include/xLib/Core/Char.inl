@@ -138,7 +138,9 @@ template<typename T>
 inline std::tstring_t
 Char<T>::symbol() const
 {
-    if (_char > 0 && _char < 32) {
+	constexpr std::size_t charMax {32};
+
+    if (_char > 0 && _char < charMax) {
         struct CharData
         {
             int_t          decCode;
@@ -146,7 +148,7 @@ Char<T>::symbol() const
             std::tstring_t htmlCode;
         };
 
-        static const CharData data[32] =
+        static const CharData data[charMax] =
         {
             {0,  xT("NUL"), xT("&#000;")}, // Null char
             {1,  xT("SOH"), xT("&#001;")}, // Start of Heading
