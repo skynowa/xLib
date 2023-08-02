@@ -141,8 +141,8 @@ Char<T>::symbol() const
 	constexpr std::size_t charMin {0};
 	constexpr std::size_t charMax {32};
 
-    if (_char > charMin &&
-        _char < charMax)
+    if (_char >= charMin &&
+        _char <  charMax)
     {
         struct CharData
         {
