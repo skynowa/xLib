@@ -2,5 +2,5 @@
 
 - [ ] IOpenClose
 - [ ] IValid (IIsOk, operator bool())
-- [ ] IGet
+- [+] IGet
 - [ ] IOperator =
