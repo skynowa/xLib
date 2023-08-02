@@ -18,10 +18,18 @@ set(cmOPTION_PROJECT_LIB_TYPE "")
 # Modules
 message(STATUS "\n::::: Modules :::::")
 
-set(CMAKE_MODULE_PATH
-    ${CMAKE_MODULE_PATH}
-    ${CMAKE_ROOT}/Modules/CMakeLib
-    ${CMAKE_SOURCE_DIR})
+set(DIR_HOME $ENV{HOME})
+
+# modules
+if (EXISTS "${CMAKE_ROOT}/Modules/CMakeLib")
+    list(APPEND CMAKE_MODULE_PATH
+        "${CMAKE_ROOT}/Modules/CMakeLib"
+        "${CMAKE_SOURCE_DIR}")
+else()
+    list(APPEND CMAKE_MODULE_PATH
+        "${DIR_HOME}/Projects/CMakeLib"
+        "${CMAKE_SOURCE_DIR}")
+endif()
 #--------------------------------------------------------------------------------------------------
 message(STATUS "\n::::: Conan :::::")
 

@@ -273,7 +273,7 @@ Test_Char::unit()
         std::ctstring_t dataLow   = xT("abcdefghijklmnopqrstuvwxyz");
 
         for (size_t i = 0; i < dataUpper.size(); ++ i) {
-            m_chRv = CharT(dataUpper.at(i)).toLower();
+            m_chRv = CharT(dataUpper.at(i)).toLower().get();
             xTEST_EQ(dataLow.at(i), m_chRv);
         }
     }
@@ -284,7 +284,7 @@ Test_Char::unit()
         std::ctstring_t dataUpper = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
         for (size_t i = 0; i < dataLow.size(); ++ i) {
-            m_chRv = CharT(dataLow.at(i)).toUpper();
+            m_chRv = CharT(dataLow.at(i)).toUpper().get();
             xTEST_EQ(dataUpper.at(i), m_chRv);
         }
     }
