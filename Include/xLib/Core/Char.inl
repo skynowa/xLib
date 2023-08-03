@@ -5,6 +5,7 @@
 
 
 #include <xLib/Core/Utils.h>
+#include <xLib/Algo/Algos.h>
 
 
 namespace xl::core
@@ -145,9 +146,7 @@ Char<T>::symbol() const
     constexpr std::size_t charMin {0};
     constexpr std::size_t charMax {31};
 
-    if (_char >= charMin &&
-        _char <= charMax)
-    {
+    if ( Algos::isInBounds<T>(_char, charMin, charMax) ) {
         struct CharData
         {
             int_t          decCode;
