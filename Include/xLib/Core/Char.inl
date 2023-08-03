@@ -172,7 +172,7 @@ Char<T>::symbol() const
         {
             int_t          decCode;
             std::tstring_t symbol;
-            std::tstring_t htmlCode; // Unused
+            std::tstring_t htmlCode; /// TODO: Unused
         };
 
         static const CharData data[31 + 1] =
@@ -217,7 +217,7 @@ Char<T>::symbol() const
         return std::tstring_t(1, static_cast<tchar_t>(_char));
     }
     else if ( Algos::isInBounds<T>(_char, 127, 255) ) {
-        return xT("?");
+        return xT("?");	/// TODO: symbol() - impl
     }
 
     return xT("?");
