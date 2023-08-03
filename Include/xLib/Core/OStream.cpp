@@ -76,7 +76,7 @@ OStream::operator << (
     if ( ::iswprint(  static_cast<wint_t>(a_value) ) ) {
         _os << static_cast<tchar_t>(a_value);
     } else {
-        _os << _unprintableChar(a_value);
+        _os << CharW(a_value).symbol();
     }
 
     return *this;
@@ -90,7 +90,7 @@ OStream::operator << (
     if ( ::isprint(a_value) ) {
         _os << a_value;
     } else {
-        _os << _unprintableChar(a_value);
+        _os << CharU(a_value).symbol();
     }
 
     return *this;
@@ -260,7 +260,7 @@ OStream::operator << (
         if ( ::iswprint( static_cast<wint_t>(a_value[i])) ) {
             sRv += static_cast<tchar_t>( a_value[i] );
         } else {
-            sRv += _unprintableChar( a_value[i] );
+            sRv += CharW( a_value[i] ).symbol();
         }
     }
 
@@ -366,15 +366,6 @@ OStream::_delimiter()
     static std::ctstring_t sRv(xT(", "));
 
     return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-tchar_t
-OStream::_unprintableChar()
-{
-    static tchar_t chRv(xT('?'));
-
-    return chRv;
 }
 //-------------------------------------------------------------------------------------------------
 

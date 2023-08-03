@@ -422,52 +422,6 @@ OStream::_printFloat(
 	_os << value;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
-inline std::tstring_t
-OStream::_unprintableChar(
-    const T a_value
-)
-{
-   /**
-    * FAQ: C documentation for isprint
-    *
-    * +---------+---------------------------+-------------------+
-    * | ASCII   | Characters                | isprint, iswprint |
-    * +---------+---------------------------+-------------------+
-    * | 0 - 8   | control codes (NUL, etc.) | -                 |
-    * | 9       | tab (\t)                  | -                 |
-    * | 10 - 13 | whitespaces (\n,\v,\f,\r) | -                 |
-    * | 14 - 31 | control codes             | -                 |
-    * | 32      | space                     | +                 |
-    * | 33 - 47 | !"#$%&'()*+,-./           | +                 |
-    * | 48 - 57 | 123456789                 | +                 |
-    * | 58 - 64 | :;<=>?@                   | +                 |
-    * | 65 - 70 | ABCDEF                    | +                 |
-    * | 71 - 90 | GHIJKLMNOPQRSTUVWXYZ      | +                 |
-    * | 91 - 96 | [\]^_`                    | +                 |
-    * | 97 -102 | abcdef                    | +                 |
-    * | 103-122 | ghijklmnopqrstuvwxyz      | +                 |
-    * | 123-126 | {|}~                      | +                 |
-    * | 127     | backspace character (DEL) | -                 |
-    * +-------------------------------------+-------------------+
-    */
-
-    Char<T> ch(a_value);
-
-    if      ( Algos::isInBounds<T>(ch.get(), 0, 31) ) {
-        return xT("<") + ch.symbol() + xT(">");
-    }
-    else if ( Algos::isInBounds<T>(ch.get(), 32, 126) ) {
-        return ch.symbol();
-    }
-    else if ( Algos::isInBounds<T>(ch.get(), 127, 255) ) {
-        return xT("?");
-    }
-    else {
-        return xT("?");
-    }
-}
-//-------------------------------------------------------------------------------------------------
 template<typename T, std::csize_t N>
 struct OStream::TuplePrint
 {

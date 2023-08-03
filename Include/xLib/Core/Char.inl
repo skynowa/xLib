@@ -143,18 +143,39 @@ template<typename T>
 inline std::tstring_t
 Char<T>::symbol() const
 {
-    constexpr std::size_t charMin {0};
-    constexpr std::size_t charMax {31};
+   /**
+    * FAQ: C documentation for isprint
+    *
+    * +---------+---------------------------+-------------------+
+    * | ASCII   | Characters                | isprint, iswprint |
+    * +---------+---------------------------+-------------------+
+    * | 0 - 8   | control codes (NUL, etc.) | -                 |
+    * | 9       | tab (\t)                  | -                 |
+    * | 10 - 13 | whitespaces (\n,\v,\f,\r) | -                 |
+    * | 14 - 31 | control codes             | -                 |
+    * | 32      | space                     | +                 |
+    * | 33 - 47 | !"#$%&'()*+,-./           | +                 |
+    * | 48 - 57 | 123456789                 | +                 |
+    * | 58 - 64 | :;<=>?@                   | +                 |
+    * | 65 - 70 | ABCDEF                    | +                 |
+    * | 71 - 90 | GHIJKLMNOPQRSTUVWXYZ      | +                 |
+    * | 91 - 96 | [\]^_`                    | +                 |
+    * | 97 -102 | abcdef                    | +                 |
+    * | 103-122 | ghijklmnopqrstuvwxyz      | +                 |
+    * | 123-126 | {|}~                      | +                 |
+    * | 127     | backspace character (DEL) | -                 |
+    * +-------------------------------------+-------------------+
+    */
 
-    if ( Algos::isInBounds<T>(_char, charMin, charMax) ) {
+    if ( Algos::isInBounds<T>(_char, 0, 31) ) {
         struct CharData
         {
             int_t          decCode;
             std::tstring_t symbol;
-            std::tstring_t htmlCode;
+            std::tstring_t htmlCode; // Unused
         };
 
-        static const CharData data[charMax + 1] =
+        static const CharData data[31 + 1] =
         {
             {0,  xT("NUL"), xT("&#000;")}, // Null char
             {1,  xT("SOH"), xT("&#001;")}, // Start of Heading
@@ -192,8 +213,14 @@ Char<T>::symbol() const
 
         return data[_char].symbol;
     }
+    else if ( Algos::isInBounds<T>(_char, 32, 126) ) {
+        return std::tstring_t(1, static_cast<tchar_t>(_char));
+    }
+    else if ( Algos::isInBounds<T>(_char, 127, 255) ) {
+        return xT("?");
+    }
 
-    return std::tstring_t(1, static_cast<tchar_t>(_char));
+    return xT("?");
 }
 //-------------------------------------------------------------------------------------------------
 
