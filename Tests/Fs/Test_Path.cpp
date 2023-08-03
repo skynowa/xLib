@@ -1045,6 +1045,7 @@ Test_Path::unit()
         std::cout << "========================" << std::endl;
 
         xSTD_VERIFY(!homeDir.empty());
+        Cout() << xPRINT_VAR(homeDir);
         Cout() << std::endl;
 
 	#if   xENV_WIN
