@@ -142,9 +142,6 @@ protected:
     static
     std::ctstring_t & _delimiter();
         ///< _delimiter
-    static
-    tchar_t           _unprintableChar();
-        ///< unprintable char
 
     template<typename T>
     void_t _printContainerTitle(const T &a_value);
@@ -169,9 +166,6 @@ protected:
 
     template<typename T>
     void_t _printFloat(const T value);
-
-    template<typename T>
-    std::tstring_t _unprintableChar(const T value);
 
 	// std::tuple
 	template<typename T, std::csize_t N>

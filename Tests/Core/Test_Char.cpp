@@ -288,6 +288,32 @@ Test_Char::unit()
         }
     }
 
+    xTEST_CASE("symbol")
+    {
+        using data_t = Data2<tchar_t, std::tstring_t>;
+
+        const std::vector<data_t> data
+        {
+            {xT('a'),  xT("a")},
+            {xT('b'),  xT("b")},
+            {xT('0'),  xT("0")},
+            {xT('1'),  xT("1")},
+            {xT('?'),  xT("?")},
+            {xT('\0'), xT("<NUL>")},
+            {0,        xT("<NUL>")},
+            {31,       xT("<US>")},
+            {32,       std::tstring_t(1, 32)},
+            {126,      std::tstring_t(1, 126)},
+            {127,      xT("<?>")},
+            {255,      xT("<?>")}
+        };
+
+        for (const auto &it_data : data) {
+            m_sRv = CharT(it_data.test).symbol();
+            xTEST_EQ(m_sRv, it_data.expect);
+        }
+    }
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------

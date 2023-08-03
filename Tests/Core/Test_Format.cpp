@@ -180,7 +180,7 @@ Test_Format::unit()
         #if xENV_WIN
         #if xUNICODE
             ,
-            {L'聞', xT("?")}
+            {L'聞', xT("<?>")}
         #endif
         #endif
         };
@@ -356,10 +356,10 @@ Test_Format::unit()
     {
         Data2<std::wstring, std::tstring_t> data[] =
         {
-            {L"dddфывff", xT("ddd???ff")},
+            {L"dddфывff", xT("ddd<?><?><?>ff")},
             {L"\n",       xT("<LF>")},
             {L"a",        xT("a")},
-            {L"聞",       xT("?")}
+            {L"聞",       xT("<?>")}
         };
 
        for (const auto &i : data) {
@@ -398,7 +398,7 @@ Test_Format::unit()
             value.push_back('x');
 
             m_sRv = Format::str(xT("{}"), value);
-            xTEST_EQ(m_sRv, std::tstring_t(xT("z?<HT><LF><VT><FF><CR>?x")));
+            xTEST_EQ(m_sRv, std::tstring_t(xT("z<?><HT><LF><VT><FF><CR><?>x")));
         }
     }
 
