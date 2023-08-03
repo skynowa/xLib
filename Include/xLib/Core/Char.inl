@@ -211,7 +211,7 @@ Char<T>::symbol() const
             {31, xT("US"),  xT("&#031;")}  // Unit Separator
         };
 
-        return data[_char].symbol;
+        return xT("<") + data[_char].symbol + xT(">");
     }
     else if ( Algos::isInBounds<T>(_char, 32, 126) ) {
         return std::tstring_t(1, static_cast<tchar_t>(_char));
