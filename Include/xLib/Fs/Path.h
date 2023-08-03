@@ -168,7 +168,7 @@ xPUBLIC_STATIC:
 #endif
 
 private:
-    std::tstring_t _filePath;
+    std::ctstring_t _filePath;
 
 xPLATFORM_IMPL:
 	// files
