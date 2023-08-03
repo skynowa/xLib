@@ -91,7 +91,6 @@ Path
 Path::homeDir()
 {
     std::ctstring_t &path = _homeDir_impl();
-    Cout() << xPRINT_VAR(path);
 
     return Path(path);
 }
