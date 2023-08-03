@@ -30,7 +30,7 @@ public:
 #else
 	Path(const Path &a_path)
 	{
-		std::cout << "Path: copy ctro" << std::endl;
+		std::cout << "Path: copy ctor" << std::endl;
 		_filePath = a_path._filePath;
 	}
 
