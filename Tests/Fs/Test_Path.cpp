@@ -13,50 +13,60 @@ xTEST_UNIT(Test_Path)
 bool_t
 Test_Path::unit()
 {
-    xTEST_CASE("exe")
-    {
-        m_sRv = Path::exe().str();
-        xTEST(FileInfo(m_sRv).isExists());
-    }
+	xTEST_CASE("exe")
+	{
+		const Path path = Path::exe();
+
+		std::ctstring_t &sRv = path.str();
+		xTEST(FileInfo(sRv).isExists());
+	}
 
 	xTEST_CASE("dll")
 	{
-		m_sRv = Path::dll().str();
-		if ( !m_sRv.empty() ) {
-			#if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
-				xTEST(FileInfo(m_sRv).isExists());
-			#else
-				xTEST_NA(m_sRv);
-			#endif
+		const Path path = Path::dll();
+
+		std::ctstring_t &sRv = path.str();
+		if ( !sRv.empty() ) {
+		#if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
+			xTEST(FileInfo(m_sRv).isExists());
+		#else
+			xTEST_NA(sRv);
+		#endif
 		}
 	}
 
-    xTEST_CASE("shell")
-    {
-        m_sRv = Path::shell().str();
-        xTEST(!m_sRv.empty());
-        xTEST(FileInfo(m_sRv).isExists());
-    }
+	xTEST_CASE("shell")
+	{
+		const Path path = Path::shell();
 
-    xTEST_CASE("homeDir")
-    {
-        m_sRv = Path::homeDir().str();
-        xTEST(!m_sRv.empty());
-        xTEST(Dir(m_sRv).isExists());
-    }
+		std::ctstring_t &sRv = path.str();
+		xTEST(!sRv.empty());
+		xTEST(FileInfo(sRv).isExists());
+	}
+
+	xTEST_CASE("homeDir")
+	{
+		Path path = Path::homeDir();
+
+		std::ctstring_t &sRv = path.str();
+		xTEST(!sRv.empty());
+		xTEST(Dir(sRv).isExists());
+	}
 
     xTEST_CASE("trashDir")
     {
-        m_sRv = Path::trashDir().str();
+    	const Path path = Path::trashDir();
+
+		std::ctstring_t &sRv = path.str();
+		Cout() << xPRINT_VAR(sRv);
 
 		if ( isGithubCI() ) {
-			xTEST(m_sRv.empty());
+			xTEST(sRv.empty());
 		} else {
-			xTEST(!m_sRv.empty());
-			xTEST(Dir(m_sRv).isExists());
+			xTEST(!sRv.empty());
+			xTEST(Dir(sRv).isExists());
 		}
     }
-
 
     xTEST_CASE("volume")
     {
@@ -1040,12 +1050,9 @@ Test_Path::unit()
 
     xTEST_CASE("homeAsBrief")
     {
-    	std::cout << "========================" << std::endl;
-        std::ctstring_t &homeDir = Path::homeDir().str();
-        std::cout << "========================" << std::endl;
+        const Path path = Path::homeDir();
 
-        xSTD_VERIFY(!homeDir.empty());
-        Cout() << std::endl;
+        std::ctstring_t &homeDir = path.str();
 
 	#if   xENV_WIN
 		std::ctstring_t filePath = Format::str(xT("{}\\test"), homeDir);
