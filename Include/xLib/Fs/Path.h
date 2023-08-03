@@ -25,24 +25,7 @@ public:
 	virtual  ~Path();
 
 	xNO_DEFAULT_CONSTRUCT(Path)
-#if 1
 	xNO_COPY_ASSIGN(Path)
-#else
-	Path(const Path &a_path)
-	{
-		std::cout << "Path: copy ctor" << std::endl;
-		_filePath = a_path._filePath;
-	}
-
-	Path(Path &&a_path)
-	{
-		std::cout << "Path: move ctor" << std::endl;
-		_filePath = std::move(a_path._filePath);
-	}
-
-	Path & operator = (const Path &) = delete;
-	Path & operator = (Path &&) = delete;
-#endif
 
    /**
 	* Standard paths
