@@ -299,13 +299,13 @@ Test_Char::unit()
             {xT('0'),  xT("0")},
             {xT('1'),  xT("1")},
             {xT('?'),  xT("?")},
-            {xT('\0'), xT("NUL")},
-            {0,        xT("NUL")},
-            {31,       xT("US")},
+            {xT('\0'), xT("<NUL>")},
+            {0,        xT("<NUL>")},
+            {31,       xT("<US>")},
             {32,       std::tstring_t(1, 32)},
             {126,      std::tstring_t(1, 126)},
-            {127,      xT("?")},
-            {255,      xT("?")}
+            {127,      xT("<?>")},
+            {255,      xT("<?>")}
         };
 
         for (const auto &it_data : data) {
