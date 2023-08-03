@@ -61,7 +61,7 @@ public:
     Char<T>        toUpper() const;
         ///< Convert to uppercase
     std::tstring_t symbol() const;
-        ///< char as symbol
+        ///< char as symbol, unprintable chars with braces "<>"
 
 private:
     const T        _char {};

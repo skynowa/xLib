@@ -5,6 +5,7 @@
 
 
 #include <xLib/Core/Utils.h>
+#include <xLib/Algo/Algos.h>
 
 
 namespace xl::core
@@ -124,29 +125,57 @@ template<typename T>
 inline Char<T>
 Char<T>::toLower() const
 {
-    return Char( xTTOLOWER_L(_char, _locale) );
+	const auto ch = xTTOLOWER_L(_char, _locale);
+
+    return Char(ch, _locale);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline Char<T>
 Char<T>::toUpper() const
 {
-    return Char( xTTOUPPER_L(_char, _locale) );
+	const auto ch = xTTOUPPER_L(_char, _locale);
+
+    return Char(ch, _locale);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline std::tstring_t
 Char<T>::symbol() const
 {
-    if (_char > 0 && _char < 32) {
+   /**
+    * FAQ: C documentation for isprint
+    *
+    * +---------+---------------------------+-------------------+
+    * | ASCII   | Characters                | isprint, iswprint |
+    * +---------+---------------------------+-------------------+
+    * | 0 - 8   | control codes (NUL, etc.) | -                 |
+    * | 9       | tab (\t)                  | -                 |
+    * | 10 - 13 | whitespaces (\n,\v,\f,\r) | -                 |
+    * | 14 - 31 | control codes             | -                 |
+    * | 32      | space                     | +                 |
+    * | 33 - 47 | !"#$%&'()*+,-./           | +                 |
+    * | 48 - 57 | 123456789                 | +                 |
+    * | 58 - 64 | :;<=>?@                   | +                 |
+    * | 65 - 70 | ABCDEF                    | +                 |
+    * | 71 - 90 | GHIJKLMNOPQRSTUVWXYZ      | +                 |
+    * | 91 - 96 | [\]^_`                    | +                 |
+    * | 97 -102 | abcdef                    | +                 |
+    * | 103-122 | ghijklmnopqrstuvwxyz      | +                 |
+    * | 123-126 | {|}~                      | +                 |
+    * | 127     | backspace character (DEL) | -                 |
+    * +-------------------------------------+-------------------+
+    */
+
+    if ( Algos::isInBounds<T>(_char, 0, 31) ) {
         struct CharData
         {
             int_t          decCode;
             std::tstring_t symbol;
-            std::tstring_t htmlCode;
+            std::tstring_t htmlCode; /// TODO: Unused
         };
 
-        static const CharData data[32] =
+        static const CharData data[31 + 1] =
         {
             {0,  xT("NUL"), xT("&#000;")}, // Null char
             {1,  xT("SOH"), xT("&#001;")}, // Start of Heading
@@ -182,10 +211,16 @@ Char<T>::symbol() const
             {31, xT("US"),  xT("&#031;")}  // Unit Separator
         };
 
-        return data[_char].symbol;
+        return xT("<") + data[_char].symbol + xT(">");
+    }
+    else if ( Algos::isInBounds<T>(_char, 32, 126) ) {
+        return std::tstring_t(1, static_cast<tchar_t>(_char));
+    }
+    else if ( Algos::isInBounds<T>(_char, 127, 255) ) {
+        return xT("<?>");	/// TODO: symbol() - impl
     }
 
-    return std::tstring_t(1,  static_cast<tchar_t>(_char) );
+    return xT("<?>");
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -169,8 +169,7 @@ Test_Char::unit()
 
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CharT(dataFalse.at(i)).isPrint();
-                // TEST: CharT::isPrint()
-                // xTEST(!m_bRv);
+                xTEST(!m_bRv);
             }
         }
     }
@@ -273,8 +272,8 @@ Test_Char::unit()
         std::ctstring_t dataLow   = xT("abcdefghijklmnopqrstuvwxyz");
 
         for (size_t i = 0; i < dataUpper.size(); ++ i) {
-            m_chRv = CharT(dataUpper.at(i)).toLower();
-            xTEST_EQ(dataLow.at(i), m_chRv);
+            m_chRv = CharT(dataUpper.at(i)).toLower().get();
+            xTEST_EQ(m_chRv, dataLow.at(i));
         }
     }
 
@@ -284,8 +283,34 @@ Test_Char::unit()
         std::ctstring_t dataUpper = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
         for (size_t i = 0; i < dataLow.size(); ++ i) {
-            m_chRv = CharT(dataLow.at(i)).toUpper();
-            xTEST_EQ(dataUpper.at(i), m_chRv);
+            m_chRv = CharT(dataLow.at(i)).toUpper().get();
+            xTEST_EQ(m_chRv, dataUpper.at(i));
+        }
+    }
+
+    xTEST_CASE("symbol")
+    {
+        using data_t = Data2<tchar_t, std::tstring_t>;
+
+        const std::vector<data_t> data
+        {
+            {xT('a'),  xT("a")},
+            {xT('b'),  xT("b")},
+            {xT('0'),  xT("0")},
+            {xT('1'),  xT("1")},
+            {xT('?'),  xT("?")},
+            {xT('\0'), xT("<NUL>")},
+            {0,        xT("<NUL>")},
+            {31,       xT("<US>")},
+            {32,       std::tstring_t(1, 32)},
+            {126,      std::tstring_t(1, 126)},
+            {127,      xT("<?>")},
+            {255,      xT("<?>")}
+        };
+
+        for (const auto &it_data : data) {
+            m_sRv = CharT(it_data.test).symbol();
+            xTEST_EQ(m_sRv, it_data.expect);
         }
     }
 
