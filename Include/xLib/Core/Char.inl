@@ -217,10 +217,10 @@ Char<T>::symbol() const
         return std::tstring_t(1, static_cast<tchar_t>(_char));
     }
     else if ( Algos::isInBounds<T>(_char, 127, 255) ) {
-        return xT("?");	/// TODO: symbol() - impl
+        return xT("<?>");	/// TODO: symbol() - impl
     }
 
-    return xT("?");
+    return xT("<?>");
 }
 //-------------------------------------------------------------------------------------------------
 
