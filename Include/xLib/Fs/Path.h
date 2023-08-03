@@ -25,7 +25,7 @@ public:
 	virtual  ~Path();
 
 	xNO_DEFAULT_CONSTRUCT(Path)
-#if 0
+#if 1
 	xNO_COPY_ASSIGN(Path)
 #else
 	Path(const Path &a_path)
