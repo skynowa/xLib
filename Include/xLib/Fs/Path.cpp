@@ -90,12 +90,10 @@ Path::shell()
 Path
 Path::homeDir()
 {
-    std::ctstring_t &path_ = _homeDir_impl();
-    Cout() << xPRINT_VAR(Path(path_).str());
+    std::ctstring_t &path = _homeDir_impl();
+    Cout() << xPRINT_VAR(path);
 
-    Path path(path_);
-
-    return path;
+    return Path(path);
 }
 //-------------------------------------------------------------------------------------------------
 /**

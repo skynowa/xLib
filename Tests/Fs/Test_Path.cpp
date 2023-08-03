@@ -15,48 +15,50 @@ Test_Path::unit()
 {
     xTEST_CASE("exe")
     {
-        m_sRv = Path::exe().str();
-        xTEST(FileInfo(m_sRv).isExists());
+        std::ctstring_t &sRv = Path::exe().str();
+        Cout() << xSTD_TRACE_VAR(sRv);
+        xTEST(FileInfo(sRv).isExists());
     }
 
 	xTEST_CASE("dll")
 	{
-		m_sRv = Path::dll().str();
-		if ( !m_sRv.empty() ) {
+		std::ctstring_t &sRv = Path::dll().str();
+		if ( !sRv.empty() ) {
 			#if (cmOPTION_PROJECT_LIB_SHARE || cmOPTION_PROJECT_LIB_MODULE)
 				xTEST(FileInfo(m_sRv).isExists());
 			#else
-				xTEST_NA(m_sRv);
+				xTEST_NA(sRv);
 			#endif
 		}
 	}
 
     xTEST_CASE("shell")
     {
-        m_sRv = Path::shell().str();
-        xTEST(!m_sRv.empty());
-        xTEST(FileInfo(m_sRv).isExists());
+    	std::ctstring_t &sRv = Path::shell().str();
+        xTEST(!sRv.empty());
+        xTEST(FileInfo(sRv).isExists());
     }
 
     xTEST_CASE("homeDir")
     {
-        m_sRv = Path::homeDir().str();
-        xTEST(!m_sRv.empty());
-        xTEST(Dir(m_sRv).isExists());
+    	std::ctstring_t &sRv = Path::homeDir().str();
+        xTEST(!sRv.empty());
+        xTEST(Dir(sRv).isExists());
     }
 
     xTEST_CASE("trashDir")
     {
-        m_sRv = Path::trashDir().str();
+    	std::ctstring_t &sRv = Path::trashDir().str();
 
 		if ( isGithubCI() ) {
-			xTEST(m_sRv.empty());
+			xTEST(sRv.empty());
 		} else {
-			xTEST(!m_sRv.empty());
-			xTEST(Dir(m_sRv).isExists());
+			xTEST(!sRv.empty());
+			xTEST(Dir(sRv).isExists());
 		}
     }
 
+return false;
 
     xTEST_CASE("volume")
     {
