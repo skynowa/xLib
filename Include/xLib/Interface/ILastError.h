@@ -1,6 +1,6 @@
 /**
  * \file  ILastError.h
- * \brief last error
+ * \brief Last error
  */
 
 

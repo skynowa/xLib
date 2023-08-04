@@ -1,6 +1,6 @@
 /**
  * \file  ILastError.inl
- * \brief
+ * \brief Last error
  */
 
 
