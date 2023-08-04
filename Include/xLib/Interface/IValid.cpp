@@ -1,7 +1,10 @@
 /**
- * \file  ILastError.inl
- * \brief Last error
+ * \file  IValid.cpp
+ * \brief Validator
  */
+
+
+#include "IValid.h"
 
 
 namespace xl::interface_
@@ -13,11 +16,16 @@ namespace xl::interface_
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename CodeT>
 bool_t
-ILastError<CodeT>::isError() const
+IValid::isOk() const
 {
-	return !isOk();
+    return operator bool();
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+IValid::isError() const
+{
+    return !operator bool();
 }
 //-------------------------------------------------------------------------------------------------
 
