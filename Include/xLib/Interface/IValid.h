@@ -18,8 +18,8 @@ class IValid
 public:
 ///\name ctors, dtor
 ///\{
-			 IValid() = default;
-	virtual ~IValid() = default;
+             IValid() = default;
+    virtual ~IValid() = default;
 ///\}
 
     virtual bool_t isOk() const = 0;

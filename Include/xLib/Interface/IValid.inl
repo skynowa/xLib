@@ -19,7 +19,7 @@ namespace xl::interface_
 bool_t
 IValid::isError() const
 {
-	return !isOk();
+    return !isOk();
 }
 //-------------------------------------------------------------------------------------------------
 
