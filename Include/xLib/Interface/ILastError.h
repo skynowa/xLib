@@ -26,13 +26,13 @@ public:
     virtual CodeT          code() const = 0;
         ///< Code
     virtual bool_t         isOk() const = 0;
-        ///< Result is success
+        ///< Check for success
     virtual std::tstring_t str() const = 0;
         ///< Detail message
 
 public:
     bool_t isError() const;
-        ///< Result is error
+        ///< Check for error
 
 protected:
     CodeT          _code {};
