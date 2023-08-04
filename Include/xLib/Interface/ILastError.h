@@ -24,13 +24,15 @@ public:
 ///\}
 
     virtual CodeT          code() const = 0;
-        ///<
+        ///< Code
     virtual bool_t         isOk() const = 0;
-        ///<
-    bool_t                 isError() const;
-        ///<
+        ///< Result is success
     virtual std::tstring_t str() const = 0;
-		///<
+        ///< Detail message
+
+public:
+    bool_t isError() const;
+        ///< Result is error
 
 protected:
     CodeT          _code {};

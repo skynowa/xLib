@@ -25,6 +25,7 @@ public:
     virtual explicit operator bool() const = 0;
         ///< Check result
 
+public:
     bool_t isOk() const;
         ///< Result is success
     bool_t isError() const;
