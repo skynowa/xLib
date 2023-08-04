@@ -12,7 +12,7 @@
 namespace xl::interface_
 {
 
-template <typename ErrorT>
+template <typename CodeT>
 class ILastError
     /// last error
 {
@@ -23,7 +23,7 @@ public:
 	virtual ~ILastError() = default;
 ///\}
 
-    virtual ErrorT         code() const = 0;
+    virtual CodeT          code() const = 0;
         ///<
     virtual bool_t         isOk() const = 0;
         ///<
@@ -33,7 +33,7 @@ public:
 		///<
 
 protected:
-	ErrorT         _code {};
+    CodeT          _code {};
 	std::tstring_t _str;
 };
 
