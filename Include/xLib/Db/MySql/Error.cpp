@@ -41,8 +41,7 @@ Error::code() const
     return ::mysql_errno( const_cast<Connection &>(_conn).get().get() );
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
-Error::isOk() const
+Error::operator bool() const
 {
     return (code() == 0);
 }

@@ -56,8 +56,7 @@ XmlDoc::code() const
 	return _code;
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
-XmlDoc::isOk() const
+XmlDoc::operator bool() const
 {
     return (code() == XML_ERR_OK);
 }

@@ -8,12 +8,14 @@
 
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
+#include <xLib/Interface/IValid.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::interface_
 {
 
 template <typename ErrorT>
-class ILastError
+class ILastError :
+	public IValid
     /// last error
 {
 public:
@@ -25,10 +27,6 @@ public:
 
     virtual ErrorT         code() const = 0;
         ///<
-    virtual bool_t         isOk() const = 0;
-        ///<
-    bool_t                 isError() const;
-        ///<
     virtual std::tstring_t str() const = 0;
 		///<
 
@@ -38,6 +36,4 @@ protected:
 };
 
 } // namespace
-//-------------------------------------------------------------------------------------------------
-#include "ILastError.inl"
 //-------------------------------------------------------------------------------------------------
