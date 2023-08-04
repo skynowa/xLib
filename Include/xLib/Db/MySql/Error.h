@@ -29,13 +29,12 @@ public:
 	xNO_COPY_ASSIGN(Error)
 ///\}
 
-    // errors
-    uint_t         code() const override;
-        ///< error code for the most recently invoked API function that can succeed or fail
+///\name Overrides
+///\{
 	explicit operator bool() const override;
-		///<
-    std::tstring_t str() const override;
-        ///< error message for the most recently invoked API function that failed
+	uint_t            code() const override;
+	std::tstring_t    str() const override;
+///\}
 
 private:
     const Connection &_conn;   ///< handler for one database connection
