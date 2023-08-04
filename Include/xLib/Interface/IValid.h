@@ -13,7 +13,7 @@ namespace xl::interface_
 {
 
 class IValid
-    /// last error
+    /// Validator
 {
 public:
 ///\name ctors, dtor
