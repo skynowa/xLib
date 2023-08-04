@@ -34,12 +34,9 @@ public:
 	xNO_COPY_ASSIGN(XmlDoc);
 ///\}
 
-///\name Overrides
-///\{
-	explicit operator bool() const final;
-	int_t             code() const override;
-	std::tstring_t    str() const override;
-///\}
+    int_t          code() const override;
+    explicit operator bool() const override;
+    std::tstring_t str() const override;
 
 	void           registerNss(std::cmap_tstring_t &nss);
 	void           parse(cptr_ctchar_t buff, cint_t size);
