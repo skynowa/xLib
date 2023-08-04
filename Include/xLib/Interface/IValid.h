@@ -22,13 +22,14 @@ public:
     virtual ~IValid() = default;
 ///\}
 
-    virtual bool_t isOk() const = 0;
+    virtual explicit operator bool() const = 0;
+        ///< Check result
+
+    bool_t isOk() const;
         ///< Result is success
-    bool_t         isError() const;
+    bool_t isError() const;
         ///< Result is error
 };
 
 } // namespace
-//-------------------------------------------------------------------------------------------------
-#include "IValid.inl"
 //-------------------------------------------------------------------------------------------------
