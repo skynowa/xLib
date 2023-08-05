@@ -65,7 +65,7 @@ protected:
         ///< An array of unsigned long_t integers representing the size of each column
 };
 //-------------------------------------------------------------------------------------------------
-class StoreResult :
+class StoreResult final :
 	public IResult
 	/// Recordset
 {
@@ -80,7 +80,7 @@ public:
 ///\}
 };
 //-------------------------------------------------------------------------------------------------
-class UseResult :
+class UseResult final :
 	public IResult
 	/// Recordset
 {

@@ -14,7 +14,7 @@
 namespace xl::log
 {
 
-class FileLog :
+class FileLog final :
     public ILog
     /// logging to file
 {

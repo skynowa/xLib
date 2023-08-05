@@ -13,7 +13,7 @@
 namespace xl::fs
 {
 
-class Dir :
+class Dir final :
 	public IPrinter<std::tostream_t>
     /// directory
 {

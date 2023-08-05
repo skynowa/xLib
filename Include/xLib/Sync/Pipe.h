@@ -13,7 +13,7 @@
 namespace xl::sync
 {
 
-class Pipe :
+class Pipe final :
 	public ISync<HandleNative>
     /// Pipe is a section of shared memory that processes use for communication
 {

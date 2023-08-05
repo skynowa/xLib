@@ -13,7 +13,7 @@ namespace xl::core
 {
 
 template<typename T>
-class Char :
+class Char final :
 	public IGetConstRef<T>
     /// character
 {
