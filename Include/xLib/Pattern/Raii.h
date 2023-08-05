@@ -13,8 +13,7 @@ namespace xl::patterns
 
 template<typename T, void_t (T::*MemberT)(void_t)>
 class Raii :
-	public IGet<T>,
-	public IGetRef<T>
+	public IGet<T>
     ///< RAII
 {
 public:

@@ -14,7 +14,7 @@ namespace xl::core
 
 template<typename T>
 class Char :
-	public IGet<T>
+	public IGetConstRef<T>
     /// character
 {
 public:
