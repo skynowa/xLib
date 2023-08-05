@@ -13,20 +13,20 @@ namespace xl::interface_
 {
 
 template<typename T>
-class IGet
-    /// Getter
+class IGetConstRef
+    /// Getter by const reference
 {
 public:
 ///\name operators
 ///\{
-             IGet() = default;
-    virtual ~IGet() = default;
+             IGetConstRef() = default;
+    virtual ~IGetConstRef() = default;
 ///\}
 
     virtual const T &get() const = 0;
         ///< getter
 };
-
+//-------------------------------------------------------------------------------------------------
 template<typename T>
 class IGetRef
     /// Getter by reference
@@ -40,6 +40,20 @@ public:
 
     virtual T &get() const = 0;
         ///< getter
+};
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+class IGet :
+	public IGetConstRef<T>,
+	public IGetRef<T>
+    /// Getter by const reference, reference
+{
+public:
+///\name operators
+///\{
+             IGet() = default;
+    virtual ~IGet() = default;
+///\}
 };
 
 } // namespace
