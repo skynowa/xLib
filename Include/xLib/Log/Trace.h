@@ -19,7 +19,7 @@ class String;
 namespace xl::log
 {
 
-class Trace :
+class Trace final :
     public ILog
     /// tracing
 {

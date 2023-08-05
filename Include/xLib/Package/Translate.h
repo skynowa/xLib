@@ -14,7 +14,7 @@
 namespace xl::package
 {
 
-class Translate :
+class Translate final :
 	public IRestClient
     /// Translate text (by Google API, mobile version)
 {

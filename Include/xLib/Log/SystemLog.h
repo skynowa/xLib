@@ -12,7 +12,7 @@
 namespace xl::log
 {
 
-class SystemLog :
+class SystemLog final :
     public ILog
     /// logging to system event log
 {

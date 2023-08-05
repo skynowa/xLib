@@ -12,7 +12,7 @@
 namespace xl::net
 {
 
-class TcpServer :
+class TcpServer final :
     public ISocket
     /// server socket
 {

@@ -35,7 +35,7 @@ public:
     xUSING_CONST(rows_t);
 };
 //-------------------------------------------------------------------------------------------------
-class CsvReader :
+class CsvReader final :
     public ICsv
     /// CSV reader
 {
@@ -65,7 +65,7 @@ private:
     void_t         _clear();
 };
 //-------------------------------------------------------------------------------------------------
-class CsvWriter :
+class CsvWriter final :
     public ICsv
     /// CSV writer
 {

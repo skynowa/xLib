@@ -60,7 +60,7 @@ enum class HandleType
 };
 
 template<typename T, HandleType typeT>
-class Handle :
+class Handle final :
     public IHandle<T>
     /// handle
 {

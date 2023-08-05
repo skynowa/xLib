@@ -14,7 +14,7 @@
 namespace xl::fs
 {
 
-class Path :
+class Path final :
 	public IPrinter<std::tostream_t>
     /// file system path
 {
