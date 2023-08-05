@@ -23,7 +23,7 @@ public:
 	virtual ~IObserver() = default;
 ///\}
 
-    virtual void_t update(cint_t &type, const T &message) = 0;
+    virtual void_t update(cint_t type, const T &message) = 0;
 };
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -33,7 +33,7 @@ class Observers
 public:
 ///\name ctors, dtor
 ///\{
-		Observers() = default;
+	Observers() = default;
 
 	virtual ~Observers()
 	{
