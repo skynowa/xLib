@@ -34,7 +34,7 @@ struct DebugData :
 	std::tstring_t sslDataOut;
 
 protected:
-	void_t print(core::OStream &os) const override;
+	void_t print(core::OStream &os) const final;
 };
 //-------------------------------------------------------------------------------------------------
 class Client

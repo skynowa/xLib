@@ -66,7 +66,7 @@ struct DataIn :
 	std::tstring_t request;
 
 protected:
-	void_t print(core::OStream &os) const override;
+	void_t print(core::OStream &os) const final;
 };
 xUSING_CONST(DataIn);
 //-------------------------------------------------------------------------------------------------
@@ -83,7 +83,7 @@ struct DataOut :
 	std::tstring_t      body;
 
 protected:
-	void_t print(core::OStream &os) const override;
+	void_t print(core::OStream &os) const final;
 };
 xUSING_CONST(DataOut);
 //-------------------------------------------------------------------------------------------------

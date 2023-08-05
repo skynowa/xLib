@@ -26,15 +26,15 @@ public:
 	xNO_COPY_ASSIGN(Pipe)
 ///\}
 
-    cHandleNative & handle() const override;
+    cHandleNative & handle() const final;
 	cint_t          handleRead() const;
 	cint_t          handleWrite() const;
 
-    void_t          create() override;
+    void_t          create() final;
 
     std::tstring_t  readAll() const;
 
-    void_t          close() override;
+    void_t          close() final;
     void_t          closeRead();
     void_t          closeWrite();
 

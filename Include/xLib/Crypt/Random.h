@@ -51,7 +51,7 @@ public:
 	xNO_COPY_ASSIGN(StdSeedPolicy)
 ///\}
 
-    virtual long_t next() override;
+    virtual long_t next() final;
         ///< get integer in the range between 0 and RAND_MAX
 
 xPLATFORM_IMPL:
@@ -72,7 +72,7 @@ public:
 	xNO_COPY_ASSIGN(NativeSeedPolicy)
 ///\}
 
-    virtual long_t next() override;
+    virtual long_t next() final;
         ///< get long integer in the range between 0 and RAND_MAX
 
 private:
