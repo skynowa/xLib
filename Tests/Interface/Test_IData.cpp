@@ -10,29 +10,31 @@
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_IData)
 //-------------------------------------------------------------------------------------------------
-class Data :
+class Data final :
     public IData
 {
 public:
 	std::tstring_t s {"str"};
 	size_t         i {1978};
 
-    bool_t
-    isValid() const override
-    {
-        return true;
-    }
+///\name Overrides
+///\{
+	explicit operator bool() const final
+	{
+		return true;
+	}
 
-    void_t
-    clear() override
-    {
-    }
+	void_t clear() final
+	{
+		s.clear();
+		i = 0;
+	}
 
-    void_t
-    print(core::OStream &a_os) const override
-    {
-    	a_os << xSTD_TRACE_VAR_2(s, i) << std::endl;
-    }
+	void_t print(core::OStream &a_os) const final
+	{
+		a_os << xSTD_TRACE_VAR_2(s, i) << std::endl;
+	}
+///\}
 };
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -43,7 +45,8 @@ Test_IData::unit()
     {
         Data d;
 
-        m_bRv = d.isValid();
+        m_bRv = d.isOk();
+        xTEST(static_cast<bool_t>(d));
         xTEST(m_bRv);
 
         d.clear();
