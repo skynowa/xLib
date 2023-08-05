@@ -23,7 +23,7 @@ public:
     virtual ~IGet() = default;
 ///\}
 
-    virtual T get() const = 0;
+    virtual const T &get() const = 0;
         ///< get
 };
 
