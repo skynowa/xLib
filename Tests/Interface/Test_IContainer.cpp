@@ -13,7 +13,7 @@ xTEST_UNIT(Test_IContainer)
 constexpr std::size_t buffSize {10};
 
 template<typename T>
-class Container :
+class Container final :
     public IContainer<T>
 {
 public:
