@@ -8,24 +8,11 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/OStream.h>
+#include <xLib/Interface/IValid.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::interface_
 {
 
-//-------------------------------------------------------------------------------------------------
-class IDataValid
-    /// Data
-{
-public:
-///\name ctors, dtor
-///\{
-			 IDataValid() = default;
-	virtual ~IDataValid() = default;
-///\}
-
-    virtual bool_t isValid() const = 0;
-        ///< check validness
-};
 //-------------------------------------------------------------------------------------------------
 class IDataClear
     /// Data
@@ -60,7 +47,7 @@ protected:
 };
 //-------------------------------------------------------------------------------------------------
 class IData :
-	public IDataValid,
+	public IValid,
 	public IDataClear,
 	public IDataPrint
     /// Data
