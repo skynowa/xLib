@@ -11,7 +11,7 @@
 namespace xl::patterns
 {
 
-template<typename T, void (T::*MemberT)(void)>
+template<typename T, void_t (T::*MemberT)(void_t)>
 class Raii
     ///< RAII
 {
