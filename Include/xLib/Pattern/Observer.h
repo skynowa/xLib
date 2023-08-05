@@ -50,17 +50,17 @@ public:
         ///< attach object
     void_t detach(IObserver<T> *a_observer)
     {
-        for (auto &it : _observers) {
-            if (*it == a_observer) {
-                _observers.erase(it);
+        for (const auto &it_observer : _observers) {
+            if (*it_observer == a_observer) {
+                _observers.erase(it_observer);
             }
         }
     }
         ///< dettach object
-    void_t updateAll(cint_t &a_type, const T &a_message)
+    void_t updateAll(cint_t a_type, const T &a_message)
     {
-        for (const auto &it : _observers) {
-            it->update(a_type, a_message);
+        for (const auto &it_observer: _observers) {
+        	it_observer->update(a_type, a_message);
         }
     }
         ///< update all objects
