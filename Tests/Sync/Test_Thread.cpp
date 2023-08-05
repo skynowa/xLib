@@ -19,7 +19,7 @@ public:
 	virtual  ~CWorkThread() = default;
 
 protected:
-	uint_t onRun(void_t *pData) override;
+	uint_t onRun(void_t *pData) final;
 };
 //-------------------------------------------------------------------------------------------------
 CWorkThread::CWorkThread(

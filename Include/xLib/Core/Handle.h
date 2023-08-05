@@ -79,22 +79,22 @@ public:
 	Handle & operator = (const Handle &handle);
 ///\}
 
-    T      get() const override;
+    T      get() const final;
         ///< get
-    void_t set(const T &handle) override;
+    void_t set(const T &handle) final;
         ///< set
-    T      clone() const override;
+    T      clone() const final;
         ///< duplicate handle
     void_t setCloseOnExec(cbool_t flag);
 		///< duplicate file descriptors from sub-processes
 
-    bool_t isValid() const override;
+    bool_t isValid() const final;
         ///< is valid
-    void_t attach(const T &handle) override;
+    void_t attach(const T &handle) final;
         ///< attach
-    T      detach() override;
+    T      detach() final;
         ///< detach
-    void_t close() override;
+    void_t close() final;
         ///< close
 
 #if xENV_WIN

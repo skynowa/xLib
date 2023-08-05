@@ -30,11 +30,11 @@ public:
 ///\}
 
     // errors
-    uint_t         code() const override;
+    uint_t         code() const final;
         ///< error code for the most recently invoked API function that can succeed or fail
-	bool_t         isOk() const override;
+	bool_t         isOk() const final;
 		///<
-    std::tstring_t str() const override;
+    std::tstring_t str() const final;
         ///< error message for the most recently invoked API function that failed
 
 private:

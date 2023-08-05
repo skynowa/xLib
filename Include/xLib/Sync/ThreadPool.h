@@ -68,7 +68,7 @@ public:
     std::size_t size() const;
 
 protected:
-    uint_t      onRun(void_t *param) override;
+    uint_t      onRun(void_t *param) final;
 
 private:
     uint_t         _stackSize {};

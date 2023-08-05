@@ -36,9 +36,9 @@ public:
 	Trace &  operator << (const T &valueT);
 ///\}
 
-    void_t write(cptr_ctchar_t format, ...) const override;
+    void_t write(cptr_ctchar_t format, ...) const final;
         ///< tracing to debugger, std::cout
-    void_t write(cLevel level, cptr_ctchar_t format, ...) const override;
+    void_t write(cLevel level, cptr_ctchar_t format, ...) const final;
         ///< tracing to debugger, std::cout
 
 xPLATFORM_IMPL:

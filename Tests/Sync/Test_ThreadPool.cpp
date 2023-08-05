@@ -29,7 +29,7 @@ public:
     xNO_COPY_ASSIGN(PoolThread);
 
 protected:
-    uint_t onRun(void_t *param) override;
+    uint_t onRun(void_t *param) final;
 };
 //-------------------------------------------------------------------------------------------------
 PoolThread::PoolThread(

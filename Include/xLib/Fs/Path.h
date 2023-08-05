@@ -48,7 +48,7 @@ public:
 
 ///\name interfaces
 ///\{
-	void_t print(std::tostream_t &stream) const override;
+	void_t print(std::tostream_t &stream) const final;
 ///\}
 
     bool_t         isAbsolute() const;
