@@ -24,7 +24,22 @@ public:
 ///\}
 
     virtual const T &get() const = 0;
-        ///< get
+        ///< getter
+};
+
+template<typename T>
+class IGetRef
+    /// Getter by reference
+{
+public:
+///\name operators
+///\{
+             IGetRef() = default;
+    virtual ~IGetRef() = default;
+///\}
+
+    virtual T &get() const = 0;
+        ///< getter
 };
 
 } // namespace

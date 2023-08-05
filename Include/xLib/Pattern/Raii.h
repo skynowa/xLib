@@ -12,7 +12,9 @@ namespace xl::patterns
 {
 
 template<typename T, void_t (T::*MemberT)(void_t)>
-class Raii
+class Raii :
+	public IGet<T>,
+	public IGetRef<T>
     ///< RAII
 {
 public:
@@ -32,16 +34,18 @@ public:
     xNO_COPY_ASSIGN(Raii)
 ///\}
 
-    T &get()
-    {
-        return _object;
-    }
-        ///< get object
-    const T &get() const
-    {
-        return _object;
-    }
-        ///< get object
+///\name Overrides
+///\{
+	const T &get() const final
+	{
+		return _object;
+	}
+
+	T &get() final
+	{
+		return _object;
+	}
+///\}
 
 private:
     T &_object;
