@@ -27,20 +27,20 @@ public:
 };
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-class Observer
+class Observers
     /// observer
 {
 public:
 ///\name ctors, dtor
 ///\{
-	Observer() = default;
+		Observers() = default;
 
-	virtual ~Observer()
+	virtual ~Observers()
 	{
 		_observers.clear();
 	}
 
-	xNO_COPY_ASSIGN(Observer)
+	xNO_COPY_ASSIGN(Observers)
 ///\}
 
     void_t attach(IObserver<T> *a_observer)

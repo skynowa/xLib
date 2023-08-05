@@ -10,7 +10,8 @@ UNIT_TEST_NAME=$*
 PROJECT_NAME="xLib_tests"
 DIR_PROJECT="../xLib/Tests"
 DIR_BUILD="../../${PROJECT_NAME}_build"
-JOBS_NUM=1 # $(($(nproc) * 2))
+JOBS_NUM=$(($(nproc) * 2))
+# JOBS_NUM=1
 
 echo "Jobs: $JOBS_NUM"
 echo "OS ver: $(uname -a)"
