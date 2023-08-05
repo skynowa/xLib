@@ -14,7 +14,7 @@ namespace xl::patterns
 
 template<typename T>
 class IObserver
-    /// observer
+    /// Observer interface
 {
 public:
 ///\name ctors, dtor
@@ -28,7 +28,7 @@ public:
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 class Observers
-    /// observer
+    /// Observers
 {
 public:
 ///\name ctors, dtor
