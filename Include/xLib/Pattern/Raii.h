@@ -28,6 +28,7 @@ public:
 		(_object.*MemberT)();
 	}
 
+    xNO_DEFAULT_CONSTRUCT(Raii)
     xNO_COPY_ASSIGN(Raii)
 ///\}
 
