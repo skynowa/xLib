@@ -19,8 +19,8 @@ class IObserver
 public:
 ///\name ctors, dtor
 ///\{
-			 IObserver() {}
-	virtual ~IObserver() {}
+			 IObserver() = default;
+	virtual ~IObserver() = default;
 ///\}
 
     virtual void_t update(cint_t &type, const T &message) = 0;
@@ -33,9 +33,7 @@ class Observer
 public:
 ///\name ctors, dtor
 ///\{
-	Observer()
-	{
-	}
+	Observer() = default;
 
 	virtual ~Observer()
 	{
