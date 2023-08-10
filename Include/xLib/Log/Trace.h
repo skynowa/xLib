@@ -1,6 +1,6 @@
 /**
- * \file   Trace.h
- * \brief  tracer
+ * \file  Trace.h
+ * \brief Tracing to debugger, std::cout
  */
 
 
@@ -21,7 +21,7 @@ namespace xl::log
 
 class Trace final :
     public ILog
-    /// tracing
+    /// Tracing to debugger, std::cout
 {
 public:
 ///\name ctors, dtor
@@ -36,10 +36,11 @@ public:
 	Trace &  operator << (const T &valueT);
 ///\}
 
-    void_t write(cptr_ctchar_t format, ...) const final;
-        ///< tracing to debugger, std::cout
-    void_t write(cLevel level, cptr_ctchar_t format, ...) const final;
-        ///< tracing to debugger, std::cout
+///\name Overrides
+///\{
+	void_t write(cptr_ctchar_t format, ...) const final;
+	void_t write(cLevel level, cptr_ctchar_t format, ...) const final;
+///\}
 
 xPLATFORM_IMPL:
     void_t _write_impl(std::ctstring_t &msg) const;

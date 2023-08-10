@@ -25,44 +25,47 @@ public:
     Container() = default;
     ~Container() = default;
 
+///\name Overrides
+///\{
 	// iterators
 	iterator
-	begin() override
+	begin() final
 	{
 		return &buff[0];
 	}
 
 	const_iterator
-	cbegin() const override
+	cbegin() const final
 	{
 		return &buff[0];
 	}
 
 	iterator
-	end() override
+	end() final
 	{
 		return &buff[ size() ];
 	}
 
 	const_iterator
-	cend() const override
+	cend() const final
 	{
 		return &buff[ size() ];
 	}
 
 	// capacity
 	size_type
-	size() const override
+	size() const final
 	{
 		return Utils::arraySizeT(buff);
 	}
 
 	// element access
 	pointer
-	data() override
+	data() final
 	{
 		return &buff[0];
 	}
+///\}
 
 public:
 	T buff[::buffSize] {};

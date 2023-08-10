@@ -30,7 +30,7 @@ public:
 	static Dir temp();
 ///\}
 
-///\name interfaces
+///\name Overrides
 ///\{
 	void_t print(std::tostream_t &stream) const final;
 ///\}

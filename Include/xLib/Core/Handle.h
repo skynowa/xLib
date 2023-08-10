@@ -79,23 +79,19 @@ public:
 	Handle & operator = (const Handle &handle);
 ///\}
 
-    T      get() const final;
-        ///< get
-    void_t set(const T &handle) final;
-        ///< set
-    T      clone() const final;
-        ///< duplicate handle
-    void_t setCloseOnExec(cbool_t flag);
+///\name Overrides
+///\{
+	T      get() const final;
+	void_t set(const T &handle) final;
+	T      clone() const final;
 		///< duplicate file descriptors from sub-processes
-
-    bool_t isValid() const final;
-        ///< is valid
-    void_t attach(const T &handle) final;
-        ///< attach
-    T      detach() final;
-        ///< detach
-    void_t close() final;
-        ///< close
+	bool_t isValid() const final;
+	void_t attach(const T &handle) final;
+	T      detach() final;
+	void_t close() final;
+///\}
+///
+	void_t setCloseOnExec(cbool_t flag);
 
 #if xENV_WIN
     ulong_t info() const;

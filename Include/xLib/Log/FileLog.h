@@ -46,10 +46,12 @@ public:
     std::tstring_t filePath() const;
         ///< get log path
 
-    void_t         write(cptr_ctchar_t format, ...) const final;
-        ///< write to log
-    void_t         write(cLevel level, cptr_ctchar_t format, ...) const final;
-        ///< write to log
+///\name Overrides
+///\{
+	void_t         write(cptr_ctchar_t format, ...) const final;
+	void_t         write(cLevel level, cptr_ctchar_t format, ...) const final;
+///\}
+
     void_t         clear() const;
         ///< clear content
     void_t         remove() const;

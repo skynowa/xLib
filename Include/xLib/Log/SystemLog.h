@@ -30,10 +30,11 @@ public:
 	SystemLog & operator << (const T &valueT);
 ///\}
 
-    void_t write(cptr_ctchar_t format, ...) const final;
-        ///< write to log
-    void_t write(cLevel level, cptr_ctchar_t format, ...) const final;
-        ///< write to log
+///\name Overrides
+///\{
+	void_t write(cptr_ctchar_t format, ...) const final;
+	void_t write(cLevel level, cptr_ctchar_t format, ...) const final;
+///\}
 
 private:
 #if xENV_WIN

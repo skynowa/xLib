@@ -20,11 +20,14 @@ public:
              Observer1() = default;
     virtual ~Observer1() = default;
 
-    void_t update(cint_t a_type, const T &a_message) final
-    {
-        ::type_all    += a_type;
-        ::message_all += a_message;
-    }
+///\name Overrides
+///\{
+	void_t update(cint_t a_type, const T &a_message) final
+	{
+		::type_all    += a_type;
+		::message_all += a_message;
+	}
+///\}
 };
 
 template<typename T>
@@ -35,11 +38,14 @@ public:
              Observer2() = default;
     virtual ~Observer2() = default;
 
-    void_t update(cint_t a_type, const T &a_message) final
-    {
-        ::type_all    += a_type;
-        ::message_all += a_message;
-    }
+///\name Overrides
+///\{
+	void_t update(cint_t a_type, const T &a_message) final
+	{
+		::type_all    += a_type;
+		::message_all += a_message;
+	}
+///\}
 };
 //-------------------------------------------------------------------------------------------------
 /* virtual */
