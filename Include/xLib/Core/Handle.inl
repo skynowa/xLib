@@ -213,35 +213,6 @@ Handle<T, typeT>::clone() const
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T, HandleType typeT>
-void_t
-Handle<T, typeT>::setCloseOnExec(
-	cbool_t a_flag
-)
-{
-   /**
-	* Dealing with Duplicate file Descriptors from Sub-Processes
-	*
-	* https://oroboro.com/file-handle-leaks-server/
-	*
-	* When you spawn subprocesses they inherit all the open file descriptors of the parent process
-	* unless those descriptors have been specifically flagged as FD_CLOEXEC
-	*
-	* This is because the operating system doesn’t know which file descriptors will be used by the
-	* subprocess for inter-process communication. Or if the subprocess will be the one that will
-	* handle an open network socket.
-	*
-	* Normally when you spawn subprocesses the only file descriptors that need to stay open are
-	* the pipes that are connected to STDIN, STDOUT, and STDERR of the child process. But every
-	* subprocess is different.
-	*
-	* Right before your server calls fork() or exec(), call showFdInfo() to make sure that all file
-	* descriptors are labeled FD_CLOEXEC except for the ones you need to be duplicated.
-	*/
-
-	_setCloseOnExec_impl(a_flag);
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T, HandleType typeT>
 bool_t
 Handle<T, typeT>::isValid() const
 {
@@ -379,6 +350,35 @@ Handle<T, typeT>::close()
     } // Impl
 
     _handle = null();
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T, HandleType typeT>
+void_t
+Handle<T, typeT>::setCloseOnExec(
+	cbool_t a_flag
+)
+{
+   /**
+	* Dealing with Duplicate file Descriptors from Sub-Processes
+	*
+	* https://oroboro.com/file-handle-leaks-server/
+	*
+	* When you spawn subprocesses they inherit all the open file descriptors of the parent process
+	* unless those descriptors have been specifically flagged as FD_CLOEXEC
+	*
+	* This is because the operating system doesn’t know which file descriptors will be used by the
+	* subprocess for inter-process communication. Or if the subprocess will be the one that will
+	* handle an open network socket.
+	*
+	* Normally when you spawn subprocesses the only file descriptors that need to stay open are
+	* the pipes that are connected to STDIN, STDOUT, and STDERR of the child process. But every
+	* subprocess is different.
+	*
+	* Right before your server calls fork() or exec(), call showFdInfo() to make sure that all file
+	* descriptors are labeled FD_CLOEXEC except for the ones you need to be duplicated.
+	*/
+
+	_setCloseOnExec_impl(a_flag);
 }
 //-------------------------------------------------------------------------------------------------
 

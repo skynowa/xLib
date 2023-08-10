@@ -28,8 +28,10 @@ public:
 	xNO_COPY_ASSIGN(Char)
 ///\}
 
+///\name Overrides
+///\{
 	const T &      get() const final;
-        ///< get character
+///\}
 
     bool_t         isAlphaNum() const;
         ///< Check is alphanumeric

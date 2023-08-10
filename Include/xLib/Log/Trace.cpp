@@ -1,6 +1,6 @@
 /**
- * \file   Trace.cpp
- * \brief  tracer
+ * \file  Trace.cpp
+ * \brief Tracing to debugger, std::cout
  */
 
 
