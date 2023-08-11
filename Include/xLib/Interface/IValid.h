@@ -22,12 +22,10 @@ public:
     virtual ~IValid() = default;
 ///\}
 
-    virtual explicit operator bool() const = 0;
-        ///< Check result
+    virtual bool_t isOk() const = 0;
+        ///< Result is success
 
 public:
-    bool_t isOk() const;
-        ///< Result is success
     bool_t isError() const;
         ///< Result is error
 };
