@@ -19,7 +19,7 @@ public:
 
 ///\name Overrides
 ///\{
-	explicit operator bool() const final
+	bool_t isOk() const final
 	{
 		return true;
 	}
@@ -46,7 +46,6 @@ Test_IData::unit()
         Data d;
 
         m_bRv = d.isOk();
-        xTEST(static_cast<bool_t>(d));
         xTEST(m_bRv);
 
         d.clear();
