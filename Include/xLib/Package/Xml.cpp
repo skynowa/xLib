@@ -50,28 +50,6 @@ XmlDoc::~XmlDoc()
 	_close();
 }
 //-------------------------------------------------------------------------------------------------
-int_t
-XmlDoc::code() const
-{
-	return _code;
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-XmlDoc::isOk() const
-{
-    return (code() == XML_ERR_OK);
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-XmlDoc::str() const
-{
-	cint_t          error     = code();
-	// TODO: XmlDoc::str - get error description
-    std::ctstring_t errorDesc = isOk() ? xT("Success") : xT("");
-
-    return Format::str(xT("{} - \"{}\""), error, errorDesc);
-}
-//-------------------------------------------------------------------------------------------------
 void
 XmlDoc::registerNss(
 	std::cmap_tstring_t &a_nss
@@ -306,105 +284,9 @@ XmlDoc::_onError(
 	xmlErrorPtr  a_error    ///< XML error
 )
 {
-	xTEST_PTR(a_ctx);
-	xTEST_PTR(a_error);
+	XmlError error(a_ctx, a_error);
 
-	auto xmlDoc = static_cast<XmlDoc *>(a_ctx);
-
-	if (a_error->code == XML_ERR_OK) {
-		return;
-	}
-
-	cint_t domain = a_error->domain;
-	cint_t code   = a_error->code;
-
-	std::tstring_t level;
-	{
-		const std::map<xmlErrorLevel, std::tstring_t> levels
-		{
-			{XML_ERR_NONE,    xT("")},
-			{XML_ERR_WARNING, xT("Warning")},
-			{XML_ERR_ERROR,   xT("Error")},
-			{XML_ERR_FATAL,   xT("Fatal")}
-		};
-
-		auto it = levels.find(a_error->level);
-		if (it != levels.cend()) {
-			level = it->second;
-		} else {
-			level = xT("Unknown");
-		}
-	}
-
-	std::tstring_t file;
-	{
-		if (a_error->file != nullptr) {
-			file = a_error->file;
-		}
-	}
-
-	int_t line {};
-	int_t column {};
-	{
-		if (a_error->domain == XML_FROM_PARSER) {
-			line   = a_error->line;
-			column = a_error->int2;
-		}
-	}
-
-	std::tstring_t element;
-	{
-		if (a_error->node != nullptr) {
-			if (((xmlNodePtr)a_error->node)->type == XML_ELEMENT_NODE) {
-				auto node_name = (cptr_ctchar_t)((xmlNodePtr)a_error->node)->name;
-
-				element = node_name;
-			}
-		}
-	}
-
-	std::ctstring_t msg = String::trimSpace(a_error->message);
-
-	std::tstring_t msgExtra1;
-	std::tstring_t msgExtra2;
-	std::tstring_t msgExtra3;
-	{
-		if (a_error->domain == XML_FROM_XPATH) {
-			if (a_error->str1 != nullptr) {
-				msgExtra1 = a_error->str1;
-			}
-			if (a_error->str2 != nullptr) {
-				msgExtra2 = a_error->str2;
-			}
-			if (a_error->str3 != nullptr) {
-				msgExtra3 = a_error->str3;
-			}
-		}
-	}
-
-	std::ctstring_t str = Format::str(
-		xT("LibXML2 ver:    {}\n")
-		xT("domain:         {}\n")
-		xT("code:           {}\n")
-		xT("level:          {}\n")
-		xT("file:           {}\n")
-		xT("line:           {}\n")
-		xT("column:         {}\n")
-		xT("element:        {}\n")
-		xT("message:        {}\n")
-		xT("message extra1: {}\n")
-		xT("message extra2: {}\n")
-		xT("message extra3: {}\n"),
-		LIBXML_VERSION, domain, code, level, file, line, column, element,
-			msg, msgExtra1, msgExtra2, msgExtra3);
-
-	// [out]
-	{
-		xmlDoc->_code = code;
-		xmlDoc->_str  = str;
-
-		std::tcout << str << std::endl;
-	}
+	std::tcout << error.str() << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -706,6 +588,142 @@ XmlNode::_text(
     Utils::freeT(content, ::xmlFree, nullptr);
 
     return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+
+/**************************************************************************************************
+*   XmlError
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+XmlError::XmlError(
+	void        *a_ctx,     ///< user data
+	xmlErrorPtr  a_error    ///< XML error
+)
+{
+	xTEST_PTR(a_ctx);
+	xTEST_PTR(a_error);
+
+	const auto xmlDoc = static_cast<XmlDoc *>(a_ctx);
+	xUNUSED(xmlDoc);
+
+	if (a_error->code == XML_ERR_OK) {
+		return;
+	}
+
+	cint_t domain = a_error->domain;
+	cint_t code   = a_error->code;
+
+	std::tstring_t level;
+	{
+		const std::map<xmlErrorLevel, std::tstring_t> levels
+		{
+			{XML_ERR_NONE,    xT("")},
+			{XML_ERR_WARNING, xT("Warning")},
+			{XML_ERR_ERROR,   xT("Error")},
+			{XML_ERR_FATAL,   xT("Fatal")}
+		};
+
+		auto it = levels.find(a_error->level);
+		if (it != levels.cend()) {
+			level = it->second;
+		} else {
+			level = xT("Unknown");
+		}
+	}
+
+	std::tstring_t file;
+	{
+		if (a_error->file != nullptr) {
+			file = a_error->file;
+		}
+	}
+
+	int_t line {};
+	int_t column {};
+	{
+		if (a_error->domain == XML_FROM_PARSER) {
+			line   = a_error->line;
+			column = a_error->int2;
+		}
+	}
+
+	std::tstring_t element;
+	{
+		if (a_error->node != nullptr) {
+			if (((xmlNodePtr)a_error->node)->type == XML_ELEMENT_NODE) {
+				auto node_name = (cptr_ctchar_t)((xmlNodePtr)a_error->node)->name;
+
+				element = node_name;
+			}
+		}
+	}
+
+	std::ctstring_t msg = String::trimSpace(a_error->message);
+
+	std::tstring_t msgExtra1;
+	std::tstring_t msgExtra2;
+	std::tstring_t msgExtra3;
+	{
+		if (a_error->domain == XML_FROM_XPATH) {
+			if (a_error->str1 != nullptr) {
+				msgExtra1 = a_error->str1;
+			}
+
+			if (a_error->str2 != nullptr) {
+				msgExtra2 = a_error->str2;
+			}
+
+			if (a_error->str3 != nullptr) {
+				msgExtra3 = a_error->str3;
+			}
+		}
+	}
+
+	std::ctstring_t str = Format::str(
+		xT("LibXML2 ver:    {}\n")
+		xT("domain:         {}\n")
+		xT("code:           {}\n")
+		xT("level:          {}\n")
+		xT("file:           {}\n")
+		xT("line:           {}\n")
+		xT("column:         {}\n")
+		xT("element:        {}\n")
+		xT("message:        {}\n")
+		xT("message extra1: {}\n")
+		xT("message extra2: {}\n")
+		xT("message extra3: {}\n"),
+		LIBXML_VERSION, domain, code, level, file, line, column, element,
+			msg, msgExtra1, msgExtra2, msgExtra3);
+
+	// [out]
+	{
+		_code = code;
+		_str  = str;
+	}
+}
+//-------------------------------------------------------------------------------------------------
+int_t
+XmlError::code() const
+{
+	return _code;
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+XmlError::isOk() const
+{
+    return (code() == XML_ERR_OK);
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+XmlError::str() const
+{
+	cint_t          error     = code();
+	/// TODO: XmlDoc::str - get error description
+    std::ctstring_t errorDesc = isOk() ? xT("Success") : xT("");
+
+    return Format::str(xT("{} - \"{}\""), error, errorDesc);
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -20,6 +20,7 @@ public:
 ///\name ctors, dtor
 ///\{
 			 ILastError() = default;
+			 ILastError(const CodeT code, std::ctstring_t &str);
 	virtual ~ILastError() = default;
 ///\}
 

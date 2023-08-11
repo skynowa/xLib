@@ -21,8 +21,7 @@ namespace xl::package
 //-------------------------------------------------------------------------------------------------
 class XmlNode;
 
-class XmlDoc :
-	public xl::interface_::ILastError<int_t>
+class XmlDoc
 {
 public:
 ///\name ctors, dtor
@@ -32,13 +31,6 @@ public:
 
 	xNO_DEFAULT_CONSTRUCT(XmlDoc);
 	xNO_COPY_ASSIGN(XmlDoc);
-///\}
-
-///\name Overrides
-///\{
-	int_t          code() const final;
-	bool_t         isOk() const final;
-	std::tstring_t str() const final;	/// TOOD: fix
 ///\}
 
 	void           registerNss(std::cmap_tstring_t &nss);
@@ -111,6 +103,27 @@ private:
     std::tstring_t _name(xmlNodePtr node);
     static
     std::tstring_t _text(xmlNodePtr node);
+};
+//-------------------------------------------------------------------------------------------------
+class XmlError :
+	public xl::interface_::ILastError<int_t>
+{
+public:
+///\name ctors, dtor
+///\{
+              XmlError(void *ctx, xmlErrorPtr error);
+	virtual  ~XmlError() = default;
+
+	xNO_DEFAULT_CONSTRUCT(XmlError);
+	xNO_COPY_ASSIGN(XmlError);
+///\}
+
+///\name Overrides
+///\{
+	int_t          code() const final;
+	bool_t         isOk() const final;
+	std::tstring_t str() const final;	/// TODO: fix
+///\}
 };
 //-------------------------------------------------------------------------------------------------
 } // namespace
