@@ -7,12 +7,14 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Interface/ICompare.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
 {
 
 template<typename T>
-class Double
+class Double :
+	public ICompare<T>
     ///< Double's operations
 {
 public:
@@ -25,17 +27,15 @@ public:
 	virtual ~Double();
 ///\}
 
+///\name Overrides
+///\{
+	int_t compare(const T &value) const final;
+///\}
+
 ///\name operators
 ///\{
 	Double & operator = (const Double &value);
 	Double & operator = (Double &&value);
-
-	bool_t   operator <  (const Double &value) const;
-	bool_t   operator >  (const Double &value) const;
-	bool_t   operator <= (const Double &value) const;
-	bool_t   operator >= (const Double &value) const;
-	bool_t   operator == (const Double &value) const;
-	bool_t   operator != (const Double &value) const;
 ///\}
 
 	// methods
@@ -72,7 +72,6 @@ using dlongdouble_t = Double<long double>;
  * 			IEquatable<double>,
  * 			IFormattable
  * TODO: delimiter
- * DONE: operators <,>,==,<=,=>
  * TODO: str()
  * TODO: isInfinite()
  *
