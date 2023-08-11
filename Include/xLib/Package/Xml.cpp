@@ -670,9 +670,11 @@ XmlError::XmlError(
 			if (a_error->str1 != nullptr) {
 				msgExtra1 = a_error->str1;
 			}
+
 			if (a_error->str2 != nullptr) {
 				msgExtra2 = a_error->str2;
 			}
+
 			if (a_error->str3 != nullptr) {
 				msgExtra3 = a_error->str3;
 			}
