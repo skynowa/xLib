@@ -378,12 +378,7 @@ XmlDoc::_onError(
 
 	// [out]
 	{
-	#if 0
-		xmlDoc->_code = code;
-		xmlDoc->_str  = str;
-	#else
 		XmlError error(code, str);
-	#endif
 
 		std::tcout << error.str() << std::endl;
 	}
