@@ -9,6 +9,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Interface/IStr.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::debug
 {
@@ -22,7 +23,8 @@ struct StackTraceData
 };
 xUSING_CONST(StackTraceData);
 
-class StackTrace
+class StackTrace :
+	public IStr
     /// stack trace
 {
 public:
@@ -35,8 +37,11 @@ public:
     xNO_COPY_ASSIGN(StackTrace)
 ///\}
 
-    std::tstring_t str() const;
-        ///< get stack trace with format output
+///\name Overrides
+///\{
+	std::tstring_t str() const final;
+		///< get stack trace with format output
+///\}
 
 private:
     cStackTraceData _data {}; ///< data

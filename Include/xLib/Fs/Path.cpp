@@ -120,9 +120,15 @@ Path::trashDir()
 void_t
 Path::print(
 	std::tostream_t &out_stream
-) const /* override */
+) const /* final */
 {
 	out_stream << str();
+}
+//-------------------------------------------------------------------------------------------------
+std::ctstring_t &
+Path::str() const /* final */
+{
+    return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -140,12 +146,6 @@ Path::isAbsolute() const
     xCHECK_RET(_filePath.at(0) == Const::slash().at(0), true);
 
     return _isAbsolute_impl();
-}
-//-------------------------------------------------------------------------------------------------
-std::ctstring_t &
-Path::str() const
-{
-    return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t

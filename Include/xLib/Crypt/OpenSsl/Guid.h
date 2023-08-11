@@ -10,11 +10,13 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Interface/IStr.h>
 //---------------------------------------------------------------------------
 namespace xl::crypt
 {
 
-class Guid
+class Guid :
+	public IStr
     /// GUID (globally unique identifier)
 {
 public:
@@ -26,8 +28,11 @@ public:
 	xNO_COPY_ASSIGN(Guid)
 ///\}
 
-	std::tstring_t str() const;
+///\name Overrides
+///\{
+	std::tstring_t str() const final;
 		///< generate GUID string
+///\}
 };
 
 } // namespace

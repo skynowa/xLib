@@ -12,7 +12,7 @@ namespace xl::interface_
 {
 
 class IStr
-    /// Get as string
+    /// Get as string by value
 {
 public:
 ///\name ctors, dtor
@@ -22,6 +22,20 @@ public:
 ///\}
 
     virtual std::tstring_t str() const = 0;
+        ///< Get as string
+};
+//-------------------------------------------------------------------------------------------------
+class IStrConstRef
+    /// Get as string by const reference
+{
+public:
+///\name ctors, dtor
+///\{
+             IStrConstRef() = default;
+    virtual ~IStrConstRef() = default;
+///\}
+
+    virtual std::ctstring_t &str() const = 0;
         ///< Get as string
 };
 

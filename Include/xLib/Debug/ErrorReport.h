@@ -8,13 +8,15 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Debug/SourceInfo.h>
+#include <xLib/Interface/IStr.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::debug
 {
 
 class SourceInfo;
 
-class ErrorReport
+class ErrorReport :
+	public IStrConstRef
     /// debug report
 {
 public:
@@ -40,10 +42,14 @@ public:
     xNO_COPY_ASSIGN(ErrorReport)
 ///\}
 
+///\name Overrides
+///\{
+	std::ctstring_t & str() const final;
+		///< report message
+///\}
+///
     Type           type() const;
         ///< report type
-    std::ctstring_t & str() const;
-        ///< report message
 
 private:
     Type           _type {Type::Unknown}; ///< report type

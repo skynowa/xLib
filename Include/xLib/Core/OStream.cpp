@@ -17,7 +17,7 @@ namespace xl::core
 
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-OStream::str() const
+OStream::str() const /* final */
 {
 	return _os.str();
 }
