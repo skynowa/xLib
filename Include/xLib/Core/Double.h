@@ -7,12 +7,16 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Interface/ICompare.h>
+#include <xLib/Interface/IGet.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
 {
 
 template<typename T>
-class Double
+class Double :
+	public ICompare<T>,
+	public IGetConstRef<T>
     ///< Double's operations
 {
 public:
@@ -25,22 +29,18 @@ public:
 	virtual ~Double();
 ///\}
 
+///\name Overrides
+///\{
+	int_t    compare(const T &value) const final;
+	const T &get() const final;
+///\}
+
 ///\name operators
 ///\{
 	Double & operator = (const Double &value);
 	Double & operator = (Double &&value);
-
-	bool_t   operator <  (const Double &value) const;
-	bool_t   operator >  (const Double &value) const;
-	bool_t   operator <= (const Double &value) const;
-	bool_t   operator >= (const Double &value) const;
-	bool_t   operator == (const Double &value) const;
-	bool_t   operator != (const Double &value) const;
 ///\}
 
-	// methods
-	const T &get() const;
-		///< get native value
 	bool_t   isNull() const;
 		///< compare values
 	T	     safeDiv(const T value, const T value_default = {}) const;
@@ -48,9 +48,9 @@ public:
     void_t   clear();
         ///< set to 0
 
-	// static
-    static
-    bool_t   isEqual(const T value1, const T value2);
+xPUBLIC_STATIC:
+	static
+	bool_t   isEqual(const T value1, const T value2);
 
 private:
     T _value {};
@@ -72,7 +72,6 @@ using dlongdouble_t = Double<long double>;
  * 			IEquatable<double>,
  * 			IFormattable
  * TODO: delimiter
- * DONE: operators <,>,==,<=,=>
  * TODO: str()
  * TODO: isInfinite()
  *
