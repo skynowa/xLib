@@ -1,6 +1,6 @@
 /**
- * \file   Test_Double.cpp
- * \brief  test Double
+ * \file  Test_Double.cpp
+ * \brief test Double
  */
 
 
