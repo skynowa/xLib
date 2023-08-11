@@ -59,7 +59,7 @@ Double<T>::compare(
 	const T &a_value
 ) const /* final */
 {
-	return static_cast<int_t>( isEqual(_value, a_value) );
+	return isEqual(_value, a_value) ? 0 : 1;
 }
 //-------------------------------------------------------------------------------------------------
 
