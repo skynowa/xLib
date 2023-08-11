@@ -287,7 +287,7 @@ XmlDoc::_onError(
 	xTEST_PTR(a_ctx);
 	xTEST_PTR(a_error);
 
-	auto xmlDoc = static_cast<XmlDoc *>(a_ctx);
+	const auto xmlDoc = static_cast<XmlDoc *>(a_ctx);
 
 	if (a_error->code == XML_ERR_OK) {
 		return;
