@@ -10,12 +10,14 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Interface/IPrinter.h>
+#include <xLib/Interface/IStr.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
 
 class Path final :
-	public IPrinter<std::tostream_t>
+	public IPrinter<std::tostream_t>,
+	public IStrConstRef
     /// file system path
 {
 public:
@@ -48,15 +50,13 @@ public:
 
 ///\name Overrides
 ///\{
-	void_t print(std::tostream_t &stream) const final;
+	void_t            print(std::tostream_t &stream) const final;
+    std::ctstring_t & str() const final;
+        ///< file path
 ///\}
 
     bool_t         isAbsolute() const;
         ///< is absolute
-
-    std::ctstring_t & str() const;
-        ///< file path
-
     std::tstring_t volume() const;
         ///< get drive
     std::tstring_t dir() const;

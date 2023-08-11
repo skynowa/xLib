@@ -35,14 +35,14 @@ Enum<T>::Enum(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline T
-Enum<T>::get() const
+Enum<T>::get() const /* final */
 {
 	return _value;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline std::tstring_t
-Enum<T>::str() const
+Enum<T>::str() const /* final */
 {
 	return std::to_tstring( static_cast<::ssize_t>(_value) );
 }

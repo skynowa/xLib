@@ -9,11 +9,13 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Double.h>
+#include <xLib/Interface/IStr.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
 {
 
-class OStream
+class OStream :
+	public IStr
     ///< print string
 {
 public:
@@ -25,7 +27,11 @@ public:
 	xNO_COPY_ASSIGN(OStream)
 ///\}
 
-    std::tstring_t str() const;
+///\name Overrides
+///\{
+	std::tstring_t str() const final;
+///\}
+
     void_t         str(std::ctstring_t &value);
     void_t         clear();
 

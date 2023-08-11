@@ -15,12 +15,16 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/OStream.h>
+#include <xLib/Interface/IStr.h>
+#include <xLib/Interface/IGet.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
 {
 
 template<typename T>
-class Enum
+class Enum :
+	public IStr,
+	public IGetValue<T>
     /// Enumeration
 {
 public:
@@ -35,8 +39,12 @@ public:
 	xNO_COPY_ASSIGN(Enum)
 ///\}
 
-    T              get() const;
-    std::tstring_t str() const;
+///\name Overrides
+///\{
+    T              get() const final;
+	std::tstring_t str() const final;
+///\}
+
     std::ssize_t   value() const;
     std::tstring_t name() const;
         ///< TODO: gen enum strs

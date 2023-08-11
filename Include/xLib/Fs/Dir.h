@@ -9,12 +9,14 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Const.h>
 #include <xLib/Interface/IPrinter.h>
+#include <xLib/Interface/IStr.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
 
 class Dir final :
-	public IPrinter<std::tostream_t>
+	public IPrinter<std::tostream_t>,
+	public IStrConstRef
     /// directory
 {
 public:
@@ -32,11 +34,10 @@ public:
 
 ///\name Overrides
 ///\{
-	void_t print(std::tostream_t &stream) const final;
+	void_t            print(std::tostream_t &stream) const final;
+    std::ctstring_t & str() const final;
 ///\}
 
-    std::ctstring_t & str() const;
-        ///< directory path
 
     bool_t isExists() const;
         ///< check for existence

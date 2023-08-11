@@ -29,7 +29,7 @@ namespace xl::crypt
 
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Guid::str() const
+Guid::str() const /* final */
 {
 	std::csize_t guidHyphenatedSize {36};
 
