@@ -718,7 +718,7 @@ std::tstring_t
 XmlError::str() const
 {
 	cint_t          error     = code();
-	// TODO: XmlDoc::str - get error description
+	/// TODO: XmlDoc::str - get error description
     std::ctstring_t errorDesc = isOk() ? xT("Success") : xT("");
 
     return Format::str(xT("{} - \"{}\""), error, errorDesc);
