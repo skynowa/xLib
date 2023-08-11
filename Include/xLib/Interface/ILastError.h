@@ -20,7 +20,10 @@ public:
 ///\name ctors, dtor
 ///\{
 			 ILastError() = default;
+			 ILastError(const CodeT code, std::ctstring_t &str);
 	virtual ~ILastError() = default;
+
+	xNO_COPY_ASSIGN(ILastError);
 ///\}
 
     virtual CodeT          code() const = 0;

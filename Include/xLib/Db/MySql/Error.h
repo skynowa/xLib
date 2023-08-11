@@ -21,7 +21,7 @@ class Error :
 public:
 ///\name ctors, dtor
 ///\{
-			 Error(const Connection &conn);
+	explicit Error(const Connection &conn);
 			 Error(const Connection &conn, std::ctstring_t &sql);
 	virtual ~Error() = default;
 

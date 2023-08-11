@@ -14,6 +14,16 @@ namespace xl::interface_
 
 //-------------------------------------------------------------------------------------------------
 template<typename CodeT>
+ILastError<CodeT>::ILastError(
+	const CodeT      a_code,
+	std::ctstring_t &a_str
+) :
+	_code{a_code},
+	_str {a_str}
+{
+}
+//-------------------------------------------------------------------------------------------------
+template<typename CodeT>
 bool_t
 ILastError<CodeT>::isError() const
 {
