@@ -111,7 +111,7 @@ class XmlError :
 public:
 ///\name ctors, dtor
 ///\{
-	explicit  XmlError(cint_t code, std::ctstring_t &str);
+              XmlError(void *ctx, xmlErrorPtr error);
 	virtual  ~XmlError() = default;
 
 	xNO_DEFAULT_CONSTRUCT(XmlError);
