@@ -8,13 +8,15 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Interface/ICompare.h>
+#include <xLib/Interface/IGet.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
 {
 
 template<typename T>
 class Double :
-	public ICompare<T>
+	public ICompare<T>,
+	public IGetConstRef<T>
     ///< Double's operations
 {
 public:
@@ -29,7 +31,8 @@ public:
 
 ///\name Overrides
 ///\{
-	int_t compare(const T &value) const final;
+	int_t    compare(const T &value) const final;
+	const T &get() const final;
 ///\}
 
 ///\name operators
@@ -38,9 +41,6 @@ public:
 	Double & operator = (Double &&value);
 ///\}
 
-	// methods
-	const T &get() const;
-		///< get native value
 	bool_t   isNull() const;
 		///< compare values
 	T	     safeDiv(const T value, const T value_default = {}) const;
@@ -48,9 +48,9 @@ public:
     void_t   clear();
         ///< set to 0
 
-	// static
-    static
-    bool_t   isEqual(const T value1, const T value2);
+xPUBLIC_STATIC:
+	static
+	bool_t   isEqual(const T value1, const T value2);
 
 private:
     T _value {};
