@@ -35,7 +35,7 @@ public:
 	std::map_tstring_t & get() final;
 ///\}
 
-///\name Creations
+///\name File's
 ///\{
     void_t read();
         ///< parse file
@@ -49,7 +49,7 @@ public:
         ///< delete
 ///\}
 
-///\name Key's actions
+///\name Key's
 ///\{
     bool_t keyIsExists(std::ctstring_t &key) const;
         ///< is exists
