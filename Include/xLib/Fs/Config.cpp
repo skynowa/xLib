@@ -86,9 +86,7 @@ Config::clear()
 {
 	_config.clear();
 
-    FileIO file(_filePath);
-    file.open(FileIO::OpenMode::Write);
-    file.clear();
+	File(_filePath).clear();
 }
 //-------------------------------------------------------------------------------------------------
 void_t

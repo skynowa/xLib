@@ -27,6 +27,7 @@ public:
 
 ///\name actions
 ///\{
+    void_t clear() const;
     void_t remove() const;
     void_t tryRemove(std::csize_t attempts, culong_t timeoutMsec) const;
     void_t wipe(std::csize_t passes) const;

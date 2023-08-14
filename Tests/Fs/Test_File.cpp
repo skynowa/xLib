@@ -21,6 +21,11 @@ Test_File::unit()
     *
     *******************************************************************************/
 
+    xTEST_CASE("clear")
+    {
+        File(filePath).clear();
+    }
+
     xTEST_CASE("remove")
     {
         File(filePath).remove();
