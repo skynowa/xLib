@@ -31,12 +31,11 @@ Config::Config() :
 Config::Config(
     std::ctstring_t &a_filePath
 ) :
-	_filePath {a_filePath},
     _separator{ Const::equal() },
 	_fileInfo (a_filePath),
 	_file     (a_filePath)
 {
-    xTEST(!_filePath.empty());
+    xTEST(!a_filePath.empty());
     xTEST(!_separator.empty());
 }
 //-------------------------------------------------------------------------------------------------
