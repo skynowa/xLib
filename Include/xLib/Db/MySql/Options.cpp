@@ -7,6 +7,7 @@
 #include <xLib/Db/MySql/Options.h>
 
 #include <xLib/Core/Type/Types.h>
+#include <xLib/Fs/Config.h>
 //-------------------------------------------------------------------------------------------------
 namespace
 {
@@ -69,6 +70,24 @@ Options::Options(
 	isCompress  {a_isCompress},
 	options     {a_options}
 {
+}
+//-------------------------------------------------------------------------------------------------
+Options::Options(
+	std::ctstring_t &a_configPath	///< Config file path
+)
+{
+	Config config(a_configPath);
+	config.read();
+
+	host       = config.value(xT("host"),       xT("127.0.0.1"));
+	user       = config.value(xT("user"),       xT(""));
+	password   = config.value(xT("password"),   xT(""));
+	db         = config.value(xT("db"),         xT(""));
+	port       = config.value(xT("port"),       3306U);
+	unixSocket = config.value(xT("unixSocket"), xT(""));
+	charset    = config.value(xT("charset"),    xT("utf8mb4"));
+	isCompress = config.value(xT("isCompress"), true);
+	options    = ::optionsDefault;
 }
 //-------------------------------------------------------------------------------------------------
 
