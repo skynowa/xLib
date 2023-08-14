@@ -34,7 +34,8 @@ Config::Config(
     std::ctstring_t &a_filePath
 ) :
 	_filePath {a_filePath},
-    _separator{ Const::equal() }
+    _separator{ Const::equal() },
+	_fileInfo (a_filePath)
 {
     xTEST(!_filePath.empty());
     xTEST(!_separator.empty());
@@ -55,7 +56,7 @@ Config::get()
 void_t
 Config::read()
 {
-    if ( !FileInfo(_filePath).isExists() ) {
+    if ( !_fileInfo.isExists() ) {
 		return;
     }
 
