@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Interface/IGet.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Fs/FileInfo.h>
@@ -15,7 +16,8 @@
 namespace xl::fs
 {
 
-class Config
+class Config :
+	public IGetRef<std::map_tstring_t>
     /// config file
 {
 public:
@@ -28,8 +30,11 @@ public:
 	xNO_COPY_ASSIGN(Config)
 ///\}
 
-    std::map_tstring_t & get();
-        ///< get inner local_storage_t, may be used with bFlush
+///\name Overrides
+///\{
+	std::map_tstring_t & get() final;
+		///< get inner local_storage_t, may be used with bFlush
+///\}
 
 ///\name Creations
 ///\{
