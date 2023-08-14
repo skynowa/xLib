@@ -42,7 +42,7 @@ Config::Config(
 /* virtual */
 Config::~Config()
 {
-    save();
+    write();
 }
 //-------------------------------------------------------------------------------------------------
 std::map_tstring_t &
@@ -61,7 +61,7 @@ Config::read()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::save() const
+Config::write() const
 {
 	xCHECK_DO(_config.empty(), return);
 
@@ -69,14 +69,14 @@ Config::save() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::saveDefault(
+Config::writeDefault(
     std::cmap_tstring_t &a_content
 )
 {
     xTEST_NA(a_content);
 
     _config = a_content;
-    save();
+    write();
 }
 //-------------------------------------------------------------------------------------------------
 void_t

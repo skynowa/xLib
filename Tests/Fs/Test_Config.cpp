@@ -42,16 +42,16 @@ Test_Config::unit()
 
     Config config(filePath);
 
-    xTEST_CASE("saveDefault,read")
+    xTEST_CASE("writeDefault,read")
     {
-        config.saveDefault(content);
+        config.writeDefault(content);
         config.read();
         xTEST(!config.get().empty());
 
         config.clear();
     }
 
-    xTEST_CASE("get, save")
+    xTEST_CASE("get, write")
     {
         auto &values = config.get();
         xTEST(values.empty());
@@ -60,7 +60,7 @@ Test_Config::unit()
         values[key2] = value2;
         values[key3] = value3;
 
-        config.save();
+        config.write();
 
         m_sRv = config.value(key1, std::tstring_t());
         xTEST_EQ(m_sRv, value1);
@@ -72,7 +72,7 @@ Test_Config::unit()
         xTEST_EQ(m_sRv, value3);
 
         config.get().clear();
-        config.save();
+        config.write();
     }
 
     xTEST_CASE("keyIsExists")
@@ -84,7 +84,7 @@ Test_Config::unit()
         values[key2] = value2;
         values[key3] = value3;
 
-        config.save();
+        config.write();
 
         // true
         {
@@ -126,7 +126,7 @@ Test_Config::unit()
         }
 
         config.get().clear();
-        config.save();
+        config.write();
     }
 
     xTEST_CASE("get/set - cptr_ctchar_t")

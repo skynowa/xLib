@@ -39,10 +39,10 @@ public:
 ///\{
     void_t read();
         ///< parse file
-    void_t save() const;
-        ///< save
-    void_t saveDefault(std::cmap_tstring_t &content);
-        ///< save default file
+    void_t write() const;
+        ///< write
+    void_t writeDefault(std::cmap_tstring_t &content);
+        ///< write default file
     void_t clear();
         ///< clear content
     void_t remove();
