@@ -28,39 +28,39 @@ public:
 	xNO_COPY_ASSIGN(Config)
 ///\}
 
-///\name Creations
-///\{
     std::map_tstring_t & get();
         ///< get inner local_storage_t, may be used with bFlush
 
-    void_t            read();
+///\name Creations
+///\{
+    void_t read();
         ///< parse file
-    void_t            save() const;
+    void_t save() const;
         ///< save
-    void_t            saveDefault(std::cmap_tstring_t &content);
+    void_t saveDefault(std::cmap_tstring_t &content);
         ///< save default file
-    void_t            clear();
+    void_t clear();
         ///< clear content
-    void_t            remove();
+    void_t remove();
         ///< delete
 ///\}
 
 ///\name Key's actions
 ///\{
-    bool_t            keyIsExists(std::ctstring_t &key) const;
+    bool_t keyIsExists(std::ctstring_t &key) const;
         ///< is exists
-    void_t            keyClear(std::ctstring_t &key);
+    void_t keyClear(std::ctstring_t &key);
         ///< clear value
-    void_t            keyDelete(std::ctstring_t &key);
+    void_t keyDelete(std::ctstring_t &key);
         ///< delete key and value
 ///\}
 
 ///\name Get/set values
 ///\{
     template<typename T>
-    T                 value(std::ctstring_t &key, const T defaultValue);
+    T      value(std::ctstring_t &key, const T defaultValue);
     template<typename T>
-    void_t            setValue(std::ctstring_t &key, const T value);
+    void_t setValue(std::ctstring_t &key, const T value);
 ///\}
 
 private:
