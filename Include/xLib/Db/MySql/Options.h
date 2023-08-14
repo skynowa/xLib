@@ -40,8 +40,6 @@ public:
     virtual ~Options() = default;
 ///\}
 
-///\name Config data (options)
-///\{
 	std::tstring_t host;
 		///< host name or an IP address.
 		///< If host is empty (NULL or the empty string "") or the string "localhost",
@@ -62,7 +60,6 @@ public:
 		///< Use compression in the client/server protocol
 	std::map<mysql_option, cptr_cvoid_t> options;
 		///< extra options
-///\}
 };
 
 } // namespace
