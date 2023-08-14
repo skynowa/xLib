@@ -31,11 +31,12 @@ class Options
 public:
 ///\name ctors, dtor
 ///\{
-            Options();
-            Options(std::ctstring_t &host, std::ctstring_t &user, std::ctstring_t &password,
-                std::ctstring_t &db, cuint_t port, std::ctstring_t &unixSocket,
-                std::ctstring_t &charset, cbool_t isCompress,
-                const std::map<mysql_option, cptr_cvoid_t> &options);
+             Options();
+             Options(std::ctstring_t &host, std::ctstring_t &user, std::ctstring_t &password,
+                 std::ctstring_t &db, cuint_t port, std::ctstring_t &unixSocket,
+                 std::ctstring_t &charset, cbool_t isCompress,
+                 const std::map<mysql_option, cptr_cvoid_t> &options);
+    explicit Options(std::ctstring_t &configPath);
     virtual ~Options() = default;
 ///\}
 

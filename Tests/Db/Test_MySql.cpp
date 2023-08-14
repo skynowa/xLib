@@ -12,17 +12,10 @@ class FabricaOptions :
 	public mysql::Options
 {
 public:
-	FabricaOptions() :
-		mysql::Options(
-			xT("mysql-api-master.office.fabrica.net.ua"),
-			xT("triptake"),
-			xT("inae4Ees"),
-			xT("triptake"),
-			3306,
-			{},
-			xT("utf8mb4"),
-			true,
-			{})
+	explicit FabricaOptions(
+		std::ctstring_t &a_configPath
+	) :
+		Options(a_configPath)
 	{
 	}
 
@@ -46,15 +39,9 @@ Test_MySql::unit()
 		return true;
 	}
 
-	/// TODO: "Access denied for user..." - temp off
-	if (true) {
-		Cout() << "Temp off - skip";
-		return true;
-	}
-
 	using namespace mysql;
 
-	FabricaOptions options;
+	FabricaOptions options(xT("/home/skynowa/Fabrica/Configs/Db/DB_dev.cfg"));
 	Db             db(options);
 	Connection     conn(options);
 
