@@ -164,7 +164,8 @@ Test_MySql::unit()
 			result.fetchRows(&rows);
 
 			for (const auto &it_row : rows) {
-				Cout() << xSTD_TRACE_VAR(it_row);
+				xUNUSED(it_row);
+				// Cout() << xSTD_TRACE_VAR(it_row);
 			}
 
 		}
