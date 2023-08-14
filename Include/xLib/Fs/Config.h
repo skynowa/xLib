@@ -28,8 +28,6 @@ public:
 
 ///\name Creations
 ///\{
-    std::ctstring_t & path() const;
-        ///< get file path
     void_t            setPath(std::ctstring_t &filePath);
         ///< set file path
     std::map_tstring_t & get();

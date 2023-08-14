@@ -50,14 +50,6 @@ Config::~Config()
     save();
 }
 //-------------------------------------------------------------------------------------------------
-std::ctstring_t &
-Config::path() const
-{
-    xTEST(!_filePath.empty());
-
-    return _filePath;
-}
-//-------------------------------------------------------------------------------------------------
 void_t
 Config::setPath(
     std::ctstring_t &a_filePath
@@ -79,11 +71,11 @@ Config::get()
 void_t
 Config::read()
 {
-    if ( !FileInfo(path()).isExists() ) {
+    if ( !FileInfo(_filePath).isExists() ) {
 		return;
     }
 
-    File(path()).textRead(_separator, &_config);
+    File(_filePath).textRead(_separator, &_config);
     _config.erase(Const::strEmpty());
 }
 //-------------------------------------------------------------------------------------------------
@@ -92,7 +84,7 @@ Config::save() const
 {
 	xCHECK_DO(_config.empty(), return);
 
-    File(path()).textWrite(_separator, _config, FileIO::OpenMode::Write);
+    File(_filePath).textWrite(_separator, _config, FileIO::OpenMode::Write);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -111,7 +103,7 @@ Config::clear()
 {
 	_config.clear();
 
-    FileIO file(path());
+    FileIO file(_filePath);
     file.open(FileIO::OpenMode::Write);
     file.clear();
 }
@@ -120,7 +112,7 @@ void_t
 Config::remove()
 {
     // file
-    File(path()).remove();
+    File(_filePath).remove();
 
     // std::map_tstring_t
     _config.clear();
