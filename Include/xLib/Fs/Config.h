@@ -64,7 +64,6 @@ public:
 private:
     std::ctstring_t    _separator;  ///< separator between key and value
     std::ctstring_t    _fileExt;    ///< file extension
-
     std::tstring_t     _filePath;   ///< file path to file
     std::map_tstring_t _config;     ///< std::map of keys and values
 };
