@@ -10,8 +10,7 @@
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/FileIO.h>
-#include <xLib/Fs/File.h>
-#include <xLib/Fs/FileInfo.h>
+
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
 
@@ -35,7 +34,8 @@ Config::Config(
 ) :
 	_filePath {a_filePath},
     _separator{ Const::equal() },
-	_fileInfo (a_filePath)
+	_fileInfo (a_filePath),
+	_file     (a_filePath)
 {
     xTEST(!_filePath.empty());
     xTEST(!_separator.empty());
@@ -58,7 +58,7 @@ Config::read()
 {
 	xCHECK_DO(!_fileInfo.isExists(), return);
 
-    File(_filePath).textRead(_separator, &_config);
+    _file.textRead(_separator, &_config);
     _config.erase(Const::strEmpty());
 }
 //-------------------------------------------------------------------------------------------------
@@ -67,7 +67,7 @@ Config::save() const
 {
 	xCHECK_DO(_config.empty(), return);
 
-    File(_filePath).textWrite(_separator, _config, FileIO::OpenMode::Write);
+    _file.textWrite(_separator, _config, FileIO::OpenMode::Write);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -86,14 +86,14 @@ Config::clear()
 {
 	_config.clear();
 
-	File(_filePath).clear();
+	_file.clear();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Config::remove()
 {
     // file
-    File(_filePath).remove();
+    _file.remove();
 
     // std::map_tstring_t
     _config.clear();

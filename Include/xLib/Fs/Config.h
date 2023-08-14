@@ -9,6 +9,8 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
+#include <xLib/Fs/FileInfo.h>
+#include <xLib/Fs/File.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
@@ -67,6 +69,7 @@ private:
     std::map_tstring_t _config;     ///< std::map of keys and values
 
     FileInfo _fileInfo;
+    File     _file;
 };
 
 } // namespace
