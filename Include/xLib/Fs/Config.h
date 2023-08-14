@@ -67,12 +67,13 @@ public:
     void_t setValue(std::ctstring_t &key, const T value);
 ///\}
 
-private:
-    std::ctstring_t    _separator;  ///< separator between key and value
-    std::map_tstring_t _config;     ///< std::map of keys and values
+xPRIVATE_STATIC:
+    static std::ctstring_t _separator; ///< separator between key and value
 
-    FileInfo _fileInfo;
-    File     _file;
+private:
+    FileInfo           _fileInfo;
+    File               _file;
+    std::map_tstring_t _config; ///< std::map of keys and values
 };
 
 } // namespace
