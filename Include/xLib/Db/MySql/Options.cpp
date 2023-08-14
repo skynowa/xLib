@@ -37,15 +37,15 @@ namespace xl::db::mysql
 
 //-------------------------------------------------------------------------------------------------
 Options::Options() :
-	host        {xT("127.0.0.1")},
-	user        {},
-	password    {},
-	db          {},
-	port        {3306},
-	unixSocket  {},
-	charset     {xT("utf8mb4")},
-	isCompress  {true},
-	options     {::optionsDefault}
+	host      {xT("127.0.0.1")},
+	user      {},
+	password  {},
+	db        {},
+	port      {3306},
+	unixSocket{},
+	charset   {xT("utf8mb4")},
+	isCompress{true},
+	options   {::optionsDefault}
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -60,15 +60,15 @@ Options::Options(
 	cbool_t          a_isCompress,
 	const std::map<mysql_option, cptr_cvoid_t> &a_options
 ) :
-	host        {a_host},
-	user        {a_user},
-	password    {a_password},
-	db          {a_db},
-	port        {a_port},
-	unixSocket  {a_unixSocket},
-	charset     {a_charset},
-	isCompress  {a_isCompress},
-	options     {a_options}
+	host      {a_host},
+	user      {a_user},
+	password  {a_password},
+	db        {a_db},
+	port      {a_port},
+	unixSocket{a_unixSocket},
+	charset   {a_charset},
+	isCompress{a_isCompress},
+	options   {a_options}
 {
 }
 //-------------------------------------------------------------------------------------------------
