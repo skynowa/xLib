@@ -33,7 +33,6 @@ public:
 ///\name Overrides
 ///\{
 	std::map_tstring_t & get() final;
-		///< get inner local_storage_t, may be used with bFlush
 ///\}
 
 ///\name Creations
