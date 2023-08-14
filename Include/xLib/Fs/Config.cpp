@@ -41,25 +41,13 @@ Config::Config(
     xTEST(_filePath.empty());
     xTEST(!a_filePath.empty());
 
-    setPath( Path(a_filePath).setExt(_fileExt).str() );
+    _filePath = Path(a_filePath).setExt(_fileExt).str();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 Config::~Config()
 {
     save();
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Config::setPath(
-    std::ctstring_t &a_filePath
-)
-{
-    xTEST(!a_filePath.empty());
-
-    Dir( Path(a_filePath).dir() ).pathCreate();
-
-    _filePath = a_filePath;
 }
 //-------------------------------------------------------------------------------------------------
 std::map_tstring_t &

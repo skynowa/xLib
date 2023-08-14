@@ -28,8 +28,6 @@ public:
 
 ///\name Creations
 ///\{
-    void_t            setPath(std::ctstring_t &filePath);
-        ///< set file path
     std::map_tstring_t & get();
         ///< get inner local_storage_t, may be used with bFlush
 
