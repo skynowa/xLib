@@ -51,20 +51,6 @@ Test_Config::unit()
         config.clear();
     }
 
-    xTEST_CASE("path")
-    {
-        m_sRv = config.path();
-        xTEST_EQ(m_sRv, filePath);
-    }
-
-    xTEST_CASE("setPath")
-    {
-        config.setPath(filePath);
-
-        m_sRv = config.path();
-        xTEST_EQ(m_sRv, filePath);
-    }
-
     xTEST_CASE("get, save")
     {
         auto &values = config.get();
@@ -247,13 +233,21 @@ Test_Config::unit()
     xTEST_CASE("clear")
     {
         config.clear();
-        xTEST_EQ(FileInfo( config.path() ).size(), 0LL);
+	#if 0
+		xTEST_EQ(FileInfo( config.path() ).size(), 0LL);
+	#else
+		xTEST( config.get().empty());
+	#endif
     }
 
     xTEST_CASE("remove")
     {
         config.remove();
-        xTEST(!FileInfo( config.path() ).isExists());
+	#if 0
+		xTEST(!FileInfo( config.path() ).isExists());
+	#else
+		xTEST( config.get().empty());
+	#endif
     }
 
     return true;

@@ -33,15 +33,11 @@ Config::Config() :
 Config::Config(
     std::ctstring_t &a_filePath
 ) :
-    _separator{ Const::equal() },
-    _fileExt  { Path::fileExt(Path::FileExt::Config) }
+	_filePath {a_filePath},
+    _separator{ Const::equal() }
 {
+    xTEST(!_filePath.empty());
     xTEST(!_separator.empty());
-    xTEST(!_fileExt.empty());
-    xTEST(_filePath.empty());
-    xTEST(!a_filePath.empty());
-
-    _filePath = Path(a_filePath).setExt(_fileExt).str();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
