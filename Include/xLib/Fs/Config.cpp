@@ -56,9 +56,7 @@ Config::get()
 void_t
 Config::read()
 {
-    if ( !_fileInfo.isExists() ) {
-		return;
-    }
+	xCHECK_DO(!_fileInfo.isExists(), return);
 
     File(_filePath).textRead(_separator, &_config);
     _config.erase(Const::strEmpty());
