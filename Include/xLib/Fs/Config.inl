@@ -77,9 +77,10 @@ Config::setValue(
 	else {
 		Cout() << xSTD_TRACE_VAR(a_value);
 
-	    _config[a_key] = a_value;
+		value = a_value;
 	}
 
+	// [out]
 	_config[a_key] = value;
 }
 //-------------------------------------------------------------------------------------------------
