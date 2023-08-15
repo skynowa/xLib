@@ -21,9 +21,21 @@ Test_File::unit()
     *
     *******************************************************************************/
 
+    xTEST_CASE("clear")
+    {
+        File(filePath).textWrite(xT("xxx"), FileIO::OpenMode::Write);
+
+        File(filePath).clear();
+        xTEST(FileInfo(filePath).isExists());
+        xTEST_EQ(FileInfo(filePath).size(), 0LL);
+    }
+
     xTEST_CASE("remove")
     {
+        File(filePath).textWrite(xT("yyy"), FileIO::OpenMode::Write);
+
         File(filePath).remove();
+        xTEST(!FileInfo(filePath).isExists());
     }
 
 	/*******************************************************************************

@@ -7,13 +7,17 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Interface/IGet.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
+#include <xLib/Fs/FileInfo.h>
+#include <xLib/Fs/File.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
 
-class Config
+class Config :
+	public IGetRef<std::map_tstring_t>
     /// config file
 {
 public:
@@ -26,51 +30,50 @@ public:
 	xNO_COPY_ASSIGN(Config)
 ///\}
 
-///\name Creations
+///\name Overrides
 ///\{
-    std::ctstring_t & path() const;
-        ///< get file path
-    void_t            setPath(std::ctstring_t &filePath);
-        ///< set file path
-    std::map_tstring_t & get();
-        ///< get inner local_storage_t, may be used with bFlush
+	std::map_tstring_t & get() final;
+///\}
 
-    void_t            read();
+///\name File's
+///\{
+    void_t read();
         ///< parse file
-    void_t            save() const;
-        ///< save
-    void_t            saveDefault(std::cmap_tstring_t &content);
-        ///< save default file
-    void_t            clear();
+    void_t write() const;
+        ///< write
+    void_t writeDefault(std::cmap_tstring_t &content);
+        ///< write default file
+    void_t clear();
         ///< clear content
-    void_t            remove();
+    void_t remove();
         ///< delete
 ///\}
 
-///\name Key's actions
+///\name Key's
 ///\{
-    bool_t            keyIsExists(std::ctstring_t &key) const;
+    bool_t keyIsExists(std::ctstring_t &key) const;
         ///< is exists
-    void_t            keyClear(std::ctstring_t &key);
+    void_t keyClear(std::ctstring_t &key);
         ///< clear value
-    void_t            keyDelete(std::ctstring_t &key);
+    void_t keyDelete(std::ctstring_t &key);
         ///< delete key and value
 ///\}
 
 ///\name Get/set values
 ///\{
     template<typename T>
-    T                 value(std::ctstring_t &key, const T defaultValue);
+    T      value(std::ctstring_t &key, const T defaultValue);
     template<typename T>
-    void_t            setValue(std::ctstring_t &key, const T value);
+    void_t setValue(std::ctstring_t &key, const T value);
 ///\}
 
-private:
-    std::ctstring_t    _separator;  ///< separator between key and value
-    std::ctstring_t    _fileExt;    ///< file extension
+xPRIVATE_STATIC:
+    static std::ctstring_t _separator; ///< separator between key and value
 
-    std::tstring_t     _filePath;   ///< file path to file
-    std::map_tstring_t _config;     ///< std::map of keys and values
+private:
+    FileInfo           _fileInfo;
+    File               _file;
+    std::map_tstring_t _config; ///< std::map of keys and values
 };
 
 } // namespace

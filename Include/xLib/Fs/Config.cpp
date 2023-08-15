@@ -8,16 +8,13 @@
 
 #include <xLib/Core/String.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/Fs/Dir.h>
-#include <xLib/Fs/FileIO.h>
-#include <xLib/Fs/File.h>
-#include <xLib/Fs/FileInfo.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
 
-
 namespace xl::fs
 {
+
+std::ctstring_t Config::_separator = Const::equal();
 
 /**************************************************************************************************
 *    public: creation
@@ -33,45 +30,21 @@ Config::Config() :
 Config::Config(
     std::ctstring_t &a_filePath
 ) :
-    _separator{ Const::equal() },
-    _fileExt  { Path::fileExt(Path::FileExt::Config) }
+	_fileInfo(a_filePath),
+	_file    (a_filePath)
 {
-    xTEST(!_separator.empty());
-    xTEST(!_fileExt.empty());
-    xTEST(_filePath.empty());
     xTEST(!a_filePath.empty());
-
-    setPath( Path(a_filePath).setExt(_fileExt).str() );
+    xTEST(!_separator.empty());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 Config::~Config()
 {
-    save();
-}
-//-------------------------------------------------------------------------------------------------
-std::ctstring_t &
-Config::path() const
-{
-    xTEST(!_filePath.empty());
-
-    return _filePath;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Config::setPath(
-    std::ctstring_t &a_filePath
-)
-{
-    xTEST(!a_filePath.empty());
-
-    Dir( Path(a_filePath).dir() ).pathCreate();
-
-    _filePath = a_filePath;
+    write();
 }
 //-------------------------------------------------------------------------------------------------
 std::map_tstring_t &
-Config::get()
+Config::get() /*  final */
 {
     return _config;
 }
@@ -79,51 +52,43 @@ Config::get()
 void_t
 Config::read()
 {
-    if ( !FileInfo(path()).isExists() ) {
-		return;
-    }
+	xCHECK_DO(!_fileInfo.isExists(), return);
 
-    File(path()).textRead(_separator, &_config);
+    _file.textRead(_separator, &_config);
     _config.erase(Const::strEmpty());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::save() const
+Config::write() const
 {
 	xCHECK_DO(_config.empty(), return);
 
-    File(path()).textWrite(_separator, _config, FileIO::OpenMode::Write);
+    _file.textWrite(_separator, _config, FileIO::OpenMode::Write);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Config::saveDefault(
+Config::writeDefault(
     std::cmap_tstring_t &a_content
 )
 {
     xTEST_NA(a_content);
 
     _config = a_content;
-    save();
+    write();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Config::clear()
 {
 	_config.clear();
-
-    FileIO file(path());
-    file.open(FileIO::OpenMode::Write);
-    file.clear();
+	_file.clear();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Config::remove()
 {
-    // file
-    File(path()).remove();
-
-    // std::map_tstring_t
     _config.clear();
+    _file.remove();
 }
 //-------------------------------------------------------------------------------------------------
 

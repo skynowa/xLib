@@ -43,12 +43,26 @@ File::~File()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
+File::clear() const
+{
+    FileInfo info(_filePath);
+    xCHECK_DO(!info.isExists(), return);
+
+    // Write, clear
+    {
+        FileIO file(_filePath);
+        file.open(FileIO::OpenMode::Write);
+        file.clear();
+    }
+}
+//-------------------------------------------------------------------------------------------------
+void_t
 File::remove() const
 {
     FileInfo info(_filePath);
     xCHECK_DO(!info.isExists(), return);
 
-    // TODO: [skynowa] maybe not work ?
+    /// TODO: [skynowa] maybe not work ???!!!
     info.chmod(FileInfo::PermissionMode::Write);
 
     int_t iRv = xTREMOVE(_filePath.c_str());
