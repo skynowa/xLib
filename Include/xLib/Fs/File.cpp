@@ -48,12 +48,12 @@ File::clear() const
     FileInfo info(_filePath);
     xCHECK_DO(!info.isExists(), return);
 
-	// Write, clear
-	{
-	    FileIO file(_filePath);
-		file.open(FileIO::OpenMode::Write);
-		file.clear();
-	}
+    // Write, clear
+    {
+        FileIO file(_filePath);
+        file.open(FileIO::OpenMode::Write);
+        file.clear();
+    }
 }
 //-------------------------------------------------------------------------------------------------
 void_t
