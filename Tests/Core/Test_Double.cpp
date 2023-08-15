@@ -87,6 +87,35 @@ Test_Double::unit()
         }
     }
 
+    xTEST_CASE("operator <=, >=")
+    {
+        const Data3<double_t, double_t, bool_t> data[]
+        {
+          {10.5,   11.0,   true},
+          {10.0,   10.0,   true},
+          {10.4,   10.0,   false},
+          {0.0,    0.0,    true},
+          {-10.4, -10.0,   true},
+          {-10.4, -10.4,   true},
+          {-10.5, -11.0,   false},
+          {-10.6, -11.0,   false},
+          {994.11, 995.07, true},
+          {84.71,  84.71,  true}
+        };
+
+        for (const auto &it_data : data) {
+          ddouble_t f(it_data.test1);
+
+          // <=
+          m_bRv = (f <= it_data.test2);
+          xTEST(m_bRv == it_data.expect);
+
+          // >=
+          m_bRv = (f > it_data.test2);
+          xTEST(m_bRv != it_data.expect);
+        }
+    }
+
     xTEST_CASE("Ops")
     {
 	#if 0
