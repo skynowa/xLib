@@ -236,7 +236,7 @@ Test_Config::unit()
         config.clear();
         xTEST( config.get().empty());
         xTEST(FileInfo(filePath).isExists());
-        xTEST_EQ(FileInfo(filePath).size(), 0LL);
+        xTEST(FileInfo(filePath).isEmpty());
     }
 
     xTEST_CASE("remove")
