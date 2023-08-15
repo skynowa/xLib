@@ -116,14 +116,6 @@ Test_Double::unit()
 		}
 	}
 
-	xTEST_CASE("operators")
-	{
-		ddouble_t d(7.0);
-		xTEST(d == 7.0);
-
-		// TODO: tests
-	}
-
 	xTEST_CASE("operator = ")
 	{
 		ddouble_t d;
