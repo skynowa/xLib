@@ -145,7 +145,7 @@ Test_Double::unit()
 		};
 
 		for (const auto &it_data : data) {
-			cbool_t bRv = (bool_t)it_data[2];
+			const auto bRv = static_cast<bool_t>( it_data[2] );
 			m_bRv = ddouble_t::isEqual(it_data[0], it_data[1]);
 			xTEST_EQ(m_bRv, bRv);
 		}
