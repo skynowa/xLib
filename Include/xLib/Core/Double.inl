@@ -59,7 +59,15 @@ Double<T>::compare(
 	const T &a_value
 ) const /* final */
 {
-	return isEqual(_value, a_value) ? 0 : 1;
+	if (_value < a_value) {
+		return - 1;
+	}
+
+	if (_value > a_value) {
+		return 1;
+	}
+
+	return 0;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
