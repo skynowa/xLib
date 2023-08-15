@@ -233,21 +233,16 @@ Test_Config::unit()
     xTEST_CASE("clear")
     {
         config.clear();
-	#if 0
-		xTEST_EQ(FileInfo( config.path() ).size(), 0LL);
-	#else
-		xTEST( config.get().empty());
-	#endif
+        xTEST( config.get().empty());
+        xTEST(FileInfo(filePath).isExists());
+        xTEST_EQ(FileInfo(filePath).size(), 0LL);
     }
 
     xTEST_CASE("remove")
     {
         config.remove();
-	#if 0
-		xTEST(!FileInfo( config.path() ).isExists());
-	#else
-		xTEST( config.get().empty());
-	#endif
+        xTEST( config.get().empty());
+        xTEST(!FileInfo(filePath).isExists());
     }
 
     return true;
