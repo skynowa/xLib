@@ -207,7 +207,7 @@ Test_FileIO::unit()
         file.setPosition(0, FileIO::PointerPosition::Begin);
         file.writeChar(ch);
 
-        file.setPosition(0, FileIO::PointerPosition::Begin);
+        file.setPosition(0, FileIO::PointerPosition::End);
         file.ungetChar(ch);
     }
 
