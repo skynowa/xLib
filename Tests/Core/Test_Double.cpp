@@ -118,9 +118,16 @@ Test_Double::unit()
 
 	xTEST_CASE("operator = ")
 	{
+		cdouble_t test {7.0};
+
+		ddouble_t value(test);
+
 		ddouble_t d;
-		d = 7.0;
-		xTEST(d == 7.0);
+		d = value;
+		xTEST(d == test);
+
+		d = std::move(value);
+		xTEST(d == test);
 	}
 
 	xTEST_CASE("isEqual")
