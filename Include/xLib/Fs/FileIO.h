@@ -82,56 +82,61 @@ public:
     xNO_COPY_ASSIGN(FileIO)
 ///\}
 
-    // open, get
-    void_t         open(cOpenMode mode, cbool_t isBuffering = true);
-        ///< open
-    HandleStdFile &get();
-        ///< get handle
-    int_t          getNative() const;
-        ///< get native file descriptor associated with a stream
-    std::tstring_t path() const;
-        ///< get file path
+///\name open, get
+///\{
+	void_t         open(cOpenMode mode, cbool_t isBuffering = true);
+		///< open
+	HandleStdFile &get();
+		///< get handle
+	int_t          getNative() const;
+		///< get native file descriptor associated with a stream
+	std::tstring_t path() const;
+		///< get file path
+///\}
 
-    // read, write
-    void_t         setVBuff(cBufferingMode mode, char *buff, std::csize_t size) const;
-        ///< change stream buffering
-    size_t         read(void_t *buff, std::csize_t count) const;
-        ///< read block of data
-    size_t         write(cptr_cvoid_t, std::csize_t count) const;
-        ///< write block of data
-    void_t         read(std::ustring_t *buff) const;
-        ///< read to std::ustring_t
-    void_t         write(std::custring_t &buff) const;
-        ///< write from std::ustring_t
-    void_t         read(std::tstring_t *buff) const;
-        ///< read to std::tstring_t
-    int_t          scanf(cptr_ctchar_t format, ...) const;
-        ///< read formatted variables (as vfscanf)
-    int_t          write(cptr_ctchar_t format, ...) const;
-        ///< write formatted output to stream
-    int_t          writeV(cptr_ctchar_t format, va_list arg) const;
-        ///< write formatted variable argument list to stream
+///\name read, write
+///\{
+	void_t         setVBuff(cBufferingMode mode, char *buff, std::csize_t size) const;
+		///< change stream buffering
+	size_t         read(void_t *buff, std::csize_t count) const;
+		///< read block of data
+	size_t         write(cptr_cvoid_t, std::csize_t count) const;
+		///< write block of data
+	void_t         read(std::ustring_t *buff) const;
+		///< read to std::ustring_t
+	void_t         write(std::custring_t &buff) const;
+		///< write from std::ustring_t
+	void_t         read(std::tstring_t *buff) const;
+		///< read to std::tstring_t
+	int_t          scanf(cptr_ctchar_t format, ...) const;
+		///< read formatted variables (as vfscanf)
+	int_t          write(cptr_ctchar_t format, ...) const;
+		///< write formatted output to stream
+	int_t          writeV(cptr_ctchar_t format, va_list arg) const;
+		///< write formatted variable argument list to stream
 
-    void_t         readLine(std::tstring_t *str, std::csize_t maxCount) const;
-        ///< read string to newline or to the end of file
-    void_t         writeLine(std::ctstring_t &str) const;
-        ///< write string and end of line
-    tchar_t        readChar() const;
-        ///< get character
-    void_t         writeChar(ctchar_t ch) const;
-        ///< write character
-    void_t         ungetChar(ctchar_t ch) const;
-        ///< unget character from stream
-    void_t         clear() const;
-        ///< clear content
+	void_t         readLine(std::tstring_t *str, std::csize_t maxCount) const;
+		///< read string to newline or to the end of file
+	void_t         writeLine(std::ctstring_t &str) const;
+		///< write string and end of line
+	tchar_t        readChar() const;
+		///< get character
+	void_t         writeChar(ctchar_t ch) const;
+		///< write character
+	void_t         ungetChar(ctchar_t ch) const;
+		///< unget character from stream
+	void_t         clear() const;
+		///< clear content
+///\}
 
-    // other
-    void_t         locking(cLockingMode mode, clong_t bytes);
-        ///< locks or unlocks bytes of a file
-    void_t         setPosition(clong_t offset, cPointerPosition pos) const;
-        ///< set stream position indicator
-    long_t         position() const;
-        ///< get current position in stream
+///\name other
+///\{
+	void_t         locking(cLockingMode mode, clong_t bytes);
+		///< locks or unlocks bytes of a file
+	void_t         setPosition(clong_t offset, cPointerPosition pos) const;
+		///< set stream position indicator
+	long_t         position() const;
+		///< get current position in stream
 
     longlong_t     size() const;
         ///< get file size
@@ -139,20 +144,25 @@ public:
         ///< is empty
     void_t         setSize(clonglong_t bytes) const;
         ///< changes the file size
+///\}
 
-    // error handling
-    bool_t         isEof() const;
-        ///< check end of file indicator
-    bool_t         isError() const;
-        ///< check error indicator
-    void_t         clearError() const;
-        ///< clear error indicators
+///\name error handling
+///\{
+	bool_t         isEof() const;
+		///< check end of file indicator
+	bool_t         isError() const;
+		///< check error indicator
+	void_t         clearError() const;
+		///< clear error indicators
+///\}
 
-    // closing
-    void_t         flush() const;
-        ///< flush
-    void_t         close();
-        ///< close
+///\name closing
+///\{
+	void_t         flush() const;
+		///< flush
+	void_t         close();
+		///< close
+///\}
 
 private:
     HandleStdFile   _handle;   ///< file handle
