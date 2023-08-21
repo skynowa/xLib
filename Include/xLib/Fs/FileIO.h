@@ -168,8 +168,6 @@ xPRIVATE_STATIC:
         ///< get stream by handle
     static std::tstring_t _openMode(cOpenMode mode);
         ///< get open mode as string, by default use "r"
-
-    friend class FileTemp;  ///< temporary file
 };
 
 } // namespace
