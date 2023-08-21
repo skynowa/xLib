@@ -135,12 +135,12 @@ public:
 
     longlong_t     size() const;
         ///< get file size
+    bool_t         isEmpty() const;
+        ///< is empty
     void_t         setSize(clonglong_t bytes) const;
         ///< changes the file size
 
     // error handling
-    bool_t         isEmpty() const;
-        ///< is empty
     bool_t         isEof() const;
         ///< check end of file indicator
     bool_t         isError() const;

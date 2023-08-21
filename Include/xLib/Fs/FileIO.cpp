@@ -381,6 +381,15 @@ FileIO::size() const
     return static_cast<longlong_t>( streamSize );
 }
 //-------------------------------------------------------------------------------------------------
+bool_t
+FileIO::isEmpty() const
+{
+    clonglong_t fileSize = size();
+    xTEST_DIFF(fileSize, - 1LL);
+
+    return (fileSize == 0LL);
+}
+//-------------------------------------------------------------------------------------------------
 void_t
 FileIO::setSize(
     clonglong_t a_bytes
@@ -406,15 +415,6 @@ FileIO::setSize(
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-bool_t
-FileIO::isEmpty() const
-{
-    clonglong_t fileSize = size();
-    xTEST_DIFF(fileSize, - 1LL);
-
-    return (fileSize == 0LL);
-}
 //-------------------------------------------------------------------------------------------------
 bool_t
 FileIO::isEof() const
