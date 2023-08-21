@@ -175,8 +175,4 @@ xPRIVATE_STATIC:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 // TODO: [skynowa] get objects (Path, FileInfo)
-
-// TODO: [skynowa] - xNO ...
-// xNO_DEFAULT_CONSTRUCT(Path)
-// xNO_COPY_ASSIGN(Path)
 //-------------------------------------------------------------------------------------------------
