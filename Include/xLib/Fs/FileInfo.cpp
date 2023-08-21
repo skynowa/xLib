@@ -86,7 +86,11 @@ FileInfo::lines() const
     ulonglong_t ullRv {};
 
     std::tifstream_t ifs(xT2A(_filePath), std::ios::in);
-    xCHECK_RET(!ifs || ifs.fail() || !ifs.good() || !ifs.is_open() || ifs.eof(), 0LL);
+    xCHECK_RET(!ifs,           0LL);
+    xCHECK_RET(ifs.fail(),     0LL);
+    xCHECK_RET(!ifs.good(),    0LL);
+    xCHECK_RET(!ifs.is_open(), 0LL);
+    xCHECK_RET(ifs.eof(),      0LL);
 
     for (tchar_t chChar {}; ifs.get(chChar); ) {
         xCHECK_DO(chChar == xT('\n'), ++ ullRv);
