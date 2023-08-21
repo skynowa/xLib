@@ -88,8 +88,7 @@ FileInfo::lines() const
     std::tifstream_t ifs(xT2A(_filePath), std::ios::in);
     xCHECK_RET(!ifs || ifs.fail() || !ifs.good() || !ifs.is_open() || ifs.eof(), 0LL);
 
-    tchar_t chChar {};
-    for (ullRv = 0LL; ifs.get(chChar); ) {
+    for (tchar_t chChar {}; ifs.get(chChar); ) {
         xCHECK_DO(chChar == xT('\n'), ++ ullRv);
     }
 
