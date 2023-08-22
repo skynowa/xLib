@@ -43,7 +43,7 @@ Query::store() const
 {
 	exec();
 
-	return StoreResult( const_cast<Connection &>(_conn) );
+	return StoreResult(_conn);
 }
 //-------------------------------------------------------------------------------------------------
 UseResult
@@ -51,7 +51,7 @@ Query::use() const
 {
 	exec();
 
-	return UseResult( const_cast<Connection &>(_conn) );
+	return UseResult(_conn);
 }
 //-------------------------------------------------------------------------------------------------
 

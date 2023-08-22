@@ -38,7 +38,7 @@ Error::code() const
 {
     xTEST(_conn.get().isValid());
 
-    return ::mysql_errno( const_cast<Connection &>(_conn).get().get() );
+    return ::mysql_errno( _conn.get().get() );
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
