@@ -17,8 +17,8 @@ class Db
 public:
 ///\name ctors, dtor
 ///\{
-			 Db(const Options &options);
-	virtual ~Db() = default;
+	explicit  Db(const Options &options);
+	virtual  ~Db() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Db)
 	xNO_COPY_ASSIGN(Db)
