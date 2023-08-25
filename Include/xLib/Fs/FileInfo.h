@@ -108,7 +108,6 @@ xPLATFORM_IMPL:
  * - Encoding - UTF-8, ISO-8859-1, ...
  * - Flags
  * - Type/Extention (CMake, sh, ...)
- * - isSymlink()
  * - DirInfo
  * - `file`, `ls` - Linux utils
  */
