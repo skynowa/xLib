@@ -128,6 +128,11 @@ public:
 //-------------------------------------------------------------------------------------------------
 } // namespace
 //-------------------------------------------------------------------------------------------------
-
-// TODO: findContent
-// https://github.com/unnonouno/iconvpp/blob/master/iconv.hpp
+/**
+ * TODO:
+ *
+ * - findContent
+ * - https://github.com/unnonouno/iconvpp/blob/master/iconv.hpp
+ * - XmlNode - toMap, fromMap (map_unsorted_t)
+ */
+//-------------------------------------------------------------------------------------------------
