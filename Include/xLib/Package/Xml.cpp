@@ -620,7 +620,7 @@ XmlError::XmlError(
 
 	std::tstring_t level;
 	{
-		const std::map<xmlErrorLevel, std::tstring_t> levels
+		const std::map<xmlErrorLevel, cptr_ctchar_t> levels
 		{
 			{XML_ERR_NONE,    xT("")},
 			{XML_ERR_WARNING, xT("Warning")},
