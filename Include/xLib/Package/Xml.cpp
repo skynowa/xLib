@@ -441,8 +441,14 @@ XmlNode::texts(
 	}
 }
 //-------------------------------------------------------------------------------------------------
+std::size_t
+XmlNode::childSize() const
+{
+	return ::xmlChildElementCount(_node);
+}
+//-------------------------------------------------------------------------------------------------
 void
-XmlNode::childrenMap(
+XmlNode::childMap(
 	std::ctstring_t    &a_xpath,
 	std::map_tstring_t &a_values
 ) const

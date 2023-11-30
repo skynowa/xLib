@@ -148,7 +148,35 @@ Test_Xml::unit()
         }
     }
 
-    xTEST_CASE("XmlNode::childrenMap")
+    xTEST_CASE("XmlNode::childSize")
+    {
+        std::ctstring_t filePath = data().testDirPath + "/Package/Xml/2.xml";
+
+        std::map<std::tstring_t, std::size_t> data
+        {
+            {xT("Items"),  3},
+            {xT("BedsID"), 0},
+            {xT("Price"),  0}
+        };
+
+        XmlDoc doc("UTF-8");
+        doc.parseFile(filePath);
+
+        XmlNode root;
+        doc.getRootNode(root);
+
+        XmlNode avail;
+        root.node("/AvailabilitySearchResult", avail);
+        xTEST_EQ(avail.childSize(), 9);
+
+		for (const auto &[it_tag, it_size] : data) {
+			XmlNode item;
+			root.node("/AvailabilitySearchResult/" + it_tag, item);
+			xTEST_EQ(item.childSize(), it_size);
+		}
+    }
+
+    xTEST_CASE("XmlNode::childMap")
     {
         std::ctstring_t filePath = data().testDirPath + "/Package/Xml/2.xml";
 
@@ -171,7 +199,7 @@ Test_Xml::unit()
         doc.getRootNode(root);
 
         std::map_tstring_t results;
-        root.childrenMap("/AvailabilitySearchResult", results);
+        root.childMap("/AvailabilitySearchResult", results);
         xTEST_EQ(results.size(), expect.size());
         xTEST_EQ(results, expect);
     }

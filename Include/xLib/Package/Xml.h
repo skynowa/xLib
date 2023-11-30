@@ -87,7 +87,8 @@ public:
 	void           nodes(std::ctstring_t &xpath, std::vector<XmlNode> &values) const;
 	void           texts(std::ctstring_t &xpath, std::vec_tstring_t &values) const;
 
-	void           childrenMap(std::ctstring_t &xpath, std::map_tstring_t &values) const;
+	std::size_t    childSize() const;
+	void           childMap(std::ctstring_t &xpath, std::map_tstring_t &values) const;
 
 	std::tstring_t attribute(std::ctstring_t &name) const;
 	void           attributes(std::map_tstring_t &values) const;
