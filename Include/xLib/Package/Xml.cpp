@@ -55,8 +55,8 @@ XmlDoc::registerNss(
 	std::cmap_tstring_t &a_nss
 )
 {
-	for (const auto &[prefix, path] : a_nss) {
-		_nss.insert( {prefix, path} );
+	for (const auto &[it_prefix, it_path] : a_nss) {
+		_nss.insert( {it_prefix, it_path} );
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -169,7 +169,7 @@ XmlDoc::isValidLight(
     * <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
     */
 
-	std::ctstring_t xmlDeclBegin = xT("<?xml");
+	std::ctstring_t xmlDeclBegin = xT("<?xml ");
 
 	if (a_str.size() <= xmlDeclBegin.size()) {
 		return false;
