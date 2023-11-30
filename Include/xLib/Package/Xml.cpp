@@ -169,14 +169,14 @@ XmlDoc::isValidLight(
     * <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
     */
 
-	std::ctstring_t xml_declaration_begin = xT("<?xml");
+	std::ctstring_t xmlDeclBegin = xT("<?xml");
 
-	if (a_str.size() <= xml_declaration_begin.size()) {
+	if (a_str.size() <= xmlDeclBegin.size()) {
 		return false;
 	}
 
-	std::ctstring_t str = a_str.substr(0, xml_declaration_begin.size());
-	if (str != xml_declaration_begin) {
+	std::ctstring_t str = a_str.substr(0, xmlDeclBegin.size());
+	if (str != xmlDeclBegin) {
 		return false;
 	}
 
@@ -370,7 +370,7 @@ XmlNode::node(
     std::vector<XmlNode> _nodes;
     nodes(a_xpath, _nodes);
 
-    a_value = *_nodes.cbegin();
+    a_value = _nodes.front();
 }
 //-------------------------------------------------------------------------------------------------
 void
