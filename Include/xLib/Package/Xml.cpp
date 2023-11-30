@@ -175,7 +175,7 @@ XmlDoc::isValidLight(
 		return false;
 	}
 
-	std::ctstring_t str = a_str.substr(0, xmlDeclBegin.size());
+	std::ctstring_t &str = a_str.substr(0, xmlDeclBegin.size());
 	if (str != xmlDeclBegin) {
 		return false;
 	}
