@@ -455,9 +455,6 @@ XmlNode::childMap(
 {
 	a_values.clear();
 
-	std::vector<XmlNode> values;
-	nodes(a_xpath, values);
-
     for (xmlNodePtr it_node = _node->children; it_node != nullptr; it_node = it_node->next) {
         if (it_node->type != XML_ELEMENT_NODE) {
             continue;
