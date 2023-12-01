@@ -40,7 +40,7 @@ public:
 
 
 	void           saveToFile(std::ctstring_t &filePath) const;
-	std::tstring_t format(std::ctstring_t &charset) const;
+	std::tstring_t format(std::ctstring_t &toCharset) const;
 
 xPUBLIC_STATIC:
 	static bool_t  isValidLight(std::ctstring_t &str);

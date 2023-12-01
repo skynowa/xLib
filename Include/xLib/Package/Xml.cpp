@@ -80,6 +80,7 @@ XmlDoc::parse(
 
 	xTEST_PTR(_doc);
 
+	// [out]
 	_rootNode(out_root);
 }
 //-------------------------------------------------------------------------------------------------
@@ -94,6 +95,7 @@ XmlDoc::parseFile(
 	_doc = ::xmlParseFile( a_filePath.c_str() );
 	xTEST_PTR(_doc);
 
+	// [out]
 	_rootNode(out_root);
 }
 //-------------------------------------------------------------------------------------------------
@@ -114,10 +116,10 @@ XmlDoc::saveToFile(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 XmlDoc::format(
-	std::ctstring_t &a_charset	///< character encoding (sample: "UTF-8")
+	std::ctstring_t &a_toCharset ///< character encoding to use when generating XML (sample: "UTF-8")
 ) const
 {
-	if ( a_charset.empty() ) {
+	if ( a_toCharset.empty() ) {
 		return {};
 	}
 
@@ -126,7 +128,7 @@ XmlDoc::format(
 	int             buff_size {};
 
 	::xmlKeepBlanksDefault(0);
-	::xmlDocDumpFormatMemoryEnc(_doc, &buff, &buff_size, a_charset.c_str(), 1);
+	::xmlDocDumpFormatMemoryEnc(_doc, &buff, &buff_size, a_toCharset.c_str(), 1);
 	xTEST_PTR(buff);
 	xTEST_GR(buff_size, 0);
 
