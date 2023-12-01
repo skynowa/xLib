@@ -21,11 +21,9 @@ Test_Xml::unit()
         xTEST(FileInfo(filePath).isExists());
 
         XmlDoc doc("UTF-8");
-        doc.parseFile(filePath);
 
-        // getRootNode
         XmlNode root;
-        doc.getRootNode(root);
+        doc.parseFile(filePath, root);
 
         // nodes
         std::vector<XmlNode> results;
@@ -160,10 +158,9 @@ Test_Xml::unit()
         };
 
         XmlDoc doc("UTF-8");
-        doc.parseFile(filePath);
 
         XmlNode root;
-        doc.getRootNode(root);
+        doc.parseFile(filePath, root);
 
         XmlNode avail;
         root.node("/AvailabilitySearchResult", avail);
@@ -193,10 +190,9 @@ Test_Xml::unit()
         };
 
         XmlDoc doc("UTF-8");
-        doc.parseFile(filePath);
 
         XmlNode root;
-        doc.getRootNode(root);
+        doc.parseFile(filePath, root);
 
         std::map_tstring_t results;
         root.childMap("/AvailabilitySearchResult", results);
