@@ -57,8 +57,7 @@ protected:
 	void _close();
 
 private:
-	static
-	void _onError(void *ctx, xmlErrorPtr error);
+	static void _onError(void *ctx, xmlErrorPtr error);
 
 	friend class XmlNode;
 };
@@ -96,14 +95,12 @@ public:
 	std::tstring_t dump(cbool_t isFromCurrent = false, cbool_t isFormat = true);
 
 protected:
-	XmlDoc        *_xmlDoc {};
-	xmlNodePtr     _node {};
+	XmlDoc     *_xmlDoc {};
+	xmlNodePtr  _node {};
 
 private:
-    static
-    std::tstring_t _name(xmlNodePtr node);
-    static
-    std::tstring_t _text(xmlNodePtr node);
+    static std::tstring_t _name(xmlNodePtr node);
+    static std::tstring_t _text(xmlNodePtr node);
 };
 //-------------------------------------------------------------------------------------------------
 class XmlError :
@@ -112,8 +109,8 @@ class XmlError :
 public:
 ///\name ctors, dtor
 ///\{
-              XmlError(void *ctx, xmlErrorPtr error);
-	virtual  ~XmlError() = default;
+             XmlError(void *ctx, xmlErrorPtr error);
+	virtual ~XmlError() = default;
 
 	xNO_DEFAULT_CONSTRUCT(XmlError);
 	xNO_COPY_ASSIGN(XmlError);
