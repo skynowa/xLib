@@ -51,7 +51,7 @@ Iconv::Iconv(
 {
 	xTEST(!a_charsetIn.empty());
 	xTEST(!a_charsetOut.empty());
-	xTEST_DIFF(a_buffSize, (std::size_t)0);
+	xTEST_DIFF(a_buffSize, 0);
 	xTEST_NA(a_isSkipErrors);
 	xTEST_NA(a_isForceEncoding);
 
@@ -72,15 +72,19 @@ Iconv::~Iconv()
 	Utils::freeT(_iconv, ::iconv_close, ::iconvError);
 }
 //-------------------------------------------------------------------------------------------------
-void_t
+bool_t
 Iconv::convert(
 	std::ctstring_t &a_input,	///<
 	std::tstring_t  *a_output	///< [out]
 ) const
 {
+	xTEST_PTR(_iconv);
 	xTEST_PTR(a_output);
 
-	xCHECK_DO(_isSkipEncoding, *a_output = a_input; return);
+	if (_isSkipEncoding) {
+		*a_output = a_input;
+		return true;
+	}
 
 	a_output->clear();
 
@@ -102,13 +106,16 @@ Iconv::convert(
 		if (uiRv == (size_t)-1) {
 			if      (errno == E2BIG)  {
 				// ignore this error
+				Cout() << xT("E2BIG - Argument list too long");
 			}
 			else if (_isSkipErrors) {
 				// skip character
 				++ srcPtr;
 				-- srcSize;
 			} else {
-				_checkError();
+				_reportError();
+
+				return false;
 			}
 		}
 
@@ -116,6 +123,8 @@ Iconv::convert(
 	}
 
 	sRV.swap(*a_output);
+
+	return true;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -126,18 +135,18 @@ Iconv::convert(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-void
-Iconv::_checkError() const
+void_t
+Iconv::_reportError() const
 {
 	switch (errno) {
 	case EILSEQ:
-		throw std::runtime_error("EILSEQ - Illegal byte sequence");
+		Cout() << xT("EILSEQ - Illegal byte sequence");
 		break;
 	case EINVAL:
-		throw std::runtime_error("EINVAL - Invalid argument");
+		Cout() << xT("EINVAL - Invalid argument");
 		break;
 	default:
-		throw std::runtime_error("Unknown error");
+		Cout() << xT("Unknown error");
 		break;
 	}
 }

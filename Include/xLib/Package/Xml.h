@@ -1,6 +1,6 @@
 /**
  * \file  Xml.h
- * \brief LinXml2 wrapper
+ * \brief LibXml2 wrapper
  */
 
 #pragma once
