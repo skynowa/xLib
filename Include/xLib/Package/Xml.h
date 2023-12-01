@@ -35,7 +35,6 @@ public:
 	void registerNss(std::cmap_tstring_t &nss);
 ///\}
 
-	void           parse(cptr_ctchar_t buff, cint_t size);
 	void           parse(std::ctstring_t &str, cbool_t isNss);
 	void           parseFile(std::ctstring_t &filePath);
 
