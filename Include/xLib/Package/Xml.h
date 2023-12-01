@@ -32,7 +32,7 @@ public:
 	xNO_DEFAULT_CONSTRUCT(XmlDoc);
 	xNO_COPY_ASSIGN(XmlDoc);
 
-	void registerNss(std::cmap_tstring_t &nss);
+	void setNss(std::cmap_tstring_t &nss);
 ///\}
 
 	void           parse(std::ctstring_t &str, cbool_t isNss, XmlNode &root);
