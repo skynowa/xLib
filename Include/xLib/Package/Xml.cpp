@@ -119,7 +119,7 @@ XmlDoc::getRootNode(
 void
 XmlDoc::saveToFile(
 	std::ctstring_t &a_filePath
-)
+) const
 {
 	xmlSaveCtxtPtr saveCtxt = ::xmlSaveToFilename(a_filePath.c_str(), nullptr, XML_SAVE_FORMAT);
 	xTEST_PTR(saveCtxt);
@@ -134,7 +134,7 @@ XmlDoc::saveToFile(
 std::tstring_t
 XmlDoc::format(
 	std::ctstring_t &a_charset	///< character encoding (sample: "UTF-8")
-)
+) const
 {
 	if ( a_charset.empty() ) {
 		return {};

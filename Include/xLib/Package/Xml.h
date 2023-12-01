@@ -41,8 +41,8 @@ public:
 
 	void           getRootNode(XmlNode &root);
 
-	void           saveToFile(std::ctstring_t &filePath);
-	std::tstring_t format(std::ctstring_t &charset);
+	void           saveToFile(std::ctstring_t &filePath) const;
+	std::tstring_t format(std::ctstring_t &charset) const;
 
 xPUBLIC_STATIC:
 	static bool_t  isValidLight(std::ctstring_t &str);
