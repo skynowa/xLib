@@ -58,7 +58,7 @@ protected:
 	void _close();
 
 private:
-	static void _onError(void *ctx, xmlErrorPtr error);
+	static void _onError(void *data, xmlErrorPtr error);
 
 	friend class XmlNode;
 };
@@ -100,8 +100,8 @@ protected:
 	xmlNodePtr  _node {};
 
 private:
-    static std::tstring_t _name(xmlNodePtr node);
-    static std::tstring_t _text(xmlNodePtr node);
+    static std::tstring_t _name(const xmlNodePtr node);
+    static std::tstring_t _text(const xmlNodePtr node);
 };
 //-------------------------------------------------------------------------------------------------
 class XmlError :
@@ -110,7 +110,7 @@ class XmlError :
 public:
 ///\name ctors, dtor
 ///\{
-             XmlError(void *ctx, xmlErrorPtr error);
+             XmlError(const void *data, const xmlErrorPtr error);
 	virtual ~XmlError() = default;
 
 	xNO_DEFAULT_CONSTRUCT(XmlError);

@@ -105,14 +105,15 @@ XmlDoc::parseFile(
 //-------------------------------------------------------------------------------------------------
 void
 XmlDoc::getRootNode(
-	XmlNode &a_root
+	XmlNode &out_root
 )
 {
 	xmlNodePtr rootNode = ::xmlDocGetRootElement(_doc);
 	xTEST_PTR(rootNode);
 
 	XmlNode root(this, rootNode);
-	a_root = root;
+
+	out_root = root;
 }
 //-------------------------------------------------------------------------------------------------
 void
@@ -207,17 +208,17 @@ XmlDoc::_registerNss(
 //-------------------------------------------------------------------------------------------------
 void
 XmlDoc::_stringNoNs(
-	std::tstring_t *a_str
+	std::tstring_t *out_str	///< [in,out]
 ) const
 {
-	xCHECK_DO(a_str == nullptr, return);
+	xCHECK_DO(out_str == nullptr, return);
 
 	std::tstring_t::size_type pos  {};
 	std::tstring_t::size_type pos1 {};
 	std::tstring_t::size_type pos2 {};
 	std::tstring_t::size_type pos5 {};
 
-	std::tstring_t &text = *a_str;
+	std::tstring_t &text = *out_str;
 
 	pos = 0;
 	while ( (pos = text.find("xmlns", pos)) != std::tstring_t::npos ) {
@@ -280,11 +281,11 @@ XmlDoc::_close()
 /* static */
 void
 XmlDoc::_onError(
-	void        *a_ctx,     ///< user data
+	void        *a_data,    ///< user data
 	xmlErrorPtr  a_error    ///< XML error
 )
 {
-	XmlError error(a_ctx, a_error);
+	XmlError error(a_data, a_error);
 
 	std::tcout << error.str() << std::endl;
 }
@@ -345,41 +346,41 @@ XmlNode::text() const
 //-------------------------------------------------------------------------------------------------
 void
 XmlNode::findNodes(
-	std::clist_tstring_t &a_xpaths,	///<
-	std::vector<XmlNode> &a_values	///< [out]
+	std::clist_tstring_t &a_xpaths,		///<
+	std::vector<XmlNode> &out_values	///< [out]
 ) const
 {
-	a_values.clear();
+	out_values.clear();
 
 	for (const auto &it_xpath : a_xpaths) {
 		std::vector<XmlNode> values;
 		nodes(it_xpath, values);
 
 		for (const auto &it_value : values) {
-			a_values.emplace_back(it_value);
+			out_values.emplace_back(it_value);
 		}
 	}
 }
 //-------------------------------------------------------------------------------------------------
 void
 XmlNode::node(
-	std::ctstring_t &a_xpath,
-	XmlNode         &a_value
+	std::ctstring_t &a_xpath,	///<
+	XmlNode         &out_value	///< [out]
 ) const
 {
     std::vector<XmlNode> _nodes;
     nodes(a_xpath, _nodes);
 
-    a_value = _nodes.front();
+    out_value = _nodes.front();
 }
 //-------------------------------------------------------------------------------------------------
 void
 XmlNode::nodes(
-	std::ctstring_t      &a_xpath,
-	std::vector<XmlNode> &a_res
+	std::ctstring_t      &a_xpath,	///<
+	std::vector<XmlNode> &out_res	///< [out]
 ) const
 {
-	a_res.clear();
+	out_res.clear();
 
 	xmlXPathContextPtr xpathCtx = ::xmlXPathNewContext(_node->doc);
 	if (xpathCtx == nullptr) {
@@ -394,7 +395,6 @@ XmlNode::nodes(
 	xmlXPathObjectPtr xpathObj = ::xmlXPathEvalExpression((const xmlChar *)a_xpath.data(), xpathCtx);
 	if (xpathObj == nullptr) {
 		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
-
 		xTEST_FAIL;
 
 		return;
@@ -404,7 +404,6 @@ XmlNode::nodes(
 	if (nodes == nullptr) {
 		Utils::freeT(xpathObj, ::xmlXPathFreeObject,  nullptr);
 		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
-
 		xTEST_FAIL;
 
 		return;
@@ -418,7 +417,7 @@ XmlNode::nodes(
 		}
 
 		XmlNode node(_xmlDoc, it_node);
-		a_res.emplace_back(node);
+		out_res.emplace_back(node);
 	}
 
 	Utils::freeT(xpathObj, ::xmlXPathFreeObject,  nullptr);
@@ -427,17 +426,17 @@ XmlNode::nodes(
 //-------------------------------------------------------------------------------------------------
 void
 XmlNode::texts(
-	std::ctstring_t    &a_xpath,
-	std::vec_tstring_t &a_values
+	std::ctstring_t    &a_xpath,	///<
+	std::vec_tstring_t &out_values	///< [out]
 ) const
 {
-	a_values.clear();
+	out_values.clear();
 
 	std::vector<XmlNode> values;
 	nodes(a_xpath, values);
 
 	for (const auto &it_value : values) {
-		a_values.emplace_back( it_value.text() );
+		out_values.emplace_back( it_value.text() );
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -449,11 +448,11 @@ XmlNode::childSize() const
 //-------------------------------------------------------------------------------------------------
 void
 XmlNode::childMap(
-	std::ctstring_t    &a_xpath,
-	std::map_tstring_t &a_values
+	std::ctstring_t    &a_xpath,	///<
+	std::map_tstring_t &out_values	///< [out]
 ) const
 {
-	a_values.clear();
+	out_values.clear();
 
     for (xmlNodePtr it_node = _node->children; it_node != nullptr; it_node = it_node->next) {
         if (it_node->type != XML_ELEMENT_NODE) {
@@ -464,7 +463,7 @@ XmlNode::childMap(
             continue;
         }
 
-        a_values.emplace(_name(it_node), _text(it_node));
+        out_values.emplace(_name(it_node), _text(it_node));
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -494,10 +493,10 @@ XmlNode::attribute(
 //-------------------------------------------------------------------------------------------------
 void
 XmlNode::attributes(
-	std::map_tstring_t &a_values	///< [out] attributes (name -> value)
+	std::map_tstring_t &out_values	///< [out] attributes (name -> value)
 ) const
 {
-	a_values.clear();
+	out_values.clear();
 
 	if (_node->type != XML_ELEMENT_NODE) {
 		return;
@@ -510,7 +509,7 @@ XmlNode::attributes(
 		xmlChar *value = ::xmlGetProp(_node, name);
 		xTEST_PTR(value);
 
-		a_values.insert( {(cptr_ctchar_t)name, (cptr_ctchar_t)value} );
+		out_values.insert( {(cptr_ctchar_t)name, (cptr_ctchar_t)value} );
 
 		Utils::freeT(value, ::xmlFree, nullptr);
 	}
@@ -559,7 +558,7 @@ XmlNode::dump(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 XmlNode::_name(
-    xmlNodePtr a_node
+	const xmlNodePtr a_node
 )
 {
     return (a_node->name == nullptr) ? xT("") : (cptr_ctchar_t)a_node->name;
@@ -567,7 +566,7 @@ XmlNode::_name(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 XmlNode::_text(
-    xmlNodePtr a_node
+	const xmlNodePtr a_node
 )
 {
     std::tstring_t sRv;
@@ -601,14 +600,14 @@ XmlNode::_text(
 
 //-------------------------------------------------------------------------------------------------
 XmlError::XmlError(
-	void        *a_ctx,     ///< user data
-	xmlErrorPtr  a_error    ///< XML error
+	const void        *a_data,    ///< user data
+	const xmlErrorPtr  a_error    ///< XML error
 )
 {
-	xTEST_PTR(a_ctx);
+	xTEST_PTR(a_data);
 	xTEST_PTR(a_error);
 
-	const auto xmlDoc = static_cast<XmlDoc *>(a_ctx);
+	const auto xmlDoc = static_cast<const XmlDoc *>(a_data);
 	xUNUSED(xmlDoc);
 
 	if (a_error->code == XML_ERR_OK) {
