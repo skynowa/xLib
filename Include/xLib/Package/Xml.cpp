@@ -62,18 +62,6 @@ XmlDoc::registerNss(
 //-------------------------------------------------------------------------------------------------
 void
 XmlDoc::parse(
-	cptr_ctchar_t a_buff,
-	cint_t        a_size
-)
-{
-	_close();
-
-	_doc = ::xmlParseMemory(a_buff, a_size);
-	xTEST_PTR(_doc);
-}
-//-------------------------------------------------------------------------------------------------
-void
-XmlDoc::parse(
 	std::ctstring_t &a_str,
 	cbool_t          a_isNss
 )
