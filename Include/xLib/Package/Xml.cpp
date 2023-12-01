@@ -18,14 +18,6 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Test/Test.h>
 //-------------------------------------------------------------------------------------------------
-namespace
-{
-
-const iconv_t iconvError = (iconv_t)-1;
-
-}
-//-------------------------------------------------------------------------------------------------
-
 namespace xl::package
 {
 
@@ -108,7 +100,7 @@ XmlDoc::saveToFile(
 	long_t liRv = ::xmlSaveDoc(saveCtxt, _doc);
 	xTEST_EQ(liRv, 0L);
 
-	int_t  iRv = ::xmlSaveClose(saveCtxt);
+	int_t iRv = ::xmlSaveClose(saveCtxt);
 	xTEST_EQ(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
