@@ -43,7 +43,7 @@ XmlDoc::~XmlDoc()
 }
 //-------------------------------------------------------------------------------------------------
 void
-XmlDoc::registerNss(
+XmlDoc::setNss(
 	std::cmap_tstring_t &a_nss
 )
 {
