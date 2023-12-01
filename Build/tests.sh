@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-set -ex
+# set -ex
 
 # Params
 UNIT_TEST_NAME=$*
@@ -24,10 +24,10 @@ cd ${DIR_BUILD}
 UNAME=$(uname)
 
 # Single test
-if [[ "$UNIT_TEST_NAME" != "" ]]; then
+if [[ "${UNIT_TEST_NAME}" != "" ]]; then
 	cmake --build . --target "Test_${UNIT_TEST_NAME}"
 
-	ctest -R "^Test_${UNIT_TEST_NAME}$"
+	ctest -R "^Test_${UNIT_TEST_NAME}$" --verbose
 
 	exit 0
 fi

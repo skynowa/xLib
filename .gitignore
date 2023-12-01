@@ -9,10 +9,15 @@
 # dirs
 Docs/html/
 [Bb]in/
+build/
+
+# IDEs
 .idea/
 .vscode/ipch/
 .vs/
-build/
+
+# CMake
+Testing/
 
 ################################################################################
 # files
@@ -34,4 +39,3 @@ xLib.kdev4
 
 # clangd
 .cache/
-
