@@ -178,9 +178,9 @@ XmlDoc::_registerNss(
 	xmlXPathContextPtr a_xmlXPathContextPtr
 ) const
 {
-	for (const auto &it_ns : _nss) {
-		auto prefix = reinterpret_cast<const xmlChar *>( it_ns.first.data() );
-		auto nsUri  = reinterpret_cast<const xmlChar *>( it_ns.second.data() );
+	for (const auto &[it_prefix, it_ns] : _nss) {
+		auto prefix = reinterpret_cast<const xmlChar *>( it_prefix.data() );
+		auto nsUri  = reinterpret_cast<const xmlChar *>( it_ns.data() );
 
 		int iRv = ::xmlXPathRegisterNs(a_xmlXPathContextPtr, prefix, nsUri);
 		xTEST_EQ(iRv, 0);
