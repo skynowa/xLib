@@ -35,10 +35,9 @@ public:
 	void registerNss(std::cmap_tstring_t &nss);
 ///\}
 
-	void           parse(std::ctstring_t &str, cbool_t isNss);
-	void           parseFile(std::ctstring_t &filePath);
+	void           parse(std::ctstring_t &str, cbool_t isNss, XmlNode &root);
+	void           parseFile(std::ctstring_t &filePath, XmlNode &root);
 
-	void           getRootNode(XmlNode &root);
 
 	void           saveToFile(std::ctstring_t &filePath) const;
 	std::tstring_t format(std::ctstring_t &charset) const;
@@ -54,6 +53,7 @@ protected:
 
 	void _registerNss(xmlXPathContextPtr ctx) const;
 	void _stringNoNs(std::tstring_t *str) const;
+	void _rootNode(XmlNode &root);
 	void _close();
 
 private:

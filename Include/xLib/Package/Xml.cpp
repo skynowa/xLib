@@ -62,8 +62,9 @@ XmlDoc::registerNss(
 //-------------------------------------------------------------------------------------------------
 void
 XmlDoc::parse(
-	std::ctstring_t &a_str,
-	cbool_t          a_isNss
+	std::ctstring_t &a_str,		///<
+	cbool_t          a_isNss,	///<
+	XmlNode         &out_root	///< [out]
 )
 {
 	_close();
@@ -78,30 +79,22 @@ XmlDoc::parse(
 	}
 
 	xTEST_PTR(_doc);
+
+	_rootNode(out_root);
 }
 //-------------------------------------------------------------------------------------------------
 void
 XmlDoc::parseFile(
-	std::ctstring_t &a_filePath
+	std::ctstring_t &a_filePath,	///<
+	XmlNode         &out_root		///< [out]
 )
 {
 	_close();
 
 	_doc = ::xmlParseFile( a_filePath.c_str() );
 	xTEST_PTR(_doc);
-}
-//-------------------------------------------------------------------------------------------------
-void
-XmlDoc::getRootNode(
-	XmlNode &out_root
-)
-{
-	xmlNodePtr rootNode = ::xmlDocGetRootElement(_doc);
-	xTEST_PTR(rootNode);
 
-	XmlNode root(this, rootNode);
-
-	out_root = root;
+	_rootNode(out_root);
 }
 //-------------------------------------------------------------------------------------------------
 void
@@ -250,6 +243,19 @@ XmlDoc::_stringNoNs(
 			text.erase(pos, pos1 - pos + 1);
 		}
 	}
+}
+//-------------------------------------------------------------------------------------------------
+void
+XmlDoc::_rootNode(
+	XmlNode &out_root	///< [out]
+)
+{
+	xmlNodePtr rootNode = ::xmlDocGetRootElement(_doc);
+	xTEST_PTR(rootNode);
+
+	XmlNode root(this, rootNode);
+
+	out_root = root;
 }
 //-------------------------------------------------------------------------------------------------
 void
