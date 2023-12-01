@@ -31,9 +31,10 @@ public:
 
 	xNO_DEFAULT_CONSTRUCT(XmlDoc);
 	xNO_COPY_ASSIGN(XmlDoc);
+
+	void registerNss(std::cmap_tstring_t &nss);
 ///\}
 
-	void           registerNss(std::cmap_tstring_t &nss);
 	void           parse(cptr_ctchar_t buff, cint_t size);
 	void           parse(std::ctstring_t &str, cbool_t isNss);
 	void           parseFile(std::ctstring_t &filePath);
@@ -43,8 +44,8 @@ public:
 	void           saveToFile(std::ctstring_t &filePath);
 	std::tstring_t format(std::ctstring_t &charset);
 
-	static
-	bool_t         isValidLight(std::ctstring_t &str);
+xPUBLIC_STATIC:
+	static bool_t  isValidLight(std::ctstring_t &str);
 		///< quick check string if XML document
 
 protected:
