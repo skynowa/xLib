@@ -55,11 +55,12 @@ Iconv::Iconv(
 	xTEST_NA(a_isSkipErrors);
 	xTEST_NA(a_isForceEncoding);
 
-	xCHECK_MSG_DO(_isSkipEncoding, "Skip convert " + a_charsetIn + " -> " + a_charsetOut, return);
+	xCHECK_MSG_DO(_isSkipEncoding, xT("Skip convert ") + a_charsetIn + xT(" -> ") + a_charsetOut,
+		return);
 
 	_iconv = ::iconv_open(a_charsetOut.c_str(), a_charsetIn.c_str());
 	if (errno == EINVAL) {
-		xTEST_FAIL_MSG("Not supported convert " + a_charsetIn + " -> " + a_charsetOut);
+		xTEST_FAIL_MSG(xT("Not supported convert ") + a_charsetIn + xT(" -> ") + a_charsetOut);
 	}
 	xTEST_DIFF(_iconv, ::iconvError);
 }
@@ -90,7 +91,6 @@ Iconv::convert(
 
 	std::tstring_t sRV;
 
-	// copy the string to a buffer as iconv function requires a non-const char pointer
 	std::vec_tchar_t buffIn(a_input.cbegin(), a_input.cend());
 
 	tchar_t *srcPtr  = &buffIn[0];
