@@ -98,7 +98,7 @@ Iconv::convert(
 
 	std::vec_tchar_t buff(_buffSize);
 
-	while (0 < srcSize) {
+	while (srcSize > 0) {
 		tchar_t    *dstPtr  = &buff[0];
 		std::size_t dstSize = buff.size();
 
