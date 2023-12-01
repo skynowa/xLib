@@ -28,7 +28,7 @@ public:
     xNO_COPY_ASSIGN(Iconv)
 ///\}
 
-    void convert(std::ctstring_t &input, std::tstring_t *output) const;
+    bool_t convert(std::ctstring_t &input, std::tstring_t *output) const;
     	///< convert string
 
 private:
@@ -38,7 +38,7 @@ private:
 
 	iconv_t      _iconv {};
 
-	void_t _checkError() const;
+	void_t       _reportError() const;
 };
 
 } // namespace

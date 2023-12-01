@@ -1,6 +1,6 @@
 /**
  * \file  Xml.h
- * \brief LinXml2 wrapper
+ * \brief LibXml2 wrapper
  */
 
 
@@ -44,7 +44,7 @@ XmlDoc::~XmlDoc()
 //-------------------------------------------------------------------------------------------------
 void
 XmlDoc::setNss(
-	std::cmap_tstring_t &a_nss
+	std::cmap_tstring_t &a_nss	///< prefix to namespase
 )
 {
 	_nss = a_nss;

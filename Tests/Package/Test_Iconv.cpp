@@ -19,9 +19,11 @@ Test_Iconv::unit()
 	xTEST_CASE("convert - trivial")
 	{
 		Iconv conv("EUC-JP", "UTF-8");
+
 		std::tstring_t in = "hello iconv";
 		std::tstring_t out;
-		conv.convert(in, &out);
+		m_bRv = conv.convert(in, &out);
+		xTEST(m_bRv);
 		xTEST_EQ(in, out);
 
 	#if 0
@@ -30,7 +32,8 @@ Test_Iconv::unit()
 		conv.convert(in, &out);
 
 		std::tstring_t out2;
-		reconv.convert(out, &out2);
+		m_bRv = reconv.convert(out, &out2);
+		xTEST(m_bRv);
 		xTEST_EQ(in, out2);
 	#endif
 	}
@@ -38,9 +41,11 @@ Test_Iconv::unit()
 	xTEST_CASE("convert - large")
 	{
 		Iconv conv("EUC-JP", "UTF-8");
+
 		std::tstring_t in = std::tstring_t(2048, 'a');
 		std::tstring_t out;
-		conv.convert(in, &out);
+		m_bRv = conv.convert(in, &out);
+		xTEST(m_bRv);
 		xTEST_EQ(in, out);
 	}
 
@@ -56,6 +61,7 @@ Test_Iconv::unit()
 	{
 	#if 0
 		Iconv conv("UTF-8", "EUC-JP");
+
 		std::tstring_t out;
 		xTEST_THROW(conv.convert("あ", &out), std::runtime_error);
 	#endif
@@ -65,8 +71,10 @@ Test_Iconv::unit()
 	{
 	#if 0
 		Iconv conv("UTF-8", "EUC-JP", true);
+
 		std::tstring_t out;
-		xTEST_THROW_NO(conv.convert("あ", &out));
+		m_bRv = conv.convert(xT("あ"), &out);
+		xTEST(m_bRv);
 	#endif
 	}
 
