@@ -55,8 +55,10 @@ XmlDoc::registerNss(
 	std::cmap_tstring_t &a_nss
 )
 {
-	for (const auto &[it_prefix, it_path] : a_nss) {
-		_nss.insert( {it_prefix, it_path} );
+	_nss.clear();
+
+	for (const auto &it_ns : a_nss) {
+		_nss.emplace(it_ns);
 	}
 }
 //-------------------------------------------------------------------------------------------------
