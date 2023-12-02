@@ -510,8 +510,6 @@ XmlNode::dump(
 	std::tstring_t sRv;
 	int_t          iRv {};
 
-	using buff_unique_ptr_t = std::unique_ptr<xmlBuffer, decltype(&::xmlBufferFree)>;
-
 	buff_unique_ptr_t buff(::xmlBufferCreate(), ::xmlBufferFree);
 	xTEST_PTR(buff.get());
 
@@ -557,23 +555,40 @@ XmlNode::_text(
 {
     std::tstring_t sRv;
 
-    xmlChar *content {};
-    {
-        if (::xmlNodeIsText(a_node) == 1) {
-            content = ::xmlNodeGetContent(a_node);
-        } else {
-            content = ::xmlNodeListGetString(a_node->doc, a_node->children, 1);
-        }
+#if 0
+	xmlChar *content {};
+	{
+		if (::xmlNodeIsText(a_node) == 1) {
+			content = ::xmlNodeGetContent(a_node);
+		} else {
+			content = ::xmlNodeListGetString(a_node->doc, a_node->children, 1);
+		}
 
-        if (content == nullptr) {
-            xTESTS_NA;
-            return {};
-        }
-    }
+		if (content == nullptr) {
+			xTESTS_NA;
+			return {};
+		}
+	}
 
-    sRv = (cptr_ctchar_t)content;
+	sRv = (cptr_ctchar_t)content;
 
-    Utils::freeT(content, ::xmlFree, nullptr);
+	Utils::freeT(content, ::xmlFree, nullptr);
+#else
+	char_unique_ptr_t content(nullptr, ::xmlFree);
+
+	if (::xmlNodeIsText(a_node) == 1) {
+		content = {::xmlNodeGetContent(a_node), ::xmlFree};
+	} else {
+		content = {::xmlNodeListGetString(a_node->doc, a_node->children, 1), ::xmlFree};
+	}
+
+	if (!content) {
+		xTESTS_NA;
+		return {};
+	}
+
+	sRv = reinterpret_cast<cptr_ctchar_t>(content.get());
+#endif
 
     return sRv;
 }
