@@ -46,7 +46,7 @@ xPUBLIC_STATIC:
 	static bool_t  isValidLight(std::ctstring_t &str);
 		///< quick check string if XML document
 
-protected:
+private:
 	xmlDocPtr          _doc {};
 	Iconv              _iconv;
 	std::map_tstring_t _nss;
@@ -56,7 +56,6 @@ protected:
 	void _rootNode(XmlNode &root);
 	void _close();
 
-private:
 	static void _onError(void *data, xmlErrorPtr error);
 
 	friend class XmlNode;
@@ -94,14 +93,13 @@ public:
 
 	std::tstring_t dump(cbool_t isFromCurrent = false, cbool_t isFormat = true);
 
-protected:
+private:
 	using char_unique_ptr_t = std::unique_ptr<xmlChar, decltype(::xmlFree)>;
 	using buff_unique_ptr_t = std::unique_ptr<xmlBuffer, decltype(&::xmlBufferFree)>;
 
 	XmlDoc     *_xmlDoc {};
 	xmlNodePtr  _node {};
 
-private:
     static std::tstring_t _name(const xmlNodePtr node);
     static std::tstring_t _text(const xmlNodePtr node);
 };
