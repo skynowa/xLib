@@ -95,6 +95,8 @@ public:
 	std::tstring_t dump(cbool_t isFromCurrent = false, cbool_t isFormat = true);
 
 protected:
+	using buff_unique_ptr_t = std::unique_ptr<xmlBuffer, decltype(&::xmlBufferFree)>;
+
 	XmlDoc     *_xmlDoc {};
 	xmlNodePtr  _node {};
 

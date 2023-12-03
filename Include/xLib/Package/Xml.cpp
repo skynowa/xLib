@@ -510,8 +510,6 @@ XmlNode::dump(
 	std::tstring_t sRv;
 	int_t          iRv {};
 
-	using buff_unique_ptr_t = std::unique_ptr<xmlBuffer, decltype(&::xmlBufferFree)>;
-
 	buff_unique_ptr_t buff(::xmlBufferCreate(), ::xmlBufferFree);
 	xTEST_PTR(buff.get());
 
