@@ -17,7 +17,7 @@ class IGetValue
     /// Getter by value
 {
 public:
-///\name operators
+///\name ctors, dtor
 ///\{
              IGetValue() = default;
     virtual ~IGetValue() = default;
@@ -32,7 +32,7 @@ class IGetConstRef
     /// Getter by const reference
 {
 public:
-///\name operators
+///\name ctors, dtor
 ///\{
              IGetConstRef() = default;
     virtual ~IGetConstRef() = default;
@@ -47,7 +47,7 @@ class IGetRef
     /// Getter by reference
 {
 public:
-///\name operators
+///\name ctors, dtor
 ///\{
              IGetRef() = default;
     virtual ~IGetRef() = default;
@@ -64,7 +64,7 @@ class IGet :
     /// Getter by const reference, reference
 {
 public:
-///\name operators
+///\name ctors, dtor
 ///\{
              IGet() = default;
     virtual ~IGet() = default;

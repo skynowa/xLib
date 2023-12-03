@@ -31,6 +31,8 @@ public:
 	virtual ~ICompare() = default;
 ///\}
 
+///\name operators
+///\{
 	bool_t operator == (const T &value) const;
 		///< Returns true if "value" is equal to this object
 	bool_t operator != (const T &value) const;
@@ -43,6 +45,7 @@ public:
 		///< Returns true if "value" is greater than this object
 	bool_t operator >= (const T &value) const;
 		///< Returns true if "value" is greater than or equal to this object
+///\}
 
 protected:
 	virtual int_t compare(const T &value) const = 0;
