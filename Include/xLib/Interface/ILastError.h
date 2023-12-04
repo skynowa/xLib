@@ -20,7 +20,7 @@ public:
 ///\name ctors, dtor
 ///\{
 			 ILastError() = default;
-			 ILastError(const CodeT code, std::ctstring_t &str);
+			 ILastError(const CodeT code, std::ctstring_t &what);
 	virtual ~ILastError() = default;
 ///\}
 
@@ -28,16 +28,18 @@ public:
         ///< Code
     virtual bool_t         isOk() const = 0;
         ///< Check for success
-    virtual std::tstring_t str() const = 0;
+    virtual std::tstring_t what() const = 0;
         ///< Detail message
 
 public:
-    bool_t isError() const;
+    bool_t         isError() const;
         ///< Check for error
+    std::tstring_t str() const;
+        ///< Fromatted message
 
 protected:
     CodeT          _code {};
-	std::tstring_t _str;
+	std::tstring_t _what;
 };
 
 } // namespace

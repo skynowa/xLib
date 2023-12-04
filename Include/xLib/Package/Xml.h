@@ -118,7 +118,7 @@ public:
 ///\{
 	int_t          code() const final;
 	bool_t         isOk() const final;
-	std::tstring_t str() const final;	/// TODO: fix
+	std::tstring_t what() const final;
 ///\}
 };
 //-------------------------------------------------------------------------------------------------
