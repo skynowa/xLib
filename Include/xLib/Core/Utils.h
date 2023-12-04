@@ -75,6 +75,11 @@ public:
     void_t    swapT(T &value1, T &value2);
         ///< swap variables
 
+    template<typename ToT, typename FromT>
+    static
+    ToT c_cast(const FromT &value);
+        ///< C-style cast
+
     template<typename ToT, class FromT>
     static
     ToT       reinterpretCastT(const FromT &ptr);
@@ -174,5 +179,6 @@ dir_unique_ptr_t  autoDir(std::ctstring_t &dirPath);
 /**
  * TODO:
  *
- * assert - rm
+ * - assert - rm
+ * - Utils in xlib global ns
  */

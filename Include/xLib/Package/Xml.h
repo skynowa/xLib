@@ -27,7 +27,7 @@ public:
 ///\name ctors, dtor
 ///\{
 	explicit  XmlDoc(std::ctstring_t &charset);
-	virtual  ~XmlDoc();
+	virtual  ~XmlDoc() = default;
 
 	xNO_DEFAULT_CONSTRUCT(XmlDoc);
 	xNO_COPY_ASSIGN(XmlDoc);
@@ -38,7 +38,6 @@ public:
 	void           parse(std::ctstring_t &str, cbool_t isNss, XmlNode &root);
 	void           parseFile(std::ctstring_t &filePath, XmlNode &root);
 
-
 	void           saveToFile(std::ctstring_t &filePath) const;
 	std::tstring_t format(std::ctstring_t &toCharset) const;
 
@@ -47,14 +46,15 @@ xPUBLIC_STATIC:
 		///< quick check string if XML document
 
 private:
-	xmlDocPtr          _doc {};
+	using doc_unique_ptr_t = std::unique_ptr<xmlDoc, decltype(&::xmlFreeDoc)>;
+
+	doc_unique_ptr_t   _doc;
 	Iconv              _iconv;
 	std::map_tstring_t _nss;
 
 	void _registerNss(xmlXPathContextPtr ctx) const;
 	void _stringNoNs(std::tstring_t *str) const;
 	void _rootNode(XmlNode &root);
-	void _close();
 
 	static void _onError(void *data, xmlErrorPtr error);
 
@@ -94,8 +94,6 @@ public:
 	std::tstring_t dump(cbool_t isFromCurrent = false, cbool_t isFormat = true);
 
 private:
-	using buff_unique_ptr_t = std::unique_ptr<xmlBuffer, decltype(&::xmlBufferFree)>;
-
 	XmlDoc     *_xmlDoc {};
 	xmlNodePtr  _node {};
 

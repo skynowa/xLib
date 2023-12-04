@@ -154,6 +154,20 @@ Utils::swapT(
     a_value2 = temp;
 }
 //-------------------------------------------------------------------------------------------------
+template<typename ToT, typename FromT>
+/* static */ inline
+ToT
+Utils::c_cast(
+	const FromT &a_value
+)
+{
+#if 0
+    return (ToT)a_value;
+#else
+    return reinterpretCastT<ToT>(a_value);
+#endif
+}
+//-------------------------------------------------------------------------------------------------
 template<typename ToT, class FromT>
 /* static */ inline
 ToT
@@ -161,10 +175,10 @@ Utils::reinterpretCastT(
     const FromT &a_ptr
 )
 {
-    void_t *pvVoidCast = static_cast<void_t *>( a_ptr );
-    ToT     ResT       = static_cast<ToT>( pvVoidCast );
+    auto *pvVoidCast = static_cast<void_t *>(a_ptr);
+    auto  resT       = static_cast<ToT>(pvVoidCast);
 
-    return ResT;
+    return resT;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
