@@ -52,7 +52,7 @@ Error::category() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Error::what() const
+Error::message() const
 {
     xTEST(_conn.get().isValid());
 

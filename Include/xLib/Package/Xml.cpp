@@ -656,7 +656,7 @@ XmlError::XmlError(
 		}
 	}
 
-	std::ctstring_t what = Format::str(
+	std::ctstring_t message = Format::str(
 		xT("LibXML2 ver:    {}\n")
 		xT("domain:         {}\n")
 		xT("code:           {}\n")
@@ -674,8 +674,8 @@ XmlError::XmlError(
 
 	// [out]
 	{
-		_code = code;
-		_what = what;
+		_code    = code;
+		_message = message;
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -698,9 +698,9 @@ XmlError::category() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-XmlError::what() const
+XmlError::message() const
 {
-    return _what;
+    return _message;
 }
 //-------------------------------------------------------------------------------------------------
 
