@@ -116,10 +116,13 @@ XmlDoc::format(
 	}
 
 	std::tstring_t  sRv;
+	int_t           iRv {};
 	xmlChar        *buff {};
 	int             buff_size {};
 
-	::xmlKeepBlanksDefault(0);
+	iRv = ::xmlKeepBlanksDefault(0);
+	xTEST_EQ(iRv, 0);
+
 	::xmlDocDumpFormatMemoryEnc(_doc.get(), &buff, &buff_size, a_toCharset.c_str(), 1);
 	xTEST_PTR(buff);
 	xTEST_GR(buff_size, 0);
