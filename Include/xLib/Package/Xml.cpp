@@ -354,10 +354,11 @@ XmlNode::node(
 	XmlNode         &out_value	///< [out]
 ) const
 {
-    std::vector<XmlNode> _nodes;
-    nodes(a_xpath, _nodes);
+    std::vector<XmlNode> nodes_;
+    nodes(a_xpath, nodes_);
+    xCHECK_DO(nodes_.empty(), return);
 
-    out_value = _nodes.front();
+    out_value = nodes_.front();
 }
 //-------------------------------------------------------------------------------------------------
 void
