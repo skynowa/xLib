@@ -71,7 +71,7 @@ XmlDoc::parse(
 		_doc = {::xmlParseDoc( (const xmlChar *)a_str.data() ), ::xmlFreeDoc};
 	}
 
-	xTEST_PTR(_doc.get());
+	xTEST(!!_doc);
 
 	// [out]
 	_rootNode(out_root);
@@ -84,7 +84,7 @@ XmlDoc::parseFile(
 )
 {
 	_doc = {::xmlParseFile( a_filePath.c_str() ), ::xmlFreeDoc};
-	xTEST_PTR(_doc.get());
+	xTEST(!!_doc);
 
 	// [out]
 	_rootNode(out_root);
@@ -481,7 +481,7 @@ XmlNode::attributes(
 		xTEST_PTR(name);
 
 		char_unique_ptr_t value(::xmlGetProp(_node, name), ::xmlFree);
-		xTEST_PTR(value.get());
+		xTEST(!!value);
 
 		out_values.insert( {(cptr_ctchar_t)name, (cptr_ctchar_t)value.get()} );
 	}
