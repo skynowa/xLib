@@ -40,7 +40,7 @@ ILastError<CodeT>::str() const
     const auto &okStr_ = isOk() ? xT("Success") : xT("Failure");
     const auto &what_  = what();
 
-    return Format::str(xT("{} - {} - {}"), code_, okStr_, what_);
+    return Format::str(xT("{} ({}) - {}"), code_, okStr_, what_);
 }
 //-------------------------------------------------------------------------------------------------
 
