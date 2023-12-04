@@ -353,7 +353,7 @@ XmlNode::node(
     std::vector<XmlNode> _nodes;
     nodes(a_xpath, _nodes);
 
-    out_value = _nodes.front();	/// TODO: check if empty
+    out_value = _nodes.front();
 }
 //-------------------------------------------------------------------------------------------------
 void
