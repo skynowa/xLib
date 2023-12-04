@@ -17,8 +17,8 @@ namespace xl::interface_
 //-------------------------------------------------------------------------------------------------
 template<typename CodeT>
 ILastError<CodeT>::ILastError(
-	const CodeT      a_code,
-	std::ctstring_t &a_message
+	const CodeT      a_code,	///< code / ID
+	std::ctstring_t &a_message	///< detail info
 ) :
     _code   {a_code},
     _message{a_message}
