@@ -56,18 +56,19 @@ Error::message() const
 {
     xTEST(_conn.get().isValid());
 
+    if ( isOk() ) {
+        return {};
+    }
+
     std::tstring_t sRv;
 
     cptr_cchar_t descr = ::mysql_error(_conn.get().get());
     xTEST_PTR(descr);
 
-    if ( !isOk() ) {
-        sRv = Format::str(xT("{}, SQL: \"{}\""), descr, _sql);
-    }
+    sRv = Format::str(xT("{}, SQL: \"{}\""), descr, _sql);
 
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-
 
 } // namespace
