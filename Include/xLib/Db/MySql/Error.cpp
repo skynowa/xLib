@@ -48,7 +48,7 @@ Error::isOk() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Error::description() const
+Error::what() const
 {
     xTEST(_conn.get().isValid());
 
