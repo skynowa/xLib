@@ -85,6 +85,12 @@ public:
     ToT       reinterpretCastT(const FromT &ptr);
         ///< allows any pointer to be converted into any other pointer type
 
+    // TEST: implicitCast
+    template<typename To, typename From>
+    To
+    implicitCast(const From &a_from);
+        ///< https://www.boost.org/doc/libs/1_64_0/boost/implicit_cast.hpp
+
     template<typename T>
     static
     T         roundIntT(cdouble_t value);
@@ -132,15 +138,6 @@ public:
 private:
     const T _value;
 };
-//-------------------------------------------------------------------------------------------------
-// TEST: implicitCast
-template<typename To, typename From>
-inline To
-implicitCast(const From &a_from)
-{
-    return a_from;
-}
-	///< https://www.boost.org/doc/libs/1_64_0/boost/implicit_cast.hpp
 //-------------------------------------------------------------------------------------------------
 
 

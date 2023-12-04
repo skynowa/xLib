@@ -181,6 +181,16 @@ Utils::reinterpretCastT(
     return resT;
 }
 //-------------------------------------------------------------------------------------------------
+template<typename ToT, typename FromT>
+/* static */ inline
+ToT
+Utils::implicitCast(
+	const FromT &a_from
+)
+{
+    return a_from;
+}
+//-------------------------------------------------------------------------------------------------
 template<typename T>
 /* static */ inline
 T
