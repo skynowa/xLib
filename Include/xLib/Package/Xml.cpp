@@ -545,25 +545,6 @@ XmlNode::_text(
 {
     std::tstring_t sRv;
 
-#if 0
-	xmlChar *content {};
-	{
-		if (::xmlNodeIsText(a_node) == 1) {
-			content = ::xmlNodeGetContent(a_node);
-		} else {
-			content = ::xmlNodeListGetString(a_node->doc, a_node->children, 1);
-		}
-
-		if (content == nullptr) {
-			xTESTS_NA;
-			return {};
-		}
-	}
-
-	sRv = (cptr_ctchar_t)content;
-
-	Utils::freeT(content, ::xmlFree, nullptr);
-#else
 	xmlChar *contentPtr {};
 	{
 		if (::xmlNodeIsText(a_node) == 1) {
@@ -580,7 +561,6 @@ XmlNode::_text(
 	}
 
 	sRv = Utils::c_cast<cptr_ctchar_t>(content.get());
-#endif
 
     return sRv;
 }
