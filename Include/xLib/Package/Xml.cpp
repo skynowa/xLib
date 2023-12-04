@@ -62,8 +62,6 @@ XmlDoc::parse(
 	XmlNode         &out_root	///< [out]
 )
 {
-	/// _close();
-
 	if (!a_isNss) {
 		std::tstring_t str = a_str;
 		_stringNoNs(&str);
@@ -85,8 +83,6 @@ XmlDoc::parseFile(
 	XmlNode         &out_root		///< [out]
 )
 {
-	/// _close();
-
 	_doc = {::xmlParseFile( a_filePath.c_str() ), ::xmlFreeDoc};
 	xTEST_PTR(_doc.get());
 
@@ -99,7 +95,8 @@ XmlDoc::saveToFile(
 	std::ctstring_t &a_filePath
 ) const
 {
-	xmlSaveCtxtPtr saveCtxt = ::xmlSaveToFilename(a_filePath.c_str(), nullptr, XML_SAVE_FORMAT);
+	cptr_cchar_t encoding {};
+	xmlSaveCtxtPtr saveCtxt = ::xmlSaveToFilename(a_filePath.c_str(), encoding, XML_SAVE_FORMAT);
 	xTEST_PTR(saveCtxt);
 
 	long_t liRv = ::xmlSaveDoc(saveCtxt, _doc.get());
@@ -356,7 +353,7 @@ XmlNode::node(
     std::vector<XmlNode> _nodes;
     nodes(a_xpath, _nodes);
 
-    out_value = _nodes.front();
+    out_value = _nodes.front();	/// TODO: check if empty
 }
 //-------------------------------------------------------------------------------------------------
 void
