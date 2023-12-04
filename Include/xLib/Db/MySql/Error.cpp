@@ -6,7 +6,7 @@
 
 #include "Error.h"
 
-#include <xLib/Core/Format.h>
+#include <xLib/Core/Format.h> /// rm
 
 namespace xl::db::mysql
 {
@@ -48,20 +48,17 @@ Error::isOk() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Error::str() const
+Error::description() const
 {
     xTEST(_conn.get().isValid());
 
     std::tstring_t sRv;
 
-    cuint_t      code_ = code();
-    cptr_cchar_t str   = ::mysql_error(_conn.get().get());
-    xTEST_PTR(str);
+    cptr_cchar_t descr = ::mysql_error(_conn.get().get());
+    xTEST_PTR(descr);
 
-    if ( isOk() ) {
-        sRv = Format::str(xT("{} - \"{}\""), code_, xT("Success"));
-    } else {
-        sRv = Format::str(xT("{} - \"{}\", SQL: \"{}\""), code_, str, _sql);
+    if ( !isOk() ) {
+        sRv = Format::str(xT("{}, SQL: \"{}\""), descr, _sql);
     }
 
     return sRv;
