@@ -18,6 +18,16 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Test/Test.h>
 //-------------------------------------------------------------------------------------------------
+namespace
+{
+
+using char_unique_ptr_t      = std::unique_ptr<xmlChar, decltype(::xmlFree)>;
+using buff_unique_ptr_t      = std::unique_ptr<xmlBuffer, decltype(&::xmlBufferFree)>;
+using xpath_ctx_unique_ptr_t = std::unique_ptr<xmlXPathContext, decltype(&::xmlXPathFreeContext)>;
+using xpath_obj_unique_ptr_t = std::unique_ptr<xmlXPathObject, decltype(&::xmlXPathFreeObject)>;
+
+}
+//-------------------------------------------------------------------------------------------------
 namespace xl::package
 {
 
