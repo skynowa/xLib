@@ -30,6 +30,7 @@ namespace xl::package
 XmlDoc::XmlDoc(
 	std::ctstring_t &a_charset
 ) :
+    _doc  (nullptr, nullptr),
     _iconv(a_charset, "UTF-8", 1024, false, true)   // TODO: Iconv::isForceEncoding = false
 {
 	// FAQ: https://adobkin.com/2011/10/08/956/
@@ -39,7 +40,6 @@ XmlDoc::XmlDoc(
 /* virtual */
 XmlDoc::~XmlDoc()
 {
-	_close();
 }
 //-------------------------------------------------------------------------------------------------
 void
@@ -57,18 +57,18 @@ XmlDoc::parse(
 	XmlNode         &out_root	///< [out]
 )
 {
-	_close();
+	/// _close();
 
 	if (!a_isNss) {
 		std::tstring_t str = a_str;
 		_stringNoNs(&str);
 
-		_doc = ::xmlParseDoc( (const xmlChar *)str.data() );
+		_doc = {::xmlParseDoc( (const xmlChar *)str.data() ), ::xmlFreeDoc};
 	} else {
-		_doc = ::xmlParseDoc( (const xmlChar *)a_str.data() );
+		_doc = {::xmlParseDoc( (const xmlChar *)a_str.data() ), ::xmlFreeDoc};
 	}
 
-	xTEST_PTR(_doc);
+	xTEST(_doc);
 
 	// [out]
 	_rootNode(out_root);
@@ -80,10 +80,10 @@ XmlDoc::parseFile(
 	XmlNode         &out_root		///< [out]
 )
 {
-	_close();
+	/// _close();
 
-	_doc = ::xmlParseFile( a_filePath.c_str() );
-	xTEST_PTR(_doc);
+	_doc = {::xmlParseFile( a_filePath.c_str() ), ::xmlFreeDoc};
+	xTEST(_doc);
 
 	// [out]
 	_rootNode(out_root);
@@ -242,18 +242,12 @@ XmlDoc::_rootNode(
 	XmlNode &out_root	///< [out]
 )
 {
-	xmlNodePtr rootNode = ::xmlDocGetRootElement(_doc);
+	xmlNodePtr rootNode = ::xmlDocGetRootElement(_doc.get());
 	xTEST_PTR(rootNode);
 
 	XmlNode root(this, rootNode);
 
 	out_root = root;
-}
-//-------------------------------------------------------------------------------------------------
-void
-XmlDoc::_close()
-{
-	Utils::freeT(_doc, ::xmlFreeDoc, nullptr);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -368,30 +362,26 @@ XmlNode::nodes(
 {
 	out_res.clear();
 
-	xmlXPathContextPtr xpathCtx = ::xmlXPathNewContext(_node->doc);
+	xpath_ctx_unique_ptr_t xpathCtx(::xmlXPathNewContext(_node->doc), &::xmlXPathFreeContext);
 	if (xpathCtx == nullptr) {
 		xTEST_FAIL;
 		return;
 	}
 
-	_xmlDoc->_registerNss(xpathCtx);
+	_xmlDoc->_registerNss(xpathCtx.get());
 
 	xpathCtx->node = _node;
 
-	xmlXPathObjectPtr xpathObj = ::xmlXPathEvalExpression((const xmlChar *)a_xpath.data(), xpathCtx);
+	xpath_obj_unique_ptr_t xpathObj(::xmlXPathEvalExpression((const xmlChar *)a_xpath.data(),
+		xpathCtx.get()), ::xmlXPathFreeObject);
 	if (xpathObj == nullptr) {
-		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
 		xTEST_FAIL;
-
 		return;
 	}
 
 	xmlNodeSetPtr nodes = xpathObj->nodesetval;
 	if (nodes == nullptr) {
-		Utils::freeT(xpathObj, ::xmlXPathFreeObject,  nullptr);
-		Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
 		xTEST_FAIL;
-
 		return;
 	}
 
@@ -405,9 +395,6 @@ XmlNode::nodes(
 		XmlNode node(_xmlDoc, it_node);
 		out_res.emplace_back(node);
 	}
-
-	Utils::freeT(xpathObj, ::xmlXPathFreeObject,  nullptr);
-	Utils::freeT(xpathCtx, ::xmlXPathFreeContext, nullptr);
 }
 //-------------------------------------------------------------------------------------------------
 void
@@ -574,20 +561,22 @@ XmlNode::_text(
 
 	Utils::freeT(content, ::xmlFree, nullptr);
 #else
-	char_unique_ptr_t content(nullptr, ::xmlFree);
-
-	if (::xmlNodeIsText(a_node) == 1) {
-		content = {::xmlNodeGetContent(a_node), ::xmlFree};
-	} else {
-		content = {::xmlNodeListGetString(a_node->doc, a_node->children, 1), ::xmlFree};
+	xmlChar *content {};
+	{
+		if (::xmlNodeIsText(a_node) == 1) {
+			content = ::xmlNodeGetContent(a_node);
+		} else {
+			content = ::xmlNodeListGetString(a_node->doc, a_node->children, 1);
+		}
 	}
 
-	if (!content) {
+	char_unique_ptr_t contentPtr(content, ::xmlFree);
+	if (!contentPtr) {
 		xTESTS_NA;
 		return {};
 	}
 
-	sRv = reinterpret_cast<cptr_ctchar_t>(content.get());
+	sRv = reinterpret_cast<cptr_ctchar_t>(contentPtr.get());
 #endif
 
     return sRv;

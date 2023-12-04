@@ -47,14 +47,15 @@ xPUBLIC_STATIC:
 		///< quick check string if XML document
 
 private:
-	xmlDocPtr          _doc {};
+	using doc_unique_ptr_t = std::unique_ptr<xmlDoc, decltype(&::xmlFreeDoc)>;
+
+	doc_unique_ptr_t   _doc;
 	Iconv              _iconv;
 	std::map_tstring_t _nss;
 
 	void _registerNss(xmlXPathContextPtr ctx) const;
 	void _stringNoNs(std::tstring_t *str) const;
 	void _rootNode(XmlNode &root);
-	void _close();
 
 	static void _onError(void *data, xmlErrorPtr error);
 
@@ -94,8 +95,10 @@ public:
 	std::tstring_t dump(cbool_t isFromCurrent = false, cbool_t isFormat = true);
 
 private:
-	using char_unique_ptr_t = std::unique_ptr<xmlChar, decltype(::xmlFree)>;
-	using buff_unique_ptr_t = std::unique_ptr<xmlBuffer, decltype(&::xmlBufferFree)>;
+	using char_unique_ptr_t      = std::unique_ptr<xmlChar, decltype(::xmlFree)>;
+	using xpath_ctx_unique_ptr_t = std::unique_ptr<xmlXPathContext, decltype(&::xmlXPathFreeContext)>;
+	using xpath_obj_unique_ptr_t = std::unique_ptr<xmlXPathObject, decltype(&::xmlXPathFreeObject)>;
+	using buff_unique_ptr_t      = std::unique_ptr<xmlBuffer, decltype(&::xmlBufferFree)>;
 
 	XmlDoc     *_xmlDoc {};
 	xmlNodePtr  _node {};
