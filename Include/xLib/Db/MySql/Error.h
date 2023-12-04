@@ -35,7 +35,7 @@ public:
 		///< error code for the most recently invoked API function that can succeed or fail
 	bool_t         isOk() const final;
 		///<
-	std::tstring_t str() const final;
+	std::tstring_t what() const final;
 		///< error message for the most recently invoked API function that failed
 ///\}
 
