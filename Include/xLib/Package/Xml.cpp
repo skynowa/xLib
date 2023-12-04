@@ -575,114 +575,18 @@ XmlNode::_text(
 XmlError::XmlError(
 	const void        *a_data,    ///< user data
 	const xmlErrorPtr  a_error    ///< XML error
-)
+) :
+	_data {a_data},
+	_error{a_error}
 {
 	xTEST_PTR(a_data);
 	xTEST_PTR(a_error);
-
-	const auto xmlDoc = static_cast<const XmlDoc *>(a_data);
-	xUNUSED(xmlDoc);
-
-	if (a_error->code == XML_ERR_OK) {
-		return;
-	}
-
-	cint_t domain = a_error->domain;
-	cint_t code   = a_error->code;
-
-	std::tstring_t level;
-	{
-		const std::map<xmlErrorLevel, cptr_ctchar_t> levels
-		{
-			{XML_ERR_NONE,    xT("")},
-			{XML_ERR_WARNING, xT("Warning")},
-			{XML_ERR_ERROR,   xT("Error")},
-			{XML_ERR_FATAL,   xT("Fatal")}
-		};
-
-		auto it = levels.find(a_error->level);
-		if (it != levels.cend()) {
-			level = it->second;
-		} else {
-			level = xT("Unknown");
-		}
-	}
-
-	std::tstring_t file;
-	{
-		if (a_error->file != nullptr) {
-			file = a_error->file;
-		}
-	}
-
-	int_t line {};
-	int_t column {};
-	{
-		if (a_error->domain == XML_FROM_PARSER) {
-			line   = a_error->line;
-			column = a_error->int2;
-		}
-	}
-
-	std::tstring_t element;
-	{
-		if (a_error->node != nullptr) {
-			if (((xmlNodePtr)a_error->node)->type == XML_ELEMENT_NODE) {
-				auto node_name = (cptr_ctchar_t)((xmlNodePtr)a_error->node)->name;
-
-				element = node_name;
-			}
-		}
-	}
-
-	std::ctstring_t msg = String::trimSpace(a_error->message);
-
-	std::tstring_t msgExtra1;
-	std::tstring_t msgExtra2;
-	std::tstring_t msgExtra3;
-	{
-		if (a_error->domain == XML_FROM_XPATH) {
-			if (a_error->str1 != nullptr) {
-				msgExtra1 = a_error->str1;
-			}
-
-			if (a_error->str2 != nullptr) {
-				msgExtra2 = a_error->str2;
-			}
-
-			if (a_error->str3 != nullptr) {
-				msgExtra3 = a_error->str3;
-			}
-		}
-	}
-
-	std::ctstring_t message = Format::str(
-		xT("LibXML2 ver:    {}\n")
-		xT("domain:         {}\n")
-		xT("code:           {}\n")
-		xT("level:          {}\n")
-		xT("file:           {}\n")
-		xT("line:           {}\n")
-		xT("column:         {}\n")
-		xT("element:        {}\n")
-		xT("message:        {}\n")
-		xT("message extra1: {}\n")
-		xT("message extra2: {}\n")
-		xT("message extra3: {}\n"),
-		LIBXML_VERSION, domain, code, level, file, line, column, element,
-			msg, msgExtra1, msgExtra2, msgExtra3);
-
-	// [out]
-	{
-		_code    = code;
-		_message = message;
-	}
 }
 //-------------------------------------------------------------------------------------------------
 int_t
 XmlError::code() const
 {
-	return _code;
+	return _error->code;
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -700,7 +604,99 @@ XmlError::category() const
 std::tstring_t
 XmlError::message() const
 {
-    return _message;
+	const auto xmlDoc = static_cast<const XmlDoc *>(_data);
+	xUNUSED(xmlDoc);
+
+	if (_error->code == XML_ERR_OK) {
+		return {};
+	}
+
+	cint_t domain = _error->domain;
+	cint_t code   = _error->code;
+
+	std::tstring_t level;
+	{
+		const std::map<xmlErrorLevel, cptr_ctchar_t> levels
+		{
+			{XML_ERR_NONE,    xT("")},
+			{XML_ERR_WARNING, xT("Warning")},
+			{XML_ERR_ERROR,   xT("Error")},
+			{XML_ERR_FATAL,   xT("Fatal")}
+		};
+
+		auto it = levels.find(_error->level);
+		if (it != levels.cend()) {
+			level = it->second;
+		} else {
+			level = xT("Unknown");
+		}
+	}
+
+	std::tstring_t file;
+	{
+		if (_error->file != nullptr) {
+			file = _error->file;
+		}
+	}
+
+	int_t line {};
+	int_t column {};
+	{
+		if (_error->domain == XML_FROM_PARSER) {
+			line   = _error->line;
+			column = _error->int2;
+		}
+	}
+
+	std::tstring_t element;
+	{
+		if (_error->node != nullptr) {
+			if (((xmlNodePtr)_error->node)->type == XML_ELEMENT_NODE) {
+				auto node_name = (cptr_ctchar_t)((xmlNodePtr)_error->node)->name;
+
+				element = node_name;
+			}
+		}
+	}
+
+	std::ctstring_t msg = String::trimSpace(_error->message);
+
+	std::tstring_t msgExtra1;
+	std::tstring_t msgExtra2;
+	std::tstring_t msgExtra3;
+	{
+		if (_error->domain == XML_FROM_XPATH) {
+			if (_error->str1 != nullptr) {
+				msgExtra1 = _error->str1;
+			}
+
+			if (_error->str2 != nullptr) {
+				msgExtra2 = _error->str2;
+			}
+
+			if (_error->str3 != nullptr) {
+				msgExtra3 = _error->str3;
+			}
+		}
+	}
+
+	std::ctstring_t sRv = Format::str(
+		xT("LibXML2 ver:    {}\n")
+		xT("domain:         {}\n")
+		xT("code:           {}\n")
+		xT("level:          {}\n")
+		xT("file:           {}\n")
+		xT("line:           {}\n")
+		xT("column:         {}\n")
+		xT("element:        {}\n")
+		xT("message:        {}\n")
+		xT("message extra1: {}\n")
+		xT("message extra2: {}\n")
+		xT("message extra3: {}\n"),
+		LIBXML_VERSION, domain, code, level, file, line, column, element,
+			msg, msgExtra1, msgExtra2, msgExtra3);
+
+	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 
