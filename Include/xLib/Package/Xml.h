@@ -121,6 +121,10 @@ public:
 	std::tstring_t category() const final;
 	std::tstring_t message() const final;
 ///\}
+
+private:
+	const void        *_data  {}; ///< user data
+	const xmlErrorPtr  _error {}; ///< XML error
 };
 //-------------------------------------------------------------------------------------------------
 } // namespace
