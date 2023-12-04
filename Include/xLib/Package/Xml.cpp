@@ -692,6 +692,12 @@ XmlError::isOk() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
+XmlError::category() const
+{
+    return xT("xl::package::XmlError");
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
 XmlError::what() const
 {
     return _what;

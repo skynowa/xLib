@@ -28,6 +28,8 @@ public:
         ///< Code
     virtual bool_t         isOk() const = 0;
         ///< Check for success
+    virtual std::tstring_t category() const = 0;
+        ///< Category (type)
     virtual std::tstring_t what() const = 0;
         ///< Detail message
 
