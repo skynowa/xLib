@@ -47,11 +47,6 @@ XmlDoc::XmlDoc(
 	(void)::xmlSetStructuredErrorFunc(this, _onError);
 }
 //-------------------------------------------------------------------------------------------------
-/* virtual */
-XmlDoc::~XmlDoc()
-{
-}
-//-------------------------------------------------------------------------------------------------
 void
 XmlDoc::setNss(
 	std::cmap_tstring_t &a_nss	///< prefix to namespase
@@ -468,7 +463,7 @@ XmlNode::attribute(
 		return {};
 	}
 
-	sRv = (cptr_ctchar_t)value.get();
+	sRv = Utils::c_cast<cptr_ctchar_t>(value.get());
 
 	return sRv;
 }

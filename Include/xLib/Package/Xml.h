@@ -27,7 +27,7 @@ public:
 ///\name ctors, dtor
 ///\{
 	explicit  XmlDoc(std::ctstring_t &charset);
-	virtual  ~XmlDoc();
+	virtual  ~XmlDoc() = default;
 
 	xNO_DEFAULT_CONSTRUCT(XmlDoc);
 	xNO_COPY_ASSIGN(XmlDoc);
