@@ -560,22 +560,22 @@ XmlNode::_text(
 
 	Utils::freeT(content, ::xmlFree, nullptr);
 #else
-	xmlChar *content {};
+	xmlChar *contentPtr {};
 	{
 		if (::xmlNodeIsText(a_node) == 1) {
-			content = ::xmlNodeGetContent(a_node);
+			contentPtr = ::xmlNodeGetContent(a_node);
 		} else {
-			content = ::xmlNodeListGetString(a_node->doc, a_node->children, 1);
+			contentPtr = ::xmlNodeListGetString(a_node->doc, a_node->children, 1);
 		}
 	}
 
-	char_unique_ptr_t contentPtr(content, ::xmlFree);
+	char_unique_ptr_t content(content, ::xmlFree);
 	if (!contentPtr) {
 		xTESTS_NA;
 		return {};
 	}
 
-	sRv = reinterpret_cast<cptr_ctchar_t>(contentPtr.get());
+	sRv = Utils::c_cast<cptr_ctchar_t>(content.get());
 #endif
 
     return sRv;
