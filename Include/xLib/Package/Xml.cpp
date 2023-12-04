@@ -569,7 +569,7 @@ XmlNode::_text(
 		}
 	}
 
-	char_unique_ptr_t content(content, ::xmlFree);
+	char_unique_ptr_t content(contentPtr, ::xmlFree);
 	if (!contentPtr) {
 		xTESTS_NA;
 		return {};
