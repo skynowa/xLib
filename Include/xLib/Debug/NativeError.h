@@ -21,6 +21,7 @@ public:
 	xNO_COPY_ASSIGN(NativeError)
 ///\}
 
+xPUBLIC_STATIC:
     static bool_t         isSuccess();
         ///< is error code success
     static ulong_t        get();
