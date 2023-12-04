@@ -179,5 +179,6 @@ dir_unique_ptr_t  autoDir(std::ctstring_t &dirPath);
 /**
  * TODO:
  *
- * assert - rm
+ * - assert - rm
+ * - Utils in xlib global ns
  */
