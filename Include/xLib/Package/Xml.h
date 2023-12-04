@@ -48,6 +48,7 @@ xPUBLIC_STATIC:
 
 private:
 	using doc_unique_ptr_t = std::unique_ptr<xmlDoc, decltype(&::xmlFreeDoc)>;
+	using char_unique_ptr_t      = std::unique_ptr<xmlChar, decltype(::xmlFree)>;
 
 	doc_unique_ptr_t   _doc;
 	Iconv              _iconv;

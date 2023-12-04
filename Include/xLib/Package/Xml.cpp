@@ -68,7 +68,7 @@ XmlDoc::parse(
 		_doc = {::xmlParseDoc( (const xmlChar *)a_str.data() ), ::xmlFreeDoc};
 	}
 
-	xTEST(_doc);
+	xTEST_PTR(_doc.get());
 
 	// [out]
 	_rootNode(out_root);
@@ -83,7 +83,7 @@ XmlDoc::parseFile(
 	/// _close();
 
 	_doc = {::xmlParseFile( a_filePath.c_str() ), ::xmlFreeDoc};
-	xTEST(_doc);
+	xTEST_PTR(_doc.get());
 
 	// [out]
 	_rootNode(out_root);
@@ -97,7 +97,7 @@ XmlDoc::saveToFile(
 	xmlSaveCtxtPtr saveCtxt = ::xmlSaveToFilename(a_filePath.c_str(), nullptr, XML_SAVE_FORMAT);
 	xTEST_PTR(saveCtxt);
 
-	long_t liRv = ::xmlSaveDoc(saveCtxt, _doc);
+	long_t liRv = ::xmlSaveDoc(saveCtxt, _doc.get());
 	xTEST_EQ(liRv, 0L);
 
 	int_t iRv = ::xmlSaveClose(saveCtxt);
@@ -118,7 +118,7 @@ XmlDoc::format(
 	int             buff_size {};
 
 	::xmlKeepBlanksDefault(0);
-	::xmlDocDumpFormatMemoryEnc(_doc, &buff, &buff_size, a_toCharset.c_str(), 1);
+	::xmlDocDumpFormatMemoryEnc(_doc.get(), &buff, &buff_size, a_toCharset.c_str(), 1);
 	xTEST_PTR(buff);
 	xTEST_GR(buff_size, 0);
 
@@ -363,7 +363,7 @@ XmlNode::nodes(
 	out_res.clear();
 
 	xpath_ctx_unique_ptr_t xpathCtx(::xmlXPathNewContext(_node->doc), &::xmlXPathFreeContext);
-	if (xpathCtx == nullptr) {
+	if (!xpathCtx) {
 		xTEST_FAIL;
 		return;
 	}
@@ -374,7 +374,7 @@ XmlNode::nodes(
 
 	xpath_obj_unique_ptr_t xpathObj(::xmlXPathEvalExpression((const xmlChar *)a_xpath.data(),
 		xpathCtx.get()), ::xmlXPathFreeObject);
-	if (xpathObj == nullptr) {
+	if (!xpathObj) {
 		xTEST_FAIL;
 		return;
 	}
@@ -393,6 +393,7 @@ XmlNode::nodes(
 		}
 
 		XmlNode node(_xmlDoc, it_node);
+
 		out_res.emplace_back(node);
 	}
 }
@@ -451,15 +452,13 @@ XmlNode::attribute(
 
 	std::tstring_t sRv;
 
-	xmlChar *value = ::xmlGetProp(_node, (const xmlChar *)a_name.data());
-	if (value == nullptr) {
+	char_unique_ptr_t value(::xmlGetProp(_node, (const xmlChar *)a_name.data()), ::xmlFree);
+	if (!value) {
 		// attribute - not exists
 		return {};
 	}
 
-	sRv = (cptr_ctchar_t)value;
-
-	Utils::freeT(value, ::xmlFree, nullptr);
+	sRv = (cptr_ctchar_t)value.get();
 
 	return sRv;
 }
@@ -479,12 +478,10 @@ XmlNode::attributes(
 		const xmlChar *name  = p->name;
 		xTEST_PTR(name);
 
-		xmlChar *value = ::xmlGetProp(_node, name);
-		xTEST_PTR(value);
+		char_unique_ptr_t value(::xmlGetProp(_node, name), ::xmlFree);
+		xTEST_PTR(value.get());
 
-		out_values.insert( {(cptr_ctchar_t)name, (cptr_ctchar_t)value} );
-
-		Utils::freeT(value, ::xmlFree, nullptr);
+		out_values.insert( {(cptr_ctchar_t)name, (cptr_ctchar_t)value.get()} );
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -504,7 +501,7 @@ XmlNode::dump(
 	cint_t     level  = 0;
 	cint_t     format = a_isFormat ? 1 : 0;
 
-	iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc, node, level, format);
+	iRv = ::xmlNodeDump(buff.get(), _xmlDoc->_doc.get(), node, level, format);
 	xTEST_DIFF(iRv,  -1);
 
 	auto content = (cptr_ctchar_t)buff->content;
