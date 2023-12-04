@@ -18,10 +18,10 @@ namespace xl::interface_
 template<typename CodeT>
 ILastError<CodeT>::ILastError(
 	const CodeT      a_code,
-	std::ctstring_t &a_what
+	std::ctstring_t &a_message
 ) :
-    _code{a_code},
-    _what{a_what}
+    _code   {a_code},
+    _message{a_message}
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -39,9 +39,9 @@ ILastError<CodeT>::str() const
     const auto &code_     = code();
     const auto &okStr_    = isOk() ? xT("Success") : xT("Failure");
     const auto &category_ = category();
-    const auto &what_     = what();
+    const auto &message_  = message();
 
-    return Format::str(xT("[{}] {} ({}) - {}"),  category_, code_, okStr_,what_);
+    return Format::str(xT("[{}] {} ({}) - {}"),  category_, code_, okStr_, message_);
 }
 //-------------------------------------------------------------------------------------------------
 

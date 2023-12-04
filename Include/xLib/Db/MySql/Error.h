@@ -37,7 +37,7 @@ public:
 		///<
 	std::tstring_t category() const final;
 		///<
-	std::tstring_t what() const final;
+	std::tstring_t message() const final;
 		///< error message for the most recently invoked API function that failed
 ///\}
 
