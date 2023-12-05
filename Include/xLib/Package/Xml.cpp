@@ -555,7 +555,7 @@ XmlNode::_text(
 	}
 
 	char_unique_ptr_t content(contentPtr, ::xmlFree);
-	if (!contentPtr) {
+	if (!content) {
 		xTESTS_NA;
 		return {};
 	}
