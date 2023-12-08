@@ -64,6 +64,10 @@ TODO: [win] Sync - close handle
 
 - SA
 
+## Remove
+
+- `class Donate`
+
 ## Etc
 
 [ ] https://github.com/eyjian/mooon/blob/master/mooon/CMake.common (eyjian/mooon)
