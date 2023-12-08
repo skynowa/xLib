@@ -23,7 +23,6 @@
 #include <xLib/Package/ApplicationInfo.h>
 #include <xLib/Debug/BuildInfo.h>
 #include <xLib/Sync/Signal.h>
-#include <xLib/Package/Donate.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::package
 {
@@ -135,8 +134,6 @@ xPUBLIC_STATIC:
         ///< build information
     xPROPERTY_STATIC(ApplicationInfo, info, Info);
         ///< application information
-	xPROPERTY_STATIC(Donate, donate, Donate);
-        ///< application donate
 
 protected:
     bool_t          _isDevel {};
