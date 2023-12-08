@@ -31,7 +31,7 @@ Version::info() const
     xTEST_PTR(infoData);
 
     sRv = Format::str(
-        "age: {}\n"
+        xT("age: {}\n"
         "version: {}\n"
         "version_num: {}\n"
         "host: {}\n"
@@ -44,7 +44,7 @@ Version::info() const
         "ares_num: {}\n"
         "libidn: {}\n"
         "iconv_ver_num: {}\n"
-        "libssh_version: {}",
+        "libssh_version: {}"),
         infoData->age,
         infoData->version,
         infoData->version_num,
