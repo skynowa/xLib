@@ -145,7 +145,6 @@ namespace xl::package
 {
 
 ApplicationInfo Application::_info;
-Donate          Application::_donate;
 //-------------------------------------------------------------------------------------------------
 Application::Application(
     std::ctstring_t &a_appGuid, ///< application GUID

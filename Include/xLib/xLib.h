@@ -148,7 +148,6 @@
 // Package
 #include <xLib/Package/Application.h>
 #include <xLib/Package/ApplicationInfo.h>
-#include <xLib/Package/Donate.h>
 #include <xLib/Package/IRestClient.h>
 #include <xLib/Package/FeatureFlag.h>
 #include <xLib/Package/Archive.h>
