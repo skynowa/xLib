@@ -27,7 +27,7 @@ Version::info() const
 {
     std::tstring_t sRv;
 
-    curl_version_info_data *infoData = ::curl_version_info(_version);
+    curl_version_info_data *infoData = ::curl_version_info( version() );
     xTEST_PTR(infoData);
 
     sRv = Format::str(
@@ -72,7 +72,7 @@ Version::protocols(
 
 	a_values->clear();
 
-    curl_version_info_data *infoData = ::curl_version_info(_version);
+    curl_version_info_data *infoData = ::curl_version_info( version() );
     xTEST_PTR(infoData);
 
     const char *const *const prot = infoData->protocols;
