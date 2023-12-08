@@ -52,8 +52,8 @@ Client::Client(
 ) :
 	_isDebug{a_isDebug}
 {
-	_lastError = ::curl_global_init(CURL_GLOBAL_ALL);
-	xTEST(_isLastErrorOk());
+	Error err = ::curl_global_init(CURL_GLOBAL_ALL);
+	xTEST(err.isOk());
 
     _handle = ::curl_easy_init();
     xTEST(_handle.isValid());
@@ -87,8 +87,8 @@ Client::reset()
 void_t
 Client::perform()
 {
-    _lastError = ::curl_easy_perform( _handle.get() );
-    xTEST_MSG(_isLastErrorOk(), Format::str(xT("perform: {}"), strError()));
+	Error err = ::curl_easy_perform( _handle.get() );
+    xTEST_MSG(err.isOk(), Format::str(xT("perform: {}"), err.str()));
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -96,8 +96,8 @@ Client::pause(
     cint_t a_bitMask
 )
 {
-    _lastError = ::curl_easy_pause(_handle.get(), a_bitMask);
-    xTEST(_isLastErrorOk());
+	Error err = ::curl_easy_pause(_handle.get(), a_bitMask);
+    xTEST(err.isOk());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -107,8 +107,8 @@ Client::receive(
     std::size_t  *a_items
 )
 {
-    _lastError = ::curl_easy_recv(_handle.get(), a_buff, a_buffSize, a_items);
-    xTEST(_isLastErrorOk());
+	Error err = ::curl_easy_recv(_handle.get(), a_buff, a_buffSize, a_items);
+    xTEST(err.isOk());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -118,8 +118,8 @@ Client::send(
     std::size_t  *a_items
 )
 {
-    _lastError = ::curl_easy_send(_handle.get(), a_buff, a_buffSize, a_items);
-    xTEST(_isLastErrorOk());
+	Error err = ::curl_easy_send(_handle.get(), a_buff, a_buffSize, a_items);
+    xTEST(err.isOk());
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -146,27 +146,16 @@ Client::unescape(
 {
     std::tstring_t sRv;
 
-    int size_out {};
+    int sizeOut {};
     char *pszRv = ::curl_easy_unescape(_handle.get(), a_str.c_str(),
-        static_cast<int>( a_str.size() ), &size_out);
+        static_cast<int>( a_str.size() ), &sizeOut);
     xTEST_PTR(pszRv);
 
-    sRv.assign(pszRv, static_cast<std::size_t>(size_out));
+    sRv.assign(pszRv, static_cast<std::size_t>(sizeOut));
 
     Utils::freeT(pszRv, ::curl_free, nullptr);
 
     return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Client::strError() const
-{
-    const char *pszRv = ::curl_easy_strerror(_lastError);
-    if (pszRv == nullptr) {
-        return Const::strUnknown();
-    }
-
-    return Format::str(xT("{} - {}"), _lastError, pszRv);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -297,27 +286,13 @@ Client::onReadData(
 
 
 /**************************************************************************************************
-*   protected
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-bool_t
-Client::_isLastErrorOk() const
-{
-	return (_lastError == CURLE_OK);
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
 *   private
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-int
+CURLcode
 Client::_onDebugData(
 	CURL                *a_curl,		///<
 	const curl_infotype  a_type,		///<

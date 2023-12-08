@@ -1,6 +1,6 @@
 /**
  * \file  Error.h
- * \brief MySql error
+ * \brief CURL error
  */
 
 
@@ -8,22 +8,22 @@
 
 #include <xLib/Db/MySql/Common.h>
 #include <xLib/Interface/ILastError.h>
+#include <curl/curl.h>
+#include <curl/easy.h>
+#include "Types.h"
 //-------------------------------------------------------------------------------------------------
-namespace xl::db::mysql
+namespace xl::package::curl
 {
 
-class Connection;
-
 class Error :
-	public xl::interface_::ILastError<uint_t>
-    /// MySql error
+	public xl::interface_::ILastError<CURLcode>
+    /// CURL error
 {
 public:
 ///\name ctors, dtor
 ///\{
-	explicit Error(const Connection &conn);
-			 Error(const Connection &conn, std::ctstring_t &sql);
-	virtual ~Error() = default;
+             Error(cCURLcode code);
+    virtual ~Error() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Error)
 	xNO_COPY_ASSIGN(Error)
@@ -31,15 +31,14 @@ public:
 
 ///\name Overrides
 ///\{
-	uint_t         code() const final;
+	CURLcode       code() const final;
 	bool_t         isOk() const final;
 	std::tstring_t category() const final;
 	std::tstring_t message() const final;
 ///\}
 
 private:
-    const Connection &_conn;   ///< handler for one database connection
-    std::ctstring_t   _sql;    ///< SQL - extra message
+	cCURLcode _code {CURLE_OK};    ///< Error code
 };
 
 } // namespace
