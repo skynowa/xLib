@@ -66,7 +66,7 @@ TODO: [win] Sync - close handle
 
 ## Remove
 
-- `class Donate`
+- [+] `class Donate`
 
 ## Etc
 
