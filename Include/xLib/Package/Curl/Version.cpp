@@ -16,20 +16,18 @@ namespace xl::package::curl
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+CURLversion
 Version::version() const
 {
-    return ::curl_version();
+    return _version;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Version::info(
-    cCURLversion a_version
-) const
+Version::info() const
 {
     std::tstring_t sRv;
 
-    curl_version_info_data *infoData = ::curl_version_info(a_version);
+    curl_version_info_data *infoData = ::curl_version_info(_version);
     xTEST_PTR(infoData);
 
     sRv = Format::str(
@@ -65,12 +63,6 @@ Version::info(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
-Version::infoCurrent() const
-{
-    return info(CURLVERSION_NOW);
-}
-//-------------------------------------------------------------------------------------------------
 void_t
 Version::protocols(
 	std::vec_tstring_t *a_values	///< [out]
@@ -80,7 +72,7 @@ Version::protocols(
 
 	a_values->clear();
 
-    curl_version_info_data *infoData = ::curl_version_info(CURLVERSION_NOW);
+    curl_version_info_data *infoData = ::curl_version_info(_version);
     xTEST_PTR(infoData);
 
     const char *const *const prot = infoData->protocols;

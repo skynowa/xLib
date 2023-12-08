@@ -22,16 +22,20 @@ class Version
     /// Client version
 {
 public:
-                   Version() = default;
-                  ~Version() = default;
+///\name ctors, dtor
+///\{
+	Version() = default;
+	~Version() = default;
 
-    std::tstring_t version() const;
-    std::tstring_t info(cCURLversion version) const;
-    std::tstring_t infoCurrent() const;
+	xNO_COPY_ASSIGN(Version)
+///\}
+
+	CURLversion    version() const;
+    std::tstring_t info() const;
     void_t         protocols(std::vec_tstring_t *values) const;
 
 private:
-    xNO_COPY_ASSIGN(Version)
+    cCURLversion _version {CURLVERSION_NOW};
 };
 
 } // namespace
