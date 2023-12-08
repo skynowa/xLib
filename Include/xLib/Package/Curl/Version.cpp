@@ -76,6 +76,7 @@ Version::protocols(
     xTEST_PTR(infoData);
 
     const char *const *const prot = infoData->protocols;
+    xTEST_PTR(prot);
 
     for (std::size_t i = 0; *(prot + i) != nullptr; ++ i) {
         a_values->push_back(*(prot + i));
