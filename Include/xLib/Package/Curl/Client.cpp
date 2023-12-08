@@ -16,6 +16,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Test/Test.h>
 
+
 namespace xl::package::curl
 {
 
@@ -145,12 +146,12 @@ Client::unescape(
 {
     std::tstring_t sRv;
 
-    int size_out {};
+    int sizeOut {};
     char *pszRv = ::curl_easy_unescape(_handle.get(), a_str.c_str(),
-        static_cast<int>( a_str.size() ), &size_out);
+        static_cast<int>( a_str.size() ), &sizeOut);
     xTEST_PTR(pszRv);
 
-    sRv.assign(pszRv, static_cast<std::size_t>(size_out));
+    sRv.assign(pszRv, static_cast<std::size_t>(sizeOut));
 
     Utils::freeT(pszRv, ::curl_free, nullptr);
 
@@ -291,7 +292,7 @@ Client::onReadData(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-int_t
+CURLcode
 Client::_onDebugData(
 	CURL                *a_curl,		///<
 	const curl_infotype  a_type,		///<

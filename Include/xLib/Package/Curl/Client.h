@@ -112,8 +112,8 @@ private:
 ///\{
 	DebugData _debugData {};
 
-	static int_t _onDebugData(CURL *curl, const curl_infotype type, char *buff, std::csize_t size,
-					void_t *userData);
+	static CURLcode _onDebugData(CURL *curl, const curl_infotype type, char *buff,
+						std::csize_t size, void_t *userData);
 		///< debug data
 ///\}
 };

@@ -22,8 +22,8 @@ class Error :
 public:
 ///\name ctors, dtor
 ///\{
-	/* explicit */ Error(cCURLcode code);
-	virtual ~Error() = default;
+             Error(cCURLcode code);
+    virtual ~Error() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Error)
 	xNO_COPY_ASSIGN(Error)
@@ -32,17 +32,13 @@ public:
 ///\name Overrides
 ///\{
 	CURLcode       code() const final;
-		///< error code for the most recently invoked API function that can succeed or fail
 	bool_t         isOk() const final;
-		///<
 	std::tstring_t category() const final;
-		///<
 	std::tstring_t message() const final;
-		///< error message for the most recently invoked API function that failed
 ///\}
 
 private:
-	CURLcode _code {CURLE_OK};    ///< Error code
+	cCURLcode _code {CURLE_OK};    ///< Error code
 };
 
 } // namespace

@@ -16,9 +16,9 @@ namespace xl::package::curl
 
 //-------------------------------------------------------------------------------------------------
 Error::Error(
-	cCURLcode a_code
+    cCURLcode a_code
 ) :
-	_code{a_code}
+    _code{a_code}
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ Error::message() const
         return {};
     }
 
-	cptr_cchar_t pszRv = ::curl_easy_strerror( code() );
+    cptr_cchar_t pszRv = ::curl_easy_strerror( code() );
     if (pszRv == nullptr) {
         return Const::strUnknown();
     }
