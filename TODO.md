@@ -60,6 +60,10 @@ TODO: [win] Sync - close handle
 [ ] Linux fix
 [ ] Win fix
 
+## Pipeline
+
+- SA
+
 ## Etc
 
 [ ] https://github.com/eyjian/mooon/blob/master/mooon/CMake.common (eyjian/mooon)
