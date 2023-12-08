@@ -66,25 +66,18 @@ public:
     std::tstring_t escape(std::ctstring_t &str) const;
     std::tstring_t unescape(std::ctstring_t &str) const;
 
-    std::tstring_t strError() const;
-
 xPUBLIC_STATIC:
-    static
-    std::tstring_t escapeUrl(std::ctstring_t &str);
-    static
-    std::tstring_t unescapeUrl(std::ctstring_t &str);
+    static std::tstring_t escapeUrl(std::ctstring_t &str);
+    static std::tstring_t unescapeUrl(std::ctstring_t &str);
 
 ///\name Callbacks
 ///\{
-	static
-	std::size_t onWriteHeader(void_t *buff, std::csize_t size, std::csize_t items, void_t *userData);
-		///<
-	static
-	std::size_t onWriteData(void_t *buff, std::csize_t size, std::csize_t items, void_t *userData);
-		///<
-	static
-	std::size_t onReadData(void_t *buff, std::csize_t size, std::csize_t items, void_t *userData);
-		///<
+	static std::size_t onWriteHeader(void_t *buff, std::csize_t size, std::csize_t items,
+							void_t *userData);
+	static std::size_t onWriteData(void_t *buff, std::csize_t size, std::csize_t items,
+							void_t *userData);
+	static std::size_t onReadData(void_t *buff, std::csize_t size, std::csize_t items,
+							void_t *userData);
 ///\}
 
 protected:
@@ -107,12 +100,9 @@ protected:
 ///\}
 ///
 	cbool_t            _isDebug {};
-	CURLcode           _lastError {CURLE_OK};
 	HandleCurl         _handle;
 	ReadData           _readData {};
 	slist_unique_ptr_t _headers;
-
-	bool_t _isLastErrorOk() const;
 
 private:
     static std::csize_t _errorBuffSize {CURL_ERROR_SIZE};
@@ -122,9 +112,8 @@ private:
 ///\{
 	DebugData _debugData {};
 
-	static
-	int _onDebugData(CURL *curl, const curl_infotype type, char *buff, std::csize_t size,
-			void_t *userData);
+	static CURLcode _onDebugData(CURL *curl, const curl_infotype type, char *buff,
+						std::csize_t size, void_t *userData);
 		///< debug data
 ///\}
 };

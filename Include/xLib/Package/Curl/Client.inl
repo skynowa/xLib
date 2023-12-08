@@ -4,6 +4,8 @@
  */
 
 
+#include <xLib/Package/Curl/Error.h>
+
 namespace xl::package::curl
 {
 
@@ -20,8 +22,8 @@ Client::setOption(
 	const T     &a_value
 )
 {
-	_lastError = ::curl_easy_setopt(_handle.get(), a_option, a_value);
-	xTEST_MSG(_isLastErrorOk(), Format::str(xT("Option: {} - {}"), a_option, strError()));
+	Error err = ::curl_easy_setopt(_handle.get(), a_option, a_value);
+	xTEST_MSG(err.isOk(), Format::str(xT("Option: {} - {}"), a_option, err.str()));
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -31,8 +33,8 @@ Client::info(
     const T   &a_value
 )
 {
-	_lastError = ::curl_easy_getinfo(_handle.get(), a_info, a_value);
-    xTEST_MSG(_isLastErrorOk(), Format::str(xT("Info: {} - {}"), a_info, strError()));
+	Error err = ::curl_easy_getinfo(_handle.get(), a_info, a_value);
+    xTEST_MSG(err.isOk(), Format::str(xT("Info: {} - {}"), a_info, err.str()));
 }
 //-------------------------------------------------------------------------------------------------
 
