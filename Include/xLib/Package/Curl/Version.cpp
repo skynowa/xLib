@@ -16,24 +16,22 @@ namespace xl::package::curl
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+CURLversion
 Version::version() const
 {
-    return ::curl_version();
+    return _version;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Version::info(
-    cCURLversion a_version
-) const
+Version::info() const
 {
     std::tstring_t sRv;
 
-    curl_version_info_data *infoData = ::curl_version_info(a_version);
+    curl_version_info_data *infoData = ::curl_version_info( version() );
     xTEST_PTR(infoData);
 
     sRv = Format::str(
-        "age: {}\n"
+        xT("age: {}\n"
         "version: {}\n"
         "version_num: {}\n"
         "host: {}\n"
@@ -46,7 +44,7 @@ Version::info(
         "ares_num: {}\n"
         "libidn: {}\n"
         "iconv_ver_num: {}\n"
-        "libssh_version: {}",
+        "libssh_version: {}"),
         infoData->age,
         infoData->version,
         infoData->version_num,
@@ -65,12 +63,6 @@ Version::info(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
-Version::infoCurrent() const
-{
-    return info(CURLVERSION_NOW);
-}
-//-------------------------------------------------------------------------------------------------
 void_t
 Version::protocols(
 	std::vec_tstring_t *a_values	///< [out]
@@ -80,10 +72,11 @@ Version::protocols(
 
 	a_values->clear();
 
-    curl_version_info_data *infoData = ::curl_version_info(CURLVERSION_NOW);
+    curl_version_info_data *infoData = ::curl_version_info( version() );
     xTEST_PTR(infoData);
 
     const char *const *const prot = infoData->protocols;
+    xTEST_PTR(prot);
 
     for (std::size_t i = 0; *(prot + i) != nullptr; ++ i) {
         a_values->push_back(*(prot + i));

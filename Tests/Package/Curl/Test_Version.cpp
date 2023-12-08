@@ -20,19 +20,13 @@ Test_HttpClient::unit()
 
 	xTEST_CASE("version")
 	{
-		m_sRv = version.version();
-		xTEST(!m_sRv.empty());
+		CURLversion cvRv = version.version();
+		xTEST_GR(cvRv, 0);
 	}
 
 	xTEST_CASE("info")
 	{
-		m_sRv = version.info(CURLVERSION_FIRST);
-		xTEST(!m_sRv.empty());
-	}
-
-	xTEST_CASE("infoCurrent")
-	{
-		m_sRv = version.infoCurrent();
+		m_sRv = version.info();
 		xTEST(!m_sRv.empty());
 	}
 
