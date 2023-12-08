@@ -16,7 +16,7 @@ class Connection;
 
 class Error :
 	public xl::interface_::ILastError<uint_t>
-    /// MySql connection
+    /// MySql error
 {
 public:
 ///\name ctors, dtor
@@ -32,13 +32,9 @@ public:
 ///\name Overrides
 ///\{
 	uint_t         code() const final;
-		///< error code for the most recently invoked API function that can succeed or fail
 	bool_t         isOk() const final;
-		///<
 	std::tstring_t category() const final;
-		///<
 	std::tstring_t message() const final;
-		///< error message for the most recently invoked API function that failed
 ///\}
 
 private:

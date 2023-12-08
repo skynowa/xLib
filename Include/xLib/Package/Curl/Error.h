@@ -17,7 +17,7 @@ namespace xl::package::curl
 
 class Error :
 	public xl::interface_::ILastError<CURLcode>
-    /// CURL connection
+    /// CURL error
 {
 public:
 ///\name ctors, dtor
