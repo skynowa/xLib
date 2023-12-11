@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Db/MySql/Common.h>
-#include <xLib/Interface/ILastError.h>
+#include <xLib/Interface/IError.h>
 #include <curl/curl.h>
 #include <curl/easy.h>
 #include "Types.h"
@@ -16,7 +16,7 @@ namespace xl::package::curl
 {
 
 class Error :
-	public xl::interface_::ILastError<CURLcode>
+	public xl::interface_::IError<CURLcode>
     /// CURL error
 {
 public:

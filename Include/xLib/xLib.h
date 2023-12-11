@@ -42,7 +42,7 @@
 #include <xLib/Interface/IValid.h>
 #include <xLib/Interface/IData.h>
 #include <xLib/Interface/IHandle.h>
-#include <xLib/Interface/ILastError.h>
+#include <xLib/Interface/IError.h>
 #include <xLib/Interface/IOStream.h>
 #include <xLib/Interface/IContainer.h>
 #include <xLib/Interface/ISync.h>

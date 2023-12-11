@@ -6,7 +6,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Interface/ILastError.h>
+#include <xLib/Interface/IError.h>
 #include <xLib/Package/Iconv.h>
 
 #include <libxml/xmlmemory.h>
@@ -102,7 +102,7 @@ private:
 };
 //-------------------------------------------------------------------------------------------------
 class XmlError :
-	public xl::interface_::ILastError<int_t>
+	public xl::interface_::IError<int_t>
 {
 public:
 ///\name ctors, dtor

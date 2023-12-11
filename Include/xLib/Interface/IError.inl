@@ -1,6 +1,6 @@
 /**
- * \file  ILastError.inl
- * \brief Last error
+ * \file  IError.inl
+ * \brief Error
  */
 
 
@@ -17,14 +17,14 @@ namespace xl::interface_
 //-------------------------------------------------------------------------------------------------
 template<typename CodeT>
 bool_t
-ILastError<CodeT>::isFail() const
+IError<CodeT>::isFail() const
 {
     return !isOk();
 }
 //-------------------------------------------------------------------------------------------------
 template<typename CodeT>
 std::tstring_t
-ILastError<CodeT>::str() const
+IError<CodeT>::str() const
 {
     const auto &code_     = code();
     const auto &okStr_    = isOk() ? xT("Success") : xT("Failure");
