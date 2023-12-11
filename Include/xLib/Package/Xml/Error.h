@@ -7,7 +7,6 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Interface/IError.h>
-#include <xLib/Package/Iconv.h>
 
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>

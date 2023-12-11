@@ -6,8 +6,6 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Interface/IError.h>
-#include <xLib/Package/Iconv.h>
 #include <xLib/Package/Xml/Doc.h>
 
 #include <libxml/xmlmemory.h>
