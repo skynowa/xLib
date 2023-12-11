@@ -6,6 +6,8 @@
 
 #include <xLib/Package/Xml/Node.h>
 
+#include <xLib/Package/Xml/Doc.h>
+
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/String.h>

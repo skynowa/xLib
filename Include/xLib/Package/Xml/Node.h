@@ -6,7 +6,6 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Package/Xml/Doc.h>
 
 #include <libxml/xmlmemory.h>
 #include <libxml/parser.h>
@@ -17,6 +16,8 @@
 //-------------------------------------------------------------------------------------------------
 namespace xl::package::xml
 {
+
+class Doc;
 
 class Node
 {
