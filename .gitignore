@@ -39,3 +39,6 @@ xLib.kdev4
 
 # clangd
 .cache/
+
+# ctags
+tags
