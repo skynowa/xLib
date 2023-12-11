@@ -41,4 +41,4 @@ xLib.kdev4
 .cache/
 
 # ctags
-tags
+.tags
