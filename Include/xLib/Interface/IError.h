@@ -1,6 +1,6 @@
 /**
- * \file  ILastError.h
- * \brief Last error
+ * \file  IError.h
+ * \brief Error
  */
 
 
@@ -13,14 +13,14 @@ namespace xl::interface_
 {
 
 template <typename CodeT>
-class ILastError
+class IError
     /// last error
 {
 public:
 ///\name ctors, dtor
 ///\{
-			 ILastError() = default;
-	virtual ~ILastError() = default;
+			 IError() = default;
+	virtual ~IError() = default;
 ///\}
 
     virtual CodeT          code() const = 0;
@@ -41,5 +41,5 @@ public:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-#include "ILastError.inl"
+#include "IError.inl"
 //-------------------------------------------------------------------------------------------------

@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Db/MySql/Common.h>
-#include <xLib/Interface/ILastError.h>
+#include <xLib/Interface/IError.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::db::mysql
 {
@@ -15,7 +15,7 @@ namespace xl::db::mysql
 class Connection;
 
 class Error :
-	public xl::interface_::ILastError<uint_t>
+	public xl::interface_::IError<uint_t>
     /// MySql error
 {
 public:
