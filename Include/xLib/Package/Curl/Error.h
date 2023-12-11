@@ -15,7 +15,7 @@
 namespace xl::package::curl
 {
 
-class Error :
+class Error final :
 	public xl::interface_::IError<CURLcode>
     /// CURL error
 {
