@@ -33,7 +33,7 @@ public:
         ///< Detail message
 
 public:
-    bool_t         isError() const;
+    bool_t         isFail() const;
         ///< Check for error
     std::tstring_t str() const;
         ///< Fromatted message
