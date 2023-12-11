@@ -101,7 +101,7 @@ private:
     static std::tstring_t _text(const xmlNodePtr node);
 };
 //-------------------------------------------------------------------------------------------------
-class XmlError :
+class XmlError final :
 	public xl::interface_::IError<int_t>
 {
 public:

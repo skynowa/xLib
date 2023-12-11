@@ -14,7 +14,7 @@ namespace xl::db::mysql
 
 class Connection;
 
-class Error :
+class Error final :
 	public xl::interface_::IError<uint_t>
     /// MySql error
 {
