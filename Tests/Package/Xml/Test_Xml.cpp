@@ -42,7 +42,7 @@ Test_Xml::unit()
 
             std::vector<Node> finds;
             root.findNodes(xpaths, finds);
-            xTEST_EQ(finds.size(), (std::size_t)6);
+            xTEST_EQ(finds.size(), 6);
         }
 
         for (size_t i = 0; i < results.size(); ++ i) {
