@@ -11,8 +11,7 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
-#include <curl/curl.h>
-#include <curl/easy.h>
+#include "Common.h"
 #include "Types.h"
 //-------------------------------------------------------------------------------------------------
 namespace xl::package::curl
