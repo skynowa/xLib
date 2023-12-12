@@ -23,7 +23,7 @@ Test_Translate::unit()
 	{
 		const data2_tstring_t datas[]
 		{
-			{xT("UTF-8 is now well-supported"), xT("UTF-8 теперь хорошо поддерживается")},
+			{xT("UTF-8 is now well-supported"), xT("UTF-8 теперь хорошо поддерживается.")},
 			{xT("Language"), xT("Язык")}
 		};
 
