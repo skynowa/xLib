@@ -1,5 +1,5 @@
 /**
- * \file  Xml.h
+ * \file  Error.h
  * \brief LibXml2 wrapper
  */
 

@@ -1,5 +1,5 @@
 /**
- * \file  Xml.h
+ * \file  Error.cpp
  * \brief LibXml2 wrapper
  */
 
@@ -54,7 +54,7 @@ Error::isOk() const
 std::tstring_t
 Error::category() const
 {
-    return xT("xl::package::Error");
+    return xT("xl::package::xml::Error");
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t

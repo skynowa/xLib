@@ -1,5 +1,5 @@
 /**
- * \file  Node.h
+ * \file  Node.cpp
  * \brief LibXml2 wrapper
  */
 
