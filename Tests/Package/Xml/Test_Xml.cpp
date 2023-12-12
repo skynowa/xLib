@@ -34,7 +34,7 @@ Test_Xml::unit()
 
         // findNodes
         {
-            std::clist_tstring_t xpaths
+            std::cvec_tstring_t xpaths
             {
                 "/AvailabilitySearchResult/HotelAvailability/Result",
                 "/AvailabilitySearchResult/HotelAvailability/Result/Room"
