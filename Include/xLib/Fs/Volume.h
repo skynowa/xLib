@@ -74,21 +74,20 @@ xPUBLIC_STATIC:
     static void_t currentSpace(ulonglong_t *totalBytes, ulonglong_t *availableBytes,
 					ulonglong_t *freeBytes);
         ///< get free space of current valume
-    static
-    void_t paths(std::vec_tstring_t *volumePaths);
+    static void_t paths(std::vec_tstring_t *volumePaths);
         ///< get paths
 
 private:
     std::ctstring_t _path;  ///< volume path
 
 xPLATFORM_IMPL:
-	Type            _type_impl() const;
-    std::tstring_t  _fileSystem_impl() const;
-    std::tstring_t  _label_impl() const;
-    bool_t          _isValid_impl() const;
-    bool_t          _isReady_impl() const;
-    void_t          _mount_impl(std::ctstring_t &destPath) const;
-    void_t          _unMount_impl(cbool_t isForce) const;
+	Type           _type_impl() const;
+    std::tstring_t _fileSystem_impl() const;
+    std::tstring_t _label_impl() const;
+    bool_t         _isValid_impl() const;
+    bool_t         _isReady_impl() const;
+    void_t         _mount_impl(std::ctstring_t &destPath) const;
+    void_t         _unMount_impl(cbool_t isForce) const;
 
 xPRIVATE_STATIC:
     static void_t _space_impl(std::ctstring_t &dirPath, ulonglong_t* &totalBytes,
