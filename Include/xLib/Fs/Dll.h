@@ -24,15 +24,16 @@ public:
 
 ///\name ctors, dtor
 ///\{
-			 Dll() = default;
-	virtual ~Dll() = default;
+	explicit  Dll(std::ctstring_t &dllPath);
+	virtual  ~Dll() = default;
 
+	xNO_DEFAULT_CONSTRUCT(Dll);
 	xNO_COPY_ASSIGN(Dll)
 ///\}
 
     HandleDll     &get();
         ///< get handle
-    void_t         load(std::ctstring_t &dllPath);
+    void_t         load();
         ///< load
     bool_t         isProcExists(std::ctstring_t &procName) const;
         ///< is function exists
@@ -42,10 +43,11 @@ public:
         ///< close
 
 private:
-    HandleDll _handle;   ///< dll module handle
+    std::ctstring_t _dllPath; ///< file path
+    HandleDll       _handle;  ///< dll module handle
 
 xPLATFORM_IMPL:
-    void_t         _load_impl(std::ctstring_t &dllPath);
+    void_t         _load_impl();
         ///< load
     bool_t         _isProcExists_impl(std::ctstring_t &procName) const;
         ///< is function exists
