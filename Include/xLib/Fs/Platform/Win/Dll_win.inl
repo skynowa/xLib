@@ -14,11 +14,9 @@ namespace xl::fs
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Dll::_load_impl(
-    std::ctstring_t &a_dllPath
-)
+Dll::_load_impl()
 {
-    _handle = ::LoadLibrary(a_dllPath.c_str());
+    _handle = ::LoadLibrary(_dllPath.c_str());
     xTEST(_handle.isValid());
 }
 //-------------------------------------------------------------------------------------------------

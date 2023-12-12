@@ -16,36 +16,40 @@ Test_Dll::unit()
     xTEST_CASE("Dll")
     {
 		#if   xENV_WIN
-			const data2_tstring_t data[] = {
+			const data2_tstring_t data[]
+			{
 				{Format::str(xT("kernel32.{}"), Path::fileExt(Path::FileExt::Dll)), xT("Beep")}
 			};
 		#elif xENV_UNIX
 			#if   xENV_LINUX
-				const data2_tstring_t data[] = {
+				const data2_tstring_t data[]
+				{
 					{Format::str(xT("libm.{}.6"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
 				};
 			#elif xENV_BSD
 				// TEST: if -static Dll::load() don't load any 'so'-libraries
 				return false;
 
-				const data2_tstring_t data[] = {
+				const data2_tstring_t data[]
+				{
 					{Format::str(xT("libm.{}.6"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
 				};
 			#elif xENV_APPLE
-				const data2_tstring_t data[] = {
+				const data2_tstring_t data[]
+				{
 					{Format::str(xT("libm.{}"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
 				};
 			#endif
 		#endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Dll dll;
+            Dll dll(data[i].test);
 
             m_bRv = dll.get().isValid();
             xTEST(!m_bRv);
 
             // load
-            dll.load(data[i].test);
+            dll.load();
 
             // isLoaded
             m_bRv = dll.get().isValid();
