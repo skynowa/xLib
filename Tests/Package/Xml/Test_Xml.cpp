@@ -7,6 +7,8 @@
 #include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
+using namespace xl::package::xml;
+
 xTEST_UNIT(Test_Xml)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -20,13 +22,13 @@ Test_Xml::unit()
         std::ctstring_t filePath = data().testDirPath + "/Package/Xml/1.xml";
         xTEST(FileInfo(filePath).isExists());
 
-        XmlDoc doc("UTF-8");
+        Doc doc("UTF-8");
 
-        XmlNode root;
+        Node root;
         doc.parseFile(filePath, root);
 
         // nodes
-        std::vector<XmlNode> results;
+        std::vector<Node> results;
         root.nodes("/AvailabilitySearchResult/HotelAvailability/Result", results);
         xTEST_EQ(results.size(), (std::size_t)3);
 
@@ -38,15 +40,15 @@ Test_Xml::unit()
                 "/AvailabilitySearchResult/HotelAvailability/Result/Room"
             };
 
-            std::vector<XmlNode> finds;
+            std::vector<Node> finds;
             root.findNodes(xpaths, finds);
             xTEST_EQ(finds.size(), (std::size_t)6);
         }
 
         for (size_t i = 0; i < results.size(); ++ i) {
-            XmlNode &it_result = results[i];
+            Node &it_result = results[i];
 
-            XmlNode price;
+            Node price;
             it_result.node("Room/Price", price);
 
             // text
@@ -121,7 +123,7 @@ Test_Xml::unit()
 	#if xTEST_IGNORE
 		std::ctstring_t filePath = data().testDirPath + "/Package/Xml/bad.xml";
 
-		XmlDoc doc("UTF-8");
+		Doc doc("UTF-8");
 		doc.parseFile(filePath);
 	#endif
     }
@@ -141,12 +143,12 @@ Test_Xml::unit()
         };
 
         for (size_t i = 0; i < Utils::arraySizeT(data); ++ i) {
-            m_bRv = XmlDoc::isValidLight(data[i].test);
+            m_bRv = Doc::isValidLight(data[i].test);
             xTEST_EQ(m_bRv, data[i].expect);
         }
     }
 
-    xTEST_CASE("XmlNode::childSize")
+    xTEST_CASE("Node::childSize")
     {
         std::ctstring_t filePath = data().testDirPath + "/Package/Xml/2.xml";
 
@@ -157,23 +159,23 @@ Test_Xml::unit()
             {xT("Price"),  0}
         };
 
-        XmlDoc doc("UTF-8");
+        Doc doc("UTF-8");
 
-        XmlNode root;
+        Node root;
         doc.parseFile(filePath, root);
 
-        XmlNode avail;
+        Node avail;
         root.node("/AvailabilitySearchResult", avail);
         xTEST_EQ(avail.childSize(), 9);
 
 		for (const auto &[it_tag, it_size] : data) {
-			XmlNode item;
+			Node item;
 			root.node("/AvailabilitySearchResult/" + it_tag, item);
 			xTEST_EQ(item.childSize(), it_size);
 		}
     }
 
-    xTEST_CASE("XmlNode::childMap")
+    xTEST_CASE("Node::childMap")
     {
         std::ctstring_t filePath = data().testDirPath + "/Package/Xml/2.xml";
 
@@ -189,9 +191,9 @@ Test_Xml::unit()
             {xT("Price"),     xT("211.50")}
         };
 
-        XmlDoc doc("UTF-8");
+        Doc doc("UTF-8");
 
-        XmlNode root;
+        Node root;
         doc.parseFile(filePath, root);
 
         std::map_tstring_t results;
