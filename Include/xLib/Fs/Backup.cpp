@@ -68,28 +68,31 @@ Backup::fileExec(
 
     std::tstring_t dateTimeStamp;
     {
+        const DateTime &dateCurrent = DateTime::current();
+
         switch (_period) {
-        case Period::bpHourly:
+        case Period::Hourly:
             // format: 2013-12-21_23
-            dateTimeStamp = DateTime::current().format(xT("%Y-%m-%d_%H"), xT(""));
+            dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d_%H"), xT(""));
             break;
-        case Period::bpDaily:
+        case Period::Daily:
             // format: 2013-12-21
-            dateTimeStamp = DateTime::current().format(xT("%Y-%m-%d"), xT(""));
+            dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d"), xT(""));
             break;
-        case Period::bpWeekly:
+        case Period::Weekly:
             // format: 2013_01
-            dateTimeStamp = DateTime::current().format(xT("%Y_%U"), xT(""));
+            dateTimeStamp = dateCurrent.format(xT("%Y_%U"), xT(""));
             break;
-        case Period::bpMonthly:
+        case Period::Monthly:
             // format: 2013-12
-            dateTimeStamp = DateTime::current().format(xT("%Y-%m"), xT(""));
+            dateTimeStamp = dateCurrent.format(xT("%Y-%m"), xT(""));
             break;
-        case Period::bpUnknown:
+        case Period::Unknown:
             xTEST_FAIL;
-            return;
             break;
         }
+
+        xCHECK_DO(dateTimeStamp.empty(), return);
     }
 
     // format file full name
