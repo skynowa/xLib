@@ -35,10 +35,10 @@ Test_Backup::unit()
         Backup::cPeriod periods[]
 		{
             // Backup::Period::bpUnknown,
-            Backup::Period::bpHourly,
-            Backup::Period::bpDaily,
-            Backup::Period::bpWeekly,
-            Backup::Period::bpMonthly
+            Backup::Period::Hourly,
+            Backup::Period::Daily,
+            Backup::Period::Weekly,
+            Backup::Period::Monthly
         };
 
         for (size_t p = 0; p < xARRAY_SIZE(periods); ++ p) {

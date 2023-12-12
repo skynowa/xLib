@@ -18,11 +18,11 @@ public:
     enum class Period
         /// backup period
     {
-        bpUnknown,
-        bpHourly,
-        bpDaily,
-        bpWeekly,
-        bpMonthly
+        Unknown,
+        Hourly,
+        Daily,
+        Weekly,
+        Monthly
     };
     xUSING_CONST(Period);
 
