@@ -1,5 +1,5 @@
 /**
- * \file  Doc.h
+ * \file  Common.h
  * \brief LibXml2 wrapper
  */
 
