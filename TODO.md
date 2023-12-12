@@ -1,5 +1,11 @@
 # TODOs
 
+## C++20
+
+## Code style
+
+[ ] Tab -> Spaces
+
 ## CMake
 
 [ ] CONAN_BUILD_INFO - mv from CppTest
