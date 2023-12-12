@@ -27,6 +27,7 @@ public:
 	explicit  Dll(std::ctstring_t &dllPath);
 	virtual  ~Dll() = default;
 
+	xNO_DEFAULT_CONSTRUCT(Dll);
 	xNO_COPY_ASSIGN(Dll)
 ///\}
 
