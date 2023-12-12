@@ -62,6 +62,5 @@ private:
  *
  * - findContent
  * - https://github.com/unnonouno/iconvpp/blob/master/iconv.hpp
- * - Node - toMap, fromMap (map_unsorted_t)
  */
 //-------------------------------------------------------------------------------------------------
