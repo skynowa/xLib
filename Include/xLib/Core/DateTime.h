@@ -62,24 +62,28 @@ public:
 	virtual ~DateTime() = default;
 ///\}
 
-    // comparison operators
-    bool_t          operator == (const DateTime &datetime) const;
-    bool_t          operator != (const DateTime &datetime) const;
-    bool_t          operator <  (const DateTime &datetime) const;
-    bool_t          operator <= (const DateTime &datetime) const;
-    bool_t          operator >  (const DateTime &datetime) const;
-    bool_t          operator >= (const DateTime &datetime) const;
+///\name comparison operators
+///\{
+	bool_t          operator == (const DateTime &datetime) const;
+	bool_t          operator != (const DateTime &datetime) const;
+	bool_t          operator <  (const DateTime &datetime) const;
+	bool_t          operator <= (const DateTime &datetime) const;
+	bool_t          operator >  (const DateTime &datetime) const;
+	bool_t          operator >= (const DateTime &datetime) const;
+///\}
 
-    // assignment operators
-    DateTime       &operator =  (const DateTime &datetime);
-    DateTime       &operator =  (culonglong_t msec);
+///\name assignment operators
+///\{
+	DateTime       &operator =  (const DateTime &datetime);
+	DateTime       &operator =  (culonglong_t msec);
 
-    DateTime        operator +  (const DateTime &datetime) const;
-    DateTime        operator -  (const DateTime &datetime) const;
-    const DateTime &operator += (const DateTime &datetime);
-    const DateTime &operator -= (const DateTime &datetime);
-    // ++
-    // --
+	DateTime        operator +  (const DateTime &datetime) const;
+	DateTime        operator -  (const DateTime &datetime) const;
+	const DateTime &operator += (const DateTime &datetime);
+	const DateTime &operator -= (const DateTime &datetime);
+	// ++
+	// --
+///\}
 
     // get/set
     void_t          get(int_t *year, int_t *month, int_t *day,
@@ -97,11 +101,11 @@ public:
         ///< formatting
 
 xPUBLIC_STATIC:
-    static DateTime current();
+    static DateTime   current();
         ///< get current datetime
-    static int_t    daysInMonth(cint_t year, cint_t month);
+    static int_t      daysInMonth(cint_t year, cint_t month);
         ///< get number days in month
-    static bool_t   isLeapYear(cint_t year);
+    static bool_t     isLeapYear(cint_t year);
         ///< is leap year
 #if xENV_WIN
     static longlong_t fileToInt64(const FILETIME &fileTime);
@@ -143,8 +147,7 @@ private:
     friend std::tostream_t& operator << (std::tostream_t &os, const DateTime &dateTime);
 
 xPLATFORM_IMPL:
-    static
-    DateTime _current_impl();
+    static DateTime _current_impl();
 };
 
 } // namespace
