@@ -191,44 +191,71 @@ Doc::_stringNoNs(
 	std::tstring_t &text = *out_str;
 
 	pos = 0;
-	while ( (pos = text.find("xmlns", pos)) != std::tstring_t::npos ) {
-		if ( (pos1 = text.find_first_of("\"", pos+1) ) == std::tstring_t::npos)
+	while ( (pos = text.find("xmlns", pos)) != std::tstring_t::npos) {
+		if ((pos1 = text.find_first_of("\"", pos + 1) ) == std::tstring_t::npos) {
 			break;
-		if ( (pos1 = text.find_first_of("\"", pos1+1) ) == std::tstring_t::npos)
+		}
+
+		if ((pos1 = text.find_first_of("\"", pos1 + 1) ) == std::tstring_t::npos) {
 			break;
+		}
 
 		text.erase(pos, pos1 - pos + 1);
 	}
 
 	pos = 0;
 	while ( (pos = text.find("xsi", pos)) != std::tstring_t::npos ) {
-		if ( (pos1 = text.find_first_of("\"",pos+1) ) == std::tstring_t::npos)
+		if ((pos1 = text.find_first_of("\"", pos + 1) ) == std::tstring_t::npos) {
 			break;
-		if ( (pos1 = text.find_first_of("\"",pos1+1) ) == std::tstring_t::npos)
+		}
+
+		if ((pos1 = text.find_first_of("\"", pos1 + 1) ) == std::tstring_t::npos) {
 			break;
+		}
 
 		text.erase(pos, pos1 - pos + 1);
 	}
 
 	pos = 0;
-	while ( pos < text.length() && (pos = text.find("<", pos) ) != std::tstring_t::npos ) {
+	while (pos < text.size() &&
+		  (pos = text.find("<", pos)) != std::tstring_t::npos)
+	{
 		++ pos;
 
-		if ( !(pos<text.length()) )
+		if ( !(pos < text.size()) ) {
 			break;
-		if ( text[pos] == '!' ) { pos = text.find("]]>", pos);
-		if ( pos == std::tstring_t::npos ) { break; } continue; }
-		if ( text[pos] == '/' ) ++pos;
-		if ( !(pos<text.length()) )
-			break;
-		if ( (pos2 = text.find_first_of(">", pos) ) == std::tstring_t::npos )
-			break;
-		if ( (pos1 = text.find_first_of(":", pos) ) == std::tstring_t::npos )
+		}
+
+		if (text[pos] == '!') {
+			pos = text.find("]]>", pos);
+			if (pos == std::tstring_t::npos) {
+				break;
+			}
+
 			continue;
+		}
+
+		if (text[pos] == '/') {
+			++ pos;
+		}
+
+		if ( !(pos < text.size()) ) {
+			break;
+		}
+
+		if ((pos2 = text.find_first_of(">", pos) ) == std::tstring_t::npos) {
+			break;
+		}
+
+		if ((pos1 = text.find_first_of(":", pos) ) == std::tstring_t::npos) {
+			continue;
+		}
 
 		pos5 = text.find_first_of(" ", pos);
 
-		if ( pos1<pos2 && (pos5 == std::tstring_t::npos || pos5>pos1) ) {
+		if (pos1 < pos2 &&
+			(pos5 == std::tstring_t::npos || pos5 > pos1))
+		{
 			text.erase(pos, pos1 - pos + 1);
 		}
 	}
