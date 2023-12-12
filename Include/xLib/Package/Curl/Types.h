@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <curl/curl.h>
+#include "Common.h"
 //-------------------------------------------------------------------------------------------------
 namespace xl::package
 {
