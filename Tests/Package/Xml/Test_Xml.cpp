@@ -30,7 +30,7 @@ Test_Xml::unit()
         // nodes
         std::vector<Node> results;
         root.nodes("/AvailabilitySearchResult/HotelAvailability/Result", results);
-        xTEST_EQ(results.size(), (std::size_t)3);
+        xTEST_EQ(results.size(), 3);
 
         // findNodes
         {
