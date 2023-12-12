@@ -8,8 +8,7 @@
 
 #include <xLib/Db/MySql/Common.h>
 #include <xLib/Interface/IError.h>
-#include <curl/curl.h>
-#include <curl/easy.h>
+#include "Common.h"
 #include "Types.h"
 //-------------------------------------------------------------------------------------------------
 namespace xl::package::curl
