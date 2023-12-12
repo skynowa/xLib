@@ -86,8 +86,8 @@ Node::text() const
 //-------------------------------------------------------------------------------------------------
 void
 Node::findNodes(
-	std::clist_tstring_t &a_xpaths,		///<
-	std::vector<Node>    &out_values	///< [out]
+	std::cvec_tstring_t &a_xpaths,	///<
+	std::vector<Node>   &out_values	///< [out]
 ) const
 {
 	out_values.clear();

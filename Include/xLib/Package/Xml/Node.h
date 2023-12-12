@@ -33,7 +33,7 @@ public:
 	std::tstring_t name() const;
 	std::tstring_t text() const;
 
-	void           findNodes(std::clist_tstring_t &xpaths, std::vector<Node> &values) const;
+	void           findNodes(std::cvec_tstring_t &xpaths, std::vector<Node> &values) const;
 	void           node(std::ctstring_t &xpath, Node &value) const;
 	void           nodes(std::ctstring_t &xpath, std::vector<Node> &values) const;
 	void           texts(std::ctstring_t &xpath, std::vec_tstring_t &values) const;
