@@ -39,13 +39,13 @@ Test_Dll::unit()
 		#endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Dll dll;
+            Dll dll(data[i].test);
 
             m_bRv = dll.get().isValid();
             xTEST(!m_bRv);
 
             // load
-            dll.load(data[i].test);
+            dll.load();
 
             // isLoaded
             m_bRv = dll.get().isValid();
