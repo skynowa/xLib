@@ -97,39 +97,29 @@ public:
         ///< formatting
 
 xPUBLIC_STATIC:
-    static
-    DateTime        current();
+    static DateTime current();
         ///< get current datetime
-    static
-    int_t           daysInMonth(cint_t year, cint_t month);
+    static int_t    daysInMonth(cint_t year, cint_t month);
         ///< get number days in month
-    static
-    bool_t          isLeapYear(cint_t year);
+    static bool_t   isLeapYear(cint_t year);
         ///< is leap year
 #if xENV_WIN
-    static
-    longlong_t      fileToInt64(const FILETIME &fileTime);
+    static longlong_t fileToInt64(const FILETIME &fileTime);
         ///< convert FILETIME to longlong_t
-    static
-    void_t          unixToFile(const time_t unixTime, FILETIME *fileTime);
+    static void_t     unixToFile(const time_t unixTime, FILETIME *fileTime);
         ///< convert UNIX time_t to Win32 FILETIME
-    static
-    time_t          fileToUnix(const FILETIME &fileTime);
+    static time_t     fileToUnix(const FILETIME &fileTime);
         ///< convert Win32 FILETIME to UNIX time_t
 #endif
 
     // other
-    static
-    std::tstring_t  monthStr(cint_t month, cbool_t isShortName);
+    static std::tstring_t monthStr(cint_t month, cbool_t isShortName);
         ///< get month string
-    static
-    int_t           monthNum(std::ctstring_t &month, cbool_t isShortName);
+    static int_t          monthNum(std::ctstring_t &month, cbool_t isShortName);
         ///< get month number by string
-    static
-    std::tstring_t  weekDayStr(cint_t week_day, cbool_t isShortName);
+    static std::tstring_t weekDayStr(cint_t week_day, cbool_t isShortName);
         ///< get week day string (days since Sunday)
-    static
-    int_t           weekDayNum(std::ctstring_t &week_day, cbool_t isShortName);
+    static int_t          weekDayNum(std::ctstring_t &week_day, cbool_t isShortName);
         ///< get week day number by string
 
 private:
