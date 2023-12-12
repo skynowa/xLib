@@ -36,7 +36,7 @@ public:
     bool_t         isFail() const;
         ///< Check for error
     std::tstring_t str() const;
-        ///< Fromatted message
+        ///< Formatted message
 };
 
 } // namespace
