@@ -24,7 +24,7 @@ public:
 ///\{
 			 Double();
 			 Double(const Double &value);
-			 Double(const T &value);
+	explicit Double(const T &value);
 			 Double(Double &&value);
 	virtual ~Double();
 ///\}
@@ -49,8 +49,7 @@ public:
         ///< set to 0
 
 xPUBLIC_STATIC:
-	static
-	bool_t   isEqual(const T value1, const T value2);
+	static bool_t isEqual(const T value1, const T value2);
 
 private:
     T _value {};
