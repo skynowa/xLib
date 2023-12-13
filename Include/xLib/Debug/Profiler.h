@@ -51,8 +51,12 @@ private:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-
-// TODO: http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html
+/**
+ * TODO
+ *
+ * - Port to std::chrono
+ * - http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html
+ */
 
 #if xTODO
     #ifndef SYSTEM_H_INCLUDED

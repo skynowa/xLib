@@ -13,15 +13,10 @@
 - [ ] CONAN_BUILD_INFO - mv from CppTest
 - [ ] Conan - use CMAKE_BINARY_DIR for builds (rm Conan build dir)
 - [ ] LibEvent - rm
-- [ ] Full build/run tests
-- [ ] Crossplatform
-- [ ] Archs
-- [ ] Review
 - [ ] "cm" prefix - review
 - [ ] Common code (xLib + Tests) - review
 - [ ] Projects names - review
 - [ ] System / Conan includes
-- [ ] Doc - impl
 - [ ] CMake: set -> option
 
 - [+] xLib_static -> xLib
@@ -74,6 +69,10 @@ TODO: [win] Sync - close handle
 ## Pipeline
 
 - SA
+
+## Doc
+
+- [ ] Doc - impl
 
 ## Remove
 
