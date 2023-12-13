@@ -2,9 +2,11 @@
 
 ## C++20
 
+- [ ] Move to C++20
+
 ## Code style
 
-[ ] Tab -> Spaces
+- [ ] Tab -> Spaces
 
 ## CMake
 
@@ -20,9 +22,6 @@
 - [ ] Projects names - review
 - [ ] System / Conan includes
 - [ ] Doc - impl
-- [ ] Bash - detect OS
-- [ ] Tests - XLIB_DEFINITIONS
-- [ ] Win - Ninja build
 - [ ] CMake: set -> option
 
 - [+] xLib_static -> xLib
@@ -61,10 +60,16 @@ PathDetail
 
 TODO: [win] Sync - close handle
 
+## Build
+
+- [ ] Bash - detect OS
+- [ ] Win - Ninja build
+
 ## Tests
 
 - [ ] Linux fix
 - [ ] Win fix
+- [ ] Tests - XLIB_DEFINITIONS
 
 ## Pipeline
 
