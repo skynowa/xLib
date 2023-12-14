@@ -75,11 +75,8 @@ Test_Dll::unit()
             using ptr_dll_func_t = double (*)(double);
             ptr_dll_func_t cosine = (ptr_dll_func_t)paRv;
 
-            double dRv = cosine(2.0);
-            xUNUSED(dRv);
-            // TEST: Test_Dll::unit() - procAddress
-            // xTEST_EQ(-0.416147, m_dRv);
-            // xTRACEV(xT("\tpCosine(2.0): %f"), dRv);
+            const ddouble_t dRv( cosine(2.0) );
+            xTEST(dRv < -0.4 /* -0.41614683654 */);
         #endif
 
             // isLoaded

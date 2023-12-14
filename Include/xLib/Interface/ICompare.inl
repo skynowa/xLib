@@ -19,7 +19,7 @@ ICompare<T>::operator == (
 	const T &a_value
 ) const
 {
-	return !compare(a_value);
+	return compare(a_value) == 0;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -28,7 +28,7 @@ ICompare<T>::operator != (
 	const T &a_value
 ) const
 {
-	return compare(a_value);
+	return compare(a_value) != 0;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
