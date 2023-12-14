@@ -22,7 +22,7 @@ Test_Double::unit()
 
 	xTEST_CASE("Double(const T)")
 	{
-		ddouble_t f = 5.75;
+		ddouble_t f(5.75);
 		xTEST(f == 5.75);
 	}
 
