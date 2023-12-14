@@ -39,8 +39,6 @@ public:
         ///< is function exists
     proc_address_t procAddress(std::ctstring_t &procName) const;
         ///< get address of an exported function or variable
-    void_t         close();
-        ///< close
 
 private:
     std::ctstring_t _dllPath; ///< file path
