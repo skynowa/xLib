@@ -16,14 +16,15 @@ Test_Double::unit()
 {
 	xTEST_CASE("Double")
 	{
-		ddouble_t d(1.0);
-		xTEST(d == 1.0);
+		ddouble_t d;
+		xTEST_EQ(d, 0.0);
+		xTEST(d.isNull());
 	}
 
 	xTEST_CASE("Double(const T)")
 	{
 		ddouble_t f(5.75);
-		xTEST(f == 5.75);
+		xTEST_EQ(f, 5.75);
 	}
 
 	xTEST_CASE("operator ==, !=")
@@ -47,14 +48,14 @@ Test_Double::unit()
 
 			// ==
 			m_bRv = (f == it_data.test2);
-			xTEST(m_bRv == it_data.expect);
+			xTEST_EQ(m_bRv, it_data.expect);
 
 			// !=
 			m_bRv = (f != it_data.test2);
-			xTEST(m_bRv != it_data.expect);
+			xTEST_DIFF(m_bRv, it_data.expect);
 
 			m_bRv = (ddouble_t::isEqual(it_data.test1, it_data.test2));
-			xTEST(m_bRv == it_data.expect);
+			xTEST_EQ(m_bRv, it_data.expect);
 		}
 	}
 
@@ -79,11 +80,11 @@ Test_Double::unit()
 
 			// <
 			m_bRv = (f < it_data.test2);
-			xTEST(m_bRv == it_data.expect);
+			xTEST_EQ(m_bRv, it_data.expect);
 
 			// >
 			m_bRv = (f >= it_data.test2);
-			xTEST(m_bRv != it_data.expect);
+			xTEST_DIFF(m_bRv, it_data.expect);
 		}
 	}
 
@@ -108,11 +109,11 @@ Test_Double::unit()
 
 		  // <=
 		  m_bRv = (f <= it_data.test2);
-		  xTEST(m_bRv == it_data.expect);
+		  xTEST_EQ(m_bRv, it_data.expect);
 
 		  // >=
 		  m_bRv = (f > it_data.test2);
-		  xTEST(m_bRv != it_data.expect);
+		  xTEST_DIFF(m_bRv, it_data.expect);
 		}
 	}
 
@@ -124,10 +125,10 @@ Test_Double::unit()
 
 		ddouble_t d;
 		d = value;
-		xTEST(d == test);
+		xTEST_EQ(d, test);
 
 		d = std::move(value);
-		xTEST(d == test);
+		xTEST_EQ(d, test);
 	}
 
 	xTEST_CASE("isEqual")
@@ -154,7 +155,7 @@ Test_Double::unit()
 	xTEST_CASE("get")
 	{
 		ddouble_t d(11.55);
-		xTEST(ddouble_t(d.get()) == 11.55);
+		xTEST_EQ(ddouble_t(d.get()), 11.55);
 	}
 
 	xTEST_CASE("isNull")
