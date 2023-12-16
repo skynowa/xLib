@@ -49,7 +49,7 @@ public:
 	};
 	xUSING_CONST(Error);
 
-	Error fileExec(std::ctstring_t &destDirPath, std::tstring_t *destFilePath) const;
+	Error fileExec(std::tstring_t *destFilePath) const;
         ///< execute file backup
 
 private:

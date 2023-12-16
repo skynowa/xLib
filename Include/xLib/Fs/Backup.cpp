@@ -36,15 +36,16 @@ Backup::Backup(
     _period  (a_period),
     _destDir (a_destDirPath)
 {
+	xTEST(!a_filePath.empty());
+	xTEST(!a_destDirPath.empty());
+	xTEST_DIFF((int)a_period, (int)Period::Unknown);
 }
 //-------------------------------------------------------------------------------------------------
 Backup::Error
 Backup::fileExec(
-    std::ctstring_t &a_destDirPath,	///<
-    std::tstring_t  *a_destFilePath	///< [out]
+    std::tstring_t *a_destFilePath	///< [out]
 ) const
 {
-    xTEST(!a_destDirPath.empty());
     xTEST_PTR(a_destFilePath);
 
     bool_t bRv {};
@@ -85,8 +86,10 @@ Backup::fileExec(
         xCHECK_RET(dateTs.empty(), Error::PeriodUnknown);
     }
 
+    std::ctstring_t &destDirPath = _destDir.str();
+
     // format file full name
-    std::ctstring_t backupFilePath = Path(a_destDirPath).slashAppend().str() +
+    std::ctstring_t backupFilePath = Path(destDirPath).slashAppend().str() +
         Path(_filePath).fileName() + xT("_[") + dateTs + xT("]") +
         Path::fileDotExt(Path::FileExt::Backup);
 
@@ -102,7 +105,7 @@ Backup::fileExec(
 
     // check for enough space
     {
-        Volume volume(a_destDirPath);
+        Volume volume(destDirPath);
         bRv = volume.isSpaceAvailable( static_cast<ulonglong_t>( FileInfo(_filePath).size() ));
         xCHECK_RET(!bRv, Error::NotEnoughFreeSpace);
     }
