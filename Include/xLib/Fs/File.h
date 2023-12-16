@@ -34,7 +34,19 @@ public:
     void_t unlink() const;
     void_t rename(std::ctstring_t &filePathNew) const;
     void_t move(std::ctstring_t &dirPath) const;
-    void_t copy(std::ctstring_t &filePathTo, cbool_t isFailIfExists) const;
+
+	enum class CopyError
+		/// errors codes
+    {
+		Ok             = 0, ///< Success
+		DestFileExists = 1, ///< Destination file is exists");
+		CopyFail       = 2, ///< Copy fail");
+		FilesDiffrent  = 3, ///< Files are diffrent");
+		Unknown        = 4  ///< Unknown
+	};
+	xUSING_CONST(CopyError);
+
+	CopyError copy(std::ctstring_t &filePathTo, cbool_t isFailIfExists) const;
     void_t createSymlink(std::ctstring_t &filePathTo) const;
 ///\}
 

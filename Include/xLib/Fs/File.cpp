@@ -190,7 +190,7 @@ File::move(
     rename(Path(a_dirPath).slashAppend().str() + Path(_filePath).fileName());
 }
 //-------------------------------------------------------------------------------------------------
-void_t
+File::CopyError
 File::copy(
     std::ctstring_t &a_filePathTo,
     cbool_t          a_isFailIfExists
@@ -207,8 +207,7 @@ File::copy(
 	std::ctstring_t errorCopyFail       = xT("File - Copy fail");
 	std::ctstring_t errorFilesDiffrent  = xT("File - Files are diffrent");
 
-	xCHECK_DO(a_isFailIfExists && FileInfo(a_filePathTo).isExists(),
-		xTHROW_REPORT(errorDestFileExists));
+	xCHECK_RET(a_isFailIfExists && FileInfo(a_filePathTo).isExists(), CopyError::DestFileExists);
 
 	// copy
 	{
@@ -234,12 +233,12 @@ File::copy(
 	{
 		if (!isCopyOk) {
 			File(a_filePathTo).remove();
-			xTHROW_REPORT(errorCopyFail);
+			return CopyError::CopyFail;
 		}
 
 		if (FileInfo(_filePath).size() != FileInfo(a_filePathTo).size()) {
 			File(a_filePathTo).remove();
-			xTHROW_REPORT(errorFilesDiffrent);
+			return CopyError::FilesDiffrent;
 		}
 	}
 #else
@@ -248,6 +247,8 @@ File::copy(
 
     fileTo << fileFrom.rdbuf();
 #endif
+
+    return CopyError::Ok;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
