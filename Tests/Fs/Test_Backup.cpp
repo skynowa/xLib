@@ -43,10 +43,10 @@ Test_Backup::unit()
 
         for (const auto it_period : periods) {
             for (size_t i = 0; i < 5; ++ i) {
-                Backup backup(filePath, it_period);
+                Backup backup(filePath, backupDir, it_period);
 
 				std::tstring_t backupFilePath;
-				const auto errorCode = backup.fileExec(backupDir, &backupFilePath);
+				const auto errorCode = backup.fileExec(&backupFilePath);
 				if (errorCode == Backup::Error::DestFileAlreadyExists) {
 					continue;
 				}
