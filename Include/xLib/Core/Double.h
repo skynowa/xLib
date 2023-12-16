@@ -24,7 +24,7 @@ public:
 ///\{
 			 Double();
 			 Double(const Double &value);
-	explicit Double(const T &value);
+	explicit Double(const T value);
 			 Double(Double &&value);
 	virtual ~Double();
 ///\}
@@ -38,7 +38,7 @@ public:
 ///\name operators
 ///\{
 	Double & operator = (const Double &value);
-	Double & operator = (const T &value);
+	Double & operator = (const T value);
 	Double & operator = (Double &&value);
 ///\}
 

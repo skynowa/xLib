@@ -38,7 +38,7 @@ Double<T>::Double(
 template<typename T>
 inline
 Double<T>::Double(
-	const T &a_value
+	const T a_value
 ) :
     _value(a_value)
 {
@@ -103,7 +103,7 @@ Double<T>::operator = (
 template<typename T>
 inline Double<T> &
 Double<T>::operator = (
-    const T &a_value
+    const T a_value
 )
 {
     _value = a_value;
