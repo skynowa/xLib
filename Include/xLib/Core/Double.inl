@@ -177,6 +177,15 @@ Double<T>::isNormal() const
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+inline bool_t
+Double<T>::isUnordered(
+	const T a_value
+) const
+{
+	return static_cast<bool_t>( std::isunordered(_value, a_value) );
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 inline T
 Double<T>::safeDiv(
 	const T a_value,

@@ -57,6 +57,8 @@ public:
 		///< checks if the given number is NaN
 	bool_t isNormal() const;
 		///< checks if the given number is normal
+	bool_t isUnordered(const T value) const;
+		///< checks if two floating-point values are unordered
 ///\}
 
 	T	   safeDiv(const T value, const T value_default = {}) const;
