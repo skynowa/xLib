@@ -34,7 +34,7 @@ public:
     void_t unlink() const;
     void_t rename(std::ctstring_t &filePathNew) const;
     void_t move(std::ctstring_t &dirPath) const;
-    void_t copy(std::ctstring_t &filePathTo, cbool_t isFailIfExists) const /* throw(Exception) */;
+    void_t copy(std::ctstring_t &filePathTo, cbool_t isFailIfExists) const;
     void_t createSymlink(std::ctstring_t &filePathTo) const;
 ///\}
 

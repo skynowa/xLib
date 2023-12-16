@@ -194,7 +194,7 @@ void_t
 File::copy(
     std::ctstring_t &a_filePathTo,
     cbool_t          a_isFailIfExists
-) const /* throw(Exception) */
+) const
 {
     xTEST(!a_filePathTo.empty());
     xTEST_NA(a_isFailIfExists);

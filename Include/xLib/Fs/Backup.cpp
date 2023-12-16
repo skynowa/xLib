@@ -113,7 +113,9 @@ Backup::fileExec(
     // copy
     {
         File file(_filePath);
-        file.copy(backupFilePath, true);
+
+        cbool_t isFailIfExists{true};
+        file.copy(backupFilePath, isFailIfExists);
     }
 
     // check for a valid backup
