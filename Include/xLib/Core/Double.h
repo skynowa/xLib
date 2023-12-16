@@ -24,7 +24,7 @@ public:
 ///\{
 			 Double();
 			 Double(const Double &value);
-	explicit Double(const T &value);
+	explicit Double(const T value);
 			 Double(Double &&value);
 	virtual ~Double();
 ///\}
@@ -38,15 +38,31 @@ public:
 ///\name operators
 ///\{
 	Double & operator = (const Double &value);
+	Double & operator = (const T value);
 	Double & operator = (Double &&value);
 ///\}
 
-	bool_t   isNull() const;
-		///< compare values
-	T	     safeDiv(const T value, const T value_default = {}) const;
+///\name Determines
+///\{
+	bool_t isNull() const;
+		///< checks if the given number is 0.0
+	int_t  classify() const;
+		///< categorizes the given floating-point value
+		///< \return FP_NORMAL, FP_SUBNORMAL, FP_ZERO, FP_INFINITE, FP_NAN
+	bool_t isFinite() const;
+		///< checks if the given number has finite value
+	bool_t isInf() const;
+		///< checks if the given number is infinite
+	bool_t isNan() const;
+		///< checks if the given number is NaN
+	bool_t isNormal() const;
+		///< checks if the given number is normal
+	bool_t isUnordered(const T value) const;
+		///< checks if two floating-point values are unordered
+///\}
+
+	T	   safeDiv(const T value, const T value_default = {}) const;
 		///< safe division, if devision by 0.0 return 0.0
-    void_t   clear();
-        ///< set to 0
 
 xPUBLIC_STATIC:
 	static bool_t isEqual(const T value1, const T value2);
