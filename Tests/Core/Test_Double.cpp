@@ -129,6 +129,9 @@ Test_Double::unit()
 
 		d = std::move(value);
 		xTEST_EQ(d, test);
+
+		d = 0.0;
+		xTEST(d.isNull());
 	}
 
 	xTEST_CASE("isEqual")
@@ -170,14 +173,6 @@ Test_Double::unit()
 
 		ddouble_t dRv( d.safeDiv(0.0) );
 		xTEST(dRv.isNull());
-	}
-
-	xTEST_CASE("clear")
-	{
-		ddouble_t d(10.0);
-		d.clear();
-
-		xTEST(d.isNull());
 	}
 
 	return true;

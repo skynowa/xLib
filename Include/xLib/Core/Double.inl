@@ -115,6 +115,17 @@ Double<T>::operator = (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
+template<typename T>
+inline Double<T> &
+Double<T>::operator = (
+    const T &a_value
+)
+{
+    _value = a_value;
+
+    return *this;
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
@@ -131,10 +142,38 @@ Double<T>::isNull() const
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+inline int_t
+Double<T>::classify() const
+{
+	return std::fpclassify(_value);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline bool_t
+Double<T>::isFinite() const
+{
+	return static_cast<bool_t>( std::isfinite(_value) );
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline bool_t
+Double<T>::isInf() const
+{
+	return static_cast<bool_t>( std::isinf(_value) );
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 inline bool_t
 Double<T>::isNan() const
 {
-	return std::isnan(_value);
+	return static_cast<bool_t>( std::isnan(_value) );
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+inline bool_t
+Double<T>::isNormal() const
+{
+	return static_cast<bool_t>( std::isnormal(_value) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -149,13 +188,6 @@ Double<T>::safeDiv(
 	}
 
 	return _value / a_value;
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
-inline void_t
-Double<T>::clear()
-{
-    _value = {};
 }
 //-------------------------------------------------------------------------------------------------
 

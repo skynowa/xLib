@@ -39,16 +39,25 @@ public:
 ///\{
 	Double & operator = (const Double &value);
 	Double & operator = (Double &&value);
+
+	Double & operator = (const T &value);
 ///\}
 
-	bool_t   isNull() const;
+	bool_t isNull() const;
 		///< compare values
-	bool_t   isNan() const;
-		///< is NaN (Not a Number)
-	T	     safeDiv(const T value, const T value_default = {}) const;
+	int_t  classify() const;
+		///< categorizes the given floating-point value
+	bool_t isFinite() const;
+		///< checks if the given number has finite value
+	bool_t isInf() const;
+		///< checks if the given number is infinite
+	bool_t isNan() const;
+		///< checks if the given number is NaN
+	bool_t isNormal() const;
+		///< checks if the given number is normal
+
+	T	   safeDiv(const T value, const T value_default = {}) const;
 		///< safe division, if devision by 0.0 return 0.0
-    void_t   clear();
-        ///< set to 0
 
 xPUBLIC_STATIC:
 	static bool_t isEqual(const T value1, const T value2);
