@@ -24,33 +24,35 @@ Test_Backup::unit()
             file.open(FileIO::OpenMode::BinReadWrite);
             file.setSize(100L);
 
-        #if 0
-            Tracer() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m-%d_%H"), xT("")));
-            Tracer() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m-%d"), xT("")));
-            Tracer() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y_%U"), xT("")));
-            Tracer() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m"), xT("")));
-        #endif
+			if (0) {
+				Cout() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m-%d_%H"), xT("")));
+				Cout() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m-%d"), xT("")));
+				Cout() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y_%U"), xT("")));
+				Cout() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m"), xT("")));
+			}
         }
 
         Backup::cPeriod periods[]
 		{
-            // Backup::Period::bpUnknown,
+            // Backup::Period::Unknown,
             Backup::Period::Hourly,
             Backup::Period::Daily,
             Backup::Period::Weekly,
             Backup::Period::Monthly
         };
 
-        for (size_t p = 0; p < xARRAY_SIZE(periods); ++ p) {
-            for (size_t i = 0; i < 10; ++ i) {
-                Backup backuper(filePath, periods[p]);
+        for (const auto it_period : periods) {
+            for (size_t i = 0; i < 5; ++ i) {
+                Backup backup(filePath, it_period);
 
-                xTRY {
-                    std::tstring_t backupFilePath;
+				std::tstring_t backupFilePath;
+				const auto errorCode = backup.fileExec(backupDir, &backupFilePath);
+				if (errorCode == Backup::Error::DestFileAlreadyExists) {
+					continue;
+				}
 
-                    backuper.fileExec(backupDir, &backupFilePath);
-                }
-                xCATCH_ALL
+				xTEST_EQ((int)errorCode, (int)Backup::Error::Ok);
+				xTEST(!backupFilePath.empty());
             }
         }
 

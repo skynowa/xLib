@@ -35,7 +35,20 @@ public:
 	xNO_COPY_ASSIGN(Backup)
 ///\}
 
-    void_t fileExec(std::ctstring_t &destDirPath, std::tstring_t *destFilePath) const /* throw(Exception) */;
+	enum class Error
+        /// errors codes
+	{
+		Ok                    = 0, ///< Success
+		DestFileNotExists     = 1, ///< Destination file not exists
+		NotEnoughFreeSpace    = 2, ///< Not enough free space
+		CopyFail              = 3, ///< Copy fail
+		DestFileAlreadyExists = 4, ///< Destination file already exists
+		Internal              = 5, ///< Internal
+		Unknown               = 6  ///< Unknown
+	};
+	xUSING_CONST(Error);
+
+	Error fileExec(std::ctstring_t &destDirPath, std::tstring_t *destFilePath) const;
         ///< execute file backup
 
 private:

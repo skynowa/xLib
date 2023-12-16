@@ -1,5 +1,5 @@
 /**
- * \file   Backup.inl
+ * \file   Backup.cpp
  * \brief  backuper
  */
 
@@ -36,20 +36,14 @@ Backup::Backup(
 {
 }
 //-------------------------------------------------------------------------------------------------
-void_t
+Backup::Error
 Backup::fileExec(
-    std::ctstring_t &a_destDirPath,
-    std::tstring_t  *a_destFilePath
-) const /* throw(Exception) */
+    std::ctstring_t &a_destDirPath,	///<
+    std::tstring_t  *a_destFilePath	///< [out]
+) const
 {
     xTEST(!a_destDirPath.empty());
     xTEST_PTR(a_destFilePath);
-
-    // errors
-    std::ctstring_t errorDestFileNotExists  = xT("Backup - Destination file not exists");
-    std::ctstring_t errorNotEnoughFreeSpace = xT("Backup - Not enough free space");
-    std::ctstring_t errorCopyingFail        = xT("Backup - Copying fail");
-    std::ctstring_t errorUnknown            = xT("Backup - Unknown error");
 
     bool_t bRv {};
 
@@ -58,7 +52,7 @@ Backup::fileExec(
         a_destFilePath->clear();
 
         bRv = FileInfo(_filePath).isExists();
-        xCHECK_DO(!bRv, xTHROW_REPORT(errorDestFileNotExists));
+        xCHECK_RET(!bRv, Error::DestFileNotExists);
 
         Dir dest(a_destDirPath);
 
@@ -73,26 +67,26 @@ Backup::fileExec(
         switch (_period) {
         case Period::Hourly:
             // format: 2013-12-21_23
-            dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d_%H"), xT(""));
+            dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d_%H"), {});
             break;
         case Period::Daily:
             // format: 2013-12-21
-            dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d"), xT(""));
+            dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d"), {});
             break;
         case Period::Weekly:
             // format: 2013_01
-            dateTimeStamp = dateCurrent.format(xT("%Y_%U"), xT(""));
+            dateTimeStamp = dateCurrent.format(xT("%Y_%U"), {});
             break;
         case Period::Monthly:
             // format: 2013-12
-            dateTimeStamp = dateCurrent.format(xT("%Y-%m"), xT(""));
+            dateTimeStamp = dateCurrent.format(xT("%Y-%m"), {});
             break;
         case Period::Unknown:
             xTEST_FAIL;
             break;
         }
 
-        xCHECK_DO(dateTimeStamp.empty(), return);
+        xCHECK_RET(dateTimeStamp.empty(), Error::Internal);
     }
 
     // format file full name
@@ -103,14 +97,18 @@ Backup::fileExec(
     // check for existence source file
     {
         bRv = FileInfo(backupFilePath).isExists();
-        xCHECK_DO(bRv, *a_destFilePath = backupFilePath; return);
+        if (bRv) {
+            // [out]
+            *a_destFilePath = backupFilePath;
+            return Error::DestFileAlreadyExists;
+        }
     }
 
     // check for enough space
     {
         Volume volume(a_destDirPath);
         bRv = volume.isSpaceAvailable( static_cast<ulonglong_t>( FileInfo(_filePath).size() ));
-        xCHECK_DO(!bRv, xTHROW_REPORT(errorNotEnoughFreeSpace));
+        xCHECK_RET(!bRv, Error::NotEnoughFreeSpace);
     }
 
     // copy
@@ -122,17 +120,19 @@ Backup::fileExec(
     // check for a valid backup
     {
         bRv = FileInfo(backupFilePath).isExists();
-        xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
+        xCHECK_RET(!bRv, Error::CopyFail);
 
         bRv = (FileInfo(_filePath).size() == FileInfo(backupFilePath).size());
-        xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
+        xCHECK_RET(!bRv, Error::CopyFail);
 
         bRv = (Crc32().calcFile(_filePath) == Crc32().calcFile(backupFilePath));
-        xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
+        xCHECK_RET(!bRv, Error::CopyFail);
     }
 
-    // out
+    // [out]
     *a_destFilePath = backupFilePath;
+
+    return Error::Ok;
 }
 //-------------------------------------------------------------------------------------------------
 

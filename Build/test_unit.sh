@@ -2,7 +2,7 @@
 
 
 # Params
-UNIT_TEST_NAME=Double
+UNIT_TEST_NAME=Backup
 
 ./tests.sh ${UNIT_TEST_NAME} # && ./deploy.sh
 #--------------------------------------------------------------------------------------------------
