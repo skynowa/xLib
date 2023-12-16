@@ -66,19 +66,15 @@ Backup::fileExec(
 
         switch (_period) {
         case Period::Hourly:
-
             dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d_%H"), {});
             break;
         case Period::Daily:
-
             dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d"), {});
             break;
         case Period::Weekly:
-
             dateTimeStamp = dateCurrent.format(xT("%Y_%U"), {});
             break;
         case Period::Monthly:
-
             dateTimeStamp = dateCurrent.format(xT("%Y-%m"), {});
             break;
         case Period::Unknown:
