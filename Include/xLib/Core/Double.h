@@ -38,13 +38,14 @@ public:
 ///\name operators
 ///\{
 	Double & operator = (const Double &value);
-	Double & operator = (Double &&value);
-
 	Double & operator = (const T &value);
+	Double & operator = (Double &&value);
 ///\}
 
+///\name Determines
+///\{
 	bool_t isNull() const;
-		///< compare values
+		///< checks if the given number is 0.0
 	int_t  classify() const;
 		///< categorizes the given floating-point value
 	bool_t isFinite() const;
@@ -55,6 +56,7 @@ public:
 		///< checks if the given number is NaN
 	bool_t isNormal() const;
 		///< checks if the given number is normal
+///\}
 
 	T	   safeDiv(const T value, const T value_default = {}) const;
 		///< safe division, if devision by 0.0 return 0.0
