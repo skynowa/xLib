@@ -48,6 +48,7 @@ public:
 		///< checks if the given number is 0.0
 	int_t  classify() const;
 		///< categorizes the given floating-point value
+		///< \return FP_NORMAL, FP_SUBNORMAL, FP_ZERO, FP_INFINITE, FP_NAN
 	bool_t isFinite() const;
 		///< checks if the given number has finite value
 	bool_t isInf() const;
