@@ -60,34 +60,34 @@ Backup::fileExec(
         xCHECK_DO(!bRv, _destDir.pathCreate());
     }
 
-    std::tstring_t dateTimeStamp;
+    std::tstring_t dateTs;
     {
         const DateTime &dateCurrent = DateTime::current();
 
         switch (_period) {
         case Period::Hourly:
-            dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d_%H"), {});
+            dateTs = dateCurrent.format(xT("%Y-%m-%d_%H"), {});
             break;
         case Period::Daily:
-            dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d"), {});
+            dateTs = dateCurrent.format(xT("%Y-%m-%d"), {});
             break;
         case Period::Weekly:
-            dateTimeStamp = dateCurrent.format(xT("%Y_%U"), {});
+            dateTs = dateCurrent.format(xT("%Y_%U"), {});
             break;
         case Period::Monthly:
-            dateTimeStamp = dateCurrent.format(xT("%Y-%m"), {});
+            dateTs = dateCurrent.format(xT("%Y-%m"), {});
             break;
         case Period::Unknown:
             xTEST_FAIL;
             break;
         }
 
-        xCHECK_RET(dateTimeStamp.empty(), Error::PeriodUnknown);
+        xCHECK_RET(dateTs.empty(), Error::PeriodUnknown);
     }
 
     // format file full name
     std::ctstring_t backupFilePath = Path(a_destDirPath).slashAppend().str() +
-        Path(_filePath).fileName() + xT("_[") + dateTimeStamp + xT("]") +
+        Path(_filePath).fileName() + xT("_[") + dateTs + xT("]") +
         Path::fileDotExt(Path::FileExt::Backup);
 
     // check for existence source file
