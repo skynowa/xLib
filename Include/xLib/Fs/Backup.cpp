@@ -29,10 +29,12 @@ namespace xl::fs
 //-------------------------------------------------------------------------------------------------
 Backup::Backup(
 	std::ctstring_t &a_filePath,
+	std::ctstring_t &a_destDirPath,
     cPeriod          a_period
 ) :
     _filePath(a_filePath),
-    _period  (a_period)
+    _period  (a_period),
+    _destDir (a_destDirPath)
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -54,10 +56,8 @@ Backup::fileExec(
         bRv = FileInfo(_filePath).isExists();
         xCHECK_RET(!bRv, Error::DestFileNotExists);
 
-        Dir dest(a_destDirPath);
-
-        bRv = dest.isExists();
-        xCHECK_DO(!bRv, dest.pathCreate());
+        bRv = _destDir.isExists();
+        xCHECK_DO(!bRv, _destDir.pathCreate());
     }
 
     std::tstring_t dateTimeStamp;
@@ -66,19 +66,19 @@ Backup::fileExec(
 
         switch (_period) {
         case Period::Hourly:
-            // format: 2013-12-21_23
+
             dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d_%H"), {});
             break;
         case Period::Daily:
-            // format: 2013-12-21
+
             dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d"), {});
             break;
         case Period::Weekly:
-            // format: 2013_01
+
             dateTimeStamp = dateCurrent.format(xT("%Y_%U"), {});
             break;
         case Period::Monthly:
-            // format: 2013-12
+
             dateTimeStamp = dateCurrent.format(xT("%Y-%m"), {});
             break;
         case Period::Unknown:

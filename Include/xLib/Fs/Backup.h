@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Fs/Dir.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
@@ -18,17 +19,17 @@ public:
     enum class Period
         /// backup period
     {
-        Unknown,
-        Hourly,
-        Daily,
-        Weekly,
-        Monthly
+        Unknown, ///< Unknown
+        Hourly,  ///< Format: 2013-12-21_23
+        Daily,   ///< Format: 2013-12-21
+        Weekly,  ///< Format: 2013_01
+        Monthly  ///< Format: 2013-12
     };
     xUSING_CONST(Period);
 
 ///\name ctors, dtor
 ///\{
-	explicit  Backup(std::ctstring_t &filePath, cPeriod period);
+	explicit  Backup(std::ctstring_t &filePath, std::ctstring_t &destDirPath, cPeriod period);
 	virtual  ~Backup() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Backup)
@@ -54,6 +55,7 @@ public:
 private:
 	std::ctstring_t _filePath;
     cPeriod         _period {};  ///< backup period
+    Dir             _destDir;
 };
 
 } // namespace
