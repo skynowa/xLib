@@ -161,6 +161,8 @@ Test_Double::unit()
 		xTEST_EQ(ddouble_t(d.get()), 11.55);
 	}
 
+	/// [TEST] Determines
+
 	xTEST_CASE("isNull")
 	{
 		ddouble_t d(0.0);
