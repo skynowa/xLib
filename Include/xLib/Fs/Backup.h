@@ -20,10 +20,10 @@ public:
         /// backup period
     {
         Unknown, ///< Unknown
-        Hourly,  ///< Format: 2013-12-21_23
-        Daily,   ///< Format: 2013-12-21
-        Weekly,  ///< Format: 2013_01
-        Monthly  ///< Format: 2013-12
+        Hourly,  ///< File name format: %Y-%m-%d_%H (2013-12-21_23)
+        Daily,   ///< File name format: %Y-%m-%d (2013-12-21)
+        Weekly,  ///< File name format: %Y_%U (2013_01)
+        Monthly  ///< File name format: %Y-%m (2013-12)
     };
     xUSING_CONST(Period);
 

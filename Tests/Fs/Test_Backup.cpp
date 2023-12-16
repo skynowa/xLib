@@ -23,13 +23,6 @@ Test_Backup::unit()
             FileIO file(filePath);
             file.open(FileIO::OpenMode::BinReadWrite);
             file.setSize(100L);
-
-			if (0) {
-				Cout() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m-%d_%H"), xT("")));
-				Cout() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m-%d"), xT("")));
-				Cout() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y_%U"), xT("")));
-				Cout() << xSTD_TRACE_VAR(DateTime::current().format(xT("%Y-%m"), xT("")));
-			}
         }
 
         Backup::cPeriod periods[]
