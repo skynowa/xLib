@@ -43,6 +43,8 @@ public:
 
 	bool_t   isNull() const;
 		///< compare values
+	bool_t   isNan() const;
+		///< is NaN (Not a Number)
 	T	     safeDiv(const T value, const T value_default = {}) const;
 		///< safe division, if devision by 0.0 return 0.0
     void_t   clear();

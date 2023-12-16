@@ -131,6 +131,13 @@ Double<T>::isNull() const
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+inline bool_t
+Double<T>::isNan() const
+{
+	return std::isnan(_value);
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
 inline T
 Double<T>::safeDiv(
 	const T a_value,
