@@ -43,7 +43,7 @@ public:
 		NotEnoughFreeSpace    = 2, ///< Not enough free space
 		CopyFail              = 3, ///< Copy fail
 		DestFileAlreadyExists = 4, ///< Destination file already exists
-		Internal              = 5, ///< Internal
+		PeriodUnknown         = 5, ///< Period unknown
 		Unknown               = 6  ///< Unknown
 	};
 	xUSING_CONST(Error);

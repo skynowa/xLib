@@ -86,7 +86,7 @@ Backup::fileExec(
             break;
         }
 
-        xCHECK_RET(dateTimeStamp.empty(), Error::Internal);
+        xCHECK_RET(dateTimeStamp.empty(), Error::PeriodUnknown);
     }
 
     // format file full name
