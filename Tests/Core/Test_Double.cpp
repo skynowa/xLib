@@ -134,6 +134,15 @@ Test_Double::unit()
 		xTEST(d.isNull());
 	}
 
+	xTEST_CASE("operator = (const T )")
+	{
+		cdouble_t test {7.0};
+
+		ddouble_t value;
+		value = test;
+		xTEST_EQ(value, test);
+	}
+
 	xTEST_CASE("isEqual")
 	{
 		cdouble_t data[][3]
