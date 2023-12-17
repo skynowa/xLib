@@ -1043,7 +1043,7 @@ Test_Path::unit()
 
 		for (const auto &it_data : data) {
 			m_sRv = Path(it_data.filePath).brief(it_data.leftDirsNum, it_data.rightDirsNum).str();
-			// Cout() << xSTD_TRACE_VAR_2(m_sRv, it_data.expect) << "<<<";
+			// Cout() << xTRACE_VAR_2(m_sRv, it_data.expect) << "<<<";
 			xTEST_EQ(m_sRv, it_data.expect);
 		}
 	}

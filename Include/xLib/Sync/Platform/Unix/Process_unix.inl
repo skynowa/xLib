@@ -150,8 +150,8 @@ Process::_create_impl(
 		#else
 			cint_t status = 0;
 
-			Cout()    << "ChildOk - Stop execve (cout), " << xSTD_TRACE_VAR(status);
-			std::cerr << "ChildOk - Stop execve (cerr), " << xSTD_TRACE_VAR(status) << std::endl;
+			Cout()    << "ChildOk - Stop execve (cout), " << xTRACE_VAR(status);
+			std::cerr << "ChildOk - Stop execve (cerr), " << xTRACE_VAR(status) << std::endl;
 		#endif
 
 			if (out_stdOut != nullptr) {
@@ -359,7 +359,7 @@ Process::_isExists_impl() const
 	int_t iRv = ::kill(_pid, sigExistence);
 	xTEST_DIFF(iRv, - 1);
 
-	// Cout() << xSTD_TRACE_VAR_4(_pid, iRv, errno, isRunning(_pid)) << std::endl;
+	// Cout() << xTRACE_VAR_4(_pid, iRv, errno, isRunning(_pid)) << std::endl;
 
 	if (iRv >= 0) {
 		return true;

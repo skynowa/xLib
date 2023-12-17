@@ -32,7 +32,7 @@ public:
 
 	void_t print(core::OStream &a_os) const final
 	{
-		a_os << xSTD_TRACE_VAR_2(s, i) << std::endl;
+		a_os << xTRACE_VAR_2(s, i) << std::endl;
 	}
 ///\}
 };

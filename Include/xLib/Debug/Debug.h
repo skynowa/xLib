@@ -55,26 +55,26 @@
 //-------------------------------------------------------------------------------------------------
 ///\name Trace variables (variable with value)
 ///\{
-#define xSTD_TRACE_VAR(v1) \
+#define xTRACE_VAR(v1) \
 	#v1 xT(": ") << (v1)
-#define xSTD_TRACE_VAR_2(v1, v2) \
-	xSTD_TRACE_VAR(v1) <<  xT(", ") << xSTD_TRACE_VAR(v2)
-#define xSTD_TRACE_VAR_3(v1, v2, v3) \
-	xSTD_TRACE_VAR_2(v1, v2) <<  xT(", ") << xSTD_TRACE_VAR(v3)
-#define xSTD_TRACE_VAR_4(v1, v2, v3, v4) \
-	xSTD_TRACE_VAR_3(v1, v2, v3) <<  xT(", ") << xSTD_TRACE_VAR(v4)
-#define xSTD_TRACE_VAR_5(v1, v2, v3, v4, v5) \
-	xSTD_TRACE_VAR_4(v1, v2, v3, v4) <<  xT(", ") << xSTD_TRACE_VAR(v5)
-#define xSTD_TRACE_VAR_6(v1, v2, v3, v4, v5, v6) \
-	xSTD_TRACE_VAR_5(v1, v2, v3, v4, v5) <<  xT(", ") << xSTD_TRACE_VAR(v6)
-#define xSTD_TRACE_VAR_7(v1, v2, v3, v4, v5, v6, v7) \
-	xSTD_TRACE_VAR_6(v1, v2, v3, v4, v5, v6) <<  xT(", ") << xSTD_TRACE_VAR(v7)
-#define xSTD_TRACE_VAR_8(v1, v2, v3, v4, v5, v6, v7, v8) \
-	xSTD_TRACE_VAR_7(v1, v2, v3, v4, v5, v6, v7) <<  xT(", ") << xSTD_TRACE_VAR(v8)
-#define xSTD_TRACE_VAR_9(v1, v2, v3, v4, v5, v6, v7, v8, v9) \
-	xSTD_TRACE_VAR_8(v1, v2, v3, v4, v5, v6, v7, v8) <<  xT(", ") << xSTD_TRACE_VAR(v9)
-#define xSTD_TRACE_VAR_10(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10) \
-	xSTD_TRACE_VAR_9(v1, v2, v3, v4, v5, v6, v7, v8, v9) <<  xT(", ") << xSTD_TRACE_VAR(v10)
+#define xTRACE_VAR_2(v1, v2) \
+	xTRACE_VAR(v1) <<  xT(", ") << xTRACE_VAR(v2)
+#define xTRACE_VAR_3(v1, v2, v3) \
+	xTRACE_VAR_2(v1, v2) <<  xT(", ") << xTRACE_VAR(v3)
+#define xTRACE_VAR_4(v1, v2, v3, v4) \
+	xTRACE_VAR_3(v1, v2, v3) <<  xT(", ") << xTRACE_VAR(v4)
+#define xTRACE_VAR_5(v1, v2, v3, v4, v5) \
+	xTRACE_VAR_4(v1, v2, v3, v4) <<  xT(", ") << xTRACE_VAR(v5)
+#define xTRACE_VAR_6(v1, v2, v3, v4, v5, v6) \
+	xTRACE_VAR_5(v1, v2, v3, v4, v5) <<  xT(", ") << xTRACE_VAR(v6)
+#define xTRACE_VAR_7(v1, v2, v3, v4, v5, v6, v7) \
+	xTRACE_VAR_6(v1, v2, v3, v4, v5, v6) <<  xT(", ") << xTRACE_VAR(v7)
+#define xTRACE_VAR_8(v1, v2, v3, v4, v5, v6, v7, v8) \
+	xTRACE_VAR_7(v1, v2, v3, v4, v5, v6, v7) <<  xT(", ") << xTRACE_VAR(v8)
+#define xTRACE_VAR_9(v1, v2, v3, v4, v5, v6, v7, v8, v9) \
+	xTRACE_VAR_8(v1, v2, v3, v4, v5, v6, v7, v8) <<  xT(", ") << xTRACE_VAR(v9)
+#define xTRACE_VAR_10(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10) \
+	xTRACE_VAR_9(v1, v2, v3, v4, v5, v6, v7, v8, v9) <<  xT(", ") << xTRACE_VAR(v10)
 ///\}
 
 ///\name Trace variables with label
@@ -82,9 +82,9 @@
 #define xPRINT_VAR(v) \
 	#v xT(": [") << (v) << xT("]")
 #define xUNKNOWN_VAR(v) \
-	xT("Unknown ") << xSTD_TRACE_VAR(v)
+	xT("Unknown ") << xTRACE_VAR(v)
 #define xINVALID_VAR(v) \
-	xT("Invalid ") << xSTD_TRACE_VAR(v)
+	xT("Invalid ") << xTRACE_VAR(v)
 #define xTRACE_PTR(p) \
 	#p xT(": ") << xT("{") << (p) << xT(", ") << ((p) ? *(p) : 0) << xT("}")
 ///\}
@@ -114,7 +114,7 @@
         xl::debug::SourceInfo      sourceInfo(data); \
         \
         xl::log::Trace() \
-            << xT("\t::: ") << sourceInfo.data().funcName << xT(": ") << xSTD_TRACE_VAR(v) << xT(" :::"); \
+            << xT("\t::: ") << sourceInfo.data().funcName << xT(": ") << xTRACE_VAR(v) << xT(" :::"); \
     }
     ///< trace function variable (use Trace)
 #define xTRACE_NOT_IMPLEMENTED \

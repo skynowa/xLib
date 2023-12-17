@@ -131,7 +131,7 @@ Event::_wait_impl(
         // } else {
         //    iRv = 0;
         // }
-        Trace() << xSTD_TRACE_VAR(iRv);
+        Trace() << xTRACE_VAR(iRv);
 
         // adjust signaled member
         switch (iRv) {

@@ -119,7 +119,7 @@ Test_TcpClient::unit()
 			m_sstRv = tcpClient.receive(&recvBuff[0], xARRAY_SIZE(recvBuff), 0);
 			xTEST_DIFF(m_sstRv, (ssize_t)xSOCKET_ERROR);
 
-			Cout() << xSTD_TRACE_VAR(recvBuff);
+			Cout() << xTRACE_VAR(recvBuff);
 		}
 	}
 
