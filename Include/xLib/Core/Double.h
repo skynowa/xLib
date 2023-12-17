@@ -61,7 +61,7 @@ public:
 		///< checks if two floating-point values are unordered
 ///\}
 
-	T	   safeDiv(const T value, const T value_default = {}) const;
+	T safeDiv(const T value, const T value_default = {}) const;
 		///< safe division, if devision by 0.0 return 0.0
 
 xPUBLIC_STATIC:
