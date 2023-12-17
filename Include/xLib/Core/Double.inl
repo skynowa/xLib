@@ -20,13 +20,6 @@ Double<T>::Double()
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* virtual */
-inline
-Double<T>::~Double()
-{
-}
-//-------------------------------------------------------------------------------------------------
-template<typename T>
 inline
 Double<T>::Double(
 	const Double &a_value

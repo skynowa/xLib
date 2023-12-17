@@ -26,7 +26,7 @@ public:
 			 Double(const Double &value);
 	explicit Double(const T value);
 			 Double(Double &&value);
-	virtual ~Double();
+	virtual ~Double() = default;
 ///\}
 
 ///\name Overrides
