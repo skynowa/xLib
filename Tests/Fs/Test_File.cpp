@@ -74,7 +74,9 @@ Test_File::unit()
 		}
 
 		{
-			File(sFilePathFrom).copy(sFilePathTo, false);
+			cbool_t isFailIfExists{false};
+			const auto errorCode = File(sFilePathFrom).copy(sFilePathTo, isFailIfExists);
+			xTEST_EQ((int)errorCode, (int)Backup::Error::Ok);
 		}
 
 		m_bRv = FileInfo(sFilePathTo).isExists();
@@ -85,7 +87,9 @@ Test_File::unit()
 		}
 
 		{
-			File(sFilePathFrom).copy(sFilePathTo, true);
+			cbool_t isFailIfExists{true};
+			const auto errorCode = File(sFilePathFrom).copy(sFilePathTo, isFailIfExists);
+			xTEST_EQ((int)errorCode, (int)Backup::Error::Ok);
 		}
 	}
 
