@@ -7,7 +7,7 @@ UNIT_TESTS=(File Backup)
 # FG='\e[37m'   # white
 # RESET='\e[0m' # reset
 
-source /home/skynowa/Projects/Scripts/Shell/bash_colors.sh
+source bash_colors.sh
 #--------------------------------------------------------------------------------------------------
 for it_test in ${UNIT_TESTS[*]}
 do
