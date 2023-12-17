@@ -26,36 +26,36 @@ DataIn::print(
 ) const
 {
 	a_os
-		<< xSTD_TRACE_VAR(url)               << xT("\n")
-		<< xSTD_TRACE_VAR(isUseHeader)       << xT("\n")
-		<< xSTD_TRACE_VAR(isSslVerifyPeer)   << xT("\n")
-		<< xSTD_TRACE_VAR(isSslVerifyHost)   << xT("\n")
-		<< xSTD_TRACE_VAR(sslVersion)        << xT("\n")
-		<< xSTD_TRACE_VAR(sslCert)           << xT("\n")
-		<< xSTD_TRACE_VAR(sslCertPass)       << xT("\n")
-		<< xSTD_TRACE_VAR((int)httpVersion)  << xT("\n")
-		<< xSTD_TRACE_VAR(cookieFile)        << xT("\n")
-		<< xSTD_TRACE_VAR(addCookie)         << xT("\n")
-		<< xSTD_TRACE_VAR(encodingParam)     << xT("\n")
-		<< xSTD_TRACE_VAR(ciphers)           << xT("\n")
-		<< xSTD_TRACE_VAR(timeoutSec)        << xT("\n")
-		<< xSTD_TRACE_VAR(timeoutMs)         << xT("\n")
-		<< xSTD_TRACE_VAR(continueTimeoutMs) << xT("\n")
-		<< xSTD_TRACE_VAR((int)proxyType)    << xT("\n")
-		<< xSTD_TRACE_VAR(proxy)             << xT("\n")
-		<< xSTD_TRACE_VAR(proxyUserPass)     << xT("\n")
-		<< xSTD_TRACE_VAR(userPass)          << xT("\n")
-		<< xSTD_TRACE_VAR(addHeaders)        << xT("\n")
-		<< xSTD_TRACE_VAR(referer)           << xT("\n")
-		<< xSTD_TRACE_VAR(accept)            << xT("\n")
-		<< xSTD_TRACE_VAR(acceptEncoding)    << xT("\n")
-		<< xSTD_TRACE_VAR(acceptLanguage)    << xT("\n")
-		<< xSTD_TRACE_VAR(acceptCharset)     << xT("\n")
-		<< xSTD_TRACE_VAR(userAgent)         << xT("\n")
-		<< xSTD_TRACE_VAR(isFollowLocation)  << xT("\n")
-		<< xSTD_TRACE_VAR(maxRedirects)      << xT("\n")
-		<< xSTD_TRACE_VAR(isCacheControl)    << xT("\n")
-		<< xSTD_TRACE_VAR(request);
+		<< xTRACE_VAR(url)               << xT("\n")
+		<< xTRACE_VAR(isUseHeader)       << xT("\n")
+		<< xTRACE_VAR(isSslVerifyPeer)   << xT("\n")
+		<< xTRACE_VAR(isSslVerifyHost)   << xT("\n")
+		<< xTRACE_VAR(sslVersion)        << xT("\n")
+		<< xTRACE_VAR(sslCert)           << xT("\n")
+		<< xTRACE_VAR(sslCertPass)       << xT("\n")
+		<< xTRACE_VAR((int)httpVersion)  << xT("\n")
+		<< xTRACE_VAR(cookieFile)        << xT("\n")
+		<< xTRACE_VAR(addCookie)         << xT("\n")
+		<< xTRACE_VAR(encodingParam)     << xT("\n")
+		<< xTRACE_VAR(ciphers)           << xT("\n")
+		<< xTRACE_VAR(timeoutSec)        << xT("\n")
+		<< xTRACE_VAR(timeoutMs)         << xT("\n")
+		<< xTRACE_VAR(continueTimeoutMs) << xT("\n")
+		<< xTRACE_VAR((int)proxyType)    << xT("\n")
+		<< xTRACE_VAR(proxy)             << xT("\n")
+		<< xTRACE_VAR(proxyUserPass)     << xT("\n")
+		<< xTRACE_VAR(userPass)          << xT("\n")
+		<< xTRACE_VAR(addHeaders)        << xT("\n")
+		<< xTRACE_VAR(referer)           << xT("\n")
+		<< xTRACE_VAR(accept)            << xT("\n")
+		<< xTRACE_VAR(acceptEncoding)    << xT("\n")
+		<< xTRACE_VAR(acceptLanguage)    << xT("\n")
+		<< xTRACE_VAR(acceptCharset)     << xT("\n")
+		<< xTRACE_VAR(userAgent)         << xT("\n")
+		<< xTRACE_VAR(isFollowLocation)  << xT("\n")
+		<< xTRACE_VAR(maxRedirects)      << xT("\n")
+		<< xTRACE_VAR(isCacheControl)    << xT("\n")
+		<< xTRACE_VAR(request);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -72,12 +72,12 @@ DataOut::print(
 ) const
 {
 	a_os
-		<< xSTD_TRACE_VAR(contentType)  << xT("\n")
-		<< xSTD_TRACE_VAR(effectiveUrl) << xT("\n")
-		<< xSTD_TRACE_VAR(responseCode) << xT("\n")
-		<< xSTD_TRACE_VAR(totalTimeSec) << xT("\n")
-		// << xSTD_TRACE_VAR(headers)      << xT("\n")
-		<< xSTD_TRACE_VAR(body);
+		<< xTRACE_VAR(contentType)  << xT("\n")
+		<< xTRACE_VAR(effectiveUrl) << xT("\n")
+		<< xTRACE_VAR(responseCode) << xT("\n")
+		<< xTRACE_VAR(totalTimeSec) << xT("\n")
+		// << xTRACE_VAR(headers)      << xT("\n")
+		<< xTRACE_VAR(body);
 }
 //-------------------------------------------------------------------------------------------------
 

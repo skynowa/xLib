@@ -38,10 +38,10 @@ Test_SourceInfo::unit()
              std::to_string(var1), op, std::to_string(var2)));
 
 		if (0) {
-			Trace() << xSTD_TRACE_VAR(_sourceInfo.format());
-			Trace() << xSTD_TRACE_VAR(_sourceInfo.at());
-			Trace() << xSTD_TRACE_VAR(_sourceInfo.expr());
-			Trace() << xSTD_TRACE_VAR(_sourceInfo.exprValues());
+			Trace() << xTRACE_VAR(_sourceInfo.format());
+			Trace() << xTRACE_VAR(_sourceInfo.at());
+			Trace() << xTRACE_VAR(_sourceInfo.expr());
+			Trace() << xTRACE_VAR(_sourceInfo.exprValues());
 		}
     }
 

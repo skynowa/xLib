@@ -119,7 +119,7 @@ Translate::run(
 			std::ctstring_t  encodingOut  = encoding;
 
 			xCHECK_DO(query.size() > querySizeMax,
-				Cout() << xT("Warning: ") << xSTD_TRACE_VAR_2(querySizeMax, query.size()));
+				Cout() << xT("Warning: ") << xTRACE_VAR_2(querySizeMax, query.size()));
 
 			const std::map_tstring_t request
 			{
@@ -131,7 +131,7 @@ Translate::run(
 				{xT("q"),  query}
 			};
 
-			// Cout() << xSTD_TRACE_VAR(request);
+			// Cout() << xTRACE_VAR(request);
 
 			for (const auto &[param, value] : request) {
 				dataIn.request += param + xT("=") + _http.escape(value) + xT("&");
@@ -150,7 +150,7 @@ Translate::run(
 	bRv = _http.get(dataIn, &dataOut);
 	xTEST(bRv);
 	if ( !_http.isSuccess(dataOut) ) {
-		// Cout() << xSTD_TRACE_VAR(dataOut.body);
+		// Cout() << xTRACE_VAR(dataOut.body);
 
 		*out_textToBrief  = Format::str(xT("Error: {}"), dataOut.responseCode);
 		*out_textToDetail = Format::str(xT("Error: {}"), dataOut.responseCode);
@@ -167,16 +167,16 @@ Translate::run(
 
 #if 0
 	Cout()
-		<< xSTD_TRACE_VAR(dataIn.request)   << std::endl
+		<< xTRACE_VAR(dataIn.request)   << std::endl
 		<< xT("\n")
-		<< xSTD_TRACE_VAR(dataOut.contentType)  << std::endl
-		<< xSTD_TRACE_VAR(dataOut.effectiveUrl) << std::endl
-		<< xSTD_TRACE_VAR(dataOut.responseCode) << std::endl
-		<< xSTD_TRACE_VAR(dataOut.totalTimeSec) << std::endl
+		<< xTRACE_VAR(dataOut.contentType)  << std::endl
+		<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
+		<< xTRACE_VAR(dataOut.responseCode) << std::endl
+		<< xTRACE_VAR(dataOut.totalTimeSec) << std::endl
 		<< xT("\n")
-		<< xSTD_TRACE_VAR(dataOut.headers)      << std::endl
-		<< xSTD_TRACE_VAR(dataOut.body.size())  << std::endl
-		<< xSTD_TRACE_VAR(dataOut.body)         << std::endl;
+		<< xTRACE_VAR(dataOut.headers)      << std::endl
+		<< xTRACE_VAR(dataOut.body.size())  << std::endl
+		<< xTRACE_VAR(dataOut.body)         << std::endl;
 #endif
 
      _responseParse(dataOut, out_textToBrief, out_textToDetail, out_textToRaw);
@@ -204,8 +204,8 @@ Translate::_langsDetect(
     cbool_t is_log = false;
 
 	if (is_log) {
-		Cout() << xSTD_TRACE_VAR(a_text);
-		Cout() << xSTD_TRACE_VAR(a_text.size());
+		Cout() << xTRACE_VAR(a_text);
+		Cout() << xTRACE_VAR(a_text.size());
 	}
 
     std::size_t countEn {};
@@ -220,7 +220,7 @@ Translate::_langsDetect(
 			const auto letterLower = letter.toLower().get();
 			/// TODO: letterLower.isAlpha() - for RU text not work
 			if (0) {
-				Cout() << xSTD_TRACE_VAR(letter.isAlpha());
+				Cout() << xTRACE_VAR(letter.isAlpha());
 				xCHECK_DO(!letter.isAlpha(), continue);
 			}
 
@@ -228,8 +228,8 @@ Translate::_langsDetect(
 			xCHECK_DO(lettersRu.find(letterLower) != std::tstring_t::npos, ++ countRu);
 
 			if (is_log) {
-				Cout() << xSTD_TRACE_VAR(countEn);
-				Cout() << xSTD_TRACE_VAR(countRu);
+				Cout() << xTRACE_VAR(countEn);
+				Cout() << xTRACE_VAR(countRu);
 			}
 		}
 	}
@@ -296,8 +296,8 @@ Translate::_langsDetect(
         *out_langFrom = Language::Unknown;
         *out_langTo   = Language::Unknown;
 
-		Cout() << xSTD_TRACE_VAR(countEn);
-		Cout() << xSTD_TRACE_VAR(countRu);
+		Cout() << xTRACE_VAR(countEn);
+		Cout() << xTRACE_VAR(countRu);
 
         xTEST(false);
     }

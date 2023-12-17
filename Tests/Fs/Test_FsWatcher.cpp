@@ -22,7 +22,7 @@ public:
 	virtual
 	void_t onEvent(std::ctstring_t &a_fsName, cEvent a_event) override
 	{
-		std::tcout << xSTD_TRACE_VAR(a_fsName) << ": ";
+		std::tcout << xTRACE_VAR(a_fsName) << ": ";
 
 		switch (a_event) {
 		case Event::Attrib:

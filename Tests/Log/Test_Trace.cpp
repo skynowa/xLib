@@ -52,7 +52,7 @@ Test_Trace::unit()
     #endif
     }
 
-    xTEST_CASE("xSTD_TRACE_VAR")
+    xTEST_CASE("xTRACE_VAR")
     {
     #if xTEST_IGNORE
         std::tstring_t sData  = xT("data1");
@@ -62,10 +62,10 @@ Test_Trace::unit()
 
         Trace()
 			<< xT("\t")
-			<< xSTD_TRACE_VAR(sData)
-			<< xSTD_TRACE_VAR(ulData)
-			<< xSTD_TRACE_VAR(aData)
-			<< xSTD_TRACE_VAR(szData);
+			<< xTRACE_VAR(sData)
+			<< xTRACE_VAR(ulData)
+			<< xTRACE_VAR(aData)
+			<< xTRACE_VAR(szData);
     #endif
     }
 

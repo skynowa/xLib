@@ -170,7 +170,7 @@ ProcessInfo::_commandLine_impl(
 
 		std::tstring_t arg;
 
-		std::cout << xSTD_TRACE_VAR((cp - np));
+		std::cout << xTRACE_VAR((cp - np));
 
 		if (np != nullptr) {
 			arg.assign(cp, static_cast<std::size_t>(cp - np));
@@ -182,7 +182,7 @@ ProcessInfo::_commandLine_impl(
 			arg.assign(sp, static_cast<std::size_t>(cp - np));
 		}
 
-		std::cout << xSTD_TRACE_VAR(arg);
+		std::cout << xTRACE_VAR(arg);
 
 		// Note location of current '\0'.
 		np = cp;
@@ -225,7 +225,7 @@ ProcessInfo::_commandLine_impl(
         pos += std::strlen(buff + pos) + 1;
     }
 
-    Cout() << xSTD_TRACE_VAR(args);
+    Cout() << xTRACE_VAR(args);
 #endif
 
 	// Clean up

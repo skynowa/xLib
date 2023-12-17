@@ -46,15 +46,15 @@ SmtpClient::request()
 {
 #if 0
 	Cout()
-		<< xSTD_TRACE_VAR(_url)      << "\n"
-		<< xSTD_TRACE_VAR(_caPath)   << "\n"
-		<< xSTD_TRACE_VAR(_userName) << "\n"
-		<< xSTD_TRACE_VAR(_password) << "\n"
-		<< xSTD_TRACE_VAR(_from)     << "\n"
-		<< xSTD_TRACE_VAR(_to)       << "\n"
-		<< xSTD_TRACE_VAR(_cc)       << "\n"
-		<< xSTD_TRACE_VAR(_subject)  << "\n"
-		<< xSTD_TRACE_VAR(_body);
+		<< xTRACE_VAR(_url)      << "\n"
+		<< xTRACE_VAR(_caPath)   << "\n"
+		<< xTRACE_VAR(_userName) << "\n"
+		<< xTRACE_VAR(_password) << "\n"
+		<< xTRACE_VAR(_from)     << "\n"
+		<< xTRACE_VAR(_to)       << "\n"
+		<< xTRACE_VAR(_cc)       << "\n"
+		<< xTRACE_VAR(_subject)  << "\n"
+		<< xTRACE_VAR(_body);
 #endif
 
 	setOption(CURLOPT_PROTOCOLS, CURLPROTO_SMTP);

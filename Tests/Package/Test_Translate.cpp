@@ -43,9 +43,9 @@ Test_Translate::unit()
 			xTEST(!langFrom.empty());
 			xTEST(!langTo.empty());
 
-			// Trace() << xSTD_TRACE_VAR(textToBrief);
-			// Trace() << xSTD_TRACE_VAR(textToDetail);
-			// Trace() << xSTD_TRACE_VAR(textToRaw);
+			// Trace() << xTRACE_VAR(textToBrief);
+			// Trace() << xTRACE_VAR(textToDetail);
+			// Trace() << xTRACE_VAR(textToRaw);
 		} // for (datas)
 	}
 

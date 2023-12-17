@@ -72,8 +72,8 @@ StackTrace::_get_impl(
             }
 
 		#if 0
-			Cout() << xSTD_TRACE_VAR(status);
-			Cout() << xSTD_TRACE_VAR(symbolName);
+			Cout() << xTRACE_VAR(status);
+			Cout() << xTRACE_VAR(symbolName);
 		#endif
 
             std::tstring_t _filePath;
@@ -84,10 +84,10 @@ StackTrace::_get_impl(
             xUNUSED(_functionName);
 
 		#if 0
-			Cout() << xSTD_TRACE_VAR(dlinfo.dli_saddr);
-			Cout() << xSTD_TRACE_VAR(_filePath);
-			Cout() << xSTD_TRACE_VAR(_functionName);
-			Cout() << xSTD_TRACE_VAR(_sourceLine);
+			Cout() << xTRACE_VAR(dlinfo.dli_saddr);
+			Cout() << xTRACE_VAR(_filePath);
+			Cout() << xTRACE_VAR(_functionName);
+			Cout() << xTRACE_VAR(_sourceLine);
 		#endif
 
             modulePath   = (dlinfo.dli_fname == nullptr) ? dataNotFound : xA2T(dlinfo.dli_fname);
@@ -178,7 +178,7 @@ StackTrace::_addr2Line(
 		cmdLine = FormatC::str(xT("%s -o %.256s %p"), cmATOS_FILE_PATH, Path::exe().str().c_str(), a_symbolAddress);
 	#endif
 
-		/// Cout() << xSTD_TRACE_VAR(cmdLine);
+		/// Cout() << xTRACE_VAR(cmdLine);
 	}
 
 	auto pipe = autoPipe(cmdLine, "r");

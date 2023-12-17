@@ -561,8 +561,8 @@ DateTime::format(
 
 #if 0
 	Cout() << date;
-	Cout() << xSTD_TRACE_VAR(a_format);
-	Cout() << xSTD_TRACE_VAR(a_formatMsec);
+	Cout() << xTRACE_VAR(a_format);
+	Cout() << xTRACE_VAR(a_formatMsec);
 #endif
 
 	tchar_t buff[80 + 1] {};

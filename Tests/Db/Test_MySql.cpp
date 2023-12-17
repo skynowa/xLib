@@ -59,15 +59,15 @@ Test_MySql::unit()
 			std::vec_tstring_t dbNames;
 
 			db.show(xT("%a%"), &dbNames);
-			// Cout() << xSTD_TRACE_VAR(dbNames);
+			// Cout() << xTRACE_VAR(dbNames);
 			xTEST(!dbNames.empty());
 
 			db.show(xT("%XXXXXXXXXXx%"), &dbNames);
-			// Cout() << xSTD_TRACE_VAR(dbNames);
+			// Cout() << xTRACE_VAR(dbNames);
 			xTEST(dbNames.empty());
 
 			db.show(&dbNames);
-			// Cout() << xSTD_TRACE_VAR(dbNames);
+			// Cout() << xTRACE_VAR(dbNames);
 			xTEST(!dbNames.empty());
 		}
 
@@ -167,7 +167,7 @@ Test_MySql::unit()
 
 			for (const auto &it_row : rows) {
 				xUNUSED(it_row);
-				// Cout() << xSTD_TRACE_VAR(it_row);
+				// Cout() << xTRACE_VAR(it_row);
 			}
 
 		}
