@@ -199,7 +199,6 @@ File::copy(
     xTEST(!a_filePathTo.empty());
     xTEST_NA(a_isFailIfExists);
 
-#if 1
 	bool_t isCopyOk {true};
 
 	// errors
@@ -241,12 +240,6 @@ File::copy(
 			return CopyError::FilesDiffrent;
 		}
 	}
-#else
-    std::tifstream_t fileFrom(_filePath, std::ios::binary);
-    std::tofstream_t fileTo(a_filePathTo, std::ios::binary);
-
-    fileTo << fileFrom.rdbuf();
-#endif
 
     return CopyError::Ok;
 }
