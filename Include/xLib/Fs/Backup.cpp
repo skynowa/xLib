@@ -1,5 +1,5 @@
 /**
- * \file   Backup.inl
+ * \file   Backup.cpp
  * \brief  backuper
  */
 
@@ -28,28 +28,25 @@ namespace xl::fs
 
 //-------------------------------------------------------------------------------------------------
 Backup::Backup(
-	std::ctstring_t &a_filePath,
+    std::ctstring_t &a_filePath,
+    std::ctstring_t &a_destDirPath,
     cPeriod          a_period
 ) :
     _filePath(a_filePath),
-    _period  (a_period)
+    _period  (a_period),
+    _destDir (a_destDirPath)
 {
+	xTEST(!a_filePath.empty());
+	xTEST(!a_destDirPath.empty());
+	xTEST_DIFF((int)a_period, (int)Period::Unknown);
 }
 //-------------------------------------------------------------------------------------------------
-void_t
+Backup::Error
 Backup::fileExec(
-    std::ctstring_t &a_destDirPath,
-    std::tstring_t  *a_destFilePath
-) const /* throw(Exception) */
+    std::tstring_t *a_destFilePath	///< [out]
+) const
 {
-    xTEST(!a_destDirPath.empty());
     xTEST_PTR(a_destFilePath);
-
-    // errors
-    std::ctstring_t errorDestFileNotExists  = xT("Backup - Destination file not exists");
-    std::ctstring_t errorNotEnoughFreeSpace = xT("Backup - Not enough free space");
-    std::ctstring_t errorCopyingFail        = xT("Backup - Copying fail");
-    std::ctstring_t errorUnknown            = xT("Backup - Unknown error");
 
     bool_t bRv {};
 
@@ -58,81 +55,85 @@ Backup::fileExec(
         a_destFilePath->clear();
 
         bRv = FileInfo(_filePath).isExists();
-        xCHECK_DO(!bRv, xTHROW_REPORT(errorDestFileNotExists));
+        xCHECK_RET(!bRv, Error::DestFileNotExists);
 
-        Dir dest(a_destDirPath);
-
-        bRv = dest.isExists();
-        xCHECK_DO(!bRv, dest.pathCreate());
+        bRv = _destDir.isExists();
+        xCHECK_DO(!bRv, _destDir.pathCreate());
     }
 
-    std::tstring_t dateTimeStamp;
+    std::tstring_t dateTs;
     {
         const DateTime &dateCurrent = DateTime::current();
 
         switch (_period) {
         case Period::Hourly:
-            // format: 2013-12-21_23
-            dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d_%H"), xT(""));
+            dateTs = dateCurrent.format(xT("%Y-%m-%d_%H"), {});
             break;
         case Period::Daily:
-            // format: 2013-12-21
-            dateTimeStamp = dateCurrent.format(xT("%Y-%m-%d"), xT(""));
+            dateTs = dateCurrent.format(xT("%Y-%m-%d"), {});
             break;
         case Period::Weekly:
-            // format: 2013_01
-            dateTimeStamp = dateCurrent.format(xT("%Y_%U"), xT(""));
+            dateTs = dateCurrent.format(xT("%Y_%U"), {});
             break;
         case Period::Monthly:
-            // format: 2013-12
-            dateTimeStamp = dateCurrent.format(xT("%Y-%m"), xT(""));
+            dateTs = dateCurrent.format(xT("%Y-%m"), {});
             break;
         case Period::Unknown:
             xTEST_FAIL;
             break;
         }
 
-        xCHECK_DO(dateTimeStamp.empty(), return);
+        xCHECK_RET(dateTs.empty(), Error::PeriodUnknown);
     }
 
+    std::ctstring_t &destDirPath = _destDir.str();
+
     // format file full name
-    std::ctstring_t backupFilePath = Path(a_destDirPath).slashAppend().str() +
-        Path(_filePath).fileName() + xT("_[") + dateTimeStamp + xT("]") +
+    std::ctstring_t backupFilePath = Path(destDirPath).slashAppend().str() +
+        Path(_filePath).fileName() + xT("_[") + dateTs + xT("]") +
         Path::fileDotExt(Path::FileExt::Backup);
 
     // check for existence source file
     {
         bRv = FileInfo(backupFilePath).isExists();
-        xCHECK_DO(bRv, *a_destFilePath = backupFilePath; return);
+        if (bRv) {
+            // [out]
+            *a_destFilePath = backupFilePath;
+            return Error::DestFileAlreadyExists;
+        }
     }
 
     // check for enough space
     {
-        Volume volume(a_destDirPath);
+        Volume volume(destDirPath);
         bRv = volume.isSpaceAvailable( static_cast<ulonglong_t>( FileInfo(_filePath).size() ));
-        xCHECK_DO(!bRv, xTHROW_REPORT(errorNotEnoughFreeSpace));
+        xCHECK_RET(!bRv, Error::NotEnoughFreeSpace);
     }
 
     // copy
     {
         File file(_filePath);
-        file.copy(backupFilePath, true);
+
+        cbool_t isFailIfExists{true};
+        file.copy(backupFilePath, isFailIfExists);
     }
 
     // check for a valid backup
     {
         bRv = FileInfo(backupFilePath).isExists();
-        xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
+        xCHECK_RET(!bRv, Error::CopyFail);
 
         bRv = (FileInfo(_filePath).size() == FileInfo(backupFilePath).size());
-        xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
+        xCHECK_RET(!bRv, Error::CopyFail);
 
         bRv = (Crc32().calcFile(_filePath) == Crc32().calcFile(backupFilePath));
-        xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
+        xCHECK_RET(!bRv, Error::CopyFail);
     }
 
-    // out
+    // [out]
     *a_destFilePath = backupFilePath;
+
+    return Error::Ok;
 }
 //-------------------------------------------------------------------------------------------------
 
