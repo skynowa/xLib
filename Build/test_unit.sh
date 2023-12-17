@@ -1,8 +1,18 @@
 #!/usr/bin/env bash
 
 
-# Params
-UNIT_TEST_NAME=File
+UNIT_TESTS=(File Backup)
 
-./tests.sh ${UNIT_TEST_NAME} # && ./deploy.sh
+BG='\e[46m'   # green
+FG='\e[37m'   # white
+RESET='\e[0m' # reset
+#--------------------------------------------------------------------------------------------------
+for it_test in ${UNIT_TESTS[*]}
+do
+	echo -e ""
+	echo -e "${BG}${FG}::::: ${it_test} :::::${RESET}"
+	echo -e ""
+
+	./tests.sh ${it_test} # && ./deploy.sh
+done
 #--------------------------------------------------------------------------------------------------
