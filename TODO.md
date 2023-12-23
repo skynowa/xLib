@@ -70,6 +70,10 @@ TODO: [win] Sync - close handle
 
 - SA
 
+## SA
+
+- `.clang-tidy` with skynowa rules
+
 ## Doc
 
 - [ ] Doc - impl
