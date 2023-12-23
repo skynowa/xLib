@@ -5,8 +5,6 @@
 
 
 #include <xLib/xLib.h>
-
-
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Double)
 //-------------------------------------------------------------------------------------------------
@@ -105,15 +103,15 @@ Test_Double::unit()
 		};
 
 		for (const auto &it_data : data) {
-		  const ddouble_t f(it_data.test1);
+			const ddouble_t f(it_data.test1);
 
-		  // <=
-		  m_bRv = (f <= it_data.test2);
-		  xTEST_EQ(m_bRv, it_data.expect);
+			// <=
+			m_bRv = (f <= it_data.test2);
+			xTEST_EQ(m_bRv, it_data.expect);
 
-		  // >=
-		  m_bRv = (f > it_data.test2);
-		  xTEST_DIFF(m_bRv, it_data.expect);
+			// >=
+			m_bRv = (f > it_data.test2);
+			xTEST_DIFF(m_bRv, it_data.expect);
 		}
 	}
 
