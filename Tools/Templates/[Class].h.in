@@ -14,13 +14,13 @@ class ${cmXLIB_TEMPLATE}
     /// ${cmXLIB_TEMPLATE_COMMENTS}
 {
 public:
-///@name ctors, dtor
-///@{
+///\name ctors, dtor
+///\{
              ${cmXLIB_TEMPLATE}();
     virtual ~${cmXLIB_TEMPLATE}();
 
     xNO_COPY_ASSIGN(${cmXLIB_TEMPLATE})
-///@}
+///\}
 
 private:
 
