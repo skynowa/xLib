@@ -321,9 +321,7 @@ Process::execute(
 /* static */
 void_t
 Process::shellExecute(
-    std::ctstring_t &a_filePathOrURL, ///< binary file path
-    std::tstring_t  *out_stdOut,      ///< [out] std::cout (maybe as nullptr)
-    std::tstring_t  *out_stdError     ///< [out] std::cerr (maybe as nullptr)
+    std::ctstring_t &a_filePathOrURL ///< binary file path
 )
 {
 #if   xENV_WIN
@@ -348,7 +346,7 @@ Process::shellExecute(
 	xTEST_PTR(sei.hProcess);
 
 	// Wait for the process to exit, or terminate it, if it still hasn't exited after 5 sec
-	if (::WaitForSingleObject(sei.hProcess, xTIMEOUT_INFINITE) == WAIT_TIMEOUT) {
+	if (::WaitForSingleObject(sei.hProcess, 5000) == WAIT_TIMEOUT) {
 		::TerminateProcess(sei.hProcess, 666);
 	}
 
@@ -365,15 +363,13 @@ Process::shellExecute(
 	#endif
 	}
 
-	#if 0
-		std::cvec_tstring_t params = {a_filePathOrURL};
-		execute(filePath, params, out_stdOut, out_stdError);
-	#else
-		std::ctstring_t cmdLine = Format::str(xT("{} {}"), filePath, a_filePathOrURL);
+	std::ctstring_t cmdLine = Format::str(xT("{} {}"),
+									filePath,
+									String::quoted(a_filePathOrURL));
+	Cout() << xTRACE_VAR(cmdLine);
 
-		cint_t iRv = std::system(cmdLine.c_str());
-		xTEST_EQ(iRv, 0);
-	#endif
+	cint_t iRv = std::system(cmdLine.c_str());
+	xTEST_EQ(iRv, 0);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
