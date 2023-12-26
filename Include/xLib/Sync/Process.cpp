@@ -311,16 +311,10 @@ Process::execute(
     std::tstring_t      *out_stdError ///< [out] std::cerr (maybe as nullptr)
 )
 {
-	const std::set<std::pair_tstring_t> envs;
-	culong_t                            waitTimeoutMsec {xTIMEOUT_INFINITE};
+    const std::set<std::pair_tstring_t> envs;
+    culong_t                            waitTimeoutMsec {xTIMEOUT_INFINITE};
 
-    Process proc;
-    proc.create(a_filePath, a_params, envs, out_stdOut, out_stdError);
-    xCHECK_DO(!proc.isValid(), return);
-
-    Process::cWaitStatus wrRes = proc.wait(waitTimeoutMsec);
-    xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Ok);
-    xTEST_DIFF((int)wrRes, (int)Process::WaitStatus::Abandoned);
+    execute(a_filePath, a_params, envs, waitTimeoutMsec, out_stdOut, out_stdError);
 }
 //-------------------------------------------------------------------------------------------------
 

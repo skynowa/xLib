@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-UNIT_TESTS=(File Backup)
+UNIT_TESTS=(Process)
 
 # BG='\e[46m'   # green
 # FG='\e[37m'   # white
