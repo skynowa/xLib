@@ -317,5 +317,33 @@ Process::execute(
     execute(a_filePath, a_params, envs, waitTimeoutMsec, out_stdOut, out_stdError);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+Process::shellExecute(
+    std::ctstring_t &a_filePathOrURL, ///< binary file path
+    std::tstring_t  *out_stdOut,      ///< [out] std::cout (maybe as nullptr)
+    std::tstring_t  *out_stdError     ///< [out] std::cerr (maybe as nullptr)
+)
+{
+	std::tstring_t filePath;
+
+#if   xENV_WIN
+	auto shell = Path::shell();
+	filePath = shell.str();
+#elif xENV_UNIX
+	#if   xENV_LINUX
+		filePath = xT("xdg-open");
+	#elif xENV_BSD
+		filePath = xT("open");
+	#elif xENV_APPLE
+		filePath = xT("open");
+	#endif
+#endif
+
+	std::cvec_tstring_t params = {a_filePathOrURL};
+
+	execute(filePath, params, out_stdOut, out_stdError);
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace

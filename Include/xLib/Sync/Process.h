@@ -123,6 +123,9 @@ xPUBLIC_STATIC:
     static void_t execute(std::ctstring_t &filePath, std::cvec_tstring_t &params,
                      std::tstring_t *stdOut, std::tstring_t *stdError);
         ///< create, wait process (Without envs, with infinite wait timeout)
+    static void_t shellExecute(std::ctstring_t &filePathOrURL, std::tstring_t *stdOut,
+                     std::tstring_t *stdError);
+        ///< opens a file or URL in the user's preferred application
 
 private:
     handle_t _handle {};
