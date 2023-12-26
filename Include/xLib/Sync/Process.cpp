@@ -344,34 +344,36 @@ Process::shellExecute(
 	sei.hInstApp     = nullptr;
 
 	HINSTANCE hiRv = ::ShellExecuteExW(&sei)l
-	xTEST_GR(hiRv, 32);
+	xTEST_GR(static_cast<int_t>(hiRv), 32);
+	xTEST_PTR(sei.hProcess);
 
-	if (sei.hProcess != nullptr) {
-		// Wait for the process to exit, or terminate it, if it still hasn't exited after 5 sec
-		if (::WaitForSingleObject(sei.hProcess, xTIMEOUT_INFINITE) == WAIT_TIMEOUT) {
-			::TerminateProcess(sei.hProcess, 666);
-		}
-
-		::CloseHandle(sei.hProcess);
-	} else {
-		// ShellExecuteExW succeeded but *no* new process was created !
-		// Probably an existing browser instance was re-used
+	// Wait for the process to exit, or terminate it, if it still hasn't exited after 5 sec
+	if (::WaitForSingleObject(sei.hProcess, xTIMEOUT_INFINITE) == WAIT_TIMEOUT) {
+		::TerminateProcess(sei.hProcess, 666);
 	}
+
+	::CloseHandle(sei.hProcess);
 #elif xENV_UNIX
 	std::tstring_t filePath;
-
-	/// REVIEW: xdg-open, open - use ???
+	{
 	#if   xENV_LINUX
-		filePath = xT("/usr/bin/xdg-open");
+		filePath = xT("xdg-open");
 	#elif xENV_BSD
-		filePath = xT("/usr/bin/open");
+		filePath = xT("open");
 	#elif xENV_APPLE
-		filePath = xT("/usr/bin/open");
+		filePath = xT("open");
 	#endif
+	}
 
-	std::cvec_tstring_t params = {a_filePathOrURL};
+	#if 0
+		std::cvec_tstring_t params = {a_filePathOrURL};
+		execute(filePath, params, out_stdOut, out_stdError);
+	#else
+		std::ctstring_t cmdLine = Format::str(xT("{} {}"), filePath, a_filePathOrURL);
 
-	execute(filePath, params, out_stdOut, out_stdError);
+		cint_t iRv = std::system(cmdLine.c_str());
+		xTEST_EQ(iRv, 0);
+	#endif
 #endif
 }
 //-------------------------------------------------------------------------------------------------
