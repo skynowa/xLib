@@ -326,19 +326,20 @@ Process::shellExecute(
 )
 {
 	std::tstring_t filePath;
-
-#if   xENV_WIN
-	auto shell = Path::shell();
-	filePath = shell.str();
-#elif xENV_UNIX
-	#if   xENV_LINUX
-		filePath = xT("xdg-open");
-	#elif xENV_BSD
-		filePath = xT("open");
-	#elif xENV_APPLE
-		filePath = xT("open");
+	{
+	#if   xENV_WIN
+		auto shell = Path::shell();
+		filePath = shell.str();
+	#elif xENV_UNIX
+		#if   xENV_LINUX
+			filePath = xT("xdg-open");
+		#elif xENV_BSD
+			filePath = xT("open");
+		#elif xENV_APPLE
+			filePath = xT("open");
+		#endif
 	#endif
-#endif
+	}
 
 	std::cvec_tstring_t params = {a_filePathOrURL};
 
