@@ -9,6 +9,7 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/FormatC.h>
+#include <xLib/Core/ScopeExit.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Dll.h>
@@ -325,28 +326,53 @@ Process::shellExecute(
     std::tstring_t  *out_stdError     ///< [out] std::cerr (maybe as nullptr)
 )
 {
-	std::tstring_t filePath;
-	{
-	#if   xENV_WIN
-		/// REVIEW: ShellExecuteEx - use ???
-		auto shell = Path::shell();
-		filePath = shell.str();
-	#elif xENV_UNIX
-		/// REVIEW: xdg-open, open - use ???
+#if   xENV_WIN
+	HRESULT hrRv = ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+	xTEST(hrRv == S_OK);
 
-		#if   xENV_LINUX
-			filePath = xT("/usr/bin/xdg-open");
-		#elif xENV_BSD
-			filePath = xT("/usr/bin/open");
-		#elif xENV_APPLE
-			filePath = xT("/usr/bin/open");
-		#endif
-	#endif
+	ScopeExit on_exit( [&]() { ::CoUninitialize(); } );
+
+	SHELLEXECUTEINFO sei {};
+	sei.cbSize       = sizeof(SHELLEXECUTEINFOW);
+	sei.fMask        = SEE_MASK_NOCLOSEPROCESS;
+	sei.hwnd         = nullptr;
+	sei.lpVerb       = xT("open");
+	sei.lpFile       = a_filePathOrURL.c_str();
+	sei.lpParameters = arg.c_str();
+	sei.lpDirectory  = nullptr;
+	sei.nShow        = SW_SHOWNORMAL;
+	sei.hInstApp     = nullptr;
+
+	HINSTANCE hiRv = ::ShellExecuteExW(&sei)l
+	xTEST_GR(hiRv, 32);
+
+	if (sei.hProcess != nullptr) {
+		// Wait for the process to exit, or terminate it, if it still hasn't exited after 5 sec
+		if (::WaitForSingleObject(sei.hProcess, xTIMEOUT_INFINITE) == WAIT_TIMEOUT) {
+			::TerminateProcess(sei.hProcess, 666);
+		}
+
+		::CloseHandle(sei.hProcess);
+	} else {
+		// ShellExecuteExW succeeded but *no* new process was created!
+		// probably an existing browser instance was re-used
 	}
+#elif xENV_UNIX
+	std::tstring_t filePath;
+
+	/// REVIEW: xdg-open, open - use ???
+	#if   xENV_LINUX
+		filePath = xT("/usr/bin/xdg-open");
+	#elif xENV_BSD
+		filePath = xT("/usr/bin/open");
+	#elif xENV_APPLE
+		filePath = xT("/usr/bin/open");
+	#endif
 
 	std::cvec_tstring_t params = {a_filePathOrURL};
 
 	execute(filePath, params, out_stdOut, out_stdError);
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
