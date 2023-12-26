@@ -332,6 +332,8 @@ Process::shellExecute(
 		auto shell = Path::shell();
 		filePath = shell.str();
 	#elif xENV_UNIX
+		/// REVIEW: xdg-open, open - use ???
+
 		#if   xENV_LINUX
 			filePath = xT("xdg-open");
 		#elif xENV_BSD
