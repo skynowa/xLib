@@ -335,11 +335,11 @@ Process::shellExecute(
 		/// REVIEW: xdg-open, open - use ???
 
 		#if   xENV_LINUX
-			filePath = xT("xdg-open");
+			filePath = xT("/usr/bin/xdg-open");
 		#elif xENV_BSD
-			filePath = xT("open");
+			filePath = xT("/usr/bin/open");
 		#elif xENV_APPLE
-			filePath = xT("open");
+			filePath = xT("/usr/bin/open");
 		#endif
 	#endif
 	}
