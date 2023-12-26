@@ -354,8 +354,8 @@ Process::shellExecute(
 
 		::CloseHandle(sei.hProcess);
 	} else {
-		// ShellExecuteExW succeeded but *no* new process was created!
-		// probably an existing browser instance was re-used
+		// ShellExecuteExW succeeded but *no* new process was created !
+		// Probably an existing browser instance was re-used
 	}
 #elif xENV_UNIX
 	std::tstring_t filePath;
