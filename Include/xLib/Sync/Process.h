@@ -90,51 +90,38 @@ public:
 
 xPUBLIC_STATIC:
 	// Hanfles, IDs
-    static
-    id_t       idByHandle(const handle_t &handle);
+    static id_t     idByHandle(const handle_t &handle);
         ///< get ID by handle
-    static
-    handle_t   handleById(const id_t &id);
+    static handle_t handleById(const id_t &id);
         ///< get handle by ID
-    static
-    id_t       idByName(std::ctstring_t &processName);
+    static id_t     idByName(std::ctstring_t &processName);
         ///< get ID by name
-    static
-    bool_t     isRunning(const id_t &id);
+    static bool_t   isRunning(const id_t &id);
         ///< is process running by name (with extension)
-    static
-    void_t     ids(std::vector<Process::id_t> *ids);
+    static void_t   ids(std::vector<Process::id_t> *ids);
         ///< get all IDs of current processes
 
     // current process
-    static
-    bool_t     isCurrent(const Process::id_t &id);
+    static bool_t   isCurrent(const Process::id_t &id);
         ///< is current id
-    static
-    id_t       currentId();
+    static id_t     currentId();
         ///< process ID of the calling process
-    static
-    id_t       currentParentId();
+    static id_t     currentParentId();
         ///< process ID of the parent of the calling process
-    static
-    handle_t   currentHandle();
+    static handle_t currentHandle();
         ///< get pseudo handle for the calling process
-    static
-    void_t     currentExit(cuint_t &exitCode);
+    static void_t   currentExit(cuint_t &exitCode);
         ///< ends the calling process and all its threads
-    static
-    void_t     currenQuicktExit(cuint_t &exitCode);
+    static void_t   currenQuicktExit(cuint_t &exitCode);
         ///< Causes normal program termination to occur without completely cleaning the resources
 
 	// Etc
-    static
-    void_t     execute(std::ctstring_t &filePath, std::cvec_tstring_t &params,
-                   const std::set<std::pair_tstring_t> &envs, culong_t waitTimeoutMsec,
-                   std::tstring_t *stdOut, std::tstring_t *stdError);
+    static void_t execute(std::ctstring_t &filePath, std::cvec_tstring_t &params,
+                     const std::set<std::pair_tstring_t> &envs, culong_t waitTimeoutMsec,
+                     std::tstring_t *stdOut, std::tstring_t *stdError);
         ///< create, wait process
-    static
-    void_t     execute(std::ctstring_t &filePath, std::cvec_tstring_t &params,
-                   std::tstring_t *stdOut, std::tstring_t *stdError);
+    static void_t execute(std::ctstring_t &filePath, std::cvec_tstring_t &params,
+                     std::tstring_t *stdOut, std::tstring_t *stdError);
         ///< create, wait process (Without envs, with infinite wait timeout)
 
 private:
@@ -143,40 +130,31 @@ private:
     HANDLE   _thread {};
 #endif
     id_t     _pid {};
-
-    uint_t _exitStatus {};    ///< exit code
+    uint_t   _exitStatus {};    ///< exit code
 
 xPLATFORM_IMPL:
-    void_t     _destruct_impl();
-    void_t     _create_impl(std::ctstring_t &filePath, std::cvec_tstring_t &params,
-                    const std::set<std::pair_tstring_t> &envs, std::tstring_t *stdOut,
-                    std::tstring_t *stdError);
-    WaitStatus _wait_impl(culong_t &timeoutMsec);
-    void_t     _kill_impl(culong_t &timeoutMsec);
+    void_t         _destruct_impl();
+    void_t         _create_impl(std::ctstring_t &filePath, std::cvec_tstring_t &params,
+                        const std::set<std::pair_tstring_t> &envs, std::tstring_t *stdOut,
+                        std::tstring_t *stdError);
+    WaitStatus     _wait_impl(culong_t &timeoutMsec);
+    void_t         _kill_impl(culong_t &timeoutMsec);
     std::tstring_t _name_impl() const;
-    void_t     _setName_impl(std::ctstring_t &name) const;
-    bool_t     _isExists_impl() const;
-    ulong_t    _exitStatus_impl() const;
+    void_t         _setName_impl(std::ctstring_t &name) const;
+    bool_t         _isExists_impl() const;
+    ulong_t        _exitStatus_impl() const;
 
-    static
-    id_t       _idByHandle_impl(const handle_t &handle);
-    static
-    handle_t   _handleById_impl(const id_t &id);
-    static
-    id_t       _idByName_impl(std::ctstring_t &processName);
-    static
-    void_t     _ids_impl(std::vector<Process::id_t> *ids);
-    static
-    bool_t     _isCurrent_impl(const Process::id_t &a_id);
-    static
-    id_t       _currentId_impl();
+    // static
+    static id_t     _idByHandle_impl(const handle_t &handle);
+    static handle_t _handleById_impl(const id_t &id);
+    static id_t     _idByName_impl(std::ctstring_t &processName);
+    static void_t   _ids_impl(std::vector<Process::id_t> *ids);
+    static bool_t   _isCurrent_impl(const Process::id_t &a_id);
+    static id_t     _currentId_impl();
 
-    static
-    id_t       _currentParentId_impl();
-    static
-    handle_t   _currentHandle_impl();
-    static
-    void_t     _currentExit_impl(cuint_t &exitCode);
+    static id_t     _currentParentId_impl();
+    static handle_t _currentHandle_impl();
+    static void_t   _currentExit_impl(cuint_t &exitCode);
 };
 
 } // namespace
