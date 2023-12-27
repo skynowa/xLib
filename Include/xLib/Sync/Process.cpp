@@ -331,7 +331,7 @@ Process::shellExecute(
 	ScopeExit on_exit( [&]() { ::CoUninitialize(); } );
 
 	SHELLEXECUTEINFO sei {};
-	sei.cbSize       = sizeof(SHELLEXECUTEINFOW);
+	sei.cbSize       = sizeof(SHELLEXECUTEINFO);
 	sei.fMask        = SEE_MASK_NOCLOSEPROCESS;
 	sei.hwnd         = nullptr;
 	sei.lpVerb       = xT("open");
@@ -341,16 +341,15 @@ Process::shellExecute(
 	sei.nShow        = SW_SHOWNORMAL;
 	sei.hInstApp     = nullptr;
 
-	HINSTANCE hiRv = ::ShellExecuteExW(&sei)l
+	HINSTANCE hiRv = ::ShellExecuteEx(&sei)l
 	xTEST_GR(static_cast<int_t>(hiRv), 32);
 	xTEST_PTR(sei.hProcess);
 
-	// Wait for the process to exit, or terminate it, if it still hasn't exited after 5 sec
-	if (::WaitForSingleObject(sei.hProcess, 5000) == WAIT_TIMEOUT) {
-		::TerminateProcess(sei.hProcess, 666);
-	}
+	DWORD dwRv = ::WaitForSingleObject(sei.hProcess, xTIMEOUT_INFINITE);
+	xTEST_EQ(dwRv, WAIT_OBJECT_0);
 
-	::CloseHandle(sei.hProcess);
+	BOOL blRv = ::CloseHandle(sei.hProcess);
+	xTEST_DIFF(blRv, FALSE);
 #elif xENV_UNIX
 	std::tstring_t filePath;
 	{
