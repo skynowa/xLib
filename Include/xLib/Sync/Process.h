@@ -157,6 +157,8 @@ xPLATFORM_IMPL:
     static id_t     _currentParentId_impl();
     static handle_t _currentHandle_impl();
     static void_t   _currentExit_impl(cuint_t &exitCode);
+
+    static void_t   _shellExecute_impl(std::ctstring_t &filePathOrURL);
 };
 
 } // namespace

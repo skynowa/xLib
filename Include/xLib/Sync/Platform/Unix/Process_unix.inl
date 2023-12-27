@@ -454,5 +454,31 @@ Process::_currentExit_impl(
     (void_t)::exit(static_cast<int_t>( a_exitCode ));
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+Process::_shellExecute_impl(
+    std::ctstring_t &a_filePathOrURL ///< binary file path
+)
+{
+	std::tstring_t filePath;
+	{
+	#if   xENV_LINUX
+		filePath = xT("xdg-open");
+	#elif xENV_BSD
+		filePath = xT("open");
+	#elif xENV_APPLE
+		filePath = xT("open");
+	#endif
+	}
+
+	std::ctstring_t cmdLine = Format::str(xT("{} {}"),
+									filePath,
+									String::quoted(a_filePathOrURL));
+	Cout() << xTRACE_VAR(cmdLine);
+
+	cint_t iRv = std::system(cmdLine.c_str());
+	xTEST_EQ(iRv, 0);
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace

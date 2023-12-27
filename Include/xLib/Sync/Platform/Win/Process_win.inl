@@ -339,5 +339,38 @@ Process::_currentExit_impl(
     (void_t)::ExitProcess(a_exitCode);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+Process::_shellExecute_impl(
+    std::ctstring_t &a_filePathOrURL ///< binary file path
+)
+{
+	HRESULT hrRv = ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+	xTEST(hrRv == S_OK);
+
+	ScopeExit on_exit( [&]() { ::CoUninitialize(); } );
+
+	SHELLEXECUTEINFO sei {};
+	sei.cbSize       = sizeof(SHELLEXECUTEINFO);
+	sei.fMask        = SEE_MASK_NOCLOSEPROCESS;
+	sei.hwnd         = nullptr;
+	sei.lpVerb       = xT("open");
+	sei.lpFile       = a_filePathOrURL.c_str();
+	sei.lpParameters = arg.c_str();
+	sei.lpDirectory  = nullptr;
+	sei.nShow        = SW_SHOWNORMAL;
+	sei.hInstApp     = nullptr;
+
+	HINSTANCE hiRv = ::ShellExecuteEx(&sei)l
+	xTEST_GR(static_cast<int_t>(hiRv), 32);
+	xTEST_PTR(sei.hProcess);
+
+	DWORD dwRv = ::WaitForSingleObject(sei.hProcess, xTIMEOUT_INFINITE);
+	xTEST_EQ(dwRv, WAIT_OBJECT_0);
+
+	BOOL blRv = ::CloseHandle(sei.hProcess);
+	xTEST_DIFF(blRv, FALSE);
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
