@@ -203,11 +203,11 @@ Test_Process::unit()
 
 		for (const auto &[it_cmdLine, it_isEnable] : datas) {
 			if (!it_isEnable) {
-				Cout() << xT("Skip UI test: ") << xTRACE_TITLE(it_cmdLine);
+				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_cmdLine);
 				continue;
 			}
 
-			Cout() << xTRACE_MSGBOX(it_cmdLine);
+			Cout() << xTRACE_TITLE(it_cmdLine);
 
 			Process::shellExecute(it_cmdLine);
 		} // for (datas)
