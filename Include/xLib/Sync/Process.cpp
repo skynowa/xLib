@@ -333,7 +333,7 @@ Process::shellExecute(
 /* static */
 bool_t
 Process::_isUrlFull(
-    std::ctstring_t &a_url	/// URL
+    std::ctstring_t &a_url	///< URL
 )
 {
     // List of known URL schemes
