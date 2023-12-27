@@ -461,40 +461,15 @@ Process::_shellExecute_impl(
     std::cvec_tstring_t &a_params         ///< command line params
 )
 {
-	std::ctstring_t params = String::join(a_params, Const::space());
-
 	if (FileType type(a_filePathOrURL); type.isExecutable()) {
+		std::ctstring_t params  = String::join(a_params, Const::space());
 		std::ctstring_t cmdLine = Format::str(xT("{} {}"), a_filePathOrURL, params);
 
 		cint_t iRv = std::system(cmdLine.c_str());
 		xTEST_EQ(iRv, 0);
-	}
-	else if (a_filePathOrURL.find("http://")  == 0 ||
-		a_filePathOrURL.find("https://") == 0 ||
-		a_filePathOrURL.find("ftp://")   == 0 ||
-		a_filePathOrURL.find("ftps://")  == 0 ||
-		a_filePathOrURL.find("sftps://") == 0 ||
-		a_filePathOrURL.find("mailto:")  == 0 ||
-		a_filePathOrURL.find("www:")     == 0 ||
-		a_filePathOrURL.find("file://")  == 0)
-	{
-		std::tstring_t filePath;
-		{
-		#if   xENV_LINUX
-			filePath = xT("xdg-open");
-		#elif xENV_BSD
-			filePath = xT("open");
-		#elif xENV_APPLE
-			filePath = xT("open");
-		#endif
-		}
+	} else {
+		xUNUSED(a_params);
 
-		std::ctstring_t cmdLine = Format::str(xT("{} {}"), filePath, String::quoted(a_filePathOrURL));
-
-		cint_t iRv = std::system(cmdLine.c_str());
-		xTEST_EQ(iRv, 0);
-	}
-	else {
 		std::tstring_t filePath;
 		{
 		#if   xENV_LINUX

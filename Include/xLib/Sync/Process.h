@@ -160,6 +160,7 @@ xPLATFORM_IMPL:
 
     static void_t   _shellExecute_impl(std::ctstring_t &filePathOrURL, std::cvec_tstring_t &params);
         ///< TODO: QProcess::startDetached()
+    static bool_t   _isUrlFull(std::ctstring_t &url);
 };
 
 } // namespace

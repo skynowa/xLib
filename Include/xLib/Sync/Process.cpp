@@ -325,7 +325,32 @@ Process::shellExecute(
     std::cvec_tstring_t &a_params         ///< command line params
 )
 {
+	xTEST(Path(a_filePathOrURL).isAbsolute() || _isUrlFull(a_filePathOrURL));
+
     _shellExecute_impl(a_filePathOrURL, a_params);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+Process::_isUrlFull(
+    std::ctstring_t &a_url	/// URL
+)
+{
+    // List of known URL schemes
+    constexpr std::ctstring_view_t schemes[] =
+    {
+        xT("http://"), xT("https://"), xT("ftp://"), xT("ftps://"), xT("sftp://"),
+        xT("mailto:"), xT("www."), xT("file://")
+    };
+
+    // Check if the URL starts with any of the known schemes
+    for (const auto &it_scheme : schemes) {
+        if (a_url.compare(0, it_scheme.size(), it_scheme) == 0) {
+            return true;
+        }
+    }
+
+    return false;
 }
 //-------------------------------------------------------------------------------------------------
 
