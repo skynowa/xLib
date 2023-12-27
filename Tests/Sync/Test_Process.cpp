@@ -185,24 +185,25 @@ Test_Process::unit()
 	{
 		struct Data
 		{
-			std::ctstring_t cmdLine;
-			bool_t          isEnable;
+			std::ctstring_t     cmdLine;
+			std::cvec_tstring_t params;
+			bool_t              isEnable; // UI test - false
 		};
 
 		std::vector<Data> datas
 		{
-			{xT("/home/skynowa/Projects/xLib/TODO.md"), true}, // UI test
-			{xT("https://stackoverflow.com"), true}, // UI test
+			{xT("/home/skynowa/Projects/xLib/TODO.md"), {}, true}, // UI test
+			{xT("https://stackoverflow.com"),           {}, true}, // UI test
 
 		#if   xENV_WIN
-			{xT("C:\\Windows\\System32\\attrib.exe")}, true}
+			{xT("C:\\Windows\\System32\\attrib.exe")},  {}, true}
 		#elif xENV_UNIX
-			{xT("ls"), true},
-			{xT("xmessage -print \"Test Message\""), true}	// UI test
+			{xT("/bin/ls"),                             {}, true},
+			{xT("/usr/bin/xmessage"),                   {xT("-print"), xT("\"Test Message\"")}, true}
 		#endif
 		};
 
-		for (const auto &[it_cmdLine, it_isEnable] : datas) {
+		for (const auto &[it_cmdLine, it_params, it_isEnable] : datas) {
 			if (!it_isEnable) {
 				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_cmdLine);
 				continue;
@@ -210,7 +211,7 @@ Test_Process::unit()
 
 			Cout() << xTRACE_TITLE(it_cmdLine);
 
-			Process::shellExecute(it_cmdLine);
+			Process::shellExecute(it_cmdLine, it_params);
 		} // for (datas)
 	}
 

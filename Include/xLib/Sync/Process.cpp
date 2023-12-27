@@ -321,10 +321,11 @@ Process::execute(
 /* static */
 void_t
 Process::shellExecute(
-    std::ctstring_t &a_filePathOrURL ///< binary file path
+    std::ctstring_t     &a_filePathOrURL, ///< full file path or URL
+    std::cvec_tstring_t &a_params         ///< command line params
 )
 {
-	_shellExecute_impl(a_filePathOrURL);
+    _shellExecute_impl(a_filePathOrURL, a_params);
 }
 //-------------------------------------------------------------------------------------------------
 

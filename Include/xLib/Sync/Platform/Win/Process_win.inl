@@ -342,9 +342,12 @@ Process::_currentExit_impl(
 /* static */
 void_t
 Process::_shellExecute_impl(
-    std::ctstring_t &a_filePathOrURL ///< binary file path
+    std::ctstring_t     &a_filePathOrURL, ///< full file path or URL
+    std::cvec_tstring_t &a_params         ///< command line params
 )
 {
+	std::ctstring_t params = String::join(a_params, Const::space());
+
 	HRESULT hrRv = ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 	xTEST(hrRv == S_OK);
 
@@ -356,7 +359,7 @@ Process::_shellExecute_impl(
 	sei.hwnd         = nullptr;
 	sei.lpVerb       = xT("open");
 	sei.lpFile       = a_filePathOrURL.c_str();
-	sei.lpParameters = arg.c_str();
+	sei.lpParameters = params.c_str();
 	sei.lpDirectory  = nullptr;
 	sei.nShow        = SW_SHOWNORMAL;
 	sei.hInstApp     = nullptr;

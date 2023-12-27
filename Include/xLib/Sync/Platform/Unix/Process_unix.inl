@@ -457,11 +457,16 @@ Process::_currentExit_impl(
 /* static */
 void_t
 Process::_shellExecute_impl(
-    std::ctstring_t &a_filePathOrURL ///< binary file path
+    std::ctstring_t     &a_filePathOrURL, ///< full file path or URL
+    std::cvec_tstring_t &a_params         ///< command line params
 )
 {
+	std::ctstring_t params = String::join(a_params, Const::space());
+
 	if (FileType type(a_filePathOrURL); type.isExecutable()) {
-		cint_t iRv = std::system(a_filePathOrURL.c_str());
+		std::ctstring_t cmdLine = Format::str(xT("{} {}"), a_filePathOrURL, params);
+
+		cint_t iRv = std::system(cmdLine.c_str());
 		xTEST_EQ(iRv, 0);
 	}
 	else if (a_filePathOrURL.find("http://")  == 0 ||

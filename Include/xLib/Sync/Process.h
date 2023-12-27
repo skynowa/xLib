@@ -123,7 +123,7 @@ xPUBLIC_STATIC:
     static void_t execute(std::ctstring_t &filePath, std::cvec_tstring_t &params,
                      std::tstring_t *stdOut, std::tstring_t *stdError);
         ///< create, wait process (Without envs, with infinite wait timeout)
-    static void_t shellExecute(std::ctstring_t &filePathOrURL);
+    static void_t shellExecute(std::ctstring_t &filePathOrURL, std::cvec_tstring_t &params);
         ///< opens a file or URL in the user's preferred application
 
 private:
@@ -158,7 +158,7 @@ xPLATFORM_IMPL:
     static handle_t _currentHandle_impl();
     static void_t   _currentExit_impl(cuint_t &exitCode);
 
-    static void_t   _shellExecute_impl(std::ctstring_t &filePathOrURL);
+    static void_t   _shellExecute_impl(std::ctstring_t &filePathOrURL, std::cvec_tstring_t &params);
         ///< TODO: QProcess::startDetached()
 };
 
