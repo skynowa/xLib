@@ -191,13 +191,14 @@ Test_Process::unit()
 
 		std::vector<Data> datas
 		{
-			{xT("https://stackoverflow.com"), false}, // UI test
+			{xT("/home/skynowa/Projects/xLib/TODO.md"), true}, // UI test
+			{xT("https://stackoverflow.com"), true}, // UI test
 
 		#if   xENV_WIN
 			{xT("C:\\Windows\\System32\\attrib.exe")}, true}
 		#elif xENV_UNIX
 			{xT("ls"), true},
-			{xT("xmessage -print \"Test Message\""), false}	// UI test
+			{xT("xmessage -print \"Test Message\""), true}	// UI test
 		#endif
 		};
 
