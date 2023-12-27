@@ -460,21 +460,35 @@ Process::_shellExecute_impl(
     std::ctstring_t &a_filePathOrURL ///< binary file path
 )
 {
-	std::tstring_t filePath;
+	if (a_filePathOrURL.find("http://")  == 0 ||
+		a_filePathOrURL.find("https://") == 0 ||
+		a_filePathOrURL.find("ftp://")   == 0 ||
+		a_filePathOrURL.find("ftps://")  == 0 ||
+		a_filePathOrURL.find("sftps://") == 0 ||
+		a_filePathOrURL.find("mailto:")  == 0 ||
+		a_filePathOrURL.find("www:")     == 0 ||
+		a_filePathOrURL.find("file://")  == 0)
 	{
-	#if   xENV_LINUX
-		filePath = xT("xdg-open");
-	#elif xENV_BSD
-		filePath = xT("open");
-	#elif xENV_APPLE
-		filePath = xT("open");
-	#endif
+		std::tstring_t filePath;
+		{
+		#if   xENV_LINUX
+			filePath = xT("xdg-open");
+		#elif xENV_BSD
+			filePath = xT("open");
+		#elif xENV_APPLE
+			filePath = xT("open");
+		#endif
+		}
+
+		std::ctstring_t cmdLine = Format::str(xT("{} {}"), filePath, String::quoted(a_filePathOrURL));
+
+		cint_t iRv = std::system(cmdLine.c_str());
+		xTEST_EQ(iRv, 0);
 	}
-
-	std::ctstring_t cmdLine = Format::str(xT("{} {}"), filePath, String::quoted(a_filePathOrURL));
-
-	cint_t iRv = std::system(cmdLine.c_str());
-	xTEST_EQ(iRv, 0);
+	else {
+		cint_t iRv = std::system(a_filePathOrURL.c_str());
+		xTEST_EQ(iRv, 0);
+	}
 }
 //-------------------------------------------------------------------------------------------------
 

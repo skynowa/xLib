@@ -159,6 +159,7 @@ xPLATFORM_IMPL:
     static void_t   _currentExit_impl(cuint_t &exitCode);
 
     static void_t   _shellExecute_impl(std::ctstring_t &filePathOrURL);
+        ///< TODO: QProcess::startDetached()
 };
 
 } // namespace

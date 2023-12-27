@@ -181,6 +181,38 @@ Test_Process::unit()
 		} // for (datas)
 	}
 
+	xTEST_CASE("shellExecute")
+	{
+		struct Data
+		{
+			std::ctstring_t cmdLine;
+			bool_t          isEnable;
+		};
+
+		std::vector<Data> datas
+		{
+			{xT("https://stackoverflow.com"), false}, // UI test
+
+		#if   xENV_WIN
+			{xT("C:\\Windows\\System32\\attrib.exe")}, true}
+		#elif xENV_UNIX
+			{xT("ls"), true},
+			{xT("xmessage -print \"Test Message\""), false}	// UI test
+		#endif
+		};
+
+		for (const auto &[it_cmdLine, it_isEnable] : datas) {
+			if (!it_isEnable) {
+				Cout() << xT("Skip UI test: ") << xTRACE_TITLE(it_cmdLine);
+				continue;
+			}
+
+			Cout() << xTRACE_MSGBOX(it_cmdLine);
+
+			Process::shellExecute(it_cmdLine);
+		} // for (datas)
+	}
+
 	return true;
 }
 //-------------------------------------------------------------------------------------------------
