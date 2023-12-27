@@ -471,10 +471,7 @@ Process::_shellExecute_impl(
 	#endif
 	}
 
-	std::ctstring_t cmdLine = Format::str(xT("{} {}"),
-									filePath,
-									String::quoted(a_filePathOrURL));
-	Cout() << xTRACE_VAR(cmdLine);
+	std::ctstring_t cmdLine = Format::str(xT("{} {}"), filePath, String::quoted(a_filePathOrURL));
 
 	cint_t iRv = std::system(cmdLine.c_str());
 	xTEST_EQ(iRv, 0);
