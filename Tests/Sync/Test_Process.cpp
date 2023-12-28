@@ -185,9 +185,9 @@ Test_Process::unit()
 	{
 		struct Data
 		{
-			std::ctstring_t     cmdLine;
-			std::cvec_tstring_t params;
-			bool_t              isEnable; // UI test - false
+			std::tstring_t     cmdLine;
+			std::vec_tstring_t params;
+			bool_t             isEnable; // UI test - false
 		};
 
 		const std::vector<Data> datas
