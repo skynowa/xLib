@@ -367,14 +367,14 @@ Process::_shellExecute_impl(
 	execInfo.hInstApp     = nullptr;
 
 	blRv = ::ShellExecuteEx(&execInfo);
-	xTEST_DIFF(blRv, FALSE);
+	xTEST_EQ(blRv, TRUE);
 	xTEST_PTR(execInfo.hProcess);
 
 	DWORD dwRv = ::WaitForSingleObject(execInfo.hProcess, xTIMEOUT_INFINITE);
 	xTEST_EQ(dwRv, WAIT_OBJECT_0);
 
 	blRv = ::CloseHandle(execInfo.hProcess);
-	xTEST_DIFF(blRv, FALSE);
+	xTEST_EQ(blRv, TRUE);
 }
 //-------------------------------------------------------------------------------------------------
 
