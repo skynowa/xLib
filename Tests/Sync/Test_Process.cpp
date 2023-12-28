@@ -192,7 +192,7 @@ Test_Process::unit()
 
 		std::vector<Data> datas
 		{
-			{xT("/home/skynowa/Projects/xLib/TODO.md"), {}, false}, // UI test
+			{xT("~/Projects/xLib/TODO.md"), {}, false}, // UI test
 			{xT("https://stackoverflow.com"),           {}, false}, // UI test
 
 		#if   xENV_WIN
