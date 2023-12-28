@@ -190,7 +190,7 @@ Test_Process::unit()
 			bool_t              isEnable; // UI test - false
 		};
 
-		std::vector<Data> datas
+		const std::vector<Data> datas
 		{
 			{xT("/home/skynowa/Projects/xLib/TODO.md"), {}, false}, // UI test
 			{xT("https://stackoverflow.com"), {}, false}, // UI test
