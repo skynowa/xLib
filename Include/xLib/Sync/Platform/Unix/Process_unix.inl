@@ -54,8 +54,6 @@ Process::_create_impl(
 		ParentOk          ///< value > 0, creates a new child process (waitpid)
 	};
 
-	#define _XLIB_PIPE_OLD 0
-
 	// Create pipes
 	Pipe pipeIn;
 	pipeIn.create();
@@ -104,15 +102,6 @@ Process::_create_impl(
 
 			if (out_stdOut != nullptr) {
 				// close all other inherited descriptors child doesn't need
-			#if _XLIB_PIPE_OLD
-				::close(pipeOut[FdIndex::Read]);
-
-				::close(STDOUT_FILENO);
-				::close(STDERR_FILENO);
-
-				::dup2(pipeOut[FdIndex::Write], STDOUT_FILENO);
-				::dup2(pipeOut[FdIndex::Write], STDERR_FILENO);
-			#else
 				::dup2(pipeIn.handleRead(),   STDIN_FILENO);
 				::dup2(pipeOut.handleWrite(), STDOUT_FILENO);
 				::dup2(pipeErr.handleWrite(), STDERR_FILENO);
@@ -121,46 +110,14 @@ Process::_create_impl(
 				pipeIn.closeRead();
 				pipeOut.closeWrite();
 				pipeErr.closeWrite();
-			#endif
 			}
 
-		#if 1
 			char *const *cmd = cmds.empty() ? nullptr : cmds.data();
 			xTEST_PTR(cmd);
 			char *const *env = envs.empty() ? nullptr : envs.data();
 
-			/// TODO: logs - rm
-			{
-			#if 0
-				std::ctstring_t filePath = Dir::current().str() + xT("/execve.log");
-
-				FileLog log(FileLog::LogSizes::lsDefaultMb);
-				log.setFilePath(filePath);
-
-				log << "Cmd: ";
-
-				for (size_t i = 0; cmd[i] != nullptr; ++ i) {
-					log << std::tstring_t(cmd[i]) << " ";
-				}
-			#endif
-			}
-
 			cint_t status = ::execve(xT2A(a_filePath).c_str(), cmd, env);
 			xTEST_DIFF(status, - 1);
-		#else
-			cint_t status = 0;
-
-			Cout()    << "ChildOk - Stop execve (cout), " << xTRACE_VAR(status);
-			std::cerr << "ChildOk - Stop execve (cerr), " << xTRACE_VAR(status) << std::endl;
-		#endif
-
-			if (out_stdOut != nullptr) {
-			#if _XLIB_PIPE_OLD
-				::close(pipeOut[FdIndex::Write]);
-			#else
-
-			#endif
-			}
 
 			// Cout() << "\n::::: ChildOk - Finished :::::";
 
