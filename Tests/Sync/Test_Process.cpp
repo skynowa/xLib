@@ -190,16 +190,18 @@ Test_Process::unit()
 			bool_t             isEnable; // UI test - false
 		};
 
+		cbool_t isUiTests {false};
+
 		const std::vector<Data> datas
 		{
-			{xT("/home/skynowa/Projects/xLib/TODO.md"), {}, false}, // UI test
-			{xT("https://stackoverflow.com"), {}, false}, // UI test
+			{xT("/home/skynowa/Projects/xLib/TODO.md"), {}, isUiTests},
+			{xT("https://stackoverflow.com"), {}, isUiTests},
 
 		#if   xENV_WIN
 			{xT("C:\\Windows\\System32\\attrib.exe")}, {}, true}
 		#elif xENV_UNIX
 			{xT("/bin/ls"), {}, true},
-			{xT("/usr/bin/xmessage"), {xT("-print"), xT("\"Test Message\"")}, false} // UI test
+			{xT("/usr/bin/xmessage"), {xT("-print"), xT("\"Test Message\"")}, isUiTests}
 		#endif
 		};
 

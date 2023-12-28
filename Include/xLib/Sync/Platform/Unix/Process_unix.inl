@@ -423,7 +423,7 @@ Process::_shellExecute_impl(
 		std::ctstring_t params = String::join(a_params, Const::space());
 
 		if (FileType type(a_filePathOrURL); type.isExecutable()) {
-			cmdLine = Format::str(xT("{} {}"), a_filePathOrURL, params);
+			cmdLine = Format::str(xT("{} {}"), String::quoted(a_filePathOrURL), params);
 		} else {
 			std::tstring_t appPath;
 			{
