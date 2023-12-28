@@ -158,7 +158,7 @@ xPLATFORM_IMPL:
     static handle_t _currentHandle_impl();
     static void_t   _currentExit_impl(cuint_t &exitCode);
 
-    static void_t   _shellExecute_impl(std::ctstring_t &filePathOrURL, std::cvec_tstring_t &params);
+    static void_t   _shellExecute_impl(std::ctstring_t &filePathOrURL, std::ctstring_t &params);
         ///< TODO: QProcess::startDetached()
     static bool_t   _isUrlFull(std::ctstring_t &url);
 };

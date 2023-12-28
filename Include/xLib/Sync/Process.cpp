@@ -327,7 +327,9 @@ Process::shellExecute(
 {
     xTEST(Path(a_filePathOrURL).isAbsolute() || _isUrlFull(a_filePathOrURL));
 
-    _shellExecute_impl(a_filePathOrURL, a_params);
+    std::ctstring_t params = String::join(a_params, Const::space());
+
+    _shellExecute_impl(a_filePathOrURL, params);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

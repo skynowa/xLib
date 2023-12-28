@@ -414,30 +414,27 @@ Process::_currentExit_impl(
 /* static */
 void_t
 Process::_shellExecute_impl(
-    std::ctstring_t     &a_filePathOrURL, ///< full file path or URL
-    std::cvec_tstring_t &a_params         ///< command line params
+    std::ctstring_t &a_filePathOrURL, ///< full file path or URL
+	std::ctstring_t &a_params         ///< command line params
 )
 {
 	std::tstring_t cmdLine;
-	{
-		std::ctstring_t params = String::join(a_params, Const::space());
 
-		if (FileType type(a_filePathOrURL); type.isExecutable()) {
-			cmdLine = Format::str(xT("{} {}"), String::quoted(a_filePathOrURL), params);
-		} else {
-			std::tstring_t appPath;
-			{
-			#if   xENV_LINUX
-				appPath = xT("xdg-open");
-			#elif xENV_BSD
-				appPath = xT("open");
-			#elif xENV_APPLE
-				appPath = xT("open");
-			#endif
-			}
-
-			cmdLine = Format::str(xT("{} {} {}"), appPath, String::quoted(a_filePathOrURL), params);
+	if (FileType type(a_filePathOrURL); type.isExecutable()) {
+		cmdLine = Format::str(xT("{} {}"), String::quoted(a_filePathOrURL), a_params);
+	} else {
+		std::tstring_t appPath;
+		{
+		#if   xENV_LINUX
+			appPath = xT("xdg-open");
+		#elif xENV_BSD
+			appPath = xT("open");
+		#elif xENV_APPLE
+			appPath = xT("open");
+		#endif
 		}
+
+		cmdLine = Format::str(xT("{} {} {}"), appPath, String::quoted(a_filePathOrURL), a_params);
 	}
 
 	cint_t iRv = std::system(cmdLine.c_str());
