@@ -420,25 +420,24 @@ Process::_shellExecute_impl(
 {
 	std::ctstring_t params = String::join(a_params, Const::space());
 
-	if (FileType type(a_filePathOrURL); type.isExecutable()) {
-		std::ctstring_t cmdLine = Format::str(xT("{} {}"), a_filePathOrURL, params);
+	std::tstring_t cmdLine;
+	{
+		if (FileType type(a_filePathOrURL); type.isExecutable()) {
+			cmdLine = Format::str(xT("{} {}"), a_filePathOrURL, params);
+		} else {
+			std::tstring_t appPath;
+			{
+			#if   xENV_LINUX
+				appPath = xT("xdg-open");
+			#elif xENV_BSD
+				appPath = xT("open");
+			#elif xENV_APPLE
+				appPath = xT("open");
+			#endif
+			}
 
-	} else {
-		std::tstring_t filePath;
-		{
-		#if   xENV_LINUX
-			filePath = xT("xdg-open");
-		#elif xENV_BSD
-			filePath = xT("open");
-		#elif xENV_APPLE
-			filePath = xT("open");
-		#endif
+			cmdLine = Format::str(xT("{} {} {}"), appPath, String::quoted(a_filePathOrURL), params);
 		}
-
-		std::ctstring_t cmdLine = Format::str(xT("{} {} {}"),
-										filePath,
-										String::quoted(a_filePathOrURL),
-										params);
 	}
 
 	cint_t iRv = std::system(cmdLine.c_str());
