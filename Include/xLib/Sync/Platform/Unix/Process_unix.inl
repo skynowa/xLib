@@ -461,8 +461,9 @@ Process::_shellExecute_impl(
     std::cvec_tstring_t &a_params         ///< command line params
 )
 {
+	std::ctstring_t params  = String::join(a_params, Const::space());
+
 	if (FileType type(a_filePathOrURL); type.isExecutable()) {
-		std::ctstring_t params  = String::join(a_params, Const::space());
 		std::ctstring_t cmdLine = Format::str(xT("{} {}"), a_filePathOrURL, params);
 
 		cint_t iRv = std::system(cmdLine.c_str());
@@ -478,8 +479,6 @@ Process::_shellExecute_impl(
 			filePath = xT("open");
 		#endif
 		}
-
-		std::ctstring_t params = String::join(a_params, Const::space());
 
 		std::ctstring_t cmdLine = Format::str(xT("{} {} {}"),
 										filePath,
