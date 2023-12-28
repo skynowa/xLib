@@ -346,6 +346,8 @@ Process::_shellExecute_impl(
     std::cvec_tstring_t &a_params         ///< command line params
 )
 {
+	BOOL blRv {};
+
 	std::ctstring_t params = String::join(a_params, Const::space());
 
 	HRESULT hrRv = ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
@@ -364,14 +366,14 @@ Process::_shellExecute_impl(
 	sei.nShow        = SW_SHOWNORMAL;
 	sei.hInstApp     = nullptr;
 
-	HINSTANCE hiRv = ::ShellExecuteEx(&sei)l
-	xTEST_GR(static_cast<int_t>(hiRv), 32);
+	blRv = ::ShellExecuteEx(&sei)l
+	xTEST_DIFF(blRv), FALSE);
 	xTEST_PTR(sei.hProcess);
 
 	DWORD dwRv = ::WaitForSingleObject(sei.hProcess, xTIMEOUT_INFINITE);
 	xTEST_EQ(dwRv, WAIT_OBJECT_0);
 
-	BOOL blRv = ::CloseHandle(sei.hProcess);
+	blRv = ::CloseHandle(sei.hProcess);
 	xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
