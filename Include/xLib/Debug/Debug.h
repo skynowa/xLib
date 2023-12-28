@@ -87,7 +87,7 @@
 	xT("Invalid ") << xTRACE_VAR(v)
 #define xTRACE_PTR(p) \
 	#p xT(": ") << xT("{") << (p) << xT(", ") << ((p) ? *(p) : 0) << xT("}")
-#define xTRACE_TITLE(v) \
+#define xTITLE_VAR(v) \
 	xT("::::: ")  << xTRACE_VAR(v) << xT(" :::::")
 #define xTRACE_MSGBOX(v) \
 	xT("+------------------------------+\n") << \

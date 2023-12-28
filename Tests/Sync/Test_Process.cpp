@@ -209,7 +209,7 @@ Test_Process::unit()
 				continue;
 			}
 
-			Cout() << xTRACE_TITLE(it_cmdLine);
+			Cout() << xTITLE_VAR(it_cmdLine);
 
 			Process::shellExecute(it_cmdLine, it_params);
 		} // for (datas)
