@@ -418,10 +418,10 @@ Process::_shellExecute_impl(
     std::cvec_tstring_t &a_params         ///< command line params
 )
 {
-	std::ctstring_t params = String::join(a_params, Const::space());
-
 	std::tstring_t cmdLine;
 	{
+		std::ctstring_t params = String::join(a_params, Const::space());
+
 		if (FileType type(a_filePathOrURL); type.isExecutable()) {
 			cmdLine = Format::str(xT("{} {}"), a_filePathOrURL, params);
 		} else {
