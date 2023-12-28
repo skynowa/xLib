@@ -355,25 +355,25 @@ Process::_shellExecute_impl(
 
 	ScopeExit on_exit( [&]() { ::CoUninitialize(); } );
 
-	SHELLEXECUTEINFO sei {};
-	sei.cbSize       = sizeof(SHELLEXECUTEINFO);
-	sei.fMask        = SEE_MASK_NOCLOSEPROCESS;
-	sei.hwnd         = nullptr;
-	sei.lpVerb       = xT("open");
-	sei.lpFile       = a_filePathOrURL.c_str();
-	sei.lpParameters = params.c_str();
-	sei.lpDirectory  = nullptr;
-	sei.nShow        = SW_SHOWNORMAL;
-	sei.hInstApp     = nullptr;
+	SHELLEXECUTEINFO execInfo {};
+	execInfo.cbSize       = sizeof(SHELLEXECUTEINFO);
+	execInfo.fMask        = SEE_MASK_NOCLOSEPROCESS;
+	execInfo.hwnd         = nullptr;
+	execInfo.lpVerb       = xT("open");
+	execInfo.lpFile       = a_filePathOrURL.c_str();
+	execInfo.lpParameters = params.c_str();
+	execInfo.lpDirectory  = nullptr;
+	execInfo.nShow        = SW_SHOWNORMAL;
+	execInfo.hInstApp     = nullptr;
 
-	blRv = ::ShellExecuteEx(&sei)l
+	blRv = ::ShellExecuteEx(&execInfo);
 	xTEST_DIFF(blRv), FALSE);
-	xTEST_PTR(sei.hProcess);
+	xTEST_PTR(execInfo.hProcess);
 
-	DWORD dwRv = ::WaitForSingleObject(sei.hProcess, xTIMEOUT_INFINITE);
+	DWORD dwRv = ::WaitForSingleObject(execInfo.hProcess, xTIMEOUT_INFINITE);
 	xTEST_EQ(dwRv, WAIT_OBJECT_0);
 
-	blRv = ::CloseHandle(sei.hProcess);
+	blRv = ::CloseHandle(execInfo.hProcess);
 	xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
