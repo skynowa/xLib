@@ -468,8 +468,6 @@ Process::_shellExecute_impl(
 		cint_t iRv = std::system(cmdLine.c_str());
 		xTEST_EQ(iRv, 0);
 	} else {
-		xUNUSED(a_params);
-
 		std::tstring_t filePath;
 		{
 		#if   xENV_LINUX
@@ -481,7 +479,12 @@ Process::_shellExecute_impl(
 		#endif
 		}
 
-		std::ctstring_t cmdLine = Format::str(xT("{} {}"), filePath, String::quoted(a_filePathOrURL));
+		std::ctstring_t params = String::join(a_params, Const::space());
+
+		std::ctstring_t cmdLine = Format::str(xT("{} {} {}"),
+										filePath,
+										String::quoted(a_filePathOrURL),
+										params);
 
 		cint_t iRv = std::system(cmdLine.c_str());
 		xTEST_EQ(iRv, 0);
