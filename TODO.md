@@ -25,6 +25,10 @@
 - [+] Config.h.in
 - [+] CMake CACHE vars - rm
 
+## Debug
+
+- [ ] Multi-repos - Debug.h move to StdStream project, and use StdStream in xLib
+
 ## Path
 
 ```bash

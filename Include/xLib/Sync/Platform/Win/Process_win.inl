@@ -339,5 +339,41 @@ Process::_currentExit_impl(
     (void_t)::ExitProcess(a_exitCode);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+Process::_shellExecute_impl(
+    std::ctstring_t &a_filePathOrURL, ///< full file path or URL
+	std::ctstring_t &a_params         ///< command line params
+)
+{
+	BOOL blRv {};
+
+	HRESULT hrRv = ::CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+	xTEST(hrRv == S_OK);
+
+	ScopeExit on_exit( [&]() { ::CoUninitialize(); } );
+
+	SHELLEXECUTEINFO execInfo {};
+	execInfo.cbSize       = sizeof(SHELLEXECUTEINFO);
+	execInfo.fMask        = SEE_MASK_NOCLOSEPROCESS;
+	execInfo.hwnd         = nullptr;
+	execInfo.lpVerb       = xT("open");
+	execInfo.lpFile       = a_filePathOrURL.c_str();
+	execInfo.lpParameters = a_params.c_str();
+	execInfo.lpDirectory  = nullptr;
+	execInfo.nShow        = SW_SHOWNORMAL;
+	execInfo.hInstApp     = nullptr;
+
+	blRv = ::ShellExecuteEx(&execInfo);
+	xTEST_EQ(blRv, TRUE);
+	xTEST_PTR(execInfo.hProcess);
+
+	DWORD dwRv = ::WaitForSingleObject(execInfo.hProcess, xTIMEOUT_INFINITE);
+	xTEST_EQ(dwRv, WAIT_OBJECT_0);
+
+	blRv = ::CloseHandle(execInfo.hProcess);
+	xTEST_EQ(blRv, TRUE);
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
