@@ -9,6 +9,7 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/FormatC.h>
+#include <xLib/Core/ScopeExit.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Dll.h>
@@ -315,6 +316,51 @@ Process::execute(
     culong_t                            waitTimeoutMsec {xTIMEOUT_INFINITE};
 
     execute(a_filePath, a_params, envs, waitTimeoutMsec, out_stdOut, out_stdError);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void_t
+Process::shellExecute(
+    std::ctstring_t     &a_filePathOrURL, ///< full file path or URL
+    std::cvec_tstring_t &a_params         ///< command line params
+)
+{
+    xTEST(Path(a_filePathOrURL).isAbsolute() || _isUrlFull(a_filePathOrURL));
+
+    std::ctstring_t params = String::join(a_params, Const::space());
+
+    _shellExecute_impl(a_filePathOrURL, params);
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*    private, static
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+Process::_isUrlFull(
+    std::ctstring_t &a_url	///< URL
+)
+{
+    // List of known URL schemes
+    constexpr std::ctstring_view_t schemes[] =
+    {
+        xT("http://"), xT("https://"), xT("ftp://"), xT("ftps://"), xT("sftp://"),
+        xT("mailto:"), xT("www."), xT("file://")
+    };
+
+    // Check if the URL starts with any of the known schemes
+    for (const auto &it_scheme : schemes) {
+        if (a_url.compare(0, it_scheme.size(), it_scheme) == 0) {
+            return true;
+        }
+    }
+
+    return false;
 }
 //-------------------------------------------------------------------------------------------------
 
