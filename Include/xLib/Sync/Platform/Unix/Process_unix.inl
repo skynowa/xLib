@@ -44,13 +44,6 @@ Process::_create_impl(
 
 	int_t iRv {};
 
-	enum ProcessStatus : pid_t
-	{
-		ChildError = - 1, ///< returned in the parent, no child process is created, errno is set
-		ChildOk    = 0,   ///< PID of the child process - in parent, 0 - in child
-		ParentOk          ///< value > 0, creates a new child process (waitpid)
-	};
-
 	// Create pipes
 	Pipe pipeIn;
 	pipeIn.create();
@@ -63,68 +56,66 @@ Process::_create_impl(
 
 	// Create process
 	const pid_t pid = ::fork();
-	switch (pid) {
-	case ProcessStatus::ChildError:
+	if (pid < 0) {
+		// Cout() << "\n::::: ChildError :::::";
+
+		xTEST(false);
+		std::exit(EXIT_FAILURE);
+	}
+
+	// Child
+	if (pid == 0) {
+		// Cout() << "\n::::: ChildOk :::::";
+
+		std::vector<char *> cmds;
 		{
-			// Cout() << "\n::::: ChildError :::::";
+			cmds.push_back( const_cast<char *>(xT2A(a_filePath).c_str()) );
 
-			xTEST(false);
-			std::exit(EXIT_FAILURE);
+			for (const auto &it_param : a_params) {
+				cmds.push_back( const_cast<char *>(xT2A(it_param).c_str()) );
+			}
+
+			cmds.push_back(nullptr);
 		}
-		break;
-	case ProcessStatus::ChildOk:
+
+		std::vector<char *> envs;
 		{
-			// Cout() << "\n::::: ChildOk :::::";
-
-			std::vector<char *> cmds;
-			{
-				cmds.push_back( const_cast<char *>(xT2A(a_filePath).c_str()) );
-
-				for (const auto &it_param : a_params) {
-					cmds.push_back( const_cast<char *>(xT2A(it_param).c_str()) );
-				}
-
-				cmds.push_back(nullptr);
+			for (const auto &[var, value] : a_envs) {
+				std::ctstring_t &envVarValue = var + Const::equal() + value;
+				envs.push_back( const_cast<char *>(xT2A(envVarValue).c_str()) );
 			}
 
-			std::vector<char *> envs;
-			{
-				for (const auto &[var, value] : a_envs) {
-					std::ctstring_t &envVarValue = var + Const::equal() + value;
-					envs.push_back( const_cast<char *>(xT2A(envVarValue).c_str()) );
-				}
-
-				envs.push_back(nullptr);
-			}
-
-			if (out_stdOut != nullptr) {
-				// close all other inherited descriptors child doesn't need
-				::dup2(pipeIn.handleRead(),   STDIN_FILENO);
-				::dup2(pipeOut.handleWrite(), STDOUT_FILENO);
-				::dup2(pipeErr.handleWrite(), STDERR_FILENO);
-
-				// TODO: close all other inherited descriptors child doesn't need ?????????
-				pipeIn.closeRead();
-				pipeOut.closeWrite();
-				pipeErr.closeWrite();
-			}
-
-			char *const *cmd = cmds.empty() ? nullptr : cmds.data();
-			xTEST_PTR(cmd);
-			char *const *env = envs.empty() ? nullptr : envs.data();
-
-			cint_t status = ::execve(xT2A(a_filePath).c_str(), cmd, env);
-			xTEST_DIFF(status, - 1);
-
-			// Cout() << "\n::::: ChildOk - Finished :::::";
-
-			(void_t)::_exit(status);  // not std::exit()
+			envs.push_back(nullptr);
 		}
-		break;
-	case ProcessStatus::ParentOk:
-	default:
+
+		if (out_stdOut != nullptr) {
+			// close all other inherited descriptors child doesn't need
+			::dup2(pipeIn.handleRead(),   STDIN_FILENO);
+			::dup2(pipeOut.handleWrite(), STDOUT_FILENO);
+			::dup2(pipeErr.handleWrite(), STDERR_FILENO);
+
+			// TODO: close all other inherited descriptors child doesn't need ?????????
+			pipeIn.closeRead();
+			pipeOut.closeWrite();
+			pipeErr.closeWrite();
+		}
+
+		char *const *cmd = cmds.empty() ? nullptr : cmds.data();
+		xTEST_PTR(cmd);
+		char *const *env = envs.empty() ? nullptr : envs.data();
+
+		cint_t status = ::execve(xT2A(a_filePath).c_str(), cmd, env);
+		xTEST_DIFF(status, - 1);
+
+		// Cout() << "\n::::: ChildOk - Finished :::::";
+
+		(void_t)::_exit(status);  // not std::exit()
+	}
+
+	// Parent
+	if (pid > 0) {
 		// Cout() << "\n::::: ParentOk :::::";
-		// printf("[PARENT] PID: %d, parent PID: %d\n", getpid(), pid);
+		// printf("[PARENT] PID: %lld, parent PID: %d\n", getpid(), pid);
 
 		// read
 		if (out_stdOut != nullptr) {
@@ -152,8 +143,6 @@ Process::_create_impl(
 				pipeErr.closeRead();
 			}
 		}
-
-		break;
 	}
 
 	_handle = pid;
