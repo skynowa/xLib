@@ -58,7 +58,9 @@ private:
 #endif
 	xUSING_CONST(FdIndex);
 
+#if xENV_UNIX
 	std::vector<int_t> _handles;	///< native handles
+#endif
 
 xPLATFORM_IMPL:
     void_t _create_impl();
