@@ -56,15 +56,14 @@ Process::_create_impl(
 
 	// Create process
 	const pid_t pid = ::fork();
-	if (pid < 0) {
+	if      (pid == -1) {
 		// Cout() << "\n::::: ChildError :::::";
 
 		xTEST(false);
 		std::exit(EXIT_FAILURE);
 	}
-
 	// Child
-	if (pid == 0) {
+	else if (pid == 0) {
 		// Cout() << "\n::::: ChildOk :::::";
 
 		std::vector<char *> cmds;
@@ -111,9 +110,8 @@ Process::_create_impl(
 
 		(void_t)::_exit(status);  // not std::exit()
 	}
-
 	// Parent
-	if (pid > 0) {
+	else if (pid > 0) {
 		// Cout() << "\n::::: ParentOk :::::";
 		// printf("[PARENT] PID: %lld, parent PID: %d\n", getpid(), pid);
 
