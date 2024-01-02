@@ -44,13 +44,6 @@ Process::_create_impl(
 
 	int_t iRv {};
 
-	enum ProcessStatus : pid_t
-	{
-		ChildError = - 1, ///< returned in the parent, no child process is created, errno is set
-		ChildOk    = 0,   ///< PID of the child process - in parent, 0 - in child
-		ParentOk          ///< value > 0, creates a new child process (waitpid)
-	};
-
 	// Create pipes
 	Pipe pipeIn;
 	pipeIn.create();
@@ -63,14 +56,15 @@ Process::_create_impl(
 
 	// Create process
 	const pid_t pid = ::fork();
-	if (pid < 0) {	/// ProcessStatus::ChildError
+	if (pid < 0) {
 		// Cout() << "\n::::: ChildError :::::";
 
 		xTEST(false);
 		std::exit(EXIT_FAILURE);
 	}
 
-	if (pid == 0) {	/// ProcessStatus::ChildOk
+	// Child
+	if (pid == 0) {
 		// Cout() << "\n::::: ChildOk :::::";
 
 		std::vector<char *> cmds;
@@ -118,7 +112,8 @@ Process::_create_impl(
 		(void_t)::_exit(status);  // not std::exit()
 	}
 
-	if (pid > 0) { /// ProcessStatus::ParentOk:
+	// Parent
+	if (pid > 0) {
 		// Cout() << "\n::::: ParentOk :::::";
 		// printf("[PARENT] PID: %d, parent PID: %d\n", getpid(), pid);
 
@@ -148,7 +143,6 @@ Process::_create_impl(
 				pipeErr.closeRead();
 			}
 		}
-
 	}
 
 	_handle = pid;
