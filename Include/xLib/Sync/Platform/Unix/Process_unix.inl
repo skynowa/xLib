@@ -1,16 +1,13 @@
 /**
  * \file  Process.inl
  * \brief process
+ *
+ * \see   https://github.com/SuperSodaSea/Corecat/blob/master/include/Cats/Corecat/System/Process.hpp
  */
 
 
 #include <xLib/Sync/Pipe.h>
 
-/// TOOD: rm
-#if 1
-	#include <xLib/Fs/Dir.h>
-	#include <xLib/Log/FileLog.h>
-#endif
 
 namespace xl::sync
 {
