@@ -40,8 +40,10 @@ Process::_create_impl(
 
 	std::ctstring_t params = String::join(a_params, xT(" "));
 
-    STARTUPINFO         startupInfo = {0};  startupInfo.cb = sizeof(startupInfo);
-    PROCESS_INFORMATION processInfo = {0};
+    STARTUPINFO startupInfo {};
+    startupInfo.cb = sizeof(startupInfo);
+
+    PROCESS_INFORMATION processInfo {};
 
 	std::vector<char *> envs;
 	{
@@ -89,14 +91,16 @@ Process::_kill_impl(
     xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
     xTEST_NA(a_timeoutMsec);
 
-#if 0
-    // TODO: [skynowa] Process::_kill_impl()
-    I would attempt to close a (Process with) Window(s) in the following order:
-        WM_CLOSE
-        WM_QUIT
-        WM_DESTROY
-        TerminateProcess().
-#endif
+   /**
+    * TODO: [skynowa] Process::_kill_impl()
+    *
+    * I would attempt to close a (Process with) Window(s) in the following order:
+    *
+    * - WM_CLOSE
+    * - WM_QUIT
+    * - WM_DESTROY
+    * - TerminateProcess()
+    */
 
     _exitStatus = 0U;
 
@@ -141,7 +145,7 @@ Process::_isExists_impl() const
 ulong_t
 Process::_exitStatus_impl() const
 {
-    ulong_t ulRv = 0UL;
+    ulong_t ulRv {};
 
     BOOL blRv = ::GetExitCodeProcess(_handle, &ulRv);
     xTEST_DIFF(blRv, FALSE);
@@ -185,11 +189,11 @@ Process::_idByName_impl(
     std::ctstring_t &a_processName
 )
 {
-    id_t ulRv;
+    id_t ulRv {};
 
     HandleNativeInvalid snapshot;
 
-    PROCESSENTRY32 processEntry = {0};
+    PROCESSENTRY32 processEntry {};
     processEntry.dwSize = sizeof(PROCESSENTRY32);
 
     snapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
@@ -222,7 +226,7 @@ Process::_ids_impl(
 
     HandleNativeInvalid snapshot;
 
-    PROCESSENTRY32 processEntry = {0};
+    PROCESSENTRY32 processEntry {};
     processEntry.dwSize = sizeof(PROCESSENTRY32);
 
     snapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
@@ -291,7 +295,6 @@ Process::_currentParentId_impl()
     const id_t invalidId = (DWORD)- 1;
 
     Dll dll;
-
     dll.load(xT("ntdll.dll"));
 
     bool_t bRv = dll.isProcExists(xT("NtQueryInformationProcess"));
@@ -302,8 +305,8 @@ Process::_currentParentId_impl()
 #else
     const PROCESSINFOCLASS    infoClass             = ProcessWow64Information;
 #endif
-    ULONG                     processInformation[6] = {0};
-    DWORD                     returnSizeBytes       = 0UL;
+    ULONG                     processInformation[6] = {};
+    DWORD                     returnSizeBytes       = {};
     Dll_NtQueryInformationProcess_t
     DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)
         dll.procAddress(xT("NtQueryInformationProcess"));
