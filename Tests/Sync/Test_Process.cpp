@@ -163,7 +163,7 @@ Test_Process::unit()
 			bool_t                              isEnable; // UI test - false
 		};
 
-		cbool_t isUiTests {false};
+		cbool_t isUiTests {true};
 
 		std::vector<Data> datas
 		{
@@ -200,7 +200,7 @@ Test_Process::unit()
 			bool_t             isEnable; // UI test - false
 		};
 
-		cbool_t isUiTests {true};
+		cbool_t isUiTests {false};
 
 		const std::vector<Data> datas
 		{
