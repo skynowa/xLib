@@ -29,6 +29,7 @@ public:
 ///\name Overrides
 ///\{
 	std::tstring_t str() const final;
+		///< name with value
 ///\}
 
     bool_t         isExists() const;

@@ -47,14 +47,14 @@ Process::_create_impl(
 
 	std::vector<char *> envs;
 	{
-		for (const auto &[name, value]  : a_envs) {
-			std::ctstring_t &envVarValue = name + Const::equal() + value;
+		for (const auto &[it_name, it_value]  : a_envs) {
+			std::ctstring_t &envVarValue = it_name + Const::equal() + it_value;
 			envs.push_back( const_cast<tchar_t *>(envVarValue.c_str()) );
 		}
 		envs.push_back(nullptr);
 	}
 
-	LPVOID environment = (LPVOID)envs.data();
+	auto environment = (LPVOID)envs.data();
 
     BOOL blRv = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( params.c_str() ),
         nullptr, nullptr, FALSE, NORMAL_PRIORITY_CLASS, environment, nullptr, &startupInfo,
