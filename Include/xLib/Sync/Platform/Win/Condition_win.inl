@@ -17,14 +17,14 @@ void_t
 Condition::_destruct_impl()
 {
     // TODO: [skynowa] Condition::_destruct_impl()
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Condition::_create_impl()
 {
     // TODO: [skynowa] Condition::_create_impl()
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -35,21 +35,21 @@ Condition::_wait_impl(
     // TODO: [skynowa] Condition::_wait_impl()
 	xUNUSED(a_timeoutMs);
 
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Condition::_signal_impl()
 {
     // TODO: [skynowa] Condition::_signal_impl()
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Condition::_broadcast_impl()
 {
     // TODO: [skynowa] Condition::_broadcast_impl()
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -19,7 +19,7 @@ Volume::_fileSystem_impl() const
     std::tstring_t sRv;
 
     // TODO: [skynowa] Volume::_fileSystem_impl()
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 
     return sRv;
 }
@@ -30,7 +30,7 @@ Volume::_mount_impl(
 ) const
 {
     // TODO: [skynowa] Volume::_mount_impl()
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -39,7 +39,7 @@ Volume::_unMount_impl(
 ) const
 {
     // TODO: [skynowa] Volume::_unMount_impl()
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -57,7 +57,7 @@ Volume::_paths_impl(
 )
 {
     // TODO: [skynowa] Volume::_paths_impl()
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 

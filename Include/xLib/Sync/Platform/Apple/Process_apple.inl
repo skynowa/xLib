@@ -23,7 +23,7 @@ Process::_idByName_impl(
     id_t ulRv {};
 
     // TOOD: [Apple] _idByName_impl
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 
     return ulRv;
 }
@@ -37,7 +37,7 @@ Process::_ids_impl(
     std::vector<id_t> vidRv;
 
     // TOOD: [Apple] _ids_impl
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 
     // out
     a_ids->swap(vidRv);

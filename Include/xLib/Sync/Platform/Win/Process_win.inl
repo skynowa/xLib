@@ -136,7 +136,7 @@ bool_t
 Process::_isExists_impl() const
 {
     // TODO: Process::_isExists_impl()
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 
     return false;
 }

@@ -132,14 +132,6 @@
             << xT("\t::: ") << sourceInfo.data().funcName << xT(": Not implemented :::"); \
     }
     ///< trace not implemented message
-#define xNOT_IMPLEMENTED \
-    { \
-		std::cout \
-			<< "[xNOT_IMPLEMENTED] " << __FILE__ << ": " << __LINE__ << ", " \
-			<< __FUNCTION__ << " - " << "Not implemented" << ")" << std::endl; \
-    }
-    ///< show not implemented message
-    ///< TODO: xTRACE_NOT_IMPLEMENTED - used instead ???
 #define xTRACE_OS_NOT_SUPPORTED \
     { \
         xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
