@@ -160,20 +160,30 @@ Test_Process::unit()
 			const std::set<std::pair_tstring_t> envs;
 			std::tstring_t                      stdOut;
 			std::tstring_t                      stdError;
+			bool_t                              isEnable; // UI test - false
 		};
+
+		cbool_t isUiTests {false};
 
 		std::vector<Data> datas
 		{
 		#if   xENV_WIN
-			{xT("C:\\Windows\\System32\\attrib.exe"), {}, {}, {}, {}}
+			{xT("C:\\Windows\\System32\\attrib.exe"), {}, {}, {}, {}, true}
 		#elif xENV_UNIX
-			/// {xT("/bin/ls"), {xT("-la")}, {}, {}, {}},
-			{xT("/usr/bin/xmessage"), {xT("-print"), xT("\"Test Message\"")}, {}, {}, {}},
-			/// {xT("badfile.txt"), {}, {}, {}, {}}
+			{xT("/bin/ls"), {xT("-la")}, {}, {}, {}, true},
+			{xT("/usr/bin/xmessage"), {xT("-print"), xT("\"Test Message\"")}, {}, {}, {}, isUiTests},
+			{xT("badfile.txt"), {}, {}, {}, {}, true}
 		#endif
 		};
 
 		for (auto &it_data : datas) {
+			if (!it_data.isEnable) {
+				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_data.filePath);
+				continue;
+			}
+
+			Cout() << xTITLE_VAR(it_data.filePath);
+
 			Process::execute(it_data.filePath, it_data.params, it_data.envs, xTIMEOUT_INFINITE,
 				&it_data.stdOut, &it_data.stdError);
 			Cout() << xTRACE_VAR(it_data.stdOut);
