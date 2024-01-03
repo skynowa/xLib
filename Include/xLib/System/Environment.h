@@ -7,11 +7,13 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Interface/IStr.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::system
 {
 
-class Environment
+class Environment :
+	public IStr
     /// system environment variables
 {
 public:
@@ -22,6 +24,11 @@ public:
 
 	xNO_DEFAULT_CONSTRUCT(Environment)
 	xNO_COPY_ASSIGN(Environment)
+///\}
+
+///\name Overrides
+///\{
+	std::tstring_t str() const final;
 ///\}
 
     bool_t         isExists() const;

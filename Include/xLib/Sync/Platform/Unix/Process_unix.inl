@@ -81,6 +81,7 @@ Process::_create_impl(
 		{
 			for (const auto &[var, value] : a_envs) {
 				std::ctstring_t &envVarValue = var + Const::equal() + value;
+
 				envs.push_back( const_cast<char *>(xT2A(envVarValue).c_str()) );
 			}
 
@@ -91,15 +92,19 @@ Process::_create_impl(
 			*
 			* \see https://stackoverflow.com/questions/646930/cannot-connect-to-x-server-0-0-with-a-qt-application
 			*/
-			Environment env(xT("DISPLAY"));
+			if (Environment env_(xT("DISPLAY"));
+				env_.isExists())
+			{
+				// Cout() << xTRACE_VAR(env_.isExists());
+				// Cout() << xTRACE_VAR(env_.str());
 
-			if ( env.isExists() ) {
-				envs.push_back(xT("DISPLAY=:0.0"));
+				const auto str = const_cast<char *>( env_.str().c_str() );
+
+				envs.push_back(str);
 			}
 
 			envs.push_back(nullptr);
 
-			Cout() << xTRACE_MSGBOX(env.var());
 			Cout() << xTRACE_MSGBOX(envs);
 		}
 

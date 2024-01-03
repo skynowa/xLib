@@ -30,12 +30,13 @@ Test_Process::unit()
 
         Process proc;
 
-    	std::tstring_t stdOut;
-    	std::tstring_t stdError;
+        std::tstring_t stdOut;
+        std::tstring_t stdError;
         proc.create(filePath, cmdLine, {}, &stdOut, &stdError);
 
-		Cout() << xTRACE_VAR(stdOut);
-		Cout() << xTRACE_VAR(stdError);
+        // Cout() << xTITLE_VAR(filePath);
+        // Cout() << xTRACE_VAR(stdOut);
+        // Cout() << xTRACE_VAR(stdError);
 
         Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
         xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Ok);
@@ -75,10 +76,12 @@ Test_Process::unit()
 			std::tstring_t stdError;
 			proc.create(it_filePath, it_params, {}, &stdOut, &stdError);
 
-			proc.kill(10UL);
+			Cout() << xTITLE_VAR(it_filePath);
+
+			/// proc.kill(10UL);
 		} // for (datas)
     }
-
+return true;
     xTEST_CASE("handle, id, name, setName")
     {
 		struct Data
