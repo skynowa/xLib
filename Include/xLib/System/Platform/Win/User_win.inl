@@ -30,7 +30,7 @@ User::_groupId_impl() const
 {
     // TODO: [skynowa] User::groupId - GetTokenInformation::TokenGroups
 
-    xNOT_IMPLEMENTED;
+    xTRACE_NOT_IMPLEMENTED;
 
     return 0;
 }

@@ -16,13 +16,13 @@ namespace xl::fs
 void_t
 FsWatcher::_watch_impl()
 {
-    xNOT_IMPLEMENTED;
+    xTRACE_NOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 FsWatcher::_close_impl()
 {
-    xNOT_IMPLEMENTED;
+    xTRACE_NOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -19,7 +19,7 @@ Volume::_fileSystem_impl() const
     std::tstring_t sRv;
 
     // TODO: [skynowa] Volume::_fileSystem_impl()
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 
     return sRv;
 }
@@ -67,7 +67,7 @@ Volume::_paths_impl(
     std::vec_tstring_t vsRv;
 
     // TODO: [skynowa] Volume::_paths_impl()
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 
     // out
     a_volumePaths->swap(vsRv);

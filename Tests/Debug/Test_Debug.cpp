@@ -74,10 +74,10 @@ Test_Debug::unit()
         xCHECK_MSG_DO(false, xT("xxx"), int_t i = 0; ++ i;);
     }
 
-    xTEST_CASE("xNOT_IMPLEMENTED")
+    xTEST_CASE("xTRACE_NOT_IMPLEMENTED")
     {
 	#if xTEST_IGNORE
-		xNOT_IMPLEMENTED
+		xTRACE_NOT_IMPLEMENTED
 	#endif
     }
 

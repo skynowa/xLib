@@ -222,7 +222,7 @@ Thread::_setCpuIdeal_impl(
 {
     xUNUSED(a_idealCpu);
 
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
@@ -230,7 +230,7 @@ Thread::_cpuIdeal_impl() const
 {
     ulong_t ulRv = (ulong_t) - 1;
 
-    xNOT_IMPLEMENTED
+    xTRACE_NOT_IMPLEMENTED
 
     return ulRv;
 }
