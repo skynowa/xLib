@@ -176,18 +176,18 @@ Test_Process::unit()
 		#endif
 		};
 
-		for (auto &it_data : datas) {
-			if (!it_data.isEnable) {
-				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_data.filePath);
+		for (auto &[it_filePath, it_params, it_envs, it_stdOut, it_stdError, it_isEnable] : datas) {
+			if (!it_isEnable) {
+				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_filePath);
 				continue;
 			}
 
-			Cout() << xTITLE_VAR(it_data.filePath);
+			Cout() << xTITLE_VAR(it_filePath);
 
-			Process::execute(it_data.filePath, it_data.params, it_data.envs, xTIMEOUT_INFINITE,
-				&it_data.stdOut, &it_data.stdError);
-			Cout() << xTRACE_VAR(it_data.stdOut);
-			Cout() << xTRACE_VAR(it_data.stdError);
+			Process::execute(it_filePath, it_params, it_envs, xTIMEOUT_INFINITE, &it_stdOut,
+				&it_stdError);
+			Cout() << xTRACE_VAR(it_stdOut);
+			Cout() << xTRACE_VAR(it_stdError);
 		} // for (datas)
 	}
 
