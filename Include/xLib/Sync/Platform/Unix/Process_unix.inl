@@ -84,6 +84,13 @@ Process::_create_impl(
 				envs.push_back( const_cast<char *>(xT2A(envVarValue).c_str()) );
 			}
 
+		    /**
+			* For GUI app
+			*
+			* It probably can't find the X Display. Try adding DISPLAY=:0 to the environment
+			*/
+			envs.push_back(xT("DISPLAY=:0.0"));
+
 			envs.push_back(nullptr);
 		}
 
