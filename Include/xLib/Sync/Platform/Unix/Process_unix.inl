@@ -91,14 +91,15 @@ Process::_create_impl(
 			*
 			* \see https://stackoverflow.com/questions/646930/cannot-connect-to-x-server-0-0-with-a-qt-application
 			*/
-			if (Environment env(xT("DISPLAY"));
-				env.isExists())
-			{
+			Environment env(xT("DISPLAY"));
+
+			if ( env.isExists() ) {
 				envs.push_back(xT("DISPLAY=:0.0"));
 			}
 
 			envs.push_back(nullptr);
 
+			Cout() << xTRACE_MSGBOX(env.var());
 			Cout() << xTRACE_MSGBOX(envs);
 		}
 
