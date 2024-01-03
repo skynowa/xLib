@@ -139,4 +139,14 @@
 			<< __FUNCTION__ << " - " << "Not implemented" << ")" << std::endl; \
     }
     ///< show not implemented message
+    ///< TODO: xTRACE_NOT_IMPLEMENTED - used instead ???
+#define xTRACE_OS_NOT_SUPPORTED \
+    { \
+        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
+        xl::debug::SourceInfo      sourceInfo(data); \
+        \
+        xl::log::Trace() \
+            << xT("\t::: ") << sourceInfo.data().funcName << xT(": OS not supported :::"); \
+    }
+    ///< trace OS specific not supported message
 //-------------------------------------------------------------------------------------------------
