@@ -127,10 +127,9 @@ Process::_setName_impl(
 	std::ctstring_t &a_name
 ) const
 {
-    // TODO: Process::_setName_impl()
 	xUNUSED(a_name);
 
-    xNOT_IMPLEMENTED
+	xTRACE_OS_NOT_SUPPORTED
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
