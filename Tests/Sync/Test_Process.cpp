@@ -162,7 +162,7 @@ Test_Process::unit()
 			std::tstring_t                      stdError;
 		};
 
-		std::vector<Data> datas
+		const std::vector<Data> datas
 		{
 		#if   xENV_WIN
 			{xT("C:\\Windows\\System32\\attrib.exe"), {}, {}, {}, {}}
@@ -173,7 +173,7 @@ Test_Process::unit()
 		#endif
 		};
 
-		for (auto &it_data : datas) {
+		for (const auto &it_data : datas) {
 			Process::execute(it_data.filePath, it_data.params, it_data.envs, xTIMEOUT_INFINITE,
 				&it_data.stdOut, &it_data.stdError);
 			Cout() << xTRACE_VAR(it_data.stdOut);
