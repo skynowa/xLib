@@ -44,59 +44,92 @@ Test_Process::unit()
 
     xTEST_CASE("kill")
     {
-    #if   xENV_WIN
-        std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
-        std::cvec_tstring_t cmdLine  = {xT("/?")};
-    #elif xENV_UNIX
-        std::ctstring_t     filePath = xT("/usr/bin/xmessage");
-        std::cvec_tstring_t cmdLine  = {xT("-print"), xT("\"Test Message\"")};
-        // std::ctstring_t     filePath = xT("/usr/bin/man");
-        // td::cvec_tstring_t cmdLine  = {xT("ls")};
-    #endif
+		struct Data
+		{
+			std::ctstring_t     filePath;
+			std::cvec_tstring_t params;
+			bool_t              isEnable; // UI test - false
+		};
 
-        Process proc;
+		cbool_t isUiTests {false};
 
-        std::tstring_t stdOut;
-    	std::tstring_t stdError;
-        proc.create(filePath, cmdLine, {}, &stdOut, &stdError);
+		std::vector<Data> datas
+		{
+		#if   xENV_WIN
+			{xT("C:\\Windows\\System32\\attrib.exe"), {xT("/?")}, true}
+		#elif xENV_UNIX
+			{xT("/usr/bin/xmessage"), {xT("-print"), xT("\"Test Message\"")}, isUiTests},
+			/// ?? {xT("/usr/bin/man"), {xT("ls")}, true}
+		#endif
+		};
 
-       	proc.kill(10UL);
+		for (const auto &[it_filePath, it_params, it_isEnable] : datas) {
+			if (!it_isEnable) {
+				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_filePath);
+				continue;
+			}
+
+			Process proc;
+
+			std::tstring_t stdOut;
+			std::tstring_t stdError;
+			proc.create(it_filePath, it_params, {}, &stdOut, &stdError);
+
+			proc.kill(10UL);
+		} // for (datas)
     }
 
     xTEST_CASE("handle, id, name, setName")
     {
-    #if   xENV_WIN
-        std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
-        std::cvec_tstring_t cmdLine  = {xT("/?")};
-    #elif xENV_UNIX
-        std::ctstring_t     filePath = xT("/usr/bin/xmessage");
-        std::cvec_tstring_t cmdLine  = {xT("-print"), xT("\"Test Message\"")};
-    #endif
+		struct Data
+		{
+			std::ctstring_t     filePath;
+			std::cvec_tstring_t params;
+			bool_t              isEnable; // UI test - false
+		};
 
-        Process proc;
+		cbool_t isUiTests {false};
 
-    	std::tstring_t stdOut;
-    	std::tstring_t stdError;
-        proc.create(filePath, cmdLine, {}, &stdOut, &stdError);
+		std::vector<Data> datas
+		{
+		#if   xENV_WIN
+			{xT("C:\\Windows\\System32\\attrib.exe"), {xT("/?")}, false}
+		#elif xENV_UNIX
+			{xT("/usr/bin/xmessage"), {xT("-print"), xT("\"Test Message\"")}, isUiTests}
+		#endif
+		};
 
-        Process::handle_t hHandle = proc.handle();
-        xTEST_DIFF(hHandle, static_cast<Process::handle_t>(0));
+		for (const auto &[it_filePath, it_params, it_isEnable] : datas) {
+			if (!it_isEnable) {
+				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_filePath);
+				continue;
+			}
 
-        Process::id_t id = proc.id();
-        xTEST_GR_EQ(id, static_cast<Process::id_t>(0));
+			Process proc;
 
-        // name, setName
-        std::ctstring_t procName = xT("Test_Process");
-        xTEST_EQ(proc.name(), procName);
+			std::tstring_t stdOut;
+			std::tstring_t stdError;
+			proc.create(it_filePath, it_params, {}, &stdOut, &stdError);
 
-        std::ctstring_t procNameNew = xT("Test_Process_A");
-        proc.setName(procNameNew);
-        xTEST_EQ(proc.name(), procNameNew);
+			Process::handle_t hHandle = proc.handle();
+			xTEST_DIFF(hHandle, static_cast<Process::handle_t>(0));
 
-        proc.setName(procName);
-        xTEST_EQ(proc.name(), procName);
+			Process::id_t id = proc.id();
+			xTEST_GR_EQ(id, static_cast<Process::id_t>(0));
 
-        proc.kill(10UL);
+			// name, setName
+			std::ctstring_t procName = xT("Test_Process");
+			xTEST_EQ(proc.name(), procName);
+
+			std::ctstring_t procNameNew = xT("Test_Process_A");
+			proc.setName(procNameNew);
+			xTEST_EQ(proc.name(), procNameNew);
+
+			proc.setName(procName);
+			xTEST_EQ(proc.name(), procName);
+
+			proc.kill(10UL);
+		} // for (vars)
     }
 
     xTEST_CASE("idByHandle")
@@ -163,7 +196,7 @@ Test_Process::unit()
 			bool_t                              isEnable; // UI test - false
 		};
 
-		cbool_t isUiTests {true};
+		cbool_t isUiTests {false};
 
 		std::vector<Data> datas
 		{
