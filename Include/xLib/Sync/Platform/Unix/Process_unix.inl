@@ -88,10 +88,18 @@ Process::_create_impl(
 			* For GUI app
 			*
 			* It probably can't find the X Display. Try adding DISPLAY=:0 to the environment
+			*
+			* \see https://stackoverflow.com/questions/646930/cannot-connect-to-x-server-0-0-with-a-qt-application
 			*/
-			envs.push_back(xT("DISPLAY=:0.0"));
+			if (Environment env(xT("DISPLAY"));
+				env.isExists())
+			{
+				envs.push_back(xT("DISPLAY=:0.0"));
+			}
 
 			envs.push_back(nullptr);
+
+			Cout() << xTRACE_MSGBOX(envs);
 		}
 
 		if (out_stdOut != nullptr) {

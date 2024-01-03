@@ -15,6 +15,7 @@
 #include <xLib/Fs/Dll.h>
 #include <xLib/Fs/Finder.h>
 #include <xLib/Sync/Thread.h>
+#include <xLib/System/Environment.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Process_win.inl"
