@@ -27,9 +27,9 @@ public:
     bool_t         isExists() const;
         ///< check for existence
     std::tstring_t var() const;
-        ///< get value by name
+        ///< get value
     void_t         setVar(std::ctstring_t &value) const;
-        ///< set or change value by name
+        ///< set or change value
     void_t         removeVar() const;
         ///< delete var
 
