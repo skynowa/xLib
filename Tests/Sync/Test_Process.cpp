@@ -182,10 +182,10 @@ Test_Process::unit()
 				continue;
 			}
 
-			Cout() << xTITLE_VAR(it_filePath);
-
 			Process::execute(it_filePath, it_params, it_envs, xTIMEOUT_INFINITE, &it_stdOut,
 				&it_stdError);
+
+			Cout() << xTITLE_VAR(it_filePath);
 			Cout() << xTRACE_VAR(it_stdOut);
 			Cout() << xTRACE_VAR(it_stdError);
 		} // for (datas)
@@ -200,7 +200,7 @@ Test_Process::unit()
 			bool_t             isEnable; // UI test - false
 		};
 
-		cbool_t isUiTests {false};
+		cbool_t isUiTests {true};
 
 		const std::vector<Data> datas
 		{
