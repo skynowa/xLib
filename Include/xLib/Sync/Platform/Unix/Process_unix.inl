@@ -83,7 +83,6 @@ Process::_create_impl(
 				std::ctstring_t &envVarValue = it_name + Const::equal() + it_value;
 
 				const auto str = const_cast<char *>(xT2A(envVarValue).c_str());
-
 				envs.push_back(str);
 			}
 
@@ -98,7 +97,6 @@ Process::_create_impl(
 				env.isExists())
 			{
 				const auto str = const_cast<char *>( xT2A(env.str()).c_str() );
-
 				envs.push_back(str);
 			}
 
