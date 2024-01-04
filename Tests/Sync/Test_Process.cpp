@@ -77,7 +77,7 @@ Test_Process::unit()
 			{xT("C:\\Windows\\System32\\attrib.exe"), {xT("/?")}, true}
 		#elif xENV_UNIX
 			{xT("/usr/bin/xmessage"), {xT("-print"), xT("\"Test Message\"")}, isUiTests},
-			/// ?? {xT("/usr/bin/man"), {xT("ls")}, true}
+			{xT("/usr/bin/man"), {xT("ls")}, true}
 		#endif
 		};
 
