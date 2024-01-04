@@ -29,7 +29,7 @@ public:
 ///\name Overrides
 ///\{
 	std::tstring_t str() const final;
-		///< name with value
+		///< variable with value (DESKTOP_SESSION=xfce)
 ///\}
 
     bool_t         isExists() const;
