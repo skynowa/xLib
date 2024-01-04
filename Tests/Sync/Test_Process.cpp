@@ -78,7 +78,7 @@ Test_Process::unit()
 
 			Cout() << xTITLE_VAR(it_filePath);
 
-			/// proc.kill(10UL);
+			proc.kill(10UL);
 		} // for (datas)
     }
 return true;
