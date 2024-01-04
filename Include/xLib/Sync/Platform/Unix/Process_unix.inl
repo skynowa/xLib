@@ -81,8 +81,8 @@ Process::_create_impl(
 
 		std::vector<char *> envs;
 		{
-			for (const auto &[it_name, it_value] : a_envs) {
-				std::ctstring_t &envVarValue = it_name + Const::equal() + it_value;
+			for (const auto &[it_var, it_value] : a_envs) {
+				std::ctstring_t &envVarValue = it_var + Const::equal() + it_value;
 
 				const auto str = const_cast<char *>(xT2A(envVarValue).c_str());
 				envs.push_back(str);
