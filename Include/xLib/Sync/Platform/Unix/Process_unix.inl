@@ -74,7 +74,9 @@ Process::_create_impl(
 				cmds.push_back( const_cast<char *>(xT2A(it_param).c_str()) );
 			}
 
-			cmds.push_back(nullptr);
+			if ( !cmds.empty() ) {
+				cmds.push_back(nullptr);
+			}
 		}
 
 		std::vector<char *> envs;
@@ -100,7 +102,9 @@ Process::_create_impl(
 				envs.push_back(str);
 			}
 
-			envs.push_back(nullptr);
+			if ( !envs.empty() ) {
+				envs.push_back(nullptr);
+			}
 
 			Cout() << xTRACE_MSGBOX(envs);
 		}
