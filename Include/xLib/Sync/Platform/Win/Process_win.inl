@@ -111,7 +111,7 @@ Process::_kill_impl(
     xTEST_DIFF(blRv, FALSE);
 
     for ( ; ; ) {
-        xCHECK_DO(exitStatus() != STILL_ACTIVE, break);
+        xCHECK_DO(!isExists(), break);
 
         Thread::currentSleep(a_timeoutMsec);
     }
@@ -138,10 +138,9 @@ Process::_setName_impl(
 bool_t
 Process::_isExists_impl() const
 {
-    // TODO: Process::_isExists_impl()
-    xTRACE_NOT_IMPLEMENTED
+	cbool_t bRv = (exitStatus() == STILL_ACTIVE);
 
-    return false;
+    return bRv;
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
