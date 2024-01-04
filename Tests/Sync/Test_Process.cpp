@@ -20,27 +20,44 @@ Test_Process::unit()
 
     xTEST_CASE("create, wait")
     {
-    #if   xENV_WIN
-        std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
-        std::cvec_tstring_t cmdLine  = {xT("")};
-    #elif xENV_UNIX
-        std::ctstring_t     filePath = xT("/bin/ls");
-        std::cvec_tstring_t cmdLine  = {xT("-la")};
-    #endif
+		struct Data
+		{
+			std::ctstring_t     filePath;
+			std::cvec_tstring_t params;
+			bool_t              isEnable; // UI test - false
+		};
 
-        Process proc;
+		cbool_t isUiTests {true};
 
-        std::tstring_t stdOut;
-        std::tstring_t stdError;
-        proc.create(filePath, cmdLine, {}, &stdOut, &stdError);
+		std::vector<Data> datas
+		{
+		#if   xENV_WIN
+			{xT("C:\\Windows\\System32\\attrib.exe"), {}, true}
+		#elif xENV_UNIX
+			{xT("/bin/ls"), {xT("-la")}, true}
+		#endif
+		};
 
-        // Cout() << xTITLE_VAR(filePath);
-        // Cout() << xTRACE_VAR(stdOut);
-        // Cout() << xTRACE_VAR(stdError);
+		for (const auto &[it_filePath, it_params, it_isEnable] : datas) {
+			if (!it_isEnable) {
+				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_filePath);
+				continue;
+			}
 
-        Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
-        xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Ok);
-        xTEST_DIFF((int)wrRes, (int)Process::WaitStatus::Abandoned);
+			Process proc;
+
+			std::tstring_t stdOut;
+			std::tstring_t stdError;
+			proc.create(it_filePath, it_params, {}, &stdOut, &stdError);
+
+			Cout() << xTITLE_VAR(it_filePath);
+			// Cout() << xTRACE_VAR(stdOut);
+			// Cout() << xTRACE_VAR(stdError);
+
+			Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
+			xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Ok);
+			xTEST_DIFF((int)wrRes, (int)Process::WaitStatus::Abandoned);
+		} // for (datas)
     }
 
     xTEST_CASE("kill")
