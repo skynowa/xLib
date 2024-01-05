@@ -273,17 +273,17 @@ Process::_currentParentId_impl()
 {
     id_t ulRv;
 
-    #if xCOMPILER_MINGW
-        // using NTSTATUS = __success(return >= 0) LONG;
-        using NTSTATUS = LONG;
+#if xCOMPILER_MINGW
+	// using NTSTATUS = __success(return >= 0) LONG;
+	using NTSTATUS = LONG;
 
-        enum class PROCESSINFOCLASS
-            /// process info type
-        {
-            ProcessBasicInformation = 0,
-            ProcessWow64Information = 26
-        };
-    #endif
+	enum class PROCESSINFOCLASS
+		/// process info type
+	{
+		ProcessBasicInformation = 0,
+		ProcessWow64Information = 26
+	};
+#endif
 
     using Dll_NtQueryInformationProcess_t = NTSTATUS (WINAPI *) (
         HANDLE           ProcessHandle,
