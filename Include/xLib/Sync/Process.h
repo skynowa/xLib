@@ -66,6 +66,7 @@ public:
                    const std::set<std::pair_tstring_t> &envs, std::tstring_t *stdOut,
                    std::tstring_t *stdError);
         ///< execute a file
+        ///< TODO: envs as system::Environment
     WaitStatus wait(culong_t &timeoutMsec);
         ///< wait for termination
     void_t     kill(culong_t &timeoutMsec);
