@@ -50,10 +50,6 @@ Test_Process::unit()
 			std::tstring_t stdError;
 			proc.create(it_filePath, it_params, {}, &stdOut, &stdError);
 
-			Cout() << xTITLE_VAR(it_filePath);
-			// Cout() << xTRACE_VAR(stdOut);
-			// Cout() << xTRACE_VAR(stdError);
-
 			Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
 			xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Ok);
 			xTEST_DIFF((int)wrRes, (int)Process::WaitStatus::Abandoned);
@@ -92,8 +88,6 @@ Test_Process::unit()
 			std::tstring_t stdOut;
 			std::tstring_t stdError;
 			proc.create(it_filePath, it_params, {}, &stdOut, &stdError);
-
-			Cout() << xTITLE_VAR(it_filePath);
 
 			proc.kill(10UL);
 		} // for (datas)
@@ -161,7 +155,7 @@ Test_Process::unit()
     xTEST_CASE("handleById")
     {
 		Process::handle_t handle = Process::handleById( Process::currentId() );
-		xTEST_GR(handle, 0);
+		xTEST_GR_EQ(handle, 0);
     }
 
     xTEST_CASE("idByName")
@@ -169,7 +163,7 @@ Test_Process::unit()
         std::ctstring_t procName = Path::exe().fileName();
 
         Process::id_t id = Process::idByName(procName);
-        xTEST_GR(id, 0);
+        xTEST_GR_EQ(id, 0UL);
     }
 
     xTEST_CASE("ids")
@@ -177,9 +171,7 @@ Test_Process::unit()
         std::vector<Process::id_t> ids;
 
         Process::ids(&ids);
-        #if xTEST_IGNORE
-            Cout() << ids;
-        #endif
+        xTEST(!ids.empty());
     }
 
     xTEST_CASE("isRunning")
@@ -233,10 +225,6 @@ Test_Process::unit()
 
 			Process::execute(it_filePath, it_params, it_envs, xTIMEOUT_INFINITE, &it_stdOut,
 				&it_stdError);
-
-			Cout() << xTITLE_VAR(it_filePath);
-			Cout() << xTRACE_VAR(it_stdOut);
-			Cout() << xTRACE_VAR(it_stdError);
 		} // for (datas)
 	}
 
@@ -269,8 +257,6 @@ Test_Process::unit()
 				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_cmdLine);
 				continue;
 			}
-
-			Cout() << xTITLE_VAR(it_cmdLine);
 
 			Process::shellExecute(it_cmdLine, it_params);
 		} // for (datas)

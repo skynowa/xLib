@@ -105,8 +105,6 @@ Process::_create_impl(
 			if ( !envs.empty() ) {
 				envs.push_back(nullptr);
 			}
-
-			Cout() << xTRACE_MSGBOX(envs);
 		}
 
 		if (out_stdOut != nullptr) {
