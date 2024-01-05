@@ -66,6 +66,7 @@ public:
                    const std::set<std::pair_tstring_t> &envs, std::tstring_t *stdOut,
                    std::tstring_t *stdError);
         ///< execute a file
+        ///< TODO: envs as system::Environment
     WaitStatus wait(culong_t &timeoutMsec);
         ///< wait for termination
     void_t     kill(culong_t &timeoutMsec);
@@ -160,6 +161,7 @@ xPLATFORM_IMPL:
 
     static void_t   _shellExecute_impl(std::ctstring_t &filePathOrURL, std::ctstring_t &params);
         ///< TODO: QProcess::startDetached()
+        ///< TODO: Process::create() - use ?
     static bool_t   _isUrlFull(std::ctstring_t &url);
 };
 

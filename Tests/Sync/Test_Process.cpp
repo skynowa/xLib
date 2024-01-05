@@ -20,30 +20,6 @@ Test_Process::unit()
 
     xTEST_CASE("create, wait")
     {
-    #if   xENV_WIN
-        std::ctstring_t     filePath = xT("C:\\Windows\\System32\\attrib.exe");
-        std::cvec_tstring_t cmdLine  = {xT("")};
-    #elif xENV_UNIX
-        std::ctstring_t     filePath = xT("/bin/ls");
-        std::cvec_tstring_t cmdLine  = {xT("-la")};
-    #endif
-
-        Process proc;
-
-    	std::tstring_t stdOut;
-    	std::tstring_t stdError;
-        proc.create(filePath, cmdLine, {}, &stdOut, &stdError);
-
-		Cout() << xTRACE_VAR(stdOut);
-		Cout() << xTRACE_VAR(stdError);
-
-        Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
-        xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Ok);
-        xTEST_DIFF((int)wrRes, (int)Process::WaitStatus::Abandoned);
-    }
-
-    xTEST_CASE("kill")
-    {
 		struct Data
 		{
 			std::ctstring_t     filePath;
@@ -56,10 +32,48 @@ Test_Process::unit()
 		std::vector<Data> datas
 		{
 		#if   xENV_WIN
+			{xT("C:\\Windows\\System32\\attrib.exe"), {}, true}
+		#elif xENV_UNIX
+			{xT("/bin/ls"), {xT("-la")}, true}
+		#endif
+		};
+
+		for (const auto &[it_filePath, it_params, it_isEnable] : datas) {
+			if (!it_isEnable) {
+				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_filePath);
+				continue;
+			}
+
+			Process proc;
+
+			std::tstring_t stdOut;
+			std::tstring_t stdError;
+			proc.create(it_filePath, it_params, {}, &stdOut, &stdError);
+
+			Process::WaitStatus wrRes = proc.wait(xTIMEOUT_INFINITE);
+			xTEST_EQ((int)wrRes,   (int)Process::WaitStatus::Ok);
+			xTEST_DIFF((int)wrRes, (int)Process::WaitStatus::Abandoned);
+		} // for (datas)
+    }
+
+    xTEST_CASE("kill")
+    {
+		struct Data
+		{
+			std::ctstring_t     filePath;
+			std::cvec_tstring_t params;
+			bool_t              isEnable; // UI test - false
+		};
+
+		cbool_t isUiTests {false};
+
+		std::vector<Data> datas
+		{
+		#if   xENV_WIN
 			{xT("C:\\Windows\\System32\\attrib.exe"), {xT("/?")}, true}
 		#elif xENV_UNIX
 			{xT("/usr/bin/xmessage"), {xT("-print"), xT("\"Test Message\"")}, isUiTests},
-			/// ?? {xT("/usr/bin/man"), {xT("ls")}, true}
+			{xT("/usr/bin/man"), {xT("ls")}, true}
 		#endif
 		};
 
@@ -140,10 +154,8 @@ Test_Process::unit()
 
     xTEST_CASE("handleById")
     {
-    #if xTODO
-        Process::handle_t hHandle = Process::handleById( Process::currentId() );
-        xTEST(Handle(hHandle).isValid());
-    #endif
+		Process::handle_t handle = Process::handleById( Process::currentId() );
+		xTEST_GR_EQ(handle, 0);
     }
 
     xTEST_CASE("idByName")
@@ -151,9 +163,7 @@ Test_Process::unit()
         std::ctstring_t procName = Path::exe().fileName();
 
         Process::id_t id = Process::idByName(procName);
-        xTEST_DIFF(static_cast<ulong_t>(id), 0UL);
-
-        // Cout() << xTRACE_VAR(id);
+        xTEST_GR_EQ(id, 0UL);
     }
 
     xTEST_CASE("ids")
@@ -161,9 +171,7 @@ Test_Process::unit()
         std::vector<Process::id_t> ids;
 
         Process::ids(&ids);
-        #if xTEST_IGNORE
-            Cout() << ids;
-        #endif
+        xTEST(!ids.empty());
     }
 
     xTEST_CASE("isRunning")
@@ -217,10 +225,6 @@ Test_Process::unit()
 
 			Process::execute(it_filePath, it_params, it_envs, xTIMEOUT_INFINITE, &it_stdOut,
 				&it_stdError);
-
-			Cout() << xTITLE_VAR(it_filePath);
-			Cout() << xTRACE_VAR(it_stdOut);
-			Cout() << xTRACE_VAR(it_stdError);
 		} // for (datas)
 	}
 
@@ -253,8 +257,6 @@ Test_Process::unit()
 				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_cmdLine);
 				continue;
 			}
-
-			Cout() << xTITLE_VAR(it_cmdLine);
 
 			Process::shellExecute(it_cmdLine, it_params);
 		} // for (datas)

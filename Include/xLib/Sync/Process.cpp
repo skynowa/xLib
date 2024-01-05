@@ -99,6 +99,10 @@ Process::kill(
 		return;
 	}
 
+	if (exitStatus() == EXIT_SUCCESS) {
+		return;
+	}
+
 	Cout() << xT("Kill: ") << xTRACE_VAR(_pid) << std::endl;
 
     _kill_impl(a_timeoutMsec);

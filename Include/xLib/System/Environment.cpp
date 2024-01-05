@@ -65,6 +65,12 @@ Environment::Environment(
     xTEST(_isVarValid());
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+Environment::str() const /* final */
+{
+    return _varName + Const::equal() + var();
+}
+//-------------------------------------------------------------------------------------------------
 bool_t
 Environment::isExists() const
 {
