@@ -160,10 +160,8 @@ Test_Process::unit()
 
     xTEST_CASE("handleById")
     {
-    #if xTODO
-        Process::handle_t hHandle = Process::handleById( Process::currentId() );
-        xTEST(Handle(hHandle).isValid());
-    #endif
+		Process::handle_t handle = Process::handleById( Process::currentId() );
+		xTEST_GR(handle, 0);
     }
 
     xTEST_CASE("idByName")
