@@ -47,14 +47,17 @@ Process::_create_impl(
 
 	std::vector<char *> envs;
 	{
-		for (const auto &[name, value]  : a_envs) {
-			std::ctstring_t &envVarValue = name + Const::equal() + value;
+		for (const auto &[it_var, it_value]  : a_envs) {
+			std::ctstring_t &envVarValue = it_var + Const::equal() + it_value;
 			envs.push_back( const_cast<tchar_t *>(envVarValue.c_str()) );
 		}
-		envs.push_back(nullptr);
+
+		if ( !envs.empty() ) {
+			envs.push_back(nullptr);
+		}
 	}
 
-	LPVOID environment = (LPVOID)envs.data();
+	auto environment = (LPVOID)envs.data();
 
     BOOL blRv = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( params.c_str() ),
         nullptr, nullptr, FALSE, NORMAL_PRIORITY_CLASS, environment, nullptr, &startupInfo,
@@ -108,7 +111,7 @@ Process::_kill_impl(
     xTEST_DIFF(blRv, FALSE);
 
     for ( ; ; ) {
-        xCHECK_DO(exitStatus() != STILL_ACTIVE, break);
+        xCHECK_DO(!isExists(), break);
 
         Thread::currentSleep(a_timeoutMsec);
     }
@@ -135,10 +138,9 @@ Process::_setName_impl(
 bool_t
 Process::_isExists_impl() const
 {
-    // TODO: Process::_isExists_impl()
-    xTRACE_NOT_IMPLEMENTED
+	cbool_t bRv = (exitStatus() == STILL_ACTIVE);
 
-    return false;
+    return bRv;
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t

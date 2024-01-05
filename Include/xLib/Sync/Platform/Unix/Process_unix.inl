@@ -74,14 +74,18 @@ Process::_create_impl(
 				cmds.push_back( const_cast<char *>(xT2A(it_param).c_str()) );
 			}
 
-			cmds.push_back(nullptr);
+			if ( !cmds.empty() ) {
+				cmds.push_back(nullptr);
+			}
 		}
 
 		std::vector<char *> envs;
 		{
-			for (const auto &[var, value] : a_envs) {
-				std::ctstring_t &envVarValue = var + Const::equal() + value;
-				envs.push_back( const_cast<char *>(xT2A(envVarValue).c_str()) );
+			for (const auto &[it_var, it_value] : a_envs) {
+				std::ctstring_t &envVarValue = it_var + Const::equal() + it_value;
+
+				const auto str = const_cast<char *>(xT2A(envVarValue).c_str());
+				envs.push_back(str);
 			}
 
 		    /**
@@ -91,16 +95,16 @@ Process::_create_impl(
 			*
 			* \see https://stackoverflow.com/questions/646930/cannot-connect-to-x-server-0-0-with-a-qt-application
 			*/
-			Environment env(xT("DISPLAY"));
-
-			if ( env.isExists() ) {
-				envs.push_back(xT("DISPLAY=:0.0"));
+			if (Environment env(xT("DISPLAY"));
+				env.isExists())
+			{
+				const auto str = const_cast<char *>( xT2A(env.str()).c_str() );
+				envs.push_back(str);
 			}
 
-			envs.push_back(nullptr);
-
-			Cout() << xTRACE_MSGBOX(env.var());
-			Cout() << xTRACE_MSGBOX(envs);
+			if ( !envs.empty() ) {
+				envs.push_back(nullptr);
+			}
 		}
 
 		if (out_stdOut != nullptr) {

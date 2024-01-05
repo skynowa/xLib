@@ -13,6 +13,26 @@ xTEST_UNIT(Test_Environment)
 bool_t
 Test_Environment::unit()
 {
+    xTEST_CASE("str")
+    {
+        const std::set<std::pair_tstring_t> vars
+        {
+            {xT("ENV_TEST_1"), xT("value1")},
+            {xT("ENV_TEST_2"), xT("value2")},
+            {xT("ENV_TEST_3"), xT("value3")},
+            {xT("ENV_TEST_4"), xT("value4")}
+        };
+
+        for (const auto &[it_var, it_value] : vars) {
+            Environment env(it_var);
+            env.setVar(it_value);
+
+            const auto &test     = env.str();
+            const auto &expected = it_var + Const::equal() + it_value;
+            xTEST_EQ(test, expected);
+        }
+    }
+
     xTEST_CASE("setVar")
     {
         std::ctstring_t sData[][2] = {
