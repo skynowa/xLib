@@ -330,11 +330,11 @@ Process::shellExecute(
     std::cvec_tstring_t &a_params         ///< command line params
 )
 {
-	xTEST(Path(a_filePathOrURL).isAbsolute() || _isUrlFull(a_filePathOrURL));
+    xTEST(Path(a_filePathOrURL).isAbsolute() || _isUrlFull(a_filePathOrURL));
 
-	std::ctstring_t params = String::join(a_params, Const::space());
+    std::ctstring_t params = String::join(a_params, Const::space());
 
-	_shellExecute_impl(a_filePathOrURL, params);
+    _shellExecute_impl(a_filePathOrURL, params);
 }
 //-------------------------------------------------------------------------------------------------
 
