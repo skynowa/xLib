@@ -69,7 +69,7 @@ Test_Process::unit()
 			bool_t              isEnable; // UI test - false
 		};
 
-		cbool_t isUiTests {true};
+		cbool_t isUiTests {false};
 
 		std::vector<Data> datas
 		{
@@ -98,7 +98,7 @@ Test_Process::unit()
 			proc.kill(10UL);
 		} // for (datas)
     }
-return true;
+
     xTEST_CASE("handle, id, name, setName")
     {
 		struct Data
