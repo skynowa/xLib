@@ -25,7 +25,7 @@ Test_Environment::unit()
 
         for (const auto &[it_var, it_value] : vars) {
             Environment env(it_var);
-            env.setVar(it_value);
+            env.setValue(it_value);
 
             const auto &test     = env.str();
             const auto &expected = it_var + Const::equal() + it_value;
@@ -33,7 +33,7 @@ Test_Environment::unit()
         }
     }
 
-    xTEST_CASE("setVar")
+    xTEST_CASE("setValue")
     {
         std::ctstring_t data[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
@@ -44,7 +44,7 @@ Test_Environment::unit()
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
             Environment env(data[i][0]);
-            env.setVar(data[i][1]);
+            env.setValue(data[i][1]);
         }
     }
 

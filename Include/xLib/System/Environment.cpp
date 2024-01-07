@@ -88,7 +88,7 @@ Environment::value() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::setVar(
+Environment::setValue(
     std::ctstring_t &a_value
 ) const
 {
@@ -121,7 +121,7 @@ Environment::setVars(
 {
 	for (const auto &[name, value] : a_vars) {
 		Environment env(name);
-		env.setVar(value);
+		env.setValue(value);
 	}
 }
 //-------------------------------------------------------------------------------------------------
