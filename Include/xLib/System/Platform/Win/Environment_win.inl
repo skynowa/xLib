@@ -69,7 +69,7 @@ Environment::_remove_impl() const
 /* static */
 void_t
 Environment::_vars_impl(
-    std::vec_tstring_t *a_values
+    std::vec_tstring_t *out_items
 )
 {
     std::vec_tstring_t args;
@@ -91,7 +91,7 @@ Environment::_vars_impl(
     xTEST_DIFF(blRv, FALSE);
 
     // out
-    a_values->swap(args);
+    out_items->swap(args);
 }
 //-------------------------------------------------------------------------------------------------
 
