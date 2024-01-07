@@ -118,8 +118,8 @@ Environment::setVars(
     const std::set<std::pair_tstring_t> &a_vars ///< vars ({"HOME=/usr/home","LOGNAME=home"})
 )
 {
-	for (const auto &[name, value] : a_vars) {
-		Environment env(name);
+	for (const auto &[it_name, it_value] : a_vars) {
+		Environment env(it_name);
 		env.setValue(value);
 	}
 }
