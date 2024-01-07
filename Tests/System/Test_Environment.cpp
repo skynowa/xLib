@@ -91,7 +91,7 @@ Test_Environment::unit()
         }
     }
 
-    xTEST_CASE("var")
+    xTEST_CASE("value")
     {
     #if   xENV_WIN
         std::ctstring_t sData[][2] = {
