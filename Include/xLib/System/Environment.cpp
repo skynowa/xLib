@@ -42,7 +42,7 @@ std::csize_t Environment::_envMax
 		{32767}; // custom define
 	#endif
 
-std::ctstring_t Environment::_separator =
+std::ctstring_t Environment::_envSeparator =
 	#if   xENV_WIN
 		Const::semicolon();
 	#elif xENV_UNIX
