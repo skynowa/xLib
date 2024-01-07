@@ -70,8 +70,13 @@ class Environments
 	/// system environment variables
 {
 public:
+///\name ctors, dtor
+///\{
 			 Environments() = default;
 	virtual ~Environments() = default;
+
+	xNO_COPY_ASSIGN(Environments)
+///\}
 
     void_t             setVars(const std::set<std::pair_tstring_t> &vars) const;
         ///< set or change values
