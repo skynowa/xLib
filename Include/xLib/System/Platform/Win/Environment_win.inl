@@ -66,10 +66,8 @@ Environment::_remove_impl() const
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-void_t
-Environments::_vars_impl(
-    std::vec_tstring_t *out_items
-) const
+std::vec_tstring_t
+Environments::_vars_impl() const
 {
     std::vec_tstring_t args;
 
@@ -89,8 +87,7 @@ Environments::_vars_impl(
     BOOL blRv = ::FreeEnvironmentStrings(lpvEnv);
     xTEST_DIFF(blRv, FALSE);
 
-    // out
-    out_items->swap(args);
+    return std::move(args);
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -83,7 +83,7 @@ xPUBLIC_STATIC:
         ///< expands strings by separator "%"
 
 private:
-    void_t _vars_impl(std::vec_tstring_t *items) const;
+    std::vec_tstring_t _vars_impl() const;
 };
 //-------------------------------------------------------------------------------------------------
 

@@ -181,10 +181,7 @@ Environments::setVars(
 std::vec_tstring_t
 Environments::vars() const
 {
-    std::vec_tstring_t items;
-    _vars_impl(&items);
-
-    return std::move(items);
+    return std::move( _vars_impl() );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
