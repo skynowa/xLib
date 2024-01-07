@@ -101,18 +101,15 @@ Environment::value() const
     return _value_impl();
 }
 //-------------------------------------------------------------------------------------------------
-void_t
-Environment::values(
-    std::vec_tstring_t *out_items	///< [out]
-) const
+std::vec_tstring_t
+Environment::values() const
 {
-    xTEST_PTR(out_items);
+    xCHECK_RET(!isExists(), std::vec_tstring_t{});
 
-    out_items->clear();
+    std::vec_tstring_t items;
+    String::split(value(), Const::semicolon(), &items);
 
-    xCHECK_DO(!isExists(), return);
-
-    String::split(value(), Const::semicolon(), out_items);
+    return std::move(items);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
