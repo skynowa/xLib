@@ -189,19 +189,6 @@ Environment::expandVars(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-Environment::varPath(
-	std::vec_tstring_t *out_dirPaths
-)
-{
-    xTEST_PTR(out_dirPaths);
-
-    Environment env = Environment::path();
-
-    String::split(env.value(), _separator, out_dirPaths);
-}
-//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************

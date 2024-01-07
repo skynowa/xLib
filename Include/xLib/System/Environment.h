@@ -26,6 +26,7 @@ public:
 	xNO_COPY_ASSIGN(Environment)
 
 	static Environment path();
+        ///< get PATH values (/usr/bin ... pathes) with separator
 ///\}
 
 ///\name Overrides
@@ -50,8 +51,6 @@ xPUBLIC_STATIC:
         ///< get all values
     static std::tstring_t expandVars(std::ctstring_t &strWithVars);
         ///< expands strings by separator "%"
-    static void_t         varPath(std::vec_tstring_t *dirPaths);
-        ///< get PATH value (/usr/bin ... pathes)
 
 private:
     static std::csize_t    _envMax;
