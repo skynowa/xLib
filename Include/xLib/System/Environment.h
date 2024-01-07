@@ -14,12 +14,12 @@ namespace xl::system
 
 class Environment :
 	public IStr
-    /// system environment variables
+    /// system environment variable
 {
 public:
 ///\name ctors, dtor
 ///\{
-	explicit Environment(std::ctstring_t &varName);
+	explicit Environment(std::ctstring_t &name);
 	virtual ~Environment() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Environment)
@@ -34,11 +34,11 @@ public:
 
     bool_t         isExists() const;
         ///< check for existence
-    std::tstring_t var() const;
+    std::tstring_t value() const;
         ///< get value
-    void_t         setVar(std::ctstring_t &value) const;
+    void_t         setValue(std::ctstring_t &value) const;
         ///< set or change value
-    void_t         removeVar() const;
+    void_t         remove() const;
         ///< delete var
 
 xPUBLIC_STATIC:
@@ -57,18 +57,18 @@ private:
 	static std::ctstring_t _separator;
 		///< var / value separator
 
-    std::ctstring_t _varName;
+    std::ctstring_t _name;
 
-    bool_t _isVarValid() const;
+    bool_t _isNameValid() const;
         ///< is valid environment variable name
     bool_t _isValueValid(std::ctstring_t &varValue) const;
         ///< is valid environment variable value
 
 xPLATFORM_IMPL:
     bool_t         _isExists_impl() const;
-    std::tstring_t _var_impl() const;
-    void_t         _setVar_impl(std::ctstring_t &value) const;
-    void_t         _removeVar_impl() const;
+    std::tstring_t _value_impl() const;
+    void_t         _setValue_impl(std::ctstring_t &value) const;
+    void_t         _remove_impl() const;
 
     static void_t _vars_impl(std::vec_tstring_t *values);
 };

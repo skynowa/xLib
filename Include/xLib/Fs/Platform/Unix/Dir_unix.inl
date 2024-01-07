@@ -99,7 +99,7 @@ Dir::_temp_impl()
 
     Environment env(envDirTemp);
 
-    return env.isExists() ? env.var() : _dirTmp();
+    return env.isExists() ? env.value() : _dirTmp();
 }
 //-------------------------------------------------------------------------------------------------
 

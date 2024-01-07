@@ -105,7 +105,7 @@ User::_loginName_impl() const
 			bool_t bRv = env.isExists();
 			xCHECK_DO(!bRv, continue);
 
-			sRv = env.var();
+			sRv = env.value();
 
 			return sRv;
 		}

@@ -110,7 +110,7 @@ Os::_desktopName_impl() const
 {
     std::tstring_t sRv;
 
-    sRv = Environment(xT("DESKTOP_SESSION")).var();
+    sRv = Environment(xT("DESKTOP_SESSION")).value();
     xCHECK_RET(sRv.empty(), Const::strUnknown());
 
     return sRv;
