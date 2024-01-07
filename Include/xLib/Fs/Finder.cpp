@@ -244,7 +244,7 @@ Finder::fileInEnvPath(
     Environment env = Environment::path();
 
 	std::vec_tstring_t dirPaths;
-    String::split(env.value(), Const::semicolon(), &dirPaths);
+    env.values(&dirPaths);
 
 	return file(dirPaths, a_shellFilter, a_isRecursively);
 }

@@ -102,6 +102,20 @@ Environment::value() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
+Environment::values(
+    std::vec_tstring_t *out_items	///< [out]
+) const
+{
+    xTEST_PTR(out_items);
+
+    out_items->clear();
+
+    xCHECK_DO(!isExists(), return);
+
+    String::split(value(), Const::semicolon(), out_items);
+}
+//-------------------------------------------------------------------------------------------------
+void_t
 Environment::setValue(
     std::ctstring_t &a_value
 ) const

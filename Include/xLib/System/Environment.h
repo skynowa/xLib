@@ -39,6 +39,8 @@ public:
         ///< check for existence
     std::tstring_t value() const;
         ///< get value
+	void_t         values(std::vec_tstring_t *items) const;
+        ///< get values as std::vector
     void_t         setValue(std::ctstring_t &value) const;
         ///< set or change value
     void_t         remove() const;
