@@ -59,7 +59,7 @@ private:
 
     std::ctstring_t _name;
 
-    bool_t _isVarValid() const;
+    bool_t _isNameValid() const;
         ///< is valid environment variable name
     bool_t _isValueValid(std::ctstring_t &varValue) const;
         ///< is valid environment variable value

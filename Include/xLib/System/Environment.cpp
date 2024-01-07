@@ -62,7 +62,7 @@ Environment::Environment(
 ) :
 	_name{a_name}
 {
-    xTEST(_isVarValid());
+    xTEST(_isNameValid());
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -205,7 +205,7 @@ Environment::varPath(
 
 //-------------------------------------------------------------------------------------------------
 bool_t
-Environment::_isVarValid() const
+Environment::_isNameValid() const
 {
     xCHECK_RET(_name.empty(),                                      false);
     xCHECK_RET(_name.find(Const::equal()) != std::tstring_t::npos, false);
