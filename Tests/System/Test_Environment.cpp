@@ -35,7 +35,8 @@ Test_Environment::unit()
 
     xTEST_CASE("setValue")
     {
-        std::ctstring_t data[][2] = {
+        std::ctstring_t data[][2]
+        {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
@@ -64,7 +65,8 @@ Test_Environment::unit()
     xTEST_CASE("isExists")
     {
     #if   xENV_WIN
-        std::ctstring_t data[][2] = {
+        std::ctstring_t data[][2]
+        {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
             {xT("ENV_TEST_3"), xT("true")},
@@ -75,7 +77,8 @@ Test_Environment::unit()
             {xT("windir"),     xT("true") }
         };
     #elif xENV_UNIX
-        std::ctstring_t data[][2] = {
+        std::ctstring_t data[][2]
+        {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
             {xT("ENV_TEST_3"), xT("true")},
@@ -94,14 +97,16 @@ Test_Environment::unit()
     xTEST_CASE("value")
     {
     #if   xENV_WIN
-        std::ctstring_t data[][2] = {
+        std::ctstring_t data[][2]
+        {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
             {xT("ENV_TEST_4"), xT("value4")},
         };
     #elif xENV_UNIX
-        std::ctstring_t data[][2] = {
+        std::ctstring_t data[][2]
+        {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
@@ -127,12 +132,14 @@ Test_Environment::unit()
     xTEST_CASE("expandVars")
     {
     #if   xENV_WIN
-        std::ctstring_t data[][2] = {
+        std::ctstring_t data[][2]
+        {
             {xT(" System root: %SystemRoot%"),  xT(" System root: C:\\Windows")},
             {xT("Windows Dir: %windir% "),      xT("Windows Dir: C:\\Windows ")}
         };
     #elif xENV_UNIX
-        std::ctstring_t data[][2] = {
+        std::ctstring_t data[][2]
+        {
             {xT("111%ENV_TEST_1%"),    xT("111value1")},
             {xT("%ENV_TEST_2%111"),    xT("value2111")},
             {xT("ttt%ENV_TEST_3%"),    xT("tttvalue3")},
@@ -149,7 +156,8 @@ Test_Environment::unit()
 
     xTEST_CASE("remove")
     {
-        std::ctstring_t data[][2] = {
+        std::ctstring_t data[][2]
+        {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
