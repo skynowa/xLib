@@ -58,9 +58,9 @@ std::ctstring_t Environment::_separator =
 
 //-------------------------------------------------------------------------------------------------
 Environment::Environment(
-	std::ctstring_t &a_varName
+	std::ctstring_t &a_name
 ) :
-	_varName{a_varName}
+	_name{a_name}
 {
     xTEST(_isVarValid());
 }
@@ -68,13 +68,13 @@ Environment::Environment(
 std::tstring_t
 Environment::str() const /* final */
 {
-    return _varName + Const::equal() + var();
+    return _name + Const::equal() + var();
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
 Environment::isExists() const
 {
-    xCHECK_RET(_varName.empty(), false);
+    xCHECK_RET(_name.empty(), false);
 
     return _isExists_impl();
 }
@@ -183,14 +183,14 @@ Environment::varPath(
 {
     xTEST_PTR(out_dirPaths);
 
-	std::ctstring_t varName =
+	std::ctstring_t name =
 	#if   xENV_WIN
 		xT("Path");
 	#elif xENV_UNIX
 		xT("PATH");
 	#endif
 
-	Environment env(varName);
+	Environment env(name);
 
 	String::split(env.var(), _separator, out_dirPaths);
 	Algos::vectorUnique(*out_dirPaths);
@@ -207,8 +207,8 @@ Environment::varPath(
 bool_t
 Environment::_isVarValid() const
 {
-    xCHECK_RET(_varName.empty(),                                      false);
-    xCHECK_RET(_varName.find(Const::equal()) != std::tstring_t::npos, false);
+    xCHECK_RET(_name.empty(),                                      false);
+    xCHECK_RET(_name.find(Const::equal()) != std::tstring_t::npos, false);
 
     return true;
 }

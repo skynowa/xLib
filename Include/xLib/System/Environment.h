@@ -19,7 +19,7 @@ class Environment :
 public:
 ///\name ctors, dtor
 ///\{
-	explicit Environment(std::ctstring_t &varName);
+	explicit Environment(std::ctstring_t &name);
 	virtual ~Environment() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Environment)
@@ -57,7 +57,7 @@ private:
 	static std::ctstring_t _separator;
 		///< var / value separator
 
-    std::ctstring_t _varName;
+    std::ctstring_t _name;
 
     bool_t _isVarValid() const;
         ///< is valid environment variable name

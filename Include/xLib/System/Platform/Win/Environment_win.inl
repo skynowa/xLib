@@ -19,7 +19,7 @@ Environment::_isExists_impl() const
     std::tstring_t sRv;
     sRv.resize(_envMax);
 
-    DWORD length = ::GetEnvironmentVariable(_varName.c_str(), &sRv.at(0),
+    DWORD length = ::GetEnvironmentVariable(_name.c_str(), &sRv.at(0),
         static_cast<DWORD>( sRv.size() ));
     xTEST_NA(length);
 
@@ -35,14 +35,14 @@ Environment::_var_impl() const
 
     sRv.resize(_envMax);
 
-    DWORD length = ::GetEnvironmentVariable(_varName.c_str(), &sRv.at(0),
+    DWORD length = ::GetEnvironmentVariable(_name.c_str(), &sRv.at(0),
         static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(length, 0UL);
 
     sRv.resize(length);
 
     if (sRv.size() < length) {
-        length = ::GetEnvironmentVariable(_varName.c_str(), &sRv.at(0),
+        length = ::GetEnvironmentVariable(_name.c_str(), &sRv.at(0),
             static_cast<DWORD>( sRv.size() ));
         xTEST_DIFF(length, 0UL);
     }
@@ -55,14 +55,14 @@ Environment::_setVar_impl(
     std::ctstring_t &a_value
 ) const
 {
-    BOOL blRv = ::SetEnvironmentVariable(_varName.c_str(), a_value.c_str());
+    BOOL blRv = ::SetEnvironmentVariable(_name.c_str(), a_value.c_str());
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Environment::_removeVar_impl() const
 {
-    BOOL blRv = ::SetEnvironmentVariable(_varName.c_str(), nullptr);
+    BOOL blRv = ::SetEnvironmentVariable(_name.c_str(), nullptr);
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
