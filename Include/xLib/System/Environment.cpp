@@ -65,6 +65,20 @@ Environment::Environment(
     xTEST(_isNameValid());
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+Environment
+Environment::path()
+{
+	std::ctstring_t name =
+	#if   xENV_WIN
+		xT("Path");
+	#elif xENV_UNIX
+		xT("PATH");
+	#endif
+
+	return Environment(name);
+}
+//-------------------------------------------------------------------------------------------------
 std::tstring_t
 Environment::str() const /* final */
 {
@@ -183,17 +197,9 @@ Environment::varPath(
 {
     xTEST_PTR(out_dirPaths);
 
-	std::ctstring_t name =
-	#if   xENV_WIN
-		xT("Path");
-	#elif xENV_UNIX
-		xT("PATH");
-	#endif
+    Environment env = Environment::path();
 
-	Environment env(name);
-
-	String::split(env.value(), _separator, out_dirPaths);
-	Algos::vectorUnique(*out_dirPaths);
+    String::split(env.value(), _separator, out_dirPaths);
 }
 //-------------------------------------------------------------------------------------------------
 

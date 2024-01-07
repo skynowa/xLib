@@ -24,6 +24,8 @@ public:
 
 	xNO_DEFAULT_CONSTRUCT(Environment)
 	xNO_COPY_ASSIGN(Environment)
+
+	static Environment path();
 ///\}
 
 ///\name Overrides
