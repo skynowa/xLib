@@ -206,16 +206,16 @@ Environments::expandVars(
         xCHECK_DO(stopSepPos == std::tstring_t::npos, break);
 
         // copy %var% to temp string
-        std::ctstring_t &rawEnvVar = String::cut(sRv, startSepPos, stopSepPos + sep.size());
-        xTEST(!rawEnvVar.empty());
+        std::ctstring_t &rawEnvName = String::cut(sRv, startSepPos, stopSepPos + sep.size());
+        xTEST(!rawEnvName.empty());
 
-        std::ctstring_t &envVar = String::trimChars(rawEnvVar, sep);
+        std::ctstring_t &envName = String::trimChars(rawEnvName, sep);
 
         // expand var to temp string
-        std::ctstring_t &expandedEnvVar = Environment(envVar).value();
+        std::ctstring_t &expandedEnvValue = Environment(envName).value();
 
         // replace envVar(%var%) by expandedEnvVar
-        sRv.replace(startSepPos, rawEnvVar.size(), expandedEnvVar);
+        sRv.replace(startSepPos, rawEnvVar.size(), expandedEnvValue);
     }
 
     return sRv;
