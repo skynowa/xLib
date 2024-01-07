@@ -187,15 +187,15 @@ std::csize_t
 Environment::_envMax()
 {
 	return
-		#if   xENV_WIN
-			#if   xCOMPILER_MS
-				{_MAX_ENV};
-			#else
-				{32767}; // custom define
-			#endif
-		#elif xENV_UNIX
+	#if   xENV_WIN
+		#if   xCOMPILER_MS
+			{_MAX_ENV};
+		#else
 			{32767}; // custom define
 		#endif
+	#elif xENV_UNIX
+		{32767}; // custom define
+	#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -203,11 +203,11 @@ std::ctstring_t
 Environment::_envsSeparator()
 {
 	return
-		#if   xENV_WIN
-			Const::semicolon();
-		#elif xENV_UNIX
-			Const::colon();
-		#endif
+	#if   xENV_WIN
+		Const::semicolon();
+	#elif xENV_UNIX
+		Const::colon();
+	#endif
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
