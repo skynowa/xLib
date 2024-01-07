@@ -58,51 +58,51 @@ std::ctstring_t Environment::_separator =
 
 //-------------------------------------------------------------------------------------------------
 Environment::Environment(
-	std::ctstring_t &a_varName
+	std::ctstring_t &a_name
 ) :
-	_varName{a_varName}
+	_name{a_name}
 {
-    xTEST(_isVarValid());
+    xTEST(_isNameValid());
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Environment::str() const /* final */
 {
-    return _varName + Const::equal() + var();
+    return _name + Const::equal() + value();
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
 Environment::isExists() const
 {
-    xCHECK_RET(_varName.empty(), false);
+    xCHECK_RET(_name.empty(), false);
 
     return _isExists_impl();
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Environment::var() const
+Environment::value() const
 {
     xCHECK_RET(!isExists(), std::tstring_t());
 
-    return _var_impl();
+    return _value_impl();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::setVar(
+Environment::setValue(
     std::ctstring_t &a_value
 ) const
 {
 	xTEST(_isValueValid(a_value));
 
-    _setVar_impl(a_value);
+    _setValue_impl(a_value);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::removeVar() const
+Environment::remove() const
 {
     xCHECK_DO(!isExists(), return);
 
-    _removeVar_impl();
+    _remove_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -121,7 +121,7 @@ Environment::setVars(
 {
 	for (const auto &[name, value] : a_vars) {
 		Environment env(name);
-		env.setVar(value);
+		env.setValue(value);
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -166,7 +166,7 @@ Environment::expandVars(
         std::ctstring_t &envVar = String::trimChars(rawEnvVar, sep);
 
         // expand var to temp string
-        std::ctstring_t &expandedEnvVar = Environment(envVar).var();
+        std::ctstring_t &expandedEnvVar = Environment(envVar).value();
 
         // replace envVar(%var%) by expandedEnvVar
         sRv.replace(startSepPos, rawEnvVar.size(), expandedEnvVar);
@@ -183,16 +183,16 @@ Environment::varPath(
 {
     xTEST_PTR(out_dirPaths);
 
-	std::ctstring_t varName =
+	std::ctstring_t name =
 	#if   xENV_WIN
 		xT("Path");
 	#elif xENV_UNIX
 		xT("PATH");
 	#endif
 
-	Environment env(varName);
+	Environment env(name);
 
-	String::split(env.var(), _separator, out_dirPaths);
+	String::split(env.value(), _separator, out_dirPaths);
 	Algos::vectorUnique(*out_dirPaths);
 }
 //-------------------------------------------------------------------------------------------------
@@ -205,10 +205,10 @@ Environment::varPath(
 
 //-------------------------------------------------------------------------------------------------
 bool_t
-Environment::_isVarValid() const
+Environment::_isNameValid() const
 {
-    xCHECK_RET(_varName.empty(),                                      false);
-    xCHECK_RET(_varName.find(Const::equal()) != std::tstring_t::npos, false);
+    xCHECK_RET(_name.empty(),                                      false);
+    xCHECK_RET(_name.find(Const::equal()) != std::tstring_t::npos, false);
 
     return true;
 }

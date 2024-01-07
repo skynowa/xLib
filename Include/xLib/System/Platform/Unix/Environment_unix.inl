@@ -18,7 +18,7 @@ namespace xl::system
 bool_t
 Environment::_isExists_impl() const
 {
-    const char *pcszRv = ::getenv(xT2A(_varName).c_str());
+    const char *pcszRv = ::getenv(xT2A(_name).c_str());
     xTEST_NA(pcszRv);
     xCHECK_RET(pcszRv == nullptr, false);
 
@@ -26,11 +26,11 @@ Environment::_isExists_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Environment::_var_impl() const
+Environment::_value_impl() const
 {
     std::tstring_t sRv;
 
-    const char *pcszRv = ::getenv(xT2A(_varName).c_str());
+    const char *pcszRv = ::getenv(xT2A(_name).c_str());
     xTEST_PTR(pcszRv);
 
     sRv.assign(xA2T(pcszRv));
@@ -39,26 +39,26 @@ Environment::_var_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::_setVar_impl(
+Environment::_setValue_impl(
     std::ctstring_t &a_value
 ) const
 {
     cint_t isReplaced {1};
 
-    int_t iRv = ::setenv(xT2A(_varName).c_str(), xT2A(a_value).c_str(), isReplaced);
+    int_t iRv = ::setenv(xT2A(_name).c_str(), xT2A(a_value).c_str(), isReplaced);
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::_removeVar_impl() const
+Environment::_remove_impl() const
 {
 #if   xENV_LINUX
-    int_t iRv = ::unsetenv(xT2A(_varName).c_str());
+    int_t iRv = ::unsetenv(xT2A(_name).c_str());
     xTEST_DIFF(iRv, - 1);
 #elif xENV_BSD
-    (void_t)::unsetenv(xT2A(_varName).c_str());
+    (void_t)::unsetenv(xT2A(_name).c_str());
 #elif xENV_APPLE
-    int_t iRv = ::unsetenv(xT2A(_varName).c_str());
+    int_t iRv = ::unsetenv(xT2A(_name).c_str());
     xTEST_DIFF(iRv, - 1);
 #endif
 }
