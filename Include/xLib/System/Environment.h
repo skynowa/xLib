@@ -66,7 +66,7 @@ private:
 
 xPLATFORM_IMPL:
     bool_t         _isExists_impl() const;
-    std::tstring_t _var_impl() const;
+    std::tstring_t _value_impl() const;
     void_t         _setVar_impl(std::ctstring_t &value) const;
     void_t         _removeVar_impl() const;
 

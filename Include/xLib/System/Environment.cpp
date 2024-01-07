@@ -84,7 +84,7 @@ Environment::var() const
 {
     xCHECK_RET(!isExists(), std::tstring_t());
 
-    return _var_impl();
+    return _value_impl();
 }
 //-------------------------------------------------------------------------------------------------
 void_t

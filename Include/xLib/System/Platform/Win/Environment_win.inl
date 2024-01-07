@@ -29,7 +29,7 @@ Environment::_isExists_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Environment::_var_impl() const
+Environment::_value_impl() const
 {
     std::tstring_t sRv;
 
