@@ -46,6 +46,8 @@ Test_Environment::unit()
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
             Environment env(data[i][0]);
             env.setValue(data[i][1]);
+
+            xTEST(env.isExists());
         }
     }
 
@@ -74,7 +76,7 @@ Test_Environment::unit()
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-        	Environment env(data[i][0]);
+            Environment env(data[i][0]);
 
             bool_t bStr1 = env.isExists();
             xTEST_EQ(String::castBool(data[i][1]), bStr1);
@@ -123,6 +125,8 @@ Test_Environment::unit()
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
             Environment env(data[i][0]);
             env.remove();
+
+            xTEST(!env.isExists());
         }
     }
 
