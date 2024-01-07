@@ -42,7 +42,7 @@ std::csize_t Environment::_envMax
 		{32767}; // custom define
 	#endif
 
-std::ctstring_t Environment::_envSeparator =
+std::ctstring_t Environment::_envsSeparator =
 	#if   xENV_WIN
 		Const::semicolon();
 	#elif xENV_UNIX
@@ -107,7 +107,7 @@ Environment::values() const
     xCHECK_RET(!isExists(), std::vec_tstring_t{});
 
     std::vec_tstring_t items;
-    String::split(value(), Const::semicolon(), &items);
+    String::split(value(), _envsSeparator, &items);
 
     return std::move(items);
 }
