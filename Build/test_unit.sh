@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-UNIT_TESTS=(Environment)
+UNIT_TESTS=(Path Environment)
 
 # BG='\e[46m'   # green
 # FG='\e[37m'   # white
