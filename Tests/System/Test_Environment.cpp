@@ -49,19 +49,6 @@ Test_Environment::unit()
         }
     }
 
-    xTEST_CASE("setVars")
-    {
-        const std::set<std::pair_tstring_t> vars
-        {
-            {xT("ENV_TEST_1"), xT("value1")},
-            {xT("ENV_TEST_2"), xT("value2")},
-            {xT("ENV_TEST_3"), xT("value3")},
-            {xT("ENV_TEST_4"), xT("value4")}
-        };
-
-        Environment::setVars(vars);
-    }
-
     xTEST_CASE("isExists")
     {
     #if   xENV_WIN
@@ -123,13 +110,44 @@ Test_Environment::unit()
         }
     }
 
-    xTEST_CASE("vars")
+    xTEST_CASE("remove")
     {
-        Environment::vars(&m_vsRv);
+        std::ctstring_t data[][2]
+        {
+            {xT("ENV_TEST_1"), xT("value1")},
+            {xT("ENV_TEST_2"), xT("value2")},
+            {xT("ENV_TEST_3"), xT("value3")},
+            {xT("ENV_TEST_4"), xT("value4")}
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            Environment env(data[i][0]);
+            env.remove();
+        }
+    }
+
+    xTEST_CASE("Environments::setVars")
+    {
+        const std::set<std::pair_tstring_t> vars
+        {
+            {xT("ENV_TEST_1"), xT("value1")},
+            {xT("ENV_TEST_2"), xT("value2")},
+            {xT("ENV_TEST_3"), xT("value3")},
+            {xT("ENV_TEST_4"), xT("value4")}
+        };
+
+        Environments env;
+        env.setVars(vars);
+    }
+
+    xTEST_CASE("Environments::vars")
+    {
+        Environments env;
+        m_vsRv = env.vars();
         xTEST(!m_vsRv.empty());
     }
 
-    xTEST_CASE("expandVars")
+    xTEST_CASE("Environments::expandVars")
     {
     #if   xENV_WIN
         std::ctstring_t data[][2]
@@ -148,29 +166,11 @@ Test_Environment::unit()
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str1 = Environment::expandVars(data[i][0]);
+            std::tstring_t str1 = Environments::expandVars(data[i][0]);
             std::tstring_t str2 = data[i][1];
             xTEST(StringCI::compare(str1, str2));
         }
     }
-
-    xTEST_CASE("remove")
-    {
-        std::ctstring_t data[][2]
-        {
-            {xT("ENV_TEST_1"), xT("value1")},
-            {xT("ENV_TEST_2"), xT("value2")},
-            {xT("ENV_TEST_3"), xT("value3")},
-            {xT("ENV_TEST_4"), xT("value4")}
-        };
-
-        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Environment env(data[i][0]);
-            env.remove();
-        }
-    }
-
-    /// TEST: Environments
 
     return true;
 }
