@@ -66,7 +66,7 @@ Environment::_remove_impl() const
 /* static */
 void_t
 Environment::_vars_impl(
-    std::vec_tstring_t *a_values
+    std::vec_tstring_t *out_items
 )
 {
     xTEST_PTR(::environ);
@@ -77,8 +77,8 @@ Environment::_vars_impl(
         args.push_back( xA2T(::environ[i]) );
     }
 
-    // out
-    a_values->swap(args);
+    // [out]
+    out_items->swap(args);
 }
 //-------------------------------------------------------------------------------------------------
 

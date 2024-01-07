@@ -127,14 +127,14 @@ Environment::setVars(
 /* static */
 void_t
 Environment::vars(
-    std::vec_tstring_t *a_values
+    std::vec_tstring_t *out_items
 )
 {
-    xTEST_PTR(a_values);
+    xTEST_PTR(out_items);
 
-    xCHECK_DO(a_values != nullptr, a_values->clear());
+    xCHECK_DO(out_items != nullptr, out_items->clear());
 
-    _vars_impl(a_values);
+    _vars_impl(out_items);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
