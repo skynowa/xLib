@@ -56,7 +56,7 @@ private:
     static std::csize_t    _envMax;
         ///< maximum permissible string length of an environmental variable
 	static std::ctstring_t _envSeparator;
-		///< var / value separator
+		///< vars separator
 
     std::ctstring_t _name;
 
