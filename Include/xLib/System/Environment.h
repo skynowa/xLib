@@ -38,7 +38,7 @@ public:
         ///< get value
     void_t         setVar(std::ctstring_t &value) const;
         ///< set or change value
-    void_t         removeVar() const;
+    void_t         remove() const;
         ///< delete var
 
 xPUBLIC_STATIC:

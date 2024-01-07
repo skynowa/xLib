@@ -98,7 +98,7 @@ Environment::setVar(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::removeVar() const
+Environment::remove() const
 {
     xCHECK_DO(!isExists(), return);
 
