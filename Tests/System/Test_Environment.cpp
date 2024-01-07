@@ -112,7 +112,7 @@ Test_Environment::unit()
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             Environment env(sData[i][0]);
 
-            std::tstring_t sStr1 = env.var();
+            std::tstring_t sStr1 = env.value();
             std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }

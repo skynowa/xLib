@@ -51,7 +51,7 @@ Environment::_value_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::_setVar_impl(
+Environment::_setValue_impl(
     std::ctstring_t &a_value
 ) const
 {
@@ -60,7 +60,7 @@ Environment::_setVar_impl(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::_removeVar_impl() const
+Environment::_remove_impl() const
 {
     BOOL blRv = ::SetEnvironmentVariable(_name.c_str(), nullptr);
     xTEST_DIFF(blRv, FALSE);

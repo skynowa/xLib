@@ -68,7 +68,7 @@ Environment::Environment(
 std::tstring_t
 Environment::str() const /* final */
 {
-    return _name + Const::equal() + var();
+    return _name + Const::equal() + value();
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -80,7 +80,7 @@ Environment::isExists() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Environment::var() const
+Environment::value() const
 {
     xCHECK_RET(!isExists(), std::tstring_t());
 
@@ -94,7 +94,7 @@ Environment::setVar(
 {
 	xTEST(_isValueValid(a_value));
 
-    _setVar_impl(a_value);
+    _setValue_impl(a_value);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -102,7 +102,7 @@ Environment::removeVar() const
 {
     xCHECK_DO(!isExists(), return);
 
-    _removeVar_impl();
+    _remove_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -166,7 +166,7 @@ Environment::expandVars(
         std::ctstring_t &envVar = String::trimChars(rawEnvVar, sep);
 
         // expand var to temp string
-        std::ctstring_t &expandedEnvVar = Environment(envVar).var();
+        std::ctstring_t &expandedEnvVar = Environment(envVar).value();
 
         // replace envVar(%var%) by expandedEnvVar
         sRv.replace(startSepPos, rawEnvVar.size(), expandedEnvVar);
@@ -192,7 +192,7 @@ Environment::varPath(
 
 	Environment env(name);
 
-	String::split(env.var(), _separator, out_dirPaths);
+	String::split(env.value(), _separator, out_dirPaths);
 	Algos::vectorUnique(*out_dirPaths);
 }
 //-------------------------------------------------------------------------------------------------
