@@ -221,10 +221,10 @@ Environment::_isNameValid() const
 //-------------------------------------------------------------------------------------------------
 bool_t
 Environment::_isValueValid(
-    std::ctstring_t &a_varValue
+    std::ctstring_t &a_value
 ) const
 {
-    xCHECK_RET(a_varValue.size() >= _envMax(), false);
+    xCHECK_RET(a_value.size() >= _envMax(), false);
 
     return true;
 }

@@ -64,7 +64,7 @@ private:
 
     bool_t _isNameValid() const;
         ///< is valid environment variable name
-    bool_t _isValueValid(std::ctstring_t &varValue) const;
+    bool_t _isValueValid(std::ctstring_t &value) const;
         ///< is valid environment variable value
 
 xPLATFORM_IMPL:
