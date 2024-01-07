@@ -63,11 +63,8 @@ Environment::_remove_impl() const
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-Environment::_vars_impl(
-    std::vec_tstring_t *out_items
-)
+std::vec_tstring_t
+Environments::_vars_impl() const
 {
     const auto env = ::environ;
 
@@ -79,8 +76,7 @@ Environment::_vars_impl(
         args.push_back( xA2T(env[i]) );
     }
 
-    // [out]
-    out_items->swap(args);
+    return std::move(args);
 }
 //-------------------------------------------------------------------------------------------------
 

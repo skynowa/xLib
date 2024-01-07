@@ -46,14 +46,6 @@ public:
     void_t             remove() const;
         ///< delete var
 
-xPUBLIC_STATIC:
-    static void_t         setVars(const std::set<std::pair_tstring_t> &vars);
-        ///< set or change values
-    static void_t         vars(std::vec_tstring_t *items);
-        ///< get all values
-    static std::tstring_t expandVars(std::ctstring_t &strWithVars);
-        ///< expands strings by separator "%"
-
 private:
     static std::csize_t    _envMax();
         ///< maximum permissible string length of an environmental variable
@@ -72,9 +64,33 @@ xPLATFORM_IMPL:
     std::tstring_t _value_impl() const;
     void_t         _setValue_impl(std::ctstring_t &value) const;
     void_t         _remove_impl() const;
-
-    static void_t _vars_impl(std::vec_tstring_t *items);
 };
+//-------------------------------------------------------------------------------------------------
+class Environments
+	/// system environment variables
+{
+public:
+///\name ctors, dtor
+///\{
+			 Environments() = default;
+	virtual ~Environments() = default;
+
+	xNO_COPY_ASSIGN(Environments)
+///\}
+
+    void_t             setVars(const std::set<std::pair_tstring_t> &vars) const;
+        ///< set or change values
+    std::vec_tstring_t vars() const;
+        ///< get all values
+
+xPUBLIC_STATIC:
+    static std::tstring_t expandVars(std::ctstring_t &strWithVars);
+        ///< expands strings by separator "%"
+
+private:
+    std::vec_tstring_t _vars_impl() const;
+};
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
