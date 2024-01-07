@@ -35,15 +35,15 @@ public:
 		///< variable with value (DESKTOP_SESSION=xfce)
 ///\}
 
-    bool_t         isExists() const;
+    bool_t             isExists() const;
         ///< check for existence
-    std::tstring_t value() const;
+    std::tstring_t     value() const;
         ///< get value
     std::vec_tstring_t values() const;
-        ///< get values as std::vector
-    void_t         setValue(std::ctstring_t &value) const;
+        ///< convert value to container
+    void_t             setValue(std::ctstring_t &value) const;
         ///< set or change value
-    void_t         remove() const;
+    void_t             remove() const;
         ///< delete var
 
 xPUBLIC_STATIC:
