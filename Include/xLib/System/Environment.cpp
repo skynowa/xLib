@@ -26,32 +26,6 @@ namespace xl::system
 {
 
 /**************************************************************************************************
-*    public / constants
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-std::csize_t Environment::_envMax
-	#if   xENV_WIN
-		#if   xCOMPILER_MS
-			{_MAX_ENV};
-		#else
-			{32767}; // custom define
-		#endif
-	#elif xENV_UNIX
-		{32767}; // custom define
-	#endif
-
-std::ctstring_t Environment::_envsSeparator =
-	#if   xENV_WIN
-		Const::semicolon();
-	#elif xENV_UNIX
-		Const::colon();
-	#endif
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
 *    public
 *
 **************************************************************************************************/
@@ -107,7 +81,7 @@ Environment::values() const
     xCHECK_RET(!isExists(), std::vec_tstring_t{});
 
     std::vec_tstring_t items;
-    String::split(value(), _envsSeparator, &items);
+    String::split(value(), _envsSeparator(), &items);
 
     return std::move(items);
 }
@@ -208,6 +182,34 @@ Environment::expandVars(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+/* static */
+std::csize_t
+Environment::_envMax()
+{
+	return
+		#if   xENV_WIN
+			#if   xCOMPILER_MS
+				{_MAX_ENV};
+			#else
+				{32767}; // custom define
+			#endif
+		#elif xENV_UNIX
+			{32767}; // custom define
+		#endif
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::ctstring_t
+Environment::_envsSeparator()
+{
+	return
+		#if   xENV_WIN
+			Const::semicolon();
+		#elif xENV_UNIX
+			Const::colon();
+		#endif
+}
+//-------------------------------------------------------------------------------------------------
 bool_t
 Environment::_isNameValid() const
 {
@@ -222,7 +224,7 @@ Environment::_isValueValid(
     std::ctstring_t &a_varValue
 ) const
 {
-    xCHECK_RET(a_varValue.size() >= _envMax, false);
+    xCHECK_RET(a_varValue.size() >= _envMax(), false);
 
     return true;
 }

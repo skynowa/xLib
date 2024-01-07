@@ -55,9 +55,9 @@ xPUBLIC_STATIC:
         ///< expands strings by separator "%"
 
 private:
-    static std::csize_t    _envMax;
+    static std::csize_t    _envMax();
         ///< maximum permissible string length of an environmental variable
-	static std::ctstring_t _envsSeparator;
+	static std::ctstring_t _envsSeparator();
 		///< vars separator
 
     std::ctstring_t _name;
