@@ -35,16 +35,16 @@ Test_Environment::unit()
 
     xTEST_CASE("setVar")
     {
-        std::ctstring_t sData[][2] = {
+        std::ctstring_t data[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
             {xT("ENV_TEST_4"), xT("value4")}
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            Environment env(sData[i][0]);
-            env.setVar(sData[i][1]);
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            Environment env(data[i][0]);
+            env.setVar(data[i][1]);
         }
     }
 
@@ -64,7 +64,7 @@ Test_Environment::unit()
     xTEST_CASE("isExists")
     {
     #if   xENV_WIN
-        std::ctstring_t sData[][2] = {
+        std::ctstring_t data[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
             {xT("ENV_TEST_3"), xT("true")},
@@ -75,7 +75,7 @@ Test_Environment::unit()
             {xT("windir"),     xT("true") }
         };
     #elif xENV_UNIX
-        std::ctstring_t sData[][2] = {
+        std::ctstring_t data[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
             {xT("ENV_TEST_3"), xT("true")},
@@ -83,25 +83,25 @@ Test_Environment::unit()
         };
     #endif
 
-        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-        	Environment env(sData[i][0]);
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+        	Environment env(data[i][0]);
 
             bool_t bStr1 = env.isExists();
-            xTEST_EQ(String::castBool(sData[i][1]), bStr1);
+            xTEST_EQ(String::castBool(data[i][1]), bStr1);
         }
     }
 
     xTEST_CASE("value")
     {
     #if   xENV_WIN
-        std::ctstring_t sData[][2] = {
+        std::ctstring_t data[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
             {xT("ENV_TEST_4"), xT("value4")},
         };
     #elif xENV_UNIX
-        std::ctstring_t sData[][2] = {
+        std::ctstring_t data[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
@@ -109,12 +109,12 @@ Test_Environment::unit()
         };
     #endif
 
-        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            Environment env(sData[i][0]);
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            Environment env(data[i][0]);
 
-            std::tstring_t sStr1 = env.value();
-            std::tstring_t sStr2 = sData[i][1];
-            xTEST_EQ(sStr1, sStr2);
+            std::tstring_t str1 = env.value();
+            std::tstring_t str2 = data[i][1];
+            xTEST_EQ(str1, str2);
         }
     }
 
@@ -127,12 +127,12 @@ Test_Environment::unit()
     xTEST_CASE("expandVars")
     {
     #if   xENV_WIN
-        std::ctstring_t sData[][2] = {
+        std::ctstring_t data[][2] = {
             {xT(" System root: %SystemRoot%"),  xT(" System root: C:\\Windows")},
             {xT("Windows Dir: %windir% "),      xT("Windows Dir: C:\\Windows ")}
         };
     #elif xENV_UNIX
-        std::ctstring_t sData[][2] = {
+        std::ctstring_t data[][2] = {
             {xT("111%ENV_TEST_1%"),    xT("111value1")},
             {xT("%ENV_TEST_2%111"),    xT("value2111")},
             {xT("ttt%ENV_TEST_3%"),    xT("tttvalue3")},
@@ -140,24 +140,24 @@ Test_Environment::unit()
         };
     #endif
 
-        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring_t sStr1 = Environment::expandVars(sData[i][0]);
-            std::tstring_t sStr2 = sData[i][1];
-            xTEST(StringCI::compare(sStr1, sStr2));
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            std::tstring_t str1 = Environment::expandVars(data[i][0]);
+            std::tstring_t str2 = data[i][1];
+            xTEST(StringCI::compare(str1, str2));
         }
     }
 
     xTEST_CASE("remove")
     {
-        std::ctstring_t sData[][2] = {
+        std::ctstring_t data[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
             {xT("ENV_TEST_4"), xT("value4")}
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            Environment env(sData[i][0]);
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            Environment env(data[i][0]);
             env.remove();
         }
     }
