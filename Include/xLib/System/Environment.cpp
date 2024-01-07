@@ -215,7 +215,7 @@ Environments::expandVars(
         std::ctstring_t &expandedEnvValue = Environment(envName).value();
 
         // replace envVar(%var%) by expandedEnvVar
-        sRv.replace(startSepPos, rawEnvVar.size(), expandedEnvValue);
+        sRv.replace(startSepPos, rawEnvName.size(), expandedEnvValue);
     }
 
     return sRv;
