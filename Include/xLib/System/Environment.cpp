@@ -187,10 +187,11 @@ Environments::vars() const
     return std::move(items);
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
 std::tstring_t
 Environments::expandVars(
     std::ctstring_t &a_strWithVars
-) const
+)
 {
 	// Win: Same as ::ExpandEnvironmentStrings()
 

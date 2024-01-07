@@ -77,7 +77,9 @@ public:
         ///< set or change values
     std::vec_tstring_t vars() const;
         ///< get all values
-    std::tstring_t     expandVars(std::ctstring_t &strWithVars) const;
+
+xPUBLIC_STATIC:
+    static std::tstring_t expandVars(std::ctstring_t &strWithVars);
         ///< expands strings by separator "%"
 
 private:
