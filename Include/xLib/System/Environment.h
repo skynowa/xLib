@@ -24,6 +24,9 @@ public:
 
 	xNO_DEFAULT_CONSTRUCT(Environment)
 	xNO_COPY_ASSIGN(Environment)
+
+	static Environment path();
+        ///< get PATH values (/usr/bin ... pathes) with separator
 ///\}
 
 ///\name Overrides
@@ -32,13 +35,15 @@ public:
 		///< variable with value (DESKTOP_SESSION=xfce)
 ///\}
 
-    bool_t         isExists() const;
+    bool_t             isExists() const;
         ///< check for existence
-    std::tstring_t value() const;
+    std::tstring_t     value() const;
         ///< get value
-    void_t         setValue(std::ctstring_t &value) const;
+    std::vec_tstring_t values() const;
+        ///< convert value to container
+    void_t             setValue(std::ctstring_t &value) const;
         ///< set or change value
-    void_t         remove() const;
+    void_t             remove() const;
         ///< delete var
 
 xPUBLIC_STATIC:
@@ -48,14 +53,12 @@ xPUBLIC_STATIC:
         ///< get all values
     static std::tstring_t expandVars(std::ctstring_t &strWithVars);
         ///< expands strings by separator "%"
-    static void_t         varPath(std::vec_tstring_t *dirPaths);
-        ///< get PATH value (/usr/bin ... pathes)
 
 private:
-    static std::csize_t    _envMax;
+    static std::csize_t    _envMax();
         ///< maximum permissible string length of an environmental variable
-	static std::ctstring_t _separator;
-		///< var / value separator
+	static std::ctstring_t _envsSeparator();
+		///< vars separator
 
     std::ctstring_t _name;
 
