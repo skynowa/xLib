@@ -107,77 +107,7 @@ Environment::remove() const
 
 
 /**************************************************************************************************
-*   public / tools
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-Environment::setVars(
-    const std::set<std::pair_tstring_t> &a_vars ///< vars ({"HOME=/usr/home","LOGNAME=home"})
-)
-{
-	for (const auto &[it_name, it_value] : a_vars) {
-		Environment env(it_name);
-		env.setValue(it_value);
-	}
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-void_t
-Environment::vars(
-    std::vec_tstring_t *out_items
-)
-{
-    xTEST_PTR(out_items);
-
-    xCHECK_DO(out_items != nullptr, out_items->clear());
-
-    _vars_impl(out_items);
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-Environment::expandVars(
-    std::ctstring_t &a_strWithVars
-)
-{
-	// Win: Same as ::ExpandEnvironmentStrings()
-
-    std::tstring_t sRv = a_strWithVars;
-
-	// TODO: [unix] "$" as separator: $VAR, ${VAR}
-    std::ctstring_t sep = xT("%");
-
-    for ( ; ; ) {
-        // find from left two first chars '%'
-        std::csize_t startSepPos = sRv.find(sep);
-        xCHECK_DO(startSepPos == std::tstring_t::npos, break);
-
-        std::csize_t stopSepPos = sRv.find(sep, startSepPos + sep.size());
-        xCHECK_DO(stopSepPos == std::tstring_t::npos, break);
-
-        // copy %var% to temp string
-        std::ctstring_t &rawEnvVar = String::cut(sRv, startSepPos, stopSepPos + sep.size());
-        xTEST(!rawEnvVar.empty());
-
-        std::ctstring_t &envVar = String::trimChars(rawEnvVar, sep);
-
-        // expand var to temp string
-        std::ctstring_t &expandedEnvVar = Environment(envVar).value();
-
-        // replace envVar(%var%) by expandedEnvVar
-        sRv.replace(startSepPos, rawEnvVar.size(), expandedEnvVar);
-    }
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*   protected
+*   private
 *
 **************************************************************************************************/
 
@@ -227,6 +157,70 @@ Environment::_isValueValid(
     xCHECK_RET(a_value.size() >= _envMax(), false);
 
     return true;
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   Environments
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+void_t
+Environments::setVars(
+    const std::set<std::pair_tstring_t> &a_vars ///< vars ({"HOME=/usr/home","LOGNAME=home"})
+) const
+{
+	for (const auto &[it_name, it_value] : a_vars) {
+		Environment env(it_name);
+		env.setValue(it_value);
+	}
+}
+//-------------------------------------------------------------------------------------------------
+std::vec_tstring_t
+Environments::vars() const
+{
+    std::vec_tstring_t items;
+    _vars_impl(&items);
+
+    return std::move(items);
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Environments::expandVars(
+    std::ctstring_t &a_strWithVars
+) const
+{
+	// Win: Same as ::ExpandEnvironmentStrings()
+
+    std::tstring_t sRv = a_strWithVars;
+
+	// TODO: [unix] "$" as separator: $VAR, ${VAR}
+    std::ctstring_t sep = xT("%");
+
+    for ( ; ; ) {
+        // find from left two first chars '%'
+        std::csize_t startSepPos = sRv.find(sep);
+        xCHECK_DO(startSepPos == std::tstring_t::npos, break);
+
+        std::csize_t stopSepPos = sRv.find(sep, startSepPos + sep.size());
+        xCHECK_DO(stopSepPos == std::tstring_t::npos, break);
+
+        // copy %var% to temp string
+        std::ctstring_t &rawEnvVar = String::cut(sRv, startSepPos, stopSepPos + sep.size());
+        xTEST(!rawEnvVar.empty());
+
+        std::ctstring_t &envVar = String::trimChars(rawEnvVar, sep);
+
+        // expand var to temp string
+        std::ctstring_t &expandedEnvVar = Environment(envVar).value();
+
+        // replace envVar(%var%) by expandedEnvVar
+        sRv.replace(startSepPos, rawEnvVar.size(), expandedEnvVar);
+    }
+
+    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 

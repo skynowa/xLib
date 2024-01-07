@@ -63,11 +63,10 @@ Environment::_remove_impl() const
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
-Environment::_vars_impl(
+Environments::_vars_impl(
     std::vec_tstring_t *out_items
-)
+) const
 {
     const auto env = ::environ;
 

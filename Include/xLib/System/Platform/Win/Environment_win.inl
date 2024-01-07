@@ -66,11 +66,10 @@ Environment::_remove_impl() const
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
-Environment::_vars_impl(
+Environments::_vars_impl(
     std::vec_tstring_t *out_items
-)
+) const
 {
     std::vec_tstring_t args;
 
