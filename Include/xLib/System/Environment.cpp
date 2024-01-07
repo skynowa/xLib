@@ -120,7 +120,7 @@ Environment::setVars(
 {
 	for (const auto &[it_name, it_value] : a_vars) {
 		Environment env(it_name);
-		env.setValue(value);
+		env.setValue(it_value);
 	}
 }
 //-------------------------------------------------------------------------------------------------
