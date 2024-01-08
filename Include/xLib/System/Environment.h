@@ -83,7 +83,7 @@ public:
     std::vec_tstring_t vars() const;
         ///< get all values
     std::tstring_t     findFirstOf(std::cvec_tstring_t &names) const;
-        ///< get values by names
+        ///< get first value by names
 
 xPUBLIC_STATIC:
     static std::tstring_t expandVars(std::ctstring_t &strWithVars);
