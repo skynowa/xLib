@@ -86,7 +86,7 @@ User::_loginName_impl() const
 		Environments envs;
 
 		std::cvec_tstring_t envVars{xT("USERNAME")};
-		sRv = envs.valueFirstOf(envVars);
+		sRv = envs.findFirstOf(envVars);
 
 		return sRv;
 	#endif

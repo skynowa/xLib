@@ -185,7 +185,7 @@ Environments::vars() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Environments::valueFirstOf(
+Environments::findFirstOf(
 	std::cvec_tstring_t &a_names ///< var names
 ) const
 {

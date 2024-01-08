@@ -176,7 +176,7 @@ Test_Environment::unit()
         }
     }
 
-    xTEST_CASE("Environments::valueFirstOf")
+    xTEST_CASE("Environments::findFirstOf")
     {
         std::ctstring_t envName = xT("XLIB_ENV_2");
 
@@ -194,7 +194,7 @@ Test_Environment::unit()
 			std::cvec_tstring_t findEnvs = {xT("XLIB_ENV_1"), it_test, xT("XLIB_ENV_3")};
 
 			Environments envs;
-			m_sRv = envs.valueFirstOf(findEnvs);
+			m_sRv = envs.findFirstOf(findEnvs);
 			xTEST_EQ(m_sRv, it_expect);
 		}
     }

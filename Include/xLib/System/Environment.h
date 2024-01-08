@@ -82,7 +82,7 @@ public:
         ///< set or change values
     std::vec_tstring_t vars() const;
         ///< get all values
-    std::tstring_t     valueFirstOf(std::cvec_tstring_t &names) const;
+    std::tstring_t     findFirstOf(std::cvec_tstring_t &names) const;
         ///< get values by names
 
 xPUBLIC_STATIC:
