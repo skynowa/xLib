@@ -13,7 +13,6 @@
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/Dll.h>
-#include <xLib/System/Environment.h>
 
 #if   xENV_WIN
     #include "Platform/Win/ProcessInfo_win.inl"

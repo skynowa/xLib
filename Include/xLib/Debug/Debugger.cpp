@@ -15,7 +15,6 @@
 #include <xLib/Debug/Exception.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/System/Environment.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Debugger_win.inl"
