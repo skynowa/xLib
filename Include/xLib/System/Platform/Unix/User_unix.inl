@@ -97,25 +97,10 @@ User::_loginName_impl() const
 
     // try system environment
 	{
-	#if 0
-		constexpr std::array envVars{xT("LOGNAME"), xT("USER")};
-
-		for (const auto &it_envVar : envVars) {
-			Environment env(it_envVar);
-
-			bool_t bRv = env.isExists();
-			xCHECK_DO(!bRv, continue);
-
-			sRv = env.value();
-
-			return sRv;
-		}
-	#else
 		Environments envs;
 		sRv = envs.findFirstOf( {xT("LOGNAME"), xT("USER")} );
 
 		return sRv;
-	#endif
 	}
 
     return {};
