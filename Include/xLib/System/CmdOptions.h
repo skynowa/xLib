@@ -49,9 +49,9 @@ public:
 	xNO_COPY_ASSIGN(CmdOptions)
 ///\}
 
-    void_t   parse(cint_t argsNum, cptr_ctchar_t argv[], const std::vector<CmdOptionsUsage> &usage);
+    void_t parse(cint_t argsNum, cptr_ctchar_t argv[], const std::vector<CmdOptionsUsage> &usage);
         ///< parse cmd options (to std::map)
-    void_t   parse(std::cvec_tstring_t &args, const std::vector<CmdOptionsUsage> &usage);
+    void_t parse(std::cvec_tstring_t &args, const std::vector<CmdOptionsUsage> &usage);
         ///< parse cmd options (to std::map)
 
 private:
@@ -79,11 +79,6 @@ private:
  *     -p,--plain  (REQUIRED) This is a plain flag
  *
  * - delimiter (=)
- *
- *
- *
- *
- *
  *
  * FAQ:
  * - https://github.com/CppMicroServices/CppMicroServices/blob/development/third_party/optionparser.h
