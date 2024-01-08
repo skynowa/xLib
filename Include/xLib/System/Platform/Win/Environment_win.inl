@@ -17,7 +17,7 @@ bool_t
 Environment::_isExists_impl() const
 {
     std::tstring_t sRv;
-    sRv.resize(_envMax);
+    sRv.resize(_envMax());
 
     DWORD length = ::GetEnvironmentVariable(_name.c_str(), &sRv.at(0),
         static_cast<DWORD>( sRv.size() ));
@@ -33,7 +33,7 @@ Environment::_value_impl() const
 {
     std::tstring_t sRv;
 
-    sRv.resize(_envMax);
+    sRv.resize(_envMax());
 
     DWORD length = ::GetEnvironmentVariable(_name.c_str(), &sRv.at(0),
         static_cast<DWORD>( sRv.size() ));
