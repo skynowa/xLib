@@ -140,14 +140,14 @@ Test_Environment::unit()
             {xT("ENV_TEST_4"), xT("value4")}
         };
 
-        Environments env;
-        env.setVars(vars);
+        Environments envs;
+        envs.setVars(vars);
     }
 
     xTEST_CASE("Environments::vars")
     {
-        Environments env;
-        m_vsRv = env.vars();
+        Environments envs;
+        m_vsRv = envs.vars();
         xTEST(!m_vsRv.empty());
     }
 
@@ -174,6 +174,29 @@ Test_Environment::unit()
             std::tstring_t str2 = data[i][1];
             xTEST(StringCI::compare(str1, str2));
         }
+    }
+
+    xTEST_CASE("Environments::valueFirstOf")
+    {
+        std::ctstring_t envName = xT("XLIB_ENV_2");
+
+        Environment env(envName);
+        env.setValue("2");
+
+        const data2_tstring_t datas[]
+        {
+            {xT("__XLIB_ENV_1"), {}},
+            {envName,            xT("2")},
+            {xT("__XLIB_ENV_3"), {}}
+        };
+
+		for (const auto &[it_test, it_expect] : datas) {
+			std::cvec_tstring_t findEnvs = {xT("XLIB_ENV_1"), it_test, xT("XLIB_ENV_3")};
+
+			Environments envs;
+			m_sRv = envs.valueFirstOf(findEnvs);
+			xTEST_EQ(m_sRv, it_expect);
+		}
     }
 
     return true;

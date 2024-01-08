@@ -69,6 +69,7 @@ User::_loginName_impl() const
 
     // try system environment
 	{
+	#if 0
 		const std::array envVars{xT("USERNAME")};
 
 		for (const auto &it_envVar : envVars) {
@@ -81,6 +82,14 @@ User::_loginName_impl() const
 
 			return sRv;
 		}
+	#else
+		Environments envs;
+
+		std::cvec_tstring_t envVars{xT("USERNAME")};
+		sRv = envs.valueFirstOf(envVars);
+
+		return sRv;
+	#endif
 	}
 
     return {};
