@@ -39,11 +39,10 @@ public:
     void_t         commandLine(std::vec_tstring_t *args) const;
         ///< get arguments
 
-    static
-    long_t         commandLineArgsMax();
+xPUBLIC_STATIC:
+    static long_t commandLineArgsMax();
         ///< get maximum length of command line arguments (in chars)
-    static
-    void_t         commandLine(cint_t &argsNum, cptr_ctchar_t argv[], std::vec_tstring_t *args);
+    static void_t commandLine(cint_t &argsNum, cptr_ctchar_t argv[], std::vec_tstring_t *args);
         ///< get arguments
 
 private:
@@ -57,8 +56,7 @@ xPLATFORM_IMPL:
     ulong_t        _parentId_impl() const;
     void_t         _commandLine_impl(std::vec_tstring_t *args) const;
 
-    static
-    long_t _commandLineArgsMax_impl();
+    static long_t _commandLineArgsMax_impl();
 };
 
 } // namespace
