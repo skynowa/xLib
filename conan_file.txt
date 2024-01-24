@@ -15,7 +15,6 @@ libxml2/[>1.0.0]
 libmysqlclient/[>8.0.0]
 
 [generators]
-# CMakeToolchain
 CMakeDeps
 
 [options]
