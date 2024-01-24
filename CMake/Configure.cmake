@@ -24,14 +24,20 @@ find_package(CURL        QUIET REQUIRED)
 find_package(LibXml2     QUIET REQUIRED)
 
 # Custom (CMakeLib)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /home/skynowa/Projects/CMakeLib)
-
 find_package(CMakeLib    QUIET REQUIRED) # at 1-st
 find_package(OS          QUIET REQUIRED)
 find_package(GitRevision QUIET REQUIRED)
-find_package(MySQL       QUIET REQUIRED)
-find_package(Ssh2        QUIET REQUIRED)
+
+#- find_package(MySQL       QUIET REQUIRED)
+## find_package(libmysqlclient)
+include(zstd-config)
+include(libmysqlclient-config)
+
+#- find_package(Ssh2        QUIET REQUIRED)
+find_package(Libssh2)
+
 find_package(Iconv       QUIET REQUIRED)
+find_package(ZLIB)
 
 if (ENV_UNIX)
     # Custom (CMakeLib)
