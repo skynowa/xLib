@@ -67,14 +67,6 @@ User::_loginName_impl() const
         }
     }
 
-    // try system environment
-	{
-		Environments envs;
-		sRv = envs.findFirstOf( {xT("USERNAME")} );
-
-		return sRv;
-	}
-
     return {};
 }
 //-------------------------------------------------------------------------------------------------
