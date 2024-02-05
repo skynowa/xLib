@@ -13,10 +13,6 @@
 #include <sys/sysinfo.h>
 #include <mntent.h>
 
-#if cmHAVE_GETCPU
-    #include <linux/getcpu.h>
-#endif
-
 // POSIX
 #include <cpio.h>
 #include <tar.h>
