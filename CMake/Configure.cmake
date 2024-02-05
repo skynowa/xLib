@@ -27,8 +27,8 @@ find_package(LibXml2     QUIET REQUIRED)
 find_package(CMakeLib    QUIET REQUIRED) # at 1-st
 find_package(OS          QUIET REQUIRED)
 find_package(GitRevision QUIET REQUIRED)
-## find_package(MySQL       QUIET REQUIRED)
-## find_package(Ssh2        QUIET REQUIRED)
+find_package(MySQL       QUIET REQUIRED)
+find_package(Ssh2        QUIET REQUIRED)
 find_package(Iconv       QUIET REQUIRED)
 
 if (ENV_UNIX)
