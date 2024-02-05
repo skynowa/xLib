@@ -28,7 +28,6 @@ Cpu::_currentNum_impl() const
 
     ulRv = static_cast<ulong_t>( iRv );
 #elif cmHAVE_GETCPU
-    // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
     uint_t  cpu {};
     uint_t *node {};
 
