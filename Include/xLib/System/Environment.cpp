@@ -184,6 +184,24 @@ Environments::vars() const
     return std::move( _vars_impl() );
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+Environments::findFirstOf(
+	std::cvec_tstring_t &a_names ///< var names
+) const
+{
+	xCHECK_RET(a_names.empty(), std::tstring_t{});
+
+	for (const auto &it_name : a_names) {
+		Environment env(it_name);
+		bool_t bRv = env.isExists();
+		xCHECK_DO(!bRv, continue);
+
+		return env.value();
+	}
+
+	return {};
+}
+//-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Environments::expandVars(
