@@ -24,7 +24,7 @@ find_package(CURL        QUIET REQUIRED)
 find_package(LibXml2     QUIET REQUIRED)
 
 # Custom (CMakeLib)
-list(APPEND CMAKE_MODULE_PATH "/home/skynowa/Projects/CMakeLib")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_ROOT}/Modules/CMakeLib")
 list(APPEND CMAKE_MODULE_PATH "/home/skynowa/Projects/xLib_conan")
 
 find_package(CMakeLib    QUIET REQUIRED) # at 1-st
