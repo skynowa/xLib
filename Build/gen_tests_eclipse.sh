@@ -7,7 +7,7 @@ DIR_PROJECT="../xLib/Tests"
 DIR_BUILD="../../${PROJECT_NAME}_build"
 
 GENERATOR="Eclipse CDT4 - Unix Makefiles"
-ECLIPSE_VERSION="4.25.0"
+ECLIPSE_VERSION="4.25"
 BUILD_TYPE=Release
 
 # prepare
