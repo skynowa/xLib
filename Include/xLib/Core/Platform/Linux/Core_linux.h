@@ -13,11 +13,6 @@
 #include <sys/sysinfo.h>
 #include <mntent.h>
 
-#if cmHAVE_GETCPU
-	// #include <linux/getcpu.h>
-	#include "/usr/src/linux-hwe-6.5-headers-6.5.0-15/include/linux/getcpu.h"
-#endif
-
 // POSIX
 #include <cpio.h>
 #include <tar.h>
