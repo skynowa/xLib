@@ -190,13 +190,13 @@ Test_Environment::unit()
             {xT("__XLIB_ENV_3"), {}}
         };
 
-		for (const auto &[it_test, it_expect] : datas) {
-			std::cvec_tstring_t findEnvs = {xT("XLIB_ENV_1"), it_test, xT("XLIB_ENV_3")};
+        for (const auto &[it_test, it_expect] : datas) {
+            std::cvec_tstring_t findEnvs = {xT("XLIB_ENV_1"), it_test, xT("XLIB_ENV_3")};
 
-			Environments envs;
-			m_sRv = envs.findFirstOf(findEnvs);
-			xTEST_EQ(m_sRv, it_expect);
-		}
+            Environments envs;
+            m_sRv = envs.findFirstOf(findEnvs);
+            xTEST_EQ(m_sRv, it_expect);
+            }
     }
 
     return true;
