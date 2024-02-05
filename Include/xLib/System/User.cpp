@@ -69,7 +69,7 @@ User::name() const
 	sRv = _loginName_impl();
 	xCHECK_RET(!sRv.empty(), sRv);
 
-    // Try system environment
+	// Try system environment
 	std::cvec_tstring_t envVars
 	{
 	#if   xENV_WIN
