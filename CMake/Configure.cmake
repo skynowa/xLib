@@ -31,17 +31,9 @@ list(APPEND CMAKE_MODULE_PATH
 find_package(CMakeLib    QUIET REQUIRED) # at 1-st
 find_package(OS          QUIET REQUIRED)
 find_package(GitRevision QUIET REQUIRED)
-
-#- find_package(MySQL       QUIET REQUIRED)
-## find_package(libmysqlclient)
-include(zstd-config)
-# include(libmysqlclient-config)
-
-# find_package(Ssh2        QUIET REQUIRED)
-find_package(Libssh2       QUIET REQUIRED)
-
+## find_package(MySQL       QUIET REQUIRED)
+## find_package(Ssh2        QUIET REQUIRED)
 find_package(Iconv       QUIET REQUIRED)
-find_package(ZLIB)
 
 if (ENV_UNIX)
     # Custom (CMakeLib)
