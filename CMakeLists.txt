@@ -57,7 +57,10 @@ include(CMake/Config.cmake)
 # conan_basic_setup()
 # message(STATUS "CONAN_LIBS: ${CONAN_LIBS}")
 
-set(CONAN_LIBS Libssh2::libssh2 CURL::libcurl LibXml2::LibXml2 libmysqlclient::libmysqlclient openssl::openssl ZLIB::ZLIB)
+# set(CONAN_LIBS libssh2::libssh2 CURL::libcurl LibXml2::LibXml2 libmysqlclient::libmysqlclient openssl::openssl ZLIB::ZLIB)
+set(CONAN_LIBS
+    CURL::libcurl
+    LibXml2::LibXml2)
 #--------------------------------------------------------------------------------------------------
 
 
