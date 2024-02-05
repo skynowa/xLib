@@ -42,3 +42,7 @@ xLib.kdev4
 
 # ctags
 .tags
+
+# Conan
+CMakeUserPresets.json
+
