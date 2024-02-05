@@ -64,7 +64,32 @@ User::loginName() const
 std::tstring_t
 User::name() const
 {
-    return _loginName_impl();
+	std::tstring_t sRv;
+
+	// Try api
+	{
+		sRv = _loginName_impl();
+		xCHECK_RET(!sRv.empty(), sRv);
+	}
+
+	// Try system environment
+	{
+		std::cvec_tstring_t envVars
+		{
+		#if   xENV_WIN
+			xT("USERNAME")
+		#elif xENV_UNIX
+			xT("LOGNAME"),
+			xT("USER")
+		#endif
+		};
+
+		Environments envs;
+		sRv = envs.findFirstOf(envVars);
+		xCHECK_RET(!sRv.empty(), sRv);
+	}
+
+	return {};
 }
 //-------------------------------------------------------------------------------------------------
 
