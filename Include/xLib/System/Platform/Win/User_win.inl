@@ -67,22 +67,6 @@ User::_loginName_impl() const
         }
     }
 
-    // try system environment
-	{
-		const std::array envVars{xT("USERNAME")};
-
-		for (const auto &it_envVar : envVars) {
-			Environment env(it_envVar);
-
-			bool_t bRv = env.isExists();
-			xCHECK_DO(!bRv, continue);
-
-			sRv = env.value();
-
-			return sRv;
-		}
-	}
-
     return {};
 }
 //-------------------------------------------------------------------------------------------------
