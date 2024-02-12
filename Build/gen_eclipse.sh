@@ -13,7 +13,7 @@ PROJECT_DIR="${PROJECT_PATH}"
 BUILD_DIR="../../${PROJECT_NAME}_build"
 
 GENERATOR="Eclipse CDT4 - Unix Makefiles"
-ECLIPSE_VERSION="4.25"
+ECLIPSE_VERSION=$(eclipse_version.sh)
 BUILD_TYPE=Release
 
 # prepare
