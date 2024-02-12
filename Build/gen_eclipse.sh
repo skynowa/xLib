@@ -15,8 +15,8 @@ ECLIPSE_VERSION="4.25"
 BUILD_TYPE=Release
 
 # prepare
-mkdir -p ${DIR_BUILD}
-cd ${DIR_BUILD}
+mkdir -p "${DIR_BUILD}"
+cd "${DIR_BUILD}" || exit
 
 # generate
 cmake \
