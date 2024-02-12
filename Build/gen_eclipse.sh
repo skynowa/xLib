@@ -6,8 +6,8 @@
 
 
 # vars
-PROJECT_NAME="xLib"
-PROJECT_DIR="../${PROJECT_NAME}"
+PROJECT_PATH=$(realpath .)
+PROJECT_NAME=$(basename "$PROJECT_PATH")
 BUILD_DIR="../../${PROJECT_NAME}_build"
 
 GENERATOR="Eclipse CDT4 - Unix Makefiles"
