@@ -7,19 +7,22 @@
 
 # vars
 PROJECT_NAME="xLib"
-DIR_PROJECT="../${PROJECT_NAME}"
-DIR_BUILD="../../${PROJECT_NAME}_build"
+PROJECT_DIR="../${PROJECT_NAME}"
+BUILD_DIR="../../${PROJECT_NAME}_build"
 
 GENERATOR="Eclipse CDT4 - Unix Makefiles"
 ECLIPSE_VERSION="4.25"
 BUILD_TYPE=Release
 
 # prepare
-mkdir -p "${DIR_BUILD}"
-cd "${DIR_BUILD}" || exit
+mkdir -p "${BUILD_DIR}"
+cd "${BUILD_DIR}" || exit
 
 # generate
 cmake \
-	-G "${GENERATOR}" -D CMAKE_ECLIPSE_VERSION=${ECLIPSE_VERSION} \
-	-D CMAKE_BUILD_TYPE=${BUILD_TYPE} \
-	${DIR_PROJECT}
+    -G "${GENERATOR}" \
+    -D CMAKE_ECLIPSE_VERSION=${ECLIPSE_VERSION} \
+    -D CMAKE_ECLIPSE_GENERATE_SOURCE_PROJECT=TRUE \
+    -D CMAKE_BUILD_TYPE=${BUILD_TYPE} \
+    -Wno-dev \
+    "${PROJECT_DIR}"
