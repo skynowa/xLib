@@ -18,7 +18,7 @@ BUILD_TYPE=Release
 
 # prepare
 mkdir -p "${BUILD_DIR}"
-cd "${BUILD_DIR}" || exit
+cd "${BUILD_DIR}"
 
 # generate
 cmake \
