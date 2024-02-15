@@ -65,6 +65,8 @@ BuildInfo::langStandart() const
         langStandartC += xT("C14");
     #elif xLANG_C17
         langStandartC += xT("C17");
+    #elif xLANG_C20
+        langStandartC += xT("C20");
     #else
         xBUILD_UNKNOWN("BuildInfo::langStandart() - C standart");
     #endif
@@ -82,6 +84,8 @@ BuildInfo::langStandart() const
         langStandartCpp += xT("C++14");
     #elif xLANG_CPP17
         langStandartCpp += xT("C++17");
+    #elif xLANG_CPP20
+        langStandartCpp += xT("C++20");
     #else
         xBUILD_UNKNOWN("BuildInfo::langStandart() - C++ standart");
     #endif
