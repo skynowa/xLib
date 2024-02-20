@@ -38,7 +38,7 @@ struct CmdOptionsUsage
 xUSING_CONST(CmdOptionsUsage);
 
 class CmdOptions
-    ///< Command-line options parser
+    /// Command-line options parser
 {
 public:
 ///\name ctors, dtor
