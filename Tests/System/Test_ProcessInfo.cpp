@@ -24,9 +24,7 @@ Test_ProcessInfo::unit()
 			// TODO: it
 			xUNUSED(it);
 
-            ProcessInfo info;
-            info.setProcessId(/* it */ Process::currentId());
-
+            ProcessInfo info(/* it */ Process::currentId());
             m_ulRv = info.cpuUsage();
 			// Cout() << xT("\tProcessInfo::cpuUsage(): ") << m_ulRv;
         }
@@ -41,9 +39,7 @@ Test_ProcessInfo::unit()
 			// TODO: it
 			xUNUSED(it);
 
-            ProcessInfo info;
-            info.setProcessId(/* it */ Process::currentId());
-
+            ProcessInfo info(/* it */ Process::currentId());
             m_ulRv = info.ramUsage();
             // Cout() << xT("\tProcessInfo::ramUsage(): ") << m_ulRv;
         }
@@ -58,9 +54,7 @@ Test_ProcessInfo::unit()
 			// TODO: it
 			xUNUSED(it);
 
-            ProcessInfo info;
-            info.setProcessId(/* it */ Process::currentId());
-
+            ProcessInfo info(/* it */ Process::currentId());
             m_ulRv = info.ioBytes();
             // Cout() << xT("\tProcessInfo::ioBytes(): ") << m_ulRv;
         }
@@ -75,9 +69,7 @@ Test_ProcessInfo::unit()
 			// TODO: it
 			xUNUSED(it);
 
-            ProcessInfo info;
-            info.setProcessId(/* it */ Process::currentId());
-
+            ProcessInfo info(/* it */ Process::currentId());
             m_sRv = info.exeName();
             xTEST(FileInfo(m_sRv).isExists());
             xTEST_EQ(m_sRv, Path::exe().str());
@@ -93,9 +85,7 @@ Test_ProcessInfo::unit()
 			// TODO: it
 			xUNUSED(it);
 
-            ProcessInfo info;
-            info.setProcessId(/* it */ Process::currentId());
-
+            ProcessInfo info(/* it */ Process::currentId());
             m_ulRv = info.parentId();
             /// xTEST_DIFF(m_ulRv, 0UL);
         }
@@ -116,9 +106,7 @@ Test_ProcessInfo::unit()
         #elif xENV_UNIX
 
         #endif
-            ProcessInfo info;
-            info.setProcessId(/* it */ Process::currentId());
-
+            ProcessInfo info(/* it */ Process::currentId());
             info.commandLine(&m_vsRv);
             xTEST(!m_vsRv.empty());
         }
@@ -136,7 +124,7 @@ Test_ProcessInfo::unit()
         cptr_ctchar_t args[argsNum] = {xT("./xLib_test"), xT("1"), xT("2"), xT("3"), xT("4")};
 
         ProcessInfo::commandLine(argsNum, args, &m_vsRv);
-        xTEST_EQ(m_vsRv.size(), (std::size_t)argsNum);
+        xTEST_EQ(m_vsRv.size(), argsNum);
         xTEST_EQ(m_vsRv.at(0), std::tstring_t(xT("./xLib_test")));
         xTEST_EQ(m_vsRv.at(1), std::tstring_t(xT("1")));
         xTEST_EQ(m_vsRv.at(2), std::tstring_t(xT("2")));

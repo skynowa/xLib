@@ -33,8 +33,7 @@ Path::_exe_impl()
 #else
 	std::vec_tstring_t args;
 
-	ProcessInfo info;
-	info.setProcessId(Process::currentId());
+	ProcessInfo info(Process::currentId());
 	info.commandLine(&args);
 
 	bool_t bRv = info.commandLine(Process::currentId(), &args);

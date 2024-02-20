@@ -18,14 +18,13 @@ class ProcessInfo
 public:
 ///\name ctors, dtor
 ///\{
-			 ProcessInfo() = default;
+	explicit ProcessInfo(const Process::id_t id);
 	virtual ~ProcessInfo() = default;
 
+	xNO_DEFAULT_CONSTRUCT(ProcessInfo)
 	xNO_COPY_ASSIGN(ProcessInfo)
 ///\}
 
-    void_t         setProcessId(const Process::id_t &a_id);
-        ///< set target process ID
     ulong_t        cpuUsage() const;
         ///< get CPU usage (percentage)
     ulong_t        ramUsage() const;

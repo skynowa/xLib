@@ -24,15 +24,15 @@ namespace xl::package
 class CrashCallback
 {
 public:
+///\name ctors, dtor
+///\{
+	CrashCallback()= default;
+	~CrashCallback()= default;
 
-    CrashCallback()
-    {
-    }
+	xNO_COPY_ASSIGN(CrashCallback)
+///\}
 
-    xNO_COPY_ASSIGN(CrashCallback)
-
-    static void_t
-    onSignals(int_t a_signal)
+    static void_t onSignals(int_t a_signal)
     {
         xUNUSED(a_signal);
 
@@ -43,9 +43,7 @@ public:
     }
 
 #if xENV_WIN
-
-    static void_t
-    onInfo(int_t a_signal)
+    static void_t onInfo(int_t a_signal)
     {
         xTRACE_FUNC;
 
@@ -68,8 +66,7 @@ public:
         Application::exitFailure();
     }
 #elif xENV_UNIX
-    static void_t
-    onInfo(int_t a_signal, siginfo_t *a_info, void_t *a_context)
+    static void_t onInfo(int_t a_signal, siginfo_t *a_info, void_t *a_context)
     {
         xTEST_EQ(a_signal, a_info->si_signo);
         xUNUSED((ucontext_t *)a_context);
@@ -97,20 +94,17 @@ public:
     }
 #endif
 
-    static void_t
-    onExit()
+    static void_t onExit()
     {
         xTRACE_FUNC;
     }
 
-    static void_t
-    onTerminate()
+    static void_t onTerminate()
     {
         xTRACE_FUNC;
     }
 
-    static void_t
-    onUnexpected()
+    static void_t onUnexpected()
     {
         xTRACE_FUNC;
     }
@@ -190,8 +184,7 @@ Application::args(
     std::vec_tstring_t *a_args              ///< [out] command line arguments
 ) const
 {
-    ProcessInfo info;
-    info.setProcessId( Process::currentId() );
+    ProcessInfo info( Process::currentId() );
     info.commandLine(a_args);
 
     if (a_withoutFirstArg) {
