@@ -45,7 +45,7 @@ xPUBLIC_STATIC:
         ///< get arguments
 
 private:
-    Process::id_t _id {};  ///< target process ID
+    const Process::id_t _id {};  ///< target process ID
 
 xPLATFORM_IMPL:
     ulong_t        _cpuUsage_impl() const;
