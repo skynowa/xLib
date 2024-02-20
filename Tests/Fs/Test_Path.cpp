@@ -929,8 +929,7 @@ Test_Path::unit()
     {
         std::vec_tstring_t args;
 
-        ProcessInfo info;
-        info.setProcessId(Process::currentId());
+        ProcessInfo info(Process::currentId());
         info.commandLine(&args);
 
         m_sRv = Path(args.at(0)).absolute().str();
