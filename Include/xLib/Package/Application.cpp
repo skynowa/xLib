@@ -24,12 +24,13 @@ namespace xl::package
 class CrashCallback
 {
 public:
+///\name ctors, dtor
+///\{
+	CrashCallback()= default;
+	~CrashCallback()= default;
 
-    CrashCallback()
-    {
-    }
-
-    xNO_COPY_ASSIGN(CrashCallback)
+	xNO_COPY_ASSIGN(CrashCallback)
+///\}
 
     static void_t
     onSignals(int_t a_signal)
@@ -43,7 +44,6 @@ public:
     }
 
 #if xENV_WIN
-
     static void_t
     onInfo(int_t a_signal)
     {

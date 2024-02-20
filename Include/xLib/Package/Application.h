@@ -26,7 +26,7 @@ class Application
     /// application
 {
 public:
-    enum ExitCode : int
+    enum ExitCode
         // exit code (not only as enum)
     {
         Failure = EXIT_FAILURE,
@@ -43,89 +43,72 @@ public:
 	xNO_COPY_ASSIGN(Application)
 ///\}
 
-    void_t         setDevel(cbool_t flag);
+    void_t           setDevel(cbool_t flag);
         ///< set devel
-    bool_t         isDevel() const;
+    bool_t           isDevel() const;
         ///< is devel
 
     // actions
-    void_t         args(cbool_t withoutFirstArg, std::vec_tstring_t *args) const;
+    void_t           args(cbool_t withoutFirstArg, std::vec_tstring_t *args) const;
         ///< command line arguments
 #if xENV_UNIX
-    const Signal  &signal() const;
+    const Signal    &signal() const;
         ///< signal
 #endif
-    bool_t         isRunAsAdmin() const;
+    bool_t           isRunAsAdmin() const;
         ///< check for running as admin
-    bool_t         isRunnig() const;
+    bool_t           isRunnig() const;
         ///< check if application already running
-    void_t         dirsCreate();
+    void_t           dirsCreate();
         ///< create all application directories
-    bool_t         selfCheck() const;
+    bool_t           selfCheck() const;
         ///< self check
-    ExitCode       run();
+    ExitCode         run();
         ///< run
     virtual ExitCode onRun() = 0;
         ///< run handle
 
 xPUBLIC_STATIC:
-    static
-    void_t         exit(cExitCode status);
+    static void_t         exit(cExitCode status);
         ///< terminates the process normally, performing the regular cleanup,
         ///< objects with automatic storage are not destroyed
-    static
-    void_t         exitFailure();
+    static void_t         exitFailure();
         ///<
-    static
-    void_t         exitSuccess();
+    static void_t         exitSuccess();
         ///<
-    static
-    void_t         terminate();
+    static void_t         terminate();
         ///< calls the current terminate handler
-    static
-    void_t         abort();
+    static void_t         abort();
         ///< aborts the current process, producing an abnormal program termination
 
     // files
-    static
-    std::tstring_t filePath();
+    static std::tstring_t filePath();
         ///< application file path
-    static
-    std::tstring_t configPath();
+    static std::tstring_t configPath();
         ///< config file
-    static
-    std::tstring_t logPath();
+    static std::tstring_t logPath();
         ///< log file
-    static
-    std::tstring_t dbPath();
+    static std::tstring_t dbPath();
         ///< database file
 
     // directories
-    static
-    std::tstring_t dirPath();
+    static std::tstring_t dirPath();
         ///< application directory
-    static
-    std::tstring_t configDirPath();
+    static std::tstring_t configDirPath();
         ///< config directory
-    static
-    std::tstring_t logDirPath();
+    static std::tstring_t logDirPath();
         ///< log directory
-    static
-    std::tstring_t dbDirPath();
+    static std::tstring_t dbDirPath();
         ///< database directory
-    static
-    std::tstring_t backupDirPath();
+    static std::tstring_t backupDirPath();
         ///< database backup directory
-    static
-    std::tstring_t tempDirPath();
+    static std::tstring_t tempDirPath();
         ///< temporary directory
-    static
-    std::tstring_t langDirPath();
+    static std::tstring_t langDirPath();
         ///< language translation directory
 
     // info
-    static
-    const BuildInfo &buildInfo();
+    static const BuildInfo &buildInfo();
         ///< build information
     xPROPERTY_STATIC(ApplicationInfo, info, Info);
         ///< application information
