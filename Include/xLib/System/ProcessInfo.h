@@ -24,7 +24,7 @@ public:
 	xNO_COPY_ASSIGN(ProcessInfo)
 ///\}
 
-    void_t         setProcessId(const Process::id_t &a_id);
+    void_t         setProcessId(const Process::id_t a_id);
         ///< set target process ID
     ulong_t        cpuUsage() const;
         ///< get CPU usage (percentage)

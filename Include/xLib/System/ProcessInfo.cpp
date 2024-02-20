@@ -39,7 +39,7 @@ namespace xl::system
 //-------------------------------------------------------------------------------------------------
 void_t
 ProcessInfo::setProcessId(
-    const Process::id_t &a_id
+    const Process::id_t a_id
 )
 {
     _id = a_id;
