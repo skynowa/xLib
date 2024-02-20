@@ -147,4 +147,6 @@ protected:
  *
  * - usage
  * - params
+ * - ConsoleApp
+ * - UiApp
  */
