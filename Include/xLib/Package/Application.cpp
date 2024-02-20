@@ -16,7 +16,7 @@
 #include <xLib/Fs/Dir.h>
 #include <xLib/System/ProcessInfo.h>
 #include <xLib/System/User.h>
-doxyg
+
 //-------------------------------------------------------------------------------------------------
 namespace xl::package
 {
