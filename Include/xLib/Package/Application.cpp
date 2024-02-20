@@ -184,8 +184,7 @@ Application::args(
     std::vec_tstring_t *a_args              ///< [out] command line arguments
 ) const
 {
-    ProcessInfo info;
-    info.setProcessId( Process::currentId() );
+    ProcessInfo info( Process::currentId() );
     info.commandLine(a_args);
 
     if (a_withoutFirstArg) {
