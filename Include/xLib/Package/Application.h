@@ -9,11 +9,6 @@
  * - configs
  * - donate
  * - locale
- *
- * TODO:
- * - singleton
- * - log
- * - MT
  */
 
 
@@ -145,8 +140,12 @@ protected:
 /**
  * TODO: Application
  *
- * - usage
- * - params
+ * - Usage
+ * - Params
  * - ConsoleApp
  * - UiApp
+ *
+ * - Singleton
+ * - Log
+ * - MT
  */
