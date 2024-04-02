@@ -48,7 +48,6 @@ ILog::_levelString(
     cLevel a_level
 ) const
 {
-#if 1
 	std::tstring_t sRv;
 
 	switch (a_level) {
@@ -76,25 +75,6 @@ ILog::_levelString(
 	}
 
 	return sRv;
-#else
-	static const std::map<Level, std::tstring_t> levels
-	{
-		{Level::Off,     xT("Off")},
-		{Level::Trace,   xT("Trace")},
-		{Level::Debug,   xT("Debug")},
-		{Level::Info,    xT("Info")},
-		{Level::Warning, xT("Warning")},
-		{Level::Error,   xT("Error")},
-		{Level::Fatal,   xT("Fatal")}
-	};
-
-	const auto &it = levels.find(a_level);
-	if (it == levels.cend()) {
-		return {};
-	}
-
-    return it->second;
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 
