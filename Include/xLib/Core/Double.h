@@ -13,9 +13,7 @@
 namespace xl::core
 {
 
-template<
-	typename T,
-	typename = typename std::enable_if<std::is_floating_point<T>::value, T>::type>
+template<typename T>
 class Double :
 	public ICompare<T>,
 	public IGetConstRef<T>
