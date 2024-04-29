@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 
-UNIT_TESTS=(Path Environment User)
+# UNIT_TESTS=(Path Environment User)
+UNIT_TESTS=(Double)
 
 # BG='\e[46m'   # green
 # FG='\e[37m'   # white
