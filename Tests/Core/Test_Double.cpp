@@ -174,6 +174,9 @@ Test_Double::unit()
 	{
 		ddouble_t d(0.0);
 		xTEST(d.isNull());
+
+		ddouble_t d2(0.000001);
+		xTEST(!d2.isNull());
 	}
 
 	xTEST_CASE("safeDiv")
