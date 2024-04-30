@@ -16,9 +16,9 @@ namespace xl::core
 
 template<typename T>
 class Float :
-	public ICompare<T>,
 	public IGetConstRef<T>,
-	public IStr
+	public IStr,
+	public ICompare<T>
     ///< Float's operations
 {
 	static_assert(std::is_floating_point_v<T>, "T must be a floating-point type");
@@ -35,9 +35,9 @@ public:
 
 ///\name Overrides
 ///\{
-	int_t           compare(const T &value) const final;
 	const T        &get() const final;
 	std::tstring_t  str() const final;
+	int_t           compare(const T &value) const final;
 ///\}
 
 ///\name operators
