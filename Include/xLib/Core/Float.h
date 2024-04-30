@@ -90,9 +90,9 @@ using flongdouble_t = Float<long double>;
  * 			IFormattable
  * TODO: delimiter
  * TODO: str()
- * TODO: isInfinite()
+ * [+] isInf()
  *
  * TODO: C library
- * TODO: https://stackoverflow.com/questions/17333/what-is-the-most-effective-way-for-float-and-double-comparison
- * TODO: https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
+ * [+] https://stackoverflow.com/questions/17333/what-is-the-most-effective-way-for-float-and-double-comparison
+ * [+] https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
  */
