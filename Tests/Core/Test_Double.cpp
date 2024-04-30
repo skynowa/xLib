@@ -147,9 +147,9 @@ Test_Double::unit()
 		{
 			struct Data
 			{
-				double value1;
-				double value2;
-				bool   expected;
+				double_t value1;
+				double_t value2;
+				bool_t   expected;
 			};
 
 			const Data data[]
@@ -174,8 +174,8 @@ Test_Double::unit()
 
 		// #2
 		{
-			const double dRv1 = 112.57 / 67.54;
-			const double dRv2 = (double)11257 / 6754;
+			cdouble_t dRv1 = 112.57 / 67.54;
+			cdouble_t dRv2 = (double_t)11257 / 6754;
 			xTEST(ddouble_t::isEqual(dRv1, dRv2));
 		}
 	}
