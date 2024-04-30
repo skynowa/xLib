@@ -14,14 +14,14 @@ Test_Float::unit()
 {
 	xTEST_CASE("Float")
 	{
-		fdouble_t d;
+		FDouble d;
 		xTEST_EQ(d, 0.0);
 		xTEST(d.isNull());
 	}
 
 	xTEST_CASE("Float(const T)")
 	{
-		fdouble_t f(5.75);
+		FDouble f(5.75);
 		xTEST_EQ(f, 5.75);
 	}
 
@@ -42,7 +42,7 @@ Test_Float::unit()
 		};
 
 		for (const auto &it_data : data) {
-			const fdouble_t f(it_data.test1);
+			const FDouble f(it_data.test1);
 
 			// ==
 			m_bRv = (f == it_data.test2);
@@ -52,7 +52,7 @@ Test_Float::unit()
 			m_bRv = (f != it_data.test2);
 			xTEST_DIFF(m_bRv, it_data.expect);
 
-			m_bRv = (fdouble_t::isEqual(it_data.test1, it_data.test2));
+			m_bRv = (FDouble::isEqual(it_data.test1, it_data.test2));
 			xTEST_EQ(m_bRv, it_data.expect);
 		}
 	}
@@ -74,7 +74,7 @@ Test_Float::unit()
 		};
 
 		for (const auto &it_data : data) {
-			const fdouble_t f(it_data.test1);
+			const FDouble f(it_data.test1);
 
 			// <
 			m_bRv = (f < it_data.test2);
@@ -103,7 +103,7 @@ Test_Float::unit()
 		};
 
 		for (const auto &it_data : data) {
-			const fdouble_t f(it_data.test1);
+			const FDouble f(it_data.test1);
 
 			// <=
 			m_bRv = (f <= it_data.test2);
@@ -119,9 +119,9 @@ Test_Float::unit()
 	{
 		cdouble_t test {7.0};
 
-		fdouble_t value(test);
+		FDouble value(test);
 
-		fdouble_t d;
+		FDouble d;
 		d = value;
 		xTEST_EQ(d, test);
 
@@ -136,7 +136,7 @@ Test_Float::unit()
 	{
 		cdouble_t test {7.0};
 
-		fdouble_t value;
+		FDouble value;
 		value = test;
 		xTEST_EQ(value, test);
 	}
@@ -167,7 +167,7 @@ Test_Float::unit()
 			};
 
 			for (const auto &it_data : data) {
-				m_bRv = fdouble_t::isEqual(it_data.value1, it_data.value2);
+				m_bRv = FDouble::isEqual(it_data.value1, it_data.value2);
 				xTEST_EQ(m_bRv, it_data.expected);
 			}
 		}
@@ -176,32 +176,32 @@ Test_Float::unit()
 		{
 			cdouble_t dRv1 = 112.57 / 67.54;
 			cdouble_t dRv2 = (double_t)11257 / 6754;
-			xTEST(fdouble_t::isEqual(dRv1, dRv2));
+			xTEST(FDouble::isEqual(dRv1, dRv2));
 		}
 	}
 
 	xTEST_CASE("get")
 	{
-		fdouble_t d(11.55);
-		xTEST_EQ(fdouble_t(d.get()), 11.55);
+		FDouble d(11.55);
+		xTEST_EQ(FDouble(d.get()), 11.55);
 	}
 
 	/// [TEST] Determines
 
 	xTEST_CASE("isNull")
 	{
-		fdouble_t d(0.0);
+		FDouble d(0.0);
 		xTEST(d.isNull());
 
-		fdouble_t d2(0.000001);
+		FDouble d2(0.000001);
 		xTEST(!d2.isNull());
 	}
 
 	xTEST_CASE("safeDiv")
 	{
-		fdouble_t d(10.0);
+		FDouble d(10.0);
 
-		fdouble_t dRv( d.safeDiv(0.0) );
+		FDouble dRv( d.safeDiv(0.0) );
 		xTEST(dRv.isNull());
 	}
 

@@ -16,7 +16,7 @@ Test_OStream::unit()
 {
     xTEST_CASE("operator << (OStream)")
     {
-		ddouble_t d(10.45);
+        FDouble d(10.45);
 
 		m_sRv = (OStream() << d).str();
 		xTEST_EQ(m_sRv, std::tstring_t("10.45"));

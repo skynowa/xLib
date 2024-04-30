@@ -75,7 +75,7 @@ Test_Dll::unit()
             using ptr_dll_func_t = double (*)(double);
             ptr_dll_func_t cosine = (ptr_dll_func_t)paRv;
 
-            const ddouble_t dRv( cosine(2.0) );
+            const FDouble dRv( cosine(2.0) );
             xTEST_LESS(dRv, -0.4 /* -0.41614683654 */);
         #endif
 
