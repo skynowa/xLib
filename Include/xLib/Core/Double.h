@@ -14,7 +14,7 @@ namespace xl::core
 {
 
 template<typename T>
-class Double :
+class Double final :
 	public ICompare<T>,
 	public IGetConstRef<T>
     ///< Double's operations
