@@ -17,7 +17,7 @@ class EnumArray :
     /// Enumeration container
 {
 public:
-           EnumArray<T, N>(const std::array<T, N> &values);
+    explicit EnumArray<T, N>(const std::array<T, N> &values);
 
     bool_t isValid(const std::ssize_t value) const;
 };

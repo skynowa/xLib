@@ -15,8 +15,7 @@ libxml2/[>1.0.0]
 libmysqlclient/[>8.0.0]
 
 [generators]
-cmake
-cmake_paths
+CMakeDeps # was cmake, cmake_paths
 
 [options]
 

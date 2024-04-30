@@ -37,24 +37,18 @@ set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 #--------------------------------------------------------------------------------------------------
 
 #--------------------------------------------------------------------------------------------------
-list(APPEND CMAKE_MODULE_PATH "${XLIB_LOCATION}/CMake")
+list(APPEND CMAKE_MODULE_PATH
+    "${XLIB_LOCATION}/CMake"
+    "${CMAKE_ROOT}/Modules/CMakeLib"
+    "${XLIB_LOCATION}/../xLib_conan")
 
 include(CMake/Config.cmake)
 
-# CONAN_PATHS
-set(CONAN_PATHS "${XLIB_LOCATION}/../xLib_conan/conan_paths.cmake")
+# set(CONAN_LIBS libssh2::libssh2 CURL::libcurl LibXml2::LibXml2 libmysqlclient::libmysqlclient openssl::openssl ZLIB::ZLIB)
+set(CONAN_LIBS
+    CURL::libcurl
+    LibXml2::LibXml2)
 
-if (EXISTS ${CONAN_PATHS})
-    include(${CONAN_PATHS})
-else()
-    message(WARNING "CONAN_PATHS: ${CONAN_PATHS} - not exists")
-endif()
-
-message(STATUS "CONAN_PATHS: ${CONAN_PATHS}")
-
-# CONAN_LIBS
-include(${XLIB_LOCATION}/../xLib_conan/conanbuildinfo.cmake)
-conan_basic_setup()
 message(STATUS "CONAN_LIBS: ${CONAN_LIBS}")
 #--------------------------------------------------------------------------------------------------
 

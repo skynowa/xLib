@@ -205,12 +205,16 @@ template<typename T>
 inline bool_t
 Double<T>::isEqual(
 	const T a_value1,
-	const T a_value2
+	const T a_value2,
+	cint_t  a_ulp /* = 2 */
 )
 {
-	constexpr T epsilon = std::numeric_limits<T>::epsilon();
+	const auto customEpsilon =
+		std::numeric_limits<T>::epsilon() *
+		std::max(std::abs(a_value1), std::abs(a_value2)) *
+		a_ulp;
 
-	return std::abs(a_value1 - a_value2) <= (epsilon * std::abs(a_value1));
+	return std::abs(a_value1 - a_value2) <= customEpsilon;
 }
 //-------------------------------------------------------------------------------------------------
 

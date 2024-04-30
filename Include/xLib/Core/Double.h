@@ -13,14 +13,14 @@
 namespace xl::core
 {
 
-template<
-	typename T,
-	typename = typename std::enable_if<std::is_floating_point<T>::value, T>::type>
+template<typename T>
 class Double :
 	public ICompare<T>,
 	public IGetConstRef<T>
     ///< Double's operations
 {
+	static_assert(std::is_floating_point<T>::value, "T must be a floating-point type");
+
 public:
 ///\name ctors, dtor
 ///\{
@@ -67,7 +67,7 @@ public:
 		///< safe division, if devision by 0.0 return 0.0
 
 xPUBLIC_STATIC:
-	static bool_t isEqual(const T value1, const T value2);
+	static bool_t isEqual(const T value1, const T value2, cint_t ulp = 2);
 
 private:
     T _value {};
