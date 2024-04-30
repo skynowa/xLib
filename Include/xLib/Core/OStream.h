@@ -8,7 +8,7 @@
 
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
-#include <xLib/Core/Double.h>
+#include <xLib/Core/Float.h>
 #include <xLib/Interface/IStr.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
@@ -134,7 +134,7 @@ public:
 
     // xLib
 	template<typename T>
-	OStream & operator << (const Double<T> &value);
+	OStream & operator << (const Float<T> &value);
 
 protected:
     std::tstringstream_t _os;
