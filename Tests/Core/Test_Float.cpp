@@ -23,6 +23,9 @@ Test_Float::unit()
 	{
 		FDouble f(5.75);
 		xTEST_EQ(f, 5.75);
+
+		FDouble f2( static_cast<int_t>(7) );
+		xTEST_EQ(f2, 7.0);
 	}
 
 	xTEST_CASE("operator ==, !=")
