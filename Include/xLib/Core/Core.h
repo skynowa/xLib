@@ -15,7 +15,7 @@
  *          skype:   skynowa777 \n
  *          web:     https://github.com/skynowa/xLib
  *
- * \date    2008 - 2023
+ * \date    2008 - 2024
  *
  * \section sec_code_convention Code conventions
  */

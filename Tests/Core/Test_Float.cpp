@@ -1,27 +1,27 @@
 /**
- * \file  Test_Double.cpp
- * \brief test Double
+ * \file  Test_Float.cpp
+ * \brief test Float
  */
 
 
 #include <xLib/xLib.h>
 //-------------------------------------------------------------------------------------------------
-xTEST_UNIT(Test_Double)
+xTEST_UNIT(Test_Float)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_Double::unit()
+Test_Float::unit()
 {
-	xTEST_CASE("Double")
+	xTEST_CASE("Float")
 	{
-		ddouble_t d;
+		fdouble_t d;
 		xTEST_EQ(d, 0.0);
 		xTEST(d.isNull());
 	}
 
-	xTEST_CASE("Double(const T)")
+	xTEST_CASE("Float(const T)")
 	{
-		ddouble_t f(5.75);
+		fdouble_t f(5.75);
 		xTEST_EQ(f, 5.75);
 	}
 
@@ -42,7 +42,7 @@ Test_Double::unit()
 		};
 
 		for (const auto &it_data : data) {
-			const ddouble_t f(it_data.test1);
+			const fdouble_t f(it_data.test1);
 
 			// ==
 			m_bRv = (f == it_data.test2);
@@ -52,7 +52,7 @@ Test_Double::unit()
 			m_bRv = (f != it_data.test2);
 			xTEST_DIFF(m_bRv, it_data.expect);
 
-			m_bRv = (ddouble_t::isEqual(it_data.test1, it_data.test2));
+			m_bRv = (fdouble_t::isEqual(it_data.test1, it_data.test2));
 			xTEST_EQ(m_bRv, it_data.expect);
 		}
 	}
@@ -74,7 +74,7 @@ Test_Double::unit()
 		};
 
 		for (const auto &it_data : data) {
-			const ddouble_t f(it_data.test1);
+			const fdouble_t f(it_data.test1);
 
 			// <
 			m_bRv = (f < it_data.test2);
@@ -103,7 +103,7 @@ Test_Double::unit()
 		};
 
 		for (const auto &it_data : data) {
-			const ddouble_t f(it_data.test1);
+			const fdouble_t f(it_data.test1);
 
 			// <=
 			m_bRv = (f <= it_data.test2);
@@ -119,9 +119,9 @@ Test_Double::unit()
 	{
 		cdouble_t test {7.0};
 
-		ddouble_t value(test);
+		fdouble_t value(test);
 
-		ddouble_t d;
+		fdouble_t d;
 		d = value;
 		xTEST_EQ(d, test);
 
@@ -136,7 +136,7 @@ Test_Double::unit()
 	{
 		cdouble_t test {7.0};
 
-		ddouble_t value;
+		fdouble_t value;
 		value = test;
 		xTEST_EQ(value, test);
 	}
@@ -167,7 +167,7 @@ Test_Double::unit()
 			};
 
 			for (const auto &it_data : data) {
-				m_bRv = ddouble_t::isEqual(it_data.value1, it_data.value2);
+				m_bRv = fdouble_t::isEqual(it_data.value1, it_data.value2);
 				xTEST_EQ(m_bRv, it_data.expected);
 			}
 		}
@@ -176,32 +176,32 @@ Test_Double::unit()
 		{
 			cdouble_t dRv1 = 112.57 / 67.54;
 			cdouble_t dRv2 = (double_t)11257 / 6754;
-			xTEST(ddouble_t::isEqual(dRv1, dRv2));
+			xTEST(fdouble_t::isEqual(dRv1, dRv2));
 		}
 	}
 
 	xTEST_CASE("get")
 	{
-		ddouble_t d(11.55);
-		xTEST_EQ(ddouble_t(d.get()), 11.55);
+		fdouble_t d(11.55);
+		xTEST_EQ(fdouble_t(d.get()), 11.55);
 	}
 
 	/// [TEST] Determines
 
 	xTEST_CASE("isNull")
 	{
-		ddouble_t d(0.0);
+		fdouble_t d(0.0);
 		xTEST(d.isNull());
 
-		ddouble_t d2(0.000001);
+		fdouble_t d2(0.000001);
 		xTEST(!d2.isNull());
 	}
 
 	xTEST_CASE("safeDiv")
 	{
-		ddouble_t d(10.0);
+		fdouble_t d(10.0);
 
-		ddouble_t dRv( d.safeDiv(0.0) );
+		fdouble_t dRv( d.safeDiv(0.0) );
 		xTEST(dRv.isNull());
 	}
 

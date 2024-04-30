@@ -1,6 +1,6 @@
 /**
- * \file   Double.inl
- * \brief  Double's operations
+ * \file  Float.inl
+ * \brief Float's operations
  */
 
 
@@ -15,14 +15,14 @@ namespace xl::core
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline
-Double<T>::Double()
+Float<T>::Float()
 {
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline
-Double<T>::Double(
-	const Double &a_value
+Float<T>::Float(
+	const Float &a_value
 ) :
     _value(a_value._value)
 {
@@ -30,7 +30,7 @@ Double<T>::Double(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline
-Double<T>::Double(
+Float<T>::Float(
 	const T a_value
 ) :
     _value(a_value)
@@ -39,8 +39,8 @@ Double<T>::Double(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline
-Double<T>::Double(
-	Double &&a_value
+Float<T>::Float(
+	Float &&a_value
 ) :
     _value( std::move(a_value._value) )
 {
@@ -48,7 +48,7 @@ Double<T>::Double(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 int_t
-Double<T>::compare(
+Float<T>::compare(
 	const T &a_value
 ) const /* final */
 {
@@ -65,7 +65,7 @@ Double<T>::compare(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 const T &
-Double<T>::get() const /* final */
+Float<T>::get() const /* final */
 {
 	return _value;
 }
@@ -79,9 +79,9 @@ Double<T>::get() const /* final */
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline Double<T> &
-Double<T>::operator = (
-    const Double &a_value
+inline Float<T> &
+Float<T>::operator = (
+    const Float &a_value
 )
 {
 	if (this == &a_value) {
@@ -94,8 +94,8 @@ Double<T>::operator = (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline Double<T> &
-Double<T>::operator = (
+inline Float<T> &
+Float<T>::operator = (
     const T a_value
 )
 {
@@ -105,9 +105,9 @@ Double<T>::operator = (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-inline Double<T> &
-Double<T>::operator = (
-    Double &&a_value
+inline Float<T> &
+Float<T>::operator = (
+    Float &&a_value
 )
 {
 	if (this == &a_value) {
@@ -129,49 +129,49 @@ Double<T>::operator = (
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
-Double<T>::isNull() const
+Float<T>::isNull() const
 {
 	return isEqual(_value, 0.0);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline int_t
-Double<T>::classify() const
+Float<T>::classify() const
 {
 	return std::fpclassify(_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
-Double<T>::isFinite() const
+Float<T>::isFinite() const
 {
 	return static_cast<bool_t>( std::isfinite(_value) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
-Double<T>::isInf() const
+Float<T>::isInf() const
 {
 	return static_cast<bool_t>( std::isinf(_value) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
-Double<T>::isNan() const
+Float<T>::isNan() const
 {
 	return static_cast<bool_t>( std::isnan(_value) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
-Double<T>::isNormal() const
+Float<T>::isNormal() const
 {
 	return static_cast<bool_t>( std::isnormal(_value) );
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline bool_t
-Double<T>::isUnordered(
+Float<T>::isUnordered(
 	const T a_value
 ) const
 {
@@ -180,7 +180,7 @@ Double<T>::isUnordered(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 inline T
-Double<T>::safeDiv(
+Float<T>::safeDiv(
 	const T a_value,
 	const T a_value_default /* = {} */
 ) const
@@ -203,7 +203,7 @@ Double<T>::safeDiv(
 template<typename T>
 /* static */
 inline bool_t
-Double<T>::isEqual(
+Float<T>::isEqual(
 	const T a_value1,
 	const T a_value2,
 	cint_t  a_ulp /* = 2 */

@@ -1,6 +1,6 @@
 /**
- * \file   Double.h
- * \brief  Double's operations
+ * \file  Float.h
+ * \brief Float's operations
  */
 
 
@@ -14,21 +14,21 @@ namespace xl::core
 {
 
 template<typename T>
-class Double :
+class Float :
 	public ICompare<T>,
 	public IGetConstRef<T>
-    ///< Double's operations
+    ///< Float's operations
 {
 	static_assert(std::is_floating_point_v<T>, "T must be a floating-point type");
 
 public:
 ///\name ctors, dtor
 ///\{
-			 Double();
-			 Double(const Double &value);
-	explicit Double(const T value);
-			 Double(Double &&value);
-	virtual ~Double() = default;
+			 Float();
+			 Float(const Float &value);
+	explicit Float(const T value);
+			 Float(Float &&value);
+	virtual ~Float() = default;
 ///\}
 
 ///\name Overrides
@@ -39,9 +39,9 @@ public:
 
 ///\name operators
 ///\{
-	Double & operator = (const Double &value);
-	Double & operator = (const T value);
-	Double & operator = (Double &&value);
+	Float & operator = (const Float &value);
+	Float & operator = (const T value);
+	Float & operator = (Float &&value);
 ///\}
 
 ///\name Determines
@@ -73,16 +73,16 @@ private:
     T _value {};
 };
 
-using dfloat_t      = Double<float>;
-using ddouble_t     = Double<double>;
-using dlongdouble_t = Double<long double>;
+using ffloat_t      = Float<float>;
+using fdouble_t     = Float<double>;
+using flongdouble_t = Float<long double>;
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-#include "Double.inl"
+#include <xLib/Core/Float.inl>
 
 /**
- * TODO: public struct Double :
+ * TODO: public struct Float :
  * 			IComparable,
  * 			IComparable<double>,
  * 			IConvertible,

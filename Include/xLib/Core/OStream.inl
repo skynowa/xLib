@@ -5,7 +5,6 @@
 
 
 #include <xLib/Core/Const.h>
-#include <xLib/Core/Double.h>
 #include <xLib/Core/Char.h>
 #include <xLib/Core/Type/Type.h>
 #include <xLib/Algo/Algos.h>
@@ -276,7 +275,7 @@ OStream::operator << (
 template<typename T>
 inline OStream &
 OStream::operator << (
-	const Double<T> &a_value ///< value
+	const Float<T> &a_value ///< value
 )
 {
 	_printFloat( a_value.get() );

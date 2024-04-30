@@ -21,7 +21,7 @@
 #include <xLib/Core/ScopeExit.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Const.h>
-#include <xLib/Core/Double.h>
+#include <xLib/Core/Float.h>
 #include <xLib/Core/Char.h>
 #include <xLib/Core/Bitset.h>
 #include <xLib/Core/Enum/Enum.h>
@@ -49,6 +49,7 @@
 
 // Algo
 #include <xLib/Algo/Algos.h>
+#include <xLib/Core/Float.h>
 
 // Crypt
 #include <xLib/Crypt/OpenSsl/Blowfish.h>
