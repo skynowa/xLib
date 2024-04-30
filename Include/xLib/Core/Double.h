@@ -14,12 +14,12 @@ namespace xl::core
 {
 
 template<typename T>
-class Double final :
+class Double :
 	public ICompare<T>,
 	public IGetConstRef<T>
     ///< Double's operations
 {
-	static_assert(std::is_floating_point<T>::value, "T must be a floating-point type");
+	static_assert(std::is_floating_point_v<T>, "T must be a floating-point type");
 
 public:
 ///\name ctors, dtor
