@@ -76,9 +76,9 @@ private:
     T _value {};
 };
 
-using ffloat_t      = Float<float>;
-using fdouble_t     = Float<double>;
-using flongdouble_t = Float<long double>;
+using FFloat      = Float<float>;
+using FDouble     = Float<double>;
+using FLongDouble = Float<long double>;
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
