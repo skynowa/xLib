@@ -143,22 +143,40 @@ Test_Double::unit()
 
 	xTEST_CASE("isEqual")
 	{
-		cdouble_t data[][3]
+		// #1
 		{
-			{10.5,   11.0, 0.0},
-			{10.0,   10.0, 1.0},
-			{10.4,   10.0, 0.0},
-			{0.0,    0.0,  1.0},
-			{-10.4, -10.0, 0.0},
-			{-10.4, -10.4, 1.0},
-			{-10.5, -11.0, 0.0},
-			{-10.6, -11.0, 0.0}
-		};
+			struct Data
+			{
+				double value1;
+				double value2;
+				bool   expected;
+			};
 
-		for (const auto &it_data : data) {
-			const auto bRv = static_cast<bool_t>( it_data[2] );
-			m_bRv = ddouble_t::isEqual(it_data[0], it_data[1]);
-			xTEST_EQ(m_bRv, bRv);
+			const Data data[]
+			{
+				{10.5,   11.0,   false},
+				{10.0,   10.0,   true},
+				{10.4,   10.0,   false},
+				{0.0,    0.0,    true},
+				{-10.4, -10.0,   false},
+				{-10.4, -10.4,   true},
+				{-10.5, -11.0,   false},
+				{-10.6, -11.0,   false},
+				{994.11, 995.07, false},
+				{84.71,  84.71,  true}
+			};
+
+			for (const auto &it_data : data) {
+				m_bRv = ddouble_t::isEqual(it_data.value1, it_data.value2);
+				xTEST_EQ(m_bRv, it_data.expected);
+			}
+		}
+
+		// #2
+		{
+			const double dRv1 = 112.57 / 67.54;
+			const double dRv2 = (double)11257 / 6754;
+			xTEST(ddouble_t::isEqual(dRv1, dRv2));
 		}
 	}
 
