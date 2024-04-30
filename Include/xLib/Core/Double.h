@@ -13,14 +13,14 @@
 namespace xl::core
 {
 
-/// TODO: std::enable_if
-/// template<typename T, typename = typename std::enable_if<std::is_floating_point<T>::value, T>::type>
 template<typename T>
 class Double :
 	public ICompare<T>,
 	public IGetConstRef<T>
     ///< Double's operations
 {
+	static_assert(std::is_floating_point<T>::value, "T must be a floating-point type");
+
 public:
 ///\name ctors, dtor
 ///\{
