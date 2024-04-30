@@ -214,7 +214,7 @@ Double<T>::isEqual(
 		std::max(std::fabs(a_value1), std::fabs(a_value2)) *
 		a_ulp;
 
-	return std::abs(a_value1 - a_value2) <= customEpsilon;
+	return std::fabs(a_value1 - a_value2) <= customEpsilon;
 }
 //-------------------------------------------------------------------------------------------------
 
