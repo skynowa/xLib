@@ -1,6 +1,6 @@
 /**
- * \file   OStream.inl
- * \brief  print string
+ * \file  OStream.inl
+ * \brief print string
  */
 
 

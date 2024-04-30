@@ -1,6 +1,6 @@
 /**
- * \file   OStream.h
- * \brief  print string
+ * \file  OStream.h
+ * \brief print string
  */
 
 

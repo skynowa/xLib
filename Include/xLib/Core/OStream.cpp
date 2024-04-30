@@ -1,6 +1,6 @@
 /**
- * \file   OStream.cpp
- * \brief  print string
+ * \file  OStream.cpp
+ * \brief print string
  */
 
 
