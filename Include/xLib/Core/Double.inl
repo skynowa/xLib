@@ -211,7 +211,7 @@ Double<T>::isEqual(
 {
 	const auto customEpsilon =
 		std::numeric_limits<T>::epsilon() *
-		std::max(std::abs(a_value1), std::abs(a_value2)) *
+		std::max(std::fabs(a_value1), std::fabs(a_value2)) *
 		a_ulp;
 
 	return std::abs(a_value1 - a_value2) <= customEpsilon;
