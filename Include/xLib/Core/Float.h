@@ -9,6 +9,7 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Interface/ICompare.h>
 #include <xLib/Interface/IGet.h>
+#include <xLib/Interface/IStr.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
 {
@@ -16,7 +17,8 @@ namespace xl::core
 template<typename T>
 class Float :
 	public ICompare<T>,
-	public IGetConstRef<T>
+	public IGetConstRef<T>,
+	public IStr
     ///< Float's operations
 {
 	static_assert(std::is_floating_point_v<T>, "T must be a floating-point type");
@@ -33,8 +35,9 @@ public:
 
 ///\name Overrides
 ///\{
-	int_t    compare(const T &value) const final;
-	const T &get() const final;
+	int_t           compare(const T &value) const final;
+	const T        &get() const final;
+	std::tstring_t  str() const final;
 ///\}
 
 ///\name operators
@@ -89,7 +92,7 @@ using flongdouble_t = Float<long double>;
  * 			IEquatable<double>,
  * 			IFormattable
  * TODO: delimiter
- * TODO: str()
+ * [+] str(), format float ???
  * [+] isInf()
  *
  * TODO: C library
