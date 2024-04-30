@@ -85,7 +85,7 @@ using FLongDouble = Float<long double>;
 #include <xLib/Core/Float.inl>
 
 /**
- * TODO: public struct Float :
+ * [+] struct Float :
  * 			IComparable,
  * 			IComparable<double>,
  * 			IConvertible,
