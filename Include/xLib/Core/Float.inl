@@ -239,6 +239,13 @@ operator ""xf (
 {
 	return FFloat( static_cast<float>(a_value) );
 }
+inline FFloat
+operator ""xf (
+	culonglong_t a_value
+)
+{
+	return FFloat( static_cast<float>(a_value) );
+}
 //-------------------------------------------------------------------------------------------------
 inline FDouble
 operator ""xd (
@@ -247,10 +254,24 @@ operator ""xd (
 {
 	return FDouble( static_cast<double>(a_value) );
 }
+inline FDouble
+operator ""xd (
+	culonglong_t a_value
+)
+{
+	return FDouble( static_cast<double>(a_value) );
+}
 //-------------------------------------------------------------------------------------------------
 inline FLongDouble
 operator ""xld (
 	clongdouble_t a_value
+)
+{
+	return FLongDouble(a_value);
+}
+inline FLongDouble
+operator ""xld (
+	culonglong_t a_value
 )
 {
 	return FLongDouble(a_value);

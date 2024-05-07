@@ -107,8 +107,13 @@ using FLongDouble = Float<long double>;
 ///\name User-defined literals
 ///\{
 FFloat      operator ""xf (clongdouble_t value);
+FFloat      operator ""xf (culonglong_t value);
+
 FDouble     operator ""xd (clongdouble_t value);
+FDouble     operator ""xd (culonglong_t value);
+
 FLongDouble operator ""xld (clongdouble_t value);
+FLongDouble operator ""xld (culonglong_t value);
 ///\}
 
 } // namespace
