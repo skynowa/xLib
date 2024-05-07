@@ -15,7 +15,7 @@ namespace xl::core
 {
 
 template<typename T>
-class Float :
+class Float final :
 	public IGetConstRef<T>,
 	public IStr,
 	public ICompare<T>
