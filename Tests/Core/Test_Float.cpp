@@ -191,15 +191,19 @@ Test_Float::unit()
 
 	xTEST_CASE("operator +")
 	{
-		FDouble fRv;
+		FDouble dRv;
 
-		fRv = 0.5xd + 1.5xd;
-		Cout() << xTRACE_VAR(fRv);
-		xTEST_EQ(fRv, 2.0);
+		dRv = 0.5xd + 1.5xd;
+		xTEST_EQ(dRv, 2.0);
 
-		fRv = 0.5xd - 1.5xd;
-		Cout() << xTRACE_VAR(fRv);
-		xTEST_EQ(fRv, -1.0);
+		dRv = 0.5xd - 1.5xd;
+		xTEST_EQ(dRv, -1.0);
+
+		dRv = 0.5xd * 0.5xd;
+		xTEST_EQ(dRv, 0.25);
+
+		dRv = 0.25xd / 0.5xd;
+		xTEST_EQ(dRv, 0.5);
 	}
 
 	/// [TEST] Determines
