@@ -106,23 +106,9 @@ using FLongDouble = Float<long double>;
 //-------------------------------------------------------------------------------------------------
 ///\name User-defined literals
 ///\{
-inline FFloat
-operator ""xf (clongdouble_t value)
-{
-	return FFloat( static_cast<float>(value) );
-}
-
-inline FDouble
-operator ""xd (clongdouble_t value)
-{
-	return FDouble( static_cast<double>(value) );
-}
-
-inline FLongDouble
-operator ""xld (clongdouble_t value)
-{
-	return FLongDouble(value);
-}
+FFloat      operator ""xf (clongdouble_t value);
+FDouble     operator ""xd (clongdouble_t value);
+FLongDouble operator ""xld (clongdouble_t value);
 ///\}
 
 } // namespace
