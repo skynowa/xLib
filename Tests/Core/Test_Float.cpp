@@ -189,7 +189,7 @@ Test_Float::unit()
 		xTEST_EQ(FDouble(d.get()), 11.55);
 	}
 
-	xTEST_CASE("operator +")
+	xTEST_CASE("operators +-*/")
 	{
 		FDouble dRv;
 
