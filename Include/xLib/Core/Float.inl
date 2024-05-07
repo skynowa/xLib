@@ -233,22 +233,27 @@ Float<T>::isEqual(
 
 //-------------------------------------------------------------------------------------------------
 inline FFloat
-operator ""xf (clongdouble_t value)
+operator ""xf (
+	clongdouble_t a_value
+)
 {
-	return FFloat( static_cast<float>(value) );
+	return FFloat( static_cast<float>(a_value) );
 }
-
 //-------------------------------------------------------------------------------------------------
 inline FDouble
-operator ""xd (clongdouble_t value)
+operator ""xd (
+	clongdouble_t a_value
+)
 {
-	return FDouble( static_cast<double>(value) );
+	return FDouble( static_cast<double>(a_value) );
 }
 //-------------------------------------------------------------------------------------------------
 inline FLongDouble
-operator ""xld (clongdouble_t value)
+operator ""xld (
+	clongdouble_t a_value
+)
 {
-	return FLongDouble(value);
+	return FLongDouble(a_value);
 }
 //-------------------------------------------------------------------------------------------------
 
