@@ -45,6 +45,30 @@ public:
 	Float & operator = (const Float &value);
 	Float & operator = (const T value);
 	Float & operator = (Float &&value);
+
+#define xFLOAT_OPERATOR(op) \
+	Float operator op (const Float &a_value) const \
+	{ \
+		return Float(_value op a_value._value); \
+	}
+#define xFLOAT_T_OPERATOR(op) \
+	Float operator op (const T &a_value) const \
+	{ \
+		return Float(_value op a_value); \
+	}
+
+	xFLOAT_OPERATOR(+);
+	xFLOAT_OPERATOR(-);
+	xFLOAT_OPERATOR(*);
+	xFLOAT_OPERATOR(/);
+
+	xFLOAT_T_OPERATOR(+);
+	xFLOAT_T_OPERATOR(-);
+	xFLOAT_T_OPERATOR(*);
+	xFLOAT_T_OPERATOR(/);
+
+#undef xFLOAT_OPERATOR
+#undef xFLOAT_T_OPERATOR
 ///\}
 
 ///\name Determines
@@ -79,6 +103,27 @@ private:
 using FFloat      = Float<float>;
 using FDouble     = Float<double>;
 using FLongDouble = Float<long double>;
+//-------------------------------------------------------------------------------------------------
+///\name User-defined literals
+///\{
+inline FFloat
+operator ""xf (clongdouble_t value)
+{
+	return FFloat( static_cast<float>(value) );
+}
+
+inline FDouble
+operator ""xd (clongdouble_t value)
+{
+	return FDouble( static_cast<double>(value) );
+}
+
+inline FLongDouble
+operator ""xld (clongdouble_t value)
+{
+	return FLongDouble(value);
+}
+///\}
 
 } // namespace
 //-------------------------------------------------------------------------------------------------

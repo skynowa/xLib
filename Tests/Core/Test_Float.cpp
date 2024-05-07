@@ -189,6 +189,19 @@ Test_Float::unit()
 		xTEST_EQ(FDouble(d.get()), 11.55);
 	}
 
+	xTEST_CASE("operator +")
+	{
+		FDouble fRv;
+
+		fRv = 0.5xd + 1.5xd;
+		Cout() << xTRACE_VAR(fRv);
+		xTEST_EQ(fRv, 2.0);
+
+		fRv = 0.5xd - 1.5xd;
+		Cout() << xTRACE_VAR(fRv);
+		xTEST_EQ(fRv, -1.0);
+	}
+
 	/// [TEST] Determines
 
 	xTEST_CASE("isNull")
