@@ -227,7 +227,7 @@ Float<T>::isEqual(
 
 
 /**************************************************************************************************
-*   Free functions
+*   Free functions - User-defined literalsы
 *
 **************************************************************************************************/
 
@@ -239,6 +239,7 @@ operator ""xf (
 {
 	return FFloat( static_cast<float>(a_value) );
 }
+//-------------------------------------------------------------------------------------------------
 inline FFloat
 operator ""xf (
 	culonglong_t a_value
@@ -254,6 +255,7 @@ operator ""xd (
 {
 	return FDouble( static_cast<double>(a_value) );
 }
+//-------------------------------------------------------------------------------------------------
 inline FDouble
 operator ""xd (
 	culonglong_t a_value
@@ -269,6 +271,7 @@ operator ""xld (
 {
 	return FLongDouble(a_value);
 }
+//-------------------------------------------------------------------------------------------------
 inline FLongDouble
 operator ""xld (
 	culonglong_t a_value
