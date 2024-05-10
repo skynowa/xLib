@@ -103,8 +103,11 @@ ConsoleUI::promptBox(
 	xTEST_NA(a_isVisible);
 	xTEST_PTR(a_answer);
 
-	_setStdinEcho(a_isVisible);
+	// Title
 	_console.write(a_title);
+
+	// Text
+	_setStdinEcho(a_isVisible);
 
 	ctchar_t keyEnter     {10};
 	ctchar_t keyBackspace {0x8};
