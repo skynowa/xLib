@@ -31,6 +31,9 @@ ConsoleUI::msgBox(
 	std::ctstring_t &a_text
 ) const
 {
+	xTEST_NA(a_title);
+	xTEST_NA(a_text);
+
 	Result rRv {};
 
 	std::csize_t width     {100};
@@ -95,8 +98,12 @@ ConsoleUI::promptBox(
 	std::tstring_t  *a_answer		///< [out] answer
 ) const
 {
-	xTEST(!a_text.empty());
+	xTEST_NA(a_title);
+	xTEST_NA(a_text);
+	xTEST_NA(a_isVisible);
 	xTEST_PTR(a_answer);
+
+	_console.write(a_title);
 
 	if ( !a_isVisible ) {
 		_setStdinEcho(false);
