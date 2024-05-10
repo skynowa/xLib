@@ -103,11 +103,9 @@ ConsoleUI::promptBox(
 	xTEST_NA(a_isVisible);
 	xTEST_PTR(a_answer);
 
-	_console.write(a_title);
+	_setStdinEcho(a_isVisible);
 
-	if ( !a_isVisible ) {
-		_setStdinEcho(false);
-	}
+	_console.write(a_title);
 
 	for ( ; ; ) {
 		_console.write(a_text + xT(": "));
