@@ -1,6 +1,8 @@
 /**
  * \file  Float.h
  * \brief Float's operations
+ *
+ * \see   https://cplusplus.com/reference/cmath/
  */
 
 
