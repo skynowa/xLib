@@ -104,16 +104,18 @@ ConsoleUI::promptBox(
 	xTEST_PTR(a_answer);
 
 	_setStdinEcho(a_isVisible);
-
 	_console.write(a_title);
+
+	ctchar_t keyEnter     {10};
+	ctchar_t keyBackspace {0x8};
 
 	for ( ; ; ) {
 		_console.write(a_text + xT(": "));
 
 		for ( ; ; ) {
 			ctchar_t ch = static_cast<tchar_t>( std::tcin.get() );
-			xCHECK_DO(ch == 10, break);	// ENTER
-			xCHECK_DO(ch == 0x8, a_answer->clear(); continue);	// BACKSPACE
+			xCHECK_DO(ch == keyEnter, break);
+			xCHECK_DO(ch == keyBackspace, a_answer->clear(); continue);
 
 			a_answer->push_back(ch);
 		}
