@@ -1,6 +1,8 @@
 /**
  * \file  Float.h
  * \brief Float's operations
+ *
+ * \see   https://cplusplus.com/reference/cmath/
  */
 
 
@@ -15,7 +17,7 @@ namespace xl::core
 {
 
 template<typename T>
-class Float :
+class Float final :
 	public IGetConstRef<T>,
 	public IStr,
 	public ICompare<T>
@@ -41,10 +43,35 @@ public:
 ///\}
 
 ///\name operators
+///\see  https://ru.wikipedia.org/wiki/%D0%9E%D0%BF%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B_%D0%B2_C_%D0%B8_C%2B%2B
 ///\{
 	Float & operator = (const Float &value);
 	Float & operator = (const T value);
 	Float & operator = (Float &&value);
+
+#define xFLOAT_OPERATOR(op) \
+	Float operator op (const Float &a_value) const \
+	{ \
+		return Float(_value op a_value._value); \
+	}
+#define xFLOAT_T_OPERATOR(op) \
+	Float operator op (const T &a_value) const \
+	{ \
+		return Float(_value op a_value); \
+	}
+
+	xFLOAT_OPERATOR(+);
+	xFLOAT_OPERATOR(-);
+	xFLOAT_OPERATOR(*);
+	xFLOAT_OPERATOR(/);
+
+	xFLOAT_T_OPERATOR(+);
+	xFLOAT_T_OPERATOR(-);
+	xFLOAT_T_OPERATOR(*);
+	xFLOAT_T_OPERATOR(/);
+
+#undef xFLOAT_OPERATOR
+#undef xFLOAT_T_OPERATOR
 ///\}
 
 ///\name Determines
@@ -79,6 +106,18 @@ private:
 using FFloat      = Float<float>;
 using FDouble     = Float<double>;
 using FLongDouble = Float<long double>;
+//-------------------------------------------------------------------------------------------------
+///\name User-defined literals
+///\{
+FFloat      operator ""xf (clongdouble_t value);
+FFloat      operator ""xf (culonglong_t value);
+
+FDouble     operator ""xd (clongdouble_t value);
+FDouble     operator ""xd (culonglong_t value);
+
+FLongDouble operator ""xld (clongdouble_t value);
+FLongDouble operator ""xld (culonglong_t value);
+///\}
 
 } // namespace
 //-------------------------------------------------------------------------------------------------

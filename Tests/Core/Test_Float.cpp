@@ -189,6 +189,39 @@ Test_Float::unit()
 		xTEST_EQ(FDouble(d.get()), 11.55);
 	}
 
+	xTEST_CASE("operators +-*/")
+	{
+		FDouble dRv;
+
+		// +
+		dRv = 0.5xd + 1.5xd;
+		xTEST_EQ(dRv, 2.0);
+
+		dRv = 5xd + 1xd;
+		xTEST_EQ(dRv, 6.0);
+
+		// -
+		dRv = 0.5xd - 1.5xd;
+		xTEST_EQ(dRv, -1.0);
+
+		dRv = 5xd - 1xd;
+		xTEST_EQ(dRv, 4.0);
+
+		// *
+		dRv = 0.5xd * 0.5xd;
+		xTEST_EQ(dRv, 0.25);
+
+		dRv = 5xd * 5xd;
+		xTEST_EQ(dRv, 25.0);
+
+		// /
+		dRv = 0.25xd / 0.5xd;
+		xTEST_EQ(dRv, 0.5);
+
+		dRv = 25xd / 5xd;
+		xTEST_EQ(dRv, 5.0);
+	}
+
 	/// [TEST] Determines
 
 	xTEST_CASE("isNull")
