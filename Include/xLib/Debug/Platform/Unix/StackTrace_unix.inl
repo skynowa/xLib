@@ -25,10 +25,10 @@ namespace xl::debug
 //-------------------------------------------------------------------------------------------------
 void_t
 StackTrace::_get_impl(
-    std::vector<std::vec_tstring_t> *a_stack
+    std::vector<std::vec_tstring_t> *out_stack
 ) const
 {
-    xCHECK_DO(a_stack == nullptr, return);
+    xCHECK_DO(out_stack == nullptr, return);
 
     std::vector<std::vec_tstring_t> stack;
     std::ctstring_t                 dataNotFound = xT("[???]");
@@ -140,7 +140,7 @@ StackTrace::_get_impl(
     Utils::bufferFreeT(symbols);
 
     // out
-    a_stack->swap(stack);
+    out_stack->swap(stack);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
