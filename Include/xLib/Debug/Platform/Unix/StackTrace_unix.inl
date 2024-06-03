@@ -36,7 +36,7 @@ StackTrace::_get_impl(
 #if cmEXECINFO_FOUND
     void_t *stackBuff[_framesMax + 1] {};
 
-    int_t framesNum = ::backtrace(stackBuff, sizeof(stack_buff) / sizeof(void *));
+    int_t framesNum = ::backtrace(stackBuff, sizeof(stackBuff) / sizeof(void *));
     xCHECK_DO(framesNum <= 0, return);
 
     char **symbols = ::backtrace_symbols(stackBuff, framesNum);
