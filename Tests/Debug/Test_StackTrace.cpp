@@ -27,8 +27,8 @@ foo(
 	StackTraceData data
 	{
 		.skipFramesNum       {0},
-		.isWrapFilePaths     {true},
-		.isFuncParamsDisable {false}
+		.isWrapFilePaths     {false},
+		.isFuncParamsDisable {true}
 	};
 
     StackTrace stack(data);
