@@ -153,8 +153,6 @@ StackTrace::_funcArgsDisable(
 {
 	xCHECK_DO(out_functionName == nullptr, return);
 
-	std::tstring_t sRv;
-
     std::csize_t pos1 = out_functionName->find(xT('('));
     xCHECK_DO(pos1 == std::tstring_t::npos, return);
 
