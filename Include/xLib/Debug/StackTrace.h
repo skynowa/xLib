@@ -79,9 +79,7 @@ xPLATFORM_IMPL:
     			std::tstring_t *functionName, ulong_t *sourceLine);
 #endif
     void_t _funcArgsDisable(std::tstring_t *functionName) const;
-        ///<
     void_t _wrapFilePaths(std::tstring_t *modulePath, std::tstring_t *filePath) const;
-        ///<
 };
 
 } // namespace
