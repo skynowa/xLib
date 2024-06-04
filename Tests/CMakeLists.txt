@@ -148,6 +148,11 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
         ${cmXLIB_INCLUDES}
         ${XLIB_INCLUDES})
 
+    # For debug::StackTrace
+    if (ENV_UNIX)
+        target_link_options(${TEST_NAME} PRIVATE -rdynamic)
+    endif()
+
     target_link_libraries(${TEST_NAME} PUBLIC
         ${CONAN_LIBS}
 
