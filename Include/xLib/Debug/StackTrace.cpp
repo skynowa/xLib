@@ -173,11 +173,11 @@ StackTrace::_wrapFilePaths(
 ) const
 {
 	if (out_modulePath != nullptr) {
-		Path(*out_modulePath).fileName();
+		*out_modulePath = Path(*out_modulePath).fileName();
 	}
 
 	if (out_filePath != nullptr) {
-		Path(*out_filePath).fileName();
+		*out_filePath = Path(*out_filePath).fileName();
 	}
 }
 //-------------------------------------------------------------------------------------------------

@@ -18,6 +18,7 @@ Test_StackTrace::unit()
         StackTrace stack;
 
         m_sRv = stack.str();
+        Cout() << "\n" << m_sRv;
         xTEST(!m_sRv.empty());
     }
 
