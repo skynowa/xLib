@@ -153,20 +153,36 @@ StackTrace::_funcArgsDisable(
 {
 	xCHECK_DO(out_functionName == nullptr, return);
 
-    std::csize_t pos1 = out_functionName->find(xT('('));
-    xCHECK_DO(pos1 == std::tstring_t::npos, return);
+	// Args - rm
+	{
+		std::csize_t pos1 = out_functionName->find(xT('('));
+		xCHECK_DO(pos1 == std::tstring_t::npos, return);
 
-    std::csize_t pos2 = out_functionName->find(xT(')'));
-    xCHECK_DO(pos2 == std::tstring_t::npos, return);
+		std::csize_t pos2 = out_functionName->find(xT(')'));
+		xCHECK_DO(pos2 == std::tstring_t::npos, return);
 
-    xSTD_VERIFY(pos1 < pos2);
+		xSTD_VERIFY(pos1 < pos2);
 
-    // Args - insert placeholder
-    std::ctstring_t argsPlaceholder = (pos1 == pos2 - 1) ? xT("") : xT("...");
+		// Args - insert placeholder
+		std::ctstring_t argsPlaceholder = (pos1 == pos2 - 1) ? xT("") : xT("...");
 
-    // [out]
-    *out_functionName = out_functionName->substr(0, pos1 + 1) + argsPlaceholder +
-        out_functionName->substr(pos2);
+		// [out]
+		*out_functionName = out_functionName->substr(0, pos1 + 1) + argsPlaceholder +
+			out_functionName->substr(pos2);
+	}
+
+	// Extra strings - rm
+	{
+		constexpr ctchar_t *extraStrs[]
+		{
+			xT("[abi:cxx11]")
+		};
+
+		for (const auto it_extraStr : extraStrs) {
+			// [out]
+			*out_functionName = String::removeAll(*out_functionName, it_extraStr);
+		}
+	}
 }
 //-------------------------------------------------------------------------------------------------
 void_t
