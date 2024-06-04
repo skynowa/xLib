@@ -1,6 +1,6 @@
 /**
- * \file   StackTrace.cpp
- * \brief  stackrace of the caller function
+ * \file  StackTrace.cpp
+ * \brief Stackrace of the caller function
  */
 
 
@@ -143,6 +143,27 @@ StackTrace::_format(
 
     // out
     a_stackStr->swap(sRv);
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+StackTrace::_funcParamsDisable(
+	std::ctstring_t &a_functionName	///< function name with params
+) const
+{
+	std::string sRv;
+
+    std::csize_t pos1 = a_functionName.find(xT("("));
+    std::csize_t pos2 = a_functionName.find(xT(")"));
+
+    if (pos1 != std::tstring_t::npos &&
+        pos2 != std::tstring_t::npos)
+    {
+        xSTD_VERIFY(pos1 < pos2);
+
+        sRv = a_functionName.substr(0, pos1 + 1) + a_functionName.substr(pos2);
+    }
+
+    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 

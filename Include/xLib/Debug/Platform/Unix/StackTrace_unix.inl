@@ -107,16 +107,7 @@ StackTrace::_get_impl(
 
         // disable function params
         if (_data.isFuncParamsDisable) {
-            std::csize_t pos1 = functionName.find(xT("("));
-            std::csize_t pos2 = functionName.find(xT(")"));
-
-            if (pos1 != std::tstring_t::npos &&
-                pos2 != std::tstring_t::npos)
-            {
-                xSTD_VERIFY(pos1 < pos2);
-
-                functionName = functionName.substr(0, pos1 + 1) + functionName.substr(pos2);
-            }
+            functionName = _funcParamsDisable(functionName);
         }
 
         // out

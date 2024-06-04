@@ -1,6 +1,6 @@
 /**
- * \file   StackTrace.h
- * \brief  stackrace of the caller function
+ * \file  StackTrace.h
+ * \brief Stackrace of the caller function
  *
  * \see
  * https://github.com/jeremy-rifkin/cpptrace
@@ -78,6 +78,8 @@ xPLATFORM_IMPL:
     void_t _addr2Line(cptr_cvoid_t symbolAddress, std::tstring_t *filePath,
     			std::tstring_t *functionName, ulong_t *sourceLine);
 #endif
+    std::tstring_t _funcParamsDisable(std::ctstring_t &functionName) const;
+        ///<
 };
 
 } // namespace

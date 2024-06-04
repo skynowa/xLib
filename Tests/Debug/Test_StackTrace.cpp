@@ -1,6 +1,6 @@
 /**
- * \file   Test_StackTrace.cpp
- * \brief  test StackTrace
+ * \file  Test_StackTrace.cpp
+ * \brief test StackTrace
  */
 
 
