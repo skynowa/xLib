@@ -155,16 +155,20 @@ StackTrace::_funcParamsDisable(
 
 	std::tstring_t sRv;
 
-    std::csize_t pos1 = out_functionName->find(xT("("));
-    std::csize_t pos2 = out_functionName->find(xT(")"));
+    std::csize_t pos1 = out_functionName->find(xT('('));
+    xCHECK_DO(pos1 == std::tstring_t::npos, return);
 
-    if (pos1 != std::tstring_t::npos &&
-        pos2 != std::tstring_t::npos)
-    {
-        xSTD_VERIFY(pos1 < pos2);
+    std::csize_t pos2 = out_functionName->find(xT(')'));
+    xCHECK_DO(pos2 == std::tstring_t::npos, return);
 
-        *out_functionName = out_functionName->substr(0, pos1 + 1) + out_functionName->substr(pos2);
-    }
+    xSTD_VERIFY(pos1 < pos2);
+
+    // Args - insert placeholder
+    std::ctstring_t argsPlaceholder = (pos1 == pos2 - 1) ? xT("") : xT("...");
+
+    // [out]
+    *out_functionName = out_functionName->substr(0, pos1 + 1) + argsPlaceholder +
+        out_functionName->substr(pos2);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
