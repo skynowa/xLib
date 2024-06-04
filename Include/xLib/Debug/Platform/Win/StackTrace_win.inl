@@ -113,7 +113,7 @@ StackTrace::_get_impl(
 
         // disable function params
         if (_data.isFuncParamsDisable) {
-            functionName = _funcParamsDisable(functionName);
+            _funcParamsDisable(&functionName);
         }
 
         // out

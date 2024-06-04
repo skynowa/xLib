@@ -78,7 +78,7 @@ xPLATFORM_IMPL:
     void_t _addr2Line(cptr_cvoid_t symbolAddress, std::tstring_t *filePath,
     			std::tstring_t *functionName, ulong_t *sourceLine);
 #endif
-    std::tstring_t _funcParamsDisable(std::ctstring_t &functionName) const;
+    void_t _funcParamsDisable(std::tstring_t *functionName) const;
         ///<
 };
 

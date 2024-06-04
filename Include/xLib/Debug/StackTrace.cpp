@@ -145,25 +145,25 @@ StackTrace::_format(
     a_stackStr->swap(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+void_t
 StackTrace::_funcParamsDisable(
-	std::ctstring_t &a_functionName	///< function name with params
+	std::tstring_t *out_functionName	///< [in, out] function name with params
 ) const
 {
-	std::string sRv;
+	xCHECK_DO(out_functionName == nullptr, return);
 
-    std::csize_t pos1 = a_functionName.find(xT("("));
-    std::csize_t pos2 = a_functionName.find(xT(")"));
+	std::tstring_t sRv;
+
+    std::csize_t pos1 = out_functionName->find(xT("("));
+    std::csize_t pos2 = out_functionName->find(xT(")"));
 
     if (pos1 != std::tstring_t::npos &&
         pos2 != std::tstring_t::npos)
     {
         xSTD_VERIFY(pos1 < pos2);
 
-        sRv = a_functionName.substr(0, pos1 + 1) + a_functionName.substr(pos2);
+        *out_functionName = out_functionName->substr(0, pos1 + 1) + out_functionName->substr(pos2);
     }
-
-    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 
