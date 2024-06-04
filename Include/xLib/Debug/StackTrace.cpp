@@ -173,7 +173,7 @@ StackTrace::_funcArgsDisable(
 
 	// Extra strings - rm
 	{
-		constexpr ctchar_t *extraStrs[]
+		static constexpr ctchar_t *extraStrs[]
 		{
 			xT("[abi:cxx11]")
 		};
