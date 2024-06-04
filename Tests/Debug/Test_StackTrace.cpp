@@ -43,8 +43,9 @@ Test_StackTrace::unit()
     xTEST_CASE("str")
     {
         m_sRv = ::foo();
-        Cout() << "\n" << m_sRv << "\n";
         xTEST(!m_sRv.empty());
+
+        // Cout() << "\n" << m_sRv << "\n";
     }
 
     return true;
