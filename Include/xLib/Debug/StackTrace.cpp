@@ -1,6 +1,6 @@
 /**
- * \file   StackTrace.cpp
- * \brief  stackrace of the caller function
+ * \file  StackTrace.cpp
+ * \brief Stackrace of the caller function
  */
 
 
@@ -132,7 +132,8 @@ StackTrace::_format(
             << std::setw(maxs[1]) << std::left  << it->at(1)     << xT("  ")
             << std::setw(maxs[2]) << std::left  << it->at(2)     << xT("  ")
             << std::setw(maxs[3]) << std::left  << it->at(3)     << xT("  ")
-            << std::setw(maxs[4]) << std::left  << it->at(4);
+            << std::setw(0)       << std::left  << it->at(4);
+
 
         if (it + 1 != a_stack.cend()) {
              stackLine << Const::nl();
@@ -143,6 +144,44 @@ StackTrace::_format(
 
     // out
     a_stackStr->swap(sRv);
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+StackTrace::_funcArgsDisable(
+	std::tstring_t *out_functionName	///< [in, out] function name with params
+) const
+{
+	xCHECK_DO(out_functionName == nullptr, return);
+
+    std::csize_t pos1 = out_functionName->find(xT('('));
+    xCHECK_DO(pos1 == std::tstring_t::npos, return);
+
+    std::csize_t pos2 = out_functionName->find(xT(')'));
+    xCHECK_DO(pos2 == std::tstring_t::npos, return);
+
+    xSTD_VERIFY(pos1 < pos2);
+
+    // Args - insert placeholder
+    std::ctstring_t argsPlaceholder = (pos1 == pos2 - 1) ? xT("") : xT("...");
+
+    // [out]
+    *out_functionName = out_functionName->substr(0, pos1 + 1) + argsPlaceholder +
+        out_functionName->substr(pos2);
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+StackTrace::_wrapFilePaths(
+	std::tstring_t *out_modulePath,
+	std::tstring_t *out_filePath
+) const
+{
+	if (out_modulePath != nullptr) {
+		*out_modulePath = Path(*out_modulePath).fileName();
+	}
+
+	if (out_filePath != nullptr) {
+		*out_filePath = Path(*out_filePath).fileName();
+	}
 }
 //-------------------------------------------------------------------------------------------------
 
