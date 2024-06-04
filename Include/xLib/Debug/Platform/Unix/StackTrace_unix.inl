@@ -101,8 +101,7 @@ StackTrace::_get_impl(
 
         // swap file paths
         if (_data.isWrapFilePaths) {
-            modulePath = Path(modulePath).fileName();
-            filePath   = Path(filePath).fileName();
+            _wrapFilePaths(&modulePath, &filePath);
         }
 
         // disable function params

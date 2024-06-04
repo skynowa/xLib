@@ -80,6 +80,8 @@ xPLATFORM_IMPL:
 #endif
     void_t _funcParamsDisable(std::tstring_t *functionName) const;
         ///<
+    void_t _wrapFilePaths(std::tstring_t *modulePath, std::tstring_t *filePath) const;
+        ///<
 };
 
 } // namespace

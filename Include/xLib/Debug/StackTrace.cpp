@@ -166,5 +166,20 @@ StackTrace::_funcParamsDisable(
     }
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+StackTrace::_wrapFilePaths(
+	std::tstring_t *out_modulePath,
+	std::tstring_t *out_filePath
+) const
+{
+	if (out_modulePath != nullptr) {
+		Path(*out_modulePath).fileName();
+	}
+
+	if (out_filePath != nullptr) {
+		Path(*out_filePath).fileName();
+	}
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
