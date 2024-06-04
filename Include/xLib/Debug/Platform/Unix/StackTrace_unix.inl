@@ -79,16 +79,17 @@ StackTrace::_get_impl(
             std::tstring_t _filePath;
             std::tstring_t _functionName;
             ulong_t        _sourceLine {};
+			{
+				_addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
+				xUNUSED(_functionName);
 
-            _addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
-            xUNUSED(_functionName);
-
-		#if 0
-			Cout() << xTRACE_VAR(dlinfo.dli_saddr);
-			Cout() << xTRACE_VAR(_filePath);
-			Cout() << xTRACE_VAR(_functionName);
-			Cout() << xTRACE_VAR(_sourceLine);
-		#endif
+			#if 0
+				Cout() << xTRACE_VAR(dlinfo.dli_saddr);
+				Cout() << xTRACE_VAR(_filePath);
+				Cout() << xTRACE_VAR(_functionName);
+				Cout() << xTRACE_VAR(_sourceLine);
+			#endif
+			}
 
             modulePath   = (dlinfo.dli_fname == nullptr) ? dataNotFound : xA2T(dlinfo.dli_fname);
             filePath     = _filePath.empty()             ? dataNotFound : _filePath;
