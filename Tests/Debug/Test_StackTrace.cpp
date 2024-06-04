@@ -24,7 +24,7 @@ foo(
 	xUNUSED(a_string);
 	xUNUSED(a_map);
 
-	StackTraceData data
+	cStackTraceData data
 	{
 		.skipFramesNum     {0},
 		.isWrapFilePaths   {false},
@@ -33,10 +33,7 @@ foo(
 
     StackTrace stack(data);
 
-    std::tstring_t sRv = stack.str();
-    Cout() << "\n" << sRv << "\n";
-
-	return sRv;
+	return stack.str();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
