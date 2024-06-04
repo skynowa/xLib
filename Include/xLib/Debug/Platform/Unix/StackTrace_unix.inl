@@ -36,7 +36,7 @@ StackTrace::_get_impl(
 #if cmEXECINFO_FOUND
     void_t *stackBuff[_framesMax + 1] {};
 
-    int_t framesNum = ::backtrace(stackBuff, sizeof(stackBuff) / sizeof(void *));
+    int_t framesNum = ::backtrace(stackBuff, static_cast<int_t>(_framesMax));
     xCHECK_DO(framesNum <= 0, return);
 
     char **symbols = ::backtrace_symbols(stackBuff, framesNum);
@@ -101,22 +101,12 @@ StackTrace::_get_impl(
 
         // swap file paths
         if (_data.isWrapFilePaths) {
-            modulePath = Path(modulePath).fileName();
-            filePath   = Path(filePath).fileName();
+            _wrapFilePaths(&modulePath, &filePath);
         }
 
         // disable function params
-        if (_data.isFuncParamsDisable) {
-            std::csize_t pos1 = functionName.find(xT("("));
-            std::csize_t pos2 = functionName.find(xT(")"));
-
-            if (pos1 != std::tstring_t::npos &&
-                pos2 != std::tstring_t::npos)
-            {
-                xSTD_VERIFY(pos1 < pos2);
-
-                functionName = functionName.substr(0, pos1 + 1) + functionName.substr(pos2);
-            }
+        if (_data.isFuncArgsDisable) {
+            _funcArgsDisable(&functionName);
         }
 
         // out

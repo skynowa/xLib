@@ -2,7 +2,7 @@
 
 
 # UNIT_TESTS=(Path Environment User)
-UNIT_TESTS=(Float)
+UNIT_TESTS=(StackTrace)
 
 # BG='\e[46m'   # green
 # FG='\e[37m'   # white
