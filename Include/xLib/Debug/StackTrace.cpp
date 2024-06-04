@@ -147,7 +147,7 @@ StackTrace::_format(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-StackTrace::_funcParamsDisable(
+StackTrace::_funcArgsDisable(
 	std::tstring_t *out_functionName	///< [in, out] function name with params
 ) const
 {
