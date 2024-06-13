@@ -129,7 +129,7 @@ StackTrace::_get_impl(
     xCHECK_DO(symbols == nullptr, return);
 
     for (int_t i = _data.skipFramesNum; i < framesNum; ++ i) {
-    	const char *it_symbol = symbols[i];
+        const char *it_symbol = symbols[i];
 
         std::tstring_t modulePath;
         std::tstring_t filePath;
