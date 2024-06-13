@@ -23,6 +23,92 @@ namespace xl::debug
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+void *
+parseSymbolOffset(
+	char *frame
+)
+{
+	char        *p_symbol {};
+	std::size_t  nn_symbol {};
+	char        *p_offset {};
+	std::size_t  nn_offset {};
+
+	// Read symbol and offset, for example:
+	//      /tools/backtrace(foo+0x1820) [0x555555555820]
+	for (char *p = frame; *p; ++ p) {
+		if (*p == '(') {
+			p_symbol = p + 1;
+		}
+		else if (*p == '+') {
+			if (p_symbol) {
+				nn_symbol = p - p_symbol;
+			}
+
+			p_offset = p + 1;
+		}
+		else if (*p == ')') {
+			if (p_offset) {
+				nn_offset = p - p_offset;
+			}
+		}
+	}
+
+	if (!nn_symbol &&
+		!nn_offset)
+	{
+		return nullptr;
+	}
+
+	// Convert offset(0x1820) to pointer, such as 0x1820.
+	char tmp[128] {};
+	if (!nn_offset ||
+		nn_offset >= sizeof(tmp))
+	{
+		return nullptr;
+	}
+
+	int r0 = EOF;
+	void* offset {};
+	tmp[nn_offset] = 0;
+	if ((r0 = sscanf(strncpy(tmp, p_offset, nn_offset), "%p", &offset)) == EOF) {
+		return nullptr;
+	}
+
+	// Covert symbol(foo) to offset, such as 0x2fba.
+	if (!nn_symbol ||
+		nn_symbol >= sizeof(tmp))
+	{
+		return offset;
+	}
+
+	void *object_file {};
+	if ((object_file = ::dlopen(nullptr, RTLD_LAZY)) == nullptr) {
+		return offset;
+	}
+
+	void *address {};
+	tmp[nn_symbol] = 0;
+	if ((address = ::dlsym(object_file, strncpy(tmp, p_symbol, nn_symbol))) == nullptr) {
+		::dlclose(object_file);
+		return offset;
+	}
+
+	Dl_info symbol_info {};
+	if ((r0 = ::dladdr(address, &symbol_info)) == 0) {
+		::dlclose(object_file);
+		return offset;
+	}
+
+	::dlclose(object_file);
+
+	return
+		reinterpret_cast<void*>(
+			reinterpret_cast<std::uintptr_t>(symbol_info.dli_saddr) -
+			reinterpret_cast<std::uintptr_t>(symbol_info.dli_fbase) +
+			reinterpret_cast<std::uintptr_t>(offset)
+		);
+}
+//-------------------------------------------------------------------------------------------------
 void_t
 StackTrace::_get_impl(
     std::vector<std::vec_tstring_t> *out_stack
@@ -43,6 +129,8 @@ StackTrace::_get_impl(
     xCHECK_DO(symbols == nullptr, return);
 
     for (int_t i = _data.skipFramesNum; i < framesNum; ++ i) {
+    	const char *it_symbol = symbols[i];
+
         std::tstring_t modulePath;
         std::tstring_t filePath;
         std::tstring_t fileLine;
@@ -56,7 +144,7 @@ StackTrace::_get_impl(
             filePath     = dataNotFound;
             fileLine     = dataNotFound;
             byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(nullptr));
-            functionName = (symbols[i] == nullptr) ? dataNotFound : xA2T(symbols[i]);
+            functionName = (it_symbol == nullptr) ? dataNotFound : xA2T(it_symbol);
         } else {
             const char *symbolName {};
             int_t       status     {-1};
@@ -75,24 +163,35 @@ StackTrace::_get_impl(
 			Cout() << xTRACE_VAR(symbolName);
 		#endif
 
-            std::tstring_t _filePath;
-            std::tstring_t _functionName;
-            ulong_t        _sourceLine {};
+		#define _xOPTION_ADDR2LINE 0
+
+		#if _xOPTION_ADDR2LINE
+			void *frame = ::parseSymbolOffset(it_symbol);
+
+			std::tstring_t _filePath;
+			std::tstring_t _functionName;
+			ulong_t        _sourceLine {};
 			{
 				_addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
 				xUNUSED(_functionName);
 
 			#if 1
+				Cout() << xTRACE_VAR(it_symbol);
+				Cout() << xTRACE_VAR(frame);
 				Cout() << xTRACE_VAR(dlinfo.dli_saddr);
 				Cout() << xTRACE_VAR(_filePath);
-				Cout() << xTRACE_VAR(_functionName);
+				Cout() << xTRACE_VAR_2(symbolName, _functionName);
 				Cout() << xTRACE_VAR(_sourceLine);
+				Cout() << "-----------------------------------";
 			#endif
 			}
+		#endif
 
             modulePath   = (dlinfo.dli_fname == nullptr) ? dataNotFound : xA2T(dlinfo.dli_fname);
-            filePath     = _filePath.empty()             ? dataNotFound : _filePath;
-            fileLine     = String::cast(_sourceLine);
+		#if _xOPTION_ADDR2LINE
+			filePath     = _filePath.empty()             ? dataNotFound : _filePath;
+			fileLine     = String::cast(_sourceLine);
+		#endif
             byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
             functionName = (symbolName == nullptr) ? dataNotFound : xA2T(symbolName);
 
