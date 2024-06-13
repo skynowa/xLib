@@ -82,7 +82,7 @@ StackTrace::_get_impl(
 				_addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
 				xUNUSED(_functionName);
 
-			#if 0
+			#if 1
 				Cout() << xTRACE_VAR(dlinfo.dli_saddr);
 				Cout() << xTRACE_VAR(_filePath);
 				Cout() << xTRACE_VAR(_functionName);
