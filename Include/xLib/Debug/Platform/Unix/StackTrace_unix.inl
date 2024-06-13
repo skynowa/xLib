@@ -67,10 +67,12 @@ parseSymbolOffset(
 		return nullptr;
 	}
 
-	int r0 = EOF;
+	int r0 {};
+
 	void* offset {};
 	tmp[nn_offset] = 0;
-	if ((r0 = sscanf(strncpy(tmp, p_offset, nn_offset), "%p", &offset)) == EOF) {
+	r0 = sscanf(strncpy(tmp, p_offset, nn_offset), "%p", &offset);
+	if (r0 == EOF) {
 		return nullptr;
 	}
 
@@ -81,20 +83,21 @@ parseSymbolOffset(
 		return offset;
 	}
 
-	void *object_file {};
-	if ((object_file = ::dlopen(nullptr, RTLD_LAZY)) == nullptr) {
+	void *object_file = ::dlopen(nullptr, RTLD_LAZY);
+	if (object_file == nullptr) {
 		return offset;
 	}
 
-	void *address {};
 	tmp[nn_symbol] = 0;
-	if ((address = ::dlsym(object_file, strncpy(tmp, p_symbol, nn_symbol))) == nullptr) {
+	void *address = ::dlsym(object_file, strncpy(tmp, p_symbol, nn_symbol));
+	if (address == nullptr) {
 		::dlclose(object_file);
 		return offset;
 	}
 
 	Dl_info symbol_info {};
-	if ((r0 = ::dladdr(address, &symbol_info)) == 0) {
+	r0 = ::dladdr(address, &symbol_info);
+	if (r0 == 0) {
 		::dlclose(object_file);
 		return offset;
 	}
