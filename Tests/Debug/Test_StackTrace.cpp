@@ -45,7 +45,7 @@ Test_StackTrace::unit()
         m_sRv = ::foo();
         xTEST(!m_sRv.empty());
 
-        // Cout() << "\n" << m_sRv << "\n";
+        Cout() << "\n" << m_sRv << "\n";
     }
 
     return true;
