@@ -43,6 +43,8 @@ StackTrace::_get_impl(
     xCHECK_DO(symbols == nullptr, return);
 
     for (int_t i = _data.skipFramesNum; i < framesNum; ++ i) {
+        const char *it_symbol = symbols[i];
+
         std::tstring_t modulePath;
         std::tstring_t filePath;
         std::tstring_t fileLine;
@@ -56,7 +58,7 @@ StackTrace::_get_impl(
             filePath     = dataNotFound;
             fileLine     = dataNotFound;
             byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(nullptr));
-            functionName = (symbols[i] == nullptr) ? dataNotFound : xA2T(symbols[i]);
+            functionName = (it_symbol == nullptr) ? dataNotFound : xA2T(it_symbol);
         } else {
             const char *symbolName {};
             int_t       status     {-1};
