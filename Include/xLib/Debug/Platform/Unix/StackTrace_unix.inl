@@ -50,10 +50,9 @@ StackTrace::_get_impl(
         std::tstring_t functionName;
 
         Dl_info dlinfo {};
-
         int_t iRv = ::dladdr(stackBuff[i], &dlinfo);
         if (iRv == 0) {
-            modulePath   = (dlinfo.dli_fname == nullptr) ? dataNotFound : xA2T(dlinfo.dli_fname);
+            modulePath   = dataNotFound;
             filePath     = dataNotFound;
             fileLine     = dataNotFound;
             byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(nullptr));
