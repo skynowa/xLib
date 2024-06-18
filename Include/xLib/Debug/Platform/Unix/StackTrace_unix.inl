@@ -179,13 +179,14 @@ StackTrace::_get_impl(
 				xUNUSED(_functionName);
 
 			#if 1
+				Cout() << "-----------------------------------";
 				Cout() << xTRACE_VAR(it_symbol);
 				Cout() << xTRACE_VAR(frame);
 				Cout() << xTRACE_VAR(dlinfo.dli_saddr);
 				Cout() << xTRACE_VAR(_filePath);
 				Cout() << xTRACE_VAR_2(symbolName, _functionName);
 				Cout() << xTRACE_VAR(_sourceLine);
-				Cout() << "-----------------------------------";
+				Cout() << "-----------------------------------\n";
 			#endif
 			}
 		#endif
