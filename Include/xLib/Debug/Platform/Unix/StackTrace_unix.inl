@@ -288,6 +288,9 @@ StackTrace::_addr2Line(
 			out_functionName->assign( Const::strUnknown() );
 		} else {
 			out_functionName->assign(functionName);
+
+			// Fix EOL
+			*out_functionName = String::removeEol(*out_functionName);
 		}
     }
 
