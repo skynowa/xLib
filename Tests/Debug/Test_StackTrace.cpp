@@ -6,10 +6,18 @@
 
 #include <xLib/xLib.h>
 
+#if __has_include(<boost/version.hpp>)
+	#include <boost/version.hpp>
+#endif
+
+#if defined(BOOST_VERSION)
+	#define BOOST_STACKTRACE_USE_ADDR2LINE 1
+	#include <boost/stacktrace.hpp>
+#endif
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_StackTrace)
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+bool_t
 foo(
 	const bool                        a_bool = false,
 	const std::size_t                 a_int = 10U,
@@ -24,16 +32,35 @@ foo(
 	xUNUSED(a_string);
 	xUNUSED(a_map);
 
-	cStackTraceData data
+	// StackTrace
 	{
-		.skipFramesNum     {0},
-		.isWrapFilePaths   {false},
-		.isFuncArgsDisable {true}
-	};
+		cStackTraceData data
+		{
+			.skipFramesNum     {0},
+			.isWrapFilePaths   {false},
+			.isFuncArgsDisable {true}
+		};
 
-    StackTrace stack(data);
+		StackTrace stack(data);
+		const auto &sRv = stack.str();
+		xCHECK_RET(sRv.empty(), false);
 
-	return stack.str();
+		Cout() << "\n:::::::::: StackTrace ::::::::::\n";
+		Cout() << sRv << "\n";
+	}
+
+	// boost::stacktrace::stacktrace()
+	{
+	#if defined(BOOST_VERSION)
+		const auto &aRv = boost::stacktrace::stacktrace();
+		xCHECK_RET(aRv.as_vector().empty(), false);
+
+		std::tcout << "\n:::::::::: boost::stacktrace ::::::::::\n\n";
+		std::tcout << aRv << "\n\n";
+	#endif
+	}
+
+	return true;
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -42,10 +69,8 @@ Test_StackTrace::unit()
 {
     xTEST_CASE("str")
     {
-        m_sRv = ::foo();
-        xTEST(!m_sRv.empty());
-
-        Cout() << "\n" << m_sRv << "\n";
+        m_bRv = ::foo();
+        xTEST(m_bRv);
     }
 
     return true;
