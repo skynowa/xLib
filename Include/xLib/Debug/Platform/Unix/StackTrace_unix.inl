@@ -25,7 +25,7 @@ namespace xl::debug
 //-------------------------------------------------------------------------------------------------
 void *
 parseSymbolOffset(
-	char *frame
+	const char *frame
 )
 {
 	char        *p_symbol {};
@@ -35,7 +35,7 @@ parseSymbolOffset(
 
 	// Read symbol and offset, for example:
 	//      /tools/backtrace(foo+0x1820) [0x555555555820]
-	for (char *p = frame; *p; ++ p) {
+	for (char *p = const_cast<char *>(frame); *p; ++ p) {
 		if (*p == '(') {
 			p_symbol = p + 1;
 		}
@@ -166,7 +166,7 @@ StackTrace::_get_impl(
 			Cout() << xTRACE_VAR(symbolName);
 		#endif
 
-		#define _xOPTION_ADDR2LINE 0
+		#define _xOPTION_ADDR2LINE 1
 
 		#if _xOPTION_ADDR2LINE
 			void *frame = ::parseSymbolOffset(it_symbol);
