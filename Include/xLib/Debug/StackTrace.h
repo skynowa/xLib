@@ -22,8 +22,9 @@ namespace xl::debug
 struct StackTraceData
     /// StackTrace data
 {
-    cint_t  skipFramesNum       {2};	// REVIEW: skipFramesNum
-    cbool_t isWrapFilePaths     {true};
+    cint_t  skipFramesNum     {2};	// REVIEW: skipFramesNum
+    cbool_t isReverse         {false};
+    cbool_t isWrapFilePaths   {true};
     cbool_t isFuncArgsDisable {true};
 };
 xUSING_CONST(StackTraceData);
