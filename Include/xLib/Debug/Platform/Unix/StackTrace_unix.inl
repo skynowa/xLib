@@ -178,16 +178,16 @@ StackTrace::_get_impl(
 				_addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
 				xUNUSED(_functionName);
 
-			#if 1
-				Cout() << "-----------------------------------";
-				Cout() << xTRACE_VAR(it_symbol);
-				Cout() << xTRACE_VAR(frame);
-				Cout() << xTRACE_VAR(dlinfo.dli_saddr);
-				Cout() << xTRACE_VAR(_filePath);
-				Cout() << xTRACE_VAR_2(symbolName, _functionName);
-				Cout() << xTRACE_VAR(_sourceLine);
-				Cout() << "-----------------------------------\n";
-			#endif
+				if (1) {
+					Cout() << "-----------------------------------";
+					Cout() << xTRACE_VAR(it_symbol);
+					Cout() << xTRACE_VAR(frame);
+					Cout() << xTRACE_VAR(dlinfo.dli_saddr);
+					Cout() << xTRACE_VAR(_filePath);
+					Cout() << xTRACE_VAR_2(symbolName, _functionName);
+					Cout() << xTRACE_VAR(_sourceLine);
+					Cout() << "-----------------------------------\n";
+				}
 			}
 		#endif
 
@@ -196,8 +196,10 @@ StackTrace::_get_impl(
 			filePath     = _filePath.empty()             ? dataNotFound : _filePath;
 			fileLine     = String::cast(_sourceLine);
 		#endif
-            byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
-            functionName = (symbolName == nullptr) ? dataNotFound : xA2T(symbolName);
+			byteOffset   = Format::str(xT("{} ({})"),
+								static_cast<void_t *>(dlinfo.dli_saddr),
+								static_cast<void_t *>(frame));
+			functionName = (symbolName == nullptr) ? dataNotFound : xA2T(symbolName);
 
             Utils::bufferFreeT(demangleName);
         }
