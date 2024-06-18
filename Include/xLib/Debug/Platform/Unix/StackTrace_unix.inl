@@ -279,22 +279,20 @@ StackTrace::_addr2Line(
 	auto pipe = autoPipe(cmdLine, "r");
 	xTEST_PTR(pipe.get());
 
-    // get function name
+    // [out] out_functionName
     {
         tchar_t buff[buffSize + 1] {};
         cptr_ctchar_t functionName = xTFGETS(buff, buffSize, pipe.get());
 
 		if (functionName == nullptr) {
-			out_functionName->assign( Const::strUnknown() );
+			*out_functionName = Const::strUnknown();
 		} else {
-			out_functionName->assign(functionName);
-
 			// Fix EOL
-			*out_functionName = String::removeEol(*out_functionName);
+			*out_functionName = String::removeEol(functionName);
 		}
     }
 
-    // get file and line
+    // [out] out_filePath, out_sourceLine
     {
         tchar_t buff[buffSize + 1] {};
         cptr_ctchar_t fileAndLine = xTFGETS(buff, buffSize, pipe.get());
