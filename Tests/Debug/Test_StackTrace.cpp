@@ -36,7 +36,7 @@ foo(
 	{
 		cStackTraceData data
 		{
-			.skipFramesNum     {0},
+			.skipFramesNum     {2},
 			.isWrapFilePaths   {false},
 			.isFuncArgsDisable {true}
 		};
