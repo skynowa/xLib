@@ -284,9 +284,6 @@ namespace std
     using mmap_tstring_t = multimap<tstring_t, tstring_t>;
     xUSING_CONST(mmap_tstring_t);
 
-    using unmap_tstring_t = unordered_map<tstring_t, tstring_t>;
-    xUSING_CONST(unmap_tstring_t);
-
     template<typename T>
     inline tstring_t
     to_tstring(const T &a_value)

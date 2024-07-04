@@ -53,11 +53,11 @@ public:
 ///\name text
     void_t textRead(std::tstring_t *content) const;
     void_t textRead(std::vec_tstring_t *content) const;
-    void_t textRead(std::ctstring_t &separator, std::unmap_tstring_t *content) const;
+    void_t textRead(std::ctstring_t &separator, std::map_tstring_t *content) const;
 
     void_t textWrite(std::ctstring_t &content, FileIO::cOpenMode mode) const;
     void_t textWrite(std::cvec_tstring_t &content, FileIO::cOpenMode mode) const;
-    void_t textWrite(std::ctstring_t &separator, std::cunmap_tstring_t &content,
+    void_t textWrite(std::ctstring_t &separator, std::cmap_tstring_t &content,
 				FileIO::cOpenMode mode) const;
 ///\}
 
