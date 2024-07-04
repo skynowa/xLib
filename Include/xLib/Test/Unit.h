@@ -32,30 +32,31 @@ class Unit
 public:
 ///\name For global use
 ///\{
-    void_t *            m_pvRv {};
-    tchar_t             m_chRv {};
-    uchar_t             m_ucRv {};
-    bool_t              m_bRv {};
-    int_t               m_iRv {};
-    short_t             m_siRv {};
-    ushort_t            m_usiRv {};
-    uint_t              m_uiRv {};
-    std::size_t         m_stRv {};
-    std::ssize_t        m_sstRv {};
-    long_t              m_liRv {};
-    ulong_t             m_ulRv {};
-    longlong_t          m_llRv {};
-    ulonglong_t         m_ullRv {};
-    float_t             m_fRv {};
-    double_t            m_dRv {};
-    longdouble_t        m_ldRv {};
-    std::tstring_t      m_sRv;
-    std::ustring_t      m_usRv;
-    std::vec_tchar_t    m_vchRv;
-    std::vec_tstring_t  m_vsRv;
-    std::map_tstring_t  m_msRv;
-    std::mmap_tstring_t m_mmsRv;
-    native_handle_t     m_hRv {};
+    void_t *             m_pvRv {};
+    tchar_t              m_chRv {};
+    uchar_t              m_ucRv {};
+    bool_t               m_bRv {};
+    int_t                m_iRv {};
+    short_t              m_siRv {};
+    ushort_t             m_usiRv {};
+    uint_t               m_uiRv {};
+    std::size_t          m_stRv {};
+    std::ssize_t         m_sstRv {};
+    long_t               m_liRv {};
+    ulong_t              m_ulRv {};
+    longlong_t           m_llRv {};
+    ulonglong_t          m_ullRv {};
+    float_t              m_fRv {};
+    double_t             m_dRv {};
+    longdouble_t         m_ldRv {};
+    std::tstring_t       m_sRv;
+    std::ustring_t       m_usRv;
+    std::vec_tchar_t     m_vchRv;
+    std::vec_tstring_t   m_vsRv;
+    std::map_tstring_t   m_msRv;
+    std::mmap_tstring_t  m_mmsRv;
+    std::unmap_tstring_t m_unmsRv;
+    native_handle_t      m_hRv {};
 
 #if xENV_WIN
     HWND                m_hwndRv {};
@@ -77,7 +78,7 @@ public:
        ///< check Github CI
     bool_t         isVpnActive() const;
        ////< detect VPN (Fabrica)
-    void_t         cfg(std::map_tstring_t *values) const;
+    void_t         cfg(std::unmap_tstring_t *values) const;
         ///< config with test data/credentials
     bool_t         run();
         ///< run cases
