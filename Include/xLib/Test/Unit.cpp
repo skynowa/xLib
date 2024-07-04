@@ -64,7 +64,7 @@ Unit::isVpnActive() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Unit::cfg(
-	std::unmap_tstring_t *out_values
+	std::map_tstring_t *out_values
 ) const
 {
 	xCHECK_DO(out_values == nullptr, return);
