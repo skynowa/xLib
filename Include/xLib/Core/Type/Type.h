@@ -90,6 +90,7 @@ xTYPE_NAME_DECLARE(std::list_tstring_t);
 xTYPE_NAME_DECLARE(std::vec_ustring_t);
 xTYPE_NAME_DECLARE(std::map_tstring_t);
 xTYPE_NAME_DECLARE(std::mmap_tstring_t);
+xTYPE_NAME_DECLARE(std::unmap_tstring_t);
 //-------------------------------------------------------------------------------------------------
 class Type
     /// type info
