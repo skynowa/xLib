@@ -78,7 +78,7 @@ public:
        ///< check Github CI
     bool_t         isVpnActive() const;
        ////< detect VPN (Fabrica)
-    void_t         cfg(std::unmap_tstring_t *values) const;
+    void_t         cfg(std::map_tstring_t *values) const;
         ///< config with test data/credentials
     bool_t         run();
         ///< run cases

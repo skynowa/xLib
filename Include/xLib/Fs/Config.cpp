@@ -43,7 +43,7 @@ Config::~Config()
     write();
 }
 //-------------------------------------------------------------------------------------------------
-std::unmap_tstring_t &
+std::map_tstring_t &
 Config::get() /*  final */
 {
     return _config;
@@ -68,7 +68,7 @@ Config::write() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Config::writeDefault(
-    std::cunmap_tstring_t &a_content
+    std::cmap_tstring_t &a_content
 )
 {
     xTEST_NA(a_content);
@@ -104,7 +104,7 @@ Config::keyIsExists(
     std::ctstring_t &a_key
 ) const
 {
-    return (_config.find(a_key) != _config.cend());
+    return _config.contains(a_key);
 }
 //-------------------------------------------------------------------------------------------------
 void_t

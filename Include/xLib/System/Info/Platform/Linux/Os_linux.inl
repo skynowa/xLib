@@ -68,7 +68,7 @@ Os::_distro_impl() const
         switch (it.type) {
         case _Type::Os:
             {
-                std::unmap_tstring_t values;
+                std::map_tstring_t values;
                 File(it.filePath).textRead(xT("="), &values);
 
                 if ( !values.empty() ) {
