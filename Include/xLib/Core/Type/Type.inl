@@ -83,6 +83,8 @@ Type::name(
 		sRv = "std::map_tstring_t";
 	else if (std::is_same_v<T, std::mmap_tstring_t>)
 		sRv = "std::mmap_tstring_t";
+	else if (std::is_same_v<T, std::unmap_tstring_t>)
+		sRv = "std::unmap_tstring_t";
 	else
 		sRv = xT("unknown");
 #elif 1

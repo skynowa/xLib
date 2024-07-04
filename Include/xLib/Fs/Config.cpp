@@ -43,7 +43,7 @@ Config::~Config()
     write();
 }
 //-------------------------------------------------------------------------------------------------
-std::map_tstring_t &
+std::unmap_tstring_t &
 Config::get() /*  final */
 {
     return _config;
@@ -68,7 +68,7 @@ Config::write() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Config::writeDefault(
-    std::cmap_tstring_t &a_content
+    std::cunmap_tstring_t &a_content
 )
 {
     xTEST_NA(a_content);
