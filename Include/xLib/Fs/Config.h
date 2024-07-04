@@ -17,7 +17,7 @@ namespace xl::fs
 {
 
 class Config :
-	public IGetRef<std::map_tstring_t>
+	public IGetRef<std::unmap_tstring_t>
     /// config file
 {
 public:
@@ -32,7 +32,7 @@ public:
 
 ///\name Overrides
 ///\{
-	std::map_tstring_t & get() final;
+	std::unmap_tstring_t & get() final;
 ///\}
 
 ///\name File's
@@ -41,7 +41,7 @@ public:
         ///< parse file
     void_t write() const;
         ///< write
-    void_t writeDefault(std::cmap_tstring_t &content);
+    void_t writeDefault(std::cunmap_tstring_t &content);
         ///< write default file
     void_t clear();
         ///< clear content
@@ -71,9 +71,9 @@ xPRIVATE_STATIC:
     static std::ctstring_t _separator; ///< separator between key and value
 
 private:
-    FileInfo           _fileInfo;
-    File               _file;
-    std::map_tstring_t _config; ///< std::map of keys and values
+    FileInfo             _fileInfo;
+    File                 _file;
+    std::unmap_tstring_t _config; ///< std::map of keys and values
 };
 
 } // namespace
