@@ -305,8 +305,8 @@ File::textRead(
 //-------------------------------------------------------------------------------------------------
 void_t
 File::textRead(
-    std::ctstring_t      &a_separator,
-    std::unmap_tstring_t *a_content
+    std::ctstring_t    &a_separator,
+    std::map_tstring_t *a_content
 ) const
 {
     xTEST(FileInfo(_filePath).isExists());
@@ -324,9 +324,9 @@ File::textRead(
     xTEST(ifs.is_open());
     xTEST(!ifs.eof());
 
-    std::unmap_tstring_t msRv;
-    std::tstring_t       line;
-    std::vec_tstring_t   lines;
+    std::map_tstring_t msRv;
+    std::tstring_t     line;
+    std::vec_tstring_t lines;
 
     for (size_t i = 0; !ifs.eof(); ++ i) {
         std::getline(ifs, line);
@@ -400,9 +400,9 @@ File::textWrite(
 //-------------------------------------------------------------------------------------------------
 void_t
 File::textWrite(
-    std::ctstring_t       &a_separator,
-    std::cunmap_tstring_t &a_content,
-    FileIO::cOpenMode      a_mode
+    std::ctstring_t     &a_separator,
+    std::cmap_tstring_t &a_content,
+    FileIO::cOpenMode    a_mode
 ) const
 {
     xTEST(!_filePath.empty());
