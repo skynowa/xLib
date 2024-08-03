@@ -78,7 +78,5 @@ xPLATFORM_IMPL:
 /**
  * TODO
  *
- * - std::map_tstring_t -> std::multimap
- * - use text/bin methods vs FileIO
  */
 //-------------------------------------------------------------------------------------------------
