@@ -12,7 +12,7 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Test/Test.h>
-#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileBin.h>
 
 
 namespace xl::crypt
@@ -135,7 +135,7 @@ Crc32::calcFile(
 
     std::ustring_t file;
 
-    File(a_filePath).binRead(&file);
+    FileBin(a_filePath).read(&file);
     xCHECK_RET(file.empty(), 0UL);
 
     _crc32 = calc(&file.at(0), static_cast<ulong_t>( file.size() ));

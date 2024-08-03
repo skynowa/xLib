@@ -10,6 +10,7 @@
 #include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/File.h>
 #include <xLib/Fs/FileInfo.h>
+#include <xLib/Fs/FileBin.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Crypt/Crc32.h>
 #include <xLib/Debug/NativeError.h>
@@ -79,8 +80,8 @@ Blowfish::setFileKey(
 
     std::ustring_t fileKey;
 	{
-		File file(a_filePath);
-		file.binRead(&fileKey);
+		FileBin file(a_filePath);
+		file.read(&fileKey);
 
 		FileInfo fileInfo(a_filePath);
 		xTEST(!fileInfo.isEmpty());
@@ -151,12 +152,12 @@ Blowfish::encryptFileCfb64(
     xTEST(!a_filePathOut.empty());
 
     std::ustring_t in;
-    File(a_filePathIn).binRead(&in);
+    FileBin(a_filePathIn).read(&in);
 
     std::ustring_t out;
     encryptCfb64(a_mode, in, &out);
 
-    File(a_filePathOut).binWrite(out, FileIO::OpenMode::BinReadWrite);
+    FileBin(a_filePathOut).write(out, FileIO::OpenMode::BinReadWrite);
 }
 //-------------------------------------------------------------------------------------------------
 

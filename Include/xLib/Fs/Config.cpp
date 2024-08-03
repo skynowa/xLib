@@ -54,7 +54,7 @@ Config::read()
 {
 	xCHECK_DO(!_fileInfo.isExists(), return);
 
-    _file.textRead(_separator, &_config);
+    _file.read(_separator, &_config);
     _config.erase(Const::strEmpty());
 }
 //-------------------------------------------------------------------------------------------------
@@ -63,7 +63,7 @@ Config::write() const
 {
 	xCHECK_DO(_config.empty(), return);
 
-    _file.textWrite(_separator, _config, FileIO::OpenMode::Write);
+    _file.write(_separator, _config, FileIO::OpenMode::Write);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -81,14 +81,16 @@ void_t
 Config::clear()
 {
 	_config.clear();
-	_file.clear();
+	/// TODO: Config::clear()
+	/// _file.clear();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Config::remove()
 {
     _config.clear();
-    _file.remove();
+    /// TODO: _file.remove();
+    /// _file.remove();
 }
 //-------------------------------------------------------------------------------------------------
 

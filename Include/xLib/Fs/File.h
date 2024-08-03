@@ -50,22 +50,6 @@ public:
     void_t createSymlink(std::ctstring_t &filePathTo) const;
 ///\}
 
-///\name text
-    void_t textRead(std::tstring_t *content) const;
-    void_t textRead(std::vec_tstring_t *content) const;
-    void_t textRead(std::ctstring_t &separator, std::map_tstring_t *content) const;
-
-    void_t textWrite(std::ctstring_t &content, FileIO::cOpenMode mode) const;
-    void_t textWrite(std::cvec_tstring_t &content, FileIO::cOpenMode mode) const;
-    void_t textWrite(std::ctstring_t &separator, std::cmap_tstring_t &content,
-				FileIO::cOpenMode mode) const;
-///\}
-
-///\name binary
-    void_t binRead(std::ustring_t *content) const;
-    void_t binWrite(std::custring_t &content, FileIO::cOpenMode mode) const;
-///\}
-
 private:
 	std::ctstring_t _filePath;
 

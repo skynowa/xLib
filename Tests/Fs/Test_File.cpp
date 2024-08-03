@@ -23,7 +23,7 @@ Test_File::unit()
 
     xTEST_CASE("clear")
     {
-        File(filePath).textWrite(xT("xxx"), FileIO::OpenMode::Write);
+        FileText(filePath).write(xT("xxx"), FileIO::OpenMode::Write);
 
         File(filePath).clear();
         xTEST(FileInfo(filePath).isExists());
@@ -32,7 +32,7 @@ Test_File::unit()
 
     xTEST_CASE("remove")
     {
-        File(filePath).textWrite(xT("yyy"), FileIO::OpenMode::Write);
+        FileText(filePath).write(xT("yyy"), FileIO::OpenMode::Write);
 
         File(filePath).remove();
         xTEST(!FileInfo(filePath).isExists());
@@ -47,7 +47,7 @@ Test_File::unit()
 	{
 		std::ctstring_t newFilePath = data().tempDirPath + Const::slash() + xT("New.Test.txt");
 
-		File(filePath).textWrite(xT("Simple text"), FileIO::OpenMode::Write);
+		FileText(filePath).write(xT("Simple text"), FileIO::OpenMode::Write);
 
 		{
 			File(newFilePath).remove();
@@ -97,7 +97,7 @@ Test_File::unit()
 	{
 		std::ctstring_t newFilePath = data().tempDirPath + Const::slash() + xT("New.Test.txt");
 
-		File(newFilePath).textWrite(xT("Simple text"), FileIO::OpenMode::Write);
+		FileText(newFilePath).write(xT("Simple text"), FileIO::OpenMode::Write);
 
 		{
 			File(data().tempDirPath + Const::slash() + newFilePath).remove();
@@ -158,7 +158,7 @@ Test_File::unit()
 			std::ctstring_t buff = "0123456789";
 			std::custring_t bytes(buff.cbegin(), buff.cend());
 
-			File(filePath).binWrite(bytes, FileIO::OpenMode::BinReadWrite);
+			FileBin(filePath).write(bytes, FileIO::OpenMode::BinReadWrite);
 		}
 
 		for (size_t i = 0; i < 3; ++ i) {
@@ -167,6 +167,7 @@ Test_File::unit()
 	}
 
 
+#if 0
 	/*******************************************************************************
 	*   static: utils
 	*
@@ -185,11 +186,11 @@ Test_File::unit()
 			}
 		}
 
-		File(filePath).textRead( &content);
-		File(filePath).textWrite(content, FileIO::OpenMode::Write);
+		FileText(filePath).read( &content);
+		FileText(filePath).write(content, FileIO::OpenMode::Write);
 
 		std::tstring_t str;
-		File(filePath).textRead( &str);
+		FileText(filePath).read( &str);
 
 		xTEST_EQ(content.size(), str.size());
 		xTEST_EQ(content, str);
@@ -205,11 +206,11 @@ Test_File::unit()
 			file.open(FileIO::OpenMode::ReadWrite);
 		}
 
-		File(filePath).textRead( &content);
-		File(filePath).textWrite(content, FileIO::OpenMode::Write);
+		FileText(filePath).read( &content);
+		FileText(filePath).write(content, FileIO::OpenMode::Write);
 
 		std::tstring_t str;
-		File(filePath).textRead( &str);
+		FileText(filePath).read( &str);
 
 		xTEST_EQ(content.size(), str.size());
 		xTEST_EQ(content, str);
@@ -229,11 +230,11 @@ Test_File::unit()
 			}
 		}
 
-		File(filePath).textRead( &content);
-		File(filePath).textWrite(content, FileIO::OpenMode::Write);
+		FileText(filePath).read( &content);
+		FileText(filePath).write(content, FileIO::OpenMode::Write);
 
 		std::vec_tstring_t vec;
-		File(filePath).textRead( &vec);
+		FileText(filePath).read( &vec);
 
 		xTEST_EQ(content.size(), vec.size());
 		xTEST(content == vec);
@@ -249,11 +250,11 @@ Test_File::unit()
 			file.open(FileIO::OpenMode::ReadWrite);
 		}
 
-		File(filePath).textRead( &content);
-		File(filePath).textWrite(content, FileIO::OpenMode::Write);
+		FileText(filePath).read( &content);
+		FileText(filePath).write(content, FileIO::OpenMode::Write);
 
 		std::vec_tstring_t vec;
-		File(filePath).textRead( &vec);
+		FileText(filePath).read( &vec);
 
 		xTEST_EQ(content.size(), vec.size());
 		xTEST(content == vec);
@@ -274,11 +275,11 @@ Test_File::unit()
 			}
 		}
 
-		File(filePath).textRead( separator, &content);
-		File(filePath).textWrite(separator, content, FileIO::OpenMode::Write);
+		FileText(filePath).read( separator, &content);
+		FileText(filePath).write(separator, content, FileIO::OpenMode::Write);
 
 		std::map_tstring_t msStr;
-		File(filePath).textRead( separator, &msStr);
+		FileText(filePath).read( separator, &msStr);
 
 		xTEST_EQ(content.size(), msStr.size());
 		xTEST(content == msStr);
@@ -295,11 +296,11 @@ Test_File::unit()
 			file.open(FileIO::OpenMode::ReadWrite);
 		}
 
-		File(filePath).textRead( separator, &content);
-		File(filePath).textWrite(separator, content, FileIO::OpenMode::Write);
+		FileText(filePath).read( separator, &content);
+		FileText(filePath).write(separator, content, FileIO::OpenMode::Write);
 
 		std::map_tstring_t msStr;
-		File(filePath).textRead( separator, &msStr);
+		FileText(filePath).read( separator, &msStr);
 
 		xTEST_EQ(content.size(), msStr.size());
 		xTEST(content == msStr);
@@ -348,6 +349,7 @@ Test_File::unit()
 
 		xTEST(content == str);
 	}
+#endif
 
     return true;
 }

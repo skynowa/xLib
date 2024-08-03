@@ -31,7 +31,7 @@ Test_Archive::unit()
 		std::ctstring_t zipFilePath = destDirPath   + Const::slash() + xT("Archive.zip");
 
 		std::ctstring_t fileContent = xT("12345abcdef");
-		File(filePath).textWrite( fileContent, FileIO::OpenMode::Write);
+		FileText(filePath).write( fileContent, FileIO::OpenMode::Write);
 
 		xTEST_CASE("fileCompress")
 		{
@@ -49,7 +49,7 @@ Test_Archive::unit()
 			xTEST(FileInfo(filePath).isExists());
 
 			std::tstring_t _fileContent;
-			File(filePath).textRead(&_fileContent);
+			FileText(filePath).read(&_fileContent);
 			xTEST_EQ(_fileContent, fileContent);
 		}
 
@@ -62,7 +62,7 @@ Test_Archive::unit()
 
 		std::ctstring_t filePath    = destDirPath + Const::slash() + xT("Archive.txt");
 		std::ctstring_t fileContent = xT("12345abcdef");
-		File(filePath).textWrite( fileContent, FileIO::OpenMode::Write);
+		FileText(filePath).write( fileContent, FileIO::OpenMode::Write);
 
 		xTEST_CASE("dirCompress")
 		{

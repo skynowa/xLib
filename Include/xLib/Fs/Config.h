@@ -11,6 +11,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Fs/FileInfo.h>
+#include <xLib/Fs/FileText.h>
 #include <xLib/Fs/File.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
@@ -72,7 +73,7 @@ xPRIVATE_STATIC:
 
 private:
     FileInfo           _fileInfo;
-    File               _file;
+    FileText           _file;
     std::map_tstring_t _config; ///< std::map of keys and values
 };
 
