@@ -13,7 +13,7 @@ namespace xl::fs
 {
 
 class FileText
-    /// FileText
+    /// Text file
 {
 public:
 ///\name ctors, dtor
