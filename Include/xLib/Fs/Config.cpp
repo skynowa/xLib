@@ -81,16 +81,18 @@ void_t
 Config::clear()
 {
 	_config.clear();
-	/// TODO: Config::clear()
-	/// _file.clear();
+
+	File file( _fileInfo.path() );
+	file.clear();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Config::remove()
 {
     _config.clear();
-    /// TODO: _file.remove();
-    /// _file.remove();
+
+	File file( _fileInfo.path() );
+	file.remove();
 }
 //-------------------------------------------------------------------------------------------------
 

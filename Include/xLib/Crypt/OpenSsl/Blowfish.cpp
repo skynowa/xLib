@@ -8,7 +8,6 @@
 
 #include <xLib/Core/Utils.h>
 #include <xLib/Fs/FileIO.h>
-#include <xLib/Fs/File.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/FileBin.h>
 #include <xLib/Fs/Path.h>
