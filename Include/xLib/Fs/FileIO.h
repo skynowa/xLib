@@ -96,36 +96,36 @@ public:
 
 ///\name read, write
 ///\{
-	void_t setVBuff(cBufferingMode mode, char *buff, std::csize_t size) const;
+	void_t  setVBuff(cBufferingMode mode, char *buff, std::csize_t size) const;
 		///< change stream buffering
-	size_t read(void_t *buff, std::csize_t count) const;
+	size_t  read(void_t *buff, std::csize_t count) const;
 		///< read block of data
-	size_t write(cptr_cvoid_t, std::csize_t count) const;
+	size_t  write(cptr_cvoid_t, std::csize_t count) const;
 		///< write block of data
-	void_t read(std::ustring_t *buff) const;
+	void_t  read(std::ustring_t *buff) const;
 		///< read to std::ustring_t
-	void_t write(std::custring_t &buff) const;
+	void_t  write(std::custring_t &buff) const;
 		///< write from std::ustring_t
-	void_t read(std::tstring_t *buff) const;
+	void_t  read(std::tstring_t *buff) const;
 		///< read to std::tstring_t
-	int_t  scanf(cptr_ctchar_t format, ...) const;
+	int_t   scanf(cptr_ctchar_t format, ...) const;
 		///< read formatted variables (as vfscanf)
-	int_t  write(cptr_ctchar_t format, ...) const;
+	int_t   write(cptr_ctchar_t format, ...) const;
 		///< write formatted output to stream
-	int_t  writeV(cptr_ctchar_t format, va_list arg) const;
+	int_t   writeV(cptr_ctchar_t format, va_list arg) const;
 		///< write formatted variable argument list to stream
 
-	void_t readLine(std::tstring_t *str, std::csize_t maxCount) const;
+	void_t  readLine(std::tstring_t *str, std::csize_t maxCount) const;
 		///< read string to newline or to the end of file
-	void_t writeLine(std::ctstring_t &str) const;
+	void_t  writeLine(std::ctstring_t &str) const;
 		///< write string and end of line
-	tchar_t        readChar() const;
+	tchar_t readChar() const;
 		///< get character
-	void_t writeChar(ctchar_t ch) const;
+	void_t  writeChar(ctchar_t ch) const;
 		///< write character
-	void_t ungetChar(ctchar_t ch) const;
+	void_t  ungetChar(ctchar_t ch) const;
 		///< unget character from stream
-	void_t clear() const;
+	void_t  clear() const;
 		///< clear content
 ///\}
 
