@@ -131,11 +131,11 @@ public:
 
 ///\name other
 ///\{
-	void_t locking(cLockingMode mode, clong_t bytes);
+	void_t     locking(cLockingMode mode, clong_t bytes);
 		///< locks or unlocks bytes of a file
-	void_t setPosition(clong_t offset, cPointerPosition pos) const;
+	void_t     setPosition(clong_t offset, cPointerPosition pos) const;
 		///< set stream position indicator
-	long_t position() const;
+	long_t     position() const;
 		///< get current position in stream
 
     longlong_t size() const;
@@ -168,8 +168,8 @@ private:
     HandleStdFile   _handle;   ///< file handle
     std::ctstring_t _filePath; ///< file path
 
-	void_t _setVBuffDefault(cbool_t isBuffering) const;
-		///< change stream buffering with deafault buffer size
+    void_t _setVBuffDefault(cbool_t isBuffering) const;
+        ///< change stream buffering with deafault buffer size
 
 xPRIVATE_STATIC:
     static int_t          _nativeHandle(std::FILE *file);
