@@ -10,7 +10,7 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
-#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileText.h>
 #include <xLib/System/Environment.h>
 
 #if   xENV_WIN

@@ -78,6 +78,8 @@
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/File.h>
+#include <xLib/Fs/FileText.h>
+#include <xLib/Fs/FileBin.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/DirTemp.h>
