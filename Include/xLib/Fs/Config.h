@@ -8,8 +8,6 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Interface/IGet.h>
-#include <xLib/Core/String.h>
-#include <xLib/Core/Format.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/FileText.h>
 //-------------------------------------------------------------------------------------------------
