@@ -12,7 +12,6 @@
 #include <xLib/Core/Format.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/FileText.h>
-#include <xLib/Fs/File.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {

@@ -8,6 +8,7 @@
 
 #include <xLib/Core/String.h>
 #include <xLib/Fs/Path.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
 
