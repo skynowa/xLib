@@ -82,7 +82,7 @@ Test_Archive::unit()
 			std::ctstring_t txtfilePath = destDirPathNew + Const::slash() + xT("Archive.txt");
 
 			std::tstring_t _fileContent;
-			File(txtfilePath).textRead(&_fileContent);
+			FileText(txtfilePath).read(&_fileContent);
 			xTEST_EQ(_fileContent, fileContent);
 		}
 	}
