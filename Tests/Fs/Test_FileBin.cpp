@@ -34,10 +34,11 @@ Test_FileBin::unit()
 			xTEST_LESS(0, m_iRv);
 		}
 
-		FileBin(filePath).write(content, FileIO::OpenMode::BinWrite);
+		FileBin file(filePath);
+		file.write(content, FileIO::OpenMode::BinWrite);
 
 		std::ustring_t str;
-		FileBin(filePath).read( &str);
+		file.read(&str);
 
 		xTEST(content == str);
 	}
@@ -52,10 +53,11 @@ Test_FileBin::unit()
 			file.open(FileIO::OpenMode::BinReadWrite);
 		}
 
-		FileBin(filePath).write(content, FileIO::OpenMode::BinWrite);
+		FileBin file(filePath);
+		file.write(content, FileIO::OpenMode::BinWrite);
 
 		std::ustring_t str;
-		FileBin(filePath).read( &str);
+		file.read(&str);
 
 		xTEST(content == str);
 	}
