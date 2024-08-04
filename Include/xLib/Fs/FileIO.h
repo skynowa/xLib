@@ -96,71 +96,71 @@ public:
 
 ///\name read, write
 ///\{
-	void_t         setVBuff(cBufferingMode mode, char *buff, std::csize_t size) const;
+	void_t  setVBuff(cBufferingMode mode, char *buff, std::csize_t size) const;
 		///< change stream buffering
-	size_t         read(void_t *buff, std::csize_t count) const;
+	size_t  read(void_t *buff, std::csize_t count) const;
 		///< read block of data
-	size_t         write(cptr_cvoid_t, std::csize_t count) const;
+	size_t  write(cptr_cvoid_t, std::csize_t count) const;
 		///< write block of data
-	void_t         read(std::ustring_t *buff) const;
+	void_t  read(std::ustring_t *buff) const;
 		///< read to std::ustring_t
-	void_t         write(std::custring_t &buff) const;
+	void_t  write(std::custring_t &buff) const;
 		///< write from std::ustring_t
-	void_t         read(std::tstring_t *buff) const;
+	void_t  read(std::tstring_t *buff) const;
 		///< read to std::tstring_t
-	int_t          scanf(cptr_ctchar_t format, ...) const;
+	int_t   scanf(cptr_ctchar_t format, ...) const;
 		///< read formatted variables (as vfscanf)
-	int_t          write(cptr_ctchar_t format, ...) const;
+	int_t   write(cptr_ctchar_t format, ...) const;
 		///< write formatted output to stream
-	int_t          writeV(cptr_ctchar_t format, va_list arg) const;
+	int_t   writeV(cptr_ctchar_t format, va_list arg) const;
 		///< write formatted variable argument list to stream
 
-	void_t         readLine(std::tstring_t *str, std::csize_t maxCount) const;
+	void_t  readLine(std::tstring_t *str, std::csize_t maxCount) const;
 		///< read string to newline or to the end of file
-	void_t         writeLine(std::ctstring_t &str) const;
+	void_t  writeLine(std::ctstring_t &str) const;
 		///< write string and end of line
-	tchar_t        readChar() const;
+	tchar_t readChar() const;
 		///< get character
-	void_t         writeChar(ctchar_t ch) const;
+	void_t  writeChar(ctchar_t ch) const;
 		///< write character
-	void_t         ungetChar(ctchar_t ch) const;
+	void_t  ungetChar(ctchar_t ch) const;
 		///< unget character from stream
-	void_t         clear() const;
+	void_t  clear() const;
 		///< clear content
 ///\}
 
 ///\name other
 ///\{
-	void_t         locking(cLockingMode mode, clong_t bytes);
+	void_t     locking(cLockingMode mode, clong_t bytes);
 		///< locks or unlocks bytes of a file
-	void_t         setPosition(clong_t offset, cPointerPosition pos) const;
+	void_t     setPosition(clong_t offset, cPointerPosition pos) const;
 		///< set stream position indicator
-	long_t         position() const;
+	long_t     position() const;
 		///< get current position in stream
 
-    longlong_t     size() const;
+    longlong_t size() const;
         ///< get file size
-    bool_t         isEmpty() const;
+    bool_t     isEmpty() const;
         ///< is empty
-    void_t         setSize(clonglong_t bytes) const;
+    void_t     setSize(clonglong_t bytes) const;
         ///< changes the file size
 ///\}
 
 ///\name error handling
 ///\{
-	bool_t         isEof() const;
+	bool_t isEof() const;
 		///< check end of file indicator
-	bool_t         isError() const;
+	bool_t isError() const;
 		///< check error indicator
-	void_t         clearError() const;
+	void_t clearError() const;
 		///< clear error indicators
 ///\}
 
 ///\name closing
 ///\{
-	void_t         flush() const;
+	void_t flush() const;
 		///< flush
-	void_t         close();
+	void_t close();
 		///< close
 ///\}
 
@@ -168,8 +168,8 @@ private:
     HandleStdFile   _handle;   ///< file handle
     std::ctstring_t _filePath; ///< file path
 
-	void_t _setVBuffDefault(cbool_t isBuffering) const;
-		///< change stream buffering with deafault buffer size
+    void_t _setVBuffDefault(cbool_t isBuffering) const;
+        ///< change stream buffering with deafault buffer size
 
 xPRIVATE_STATIC:
     static int_t          _nativeHandle(std::FILE *file);

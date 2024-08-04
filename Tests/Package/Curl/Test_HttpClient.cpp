@@ -53,8 +53,8 @@ Test_HttpClient::unit()
 
 		std::custring_t body(dataOut.body.cbegin(), dataOut.body.cend());
 
-		File file("./test.mp3");
-		file.binWrite(body, xl::fs::FileIO::OpenMode::BinWrite);
+		FileBin file("./test.mp3");
+		file.write(body, xl::fs::FileIO::OpenMode::BinWrite);
 
 		if (0) {
 			Cout()

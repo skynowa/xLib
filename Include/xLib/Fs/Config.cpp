@@ -8,6 +8,7 @@
 
 #include <xLib/Core/String.h>
 #include <xLib/Fs/Path.h>
+#include <xLib/Fs/File.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
 
@@ -52,9 +53,9 @@ Config::get() /*  final */
 void_t
 Config::read()
 {
-	xCHECK_DO(!_fileInfo.isExists(), return);
+    xCHECK_DO(!_fileInfo.isExists(), return);
 
-    _file.textRead(_separator, &_config);
+    _file.read(_separator, &_config);
     _config.erase(Const::strEmpty());
 }
 //-------------------------------------------------------------------------------------------------
@@ -63,7 +64,7 @@ Config::write() const
 {
 	xCHECK_DO(_config.empty(), return);
 
-    _file.textWrite(_separator, _config, FileIO::OpenMode::Write);
+    _file.write(_separator, _config, FileIO::OpenMode::Write);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -80,15 +81,19 @@ Config::writeDefault(
 void_t
 Config::clear()
 {
-	_config.clear();
-	_file.clear();
+    _config.clear();
+
+    File file(_fileInfo);
+    file.clear();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Config::remove()
 {
     _config.clear();
-    _file.remove();
+
+    File file(_fileInfo);
+    file.remove();
 }
 //-------------------------------------------------------------------------------------------------
 
