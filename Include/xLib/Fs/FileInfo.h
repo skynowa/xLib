@@ -69,6 +69,8 @@ public:
     xNO_COPY_ASSIGN(FileInfo)
 ///\}
 
+    std::tstring_t path() const;
+        ///< path
     longlong_t     size() const;
         ///< get size
     bool_t         isEmpty() const;

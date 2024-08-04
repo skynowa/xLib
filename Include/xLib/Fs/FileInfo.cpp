@@ -57,6 +57,12 @@ FileInfo::~FileInfo()
 {
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+FileInfo::path() const
+{
+	return _filePath;
+}
+//-------------------------------------------------------------------------------------------------
 // TODO: [skynowa] FileInfo::size() - maybe rm ?
 longlong_t
 FileInfo::size() const

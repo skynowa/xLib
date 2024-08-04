@@ -69,7 +69,7 @@ Os::_distro_impl() const
         case _Type::Os:
             {
                 std::map_tstring_t values;
-                File(it.filePath).textRead(xT("="), &values);
+                FileText(it.filePath).read(xT("="), &values);
 
                 if ( !values.empty() ) {
                     sRv = values["NAME"];
@@ -98,7 +98,7 @@ Os::_distro_impl() const
                 sRv = it.name;
 
                 std::vec_tstring_t values;
-                File(it.filePath).textRead(&values);
+                FileText(it.filePath).read(&values);
 
                 if ( !values.empty() ) {
                     sRv += xT(" ") + values[0];
@@ -108,7 +108,7 @@ Os::_distro_impl() const
         default:
             {
                 std::vec_tstring_t values;
-                File(it.filePath).textRead(&values);
+                FileText(it.filePath).read(&values);
 
                 if ( !values.empty() ) {
                     sRv = values[0];

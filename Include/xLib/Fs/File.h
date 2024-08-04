@@ -8,6 +8,7 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Fs/FileIO.h>
+#include <xLib/Fs/FileInfo.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
@@ -19,6 +20,7 @@ public:
 ///\name ctors, dtor
 ///\{
     explicit File(std::ctstring_t &filePath);
+    explicit File(const FileInfo &fileInfo);
     virtual ~File();
 
 	xNO_DEFAULT_CONSTRUCT(File)
@@ -50,22 +52,6 @@ public:
     void_t createSymlink(std::ctstring_t &filePathTo) const;
 ///\}
 
-///\name text
-    void_t textRead(std::tstring_t *content) const;
-    void_t textRead(std::vec_tstring_t *content) const;
-    void_t textRead(std::ctstring_t &separator, std::map_tstring_t *content) const;
-
-    void_t textWrite(std::ctstring_t &content, FileIO::cOpenMode mode) const;
-    void_t textWrite(std::cvec_tstring_t &content, FileIO::cOpenMode mode) const;
-    void_t textWrite(std::ctstring_t &separator, std::cmap_tstring_t &content,
-				FileIO::cOpenMode mode) const;
-///\}
-
-///\name binary
-    void_t binRead(std::ustring_t *content) const;
-    void_t binWrite(std::custring_t &content, FileIO::cOpenMode mode) const;
-///\}
-
 private:
 	std::ctstring_t _filePath;
 
@@ -78,7 +64,5 @@ xPLATFORM_IMPL:
 /**
  * TODO
  *
- * - std::map_tstring_t -> std::multimap
- * - use text/bin methods vs FileIO
  */
 //-------------------------------------------------------------------------------------------------

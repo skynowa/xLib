@@ -7,7 +7,7 @@
 #include "Csv.h"
 
 #include <xLib/Core/String.h>
-#include <xLib/Fs/File.h>
+#include <xLib/Fs/FileText.h>
 
 
 namespace xl::package
@@ -121,7 +121,7 @@ CsvWriter::saveFile(
 	{
 		std::ctstring_t &header = String::join(a_header, _data.delimiter);
 
-		File(a_filePath).textWrite(header + Const::nl(), FileIO::OpenMode::ReadWrite);
+		FileText(a_filePath).write(header + Const::nl(), FileIO::OpenMode::ReadWrite);
 	}
 
 	// a_rows
@@ -129,7 +129,7 @@ CsvWriter::saveFile(
 	{
 		std::ctstring_t &row = String::join(it_row, _data.delimiter);
 
-		File(a_filePath).textWrite(row + Const::nl(), FileIO::OpenMode::Append);
+		FileText(a_filePath).write(row + Const::nl(), FileIO::OpenMode::Append);
 	}
 }
 //-------------------------------------------------------------------------------------------------
