@@ -21,7 +21,7 @@ public:
     explicit FileText(std::ctstring_t &filePath);
     virtual ~FileText() = default;
 
-	xNO_DEFAULT_CONSTRUCT(FileText)
+    xNO_DEFAULT_CONSTRUCT(FileText)
     xNO_COPY_ASSIGN(FileText)
 ///\}
 
