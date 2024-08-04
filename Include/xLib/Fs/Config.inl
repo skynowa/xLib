@@ -4,6 +4,8 @@
  */
 
 
+#include <xLib/Core/String.h>
+
 namespace xl::fs
 {
 
