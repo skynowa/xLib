@@ -52,7 +52,7 @@ Config::get() /*  final */
 void_t
 Config::read()
 {
-	xCHECK_DO(!_fileInfo.isExists(), return);
+    xCHECK_DO(!_fileInfo.isExists(), return);
 
     _file.read(_separator, &_config);
     _config.erase(Const::strEmpty());
@@ -80,10 +80,10 @@ Config::writeDefault(
 void_t
 Config::clear()
 {
-	_config.clear();
+    _config.clear();
 
-	File file( _fileInfo.path() );
-	file.clear();
+    File file(_fileInfo);
+    file.clear();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -91,8 +91,8 @@ Config::remove()
 {
     _config.clear();
 
-	File file( _fileInfo.path() );
-	file.remove();
+    File file(_fileInfo);
+    file.remove();
 }
 //-------------------------------------------------------------------------------------------------
 

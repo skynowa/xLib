@@ -9,7 +9,6 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/FileType.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Crypt/Random.h>
@@ -35,6 +34,13 @@ File::File(
 	std::ctstring_t &a_filePath
 ) :
 	_filePath(a_filePath)
+{
+}
+//-------------------------------------------------------------------------------------------------
+File::File(
+	const FileInfo &a_fileInfo
+) :
+	_filePath( a_fileInfo.path() )
 {
 }
 //-------------------------------------------------------------------------------------------------

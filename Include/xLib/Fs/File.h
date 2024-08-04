@@ -8,6 +8,7 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Fs/FileIO.h>
+#include <xLib/Fs/FileInfo.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
@@ -19,6 +20,7 @@ public:
 ///\name ctors, dtor
 ///\{
     explicit File(std::ctstring_t &filePath);
+    explicit File(const FileInfo &fileInfo);
     virtual ~File();
 
 	xNO_DEFAULT_CONSTRUCT(File)
