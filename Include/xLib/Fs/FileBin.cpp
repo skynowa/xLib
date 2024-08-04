@@ -30,12 +30,16 @@ FileBin::read(
 {
     xTEST_PTR(a_content);
 
+    if (a_content != nullptr) {
+        a_content->clear();
+    }
+
     FileIO file(_filePath);
     file.open(FileIO::OpenMode::BinReadOnly);
 
     clonglong_t fileSize = file.size();
     xTEST_DIFF(fileSize, static_cast<longlong_t>(FileIO::PointerPosition::Error));
-    xCHECK_DO(fileSize == 0LL, a_content->clear(); return);
+    xCHECK_DO(fileSize == 0LL, return);
 
     std::ustring_t usRv;
     usRv.resize( static_cast<size_t>(fileSize) );
