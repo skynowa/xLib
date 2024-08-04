@@ -32,6 +32,8 @@ FileText::read(
 {
     xTEST_PTR(a_content);
 
+    a_content->clear();
+
     std::tstring_t sRv;
 
     FileIO file(_filePath);
@@ -58,6 +60,8 @@ FileText::read(
     xTEST(FileInfo(_filePath).isExists());
     xTEST_PTR(a_content);
 
+    a_content->clear();
+
     std::tstring_t content;
     read(&content);
 
@@ -76,6 +80,8 @@ FileText::read(
 {
     xTEST(FileInfo(_filePath).isExists());
     xTEST_PTR(a_content);
+
+    a_content->clear();
 
     // if file empty
     xCHECK_DO(FileInfo(_filePath).size() == 0L, a_content->clear(); return);

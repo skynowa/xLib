@@ -30,9 +30,7 @@ FileBin::read(
 {
     xTEST_PTR(a_content);
 
-    if (a_content != nullptr) {
-        a_content->clear();
-    }
+    a_content->clear();
 
     FileIO file(_filePath);
     file.open(FileIO::OpenMode::BinReadOnly);
