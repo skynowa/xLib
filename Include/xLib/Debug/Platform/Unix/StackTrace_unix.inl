@@ -26,7 +26,7 @@ namespace xl::debug
 //-------------------------------------------------------------------------------------------------
 void *
 parseSymbolOffset(
-	const char *frame
+	const char * const frame
 )
 {
 	char        *p_symbol {};
