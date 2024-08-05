@@ -31,9 +31,10 @@ StackTrace::_get_impl(
     xCHECK_DO(out_stack == nullptr, return);
 
     std::vector<std::vec_tstring_t> stack;
-    std::ctstring_t                 dataNotFound = xT("[???]");
 
 #if cmEXECINFO_FOUND
+    std::ctstring_t dataNotFound = xT("[???]");
+
     void_t *stackBuff[_framesMax + 1] {};
 
     int_t framesNum = ::backtrace(stackBuff, static_cast<int_t>(_framesMax));
@@ -129,11 +130,11 @@ StackTrace::_get_impl(
             stack.push_back(stackLine);
         }
     } // for (framesNum)
+
+    Utils::bufferFreeT(symbols);
 #else
     xBUILD_IMPL("StackTrace::_get()");
 #endif // cmEXECINFO_FOUND
-
-    Utils::bufferFreeT(symbols);
 
     // out
     out_stack->swap(stack);
