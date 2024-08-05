@@ -54,7 +54,11 @@ StackTrace::str() const /* final */
     std::vector<std::vec_tstring_t> stack;
 
     _get_impl(&stack);
-    std::reverse(stack.begin(), stack.end());
+
+	if (_data.isReverse) {
+		std::reverse(stack.begin(), stack.end());
+	}
+
     _format(stack, &sRv);
 
     xCHECK_RET(sRv.empty(), Const::strUnknown());
