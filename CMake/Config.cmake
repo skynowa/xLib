@@ -26,7 +26,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # FAQ: https://stackoverflow.com/a/59724462/911398
 #
 if (NOT CMAKE_BUILD_TYPE)
-	set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Release - default build type" FORCE)
+	# set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Release - default build type" FORCE)
+    set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Release - default build type" FORCE)
 endif()
 
 set(cmCMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE})

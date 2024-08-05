@@ -22,8 +22,9 @@ namespace xl::debug
 struct StackTraceData
     /// StackTrace data
 {
-    cint_t  skipFramesNum       {2};	// REVIEW: skipFramesNum
-    cbool_t isWrapFilePaths     {true};
+    cint_t  skipFramesNum     {2};	// REVIEW: skipFramesNum
+    cbool_t isReverse         {false};
+    cbool_t isWrapFilePaths   {true};
     cbool_t isFuncArgsDisable {true};
 };
 xUSING_CONST(StackTraceData);
@@ -77,7 +78,7 @@ xPLATFORM_IMPL:
 #if xENV_UNIX
     static
     void_t _addr2Line(cptr_cvoid_t symbolAddress, std::tstring_t *filePath,
-    			std::tstring_t *functionName, ulong_t *sourceLine);
+    			std::tstring_t *functionName, std::tstring_t *sourceLine);
 #endif
     void_t _funcArgsDisable(std::tstring_t *functionName) const;
     void_t _wrapFilePaths(std::tstring_t *modulePath, std::tstring_t *filePath) const;

@@ -72,31 +72,35 @@ StackTrace::_get_impl(
                 symbolName = dlinfo.dli_sname;
             }
 
-		#if 0
-			Cout() << xTRACE_VAR(status);
-			Cout() << xTRACE_VAR(symbolName);
-		#endif
-
-            std::tstring_t _filePath;
-            std::tstring_t _functionName;
-            ulong_t        _sourceLine {};
+            struct Addr2LineData
 			{
-				_addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
-				xUNUSED(_functionName);
+				std::tstring_t filePath;
+				std::tstring_t functionName;
+				std::tstring_t sourceLine;
+			} data;
 
-			#if 1
-				Cout() << xTRACE_VAR(dlinfo.dli_saddr);
-				Cout() << xTRACE_VAR(_filePath);
-				Cout() << xTRACE_VAR(_functionName);
-				Cout() << xTRACE_VAR(_sourceLine);
-			#endif
+			{
+				_addr2Line(dlinfo.dli_saddr, &data.filePath, &data.functionName, &data.sourceLine);
+				xUNUSED(functionName);
+
+				if (0) {
+					Cout() << "-----------------------------------";
+					Cout() << xTRACE_VAR(it_symbol);
+					Cout() << xTRACE_VAR(dlinfo.dli_saddr);
+					Cout() << xTRACE_VAR(symbolName);
+					Cout() << "";
+					Cout() << xTRACE_VAR(data.filePath);
+					Cout() << xTRACE_VAR(data.functionName);
+					Cout() << xTRACE_VAR(data.sourceLine);
+					Cout() << "-----------------------------------\n";
+				}
 			}
 
             modulePath   = (dlinfo.dli_fname == nullptr) ? dataNotFound : xA2T(dlinfo.dli_fname);
-            filePath     = _filePath.empty()             ? dataNotFound : _filePath;
-            fileLine     = String::cast(_sourceLine);
-            byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
-            functionName = (symbolName == nullptr) ? dataNotFound : xA2T(symbolName);
+			filePath     = data.filePath;
+			fileLine     = data.sourceLine;
+			byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
+			functionName = (symbolName == nullptr) ? dataNotFound : xA2T(symbolName);
 
             Utils::bufferFreeT(demangleName);
         }
@@ -141,7 +145,7 @@ StackTrace::_addr2Line(
     cptr_cvoid_t    a_symbolAddress,
     std::tstring_t *out_filePath,
     std::tstring_t *out_functionName,
-    ulong_t        *out_sourceLine
+    std::tstring_t *out_sourceLine
 )
 {
 #if cmADDR2LINE_FOUND || cmATOS_FOUND
@@ -178,26 +182,27 @@ StackTrace::_addr2Line(
 	auto pipe = autoPipe(cmdLine, "r");
 	xTEST_PTR(pipe.get());
 
-    // get function name
+    // [out] out_functionName
     {
         tchar_t buff[buffSize + 1] {};
         cptr_ctchar_t functionName = xTFGETS(buff, buffSize, pipe.get());
 
 		if (functionName == nullptr) {
-			out_functionName->assign( Const::strUnknown() );
+			*out_functionName = Const::strUnknown();
 		} else {
-			out_functionName->assign(functionName);
+			// Fix EOL
+			*out_functionName = String::removeEol(functionName);
 		}
     }
 
-    // get file and line
+    // [out] out_filePath, out_sourceLine
     {
         tchar_t buff[buffSize + 1] {};
         cptr_ctchar_t fileAndLine = xTFGETS(buff, buffSize, pipe.get());
 
 		if (fileAndLine == nullptr) {
 			*out_filePath   = Const::strUnknown();
-			*out_sourceLine = 0UL;
+			*out_sourceLine = Const::strUnknown();
 		} else {
 		   /**
 			* Parse that variants of fileAndLine string:
@@ -212,7 +217,7 @@ StackTrace::_addr2Line(
 			xSTD_VERIFY(std::feof(pipe.get()) == 0);
 
 			*out_filePath   = line.at(0);
-			*out_sourceLine = String::cast<ulong_t>( line.at(1) );
+			*out_sourceLine = String::removeEol(line.at(1));
 		}
     }
 #else
@@ -220,7 +225,7 @@ StackTrace::_addr2Line(
 
     *out_filePath     = Const::strUnknown();
     *out_functionName = Const::strUnknown();
-    *out_sourceLine   = 0UL;
+    *out_sourceLine   = Const::strUnknown();
 #endif
 }
 //-------------------------------------------------------------------------------------------------
