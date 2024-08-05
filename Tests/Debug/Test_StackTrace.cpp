@@ -6,14 +6,6 @@
 
 #include <xLib/xLib.h>
 
-#if __has_include(<boost/version.hpp>)
-	#include <boost/version.hpp>
-#endif
-
-#if defined(BOOST_VERSION)
-	#define BOOST_STACKTRACE_USE_ADDR2LINE 1
-	#include <boost/stacktrace.hpp>
-#endif
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_StackTrace)
 //-------------------------------------------------------------------------------------------------
@@ -48,17 +40,6 @@ foo(
 
 		Cout() << "\n:::::::::: StackTrace ::::::::::\n";
 		Cout() << sRv << "\n";
-	}
-
-	// boost::stacktrace::stacktrace()
-	{
-	#if defined(BOOST_VERSION)
-		const auto &aRv = boost::stacktrace::stacktrace();
-		xCHECK_RET(aRv.as_vector().empty(), false);
-
-		std::tcout << "\n:::::::::: boost::stacktrace ::::::::::\n\n";
-		std::tcout << aRv << "\n\n";
-	#endif
 	}
 
 	return true;
