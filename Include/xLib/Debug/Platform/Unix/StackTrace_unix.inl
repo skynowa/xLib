@@ -173,7 +173,7 @@ StackTrace::_get_impl(
 
 			std::tstring_t _filePath;
 			std::tstring_t _functionName;
-			ulong_t        _sourceLine {};
+			std::tstring_t _sourceLine {};
 			{
 				_addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
 				xUNUSED(_functionName);
@@ -244,7 +244,7 @@ StackTrace::_addr2Line(
     cptr_cvoid_t    a_symbolAddress,
     std::tstring_t *out_filePath,
     std::tstring_t *out_functionName,
-    ulong_t        *out_sourceLine
+    std::tstring_t *out_sourceLine
 )
 {
 #if cmADDR2LINE_FOUND || cmATOS_FOUND
@@ -301,7 +301,7 @@ StackTrace::_addr2Line(
 
 		if (fileAndLine == nullptr) {
 			*out_filePath   = Const::strUnknown();
-			*out_sourceLine = 0UL;
+			*out_sourceLine = Const::strUnknown();
 		} else {
 		   /**
 			* Parse that variants of fileAndLine string:
@@ -316,7 +316,7 @@ StackTrace::_addr2Line(
 			xSTD_VERIFY(std::feof(pipe.get()) == 0);
 
 			*out_filePath   = line.at(0);
-			*out_sourceLine = String::cast<ulong_t>( line.at(1) );
+			*out_sourceLine = String::removeEol(line.at(1));
 		}
     }
 #else
@@ -324,7 +324,7 @@ StackTrace::_addr2Line(
 
     *out_filePath     = Const::strUnknown();
     *out_functionName = Const::strUnknown();
-    *out_sourceLine   = 0UL;
+    *out_sourceLine   = Const::strUnknown();
 #endif
 }
 //-------------------------------------------------------------------------------------------------
