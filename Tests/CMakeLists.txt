@@ -150,10 +150,12 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
 
     # For debug::StackTrace
     if (ENV_UNIX)
-        target_link_options(${TEST_NAME} PUBLIC -rdynamic)
+        target_link_options(${TEST_NAME} PUBLIC
+            "$<$<CONFIG:Debug>:-rdynamic>"
+            "$<$<CONFIG:Release>:-rdynamic>")
 
-        get_target_property(LINK_FLAGS ${TEST_NAME} LINK_FLAGS)
-        message(STATUS "LINK_FLAGS: ${LINK_FLAGS}")
+        # get_target_property(LINK_FLAGS ${TEST_NAME} LINK_OPTIONS)
+        # message(STATUS "LINK_FLAGS: ${LINK_FLAGS}")
     endif()
 
     target_link_libraries(${TEST_NAME} PUBLIC
