@@ -57,6 +57,8 @@ public:
 
     bool_t         isAbsolute() const;
         ///< is absolute
+    bool_t         isRelative() const;
+        ///< is relative
     std::tstring_t volume() const;
         ///< get drive
     std::tstring_t dir() const;

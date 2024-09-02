@@ -801,8 +801,10 @@ Test_Path::unit()
         }
     }
 
-    xTEST_CASE("isAbsolute")
+    xTEST_CASE("isAbsolute, isRelative")
     {
+        /// [TEST] isRelative
+
         // true
         {
             std::ctstring_t data[]
