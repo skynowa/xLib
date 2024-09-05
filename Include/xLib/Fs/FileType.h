@@ -29,7 +29,7 @@ public:
         /// attribute
     {
     #if   xENV_WIN
-		Unknown           = INVALID_FILE_ATTRIBUTES,
+        Unknown           = INVALID_FILE_ATTRIBUTES,
         RegularFile       = FILE_ATTRIBUTE_NORMAL,
         Directory         = FILE_ATTRIBUTE_DIRECTORY,
         Device            = FILE_ATTRIBUTE_DEVICE,
@@ -46,7 +46,7 @@ public:
         NotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
         Encrypted         = FILE_ATTRIBUTE_ENCRYPTED
     #elif xENV_UNIX
-		Unknown           = static_cast<types_t>(-1),	///< Status cannot be determined
+        Unknown           = static_cast<types_t>(-1),	///< Status cannot be determined
         RegularFile       = S_IFREG,					///<
         Directory         = S_IFDIR,					///<
         CharacterDevice   = S_IFCHR,					///<
@@ -62,11 +62,11 @@ public:
 
 ///\name ctors, dtor
 ///\{
-	explicit FileType(std::ctstring_t &filePath);
-	virtual ~FileType() = default;
+    explicit FileType(std::ctstring_t &filePath);
+    virtual ~FileType() = default;
 
-	xNO_DEFAULT_CONSTRUCT(FileType)
-	xNO_COPY_ASSIGN(FileType)
+    xNO_DEFAULT_CONSTRUCT(FileType)
+    xNO_COPY_ASSIGN(FileType)
 ///\}
 
     std::ctstring_t & filePath() const;
