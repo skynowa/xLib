@@ -165,10 +165,10 @@ xPLATFORM_IMPL:
     static std::tstring_t _homeDir_impl();
     static std::tstring_t _trashDir_impl();
 
-    std::tstring_t _volume_impl() const;
-    void_t         _toNative_impl(std::tstring_t *filePath) const;
-    bool_t         _isAbsolute_impl() const;
-    std::tstring_t _absolute_impl() const;
+    std::tstring_t        _volume_impl() const;
+    void_t                _toNative_impl(std::tstring_t *filePath) const;
+    bool_t                _isAbsolute_impl() const;
+    std::tstring_t        _absolute_impl() const;
 
     static std::tstring_t _fileExt_impl(cFileExt fileExt);
     static bool_t         _isNameValid_impl(std::ctstring_t &fileName,
