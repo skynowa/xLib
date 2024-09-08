@@ -115,27 +115,27 @@ public:
 
 ///\name Requests
 ///\{
-    bool_t get(OptionIn &dataIn, OptionOut *dataOut);
-    bool_t head(OptionIn &dataIn, OptionOut *dataOut);
-    bool_t post(OptionIn &dataIn, OptionOut *dataOut);
-    bool_t put(OptionIn &dataIn, OptionOut *dataOut);
-    bool_t del(OptionIn &dataIn, OptionOut *dataOut);
-    bool_t connect(OptionIn &dataIn, OptionOut *dataOut);
-    bool_t options(OptionIn &dataIn, OptionOut *dataOut);
-    bool_t trace(OptionIn &dataIn, OptionOut *dataOut);
+    bool_t get(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t head(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t post(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t put(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t del(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t connect(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t options(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t trace(OptionIn &optionIn, OptionOut *optionOut);
 ///\}
 
 ///\name HTTP result
 ///\{
-	HttpCode httpCode(cOptionOut &dataOut) const;
-	bool_t   isSuccess(cOptionOut &dataOut) const;
+	HttpCode httpCode(cOptionOut &optionOut) const;
+	bool_t   isSuccess(cOptionOut &optionOut) const;
 ///\}
 
 protected:
-    void_t setOptionsDefault(OptionIn *dataIn, std::ctstring_t &buffRead, std::tstring_t *buffHeader,
+    void_t setOptionsDefault(OptionIn *optionIn, std::ctstring_t &buffRead, std::tstring_t *buffHeader,
 				std::tstring_t *buffData);
         ///< set options in
-    void_t getInfos(OptionOut *dataOut);
+    void_t getInfos(OptionOut *optionOut);
         ///< get options out
 
 private:
@@ -153,7 +153,7 @@ private:
 	};
 	xUSING_CONST(Request);
 
-    bool_t _request(cRequest type, OptionIn &dataIn, OptionOut *dataOut);
+    bool_t _request(cRequest type, OptionIn &optionIn, OptionOut *optionOut);
 		///< send request
 };
 
