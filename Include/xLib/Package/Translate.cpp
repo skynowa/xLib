@@ -305,13 +305,13 @@ Translate::_langsDetect(
 //-------------------------------------------------------------------------------------------------
 void_t
 Translate::_responseParse(
-    const curl::OptionOut &a_dataOut,			///<
-    std::tstring_t      *out_textToBrief,	///< [out]
-    std::tstring_t      *out_textToDetail,	///< [out]
-    std::tstring_t      *out_textToRaw		///< [out]
+    const curl::OptionOut &a_optionOut,			///<
+    std::tstring_t        *out_textToBrief,		///< [out]
+    std::tstring_t        *out_textToDetail,	///< [out]
+    std::tstring_t        *out_textToRaw		///< [out]
 ) const
 {
-    std::tstring_t body = a_dataOut.body;
+    std::tstring_t body = a_optionOut.body;
 
     bool isDictionaryText {};
     {
