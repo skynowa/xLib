@@ -35,39 +35,39 @@ Test_HttpClient::unit()
 
 		HttpClient http(isDebug);
 
-		OptionIn dataIn;
-		dataIn.url     = xT("https://translate.google.com.vn/translate_tts");
-		dataIn.request = Format::str("ie={}&q={}&tl={}&client={}",
+		OptionIn optionIn;
+		optionIn.url     = xT("https://translate.google.com.vn/translate_tts");
+		optionIn.request = Format::str("ie={}&q={}&tl={}&client={}",
 							"UTF-8",
 							http.escape("comma-separated list of guest names"),
 							"en",
 							"tw-ob");
 
-		OptionOut dataOut;
+		OptionOut optionOut;
 
 
-		m_bRv = http.get(dataIn, &dataOut);
+		m_bRv = http.get(optionIn, &optionOut);
 		xTEST(m_bRv);
-		xTEST(!dataOut.headers.empty());
-		xTEST(!dataOut.body.empty());
+		xTEST(!optionOut.headers.empty());
+		xTEST(!optionOut.body.empty());
 
-		std::custring_t body(dataOut.body.cbegin(), dataOut.body.cend());
+		std::custring_t body(optionOut.body.cbegin(), optionOut.body.cend());
 
 		FileBin file("./test.mp3");
 		file.write(body, xl::fs::FileIO::OpenMode::BinWrite);
 
 		if (0) {
 			Cout()
-				<< xTRACE_VAR(dataIn.request)       << std::endl
+				<< xTRACE_VAR(optionIn.request)       << std::endl
 				<< xT("\n")
-				<< xTRACE_VAR(dataOut.contentType)  << std::endl
-				<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
-				<< xTRACE_VAR(dataOut.responseCode) << std::endl
-				<< xTRACE_VAR(dataOut.totalTimeSec) << std::endl
+				<< xTRACE_VAR(optionOut.contentType)  << std::endl
+				<< xTRACE_VAR(optionOut.effectiveUrl) << std::endl
+				<< xTRACE_VAR(optionOut.responseCode) << std::endl
+				<< xTRACE_VAR(optionOut.totalTimeSec) << std::endl
 				<< xT("\n")
-				<< xTRACE_VAR(dataOut.headers)      << std::endl
-				<< xTRACE_VAR(dataOut.body.size())  << std::endl
-				<< xTRACE_VAR(dataOut.body)         << std::endl;
+				<< xTRACE_VAR(optionOut.headers)      << std::endl
+				<< xTRACE_VAR(optionOut.body.size())  << std::endl
+				<< xTRACE_VAR(optionOut.body)         << std::endl;
 		}
 	}
 
@@ -75,30 +75,30 @@ Test_HttpClient::unit()
     {
 		cbool_t isDebug {false};
 
-		OptionIn dataIn;
-		dataIn.url     = xT("https://example.com/");
-		dataIn.request = xT("");
+		OptionIn optionIn;
+		optionIn.url     = xT("https://example.com/");
+		optionIn.request = xT("");
 
-		OptionOut dataOut;
+		OptionOut optionOut;
 
 		HttpClient http(isDebug);
-		m_bRv = http.get(dataIn, &dataOut);
+		m_bRv = http.get(optionIn, &optionOut);
 		xTEST(m_bRv);
-		xTEST(!dataOut.headers.empty());
-		xTEST(!dataOut.body.empty());
+		xTEST(!optionOut.headers.empty());
+		xTEST(!optionOut.body.empty());
 
 		if (0) {
 			Cout()
-				<< xTRACE_VAR(dataIn.request)       << std::endl
+				<< xTRACE_VAR(optionIn.request)       << std::endl
 				<< xT("\n")
-				<< xTRACE_VAR(dataOut.contentType)  << std::endl
-				<< xTRACE_VAR(dataOut.effectiveUrl) << std::endl
-				<< xTRACE_VAR(dataOut.responseCode) << std::endl
-				<< xTRACE_VAR(dataOut.totalTimeSec) << std::endl
+				<< xTRACE_VAR(optionOut.contentType)  << std::endl
+				<< xTRACE_VAR(optionOut.effectiveUrl) << std::endl
+				<< xTRACE_VAR(optionOut.responseCode) << std::endl
+				<< xTRACE_VAR(optionOut.totalTimeSec) << std::endl
 				<< xT("\n")
-				<< xTRACE_VAR(dataOut.headers)      << std::endl
-				<< xTRACE_VAR(dataOut.body.size())  << std::endl
-				<< xTRACE_VAR(dataOut.body)         << std::endl;
+				<< xTRACE_VAR(optionOut.headers)      << std::endl
+				<< xTRACE_VAR(optionOut.body.size())  << std::endl
+				<< xTRACE_VAR(optionOut.body)         << std::endl;
 		}
     }
 
