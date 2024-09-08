@@ -13,9 +13,9 @@
 namespace xl::package::curl
 {
 
-struct DataIn :
+struct OptionIn :
 	public interface_::IDataPrint
-	/// Incoming data
+	/// Incoming option
 {
 	std::tstring_t url;
 	bool_t         isUseHeader {false};	///< headers in body
@@ -68,11 +68,11 @@ struct DataIn :
 protected:
 	void_t print(core::OStream &os) const final;
 };
-xUSING_CONST(DataIn);
+xUSING_CONST(OptionIn);
 //-------------------------------------------------------------------------------------------------
-struct DataOut :
+struct OptionOut :
 	public interface_::IDataPrint
-	/// Outcoming data
+	/// Outcoming option
 {
 	std::tstring_t      contentType;
 	std::tstring_t      effectiveUrl;
@@ -85,7 +85,7 @@ struct DataOut :
 protected:
 	void_t print(core::OStream &os) const final;
 };
-xUSING_CONST(DataOut);
+xUSING_CONST(OptionOut);
 //-------------------------------------------------------------------------------------------------
 
 class HttpClient :
@@ -115,27 +115,27 @@ public:
 
 ///\name Requests
 ///\{
-    bool_t get(DataIn &dataIn, DataOut *dataOut);
-    bool_t head(DataIn &dataIn, DataOut *dataOut);
-    bool_t post(DataIn &dataIn, DataOut *dataOut);
-    bool_t put(DataIn &dataIn, DataOut *dataOut);
-    bool_t del(DataIn &dataIn, DataOut *dataOut);
-    bool_t connect(DataIn &dataIn, DataOut *dataOut);
-    bool_t options(DataIn &dataIn, DataOut *dataOut);
-    bool_t trace(DataIn &dataIn, DataOut *dataOut);
+    bool_t get(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t head(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t post(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t put(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t del(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t connect(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t options(OptionIn &optionIn, OptionOut *optionOut);
+    bool_t trace(OptionIn &optionIn, OptionOut *optionOut);
 ///\}
 
 ///\name HTTP result
 ///\{
-	HttpCode httpCode(cDataOut &dataOut) const;
-	bool_t   isSuccess(cDataOut &dataOut) const;
+	HttpCode httpCode(cOptionOut &optionOut) const;
+	bool_t   isSuccess(cOptionOut &optionOut) const;
 ///\}
 
 protected:
-    void_t setOptionsDefault(DataIn *dataIn, std::ctstring_t &buffRead, std::tstring_t *buffHeader,
-				std::tstring_t *buffData);
+    void_t setOptionsDefault(OptionIn *optionIn, std::ctstring_t &buffRead,
+                std::tstring_t *buffHeader, std::tstring_t *buffData);
         ///< set options in
-    void_t getInfos(DataOut *dataOut);
+    void_t getInfos(OptionOut *optionOut);
         ///< get options out
 
 private:
@@ -153,7 +153,7 @@ private:
 	};
 	xUSING_CONST(Request);
 
-    bool_t _request(cRequest type, DataIn &dataIn, DataOut *dataOut);
+    bool_t _request(cRequest type, OptionIn &optionIn, OptionOut *optionOut);
 		///< send request
 };
 

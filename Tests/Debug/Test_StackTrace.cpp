@@ -26,7 +26,7 @@ foo(
 
 	// StackTrace
 	{
-		cStackTraceOption data
+		cStackTraceOption option
 		{
 			.skipFramesNum     {2},
 			.isReverse         {false},
@@ -34,7 +34,7 @@ foo(
 			.isFuncArgsDisable {true}
 		};
 
-		StackTrace stack(data);
+		StackTrace stack(option);
 		const auto &sRv = stack.str();
 		xCHECK_RET(sRv.empty(), false);
 

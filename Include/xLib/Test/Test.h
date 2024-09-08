@@ -24,7 +24,7 @@
 	if ( !((val1) op (val2)) ) { \
 		culong_t         nativeError__ { NativeError::get() }; \
 		\
-		cSourceInfoData  sourceInfoData__ \
+		cSourceInfoOption sourceInfoOption__ \
 		{ \
 			xFILE, xLINE, xFUNCTION, xCOUNTER, \
 			xT(#val1), xT(#val2), \
@@ -32,7 +32,7 @@
 			xLEX_TO_STR(op) \
 		}; \
 		\
-		SourceInfo       sourceInfo__(sourceInfoData__); \
+		SourceInfo       sourceInfo__(sourceInfoOption__); \
 		std::ctstring_t &stackTrace__ = StackTrace().str(); \
 		\
 		ErrorReport report__(reportType, nativeError__, sourceInfo__, stackTrace__, (msg)); \
@@ -43,7 +43,7 @@
     if ( !(ptr op nullptr) ) { \
         culong_t         nativeError__ { NativeError::get() }; \
         \
-        cSourceInfoData  sourceInfoData__ \
+        cSourceInfoOption sourceInfoOption__ \
         { \
             xFILE, xLINE, xFUNCTION, xCOUNTER, \
             xT(#ptr), xLEX_TO_STR(nullptr), \
@@ -51,7 +51,7 @@
             xLEX_TO_STR(op) \
         }; \
         \
-        SourceInfo       sourceInfo__(sourceInfoData__); \
+        SourceInfo       sourceInfo__(sourceInfoOption__); \
         std::ctstring_t &stackTrace__ = StackTrace().str(); \
         \
         ErrorReport report__(reportType, nativeError__, sourceInfo__, stackTrace__, (msg)); \
@@ -78,11 +78,11 @@
 
 #define xTEST_FAIL_MSG_IMPL(reportType, msg) \
     if (true) { \
-        culong_t         nativeError__    { NativeError::get() }; \
-        cSourceInfoData  sourceInfoData__ {xFILE, xLINE, xFUNCTION, xCOUNTER, \
+        culong_t          nativeError__    { NativeError::get() }; \
+        cSourceInfoOption sourceInfoOption__ {xFILE, xLINE, xFUNCTION, xCOUNTER, \
             xLEX_TO_STR(false), {}, {}, {}, {}}; \
-        SourceInfo       sourceInfo__(sourceInfoData__); \
-        std::ctstring_t &stackTrace__ = StackTrace().str(); \
+        SourceInfo        sourceInfo__(sourceInfoOption__); \
+        std::ctstring_t  &stackTrace__ = StackTrace().str(); \
         \
         ErrorReport report__(reportType, nativeError__, sourceInfo__, stackTrace__, (msg)); \
         Debugger().reportMake(report__); \
@@ -224,7 +224,7 @@
 
 #define xTEST_CASE(caseName) \
 	Trace() << xT("\tCase: ") << xT(caseName); \
-	for (size_t caseLoops = 0; caseLoops < data().caseLoops; ++ caseLoops)
+	for (size_t caseLoops = 0; caseLoops < option().caseLoops; ++ caseLoops)
     ///< test case
 
 #define xTEST_UNIT(unitClassName) \
@@ -234,8 +234,8 @@
 		public Unit \
 	{ \
 	public: \
-		unitClassName(const UnitData &a_data) : \
-			Unit(a_data) \
+		unitClassName(const UnitOption &a_option) : \
+			Unit(a_option) \
 		{ \
 		} \
 		\
@@ -251,14 +251,14 @@
         \
         bool_t bRv {}; \
         \
-        UnitData unitData; \
-        unitData.name        = xLEX_TO_STR(unitClassName); \
-        unitData.unitLoops   = 1; \
-        unitData.caseLoops   = 1; \
-        unitData.testDirPath = cmXLIB_DATA_DIR; \
-        unitData.tempDirPath = {}; \
+        UnitOption unitOption; \
+        unitOption.name        = xLEX_TO_STR(unitClassName); \
+        unitOption.unitLoops   = 1; \
+        unitOption.caseLoops   = 1; \
+        unitOption.testDirPath = cmXLIB_DATA_DIR; \
+        unitOption.tempDirPath = {}; \
         \
-        unitClassName unit(unitData); \
+        unitClassName unit(unitOption); \
         \
         try {  \
             bRv = unit.run(); \

@@ -13,7 +13,7 @@ xTEST_UNIT(Test_FileIO)
 bool_t
 Test_FileIO::unit()
 {
-    std::ctstring_t filePath = data().tempDirPath + Const::slash() + xT("Test.txt");
+    std::ctstring_t filePath = option().tempDirPath + Const::slash() + xT("Test.txt");
 
     /*******************************************************************************
     *    prepare
@@ -149,7 +149,7 @@ Test_FileIO::unit()
 
         // write
         {
-            std::ctstring_t dataNewPath = data().tempDirPath + Const::slash() + xT("DataNew.dat");
+            std::ctstring_t dataNewPath = option().tempDirPath + Const::slash() + xT("DataNew.dat");
 
             FileIO file(dataNewPath);
             file.open(FileIO::OpenMode::BinWrite);

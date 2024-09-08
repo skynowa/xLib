@@ -19,40 +19,40 @@ namespace xl::debug
 
 //-------------------------------------------------------------------------------------------------
 SourceInfo::SourceInfo(
-    cSourceInfoData &a_data
+    cSourceInfoOption &a_option
 ) :
-    _data(a_data)
+    _option(a_option)
 {
 }
 //-------------------------------------------------------------------------------------------------
-cSourceInfoData &
-SourceInfo::data() const
+cSourceInfoOption &
+SourceInfo::option() const
 {
-    return _data;
+    return _option;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 SourceInfo::format() const
 {
-    return Format::str(xT("#{} in {}, func: {}"), _data.counter, at(), _data.funcName);
+    return Format::str(xT("#{} in {}, func: {}"), _option.counter, at(), _option.funcName);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 SourceInfo::at() const
 {
-    return Format::str(xT("{}:{}"), _data.filePath, _data.lineNum);
+    return Format::str(xT("{}:{}"), _option.filePath, _option.lineNum);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 SourceInfo::expr() const
 {
-    return Format::str(xT("{} {} {}"), _data.exprVar1, _data.exprOp, _data.exprVar2);
+    return Format::str(xT("{} {} {}"), _option.exprVar1, _option.exprOp, _option.exprVar2);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 SourceInfo::exprValues() const
 {
-    return Format::str(xT("{} {} {}"), _data.exprValue1, _data.exprOp, _data.exprValue2);
+    return Format::str(xT("{} {} {}"), _option.exprValue1, _option.exprOp, _option.exprValue2);
 }
 //-------------------------------------------------------------------------------------------------
 

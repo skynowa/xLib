@@ -11,8 +11,8 @@
 namespace xl::debug
 {
 
-struct SourceInfoData
-    /// SourceInfo data
+struct SourceInfoOption
+    /// SourceInfo options
 {
     std::ctstring_t filePath; ///< file path
     culong_t        lineNum;  ///< line number
@@ -28,7 +28,7 @@ struct SourceInfoData
 	std::ctstring_t exprOp;     ///< compare operator
 ///\}
 };
-xUSING_CONST(SourceInfoData);
+xUSING_CONST(SourceInfoOption);
 
 class SourceInfo
     ///< Source info
@@ -36,14 +36,14 @@ class SourceInfo
 public:
 ///\name ctors, dtor
 ///\{
-	explicit  SourceInfo(cSourceInfoData &data);
+	explicit  SourceInfo(cSourceInfoOption &option);
 	virtual  ~SourceInfo() = default;
 
 	xNO_COPY_ASSIGN(SourceInfo)
 ///\}
 
-    cSourceInfoData & data() const;
-        ///< data
+    cSourceInfoOption & option() const;
+        ///< option
     std::tstring_t    format() const;
         ///< format data
     std::tstring_t    at() const;
@@ -54,7 +54,7 @@ public:
         ///< format as expression
 
 private:
-    cSourceInfoData _data; ///< data
+    cSourceInfoOption _option; ///< option
 };
 
 } // namespace

@@ -20,17 +20,17 @@
 namespace xl::package::curl
 {
 
-struct DebugData :
+struct DebugOption :
 	public interface_::IDataPrint
-	/// debug data
+	/// debug option
 {
 	std::tstring_t text;
 	std::tstring_t headerIn;
 	std::tstring_t headerOut;
 	std::tstring_t dataIn;
 	std::tstring_t dataOut;
-	std::tstring_t sslDataIn;
-	std::tstring_t sslDataOut;
+	std::tstring_t sslOptionIn;
+	std::tstring_t sslOptionOut;
 
 protected:
 	void_t print(core::OStream &os) const final;
@@ -109,11 +109,11 @@ private:
 
 ///\name Callbacks
 ///\{
-	DebugData _debugData {};
+	DebugOption _debugData {};
 
-	static CURLcode _onDebugData(CURL *curl, const curl_infotype type, char *buff,
+	static CURLcode _onDebugOption(CURL *curl, const curl_infotype type, char *buff,
 						std::csize_t size, void_t *userData);
-		///< debug data
+		///< debug option
 ///\}
 };
 

@@ -53,7 +53,7 @@ Test_IpcSemaphore::unit()
 
     xTEST_CASE("create")
     {
-        std::ctstring_t name = Format::str(xT("{}-SemaName"), data().name);
+        std::ctstring_t name = Format::str(xT("{}-SemaName"), option().name);
         /// std::ctstring_t name = xT("sema_name");
 
 		semaphore.create(4, name);
