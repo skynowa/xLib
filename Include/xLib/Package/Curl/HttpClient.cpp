@@ -445,9 +445,9 @@ HttpClient::getInfos(
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::_request(
-	cRequest  a_type,		///<
-	OptionIn   &a_dataIn,		///< [in,out]
-	OptionOut  *out_dataOut	///< [out]
+	cRequest   a_type,		///<
+	OptionIn  &a_dataIn,	///< [in,out]
+	OptionOut *out_dataOut	///< [out]
 )
 {
 	xTEST_DIFF((int)a_type, (int)Request::Unknown);
