@@ -132,8 +132,8 @@ public:
 ///\}
 
 protected:
-    void_t setOptionsDefault(OptionIn *optionIn, std::ctstring_t &buffRead, std::tstring_t *buffHeader,
-				std::tstring_t *buffData);
+    void_t setOptionsDefault(OptionIn *optionIn, std::ctstring_t &buffRead,
+                std::tstring_t *buffHeader, std::tstring_t *buffData);
         ///< set options in
     void_t getInfos(OptionOut *optionOut);
         ///< get options out

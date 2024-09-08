@@ -214,7 +214,7 @@ HttpClient::isSuccess(
 //-------------------------------------------------------------------------------------------------
 void_t
 HttpClient::setOptionsDefault(
-	OptionIn          *a_optionIn,			///< [in,out]
+	OptionIn        *a_optionIn,		///< [in,out]
 	std::ctstring_t &a_buffRead,		///<
 	std::tstring_t  *out_buffHeader,	///< [out]
 	std::tstring_t  *out_buffData		///< [out]
@@ -445,8 +445,8 @@ HttpClient::getInfos(
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::_request(
-	cRequest   a_type,		///<
-	OptionIn  &a_optionIn,	///< [in,out]
+	cRequest   a_type,			///<
+	OptionIn  &a_optionIn,		///< [in,out]
 	OptionOut *out_optionOut	///< [out]
 )
 {
