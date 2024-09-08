@@ -36,12 +36,12 @@ namespace xl::debug
 
 //-------------------------------------------------------------------------------------------------
 StackTrace::StackTrace() :
-	StackTrace( cStackTraceData() )
+	StackTrace( cStackTraceOption() )
 {
 }
 //-------------------------------------------------------------------------------------------------
 StackTrace::StackTrace(
-    cStackTraceData &a_data
+    cStackTraceOption &a_data
 ) :
     _data(a_data)
 {

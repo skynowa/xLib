@@ -26,7 +26,7 @@ foo(
 
 	// StackTrace
 	{
-		cStackTraceData data
+		cStackTraceOption data
 		{
 			.skipFramesNum     {2},
 			.isReverse         {false},

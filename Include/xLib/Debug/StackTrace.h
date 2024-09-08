@@ -19,7 +19,7 @@
 namespace xl::debug
 {
 
-struct StackTraceData
+struct StackTraceOption
     /// StackTrace data
 {
     cint_t  skipFramesNum     {2};	// REVIEW: skipFramesNum
@@ -27,7 +27,7 @@ struct StackTraceData
     cbool_t isWrapFilePaths   {true};
     cbool_t isFuncArgsDisable {true};
 };
-xUSING_CONST(StackTraceData);
+xUSING_CONST(StackTraceOption);
 
 class StackTrace :
 	public IStr
@@ -37,7 +37,7 @@ public:
 ///\name ctors, dtor
 ///\{
 			  StackTrace();
-	explicit  StackTrace(cStackTraceData &data);
+	explicit  StackTrace(cStackTraceOption &data);
 	virtual  ~StackTrace() = default;
 
     xNO_COPY_ASSIGN(StackTrace)
@@ -50,7 +50,7 @@ public:
 ///\}
 
 private:
-    cStackTraceData _data {}; ///< data
+    cStackTraceOption _data {}; ///< data
 
     void_t _format(std::vector<std::vec_tstring_t> &stack, std::tstring_t *stackStr) const;
         ///< format stack trace
