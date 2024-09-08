@@ -15,7 +15,7 @@ Test_AutoProfiler::unit()
 {
     xTEST_CASE("AutoProfiler")
     {
-        std::ctstring_t filePath = data().tempDirPath + Const::slash() + xT("AutoProfilerLog.log");
+        std::ctstring_t filePath = option().tempDirPath + Const::slash() + xT("AutoProfilerLog.log");
 
 		{
 			FileIO file(filePath);

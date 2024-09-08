@@ -14,7 +14,7 @@
 namespace xl::package
 {
 //-------------------------------------------------------------------------------------------------
-struct CsvData
+struct CsvOption
 {
 	std::tstring_t fileExtension    {xT("csv")};	// TODO: [skynowa] now ignore
 	bool_t         hasHeader        {true};			// TODO: [skynowa] now ignore
@@ -24,7 +24,7 @@ struct CsvData
 	bool_t         isTrimCells      {false};		// TODO: [skynowa] now ignore
 	bool_t         isSkipEmptyLines {true};	        // TODO: [skynowa] now ignore
 };
-xUSING_CONST(CsvData);
+xUSING_CONST(CsvOption);
 
 class ICsv
     /// CSV
@@ -44,7 +44,7 @@ class CsvReader final :
 public:
 ///\name ctors, dtor
 ///\{
-	explicit  CsvReader(cCsvData &data);
+	explicit  CsvReader(cCsvOption &option);
 	virtual  ~CsvReader() = default;
 
 	xNO_COPY_ASSIGN(CsvReader)
@@ -60,7 +60,7 @@ public:
     std::tstring_t cell(std::csize_t row, std::csize_t column);
 
 private:
-    cCsvData &     _data;
+    cCsvOption &   _option;
     rows_t         _rows;
 
     bool_t         _isValid();
@@ -74,7 +74,7 @@ class CsvWriter final :
 public:
 ///\name ctors, dtor
 ///\{
-	explicit  CsvWriter(cCsvData &data);
+	explicit  CsvWriter(cCsvOption &option);
 	virtual  ~CsvWriter() = delete;
 
     xNO_COPY_ASSIGN(CsvWriter)
@@ -84,7 +84,7 @@ public:
     void_t     saveString(crow_t &header, crows_t &rows, std::tstring_t *rawString);
 
 private:
-    cCsvData & _data;
+    cCsvOption & _option;
 };
 //-------------------------------------------------------------------------------------------------
 } // namespace

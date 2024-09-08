@@ -13,7 +13,7 @@
 namespace xl::package
 {
 
-struct Ssh2ClientData
+struct Ssh2ClientOption
 {
     enum class StdFormat
     {
@@ -30,7 +30,7 @@ struct Ssh2ClientData
     std::tstring_t password;
     StdFormat      stdFormat;
 };
-xUSING_CONST(Ssh2ClientData);
+xUSING_CONST(Ssh2ClientOption);
 
 class Ssh2Client
 {
@@ -45,7 +45,7 @@ public:
 
 ///\name ctors, dtor
 ///\{
-	explicit  Ssh2Client(cSsh2ClientData &data);
+	explicit  Ssh2Client(cSsh2ClientOption &option);
 	virtual  ~Ssh2Client();
 
 	xNO_DEFAULT_CONSTRUCT(Ssh2Client)
@@ -67,10 +67,10 @@ public:
     std::tstring_t lastErrorFormat();
 
 private:
-    cSsh2ClientData &_data;
-    TcpClient        _tcpClient;
-    LIBSSH2_SESSION *_session {};
-    LIBSSH2_CHANNEL *_channel {};
+    cSsh2ClientOption &_option;
+    TcpClient          _tcpClient;
+    LIBSSH2_SESSION   *_session {};
+    LIBSSH2_CHANNEL   *_channel {};
 
     void_t         _wait(clong_t timeoutSec);
     static

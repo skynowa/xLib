@@ -15,15 +15,15 @@ Test_Csv::unit()
 {
     xTEST_CASE("CsvReader")
     {
-        xl::package::CsvData csvData;
-        csvData.fileExtension    = xT("csv");
-        csvData.hasHeader        = true;
-        csvData.eol              = xT("\n");
-        csvData.delimiter        = xT(';');
-        csvData.isTrimCells      = true;
-        csvData.isSkipEmptyLines = true;
+        xl::package::CsvOption option;
+        option.fileExtension    = xT("csv");
+        option.hasHeader        = true;
+        option.eol              = xT("\n");
+        option.delimiter        = xT(';');
+        option.isTrimCells      = true;
+        option.isSkipEmptyLines = true;
 
-        xl::package::CsvReader csvReader(csvData);
+        xl::package::CsvReader csvReader(option);
         csvReader.loadFile(xT(""));
     }
 

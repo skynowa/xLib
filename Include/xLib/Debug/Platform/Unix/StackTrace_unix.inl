@@ -43,7 +43,7 @@ StackTrace::_get_impl(
     char **symbols = ::backtrace_symbols(stackBuff, framesNum);
     xCHECK_DO(symbols == nullptr, return);
 
-    for (int_t i = _data.skipFramesNum; i < framesNum; ++ i) {
+    for (int_t i = _option.skipFramesNum; i < framesNum; ++ i) {
         const char *it_symbol = symbols[i];
 
         std::tstring_t modulePath;
@@ -107,12 +107,12 @@ StackTrace::_get_impl(
         }
 
         // swap file paths
-        if (_data.isWrapFilePaths) {
+        if (_option.isWrapFilePaths) {
             _wrapFilePaths(&modulePath, &filePath);
         }
 
         // disable function params
-        if (_data.isFuncArgsDisable) {
+        if (_option.isFuncArgsDisable) {
             _funcArgsDisable(&functionName);
         }
 

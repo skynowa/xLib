@@ -36,11 +36,11 @@ clong_t        waitTimeoutSec = 10;
 }
 //-------------------------------------------------------------------------------------------------
 Ssh2Client::Ssh2Client(
-    cSsh2ClientData &a_data
+    cSsh2ClientOption &a_option
 ) :
-    _data(a_data)
+    _option(a_option)
 {
-    userPassword = a_data.password;
+    userPassword = a_option.password;
 
     int iRv = ::libssh2_init(0);
     xTEST_EQ(iRv, 0);
@@ -56,15 +56,15 @@ Ssh2Client::isAlive()
 {
     std::tstring_t hostAddr;
 
-    if (DnsClient::isAddressIpv4(_data.hostName) ||
-        DnsClient::isAddressIpv6(_data.hostName))
+    if (DnsClient::isAddressIpv4(_option.hostName) ||
+        DnsClient::isAddressIpv6(_option.hostName))
     {
-        hostAddr = _data.hostName;
+        hostAddr = _option.hostName;
     } else {
-        DnsClient::hostAddrByName(_data.hostName, &hostAddr);
+        DnsClient::hostAddrByName(_option.hostName, &hostAddr);
     }
 
-    return TcpClient::isServerAlive(hostAddr, _data.port);
+    return TcpClient::isServerAlive(hostAddr, _option.port);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -74,16 +74,16 @@ Ssh2Client::connect()
 
     std::tstring_t hostAddr;
 
-    if (DnsClient::isAddressIpv4(_data.hostName) ||
-        DnsClient::isAddressIpv6(_data.hostName))
+    if (DnsClient::isAddressIpv4(_option.hostName) ||
+        DnsClient::isAddressIpv6(_option.hostName))
     {
-        hostAddr = _data.hostName;
+        hostAddr = _option.hostName;
     } else {
-        DnsClient::hostAddrByName(_data.hostName, &hostAddr);
+        DnsClient::hostAddrByName(_option.hostName, &hostAddr);
     }
 
     _tcpClient.create(ISocket::AddressFamily::afInet, ISocket::Type::tpStream, ISocket::Protocol::ptIp);
-    _tcpClient.connect(hostAddr, _data.port);
+    _tcpClient.connect(hostAddr, _option.port);
 
     _session = ::libssh2_session_init();
     xTEST_PTR(_session);
@@ -110,15 +110,15 @@ Ssh2Client::authPassword(
 
     switch (a_userAuth) {
     case UserAuth::uaPassword:
-        while ((iRv = ::libssh2_userauth_password(_session, xT2A(_data.userName).c_str(),
-            xT2A(_data.password).c_str())) == LIBSSH2_ERROR_EAGAIN)
+        while ((iRv = ::libssh2_userauth_password(_session, xT2A(_option.userName).c_str(),
+            xT2A(_option.password).c_str())) == LIBSSH2_ERROR_EAGAIN)
         {
             _wait(waitTimeoutSec);
         }
 
         break;
     case UserAuth::uaKeyboardInteractive:
-        while ((iRv = ::libssh2_userauth_keyboard_interactive(_session, xT2A(_data.userName).c_str(),
+        while ((iRv = ::libssh2_userauth_keyboard_interactive(_session, xT2A(_option.userName).c_str(),
             &_authPassword_OnKeyboardInteractive)) == LIBSSH2_ERROR_EAGAIN)
         {
             _wait(waitTimeoutSec);
@@ -146,9 +146,9 @@ Ssh2Client::authPublicKey(
     std::ctstring_t privateKey = a_keyDirPath + xT("/id_rsa");
     std::ctstring_t publicKey  = a_keyDirPath + xT("/id_rsa.pub");
 
-    while ((iRv = ::libssh2_userauth_publickey_fromfile(_session, xT2A(_data.userName).c_str(),
+    while ((iRv = ::libssh2_userauth_publickey_fromfile(_session, xT2A(_option.userName).c_str(),
         xT2A(publicKey).c_str(), xT2A(privateKey).c_str(),
-        xT2A(_data.password).c_str())) == LIBSSH2_ERROR_EAGAIN)
+        xT2A(_option.password).c_str())) == LIBSSH2_ERROR_EAGAIN)
     {
         _wait(waitTimeoutSec);
     }
@@ -232,14 +232,14 @@ Ssh2Client::channelReadLine(
     }
 
     // data format
-    switch (_data.stdFormat) {
-    case Ssh2ClientData::StdFormat::sfRaw:
+    switch (_option.stdFormat) {
+    case Ssh2ClientOption::StdFormat::sfRaw:
         // skip
         break;
-    case Ssh2ClientData::StdFormat::sfText:
+    case Ssh2ClientOption::StdFormat::sfText:
         // TODO: [skynowa] sfText
         break;
-    case Ssh2ClientData::StdFormat::sfHtml:
+    case Ssh2ClientOption::StdFormat::sfHtml:
         if ( !stdErr.empty() ) {
             Trace() << "\n" << stdErr;
 
@@ -259,7 +259,7 @@ Ssh2Client::channelReadLine(
             log << "\n" << stdErr << "\n\n\n";
         }
         break;
-    case Ssh2ClientData::StdFormat::sfUnknown:
+    case Ssh2ClientOption::StdFormat::sfUnknown:
     default:
         xTEST(false);
         break;

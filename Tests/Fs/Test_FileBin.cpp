@@ -14,7 +14,7 @@ xTEST_UNIT(Test_FileBin)
 bool_t
 Test_FileBin::unit()
 {
-    std::ctstring_t filePath = data().tempDirPath + Const::slash() + xT("Test.txt");
+    std::ctstring_t filePath = option().tempDirPath + Const::slash() + xT("Test.txt");
 
 	xTEST_CASE("read, write")
 	{

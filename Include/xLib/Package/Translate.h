@@ -44,7 +44,7 @@ private:
 
     void_t         _langsDetect(std::ctstring_t &text, Language *langFrom, Language *langTo) const;
         ///< detect languages
-    void_t         _responseParse(const curl::DataOut &dataOut, std::tstring_t *textToBrief,
+    void_t         _responseParse(const curl::OptionOut &optionOut, std::tstring_t *textToBrief,
 						std::tstring_t *textToDetail, std::tstring_t *textToRaw) const;
         ///< parse response
     std::tstring_t _langCode(cLanguage lang) const;

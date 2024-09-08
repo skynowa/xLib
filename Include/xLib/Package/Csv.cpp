@@ -20,12 +20,12 @@ namespace xl::package
 
 //-------------------------------------------------------------------------------------------------
 CsvReader::CsvReader(
-    cCsvData &a_data
+    cCsvOption &a_option
 ) :
-    _data(a_data)
+    _option(a_option)
 {
-	// TODO: _data - impl
-	xUNUSED(_data);
+	// TODO: _option - impl
+	xUNUSED(_option);
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -104,9 +104,9 @@ CsvReader::_clear()
 
 //-------------------------------------------------------------------------------------------------
 CsvWriter::CsvWriter(
-    cCsvData &a_data
+    cCsvOption &a_option
 ) :
-    _data(a_data)
+    _option(a_option)
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -119,7 +119,7 @@ CsvWriter::saveFile(
 {
 	// a_header
 	{
-		std::ctstring_t &header = String::join(a_header, _data.delimiter);
+		std::ctstring_t &header = String::join(a_header, _option.delimiter);
 
 		FileText(a_filePath).write(header + Const::nl(), FileIO::OpenMode::ReadWrite);
 	}
@@ -127,7 +127,7 @@ CsvWriter::saveFile(
 	// a_rows
 	for (const auto &it_row : a_rows)
 	{
-		std::ctstring_t &row = String::join(it_row, _data.delimiter);
+		std::ctstring_t &row = String::join(it_row, _option.delimiter);
 
 		FileText(a_filePath).write(row + Const::nl(), FileIO::OpenMode::Append);
 	}
@@ -144,7 +144,7 @@ CsvWriter::saveString(
 
 	// a_header
 	{
-		std::ctstring_t &header = String::join(a_header, _data.delimiter);
+		std::ctstring_t &header = String::join(a_header, _option.delimiter);
 
 		*out_rawString += header + Const::nl();
 	}
@@ -152,7 +152,7 @@ CsvWriter::saveString(
 	// a_rows
 	for (const auto &it_row : a_rows)
 	{
-		std::ctstring_t &row = String::join(it_row, _data.delimiter);
+		std::ctstring_t &row = String::join(it_row, _option.delimiter);
 
 		*out_rawString += row + Const::nl();
 	}

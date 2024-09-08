@@ -91,11 +91,11 @@ Test_Debugger::unit()
             culong_t val1 {10};
             culong_t val2 {20};
 
-            ulong_t          nativeError    { NativeError::get() };
-            cSourceInfoData  sourceInfoData {xFILE, xLINE, xFUNCTION, xCOUNTER,
+            ulong_t           nativeError      { NativeError::get() };
+            cSourceInfoOption sourceInfoOption {xFILE, xLINE, xFUNCTION, xCOUNTER,
                 xLEX_TO_STR(val1), xLEX_TO_STR(val2), std::to_string(val1), std::to_string(val2), xT("==")};
-            SourceInfo       sourceInfo(sourceInfoData);
-            std::ctstring_t &stackTrace     = StackTrace().str();
+            SourceInfo        sourceInfo(sourceInfoOption);
+            std::ctstring_t  &stackTrace     = StackTrace().str();
 
             ErrorReport report(type[i], nativeError, sourceInfo, stackTrace, xT(""));
 

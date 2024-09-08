@@ -19,7 +19,7 @@ Test_Xml::unit()
 
     xTEST_CASE("1.xml")
     {
-        std::ctstring_t filePath = data().testDirPath + "/Package/Xml/1.xml";
+        std::ctstring_t filePath = option().testDirPath + "/Package/Xml/1.xml";
         xTEST(FileInfo(filePath).isExists());
 
         Doc doc("UTF-8");
@@ -121,7 +121,7 @@ Test_Xml::unit()
     xTEST_CASE("code, str")
     {
 	#if xTEST_IGNORE
-		std::ctstring_t filePath = data().testDirPath + "/Package/Xml/bad.xml";
+		std::ctstring_t filePath = option().testDirPath + "/Package/Xml/bad.xml";
 
 		Doc doc("UTF-8");
 		doc.parseFile(filePath);
@@ -150,7 +150,7 @@ Test_Xml::unit()
 
     xTEST_CASE("Node::childSize")
     {
-        std::ctstring_t filePath = data().testDirPath + "/Package/Xml/2.xml";
+        std::ctstring_t filePath = option().testDirPath + "/Package/Xml/2.xml";
 
         std::map<std::tstring_t, std::size_t> data
         {
@@ -177,7 +177,7 @@ Test_Xml::unit()
 
     xTEST_CASE("Node::childMap")
     {
-        std::ctstring_t filePath = data().testDirPath + "/Package/Xml/2.xml";
+        std::ctstring_t filePath = option().testDirPath + "/Package/Xml/2.xml";
 
         std::cmap_tstring_t expect
         {

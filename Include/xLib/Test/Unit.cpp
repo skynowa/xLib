@@ -31,9 +31,9 @@ namespace xl::test
 
 //-------------------------------------------------------------------------------------------------
 Unit::Unit(
-	const UnitData &a_data
+	const UnitOption &a_option
 ) :
-	_data{a_data}
+	_option{a_option}
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -42,10 +42,10 @@ Unit::~Unit() /* = 0 */
 {
 }
 //-------------------------------------------------------------------------------------------------
-const UnitData &
-Unit::data() const
+const UnitOption &
+Unit::option() const
 {
-   return _data;
+   return _option;
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
@@ -85,7 +85,7 @@ bool_t
 Unit::run()
 {
 	// temp dir
-    std::ctstring_t tempDirPath = Path::exe().dir() + Const::slash() + _data.name;
+    std::ctstring_t tempDirPath = Path::exe().dir() + Const::slash() + _option.name;
 
     cbool_t isRandomPostfix {true};
     cbool_t isAutoDelete    {true};
@@ -93,36 +93,36 @@ Unit::run()
     DirTemp dirTemp(tempDirPath, isRandomPostfix, isAutoDelete);
     dirTemp.create();
 
-	_data.tempDirPath = dirTemp.dir().str();
+	_option.tempDirPath = dirTemp.dir().str();
 
 	// run unit
     bool_t isPassed {true};
     bool_t bRv {};
 
-    for (std::size_t i = 0; i < _data.unitLoops; ++ i) {
+    for (std::size_t i = 0; i < _option.unitLoops; ++ i) {
         try {
             bRv = unit();
             xCHECK_DO(!bRv, isPassed = false);
         }
         catch (const Exception &a_xlibException) {
-            xTEST_FAIL_MSG(_data.name + xT(": ") + a_xlibException.what());
+            xTEST_FAIL_MSG(_option.name + xT(": ") + a_xlibException.what());
 
             bRv = false;
         }
         catch (const std::exception &a_stdException) {
             std::cstring_t msg = a_stdException.what();
-            xTEST_FAIL_MSG(_data.name + xT(": ") + xA2T(msg));
+            xTEST_FAIL_MSG(_option.name + xT(": ") + xA2T(msg));
 
             bRv = false;
         }
         catch (...) {
-            xTEST_FAIL_MSG(_data.name + xT(": Unknown error"));
+            xTEST_FAIL_MSG(_option.name + xT(": Unknown error"));
 
             bRv = false;
         }
 
         xCHECK_DO(!bRv, isPassed = false);
-    } // for (_data.unitLoops)
+    } // for (_option.unitLoops)
 
     return isPassed;
 }

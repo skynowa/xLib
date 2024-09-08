@@ -41,9 +41,9 @@ StackTrace::StackTrace() :
 }
 //-------------------------------------------------------------------------------------------------
 StackTrace::StackTrace(
-    cStackTraceOption &a_data
+    cStackTraceOption &a_option
 ) :
-    _data(a_data)
+    _option(a_option)
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ StackTrace::str() const /* final */
 
     _get_impl(&stack);
 
-	if (_data.isReverse) {
+	if (_option.isReverse) {
 		std::reverse(stack.begin(), stack.end());
 	}
 
