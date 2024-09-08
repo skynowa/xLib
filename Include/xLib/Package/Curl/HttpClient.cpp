@@ -15,13 +15,13 @@ namespace xl::package::curl
 
 
 /**************************************************************************************************
-*   DataOut public
+*   OptionOut public
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
 void_t
-DataIn::print(
+OptionIn::print(
 	core::OStream &a_os
 ) const
 {
@@ -61,13 +61,13 @@ DataIn::print(
 
 
 /**************************************************************************************************
-*   DataOut public
+*   OptionOut public
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
 void_t
-DataOut::print(
+OptionOut::print(
 	core::OStream &a_os
 ) const
 {
@@ -97,8 +97,8 @@ HttpClient::HttpClient(
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::get(
-	DataIn  &a_dataIn,		///< [in,out]
-	DataOut *out_dataOut	///< [out]
+	OptionIn  &a_dataIn,		///< [in,out]
+	OptionOut *out_dataOut	///< [out]
 )
 {
 	return _request(Request::Get, a_dataIn, out_dataOut);
@@ -106,8 +106,8 @@ HttpClient::get(
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::head(
-	DataIn  &a_dataIn,		///< [in,out]
-	DataOut *out_dataOut	///< [out]
+	OptionIn  &a_dataIn,		///< [in,out]
+	OptionOut *out_dataOut	///< [out]
 )
 {
 	return _request(Request::Head, a_dataIn, out_dataOut);
@@ -115,8 +115,8 @@ HttpClient::head(
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::post(
-	DataIn  &a_dataIn,		///< [in,out]
-	DataOut *out_dataOut	///< [out]
+	OptionIn  &a_dataIn,		///< [in,out]
+	OptionOut *out_dataOut	///< [out]
 )
 {
 	return _request(Request::Post, a_dataIn, out_dataOut);
@@ -124,8 +124,8 @@ HttpClient::post(
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::put(
-	DataIn  &a_dataIn,		///< [in,out]
-	DataOut *out_dataOut	///< [out]
+	OptionIn  &a_dataIn,		///< [in,out]
+	OptionOut *out_dataOut	///< [out]
 )
 {
 	return _request(Request::Put, a_dataIn, out_dataOut);
@@ -133,8 +133,8 @@ HttpClient::put(
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::del(
-	DataIn  &a_dataIn,		///< [in,out]
-	DataOut *out_dataOut	///< [out]
+	OptionIn  &a_dataIn,		///< [in,out]
+	OptionOut *out_dataOut	///< [out]
 )
 {
 	return _request(Request::Delete, a_dataIn, out_dataOut);
@@ -142,8 +142,8 @@ HttpClient::del(
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::connect(
-	DataIn  &a_dataIn,		///< [in,out]
-	DataOut *out_dataOut	///< [out]
+	OptionIn  &a_dataIn,		///< [in,out]
+	OptionOut *out_dataOut	///< [out]
 )
 {
 	return _request(Request::Connect, a_dataIn, out_dataOut);
@@ -151,8 +151,8 @@ HttpClient::connect(
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::options(
-	DataIn  &a_dataIn,		///< [in,out]
-	DataOut *out_dataOut	///< [out]
+	OptionIn  &a_dataIn,		///< [in,out]
+	OptionOut *out_dataOut	///< [out]
 )
 {
 	return _request(Request::Options, a_dataIn, out_dataOut);
@@ -160,8 +160,8 @@ HttpClient::options(
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::trace(
-	DataIn  &a_dataIn,		///< [in,out]
-	DataOut *out_dataOut	///< [out]
+	OptionIn  &a_dataIn,		///< [in,out]
+	OptionOut *out_dataOut	///< [out]
 )
 {
 	return _request(Request::Trace, a_dataIn, out_dataOut);
@@ -173,7 +173,7 @@ HttpClient::trace(
  */
 HttpClient::HttpCode
 HttpClient::httpCode(
-	cDataOut &a_dataOut
+	cOptionOut &a_dataOut
 ) const
 {
 	static const std::map<std::pair<int, int>, HttpCode> httpCodes
@@ -198,7 +198,7 @@ HttpClient::httpCode(
 //-------------------------------------------------------------------------------------------------
 bool_t
 HttpClient::isSuccess(
-	cDataOut &a_dataOut
+	cOptionOut &a_dataOut
 ) const
 {
 	return (httpCode(a_dataOut) == HttpCode::Success);
@@ -214,7 +214,7 @@ HttpClient::isSuccess(
 //-------------------------------------------------------------------------------------------------
 void_t
 HttpClient::setOptionsDefault(
-	DataIn          *a_dataIn,			///< [in,out]
+	OptionIn          *a_dataIn,			///< [in,out]
 	std::ctstring_t &a_buffRead,		///<
 	std::tstring_t  *out_buffHeader,	///< [out]
 	std::tstring_t  *out_buffData		///< [out]
@@ -401,7 +401,7 @@ HttpClient::setOptionsDefault(
 //-------------------------------------------------------------------------------------------------
 void_t
 HttpClient::getInfos(
-	DataOut *out_dataOut	///< [out]
+	OptionOut *out_dataOut	///< [out]
 )
 {
 	xTEST(_handle.isValid());
@@ -446,8 +446,8 @@ HttpClient::getInfos(
 bool_t
 HttpClient::_request(
 	cRequest  a_type,		///<
-	DataIn   &a_dataIn,		///< [in,out]
-	DataOut  *out_dataOut	///< [out]
+	OptionIn   &a_dataIn,		///< [in,out]
+	OptionOut  *out_dataOut	///< [out]
 )
 {
 	xTEST_DIFF((int)a_type, (int)Request::Unknown);
@@ -554,8 +554,8 @@ HttpClient::_request(
 
 	std::tstring_t buffRead;
 	std::tstring_t buffHeaderOut;
-	std::tstring_t buffDataOut;
-	setOptionsDefault(&a_dataIn, buffRead, &buffHeaderOut, &buffDataOut);
+	std::tstring_t buffOptionOut;
+	setOptionsDefault(&a_dataIn, buffRead, &buffHeaderOut, &buffOptionOut);
 
 	perform();
 
@@ -563,7 +563,7 @@ HttpClient::_request(
 
 	// [out]
 	String::split(buffHeaderOut, Const::crNl(), xT(": "), &out_dataOut->headers);
-	out_dataOut->body = buffDataOut;
+	out_dataOut->body = buffOptionOut;
 
 	return true;
 }

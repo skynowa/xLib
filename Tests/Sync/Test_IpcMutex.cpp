@@ -13,7 +13,7 @@ xTEST_UNIT(Test_IpcMutex)
 bool_t
 Test_IpcMutex::unit()
 {
-    std::ctstring_t name = Format::str(xT("{}-MutexName"), data().name);
+    std::ctstring_t name = Format::str(xT("{}-MutexName"), option().name);
 
     xTEST_CASE("handle")
     {

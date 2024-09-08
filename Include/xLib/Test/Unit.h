@@ -15,8 +15,8 @@
 namespace xl::test
 {
 
-struct UnitData
-    /// testing data
+struct UnitOption
+    /// testing options
 {
     std::tstring_t name;            ///< name
     std::size_t    unitLoops {1};   ///< unit loops
@@ -24,7 +24,7 @@ struct UnitData
     std::tstring_t testDirPath;     ///< test dir path
     std::tstring_t tempDirPath;     ///< temp dir path
 };
-xUSING_CONST(UnitData);
+xUSING_CONST(UnitOption);
 
 class Unit
     /// testing
@@ -65,13 +65,13 @@ public:
 
 ///\name ctors, dtor
 ///\{
-			 Unit(const UnitData &data);
+			 Unit(const UnitOption &option);
 	virtual ~Unit() = 0;
 
 	xNO_DEFAULT_CONSTRUCT(Unit)
 	xNO_COPY_ASSIGN(Unit)
 
-	const UnitData &data() const;
+	const UnitOption &option() const;
 ///\}
 
 	bool_t         isGithubCI() const;
@@ -86,7 +86,7 @@ public:
         ///< unit
 
 private:
-    UnitData _data;
+    UnitOption _option;
 };
 
 } // namespace

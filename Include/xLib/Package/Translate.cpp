@@ -39,7 +39,7 @@ Translate::run(
 
     bool_t bRv {};
 
-	curl::DataIn dataIn;
+	curl::OptionIn dataIn;
 	{
 		std::ctstring_t encoding = xT("UTF-8");
 
@@ -146,7 +146,7 @@ Translate::run(
 	}
 
 	// TODO: curl::HttpClient::Request::Post
-	curl::DataOut dataOut;
+	curl::OptionOut dataOut;
 	bRv = _http.get(dataIn, &dataOut);
 	xTEST(bRv);
 	if ( !_http.isSuccess(dataOut) ) {
@@ -305,7 +305,7 @@ Translate::_langsDetect(
 //-------------------------------------------------------------------------------------------------
 void_t
 Translate::_responseParse(
-    const curl::DataOut &a_dataOut,			///<
+    const curl::OptionOut &a_dataOut,			///<
     std::tstring_t      *out_textToBrief,	///< [out]
     std::tstring_t      *out_textToDetail,	///< [out]
     std::tstring_t      *out_textToRaw		///< [out]

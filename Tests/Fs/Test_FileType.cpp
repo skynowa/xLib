@@ -13,8 +13,8 @@ xTEST_UNIT(Test_FileType)
 bool_t
 Test_FileType::unit()
 {
-    std::ctstring_t filePath = data().tempDirPath + Const::slash() + xT("Test.txt");
-    std::ctstring_t dirPath  = data().tempDirPath;
+    std::ctstring_t filePath = option().tempDirPath + Const::slash() + xT("Test.txt");
+    std::ctstring_t dirPath  = option().tempDirPath;
     const auto      value    = FileType::Type::RegularFile;
 
     // prepare
@@ -151,7 +151,7 @@ Test_FileType::unit()
         m_bRv = FileType(filePath).isFile();
         xTEST(m_bRv);
 
-        m_bRv = FileType(data().tempDirPath).isFile();
+        m_bRv = FileType(option().tempDirPath).isFile();
         xTEST(!m_bRv);
     }
 
@@ -166,15 +166,15 @@ Test_FileType::unit()
 	{
 		const Data2<std::tstring_t, bool_t> datas[]
 		{
-			{filePath,           false},
-			{data().tempDirPath, false},
-			{xT("wrong_path"),   false},
+			{filePath,             false},
+			{option().tempDirPath, false},
+			{xT("wrong_path"),     false},
 		#if   xENV_WIN
 			{xT("C:\\Windows\\System32\\attrib.exe"), true},
 		#elif xENV_UNIX
-			{xT("/bin/ls"),      true},
+			{xT("/bin/ls"),        true},
 		#endif
-			{xT("."),            false}
+			{xT("."),              false}
 		};
 
 		for (const auto &it_data : datas) {

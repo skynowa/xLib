@@ -20,7 +20,7 @@ namespace xl::debug
 {
 
 struct StackTraceOption
-    /// StackTrace data
+    /// StackTrace options
 {
     cint_t  skipFramesNum     {2};	// REVIEW: skipFramesNum
     cbool_t isReverse         {false};
@@ -37,7 +37,7 @@ public:
 ///\name ctors, dtor
 ///\{
 			  StackTrace();
-	explicit  StackTrace(cStackTraceOption &data);
+	explicit  StackTrace(cStackTraceOption &option);
 	virtual  ~StackTrace() = default;
 
     xNO_COPY_ASSIGN(StackTrace)
@@ -50,7 +50,7 @@ public:
 ///\}
 
 private:
-    cStackTraceOption _data {}; ///< data
+    cStackTraceOption _option {}; ///< option
 
     void_t _format(std::vector<std::vec_tstring_t> &stack, std::tstring_t *stackStr) const;
         ///< format stack trace

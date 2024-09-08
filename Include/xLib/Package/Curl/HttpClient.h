@@ -13,9 +13,9 @@
 namespace xl::package::curl
 {
 
-struct DataIn :
+struct OptionIn :
 	public interface_::IDataPrint
-	/// Incoming data
+	/// Incoming option
 {
 	std::tstring_t url;
 	bool_t         isUseHeader {false};	///< headers in body
@@ -68,11 +68,11 @@ struct DataIn :
 protected:
 	void_t print(core::OStream &os) const final;
 };
-xUSING_CONST(DataIn);
+xUSING_CONST(OptionIn);
 //-------------------------------------------------------------------------------------------------
-struct DataOut :
+struct OptionOut :
 	public interface_::IDataPrint
-	/// Outcoming data
+	/// Outcoming option
 {
 	std::tstring_t      contentType;
 	std::tstring_t      effectiveUrl;
@@ -85,7 +85,7 @@ struct DataOut :
 protected:
 	void_t print(core::OStream &os) const final;
 };
-xUSING_CONST(DataOut);
+xUSING_CONST(OptionOut);
 //-------------------------------------------------------------------------------------------------
 
 class HttpClient :
@@ -115,27 +115,27 @@ public:
 
 ///\name Requests
 ///\{
-    bool_t get(DataIn &dataIn, DataOut *dataOut);
-    bool_t head(DataIn &dataIn, DataOut *dataOut);
-    bool_t post(DataIn &dataIn, DataOut *dataOut);
-    bool_t put(DataIn &dataIn, DataOut *dataOut);
-    bool_t del(DataIn &dataIn, DataOut *dataOut);
-    bool_t connect(DataIn &dataIn, DataOut *dataOut);
-    bool_t options(DataIn &dataIn, DataOut *dataOut);
-    bool_t trace(DataIn &dataIn, DataOut *dataOut);
+    bool_t get(OptionIn &dataIn, OptionOut *dataOut);
+    bool_t head(OptionIn &dataIn, OptionOut *dataOut);
+    bool_t post(OptionIn &dataIn, OptionOut *dataOut);
+    bool_t put(OptionIn &dataIn, OptionOut *dataOut);
+    bool_t del(OptionIn &dataIn, OptionOut *dataOut);
+    bool_t connect(OptionIn &dataIn, OptionOut *dataOut);
+    bool_t options(OptionIn &dataIn, OptionOut *dataOut);
+    bool_t trace(OptionIn &dataIn, OptionOut *dataOut);
 ///\}
 
 ///\name HTTP result
 ///\{
-	HttpCode httpCode(cDataOut &dataOut) const;
-	bool_t   isSuccess(cDataOut &dataOut) const;
+	HttpCode httpCode(cOptionOut &dataOut) const;
+	bool_t   isSuccess(cOptionOut &dataOut) const;
 ///\}
 
 protected:
-    void_t setOptionsDefault(DataIn *dataIn, std::ctstring_t &buffRead, std::tstring_t *buffHeader,
+    void_t setOptionsDefault(OptionIn *dataIn, std::ctstring_t &buffRead, std::tstring_t *buffHeader,
 				std::tstring_t *buffData);
         ///< set options in
-    void_t getInfos(DataOut *dataOut);
+    void_t getInfos(OptionOut *dataOut);
         ///< get options out
 
 private:
@@ -153,7 +153,7 @@ private:
 	};
 	xUSING_CONST(Request);
 
-    bool_t _request(cRequest type, DataIn &dataIn, DataOut *dataOut);
+    bool_t _request(cRequest type, OptionIn &dataIn, OptionOut *dataOut);
 		///< send request
 };
 

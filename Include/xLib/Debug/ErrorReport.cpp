@@ -78,7 +78,7 @@ ErrorReport::_construct(
     std::ctstring_t  &a_comment
 )
 {
-	const auto &data = a_sourceInfo.data();
+	const auto &option = a_sourceInfo.option();
 
     _type             = a_type;
 
@@ -90,9 +90,9 @@ ErrorReport::_construct(
 #endif
     _threadId         = (ulong_t)Thread::currentId();
 
-    _sourceFilePath   = Path(data.filePath).brief(::reportWidthMax).toUnix(false).str();
-    _sourceLineNum    = data.lineNum;
-    _sourceFuncName   = data.funcName;
+    _sourceFilePath   = Path(option.filePath).brief(::reportWidthMax).toUnix(false).str();
+    _sourceLineNum    = option.lineNum;
+    _sourceFuncName   = option.funcName;
     _sourceExpr       = a_sourceInfo.expr();
     _sourceExprValues = a_sourceInfo.exprValues();
 

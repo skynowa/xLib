@@ -21,13 +21,13 @@ namespace xl::package::curl
 {
 
 /**************************************************************************************************
-*   DebugData public
+*   DebugOption public
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
 void_t
-DebugData::print(
+DebugOption::print(
 	core::OStream &a_os
 ) const
 {
@@ -36,8 +36,8 @@ DebugData::print(
 		<< xTRACE_VAR(headerIn)  << xT("\n")
 		<< xTRACE_VAR(headerOut) << xT("\n")
 		<< xTRACE_VAR(dataOut)   << xT("\n")
-		<< xTRACE_VAR(sslDataIn) << xT("\n")
-		<< xTRACE_VAR(sslDataOut);
+		<< xTRACE_VAR(sslOptionIn) << xT("\n")
+		<< xTRACE_VAR(sslOptionOut);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ Client::Client(
 
 	if (_isDebug) {
 		setOption(CURLOPT_VERBOSE,        1L);
-		setOption(CURLOPT_DEBUGFUNCTION,  _onDebugData);
+		setOption(CURLOPT_DEBUGFUNCTION,  _onDebugOption);
 		setOption(CURLOPT_DEBUGDATA,     &_debugData);
 	}
 }
@@ -293,12 +293,12 @@ Client::onReadData(
 //-------------------------------------------------------------------------------------------------
 /* static */
 CURLcode
-Client::_onDebugData(
+Client::_onDebugOption(
 	CURL                *a_curl,		///<
 	const curl_infotype  a_type,		///<
 	char                *a_buff,		///<
 	std::csize_t         a_size,		///<
-	void_t              *out_userData	///< [out] as DataIn::DebugData
+	void_t              *out_userData	///< [out] as OptionIn::DebugOption
 )
 {
 	xUNUSED(a_curl);
@@ -307,7 +307,7 @@ Client::_onDebugData(
 	xCHECK_RET(a_size == 0,             CURLE_OK);
 	xCHECK_RET(out_userData == nullptr, CURLE_OK);
 
-	auto *data = static_cast<DebugData *>(out_userData);
+	auto *data = static_cast<DebugOption *>(out_userData);
 	if (data == nullptr) {
 		return CURLE_OK;
 	}
@@ -331,10 +331,10 @@ Client::_onDebugData(
 		data->dataOut = buff;
 		break;
 	case CURLINFO_SSL_DATA_IN:
-		data->sslDataIn = buff;
+		data->sslOptionIn = buff;
 		break;
 	case CURLINFO_SSL_DATA_OUT:
-		data->sslDataOut = buff;
+		data->sslOptionOut = buff;
 		break;
 	case CURLINFO_END:
 		xTEST(false);

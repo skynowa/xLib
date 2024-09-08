@@ -35,7 +35,7 @@ Test_HttpClient::unit()
 
 		HttpClient http(isDebug);
 
-		DataIn dataIn;
+		OptionIn dataIn;
 		dataIn.url     = xT("https://translate.google.com.vn/translate_tts");
 		dataIn.request = Format::str("ie={}&q={}&tl={}&client={}",
 							"UTF-8",
@@ -43,7 +43,7 @@ Test_HttpClient::unit()
 							"en",
 							"tw-ob");
 
-		DataOut dataOut;
+		OptionOut dataOut;
 
 
 		m_bRv = http.get(dataIn, &dataOut);
@@ -75,11 +75,11 @@ Test_HttpClient::unit()
     {
 		cbool_t isDebug {false};
 
-		DataIn dataIn;
+		OptionIn dataIn;
 		dataIn.url     = xT("https://example.com/");
 		dataIn.request = xT("");
 
-		DataOut dataOut;
+		OptionOut dataOut;
 
 		HttpClient http(isDebug);
 		m_bRv = http.get(dataIn, &dataOut);

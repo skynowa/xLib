@@ -97,8 +97,8 @@
 //-------------------------------------------------------------------------------------------------
 #define xTRACE_POINT \
     { \
-        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
-        xl::debug::SourceInfo      sourceInfo(data); \
+        xl::debug::cSourceInfoOption option = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
+        xl::debug::SourceInfo        sourceInfo(option); \
         \
         xl::log::Trace() \
             << xT("\t::: ")  << sourceInfo.at() << xT(", ") \
@@ -107,38 +107,38 @@
     ///< trace point (use Trace)
 #define xTRACE_FUNC \
     { \
-        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
-        xl::debug::SourceInfo      sourceInfo(data); \
+        xl::debug::cSourceInfoOption option = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
+        xl::debug::SourceInfo        sourceInfo(option); \
         \
         xl::log::Trace() \
-            << xT("\t::: ") << sourceInfo.data().funcName << xT(" :::"); \
+            << xT("\t::: ") << sourceInfo.option().funcName << xT(" :::"); \
     }
     ///< trace function (use Trace)
 #define xTRACE_FUNC_VAR(v) \
     { \
-        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
-        xl::debug::SourceInfo      sourceInfo(data); \
+        xl::debug::cSourceInfoOption option = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
+        xl::debug::SourceInfo        sourceInfo(option); \
         \
         xl::log::Trace() \
-            << xT("\t::: ") << sourceInfo.data().funcName << xT(": ") << xTRACE_VAR(v) << xT(" :::"); \
+            << xT("\t::: ") << sourceInfo.option().funcName << xT(": ") << xTRACE_VAR(v) << xT(" :::"); \
     }
     ///< trace function variable (use Trace)
 #define xTRACE_NOT_IMPLEMENTED \
     { \
-        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
-        xl::debug::SourceInfo      sourceInfo(data); \
+        xl::debug::cSourceInfoOption option = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
+        xl::debug::SourceInfo        sourceInfo(option); \
         \
         xl::log::Trace() \
-            << xT("\t::: ") << sourceInfo.data().funcName << xT(": Not implemented :::"); \
+            << xT("\t::: ") << sourceInfo.option().funcName << xT(": Not implemented :::"); \
     }
     ///< trace not implemented message
 #define xTRACE_OS_NOT_SUPPORTED \
     { \
-        xl::debug::cSourceInfoData data = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
-        xl::debug::SourceInfo      sourceInfo(data); \
+        xl::debug::cSourceInfoOption option = {xFILE, xLINE, xFUNCTION, xCOUNTER, {}, {}, {}, {}, {}}; \
+        xl::debug::SourceInfo        sourceInfo(option); \
         \
         xl::log::Trace() \
-            << xT("\t::: ") << sourceInfo.data().funcName << xT(": OS not supported :::"); \
+            << xT("\t::: ") << sourceInfo.option().funcName << xT(": OS not supported :::"); \
     }
     ///< trace OS specific not supported message
 //-------------------------------------------------------------------------------------------------
