@@ -32,10 +32,10 @@ DebugOption::print(
 ) const
 {
 	a_os
-		<< xTRACE_VAR(text)      << xT("\n")
-		<< xTRACE_VAR(headerIn)  << xT("\n")
-		<< xTRACE_VAR(headerOut) << xT("\n")
-		<< xTRACE_VAR(dataOut)   << xT("\n")
+		<< xTRACE_VAR(text)        << xT("\n")
+		<< xTRACE_VAR(headerIn)    << xT("\n")
+		<< xTRACE_VAR(headerOut)   << xT("\n")
+		<< xTRACE_VAR(dataOut)     << xT("\n")
 		<< xTRACE_VAR(sslOptionIn) << xT("\n")
 		<< xTRACE_VAR(sslOptionOut);
 }
