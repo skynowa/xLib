@@ -162,7 +162,7 @@ Doc::isValid(
 {
 	xCHECK_RET(a_str.empty(), false);
 
-	// Suppress output of libxml2 error messages (optional)
+	// Suppress std::cerr output errors
 	(void)::xmlSetStructuredErrorFunc(nullptr, nullptr);
 
 	// Parse the XML content
