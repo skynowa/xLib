@@ -150,6 +150,32 @@ Test_Xml::unit()
         }
     }
 
+    xTEST_CASE("isValid")
+    {
+        const data2_bool_t data[]
+        {
+            {"<?xml version=\"1.0\"?><a></a>", true},
+            {"<?xml version=\"1.0\" encoding=\"UTF-8\"?><a></a>", true},
+            {"<?xml version=\"1.0\" standalone=\"yes\"?><a></a>", true},
+            {"<?xml version=\"1.0\" encoding=\"UTF-16\" standalone=\"yes\"?><a></a>", true},
+
+            {"<?xml version=\"1.0\"?>", true},
+            {"<?xml version=\"1.0\"?><a><a>", false},
+            {"", false},
+            {"abcdef123456789", false},
+            {"<?xml", false},
+            {"<", false}
+        };
+
+        for (const auto &it_data : data) {
+            m_bRv = Doc::isValidLight(it_data.test);
+
+        	Cout() << xTRACE_VAR_3(it_data.test, m_bRv, it_data.expect);
+
+            xTEST_EQ(m_bRv, it_data.expect);
+        }
+    }
+
     xTEST_CASE("Node::childSize")
     {
         std::ctstring_t filePath = option().testDirPath + "/Package/Xml/2.xml";

@@ -13,6 +13,7 @@
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
+#include <xLib/Core/ScopeExit.h>
 #include <xLib/Log/Trace.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
@@ -36,7 +37,7 @@ Doc::Doc(
     _iconv(a_charset, "UTF-8", 1024, false, true)   // TODO: Iconv::isForceEncoding = false
 {
 	// FAQ: https://adobkin.com/2011/10/08/956/
-	(void)::xmlSetStructuredErrorFunc(this, _onError);
+	(void)::xmlSetStructuredErrorFunc(nullptr, _onError);
 }
 //-------------------------------------------------------------------------------------------------
 void
@@ -163,8 +164,15 @@ Doc::isValid(
 	xCHECK_RET(a_str.empty(), false);
 
 	// Suppress std::cerr output errors
-	(void)::xmlSetStructuredErrorFunc(nullptr, nullptr);
+	(void)::xmlSetStructuredErrorFunc(nullptr, _onErrorMute);
 
+	ScopeExit on_exit(
+		[&]() -> void_t
+		{
+			(void)::xmlSetStructuredErrorFunc(nullptr, _onError);
+		});
+
+#if 0
 	// Parse the XML content
 	const char *url      {"noname.xml"};
 	const char *encoding {nullptr};
@@ -172,12 +180,23 @@ Doc::isValid(
 
 	doc_unique_ptr_t doc = {::xmlReadMemory(a_str.c_str(), a_str.size(), url, encoding, options),
 		::xmlFreeDoc};
-	xCHECK_RET(doc, false);
-
-	// Clean
-	::xmlCleanupParser();
+	xCHECK_RET(!doc, false);
 
 	return true;
+#else
+    // Parse the XML content
+    xmlDocPtr doc = ::xmlReadMemory(a_str.c_str(), a_str.size(), "noname.xml", nullptr, 0);
+    Cout() << xTRACE_VAR_2(a_str, doc);
+    if (doc == nullptr) {
+        return false;
+    }
+
+    // Clean up
+    ::xmlFreeDoc(doc);
+    ::xmlCleanupParser();
+
+    return true;
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -315,12 +334,24 @@ Doc::_onError(
 	xmlErrorPtr  a_error    ///< XML error
 )
 {
-	const auto xmlDoc = static_cast<const Doc *>(a_data);
-	xUNUSED(xmlDoc);
+	xUNUSED(a_data);
 
-	Error error(xmlDoc, a_error);
+	Error error(a_error);
 
 	std::tcout << error.str() << std::endl;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+void
+Doc::_onErrorMute(
+	void        *a_data,    ///< user data
+	xmlErrorPtr  a_error    ///< XML error
+)
+{
+	xUNUSED(a_data);
+	xUNUSED(a_error);
+
+	// n/a
 }
 //-------------------------------------------------------------------------------------------------
 

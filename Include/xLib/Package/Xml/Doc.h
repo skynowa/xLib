@@ -53,6 +53,7 @@ private:
 	void _rootNode(Node &root);
 
 	static void _onError(void *data, xmlErrorPtr error);
+	static void _onErrorMute(void *data, xmlErrorPtr error);
 
 	friend class Node;
 };
