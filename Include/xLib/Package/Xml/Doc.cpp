@@ -154,6 +154,33 @@ Doc::isValidLight(
 	return true;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+bool_t
+Doc::isValid(
+	std::ctstring_t &a_str
+)
+{
+	xCHECK_RET(a_str.empty(), false);
+
+	// Suppress output of libxml2 error messages (optional)
+	(void)::xmlSetGenericErrorFunc(nullptr, nullptr);
+	(void)::xmlSetStructuredErrorFunc(nullptr, nullptr);
+
+	// Parse the XML content
+	const char *url      {"noname.xml"};
+	const char *encoding {nullptr};
+	const int   options  {0};
+
+	doc_unique_ptr_t doc = {::xmlReadMemory(a_str.c_str(), a_str.size(), url, encoding, options),
+		::xmlFreeDoc};
+	xCHECK_RET(doc, false);
+
+	// Clean
+	::xmlCleanupParser();
+
+	return true;
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
@@ -289,7 +316,10 @@ Doc::_onError(
 	xmlErrorPtr  a_error    ///< XML error
 )
 {
-	Error error(a_data, a_error);
+	const auto xmlDoc = static_cast<const Doc *>(a_data);
+	xUNUSED(xmlDoc);
+
+	Error error(xmlDoc, a_error);
 
 	std::tcout << error.str() << std::endl;
 }

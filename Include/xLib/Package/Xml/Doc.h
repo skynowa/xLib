@@ -38,6 +38,8 @@ public:
 xPUBLIC_STATIC:
 	static bool_t  isValidLight(std::ctstring_t &str);
 		///< quick check string if XML document
+	static bool_t  isValid(std::ctstring_t &str);
+		///< quick check string if XML document
 
 private:
 	using doc_unique_ptr_t = std::unique_ptr<xmlDoc, decltype(&::xmlFreeDoc)>;
