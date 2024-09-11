@@ -29,14 +29,16 @@ namespace xl::package::xml
 
 //-------------------------------------------------------------------------------------------------
 Error::Error(
-	const void        *a_data,    ///< user data
-	const xmlErrorPtr  a_error    ///< XML error
+	const Doc         *a_doc,  ///< XML doc
+	const xmlErrorPtr  a_error ///< XML error
 ) :
-	_data {a_data},
+	_doc  {a_doc},
 	_error{a_error}
 {
-	xTEST_PTR(a_data);
+	xTEST_PTR(a_doc);
 	xTEST_PTR(a_error);
+
+	xUNUSED(_doc);
 }
 //-------------------------------------------------------------------------------------------------
 int_t
@@ -60,8 +62,7 @@ Error::category() const
 std::tstring_t
 Error::message() const
 {
-	const auto xmlDoc = static_cast<const Doc *>(_data);
-	xUNUSED(xmlDoc);
+	xUNUSED(_doc);
 
 	if (_error->code == XML_ERR_OK) {
 		return {};

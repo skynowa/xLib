@@ -13,13 +13,15 @@
 namespace xl::package::xml
 {
 
+class Doc;
+
 class Error final :
 	public xl::interface_::IError<int_t>
 {
 public:
 ///\name ctors, dtor
 ///\{
-             Error(const void *data, const xmlErrorPtr error);
+             Error(const Doc *doc, const xmlErrorPtr error);
 	virtual ~Error() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Error);
@@ -35,7 +37,7 @@ public:
 ///\}
 
 private:
-	const void        *_data  {}; ///< user data
+	const Doc         *_doc  {};  ///< XML doc
 	const xmlErrorPtr  _error {}; ///< XML error
 };
 
