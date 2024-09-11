@@ -163,7 +163,6 @@ Doc::isValid(
 	xCHECK_RET(a_str.empty(), false);
 
 	// Suppress output of libxml2 error messages (optional)
-	(void)::xmlSetGenericErrorFunc(nullptr, nullptr);
 	(void)::xmlSetStructuredErrorFunc(nullptr, nullptr);
 
 	// Parse the XML content
