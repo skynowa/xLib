@@ -133,6 +133,8 @@ Test_Xml::unit()
         const data2_bool_t data[]
         {
             {"<?xml version=\"1.0\"?>", true},
+            {"<?xml version=\"1.0\"?><a></a>", true},
+            {"<?xml version=\"1.0\"?><a><a>", true}, // as bad
             {"<?xml version=\"1.0\" encoding=\"UTF-8\"?>", true},
             {"<?xml version=\"1.0\" standalone=\"yes\"?>", true},
             {"<?xml version=\"1.0\" encoding=\"UTF-16\" standalone=\"yes\"?>", true},
