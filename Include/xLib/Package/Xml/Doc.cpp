@@ -315,10 +315,9 @@ Doc::_onError(
 	xmlErrorPtr  a_error    ///< XML error
 )
 {
-	const auto xmlDoc = static_cast<const Doc *>(a_data);
-	xUNUSED(xmlDoc);
+	xUNUSED(a_data);
 
-	Error error(xmlDoc, a_error);
+	Error error(a_error);
 
 	std::tcout << error.str() << std::endl;
 }
