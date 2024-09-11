@@ -6,8 +6,6 @@
 
 #include <xLib/Package/Xml/Error.h>
 
-#include <xLib/Package/Xml/Doc.h>
-
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/String.h>
@@ -29,16 +27,11 @@ namespace xl::package::xml
 
 //-------------------------------------------------------------------------------------------------
 Error::Error(
-	const Doc         *a_doc,  ///< XML doc
-	const xmlErrorPtr  a_error ///< XML error
+	const xmlErrorPtr a_error ///< XML error
 ) :
-	_doc  {a_doc},
 	_error{a_error}
 {
-	xTEST_PTR(a_doc);
 	xTEST_PTR(a_error);
-
-	xUNUSED(_doc);
 }
 //-------------------------------------------------------------------------------------------------
 int_t
@@ -62,8 +55,6 @@ Error::category() const
 std::tstring_t
 Error::message() const
 {
-	xUNUSED(_doc);
-
 	if (_error->code == XML_ERR_OK) {
 		return {};
 	}
