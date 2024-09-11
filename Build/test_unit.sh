@@ -2,8 +2,9 @@
 
 
 # UNIT_TESTS=(Path Environment User)
-UNIT_TESTS=(StackTrace)
+# UNIT_TESTS=(StackTrace)
 # UNIT_TESTS=(FileText FileBin)
+UNIT_TESTS=(Xml)
 
 # BG='\e[46m'   # green
 # FG='\e[37m'   # white
