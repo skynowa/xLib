@@ -140,7 +140,6 @@ Doc::isValidLight(
     *
     * <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
     */
-
 	constexpr std::ctstring_view_t xmlDeclBegin = xT("<?xml ");
 
 	if (a_str.size() <= xmlDeclBegin.size()) {
@@ -295,19 +294,6 @@ Doc::_onError(
 	Error error(a_error);
 
 	std::tcout << error.str() << std::endl;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-void
-Doc::_onErrorMute(
-	void        *a_data,    ///< user data
-	xmlErrorPtr  a_error    ///< XML error
-)
-{
-	xUNUSED(a_data);
-	xUNUSED(a_error);
-
-	// n/a
 }
 //-------------------------------------------------------------------------------------------------
 
