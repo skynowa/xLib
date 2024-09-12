@@ -139,8 +139,7 @@ Doc::isValidLight(
     *
     * <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
     */
-
-	std::ctstring_t xmlDeclBegin = xT("<?xml ");
+	constexpr std::ctstring_view_t xmlDeclBegin = xT("<?xml ");
 
 	if (a_str.size() <= xmlDeclBegin.size()) {
 		return false;
@@ -150,32 +149,6 @@ Doc::isValidLight(
 	if (str != xmlDeclBegin) {
 		return false;
 	}
-
-	return true;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-bool_t
-Doc::isValid(
-	std::ctstring_t &a_str
-)
-{
-	xCHECK_RET(a_str.empty(), false);
-
-	// Suppress std::cerr output errors
-	(void)::xmlSetStructuredErrorFunc(nullptr, nullptr);
-
-	// Parse the XML content
-	const char *url      {"noname.xml"};
-	const char *encoding {nullptr};
-	const int   options  {0};
-
-	doc_unique_ptr_t doc = {::xmlReadMemory(a_str.c_str(), a_str.size(), url, encoding, options),
-		::xmlFreeDoc};
-	xCHECK_RET(doc, false);
-
-	// Clean
-	::xmlCleanupParser();
 
 	return true;
 }
