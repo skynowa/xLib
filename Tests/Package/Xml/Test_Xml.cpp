@@ -124,7 +124,9 @@ Test_Xml::unit()
 		std::ctstring_t filePath = option().testDirPath + "/Package/Xml/bad.xml";
 
 		Doc doc("UTF-8");
-		doc.parseFile(filePath);
+
+		Node node;
+		doc.parseFile(filePath, node);
 	#endif
     }
 
