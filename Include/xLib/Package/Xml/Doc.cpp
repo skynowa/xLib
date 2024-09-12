@@ -36,7 +36,7 @@ Doc::Doc(
     _iconv(a_charset, "UTF-8", 1024, false, true)   // TODO: Iconv::isForceEncoding = false
 {
 	// FAQ: https://adobkin.com/2011/10/08/956/
-	(void)::xmlSetStructuredErrorFunc(this, _onError);
+	(void)::xmlSetStructuredErrorFunc(nullptr, _onError);
 }
 //-------------------------------------------------------------------------------------------------
 void
