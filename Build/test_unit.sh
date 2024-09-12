@@ -12,6 +12,8 @@ UNIT_TESTS=(Xml)
 
 source bash_colors.sh
 #--------------------------------------------------------------------------------------------------
+./deploy.sh
+
 for it_test in ${UNIT_TESTS[*]}
 do
 	echo -e "${BASH_BG_BLACK}+------------------------------+${BASH_RESET}"
