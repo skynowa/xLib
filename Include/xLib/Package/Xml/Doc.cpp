@@ -141,7 +141,7 @@ Doc::isValidLight(
     * <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
     */
 
-	std::ctstring_t xmlDeclBegin = xT("<?xml ");
+	constexpr std::ctstring_view_t xmlDeclBegin = xT("<?xml ");
 
 	if (a_str.size() <= xmlDeclBegin.size()) {
 		return false;
