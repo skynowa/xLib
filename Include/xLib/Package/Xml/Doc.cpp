@@ -155,50 +155,6 @@ Doc::isValidLight(
 	return true;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
-bool_t
-Doc::isValid(
-	std::ctstring_t &a_str
-)
-{
-	xCHECK_RET(a_str.empty(), false);
-
-	// Suppress std::cerr output errors
-	(void)::xmlSetStructuredErrorFunc(nullptr, _onErrorMute);
-
-	ScopeExit on_exit(
-		[&]() -> void_t
-		{
-			(void)::xmlSetStructuredErrorFunc(nullptr, _onError);
-		});
-
-#if 0
-	// Parse the XML content
-	const char *url      {"noname.xml"};
-	const char *encoding {nullptr};
-	const int   options  {0};
-
-	doc_unique_ptr_t doc = {::xmlReadMemory(a_str.c_str(), a_str.size(), url, encoding, options),
-		::xmlFreeDoc};
-	xCHECK_RET(!doc, false);
-
-	return true;
-#else
-    // Parse the XML content
-    xmlDocPtr doc = ::xmlReadMemory(a_str.c_str(), a_str.size(), "noname.xml", nullptr, 0);
-    Cout() << xTRACE_VAR_2(a_str, doc);
-    if (doc == nullptr) {
-        return false;
-    }
-
-    // Clean up
-    ::xmlFreeDoc(doc);
-    ::xmlCleanupParser();
-
-    return true;
-#endif
-}
-//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
