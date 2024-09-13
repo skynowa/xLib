@@ -63,7 +63,7 @@ Doc::parse(
 		_doc = {::xmlParseDoc( (const xmlChar *)a_str.data() ), ::xmlFreeDoc};
 	}
 
-	xTEST(!!_doc);
+	xTEST(_doc != nullptr);
 
 	// [out]
 	_rootNode(out_root);
