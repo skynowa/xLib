@@ -27,7 +27,7 @@ public:
 ///\name ctors, dtor
 ///\{
 	explicit  Doc(std::ctstring_t &charset);
-	virtual  ~Doc();
+	virtual  ~Doc() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Doc);
 	xNO_COPY_ASSIGN(Doc);

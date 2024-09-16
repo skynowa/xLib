@@ -46,11 +46,6 @@ Doc::Doc(
 	(void)::xmlSetStructuredErrorFunc(nullptr, _onError);
 }
 //-------------------------------------------------------------------------------------------------
-Doc::~Doc()
-{
-	::xmlCleanupParser();
-}
-//-------------------------------------------------------------------------------------------------
 void
 Doc::setNss(
 	std::cmap_tstring_t &a_nss	///< prefix to namespase
