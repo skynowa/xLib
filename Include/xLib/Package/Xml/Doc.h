@@ -6,6 +6,9 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Interface/IValid.h>
+#include <xLib/Interface/IStr.h>
+#include <xLib/Interface/IPrinter.h>
 #include <xLib/Package/Iconv.h>
 
 #include "Common.h"
@@ -15,18 +18,28 @@ namespace xl::package::xml
 
 class Node;
 
-class Doc
+class Doc :
+	public IValid,
+	public IStr,
+	public IPrinter<std::tostream_t>
 {
 public:
 ///\name ctors, dtor
 ///\{
 	explicit  Doc(std::ctstring_t &charset);
-	virtual  ~Doc() = default;
+	virtual  ~Doc();
 
 	xNO_DEFAULT_CONSTRUCT(Doc);
 	xNO_COPY_ASSIGN(Doc);
 
 	void setNss(std::cmap_tstring_t &nss);
+///\}
+
+///\name Overrides
+///\{
+	bool_t         isOk() const final;
+	void_t         print(std::tostream_t &stream) const final;
+	std::tstring_t str() const final;
 ///\}
 
 	void           parse(std::ctstring_t &str, cbool_t isNss, Node &root);

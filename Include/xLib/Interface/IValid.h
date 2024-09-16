@@ -28,6 +28,8 @@ public:
 public:
     bool_t isError() const;
         ///< Result is error
+    explicit operator bool_t() const;
+        ///< Result is success / error
 };
 
 } // namespace
