@@ -106,15 +106,5 @@ Type<T>::name() const
 	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<class T>
-template<class T2>
-constexpr bool_t
-Type<T>::isEqual(
-    const T2 /* a_obj2T */
-) const
-{
-	return std::is_same_v<T, T2>;
-}
-//-------------------------------------------------------------------------------------------------
 
 } // namespace
