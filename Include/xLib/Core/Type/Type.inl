@@ -99,6 +99,7 @@ Type<T>::name() const
 	else
 		sRv = xT("unknown");
 #elif 1
+	// TODO: review
 	sRv = TypeName<decltype(_obj)>::get();
 #endif
 
