@@ -101,7 +101,7 @@ StackTrace::_get_impl(
                 functionName = dataNotFound;
             } else {
                 byteOffset   = Format::str(xT("{}"), reinterpret_cast<void_t *>(symbol->Address));
-                functionName = std::tstring_t(symbol->Name);
+                functionName = xA2T( xl::demangleName(symbol->Name) );
             }
         }
 
