@@ -22,26 +22,30 @@ namespace xl::core
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */
-std::tstring_t
-Type::nameRaw(
+Type<T>::Type(
     const T &a_objT
+) :
+	_objT{a_objT}
+{
+}
+//-------------------------------------------------------------------------------------------------
+template<typename T>
+std::tstring_t
+Type<T>::nameRaw(
 )
 {
     std::tstring_t sRv;
     std::string    className;
 
-    className.assign( typeid(a_objT).name() );
+    className.assign( typeid(_objT).name() );
     sRv = xA2T(className);
 
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */
 std::tstring_t
-Type::nameDemangle(
-    const T &a_objT
+Type<T>::nameDemangle(
 )
 {
     std::tstring_t sRv;
@@ -50,12 +54,12 @@ Type::nameDemangle(
 #if xCOMPILER_MINGW || xCOMPILER_GNUC
     int_t status = - 1;
 
-    char *realName = abi::__cxa_demangle(typeid(a_objT).name(), nullptr, nullptr, &status);
+    char *realName = abi::__cxa_demangle(typeid(_objT).name(), nullptr, nullptr, &status);
     className = (realName == nullptr || status != 0) ? Const::strUnknownA() : realName;
 
     Utils::bufferFreeT(realName);
 #else
-    className.assign( typeid(a_objT).name() );
+    className.assign( typeid(_objT).name() );
 
     // TODO: use UnDecorateSymbolName
 #endif
@@ -66,10 +70,8 @@ Type::nameDemangle(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-/* static */
 std::tstring_t
-Type::name(
-    const T &objT
+Type<T>::name(
 )
 {
     std::tstring_t sRv;
@@ -88,21 +90,20 @@ Type::name(
 	else
 		sRv = xT("unknown");
 #elif 1
-	sRv = TypeName<decltype(objT)>::get();
+	sRv = TypeName<decltype(_objT)>::get();
 #endif
 
 	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T1, class T2>
-/* static */
+template<class T>
+template<class T2>
 constexpr bool_t
-Type::isEqual(
-    const T1 /* a_obj1T */,
+Type<T>::isEqual(
     const T2 /* a_obj2T */
 )
 {
-	return std::is_same_v<T1, T2>;
+	return std::is_same_v<T, T2>;
 }
 //-------------------------------------------------------------------------------------------------
 
