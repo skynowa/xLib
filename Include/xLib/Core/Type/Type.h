@@ -106,15 +106,12 @@ public:
 	xNO_COPY_ASSIGN(Type)
 ///\}
 
-
-    std::tstring_t nameDemangle() const;
-        ///< get name
-
-    std::tstring_t name() const;
-        ///< get name
-
     std::tstring_t nameRaw() const;
         ///< get raw name
+    std::tstring_t nameDemangle() const;
+        ///< get name
+    std::tstring_t name() const;
+        ///< get name
 
     template<class T2>
 	constexpr bool_t isEqual(const T2 /* obj2 */) const;
