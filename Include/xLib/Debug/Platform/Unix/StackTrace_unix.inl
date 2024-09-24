@@ -62,8 +62,8 @@ StackTrace::_get_impl(
             functionName = (it_symbol == nullptr) ? dataNotFound : xA2T(it_symbol);
         } else {
             const char *symbolName {};
-            int_t       status     {-1};
 
+            int_t status {-1};
             char *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, nullptr, nullptr, &status);
             if (demangleName != nullptr &&
                 status == 0)
