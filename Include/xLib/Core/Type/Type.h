@@ -113,10 +113,6 @@ public:
     std::tstring_t name() const;
         ///< get name
 
-    template<class T2>
-	constexpr bool_t isEqual(const T2 /* obj2 */) const;
-        ///< is equals
-
 private:
     const T &_obj {};
 };

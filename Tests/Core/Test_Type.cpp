@@ -57,25 +57,6 @@ Test_Type::unit()
         xTEST(!m_sRv.empty())
     }
 
-    xTEST_CASE("isEqual")
-    {
-		{
-			std::string  str1;
-			std::wstring str2;
-
-			m_bRv = Type<std::tstring_t>(str1).isEqual(str2);
-			xTEST(!m_bRv);
-		}
-
-		{
-			std::tstring_t str1;
-			std::tstring_t str2;
-
-			m_bRv = Type<std::tstring_t>(str1).isEqual(str2);
-			xTEST(m_bRv);
-		}
-    }
-
     return true;
 }
 //-------------------------------------------------------------------------------------------------
