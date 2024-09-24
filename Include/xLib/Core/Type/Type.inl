@@ -51,7 +51,7 @@ Type::nameDemangle(
     int_t status = - 1;
 
     char *realName = abi::__cxa_demangle(typeid(a_objT).name(), nullptr, nullptr, &status);
-    className = (realName == nullptr) ? Const::strUnknownA() : realName;
+    className = (realName == nullptr || status != 0) ? Const::strUnknownA() : realName;
 
     Utils::bufferFreeT(realName);
 #else
