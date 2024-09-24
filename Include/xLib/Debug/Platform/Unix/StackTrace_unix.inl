@@ -68,28 +68,26 @@ StackTrace::_get_impl(
 				std::tstring_t sourceLine;
 			} data;
 
-			{
-				_addr2Line(dlinfo.dli_saddr, &data.filePath, &data.functionName, &data.sourceLine);
-				xUNUSED(functionName);
+			_addr2Line(dlinfo.dli_saddr, &data.filePath, &data.functionName, &data.sourceLine);
+			xUNUSED(data.functionName);
 
-				if (0) {
-					Cout() << "-----------------------------------";
-					Cout() << xTRACE_VAR(it_symbol);
-					Cout() << xTRACE_VAR(dlinfo.dli_saddr);
-					Cout() << xTRACE_VAR(symbolName);
-					Cout() << "";
-					Cout() << xTRACE_VAR(data.filePath);
-					Cout() << xTRACE_VAR(data.functionName);
-					Cout() << xTRACE_VAR(data.sourceLine);
-					Cout() << "-----------------------------------\n";
-				}
-			}
-
-            modulePath   = (dlinfo.dli_fname == nullptr) ? dataNotFound : xA2T(dlinfo.dli_fname);
+			modulePath   = (dlinfo.dli_fname == nullptr) ? dataNotFound : xA2T(dlinfo.dli_fname);
 			filePath     = data.filePath;
 			fileLine     = data.sourceLine;
 			byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
-			functionName = _nameDemangle(dlinfo.dli_sname);;
+			functionName = _nameDemangle(dlinfo.dli_sname);
+
+			if (0) {
+				Cout() << "-----------------------------------";
+				Cout() << xTRACE_VAR(it_symbol);
+				Cout() << xTRACE_VAR(dlinfo.dli_saddr);
+				Cout() << xTRACE_VAR(functionName);
+				Cout() << "";
+				Cout() << xTRACE_VAR(data.filePath);
+				Cout() << xTRACE_VAR(data.functionName);
+				Cout() << xTRACE_VAR(data.sourceLine);
+				Cout() << "-----------------------------------\n";
+			}
         }
 
         // swap file paths
