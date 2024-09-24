@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Type)
 bool_t
 Test_Type::unit()
 {
-    xTEST_CASE("TypeName")
+    xTEST_CASE("ctors")
     {
 		Cout()
 			<< xT("Print types:")      << std::endl
@@ -33,44 +33,44 @@ Test_Type::unit()
 
 		if (0) {
 			Cout()
-				<< Type::name(float())               << std::endl
-				<< Type::name(std::string())         << std::endl
-				<< Type::name(std::map_tstring_t())  << std::endl
-				<< Type::name(std::mmap_tstring_t()) << std::endl;
+				<< Type<float>(float()).name() << std::endl
+				<< Type<std::string>(std::string()).name() << std::endl
+				<< Type<std::map_tstring_t>(std::map_tstring_t()).name() << std::endl
+				<< Type<std::mmap_tstring_t>(std::mmap_tstring_t()).name() << std::endl;
 		}
     }
 
     xTEST_CASE("nameDemangle")
     {
-        std::tstring_t sObject;
+        std::tstring_t str;
 
-        m_sRv = Type::nameDemangle(sObject);
+        m_sRv = Type<std::tstring_t>(str).nameDemangle();
         xTEST(!m_sRv.empty());
     }
 
     xTEST_CASE("nameRaw")
     {
-        std::tstring_t sObject;
+        std::tstring_t str;
 
-        m_sRv = Type::nameRaw(sObject);
+        m_sRv = Type<std::tstring_t>(str).nameRaw();
         xTEST(!m_sRv.empty())
     }
 
     xTEST_CASE("isEqual")
     {
 		{
-			std::string  sObject1;
-			std::wstring wsObject2;
+			std::string  str1;
+			std::wstring str2;
 
-			m_bRv = Type::isEqual(sObject1, wsObject2);
+			m_bRv = Type<std::tstring_t>(str1).isEqual(str2);
 			xTEST(!m_bRv);
 		}
 
 		{
-			std::tstring_t sObject1;
-			std::tstring_t sObject2;
+			std::tstring_t str1;
+			std::tstring_t str2;
 
-			m_bRv = Type::isEqual(sObject1, sObject2);
+			m_bRv = Type<std::tstring_t>(str1).isEqual(str2);
 			xTEST(m_bRv);
 		}
     }

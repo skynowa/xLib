@@ -92,37 +92,36 @@ xTYPE_NAME_DECLARE(std::map_tstring_t);
 xTYPE_NAME_DECLARE(std::mmap_tstring_t);
 xTYPE_NAME_DECLARE(std::unmap_tstring_t);
 //-------------------------------------------------------------------------------------------------
+template<typename T>
 class Type
     /// type info
 {
 public:
 ///\name ctors, dtor
 ///\{
-			 Type() = delete;
-	virtual ~Type() = delete;
+	explicit  Type(const T &obj);
+	virtual  ~Type() = default;
 
+	xNO_DEFAULT_CONSTRUCT(Type)
 	xNO_COPY_ASSIGN(Type)
 ///\}
 
-    template<typename T>
-    static
-    std::tstring_t nameDemangle(const T &objT);
+
+    std::tstring_t nameDemangle() const;
         ///< get name
 
-    template<typename T>
-    static
-    std::tstring_t name(const T &objT);
+    std::tstring_t name() const;
         ///< get name
 
-    template<typename T>
-    static
-    std::tstring_t nameRaw(const T &objT);
+    std::tstring_t nameRaw() const;
         ///< get raw name
 
-    template<typename T1, class T2>
-    static
-	constexpr bool_t isEqual(const T1 /* obj1T */, const T2 /* obj2T */);
+    template<class T2>
+	constexpr bool_t isEqual(const T2 /* obj2 */) const;
         ///< is equals
+
+private:
+    const T &_obj {};
 };
 
 } // namespace
