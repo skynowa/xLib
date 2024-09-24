@@ -21,102 +21,100 @@ public:
 	xNO_COPY_ASSIGN(Utils)
 ///\}
 
-    template<typename T>
-    static
-    void_t    ptrDeleteT(T * &ptr);
-        ///< delete object by pointer
+///\name Delete
+///\{
+	template<typename T>
+	static void_t    ptrDeleteT(T * &ptr);
+		///< delete object by pointer
+	template<typename T>
+	static void_t    arrayDeleteT(T * &ptr);
+		///< delete array by pointer
+///\}
 
-    template<typename T>
-    static
-    void_t    arrayDeleteT(T * &ptr);
-        ///< delete array by pointer
+///\name Etc
+///\{
+	template<typename T>
+	static void_t    ptrAssignT(T * &ptr, const T &value);
+		///< assign pointer
+	template<typename T, std::csize_t arraySize>
+	static constexpr size_t arraySizeT(const T (&)[arraySize]);
+		///< get array size
+///\}
 
-    template<typename T>
-    static
-    void_t    ptrAssignT(T * &ptr, const T &value);
-        ///< assign pointer
+///\name Zero
+///\{
+	static void_t    memoryZero(void_t *ptr, std::csize_t sizeBytes);
+		///< zero memory
+	template<typename T, std::csize_t arraySize>
+	static void_t    arrayZeroT(T (&arrayT)[arraySize]);
+		///< array zero
+///\}
 
-    template<typename T, std::csize_t arraySize>
-    static
-    constexpr size_t arraySizeT(const T (&)[arraySize]);
-        ///< get array size
-
-    static
-    void_t    memoryZero(void_t *ptr, std::csize_t sizeBytes);
-        ///< zero memory
-
-    template<typename T, std::csize_t arraySize>
-    static
-    void_t    arrayZeroT(T (&arrayT)[arraySize]);
-        ///< array zero
-
-    template<typename T, typename F, typename N>
-    static
-    void_t    freeT(T * &ptr, F func, N null = nullptr);
-        ///< free pointer
-
-    template<typename T>
-    static
-    void_t    bufferFreeT(T * &ptr);
+///\name Free
+///\{
+	template<typename T, typename F, typename N>
+	static void_t    freeT(T * &ptr, F func, N null = nullptr);
+		///< free pointer
+	template<typename T>
+	static void_t    bufferFreeT(T * &ptr);
         ///< free buffer memory
+///\}
 
-    template<typename T>
-    static
-    const T & maxT(const T &value1 , const T &value2);
-        ///< get max value
+///\name Algos
+///\{
+	template<typename T>
+	static const T & maxT(const T &value1 , const T &value2);
+		///< get max value
+	template<typename T>
+	static const T & minT(const T &value1 , const T &value2);
+		///< get min value
+	template<typename T>
+	static void_t    swapT(T &value1, T &value2);
+		///< swap variables
+///\}
 
-    template<typename T>
-    static
-    const T & minT(const T &value1 , const T &value2);
-        ///< get min value
+///\name Cast
+///\{
+	template<typename ToT, typename FromT>
+	static ToT       c_cast(const FromT &value);
+		///< C-style cast
+	template<typename ToT, class FromT>
+	static ToT       reinterpretCastT(const FromT &ptr);
+		///< allows any pointer to be converted into any other pointer type
+	// TEST: implicitCast
+	template<typename To, typename From>
+	static To        implicitCast(const From &a_from);
+		///< https://www.boost.org/doc/libs/1_64_0/boost/implicit_cast.hpp
+///\}
 
-    template<typename T>
-    static
-    void_t    swapT(T &value1, T &value2);
-        ///< swap variables
+///\name Math operations
+///\{
+	template<typename T>
+	static T         roundIntT(cdouble_t value);
+		///< round double value to long_t
+	template<typename T>
+	static T         intSafeDiv(const T &value1, const T &value2);
+		///< safe division
+///\}
 
-    template<typename ToT, typename FromT>
-    static
-    ToT c_cast(const FromT &value);
-        ///< C-style cast
+///\name Enum
+///\{
+	template<typename T>
+	static T         enumIncT(const T &value);
+		///< increment enumerator
+	// TODO: [skynowa] enumIncT - depreciated
+	template<typename T>
+	static T         enumDecT(const T &value);
+		///< decrement enumerator
+///\}
 
-    template<typename ToT, class FromT>
-    static
-    ToT       reinterpretCastT(const FromT &ptr);
-        ///< allows any pointer to be converted into any other pointer type
-
-    // TEST: implicitCast
-    template<typename To, typename From>
-    To
-    implicitCast(const From &a_from);
-        ///< https://www.boost.org/doc/libs/1_64_0/boost/implicit_cast.hpp
-
-    template<typename T>
-    static
-    T         roundIntT(cdouble_t value);
-        ///< round double value to long_t
-
-    template<typename T>
-    static
-    T         intSafeDiv(const T &value1, const T &value2);
-        ///< safe division
-
-    template<typename T>
-    static
-    T         enumIncT(const T &value);
-        ///< increment enumerator
-
-    // TODO: [skynowa] enumIncT - depreciated
-    template<typename T>
-    static
-    T         enumDecT(const T &value);
-        ///< decrement enumerator
-
+///\name OS specific
+///\{
 #if xENV_UNIX
-    static
-    std::tstring_t readSymLink(std::ctstring_t &procFile);
-        ///< read symlink content
+	static std::tstring_t readSymLink(std::ctstring_t &procFile);
+		///< read symlink content
 #endif
+///\}
 };
 //-------------------------------------------------------------------------------------------------
 template<typename T>
