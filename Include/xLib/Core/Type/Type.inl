@@ -23,21 +23,20 @@ namespace xl::core
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 Type<T>::Type(
-    const T &a_objT
+    const T &a_obj
 ) :
-	_objT{a_objT}
+	_obj{a_obj}
 {
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 std::tstring_t
-Type<T>::nameRaw(
-)
+Type<T>::nameRaw() const
 {
     std::tstring_t sRv;
     std::string    className;
 
-    className.assign( typeid(_objT).name() );
+    className.assign( typeid(_obj).name() );
     sRv = xA2T(className);
 
     return sRv;
@@ -45,21 +44,20 @@ Type<T>::nameRaw(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 std::tstring_t
-Type<T>::nameDemangle(
-)
+Type<T>::nameDemangle() const
 {
     std::tstring_t sRv;
     std::string    className;
 
 #if xCOMPILER_MINGW || xCOMPILER_GNUC
-    int_t status = - 1;
+    int_t status {- 1};
 
-    char *realName = abi::__cxa_demangle(typeid(_objT).name(), nullptr, nullptr, &status);
+    char *realName = abi::__cxa_demangle(typeid(_obj).name(), nullptr, nullptr, &status);
     className = (realName == nullptr || status != 0) ? Const::strUnknownA() : realName;
 
     Utils::bufferFreeT(realName);
 #else
-    className.assign( typeid(_objT).name() );
+    className.assign( typeid(_obj).name() );
 
     // TODO: use UnDecorateSymbolName
 #endif
@@ -71,8 +69,7 @@ Type<T>::nameDemangle(
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 std::tstring_t
-Type<T>::name(
-)
+Type<T>::name() const
 {
     std::tstring_t sRv;
 
@@ -90,7 +87,7 @@ Type<T>::name(
 	else
 		sRv = xT("unknown");
 #elif 1
-	sRv = TypeName<decltype(_objT)>::get();
+	sRv = TypeName<decltype(_obj)>::get();
 #endif
 
 	return sRv;
@@ -101,7 +98,7 @@ template<class T2>
 constexpr bool_t
 Type<T>::isEqual(
     const T2 /* a_obj2T */
-)
+) const
 {
 	return std::is_same_v<T, T2>;
 }

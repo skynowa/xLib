@@ -99,7 +99,7 @@ class Type
 public:
 ///\name ctors, dtor
 ///\{
-	explicit  Type(const T &objT);
+	explicit  Type(const T &obj);
 	virtual  ~Type() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Type)
@@ -107,21 +107,21 @@ public:
 ///\}
 
 
-    std::tstring_t nameDemangle();
+    std::tstring_t nameDemangle() const;
         ///< get name
 
-    std::tstring_t name();
+    std::tstring_t name() const;
         ///< get name
 
-    std::tstring_t nameRaw();
+    std::tstring_t nameRaw() const;
         ///< get raw name
 
     template<class T2>
-	constexpr bool_t isEqual(const T2 /* obj2T */);
+	constexpr bool_t isEqual(const T2 /* obj2 */) const;
         ///< is equals
 
 private:
-    const T &_objT {};
+    const T &_obj {};
 };
 
 } // namespace
