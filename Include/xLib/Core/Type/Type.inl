@@ -7,15 +7,14 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Utils.h>
 
-#if   xCOMPILER_GNUC || xCOMPILER_MINGW
-    #include <cxxabi.h>
-#elif xCOMPILER_MS
+#if   xCOMPILER_MS
     #include <dbghelp.h>
     #pragma comment(lib, "dbghelp.lib")
+#elif xCOMPILER_GNUC || xCOMPILER_MINGW
+    #include <cxxabi.h>
 #else
 	#error xLib: unsupported compiler
 #endif
-
 
 namespace xl::core
 {
@@ -56,20 +55,20 @@ Type<T>::nameDemangle() const
 
     const char *nameOrig = typeid(_obj).name();
 
-#if   xCOMPILER_MINGW || xCOMPILER_GNUC
-    int_t status {- 1};
-
-    char *buff = abi::__cxa_demangle(nameOrig, nullptr, nullptr, &status);
-    className = (buff == nullptr || status != 0) ? nameOrig : buff;
-
-    Utils::bufferFreeT(buff);
-#elif xCOMPILER_MS
+#if   xCOMPILER_MS
     constexpr DWORD buffSize {1024};
     char            buff[buffSize + 1] {};
     const     DWORD flags = {UNDNAME_COMPLETE}; // Enable full undecoration
 
     DWORD dwRv = ::UnDecorateSymbolName(nameOrig, buff, buffSize, flags);
     className = (dwRv != 0UL) ? nameOrig : buff;
+#elif xCOMPILER_MINGW || xCOMPILER_GNUC
+    int_t status {- 1};
+
+    char *buff = abi::__cxa_demangle(nameOrig, nullptr, nullptr, &status);
+    className = (buff == nullptr || status != 0) ? nameOrig : buff;
+
+    Utils::bufferFreeT(buff);
 #else
     className = nameOrig;
 #endif
