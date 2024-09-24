@@ -7,11 +7,13 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Utils.h>
 
-#if xCOMPILER_GNUC || xCOMPILER_MINGW
+#if   xCOMPILER_GNUC || xCOMPILER_MINGW
     #include <cxxabi.h>
-#else
+#elif xCOMPILER_MS
     #include <dbghelp.h>
     #pragma comment(lib, "dbghelp.lib")
+#else
+	#error xLib: unsupported compiler
 #endif
 
 
@@ -54,19 +56,21 @@ Type<T>::nameDemangle() const
 
     const char *nameOrig = typeid(_obj).name();
 
-#if xCOMPILER_MINGW || xCOMPILER_GNUC
+#if   xCOMPILER_MINGW || xCOMPILER_GNUC
     int_t status {- 1};
 
     char *buff = abi::__cxa_demangle(nameOrig, nullptr, nullptr, &status);
     className = (buff == nullptr || status != 0) ? nameOrig : buff;
 
     Utils::bufferFreeT(buff);
-#else
+#elif xCOMPILER_MS
     constexpr DWORD buffSize {1024};
     char            buff[buffSize + 1] {};
 
     DWORD dwRv = ::UnDecorateSymbolName(nameOrig, buff, buffSize, UNDNAME_COMPLETE);
     className = (dwRv != 0UL) ? nameOrig : buff;
+#else
+    className = nameOrig;
 #endif
 
     sRv = xA2T(className);
