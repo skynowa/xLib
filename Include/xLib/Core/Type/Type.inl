@@ -40,7 +40,7 @@ Type<T>::nameDemangle() const
 {
 	const char *name = typeid(_obj).name();
 
-    return xA2T(::demangleName(name));
+    return xA2T(xl::demangleName(name));
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>

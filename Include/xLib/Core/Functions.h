@@ -136,5 +136,10 @@ int sem_timedwait(sem_t *psem, const struct timespec *abstim);
 // Custom
 #include <string>
 
+namespace xl
+{
+
 std::string demangleName(const char *nameRaw);
+
+}
 //-------------------------------------------------------------------------------------------------

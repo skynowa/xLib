@@ -75,7 +75,7 @@ StackTrace::_get_impl(
 			filePath     = data.filePath;
 			fileLine     = data.sourceLine;
 			byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
-			functionName = ::demangleName(dlinfo.dli_sname);
+			functionName = xl::demangleName(dlinfo.dli_sname);
 
 			if (0) {
 				Cout() << "-----------------------------------";
