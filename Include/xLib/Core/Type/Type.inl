@@ -41,7 +41,7 @@ Type<T>::nameRaw() const
     std::tstring_t sRv;
     std::string    className;
 
-    className.assign( typeid(_obj).name() );
+    className = typeid(_obj).name();
     sRv = xA2T(className);
 
     return sRv;
@@ -66,8 +66,9 @@ Type<T>::nameDemangle() const
 #elif xCOMPILER_MS
     constexpr DWORD buffSize {1024};
     char            buff[buffSize + 1] {};
+    const     DWORD flags = {UNDNAME_COMPLETE}; // Enable full undecoration
 
-    DWORD dwRv = ::UnDecorateSymbolName(nameOrig, buff, buffSize, UNDNAME_COMPLETE);
+    DWORD dwRv = ::UnDecorateSymbolName(nameOrig, buff, buffSize, flags);
     className = (dwRv != 0UL) ? nameOrig : buff;
 #else
     className = nameOrig;
