@@ -42,33 +42,36 @@
 	#error xLib: unsupported compiler
 #endif
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+std::string
 demangleName(
-	const char *a_nameOrig
+	const char *a_nameRaw
 )
 {
-    std::tstring_t sRv;
-    std::string    className;
+	if (a_nameRaw == nullptr) {
+		return {};
+	}
+
+    std::string sRv;
 
 #if   xCOMPILER_MS
     constexpr DWORD buffSize {1024};
     char            buff[buffSize + 1] {};
     const     DWORD flags = {UNDNAME_COMPLETE}; // Enable full undecoration
 
-    DWORD dwRv = ::UnDecorateSymbolName(a_nameOrig, buff, buffSize, flags);
-    className = (dwRv != 0UL) ? a_nameOrig : buff;
+    DWORD dwRv = ::UnDecorateSymbolName(a_nameRaw, buff, buffSize, flags);
+    sRv = (dwRv != 0UL) ? a_nameRaw : buff;
 #elif xCOMPILER_MINGW || xCOMPILER_GNUC
-    int_t status {- 1};
+    int status {- 1};
 
-    char *buff = abi::__cxa_demangle(a_nameOrig, nullptr, nullptr, &status);
-    className = (buff == nullptr || status != 0) ? a_nameOrig : buff;
+    char *buff = abi::__cxa_demangle(a_nameRaw, nullptr, nullptr, &status);
+    sRv = (buff == nullptr || status != 0) ? a_nameRaw : buff;
 
-    Utils::bufferFreeT(buff);
+    if (buff != nullptr) {
+        std::free(buff); buff = nullptr;
+    }
 #else
-    className = a_nameOrig;
+    sRv = a_nameRaw;
 #endif
-
-    sRv = xA2T(className);
 
     return sRv;
 }

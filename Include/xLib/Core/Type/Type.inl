@@ -29,25 +29,18 @@ template<typename T>
 std::tstring_t
 Type<T>::nameRaw() const
 {
-    std::tstring_t sRv;
-    std::string    className;
+	const char *name = typeid(_obj).name();
 
-    className = typeid(_obj).name();
-    sRv = xA2T(className);
-
-    return sRv;
+    return xA2T(name);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 std::tstring_t
 Type<T>::nameDemangle() const
 {
-    std::tstring_t sRv;
-    std::string    className;
+	const char *name = typeid(_obj).name();
 
-    const char *nameOrig = typeid(_obj).name();
-
-    return ::demangleName(nameOrig);
+    return xA2T(::demangleName(name));
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>

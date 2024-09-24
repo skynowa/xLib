@@ -134,5 +134,7 @@ int sem_timedwait(sem_t *psem, const struct timespec *abstim);
 #endif
 //-------------------------------------------------------------------------------------------------
 // Custom
-std::tstring_t demangleName(const char *nameOrig);
+#include <string>
+
+std::string demangleName(const char *nameRaw);
 //-------------------------------------------------------------------------------------------------
