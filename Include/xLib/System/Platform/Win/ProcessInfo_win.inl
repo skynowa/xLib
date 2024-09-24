@@ -72,7 +72,6 @@ ProcessInfo::_parentId_impl() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
 ProcessInfo::_commandLine_impl(
     std::vec_tstring_t *out_args

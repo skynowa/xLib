@@ -21,7 +21,6 @@ ProcessInfo::_exeName_impl() const
     return Utils::readSymLink(procFile);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 void_t
 ProcessInfo::_commandLine_impl(
     std::vec_tstring_t *out_args
