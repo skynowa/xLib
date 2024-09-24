@@ -62,9 +62,11 @@ Type<T>::nameDemangle() const
 
     Utils::bufferFreeT(buff);
 #else
-    className.assign(nameOrig);
+    constexpr DWORD buffSize {1024};
+    char            buff[buffSize + 1] {};
 
-    // TODO: use UnDecorateSymbolName
+    DWORD dwRv = ::UnDecorateSymbolName(nameOrig, buff, buffSize, UNDNAME_COMPLETE);
+    className = (dwRv != 0UL) ? nameOrig : buff;
 #endif
 
     sRv = xA2T(className);
