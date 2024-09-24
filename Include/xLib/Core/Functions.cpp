@@ -34,7 +34,7 @@
 
 //-------------------------------------------------------------------------------------------------
 #if   xCOMPILER_MS
-    #include <dbghelp.h>
+    #include <Dbghelp.h>
     #pragma comment(lib, "dbghelp.lib")
 #elif xCOMPILER_GNUC || xCOMPILER_MINGW
     #include <cxxabi.h>

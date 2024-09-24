@@ -11,7 +11,7 @@
         #define DBGHELP_TRANSLATE_TCHAR 1
     #endif
 
-    #include <DbgHelp.h>
+    #include <Dbghelp.h>
 #endif
 
 
