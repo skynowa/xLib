@@ -9,6 +9,9 @@
 
 #if xCOMPILER_GNUC || xCOMPILER_MINGW
     #include <cxxabi.h>
+#else
+    #include <dbghelp.h>
+    #pragma comment(lib, "dbghelp.lib")
 #endif
 
 
@@ -49,15 +52,17 @@ Type<T>::nameDemangle() const
     std::tstring_t sRv;
     std::string    className;
 
+    const char *nameOrig = typeid(_obj).name();
+
 #if xCOMPILER_MINGW || xCOMPILER_GNUC
     int_t status {- 1};
 
-    char *realName = abi::__cxa_demangle(typeid(_obj).name(), nullptr, nullptr, &status);
-    className = (realName == nullptr || status != 0) ? Const::strUnknownA() : realName;
+    char *buff = abi::__cxa_demangle(nameOrig, nullptr, nullptr, &status);
+    className = (buff == nullptr || status != 0) ? nameOrig : buff;
 
-    Utils::bufferFreeT(realName);
+    Utils::bufferFreeT(buff);
 #else
-    className.assign( typeid(_obj).name() );
+    className.assign(nameOrig);
 
     // TODO: use UnDecorateSymbolName
 #endif
