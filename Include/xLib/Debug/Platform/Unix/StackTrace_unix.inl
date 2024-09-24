@@ -61,23 +61,6 @@ StackTrace::_get_impl(
             byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(nullptr));
             functionName = (it_symbol == nullptr) ? dataNotFound : xA2T(it_symbol);
         } else {
-            std::tstring_t symbolName = dataNotFound;
-			{
-				if (dlinfo.dli_sname != nullptr) {
-					int_t status {-1};
-					char *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, nullptr, nullptr, &status);
-					if (demangleName != nullptr &&
-						status == 0)
-					{
-						symbolName = demangleName;
-
-						Utils::bufferFreeT(demangleName);
-					} else {
-						symbolName = dlinfo.dli_sname;
-					}
-				}
-			}
-
 			struct Addr2LineData
 			{
 				std::tstring_t filePath;
@@ -106,7 +89,7 @@ StackTrace::_get_impl(
 			filePath     = data.filePath;
 			fileLine     = data.sourceLine;
 			byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
-			functionName = symbolName;
+			functionName = _nameDemangle(dlinfo.dli_sname);;
         }
 
         // swap file paths
@@ -141,6 +124,32 @@ StackTrace::_get_impl(
 
     // out
     out_stack->swap(stack);
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+StackTrace::_nameDemangle(
+	const char *a_dli_sname
+) const
+{
+	if (a_dli_sname == nullptr) {
+		return {};
+	}
+
+	std::tstring_t sRv;
+
+	int_t status {-1};
+	char *demangleName = abi::__cxa_demangle(a_dli_sname, nullptr, nullptr, &status);
+	if (demangleName != nullptr &&
+		status == 0)
+	{
+		sRv = demangleName;
+
+		Utils::bufferFreeT(demangleName);
+	} else {
+		sRv = a_dli_sname;
+	}
+
+	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
