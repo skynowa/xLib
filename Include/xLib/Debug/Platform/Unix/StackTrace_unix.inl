@@ -61,19 +61,20 @@ StackTrace::_get_impl(
             byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(nullptr));
             functionName = (it_symbol == nullptr) ? dataNotFound : xA2T(it_symbol);
         } else {
-            std::tstring_t symbolName;
+            std::tstring_t symbolName = dataNotFound;
+			{
+				if (dlinfo.dli_sname != nullptr) {
+					int_t status {-1};
+					char *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, nullptr, nullptr, &status);
+					if (demangleName != nullptr &&
+						status == 0)
+					{
+						symbolName = demangleName;
 
-			if (dlinfo.dli_sname != nullptr) {
-				int_t status {-1};
-				char *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, nullptr, nullptr, &status);
-				if (demangleName != nullptr &&
-					status == 0)
-				{
-					symbolName = demangleName;
-
-					Utils::bufferFreeT(demangleName);
-				} else {
-					symbolName = dlinfo.dli_sname;
+						Utils::bufferFreeT(demangleName);
+					} else {
+						symbolName = dlinfo.dli_sname;
+					}
 				}
 			}
 
@@ -105,7 +106,7 @@ StackTrace::_get_impl(
 			filePath     = data.filePath;
 			fileLine     = data.sourceLine;
 			byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
-			functionName = symbolName.empty() ? dataNotFound : symbolName;
+			functionName = symbolName;
         }
 
         // swap file paths
