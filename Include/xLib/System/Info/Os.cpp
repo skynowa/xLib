@@ -59,7 +59,7 @@ Os::arch() const
 std::tstring_t
 Os::formatArch() const
 {
-    std::tstring_t sRv;
+    std::tstring_t sRv = Const::strUnknown();
 
     cArch arch_ = arch();
     switch (arch_) {
@@ -70,9 +70,6 @@ Os::formatArch() const
         sRv = xT("64-bit");
         break;
     case Arch::Unknown:
-        sRv = Const::strUnknown();
-        break;
-    default:
         sRv = Const::strUnknown();
         break;
     }
