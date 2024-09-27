@@ -17,7 +17,7 @@
         #if   xOS_ANDROID
             #include "Platform/Linux/Functions_android.inl"
         #elif xOS_LINUX
-            // #include "Platform/Linux/Functions_linux.inl"
+            // n/a
         #endif
     #elif xENV_BSD
         #include "Platform/Bsd/Functions_bsd.inl"
