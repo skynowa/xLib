@@ -2,8 +2,9 @@
 
 
 # UNIT_TESTS=(Path Environment User)
-UNIT_TESTS=(Type)
-# UNIT_TESTS=(StackTrace)
+# UNIT_TESTS=(Type)
+UNIT_TESTS=(StackTrace)
+# UNIT_TESTS=(BuildInfo)
 # UNIT_TESTS=(FileText FileBin)
 # UNIT_TESTS=(Xml)
 
@@ -21,6 +22,6 @@ do
 	echo -e "${BASH_BG_BLACK}|${BASH_FG_YELLOW} ${it_test} ${BASH_RESET}"
 	echo -e "${BASH_BG_BLACK}+------------------------------+${BASH_RESET}"
 
-	./tests.sh ${it_test} # && ./deploy.sh
+	./tests.sh "${it_test}"
 done
 #--------------------------------------------------------------------------------------------------

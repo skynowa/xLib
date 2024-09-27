@@ -75,7 +75,7 @@ StackTrace::_get_impl(
 			filePath     = data.filePath;
 			fileLine     = data.sourceLine;
 			byteOffset   = Format::str(xT("{}"), static_cast<void_t *>(dlinfo.dli_saddr));
-			functionName = _nameDemangle(dlinfo.dli_sname);
+			functionName = xA2T( xl::demangleName(dlinfo.dli_sname) );
 
 			if (0) {
 				Cout() << "-----------------------------------";
@@ -122,32 +122,6 @@ StackTrace::_get_impl(
 
     // out
     out_stack->swap(stack);
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-StackTrace::_nameDemangle(
-	const char *a_dli_sname
-) const
-{
-	if (a_dli_sname == nullptr) {
-		return {};
-	}
-
-	std::tstring_t sRv;
-
-	int_t status {-1};
-	char *demangleName = abi::__cxa_demangle(a_dli_sname, nullptr, nullptr, &status);
-	if (demangleName != nullptr &&
-		status == 0)
-	{
-		sRv = demangleName;
-
-		Utils::bufferFreeT(demangleName);
-	} else {
-		sRv = a_dli_sname;
-	}
-
-	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

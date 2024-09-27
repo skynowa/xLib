@@ -76,8 +76,6 @@ xPLATFORM_IMPL:
     void_t _get_impl(std::vector<std::vec_tstring_t> *stack) const;
 
 #if xENV_UNIX
-    std::tstring_t _nameDemangle(const char *dli_sname) const;
-
     static
     void_t _addr2Line(cptr_cvoid_t symbolAddress, std::tstring_t *filePath,
     			std::tstring_t *functionName, std::tstring_t *sourceLine);
