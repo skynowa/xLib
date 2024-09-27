@@ -13,6 +13,8 @@ DIR_BUILD="../../${PROJECT_NAME}_build"
 JOBS_NUM=$(($(nproc) * 2))
 # JOBS_NUM=1
 
+./deploy.sh
+
 echo "Jobs: $JOBS_NUM"
 echo "OS ver: $(uname -a)"
 
