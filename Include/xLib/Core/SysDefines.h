@@ -342,7 +342,7 @@
     // xCOMPILER_CLANG also __GNUC__
     #define xCOMPILER_CLANG 1
     #define xCOMPILER_GNUC 1
-        ///< compiler Clang
+        ///< compiler Clang (GNU)
 
     ///\name Compiler version
     ///\{
@@ -357,7 +357,7 @@
 #elif defined(__GNUC__) || defined(__GNUG__)
     #define xCOMPILER_GCC 1
     #define xCOMPILER_GNUC 1
-        ///< compiler GNU (GCC) C/C++
+        ///< compiler GCC (GNU)
 
     ///\name Compiler version
     ///\{
