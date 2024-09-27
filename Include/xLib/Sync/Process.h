@@ -90,42 +90,48 @@ public:
         ///< get termination status
 
 xPUBLIC_STATIC:
-	// Hanfles, IDs
-    static id_t     idByHandle(const handle_t &handle);
-        ///< get ID by handle
-    static handle_t handleById(const id_t &id);
-        ///< get handle by ID
-    static id_t     idByName(std::ctstring_t &processName);
-        ///< get ID by name
-    static bool_t   isRunning(const id_t &id);
-        ///< is process running by name (with extension)
-    static void_t   ids(std::vector<Process::id_t> *ids);
-        ///< get all IDs of current processes
+///\name Handles, IDs
+///\{
+	static id_t     idByHandle(const handle_t &handle);
+		///< get ID by handle
+	static handle_t handleById(const id_t &id);
+		///< get handle by ID
+	static id_t     idByName(std::ctstring_t &processName);
+		///< get ID by name
+	static bool_t   isRunning(const id_t &id);
+		///< is process running by name (with extension)
+	static void_t   ids(std::vector<Process::id_t> *ids);
+		///< get all IDs of current processes
+///\}
 
-    // current process
-    static bool_t   isCurrent(const Process::id_t &id);
-        ///< is current id
-    static id_t     currentId();
-        ///< process ID of the calling process
-    static id_t     currentParentId();
-        ///< process ID of the parent of the calling process
-    static handle_t currentHandle();
-        ///< get pseudo handle for the calling process
-    static void_t   currentExit(cuint_t &exitCode);
-        ///< ends the calling process and all its threads
-    static void_t   currenQuicktExit(cuint_t &exitCode);
-        ///< Causes normal program termination to occur without completely cleaning the resources
+///\name Current process
+///\{
+	static bool_t   isCurrent(const Process::id_t &id);
+		///< is current id
+	static id_t     currentId();
+		///< process ID of the calling process
+	static id_t     currentParentId();
+		///< process ID of the parent of the calling process
+	static handle_t currentHandle();
+		///< get pseudo handle for the calling process
+	static void_t   currentExit(cuint_t &exitCode);
+		///< ends the calling process and all its threads
+	static void_t   currenQuicktExit(cuint_t &exitCode);
+		///< Causes normal program termination to occur without completely cleaning the resources
+///\}
 
-	// Etc
-    static void_t execute(std::ctstring_t &filePath, std::cvec_tstring_t &params,
-                     const std::set<std::pair_tstring_t> &envs, culong_t waitTimeoutMsec,
-                     std::tstring_t *stdOut, std::tstring_t *stdError);
-        ///< create, wait process
-    static void_t execute(std::ctstring_t &filePath, std::cvec_tstring_t &params,
-                     std::tstring_t *stdOut, std::tstring_t *stdError);
-        ///< create, wait process (Without envs, with infinite wait timeout)
-    static void_t shellExecute(std::ctstring_t &filePathOrURL, std::cvec_tstring_t &params);
-        ///< opens a file or URL in the user's preferred application
+///\name Execute
+///\{
+	static void_t execute(std::ctstring_t &filePath, std::cvec_tstring_t &params,
+					 const std::set<std::pair_tstring_t> &envs, culong_t waitTimeoutMsec,
+					 std::tstring_t *stdOut, std::tstring_t *stdError);
+		///< create, wait process
+	static void_t execute(std::ctstring_t &filePath, std::cvec_tstring_t &params,
+					 std::tstring_t *stdOut, std::tstring_t *stdError);
+		///< create, wait process (Without envs, with infinite wait timeout)
+	static void_t shellExecute(std::ctstring_t &filePathOrURL, std::cvec_tstring_t &params);
+		///< opens a file or URL in the user's preferred application
+///\}
 
 private:
     handle_t _handle {};
