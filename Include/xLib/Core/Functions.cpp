@@ -34,6 +34,10 @@
 
 //-------------------------------------------------------------------------------------------------
 #if   xCOMPILER_MS
+    #ifdef xUNICODE
+        #define DBGHELP_TRANSLATE_TCHAR 1
+    #endif
+
     #include <Dbghelp.h>
     #pragma comment(lib, "dbghelp.lib")
 #elif xCOMPILER_GNUC || xCOMPILER_MINGW

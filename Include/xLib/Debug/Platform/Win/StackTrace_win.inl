@@ -4,17 +4,6 @@
  */
 
 
-#if   xCOMPILER_MINGW
-    // TODO: [skynowa] StackTrace - includes
-#elif xCOMPILER_MS
-    #ifdef xUNICODE
-        #define DBGHELP_TRANSLATE_TCHAR 1
-    #endif
-
-    #include <Dbghelp.h>
-#endif
-
-
 namespace xl::debug
 {
 
