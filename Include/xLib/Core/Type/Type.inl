@@ -6,15 +6,7 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/Utils.h>
-
-#if   xCOMPILER_MS
-    #include <dbghelp.h>
-    #pragma comment(lib, "dbghelp.lib")
-#elif xCOMPILER_GNUC || xCOMPILER_MINGW
-    #include <cxxabi.h>
-#else
-	#error xLib: unsupported compiler
-#endif
+#include <xLib/Core/Functions.h>
 
 namespace xl::core
 {
@@ -37,45 +29,18 @@ template<typename T>
 std::tstring_t
 Type<T>::nameRaw() const
 {
-    std::tstring_t sRv;
-    std::string    className;
+	const char *name = typeid(_obj).name();
 
-    className = typeid(_obj).name();
-    sRv = xA2T(className);
-
-    return sRv;
+    return xA2T(name);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 std::tstring_t
 Type<T>::nameDemangle() const
 {
-    std::tstring_t sRv;
-    std::string    className;
+	const char *name = typeid(_obj).name();
 
-    const char *nameOrig = typeid(_obj).name();
-
-#if   xCOMPILER_MS
-    constexpr DWORD buffSize {1024};
-    char            buff[buffSize + 1] {};
-    const     DWORD flags = {UNDNAME_COMPLETE}; // Enable full undecoration
-
-    DWORD dwRv = ::UnDecorateSymbolName(nameOrig, buff, buffSize, flags);
-    className = (dwRv != 0UL) ? nameOrig : buff;
-#elif xCOMPILER_MINGW || xCOMPILER_GNUC
-    int_t status {- 1};
-
-    char *buff = abi::__cxa_demangle(nameOrig, nullptr, nullptr, &status);
-    className = (buff == nullptr || status != 0) ? nameOrig : buff;
-
-    Utils::bufferFreeT(buff);
-#else
-    className = nameOrig;
-#endif
-
-    sRv = xA2T(className);
-
-    return sRv;
+    return xA2T(xl::demangleName(name));
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>

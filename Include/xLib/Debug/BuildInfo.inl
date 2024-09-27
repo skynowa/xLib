@@ -261,6 +261,15 @@ BuildInfo::compiler() const
     compilerVersion = xCOMPILER_CLANG_VER_STR;
 #elif xCOMPILER_GNUC
     compilerName    = xT("GNUC");
+
+	#if   defined(xCOMPILER_GCC)
+        compilerName += xT(" (GCC)");
+	#elif defined(xCOMPILER_CLANG)
+        compilerName += xT(" (CLang)");
+	#else
+        compilerName += xT(" (n/a)");
+	#endif
+
     compilerVersion = xCOMPILER_GNUC_VER_STR;
 #endif
 

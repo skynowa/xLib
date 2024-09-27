@@ -4,17 +4,6 @@
  */
 
 
-#if   xCOMPILER_MINGW
-    // TODO: [skynowa] StackTrace - includes
-#elif xCOMPILER_MS
-    #ifdef xUNICODE
-        #define DBGHELP_TRANSLATE_TCHAR 1
-    #endif
-
-    #include <DbgHelp.h>
-#endif
-
-
 namespace xl::debug
 {
 
@@ -101,7 +90,7 @@ StackTrace::_get_impl(
                 functionName = dataNotFound;
             } else {
                 byteOffset   = Format::str(xT("{}"), reinterpret_cast<void_t *>(symbol->Address));
-                functionName = std::tstring_t(symbol->Name);
+                functionName = xA2T( xl::demangleName(symbol->Name) );
             }
         }
 
