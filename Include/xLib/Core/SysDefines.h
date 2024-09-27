@@ -354,9 +354,9 @@
     #define xCOMPILER_CLANG_VER_STR \
         xVER_FULL_STR(xCOMPILER_CLANG_VER_MAJOR, xCOMPILER_CLANG_VER_MINOR, xCOMPILER_CLANG_VER_PATCH)
     ///\}
-#elif defined(__GNUC__)
+#elif defined(__GNUC__) || defined(__GNUG__)
     #define xCOMPILER_GNUC 1
-        ///< compiler GNU C/C++
+        ///< compiler GNU (GCC) C/C++
 
     ///\name Compiler version
     ///\{
