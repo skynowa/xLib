@@ -59,7 +59,7 @@ demangleName(
 #if   xCOMPILER_MS
     constexpr DWORD buffSize {1024};
     char            buff[buffSize + 1] {};
-    const     DWORD flags = {UNDNAME_COMPLETE}; // Enable full undecoration
+    const     DWORD flags {UNDNAME_COMPLETE}; // Enable full undecoration
 
     DWORD dwRv = ::UnDecorateSymbolName(a_nameRaw, buff, buffSize, flags);
     sRv = (dwRv != 0UL) ? a_nameRaw : buff;
