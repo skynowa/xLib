@@ -3,8 +3,8 @@
 
 # UNIT_TESTS=(Path Environment User)
 # UNIT_TESTS=(Type)
-# UNIT_TESTS=(StackTrace)
-UNIT_TESTS=(BuildInfo)
+UNIT_TESTS=(StackTrace)
+# UNIT_TESTS=(BuildInfo)
 # UNIT_TESTS=(FileText FileBin)
 # UNIT_TESTS=(Xml)
 
