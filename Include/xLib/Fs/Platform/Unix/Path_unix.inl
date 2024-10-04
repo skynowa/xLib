@@ -353,8 +353,8 @@ Path::proc(
     // check for existence "/proc" directory
     {
         Dir proc(xT("/proc"));
-        xCHECK_DO(!proc.isExists(), Trace() << xT("::: xLib: warning (/proc dir not mount) :::"); return {});
-        xCHECK_DO(proc.isEmpty(),   Trace() << xT("::: xLib: warning (/proc dir is empty) :::");  return {});
+        xCHECK_MSG(!proc.isExists(), xT("::: xLib: warning (/proc dir not mount) :::"));
+        xCHECK_MSG(proc.isEmpty(),   xT("::: xLib: warning (/proc dir is empty) :::"));
     }
 
 	std::tifstream_t ifs(a_procPath);
