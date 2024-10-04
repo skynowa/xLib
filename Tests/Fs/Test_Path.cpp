@@ -1173,19 +1173,22 @@ Test_Path::unit()
 	#endif
     }
 
+#if xENV_UNIX
     xTEST_CASE("proc")
     {
-	#if xENV_UNIX
         // TEST: Path::proc()
-	#endif
     }
 
     xTEST_CASE("procValue")
     {
-	#if xENV_UNIX
         // TEST: Path::procValue()
-	#endif
     }
+
+    xTEST_CASE("readSymLink")
+    {
+        // TEST: Path::readSymLink()
+    }
+#endif
 
     xTEST_CASE("operator <<")
     {
