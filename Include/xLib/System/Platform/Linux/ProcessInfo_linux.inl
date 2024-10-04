@@ -18,7 +18,7 @@ ProcessInfo::_exeName_impl() const
 {
     std::ctstring_t procFile = Format::str(xT("/proc/{}/exe"), _id);
 
-    return Utils::readSymLink(procFile);
+    return Path::readSymLink(procFile);
 }
 //-------------------------------------------------------------------------------------------------
 void_t

@@ -148,10 +148,15 @@ xPUBLIC_STATIC:
 #if xENV_UNIX
 ///\name Proc file
 ///\{
-	static void_t         proc(std::ctstring_t &procPath, std::vec_tstring_t *fileLines);
+	static std::tstring_t proc(std::ctstring_t &procPath,
+		std::function<bool_t(std::ctstring_t &line)> cond,
+		std::function<std::tstring_t(std::ctstring_t &line)> op);
 		///< get file lines from UNIX proc file
 	static std::tstring_t procValue(std::ctstring_t &procPath, std::ctstring_t &key);
 		///< get value by data from UNIX proc file
+
+	static std::tstring_t readSymLink(std::ctstring_t &symLinkPath);
+		///< read symlink content
 ///\}
 #endif
 
@@ -188,5 +193,6 @@ xPLATFORM_IMPL:
  * - [ ] ctor - filePath -> fsPath
  * - [ ] isRootPath()
  * - [ ] proc - use in xLib
+ * - [+] Utils::readSymLink - move to Path
  */
 //-------------------------------------------------------------------------------------------------

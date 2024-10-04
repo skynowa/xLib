@@ -107,14 +107,6 @@ public:
 	static T         enumDecT(const T &value);
 		///< decrement enumerator
 ///\}
-
-///\name OS specific
-///\{
-#if xENV_UNIX
-	static std::tstring_t readSymLink(std::ctstring_t &procFile);
-		///< read symlink content
-#endif
-///\}
 };
 //-------------------------------------------------------------------------------------------------
 template<typename T>

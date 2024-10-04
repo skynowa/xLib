@@ -101,7 +101,7 @@ Dir::isExists() const
 
 #if xENV_UNIX
 	if (type.get() == static_cast<FileType::types_t>(FileType::Type::SymbolicLink)) {
-		std::ctstring_t &symLinkPathTo = Utils::readSymLink(_dirPath);
+		std::ctstring_t &symLinkPathTo = Path::readSymLink(_dirPath);
 
 		FileType symLinkType(symLinkPathTo);
 		bool_t bRv = symLinkType.isExists(FileType::Type::Directory);
