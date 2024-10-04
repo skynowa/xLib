@@ -1146,8 +1146,8 @@ Test_Path::unit()
     }
 
 #if xENV_UNIX
-    xTEST_CASE("proc")
-    {
+	xTEST_CASE("proc")
+	{
 		auto condition = [](std::ctstring_t &it_line) -> bool_t
 		{
 			return it_line.find(xT("vendor_id")) != std::tstring_t::npos;
@@ -1168,24 +1168,25 @@ Test_Path::unit()
 		};
 
 		m_sRv = Path::proc(xT("/proc/cpuinfo"), condition, op);
-		Cout() << xTRACE_MSGBOX(m_sRv);
-		Cout() << xPRINT_VAR(m_sRv) << std::endl;
-    }
+		xTEST_EQ(m_sRv, std::tstring_t(xT("GenuineIntel")));
+	}
 
-    xTEST_CASE("proc")
-    {
-        // TEST: Path::proc()
-    }
+	xTEST_CASE("proc")
+	{
+		// TEST: Path::proc()
+	}
 
-    xTEST_CASE("procValue")
-    {
-        // TEST: Path::procValue()
-    }
+	xTEST_CASE("procValue")
+	{
+		m_sRv = Path::procValue(xT("/proc/cpuinfo"), xT("vendor_id"));
+		xTEST_EQ(m_sRv, std::tstring_t(xT("GenuineIntel")));
+	}
 
-    xTEST_CASE("readSymLink")
-    {
-        // TEST: Path::readSymLink()
-    }
+	xTEST_CASE("readSymLink")
+	{
+		m_sRv = Path::readSymLink(xT("/proc/self/exe"));
+		xTEST_EQ(Path(m_sRv).fileBaseName(), Path(xFILE).fileBaseName());
+	}
 #endif
 
     xTEST_CASE("operator <<")

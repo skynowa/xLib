@@ -417,26 +417,53 @@ Path::procValue(
     std::ctstring_t &a_key          ///< target search data string
 )
 {
-    std::tstring_t     sRv;
-    std::vec_tstring_t procFile;
+#if 0
+	std::tstring_t     sRv;
+	std::vec_tstring_t procFile;
 
-    proc(a_procPath, &procFile);
+	proc(a_procPath, &procFile);
 
-    for (const auto &it_line : procFile) {
-        std::csize_t pos = StringCI::find(it_line, a_key);
-        xCHECK_DO(pos == std::tstring_t::npos, continue);
+	for (const auto &it_line : procFile) {
+		std::csize_t pos = StringCI::find(it_line, a_key);
+		xCHECK_DO(pos == std::tstring_t::npos, continue);
 
-        // parse value
-        std::csize_t delimPos = it_line.find(xT(":"));
-        xTEST_DIFF(delimPos, std::string::npos);
+		// parse value
+		std::csize_t delimPos = it_line.find(xT(":"));
+		xTEST_DIFF(delimPos, std::string::npos);
 
-        sRv = it_line.substr(delimPos + 1);
-        sRv = String::trimSpace(sRv);
+		sRv = it_line.substr(delimPos + 1);
+		sRv = String::trimSpace(sRv);
 
-        break;
-    }
+		break;
+	}
 
-    return sRv;
+	return sRv;
+#else
+	std::tstring_t sRv;
+
+	auto cond = [&](std::ctstring_t &it_line) -> bool_t
+	{
+		return StringCI::find(it_line, a_key) != std::tstring_t::npos;
+	};
+
+	auto op = [](std::ctstring_t &a_line) -> std::tstring_t
+	{
+		std::tstring_t sRv;
+
+		// parse value
+		std::csize_t delimPos = a_line.find(xT(":"));
+		xTEST_DIFF(delimPos, std::string::npos);
+
+		sRv = a_line.substr(delimPos + 1);
+		sRv = String::trimSpace(sRv);
+
+		return sRv;
+	};
+
+	sRv = Path::proc(a_procPath, cond, op);
+
+	return sRv;
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
