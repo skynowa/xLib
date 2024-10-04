@@ -91,7 +91,7 @@ FileInfo::lines() const
 
     ulonglong_t ullRv {};
 
-    std::tifstream_t ifs(xT2A(_filePath), std::ios::in);
+    std::tifstream_t ifs(_filePath, std::ios::in);
     xCHECK_RET(!ifs,           0LL);
     xCHECK_RET(ifs.fail(),     0LL);
     xCHECK_RET(!ifs.good(),    0LL);
