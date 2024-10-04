@@ -419,7 +419,7 @@ Path::procValue(
 {
 	auto cond = [&](std::ctstring_t &it_line) -> bool_t
 	{
-		return StringCI::find(it_line, a_key) != std::tstring_t::npos;
+		return (it_line.find(a_key) != std::tstring_t::npos);
 	};
 
 	auto op = [](std::ctstring_t &a_line) -> std::tstring_t
