@@ -156,6 +156,9 @@ xPUBLIC_STATIC:
 		///< get file lines from UNIX proc file
 	static std::tstring_t procValue(std::ctstring_t &procPath, std::ctstring_t &key);
 		///< get value by data from UNIX proc file
+
+	static std::tstring_t readSymLink(std::ctstring_t &symLinkPath);
+		///< read symlink content
 ///\}
 #endif
 
@@ -192,6 +195,6 @@ xPLATFORM_IMPL:
  * - [ ] ctor - filePath -> fsPath
  * - [ ] isRootPath()
  * - [ ] proc - use in xLib
- * - [ ] Utils::readSymLink - move to Path
+ * - [+] Utils::readSymLink - move to Path
  */
 //-------------------------------------------------------------------------------------------------

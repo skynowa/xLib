@@ -439,5 +439,32 @@ Path::procValue(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Path::readSymLink(
+	std::ctstring_t &a_symLinkPath
+)
+{
+    bool_t bRv = FileInfo(a_symLinkPath).isExists();
+    xCHECK_RET(!bRv, std::tstring_t());
+
+    std::string asRv(Path::maxSize() + 1, {});
+
+    ssize_t readed {- 1};
+
+    for ( ; ; ) {
+        readed = ::readlink(xT2A(a_symLinkPath).c_str(), &asRv.at(0), asRv.size() *
+            sizeof(std::string::value_type));
+        xCHECK_DO(readed == ssize_t(- 1), break);	// TODO: test - add ??
+        xCHECK_DO(asRv.size() * sizeof(std::string::value_type) > static_cast<size_t>(readed), break);
+
+        asRv.resize(asRv.size() * 2);
+    }
+
+    asRv.resize( static_cast<std::size_t>(readed) );
+
+    return xA2T(asRv);
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace

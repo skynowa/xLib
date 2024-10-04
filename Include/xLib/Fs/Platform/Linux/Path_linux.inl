@@ -19,7 +19,7 @@ Path::_exe_impl()
 {
 	std::ctstring_t procFile = Format::str(xT("/proc/{}/exe"), ::getpid());
 
-    return Utils::readSymLink(procFile);
+    return readSymLink(procFile);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
