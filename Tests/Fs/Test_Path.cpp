@@ -1169,6 +1169,7 @@ Test_Path::unit()
 
 		m_sRv = Path::proc(xT("/proc/cpuinfo"), condition, op);
 		Cout() << xTRACE_MSGBOX(m_sRv);
+		Cout() << xPRINT_VAR(m_sRv) << std::endl;
 	#endif
     }
 

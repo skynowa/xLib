@@ -360,7 +360,6 @@ Path::proc(
 	for ( ; !ifs.eof(); ) {
 		std::tstring_t line;
 		std::getline(ifs, line);
-		xCHECK_DO(line.empty(), continue);
 
 		if ( a_cond(line) ) {
 			return a_op(line);
