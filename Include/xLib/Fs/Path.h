@@ -185,7 +185,8 @@ xPLATFORM_IMPL:
 /**
  * TODO
  *
- * - ctor - filePath -> fsPath
- * - isRootPath()
+ * - [ ] ctor - filePath -> fsPath
+ * - [ ] isRootPath()
+ * - [ ] proc - use in xLib
  */
 //-------------------------------------------------------------------------------------------------
