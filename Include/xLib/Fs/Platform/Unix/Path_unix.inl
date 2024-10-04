@@ -343,73 +343,93 @@ Path::_nameMaxSize_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-void_t
+std::tstring_t
 Path::proc(
-    std::ctstring_t    &a_procPath,
-    std::vec_tstring_t *a_fileLines
+	std::ctstring_t                                      &a_procPath,	///< file path to proc-file
+	std::function<bool_t(std::ctstring_t &line)>          a_cond,		///< condition
+	std::function<std::tstring_t(std::ctstring_t &line)>  a_op			///< operation
 )
 {
     // check for existence "/proc" directory
     {
-        bool_t bRv {};
-
         Dir proc(xT("/proc"));
-
-        bRv = proc.isExists();
-        xCHECK_DO(!bRv, Trace() << xT("::: xLib: warning (/proc dir not mount) :::"); return);
-
-        bRv = proc.isEmpty();
-        xCHECK_DO(bRv, Trace() << xT("::: xLib: warning (/proc dir is empty) :::");  return);
+        xCHECK_MSG(!proc.isExists(), xT("::: xLib: warning (/proc dir not mount) :::"));
+        xCHECK_MSG(proc.isEmpty(),   xT("::: xLib: warning (/proc dir is empty) :::"));
     }
 
-    std::vec_tstring_t vsRv;
+	std::tifstream_t ifs(a_procPath);
+	xTEST(!! ifs);
+	xTEST(!ifs.fail());
+	xTEST(ifs.good());
+	xTEST(ifs.is_open());
+	xTEST(!ifs.eof());
 
-    std::tifstream_t ifs(a_procPath);
-    xTEST(!! ifs);
-    xTEST(!ifs.fail());
-    xTEST(ifs.good());
-    xTEST(ifs.is_open());
-    xTEST(!ifs.eof());
+	for ( ; !ifs.eof(); ) {
+		std::tstring_t line;
+		std::getline(ifs, line);
 
-    for ( ; !ifs.eof(); ) {
-        std::tstring_t line;
-        std::getline(ifs, line);
-        xCHECK_DO(line.empty(), continue);
+		if ( a_cond(line) ) {
+			return a_op(line);
+		}
+	}
 
-        vsRv.push_back(line);
-    }
-
-    // out
-    a_fileLines->swap(vsRv);
+	return {};
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 Path::procValue(
-    std::ctstring_t &a_procPath,    ///< file path to proc-file
-    std::ctstring_t &a_key          ///< target search data string
+    std::ctstring_t &a_procPath, ///< file path to proc-file
+    std::ctstring_t &a_key       ///< target search data string
 )
 {
-    std::tstring_t     sRv;
-    std::vec_tstring_t procFile;
+	auto cond = [&](std::ctstring_t &it_line) -> bool_t
+	{
+		return (it_line.find(a_key) != std::tstring_t::npos);
+	};
 
-    proc(a_procPath, &procFile);
+	auto op = [](std::ctstring_t &a_line) -> std::tstring_t
+	{
+		std::tstring_t sRv;
 
-    for (const auto &it_line : procFile) {
-        std::csize_t pos = StringCI::find(it_line, a_key);
-        xCHECK_DO(pos == std::tstring_t::npos, continue);
+		// parse value
+		std::csize_t delimPos = a_line.find(xT(":"));
+		xTEST_DIFF(delimPos, std::string::npos);
 
-        // parse value
-        std::csize_t delimPos = it_line.find(xT(":"));
-        xTEST_DIFF(delimPos, std::string::npos);
+		sRv = a_line.substr(delimPos + 1);
+		sRv = String::trimSpace(sRv);
 
-        sRv = it_line.substr(delimPos + 1);
-        sRv = String::trimSpace(sRv);
+		return sRv;
+	};
 
-        break;
+	return proc(a_procPath, cond, op);
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Path::readSymLink(
+	std::ctstring_t &a_symLinkPath
+)
+{
+    bool_t bRv = FileInfo(a_symLinkPath).isExists();
+    xCHECK_RET(!bRv, std::tstring_t());
+
+    std::string asRv(Path::maxSize() + 1, {});
+
+    ssize_t readed {- 1};
+
+    for ( ; ; ) {
+        readed = ::readlink(xT2A(a_symLinkPath).c_str(), &asRv.at(0), asRv.size() *
+            sizeof(std::string::value_type));
+        xCHECK_DO(readed == ssize_t(- 1), break);	// TODO: test - add ??
+        xCHECK_DO(asRv.size() * sizeof(std::string::value_type) > static_cast<size_t>(readed), break);
+
+        asRv.resize(asRv.size() * 2);
     }
 
-    return sRv;
+    asRv.resize( static_cast<std::size_t>(readed) );
+
+    return xA2T(asRv);
 }
 //-------------------------------------------------------------------------------------------------
 
