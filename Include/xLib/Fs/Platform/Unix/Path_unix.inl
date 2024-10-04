@@ -364,7 +364,7 @@ Path::proc(
 
     std::vec_tstring_t vsRv;
 
-    std::tifstream_t ifs( xT2A(a_procPath) );
+    std::tifstream_t ifs(a_procPath);
     xTEST(!! ifs);
     xTEST(!ifs.fail());
     xTEST(ifs.good());

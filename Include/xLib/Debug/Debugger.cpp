@@ -183,7 +183,7 @@ Debugger::_loggingPlain(
 
     // write to file
     try {
-        std::tofstream_t ofs( xT2A(filePath) );
+        std::tofstream_t ofs(filePath);
         xCHECK_DO(ofs.fail(), return);
 
         std::ctstring_t msg = Format::str(

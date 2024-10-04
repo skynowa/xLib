@@ -88,7 +88,7 @@ FileText::read(
 
     std::locale::global( std::locale() );
 
-    std::tifstream_t ifs(xT2A(_filePath));
+    std::tifstream_t ifs(_filePath);
     xTEST(!! ifs);
     xTEST(!ifs.fail());
     xTEST(ifs.good());
