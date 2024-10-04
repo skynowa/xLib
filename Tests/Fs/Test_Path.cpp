@@ -1171,15 +1171,17 @@ Test_Path::unit()
 		xTEST_EQ(m_sRv, std::tstring_t(xT("GenuineIntel")));
 	}
 
-	xTEST_CASE("proc")
-	{
-		// TEST: Path::proc()
-	}
-
 	xTEST_CASE("procValue")
 	{
 		m_sRv = Path::procValue(xT("/proc/cpuinfo"), xT("vendor_id"));
 		xTEST_EQ(m_sRv, std::tstring_t(xT("GenuineIntel")));
+	}
+
+	xTEST_CASE("proc")
+	{
+		std::vec_tstring_t fileLines;
+		Path::proc(xT("/proc/cpuinfo"), &fileLines);
+		xTEST(!fileLines.empty());
 	}
 
 	xTEST_CASE("readSymLink")

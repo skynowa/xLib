@@ -345,9 +345,9 @@ Path::_nameMaxSize_impl()
 /* static */
 std::tstring_t
 Path::proc(
-	std::ctstring_t                                      &a_procPath,
-	std::function<bool_t(std::ctstring_t &line)>          a_cond,
-	std::function<std::tstring_t(std::ctstring_t &line)>  a_op
+	std::ctstring_t                                      &a_procPath,	///< file path to proc-file
+	std::function<bool_t(std::ctstring_t &line)>          a_cond,		///< condition
+	std::function<std::tstring_t(std::ctstring_t &line)>  a_op			///< operation
 )
 {
     // check for existence "/proc" directory
@@ -380,6 +380,35 @@ Path::proc(
 	}
 
 	return {};
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+Path::procValue(
+    std::ctstring_t &a_procPath, ///< file path to proc-file
+    std::ctstring_t &a_key       ///< target search data string
+)
+{
+	auto cond = [&](std::ctstring_t &it_line) -> bool_t
+	{
+		return (it_line.find(a_key) != std::tstring_t::npos);
+	};
+
+	auto op = [](std::ctstring_t &a_line) -> std::tstring_t
+	{
+		std::tstring_t sRv;
+
+		// parse value
+		std::csize_t delimPos = a_line.find(xT(":"));
+		xTEST_DIFF(delimPos, std::string::npos);
+
+		sRv = a_line.substr(delimPos + 1);
+		sRv = String::trimSpace(sRv);
+
+		return sRv;
+	};
+
+	return proc(a_procPath, cond, op);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -421,35 +450,6 @@ Path::proc(
 
     // out
     a_fileLines->swap(vsRv);
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-Path::procValue(
-    std::ctstring_t &a_procPath,    ///< file path to proc-file
-    std::ctstring_t &a_key          ///< target search data string
-)
-{
-	auto cond = [&](std::ctstring_t &it_line) -> bool_t
-	{
-		return (it_line.find(a_key) != std::tstring_t::npos);
-	};
-
-	auto op = [](std::ctstring_t &a_line) -> std::tstring_t
-	{
-		std::tstring_t sRv;
-
-		// parse value
-		std::csize_t delimPos = a_line.find(xT(":"));
-		xTEST_DIFF(delimPos, std::string::npos);
-
-		sRv = a_line.substr(delimPos + 1);
-		sRv = String::trimSpace(sRv);
-
-		return sRv;
-	};
-
-	return proc(a_procPath, cond, op);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
