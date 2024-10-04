@@ -1148,6 +1148,33 @@ Test_Path::unit()
     xTEST_CASE("proc")
     {
 	#if xENV_UNIX
+		auto condition = [](std::ctstring_t &it_line) -> bool_t
+		{
+			return it_line.find(xT("vendor_id")) != std::tstring_t::npos;
+		};
+
+		auto op = [](std::ctstring_t &a_line) -> std::tstring_t
+		{
+			std::tstring_t sRv;
+
+			// parse value
+			std::csize_t delimPos = a_line.find(xT(":"));
+			xTEST_DIFF(delimPos, std::string::npos);
+
+			sRv = a_line.substr(delimPos + 1);
+			sRv = String::trimSpace(sRv);
+
+			return sRv;
+		};
+
+		m_sRv = Path::proc(xT("/proc/cpuinfo"), condition, op);
+		Cout() << xTRACE_MSGBOX(m_sRv);
+	#endif
+    }
+
+    xTEST_CASE("proc")
+    {
+	#if xENV_UNIX
         // TEST: Path::proc()
 	#endif
     }

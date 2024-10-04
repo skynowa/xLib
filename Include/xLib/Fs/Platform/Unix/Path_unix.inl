@@ -343,6 +343,34 @@ Path::_nameMaxSize_impl()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
+std::tstring_t
+Path::proc(
+	std::ctstring_t                                      &a_procPath,
+	std::function<bool_t(std::ctstring_t &line)>          a_cond,
+	std::function<std::tstring_t(std::ctstring_t &line)>  a_op
+)
+{
+	std::tifstream_t ifs(a_procPath);
+	xTEST(!! ifs);
+	xTEST(!ifs.fail());
+	xTEST(ifs.good());
+	xTEST(ifs.is_open());
+	xTEST(!ifs.eof());
+
+	for ( ; !ifs.eof(); ) {
+		std::tstring_t line;
+		std::getline(ifs, line);
+		xCHECK_DO(line.empty(), continue);
+
+		if ( a_cond(line) ) {
+			return a_op(line);
+		}
+	}
+
+	return {};
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
 void_t
 Path::proc(
     std::ctstring_t    &a_procPath,
