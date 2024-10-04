@@ -412,47 +412,6 @@ Path::procValue(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-void_t
-Path::proc(
-    std::ctstring_t    &a_procPath,
-    std::vec_tstring_t *a_fileLines
-)
-{
-    // check for existence "/proc" directory
-    {
-        bool_t bRv {};
-
-        Dir proc(xT("/proc"));
-
-        bRv = proc.isExists();
-        xCHECK_DO(!bRv, Trace() << xT("::: xLib: warning (/proc dir not mount) :::"); return);
-
-        bRv = proc.isEmpty();
-        xCHECK_DO(bRv, Trace() << xT("::: xLib: warning (/proc dir is empty) :::");  return);
-    }
-
-    std::vec_tstring_t vsRv;
-
-    std::tifstream_t ifs(a_procPath);
-    xTEST(!! ifs);
-    xTEST(!ifs.fail());
-    xTEST(ifs.good());
-    xTEST(ifs.is_open());
-    xTEST(!ifs.eof());
-
-    for ( ; !ifs.eof(); ) {
-        std::tstring_t line;
-        std::getline(ifs, line);
-        xCHECK_DO(line.empty(), continue);
-
-        vsRv.push_back(line);
-    }
-
-    // out
-    a_fileLines->swap(vsRv);
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
 std::tstring_t
 Path::readSymLink(
 	std::ctstring_t &a_symLinkPath

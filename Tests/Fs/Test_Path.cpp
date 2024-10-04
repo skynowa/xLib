@@ -1177,13 +1177,6 @@ Test_Path::unit()
 		xTEST_EQ(m_sRv, std::tstring_t(xT("GenuineIntel")));
 	}
 
-	xTEST_CASE("proc")
-	{
-		std::vec_tstring_t fileLines;
-		Path::proc(xT("/proc/cpuinfo"), &fileLines);
-		xTEST(!fileLines.empty());
-	}
-
 	xTEST_CASE("readSymLink")
 	{
 		m_sRv = Path::readSymLink(xT("/proc/self/exe"));
