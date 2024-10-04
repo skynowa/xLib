@@ -417,30 +417,6 @@ Path::procValue(
     std::ctstring_t &a_key          ///< target search data string
 )
 {
-#if 0
-	std::tstring_t     sRv;
-	std::vec_tstring_t procFile;
-
-	proc(a_procPath, &procFile);
-
-	for (const auto &it_line : procFile) {
-		std::csize_t pos = StringCI::find(it_line, a_key);
-		xCHECK_DO(pos == std::tstring_t::npos, continue);
-
-		// parse value
-		std::csize_t delimPos = it_line.find(xT(":"));
-		xTEST_DIFF(delimPos, std::string::npos);
-
-		sRv = it_line.substr(delimPos + 1);
-		sRv = String::trimSpace(sRv);
-
-		break;
-	}
-
-	return sRv;
-#else
-	std::tstring_t sRv;
-
 	auto cond = [&](std::ctstring_t &it_line) -> bool_t
 	{
 		return StringCI::find(it_line, a_key) != std::tstring_t::npos;
@@ -460,10 +436,7 @@ Path::procValue(
 		return sRv;
 	};
 
-	sRv = Path::proc(a_procPath, cond, op);
-
-	return sRv;
-#endif
+	return proc(a_procPath, cond, op);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
