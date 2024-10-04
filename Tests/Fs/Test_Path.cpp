@@ -1145,9 +1145,9 @@ Test_Path::unit()
         xTEST_LESS(size_t(0), m_stRv);
     }
 
+#if xENV_UNIX
     xTEST_CASE("proc")
     {
-	#if xENV_UNIX
 		auto condition = [](std::ctstring_t &it_line) -> bool_t
 		{
 			return it_line.find(xT("vendor_id")) != std::tstring_t::npos;
@@ -1170,10 +1170,8 @@ Test_Path::unit()
 		m_sRv = Path::proc(xT("/proc/cpuinfo"), condition, op);
 		Cout() << xTRACE_MSGBOX(m_sRv);
 		Cout() << xPRINT_VAR(m_sRv) << std::endl;
-	#endif
     }
 
-#if xENV_UNIX
     xTEST_CASE("proc")
     {
         // TEST: Path::proc()
