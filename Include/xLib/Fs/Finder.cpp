@@ -264,5 +264,18 @@ Finder::_moveFirst()
     return _moveFirst_impl();
 }
 //-------------------------------------------------------------------------------------------------
+bool_t
+Finder::_isDot() const
+{
+    std::ctstring_t &name = entryName();
+    if (name == Const::dot() ||
+        name == Const::dot2())
+    {
+    	return true;
+    }
+
+    return false;
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace
