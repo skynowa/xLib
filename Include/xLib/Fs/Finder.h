@@ -32,6 +32,8 @@ public:
         ///< shell wild card filter
     std::tstring_t    entryName() const;
         ///< entry name
+    bool_t            isDot() const;
+        ///< check entry is dot ("." or "..")
     std::tstring_t    entryPath() const;
         ///< entry path
     // TODO: [skynowa] fileTypes - use FileType class
@@ -71,8 +73,6 @@ private:
 
     bool_t _moveFirst();
         ///< move first entry
-    bool_t _isDot() const;
-        ///< check entry is dot ("." or "..")
 
 xPLATFORM_IMPL:
     std::tstring_t    _entryName_impl() const;
