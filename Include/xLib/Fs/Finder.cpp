@@ -75,10 +75,23 @@ Finder::entryName() const
 {
 	xTEST(_entry.handle.isValid());
 
-    std::tstring_t sRv = _entryName_impl();
+    std::ctstring_t sRv = _entryName_impl();
     xTEST(!sRv.empty());
 
     return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Finder::isDot() const
+{
+    std::ctstring_t &name = entryName();
+    if (name == Const::dot() ||
+        name == Const::dot2())
+    {
+    	return true;
+    }
+
+    return false;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -156,8 +169,7 @@ Finder::dirs(
     }
 
     for (Finder finder(a_rootDirPath, a_shellFilter); finder.moveNext(); ) {
-        xCHECK_DO(finder.entryName() == Const::dot(),  continue);
-        xCHECK_DO(finder.entryName() == Const::dot2(), continue);
+        xCHECK_DO(finder.isDot(), continue);
 
         // set filter for dirs
         if ( !(static_cast<FileType::types_t>(FileType::Type::Directory) & finder.fileTypes()) ) {
@@ -189,8 +201,7 @@ Finder::files(
 
     if (!a_isRecursively) {
         for (Finder finder(a_rootDirPath, a_shellFilter); finder.moveNext(); ) {
-            xCHECK_DO(finder.entryName() == Const::dot(),  continue);
-            xCHECK_DO(finder.entryName() == Const::dot2(), continue);
+            xCHECK_DO(finder.isDot(), continue);
 
             // set filter for files
             if (static_cast<FileType::types_t>(FileType::Type::Directory) & finder.fileTypes()) {

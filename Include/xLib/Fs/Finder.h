@@ -32,6 +32,8 @@ public:
         ///< shell wild card filter
     std::tstring_t    entryName() const;
         ///< entry name
+    bool_t            isDot() const;
+        ///< check entry is dot ("." or "..")
     std::tstring_t    entryPath() const;
         ///< entry path
     // TODO: [skynowa] fileTypes - use FileType class
