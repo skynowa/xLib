@@ -75,7 +75,7 @@ Finder::entryName() const
 {
 	xTEST(_entry.handle.isValid());
 
-    std::tstring_t sRv = _entryName_impl();
+    std::ctstring_t sRv = _entryName_impl();
     xTEST(!sRv.empty());
 
     return sRv;
