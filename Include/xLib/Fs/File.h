@@ -41,9 +41,9 @@ public:
 		/// errors codes
     {
 		Ok             = 0, ///< Success
-		DestFileExists = 1, ///< Destination file is exists");
-		CopyFail       = 2, ///< Copy fail");
-		FilesDiffrent  = 3, ///< Files are diffrent");
+		DestFileExists = 1, ///< Destination file is exists
+		CopyFail       = 2, ///< Copy fail
+		FilesDiffrent  = 3, ///< Files are diffrent
 		Unknown        = 4  ///< Unknown
 	};
 	xUSING_CONST(CopyError);
