@@ -182,8 +182,7 @@ endif()
 
 #--------------------------------------------------------------------------------------------------
 set(cmCMAKE_VERSION       ${CMAKE_VERSION})
-set(cmXLIB_COMPILER_FLAGS   ${CMAKE_CXX_FLAGS})
-set(cmXLIB_COMPILER_C_FLAGS ${CMAKE_C_FLAGS})
+set(cmXLIB_COMPILER_FLAGS ${CMAKE_CXX_FLAGS})
 set(cmXLIB_LIBRARIES      ${XLIB_LIBRARIES}) # TODO:
 #--------------------------------------------------------------------------------------------------
 
@@ -199,10 +198,6 @@ message(STATUS "cmXLIB_COMPILER_FLAGS: ${cmXLIB_COMPILER_FLAGS}")
 message(STATUS "XLIB_INCLUDES:         ${XLIB_INCLUDES}")
 message(STATUS "XLIB_LIBRARIES:        ${XLIB_LIBRARIES}")
 message(STATUS "XLIB_SYS_LIBRARIES:    ${XLIB_SYS_LIBRARIES}")
-
-
-message(STATUS "CMAKE_CXX_FLAGS:    ${CMAKE_CXX_FLAGS}")
-message(STATUS "CMAKE_C_FLAGS:      ${CMAKE_C_FLAGS}")
 #--------------------------------------------------------------------------------------------------
 
 
