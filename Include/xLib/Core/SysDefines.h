@@ -12,7 +12,6 @@
 #include <xLib/Config.h>
 #include <cstdlib> // compilers
 #include <climits> // standard C libraries, <features.h>
-#include <stdio.h>
 //-------------------------------------------------------------------------------------------------
 ///\name Utils
 ///\{
