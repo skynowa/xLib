@@ -7,9 +7,17 @@
 #--------------------------------------------------------------------------------------------------
 # options (system)
 set(PROJECT_TYPE                  CXX)
+
+# C++
 set(CMAKE_CXX_STANDARD            20)
 set(CMAKE_CXX_STANDARD_REQUIRED   ON)
 set(CMAKE_CXX_EXTENSIONS          OFF)
+
+# C
+set(CMAKE_C_STANDARD              20)
+set(CMAKE_C_STANDARD_REQUIRED     ON)
+set(CMAKE_C_EXTENSIONS            OFF)
+
 set(CMAKE_COLOR_MAKEFILE          ON)
 set(CMAKE_VERBOSE_MAKEFILE        OFF)
 set(CMAKE_REQUIRED_QUIET          ON)
@@ -59,6 +67,7 @@ message(STATUS "CMAKE_SYSTEM_PREFIX_PATH       : ${CMAKE_SYSTEM_PREFIX_PATH}")
 message(STATUS "CMAKE_CXX_COMPILER_ID          : ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "CMAKE_CXX_COMPILER_VERSION     : ${CMAKE_CXX_COMPILER_VERSION}")
 message(STATUS "CMAKE_CXX_STANDARD             : ${CMAKE_CXX_STANDARD}")
+message(STATUS "CMAKE_C_STANDARD               : ${CMAKE_C_STANDARD}")
 message(STATUS "CMAKE_CONFIGURATION_TYPES      : ${CMAKE_CONFIGURATION_TYPES}")
 message(STATUS "cmCMAKE_BUILD_TYPE             : ${cmCMAKE_BUILD_TYPE}")
 message(STATUS "CMAKE_BUILD_PARALLEL_LEVEL     : ${CMAKE_BUILD_PARALLEL_LEVEL}")
