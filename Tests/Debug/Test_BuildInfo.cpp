@@ -5,6 +5,7 @@
 
 
 #include <xLib/xLib.h>
+
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_BuildInfo)
 //---------------------------------------------------------------------------
@@ -39,8 +40,8 @@ Test_BuildInfo::unit()
     xTEST_CASE("langStandart")
     {
         m_sRv = info.langStandart();
-        Cout() << xTRACE_VAR(m_sRv);
-        Cout() << xTRACE_VAR(__STDC_VERSION__);
+        // Cout() << xTRACE_VAR(m_sRv);
+        // Cout() << xTRACE_VAR(__STDC_VERSION__);
         xTEST(!m_sRv.empty());
         xTEST_EQ(m_sRv, xT("C89, C++20"));
     }
