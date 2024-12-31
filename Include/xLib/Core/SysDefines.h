@@ -3,6 +3,7 @@
  * \brief predefined macros
  *
  * https://sourceforge.net/p/predef/wiki/Home/
+ * https://github.com/jeffhammond/HPCInfo/blob/master/docs/Preprocessor-Macros.md
  */
 
 
@@ -31,25 +32,25 @@
 //-------------------------------------------------------------------------------------------------
 ///\name C language standard
 ///\{
-#if   (__STDC_VERSION__ >= 202002L)
+#if   (__STDC_VERSION__ > 201703L)
     #define xLANG_C20 1
         ///< C20
-#elif (__STDC_VERSION__ >= 201703L)
+#elif (__STDC_VERSION__ == 201703L)
     #define xLANG_C17 1
         ///< C17
-#elif (__STDC_VERSION__ >= 201402L)
+#elif (__STDC_VERSION__ == 201402L)
     #define xLANG_C14 1
         ///< C14
-#elif (__STDC_VERSION__ >= 201112L)
+#elif (__STDC_VERSION__ == 201112L)
     #define xLANG_C11 1
         ///< ISO/IEC 9899:2011
-#elif (__STDC_VERSION__ >= 201112L)
+#elif (__STDC_VERSION__ == 201112L)
     #define xLANG_C11 1
         ///< ISO/IEC 9899:2011
-#elif (__STDC_VERSION__ >= 199901L)
+#elif (__STDC_VERSION__ == 199901L)
     #define xLANG_C99 1
         ///< ISO/IEC 9899:1999
-#elif (__STDC_VERSION__ >= 199409L)
+#elif (__STDC_VERSION__ == 199409L)
     #define xLANG_C94 1
         ///< ISO/IEC 9899-1:1994
 #elif defined(__STDC_VERSION__)
@@ -70,23 +71,23 @@
 //-------------------------------------------------------------------------------------------------
 ///\name C++ language standard
 ///\{
-#if   (__cplusplus >= 202002L)
+#if   (__cplusplus > 201703L)
 	// TODO: [skynowa] xLANG_CPP20 (Android)
 	#define xLANG_CPP20 1
 		///< ISO/IEC 14882:2020
-#elif (__cplusplus >= 201703L)
+#elif (__cplusplus == 201703L)
 	// TODO: [skynowa] xLANG_CPP17 (Android)
 	#define xLANG_CPP17 1
 		///< ISO/IEC 14882:2011
-#elif (__cplusplus >= 201402L)
+#elif (__cplusplus == 201402L)
 	// TODO: [skynowa] xLANG_CPP14 (Android)
 	#define xLANG_CPP14 1
 		///< ISO/IEC 14882:2011
-#elif (__cplusplus >= 201103L)
+#elif (__cplusplus == 201103L)
 	// TODO: [skynowa] xLANG_CPP11 (Android)
 	#define xLANG_CPP11 1
 		///< ISO/IEC 14882:2011
-#elif (__cplusplus >= 199711L)
+#elif (__cplusplus == 199711L)
     #define xLANG_CPP98 1
         ///< ISO/IEC 14882:1998
 #elif (__embedded_cplusplus)
