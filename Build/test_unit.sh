@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-UNIT_TESTS=(Path)
+UNIT_TESTS=(BuildInfo)
 # UNIT_TESTS=(Type)
 # UNIT_TESTS=(StackTrace)
 # UNIT_TESTS=(BuildInfo)
