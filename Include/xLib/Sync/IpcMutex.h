@@ -54,5 +54,10 @@ xPLATFORM_IMPL:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-// TODO: IpcSemaphore_unix -> IpcMutex_unix.inl - re copy paste
+/**
+ * TODO
+ *
+ * - IpcSemaphore_unix -> IpcMutex_unix.inl - re copy paste
+ * - https://github.com/jeffhammond/HPCInfo/blob/master/posix/threads/interprocess_mutex.c
+ */
 //-------------------------------------------------------------------------------------------------
