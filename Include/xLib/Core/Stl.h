@@ -2,7 +2,9 @@
  * \file  Stl.h
  * \brief STL all headers
  *
- * Copy from CppTest
+ * Used in:
+ * - https://github.com/skynowa/xLib/blob/master/Include/xLib/Core/Stl.h
+ * - https://github.com/skynowa/CppTest/blob/master/Stl.h
  */
 
 
@@ -10,8 +12,9 @@
 
 // C
 #ifndef _GLIBCXX_NO_ASSERT
-#include <cassert>
+    #include <cassert>
 #endif
+
 #include <cctype>
 #include <cerrno>
 #include <cfloat>
@@ -28,23 +31,23 @@
 #include <cstring>
 #include <ctime>
 
-#if (__cplusplus >= 201103L)	// xLANG_CPP98
-#include <ccomplex>
-#include <cfenv>
-#include <cinttypes>
+#if (__cplusplus >= 201103L) // xLANG_CPP11
+    #include <ccomplex>
+    #include <cfenv>
+    #include <cinttypes>
 
-#if defined(__APPLE__)
-	//
-#else
-	#include <cstdalign>
-	#include <cuchar>
-#endif
+    #if defined(__APPLE__)
+        //
+    #else
+        #include <cstdalign>
+        #include <cuchar>
+    #endif
 
-#include <cstdbool>
-#include <cstdint>
-#include <ctgmath>
-#include <cwchar>
-#include <cwctype>
+    #include <cstdbool>
+    #include <cstdint>
+    #include <ctgmath>
+    #include <cwchar>
+    #include <cwctype>
 #endif
 
 // C++
@@ -82,50 +85,55 @@
 #include <vector>
 
 // C++11
-#include <array>
-#include <chrono>
-#include <codecvt>
-#include <forward_list>
-#include <initializer_list>
-#include <random>
-#include <ratio>
-#include <regex>
-#include <scoped_allocator>
-#include <system_error>
-#include <tuple>
-#include <typeindex>
-#include <type_traits>
-#include <unordered_map>
-#include <unordered_set>
+#if (__cplusplus >= 201103L) // xLANG_CPP11
+    #include <array>
+    #include <chrono>
+    #include <codecvt>
+    #include <forward_list>
+    #include <initializer_list>
+    #include <random>
+    #include <ratio>
+    #include <regex>
+    #include <scoped_allocator>
+    #include <system_error>
+    #include <tuple>
+    #include <typeindex>
+    #include <type_traits>
+    #include <unordered_map>
+    #include <unordered_set>
 
-// C++11 - MT / IPC
-#include <thread>
-#include <atomic>
-#include <condition_variable>
-#include <mutex>
-#include <future>
-
-#if (__cplusplus >= 201402L)	// xLANG_CPP14
-#include <shared_mutex>
+    // MT / IPC
+    #include <thread>
+    #include <atomic>
+    #include <condition_variable>
+    #include <mutex>
+    #include <future>
 #endif
 
-#if (__cplusplus >= 201703L)	// xLANG_CPP17
-#include <any>
-#include <optional>
-#include <variant>
-#include <string_view>
-#include <charconv>
-#include <filesystem>
-// TODO: #include <execution>
+#if (__cplusplus >= 201402L) // xLANG_CPP14
+    // MT / IPC
+    #include <shared_mutex>
 #endif
 
-#if (__cplusplus >= 202002L)	// xLANG_CPP20
-#include <range/v3/core.hpp>
-#include <range/v3/view/iota.hpp>
-#include <range/v3/view/slice.hpp>
-#include <range/v3/view/cycle.hpp>
-#include <range/v3/view/repeat.hpp>
-#include <range/v3/view/repeat_n.hpp>
-#include <range/v3/view/reverse.hpp>
-#include <range/v3/view/sliding.hpp>
+#if (__cplusplus >= 201703L) // xLANG_CPP17
+    #include <any>
+    #include <optional>
+    #include <variant>
+    #include <string_view>
+    #include <charconv>
+    #include <filesystem>
+    // TODO: #include <execution>
+#endif
+
+#if (__cplusplus >= 202002L) // xLANG_CPP20
+    #if __has_include(<range/v3/core.hpp>)
+        #include <range/v3/core.hpp>
+        #include <range/v3/view/iota.hpp>
+        #include <range/v3/view/slice.hpp>
+        #include <range/v3/view/cycle.hpp>
+        #include <range/v3/view/repeat.hpp>
+        #include <range/v3/view/repeat_n.hpp>
+        #include <range/v3/view/reverse.hpp>
+        #include <range/v3/view/sliding.hpp>
+    #endif
 #endif
