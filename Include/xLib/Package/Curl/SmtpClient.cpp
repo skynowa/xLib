@@ -1,6 +1,6 @@
 /**
  * \file  SmtpClient.cpp
- * \brief Mail client
+ * \brief SMTP client
  */
 
 

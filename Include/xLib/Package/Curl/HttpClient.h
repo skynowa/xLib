@@ -87,7 +87,6 @@ protected:
 };
 xUSING_CONST(OptionOut);
 //-------------------------------------------------------------------------------------------------
-
 class HttpClient :
 	public Client
     /// HTTP client
