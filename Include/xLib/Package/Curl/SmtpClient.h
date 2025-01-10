@@ -34,6 +34,7 @@ public:
 				std::ctstring_t &body);
     virtual ~SmtpClient() = default;
 
+    xNO_DEFAULT_CONSTRUCT(SmtpClient)
     xNO_COPY_ASSIGN(SmtpClient)
 ///\}
 

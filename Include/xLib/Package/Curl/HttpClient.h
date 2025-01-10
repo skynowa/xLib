@@ -110,6 +110,7 @@ public:
 	explicit HttpClient(cbool_t isDebug);
 	virtual ~HttpClient() = default;
 
+	xNO_DEFAULT_CONSTRUCT(HttpClient)
 	xNO_COPY_ASSIGN(HttpClient)
 ///\}
 
