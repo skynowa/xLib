@@ -1,6 +1,6 @@
 /**
  * \file  SmtpClient.h
- * \brief Mail client
+ * \brief SMTP client
  *
  * https://github.com/curl/curl/blob/master/docs/examples/smtp-tls.c
  *
@@ -21,9 +21,8 @@ namespace xl::package::curl
 {
 
 class SmtpClient :
-    public
-		curl::Client
-    /// Mail client
+    public curl::Client
+    /// SMTP client
 {
 public:
 ///\name ctors, dtor
