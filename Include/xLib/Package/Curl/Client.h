@@ -45,6 +45,7 @@ public:
 	explicit  Client(cbool_t isDebug);
 	virtual  ~Client();
 
+	xNO_DEFAULT_CONSTRUCT(Client)
 	xNO_COPY_ASSIGN(Client)
 ///\}
 
