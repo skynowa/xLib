@@ -12,7 +12,7 @@
 
 ## Features
 
-- Language: C++ 17
+- Language: C++ 20
 - Platforms:
 
   - Windows: (XP >)
@@ -29,9 +29,7 @@
 
 ## Repositories
 
-- https://bitbucket.org/skynowa/xlib
 - https://github.com/skynowa/xLib
-- https://sourceforge.net/projects/x-lib/
 
 ## Dependencies
 
