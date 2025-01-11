@@ -68,6 +68,10 @@ private:
 //-------------------------------------------------------------------------------------------------
 #include "Bitset.inl"
 //-------------------------------------------------------------------------------------------------
-// TODO: https://gcc.gnu.org/onlinedocs/cpp/C_002b_002b-Named-Operators.html#C_002b_002b-Named-Operators
-// TODO: https://github.com/oliora/bitmask
+/**
+ * TODO
+ *
+ * https://gcc.gnu.org/onlinedocs/cpp/C_002b_002b-Named-Operators.html#C_002b_002b-Named-Operators
+ * https://github.com/oliora/bitmask
+ */
 //-------------------------------------------------------------------------------------------------
