@@ -81,6 +81,7 @@ private:
  * - delimiter (=)
  *
  * FAQ:
+ * - https://github.com/TUM-I5/SWE/blob/master/Source/Tools/Args.hpp
  * - https://github.com/CppMicroServices/CppMicroServices/blob/development/third_party/optionparser.h
  * - https://github.com/CLIUtils/CLI11 (https://cliutils.github.io/CLI11/book/chapters/options.html)
  * - https://github.com/docopt
