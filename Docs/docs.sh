@@ -5,7 +5,7 @@
 #
 
 # build - UI
-# doxywizard ./Documentation.doxyfile
+# doxywizard ./Doxyfile
 
 # build
-doxygen ./Documentation.doxyfile
+doxygen ./Doxyfile
