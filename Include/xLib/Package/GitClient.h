@@ -26,8 +26,8 @@ public:
 	bool           isGitDir() const;
 		///< check Git directory
 
-///@name Repositories
-///@{
+///\name Repositories
+///\{
 	std::tstring_t repoUrl() const;
 		///< get repo URL
 	std::tstring_t repoUrlName() const;
@@ -40,18 +40,18 @@ public:
 
 	std::tstring_t gitlabRepoGroupName() const;
 		///< Gitalb: get group repository name
-///@}
+///\}
 
-///@name Branches
-///@{
+///\name Branches
+///\{
 	std::tstring_t branchName() const;
 		///< get brach name
 	std::size_t    localBranchesNum() const;
 		///< number of local branches
-///@}
+///\}
 
-///@name Statuses
-///@{
+///\name Statuses
+///\{
 	std::tstring_t filesStatuses() const;
 		///< get source files statuses
 	void_t         commitsAheadBehind(std::size_t *aheadNum, std::size_t *behindNum) const;
@@ -66,7 +66,7 @@ public:
 		///< get tracked files
 	void_t         modifiedFilesLineFilter() const;
 		///< get modified lines line filter (JSON)
-///@}
+///\}
 
 private:
 	std::ctstring_t _gitPath;
