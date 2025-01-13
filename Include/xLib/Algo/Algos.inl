@@ -132,7 +132,7 @@ Algos::vectorRemove(
     const T        &a_value
 )
 {
-    a_vec.erase(std::remove(a_vec.cbegin(), a_vec.cend(), a_value), a_vec.cend());
+    a_vec.erase(std::remove(a_vec.begin(), a_vec.end(), a_value), a_vec.cend());
 }
 //-------------------------------------------------------------------------------------------------
 

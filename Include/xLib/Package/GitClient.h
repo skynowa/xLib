@@ -35,6 +35,9 @@ public:
 	std::tstring_t repoName() const;
 		///< get repository name
 
+	void_t         remoteRepoNames(std::vec_tstring_t *repoNames) const;
+		///< get remote repository names
+
 	std::tstring_t gitlabRepoGroupName() const;
 		///< Gitalb: get group repository name
 ///@}
@@ -70,6 +73,9 @@ private:
 
 	std::tstring_t _binPath() const;
 		///< path to binary file
+	void_t         _gitExecute(std::cvec_tstring_t &params, std::tstring_t *stdOut,
+	    				std::tstring_t *stdError) const;
+		///< execute Git proccess
 };
 
 } // namespace
