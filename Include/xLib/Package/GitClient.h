@@ -35,6 +35,9 @@ public:
 	std::tstring_t repoName() const;
 		///< get repository name
 
+	void_t         remoteRepoNames(std::vec_tstring_t *repoNames) const;
+		///< get remote repository names
+
 	std::tstring_t gitlabRepoGroupName() const;
 		///< Gitalb: get group repository name
 ///@}

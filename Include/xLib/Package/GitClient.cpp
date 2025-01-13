@@ -113,6 +113,26 @@ GitClient::repoName() const
 	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+GitClient::remoteRepoNames(
+	std::vec_tstring_t *out_repoNames	///< [out]
+) const
+{
+	xCHECK_DO(out_repoNames == nullptr, return);
+	xCHECK_DO(!isGitDir(), return);
+
+	out_repoNames->clear();
+
+	std::cvec_tstring_t params {"remote"};
+	std::tstring_t      stdOut;
+	std::tstring_t      stdError;
+
+	Process::execute(_gitPath, params, &stdOut, &stdError);
+
+	// [out]
+	String::split(String::trimSpace(stdOut), Const::nl(), out_repoNames);
+}
+//-------------------------------------------------------------------------------------------------
 std::tstring_t
 GitClient::gitlabRepoGroupName() const
 {
