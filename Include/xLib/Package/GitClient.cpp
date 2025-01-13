@@ -598,9 +598,9 @@ GitClient::_binPath() const
 //-------------------------------------------------------------------------------------------------
 void_t
 GitClient::_gitExecute(
-	std::cvec_tstring_t &a_params,		///<
-	std::tstring_t      *out_stdOut,	///< [out]
-	std::tstring_t      *out_stdError	///< [out]
+	std::cvec_tstring_t &a_params,		///< command line params
+	std::tstring_t      *out_stdOut,	///< [out] std::cout (maybe as nullptr)
+	std::tstring_t      *out_stdError	///< [out] std::cerr (maybe as nullptr)
 ) const
 {
 	Process::execute(_gitPath, a_params, out_stdOut, out_stdError);
