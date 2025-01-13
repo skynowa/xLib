@@ -28,7 +28,7 @@ GitClient::isGitDir() const
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath, params, &stdOut, &stdError);
+	_gitExecute(params, &stdOut, &stdError);
 	xCHECK_RET(!stdError.empty(), false);
 	xCHECK_RET((stdOut.find(xT(".git")) == std::tstring_t::npos), false);
 
@@ -65,7 +65,7 @@ GitClient::repoUrl() const
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath, params, &stdOut, &stdError);
+	_gitExecute(params, &stdOut, &stdError);
 
 	sRv = String::trimSpace(stdOut);
 
@@ -106,7 +106,7 @@ GitClient::repoName() const
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath, params, &stdOut, &stdError);
+	_gitExecute(params, &stdOut, &stdError);
 
 	sRv = String::trimSpace( Path(stdOut).fileBaseName() );
 
@@ -127,7 +127,7 @@ GitClient::remoteRepoNames(
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath, params, &stdOut, &stdError);
+	_gitExecute(params, &stdOut, &stdError);
 
 	// [out]
 	String::split(String::trimSpace(stdOut), Const::nl(), out_repoNames);
@@ -206,7 +206,7 @@ GitClient::branchName() const
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath, params, &stdOut, &stdError);
+	_gitExecute(params, &stdOut, &stdError);
 
 	if      ( stdOut.empty() ) {
 		sRv = xT("");
@@ -232,7 +232,7 @@ GitClient::localBranchesNum() const
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath, params, &stdOut, &stdError);
+	_gitExecute(params, &stdOut, &stdError);
 
 	std::vec_tstring_t values;
 	String::split(String::trimSpace(stdOut), Const::nl(), &values);
@@ -300,7 +300,7 @@ GitClient::filesStatuses() const
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath, params, &stdOut, &stdError);
+	_gitExecute(params, &stdOut, &stdError);
 
 	cbool_t isNoCommit  = StringCI::contains(stdOut, xT("nothing to commit"));
 	cbool_t isModified  = StringCI::contains(stdOut, xT("modified:"));
@@ -373,7 +373,7 @@ GitClient::commitsAheadBehind(
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath, params, &stdOut, &stdError);
+	_gitExecute(params, &stdOut, &stdError);
 
 	std::vec_tstring_t values;
 	String::split(stdOut, Const::ht(), &values);
@@ -394,7 +394,7 @@ GitClient::stashesNum() const
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath, params, &stdOut, &stdError);
+	_gitExecute(params, &stdOut, &stdError);
 
 	std::vec_tstring_t values;
 	String::split(String::trimSpace(stdOut), Const::nl(), &values);
@@ -419,7 +419,7 @@ GitClient::modifiedFiles(
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath, params, &stdOut, &stdError);
+	_gitExecute(params, &stdOut, &stdError);
 #if 0
 	Cout() << xTRACE_VAR(stdOut);
 	Cout() << xTRACE_VAR(stdError);
@@ -464,7 +464,7 @@ GitClient::trackedFiles(
 	std::tstring_t      stdOut;
 	std::tstring_t      stdError;
 
-	Process::execute(_gitPath, params_master_diff, &stdOut, &stdError);
+	_gitExecute(params_master_diff, &stdOut, &stdError);
 #if 0
 	Cout() << xTRACE_VAR(stdOut);
 	Cout() << xTRACE_VAR(stdError);
@@ -594,6 +594,25 @@ GitClient::_binPath() const
 	xTEST(!sRv.empty());
 
 	return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+GitClient::_gitExecute(
+	std::cvec_tstring_t &a_params,		///<
+	std::tstring_t      *out_stdOut,	///< [out]
+	std::tstring_t      *out_stdError	///< [out]
+) const
+{
+	Process::execute(_gitPath, a_params, out_stdOut, out_stdError);
+
+	// Fix
+	if (out_stdOut != nullptr) {
+		*out_stdOut   = String::trimSpace(*out_stdOut);
+	}
+
+	if (out_stdError != nullptr) {
+		*out_stdError = String::trimSpace(*out_stdError);
+	}
 }
 //-------------------------------------------------------------------------------------------------
 
