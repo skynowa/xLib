@@ -10,12 +10,11 @@
  * This library is cross-platform and can be compiled and used on
  * Windows, Linux, BSD, Apple OS famalies (x86, x64)
  *
- * \author  author:  skynowa \n
- *          e-mail:  skynowa@gmail.com \n
- *          skype:   skynowa777 \n
- *          web:     https://github.com/skynowa/xLib
+ * \author  author: skynowa \n
+ *          e-mail: skynowa@gmail.com \n
+ *          web:    https://github.com/skynowa/xLib
  *
- * \date    2008 - 2024
+ * \date    2008 - 2025
  *
  * \section sec_code_convention Code conventions
  */
