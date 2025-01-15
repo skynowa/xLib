@@ -1,13 +1,18 @@
 ################################################################################
-#   File: .gitignore
-#   Note: Dirs and files ignoring by GIT
+# \file  .gitignore
+# \brief Dirs and files ignoring by GIT
 #
 ################################################################################
 
 
 ################################################################################
 # dirs
+
+# Dcos
 Docs/html/
+Docs/latex/
+
+# Binaries
 [Bb]in/
 build/
 
@@ -45,4 +50,3 @@ xLib.kdev4
 
 # Conan
 CMakeUserPresets.json
-
