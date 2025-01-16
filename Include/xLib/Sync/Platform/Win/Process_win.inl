@@ -27,9 +27,9 @@ Process::_destruct_impl()
 //-------------------------------------------------------------------------------------------------
 void_t
 Process::_create_impl(
-    std::ctstring_t                     &a_filePath,
-    std::cvec_tstring_t                 &a_params,
-    const std::set<std::pair_tstring_t> &a_envs,
+    std::ctstring_t                     &a_filePath,  ///< file path
+    std::cvec_tstring_t                 &a_params,    ///< cmd paramas
+    const std::set<std::pair_tstring_t> &a_envs,      ///< env variables
     std::tstring_t                      *out_stdOut,  ///< [out] std::cout (maybe as nullptr)
     std::tstring_t                      *out_stdError ///< [out] std::cerr (maybe as nullptr)
 )
