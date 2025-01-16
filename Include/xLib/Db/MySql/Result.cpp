@@ -43,7 +43,7 @@ IResult::get()
  * This enables the client program to take proper action without knowing whether the query
  * was a SELECT (or SELECT-like) statement. The example shown here illustrates how this may be done.
  *
- * \example https://dev.mysql.com/doc/c-api/8.0/en/mysql-field-count.html
+ * \see https://dev.mysql.com/doc/c-api/8.0/en/mysql-field-count.html
  */
 std::size_t
 IResult::fields() const
