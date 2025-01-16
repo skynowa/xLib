@@ -173,9 +173,11 @@ Doc::isValidLight(
 	xCHECK_RET(a_str.empty(), false);
 
    /**
-    * https://xmlwriter.net/xml_guide/xml_declaration.shtml
+    * \see https://xmlwriter.net/xml_guide/xml_declaration.shtml
     *
+    * \code{.xml}
     * <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+    * \endcode
     */
 	constexpr std::ctstring_view_t xmlDeclBegin = xT("<?xml ");
 
