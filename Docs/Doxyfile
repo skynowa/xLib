@@ -2202,6 +2202,8 @@ INCLUDE_FILE_PATTERNS  =
 
 PREDEFINED             = xUSING_CONST(t)={} \
                          xPROPERTY_STATIC((ApplicationInfo, info, Info))={} \
+                         xFLOAT_OPERATOR(op)={} \
+                         xFLOAT_T_OPERATOR(op)={} \
                          \
                          xPUBLIC_STATIC=public \
                          xPRIVATE_STATIC=private \
