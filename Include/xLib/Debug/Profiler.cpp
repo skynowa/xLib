@@ -1,5 +1,5 @@
 /**
- * \file  Profiler.inl
+ * \file  Profiler.cpp
  * \brief code profiling
  */
 

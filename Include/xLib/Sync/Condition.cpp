@@ -1,5 +1,5 @@
 /**
- * \file   Condition.inl
+ * \file   Condition.cpp
  * \brief  condition variable
  */
 

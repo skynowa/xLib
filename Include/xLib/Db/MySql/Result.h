@@ -1,5 +1,5 @@
 /**
- * \file  IResult.h
+ * \file  Result.h
  * \brief MySql client
  *
  * \see mysqlpp

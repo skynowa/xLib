@@ -1,5 +1,5 @@
 /**
- * \file  Config.inl
+ * \file  Config.cpp
  * \brief config file
  */
 
@@ -15,8 +15,6 @@
 namespace xl::fs
 {
 
-std::ctstring_t Config::_separator = Const::equal();
-
 /**************************************************************************************************
 *    public: creation
 *
@@ -31,8 +29,9 @@ Config::Config() :
 Config::Config(
     std::ctstring_t &a_filePath
 ) :
-	_fileInfo(a_filePath),
-	_file    (a_filePath)
+	_fileInfo (a_filePath),
+	_file     (a_filePath),
+	_separator(Const::equal())
 {
     xTEST(!a_filePath.empty());
     xTEST(!_separator.empty());

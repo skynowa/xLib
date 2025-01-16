@@ -1,5 +1,5 @@
 /**
- * \file  FileType.inl
+ * \file  FileType.cpp
  * \brief file type
  */
 

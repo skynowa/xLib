@@ -1,5 +1,5 @@
 /**
- * \file  ThreadStorage.inl
+ * \file  ThreadStorage.cpp
  * \brief thread local storage
  */
 

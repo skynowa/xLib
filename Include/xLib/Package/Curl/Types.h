@@ -1,5 +1,5 @@
 /**
- * \file  CurlTypes.h
+ * \file  Types.h
  * \brief CURL client
  */
 

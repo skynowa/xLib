@@ -1,5 +1,5 @@
 /**
- * \file  Base64.inl
+ * \file  Base64.cpp
  * \brief Base64
  */
 

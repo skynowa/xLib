@@ -1,5 +1,5 @@
 /**
- * \file  AutoProfiler.inl
+ * \file  AutoProfiler.cpp
  * \brief auto code profiling
  */
 

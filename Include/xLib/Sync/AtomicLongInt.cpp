@@ -1,5 +1,5 @@
 /**
- * \file  AtomicLongInt.inl
+ * \file  AtomicLongInt.cpp
  * \brief AtomicLongInt operartions with long_t
  */
 

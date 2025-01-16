@@ -1,5 +1,5 @@
 /**
- * \file  IpcMutex.inl
+ * \file  IpcMutex.cpp
  * \brief mutex
  */
 

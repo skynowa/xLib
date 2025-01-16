@@ -1,5 +1,5 @@
 /**
- * \file  DnsClient.inl
+ * \file  DnsClient.cpp
  * \brief DNS client
  */
 

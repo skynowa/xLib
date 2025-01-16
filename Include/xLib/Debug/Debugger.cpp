@@ -1,5 +1,5 @@
 /**
- * \file  Debugger.inl
+ * \file  Debugger.cpp
  * \brief debugger
  */
 

@@ -1,5 +1,5 @@
 /**
- * \file  Thread.inl
+ * \file  Thread.cpp
  * \brief thread
  */
 
