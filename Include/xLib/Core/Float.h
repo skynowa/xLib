@@ -74,7 +74,7 @@ public:
 #undef xFLOAT_T_OPERATOR
 ///\}
 
-///\name Determines
+///\name Determinators
 ///\{
 	bool_t isNull() const;
 		///< checks if the given number is 0.0
@@ -121,7 +121,7 @@ FLongDouble operator ""xld (culonglong_t value);
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-#include <xLib/Core/Float.inl>
+#include "Float.inl"
 
 /**
  * [+] struct Float :
