@@ -135,8 +135,8 @@ public:
     bool_t isHandleValid() const;
     bool_t isIdValid() const;
 
-    static bool_t isHandleValid(chandle_t &handle);
-    static bool_t isIdValid(cid_t &id);
+    static bool_t isHandleValid(chandle_t handle);
+    static bool_t isIdValid(cid_t id);
 
     // other
     handle_t handle() const;

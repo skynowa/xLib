@@ -401,7 +401,7 @@ Thread::isIdValid() const
 /* static */
 bool_t
 Thread::isHandleValid(
-	chandle_t &a_handle
+	chandle_t a_handle
 )
 {
 	bool_t bRv {};
@@ -422,7 +422,7 @@ Thread::isHandleValid(
 /* static */
 bool_t
 Thread::isIdValid(
-	const id_t &a_id
+	const id_t a_id
 )
 {
 	bool_t bRv {};
