@@ -16,7 +16,7 @@ namespace xl::core
 
 class OStream :
 	public IStr
-    ///< print string
+    /// print string
 {
 public:
 ///\name ctors, dtor
