@@ -65,6 +65,7 @@ Console::_setAttributes_impl(
     Foreground foregroundColor {};
     {
        /**
+        * \code{.c++}
         * #define COLOR_BLACK     0
         * #define COLOR_BLUE      1
         * #define COLOR_GREEN     2
@@ -81,6 +82,7 @@ Console::_setAttributes_impl(
         * #define COLOR_LTPURPLE  D
         * #define COLOR_LTYELLOW  E
         * #define COLOR_LTWHITE   F
+        * \endcode
         */
 
         const WORD foregroundColorDefault {};
