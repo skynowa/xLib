@@ -138,7 +138,7 @@ std::ctstring_t langDirName   = xT("Lang");
 namespace xl::package
 {
 
-///\cond Doxygen - off
+///\cond Doxygen_OFF
 ApplicationInfo Application::_info;
 ///\endcond
 //-------------------------------------------------------------------------------------------------
