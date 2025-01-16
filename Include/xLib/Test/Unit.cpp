@@ -132,7 +132,7 @@ bool_t
 Unit::unit() /* = 0 */
 {
    /**
-    * \example unit
+    * \example Unit
     *
     * \code
     * xTEST_CASE("CaseName")
