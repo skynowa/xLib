@@ -57,7 +57,7 @@
 #endif
     ///< calling convention
 //-------------------------------------------------------------------------------------------------
-///\name usings
+///\name Usings
 ///\{
 #define xUSING_CONST(t) \
     using c##t = const t
