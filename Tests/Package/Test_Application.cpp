@@ -128,7 +128,7 @@ public:
 	{
 	}
 
-    xNO_COPY_ASSIGN(UserApplication)
+    xNO_COPY_ASSIGN(UserApplication);
 
     virtual ExitCode
     onRun() override
