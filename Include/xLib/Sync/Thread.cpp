@@ -422,7 +422,7 @@ Thread::isHandleValid(
 /* static */
 bool_t
 Thread::isIdValid(
-	const id_t a_id
+	cid_t a_id
 )
 {
 	bool_t bRv {};
@@ -526,7 +526,7 @@ Thread::open(
 //-------------------------------------------------------------------------------------------------
 bool_t
 Thread::isCurrent(
-    const Thread::id_t &a_id
+    cid_t a_id
 )
 {
     return _isCurrent_impl(a_id);

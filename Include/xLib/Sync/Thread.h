@@ -155,7 +155,7 @@ public:
         ///< opens an existing thread object
 
     // current thread
-    static bool_t   isCurrent(cid_t &id);
+    static bool_t   isCurrent(cid_t id);
         ///< is current id
     static id_t     currentId();
         ///< get the thread identifier of the calling thread
