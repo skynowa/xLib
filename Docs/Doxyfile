@@ -1598,7 +1598,9 @@ PREDEFINED             = "xNAMESPACE_ANONYM_BEGIN=namespace{" \
                          "xNAMESPACE_BEGIN2(n1,n2)=namespace n1{namespace n2{" \
                          xNAMESPACE_END2(n1,n2)=}} \
                          "xNAMESPACE_BEGIN3(n1,n2,n3)=namespace n1{namespace n2{namespace n3{" \
-                         xNAMESPACE_END3(n1,n2,n3)=}}}
+                         xNAMESPACE_END3(n1,n2,n3)=}}}\
+                         \
+                         xUSING_CONST(t)=
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then
 # this tag can be used to specify a list of macro names that should be expanded.
