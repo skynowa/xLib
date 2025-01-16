@@ -18,7 +18,7 @@ namespace xl::core
 class DateTime;
 
 class DateTimeValidator
-	///< DateTime validator
+	/// DateTime validator
 {
 public:
 ///\name ctors, dtor
