@@ -31,7 +31,7 @@ template<typename ContT, typename UnaryPredicateT>
 /* static */
 inline bool_t
 Algos::findIfAll(
-    const ContT     &a_cont, ///<
+    const ContT     &a_cont, ///< container
     ContT           &a_out,  ///< [out]
     UnaryPredicateT  a_pred  ///< predicate
 )

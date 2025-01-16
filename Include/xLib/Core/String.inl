@@ -232,10 +232,10 @@ template<typename T>
 /* static */
 void_t
 String::split(
-	std::ctstring_t &a_str,			///<
-	std::ctstring_t &a_sepLine,		///<
-	std::ctstring_t &a_sepKeyValue,	///<
-	T               *a_map			///< [out]
+	std::ctstring_t &a_str,			///< string
+	std::ctstring_t &a_sepLine,		///< separator line
+	std::ctstring_t &a_sepKeyValue,	///< separator key value
+	T               *a_map			///< [out] result
 )
 {
     xTEST_NA(a_str);
