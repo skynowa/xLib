@@ -87,8 +87,8 @@ Doc::str() const /* final */
 //-------------------------------------------------------------------------------------------------
 void
 Doc::parse(
-	std::ctstring_t &a_str,		///<
-	cbool_t          a_isNss,	///<
+	std::ctstring_t &a_str,		///< XML string
+	cbool_t          a_isNss,	///< if need nss
 	Node            &out_root	///< [out]
 )
 {
@@ -109,8 +109,8 @@ Doc::parse(
 //-------------------------------------------------------------------------------------------------
 void
 Doc::parseFile(
-	std::ctstring_t &a_filePath,	///<
-	Node            &out_root		///< [out]
+	std::ctstring_t &a_filePath,	///< file path
+	Node            &out_root		///< [out] root node
 )
 {
 	_doc = {::xmlParseFile( a_filePath.c_str() ), ::xmlFreeDoc};
