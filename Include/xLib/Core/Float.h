@@ -22,6 +22,7 @@ class Float final :
 	public IStr,
 	public ICompare<T>
     ///< Float's operations
+    ///< \tparam T The type of the underlying value
 {
 	static_assert(std::is_floating_point_v<T>, "T must be a floating-point type");
 
