@@ -177,6 +177,7 @@
     // ANDROID: xOS_ANDROID
 #if !xOS_ANDROID
     #define xTODO_ANDROID 1
+        ///< Todo for Android
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
@@ -375,12 +376,15 @@
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
+///\name Etc
+///\{
 #define xCOMPILER_FLAGS \
 	cmXLIB_COMPILER_FLAGS
 	///< Compiler flags
 #define xXLIB_LIBRARIES \
 	cmXLIB_LIBRARIES
 	///< xLib linked linraries
+///\}
 //-------------------------------------------------------------------------------------------------
 ///\name Standard C libraries
 ///\{
