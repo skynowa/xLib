@@ -146,6 +146,7 @@ Char<T>::symbol() const
    /**
     * FAQ: C documentation for isprint
     *
+    * \code
     * +---------+---------------------------+-------------------+
     * | ASCII   | Characters                | isprint, iswprint |
     * +---------+---------------------------+-------------------+
@@ -165,6 +166,7 @@ Char<T>::symbol() const
     * | 123-126 | {|}~                      | +                 |
     * | 127     | backspace character (DEL) | -                 |
     * +-------------------------------------+-------------------+
+    * \endcode
     */
 
     if ( Algos::isInBounds<T>(_char, 0, 31) ) {
