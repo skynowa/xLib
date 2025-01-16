@@ -15,7 +15,7 @@ namespace xl::core
 
 template<typename StreamT>
 class FormatT
-    ///< format string
+    /// format string
 {
 public:
 ///\name ctors, dtor
