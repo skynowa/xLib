@@ -48,8 +48,8 @@ public:
 	explicit  Ssh2Client(cSsh2ClientOption &option);
 	virtual  ~Ssh2Client();
 
-	xNO_DEFAULT_CONSTRUCT(Ssh2Client)
-	xNO_COPY_ASSIGN(Ssh2Client)
+	xNO_DEFAULT_CONSTRUCT(Ssh2Client);
+	xNO_COPY_ASSIGN(Ssh2Client);
 ///\}
 
     bool_t         isAlive();

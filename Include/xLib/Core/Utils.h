@@ -17,8 +17,8 @@ class Utils
 public:
 ///\name ctors, dtor
 ///\{
-	xNO_DEFAULT_CONSTRUCT(Utils)
-	xNO_COPY_ASSIGN(Utils)
+	xNO_DEFAULT_CONSTRUCT(Utils);
+	xNO_COPY_ASSIGN(Utils);
 ///\}
 
 ///\name Delete

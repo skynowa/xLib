@@ -21,7 +21,7 @@ public:
 			 User() = default;
 	virtual ~User() = default;
 
-	xNO_COPY_ASSIGN(User)
+	xNO_COPY_ASSIGN(User);
 ///\}
 
     uint_t         id() const;
@@ -51,7 +51,7 @@ private:
 #if   xENV_WIN
      uint_t _getuid() const;
      uint_t _geteuid() const;
- 
+
      BOOL   _getUserSID(HANDLE token, PSID *sid) const;
      uint_t _getUID(HANDLE token) const;
 #elif xENV_UNIX

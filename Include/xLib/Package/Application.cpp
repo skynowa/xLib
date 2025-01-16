@@ -29,7 +29,7 @@ public:
 	CrashCallback()= default;
 	~CrashCallback()= default;
 
-	xNO_COPY_ASSIGN(CrashCallback)
+	xNO_COPY_ASSIGN(CrashCallback);
 ///\}
 
     static void_t onSignals(int_t a_signal)

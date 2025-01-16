@@ -18,8 +18,8 @@ class Singleton
 public:
 ///\name ctors, dtor
 ///\{
-	xNO_DEFAULT_CONSTRUCT(Singleton)
-	xNO_COPY_ASSIGN(Singleton)
+	xNO_DEFAULT_CONSTRUCT(Singleton);
+	xNO_COPY_ASSIGN(Singleton);
 ///\}
 
     static T &get()

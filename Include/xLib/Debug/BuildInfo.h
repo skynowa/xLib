@@ -20,7 +20,7 @@ public:
 			 BuildInfo() = default;
 	virtual ~BuildInfo() = default;
 
-	xNO_COPY_ASSIGN(BuildInfo)
+	xNO_COPY_ASSIGN(BuildInfo);
 ///\}
 
     bool_t         isRelease() const;

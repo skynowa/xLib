@@ -27,7 +27,7 @@ public:
 			 IpcSemaphore();
 	virtual ~IpcSemaphore();
 
-	xNO_COPY_ASSIGN(IpcSemaphore)
+	xNO_COPY_ASSIGN(IpcSemaphore);
 ///\}
 
     long_t           valueMax() const;

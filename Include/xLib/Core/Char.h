@@ -24,8 +24,8 @@ public:
               Char(const T ch, const xTLOCALE &locale);
 	virtual  ~Char() = default;
 
-	xNO_DEFAULT_CONSTRUCT(Char)
-	xNO_COPY_ASSIGN(Char)
+	xNO_DEFAULT_CONSTRUCT(Char);
+	xNO_COPY_ASSIGN(Char);
 ///\}
 
 ///\name Overrides

@@ -28,7 +28,7 @@ public:
 	virtual  ~Dll() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Dll);
-	xNO_COPY_ASSIGN(Dll)
+	xNO_COPY_ASSIGN(Dll);
 ///\}
 
     HandleDll     &get();

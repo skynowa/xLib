@@ -102,8 +102,8 @@ public:
 	explicit  Type(const T &obj);
 	virtual  ~Type() = default;
 
-	xNO_DEFAULT_CONSTRUCT(Type)
-	xNO_COPY_ASSIGN(Type)
+	xNO_DEFAULT_CONSTRUCT(Type);
+	xNO_COPY_ASSIGN(Type);
 ///\}
 
     std::tstring_t nameRaw() const;

@@ -58,7 +58,7 @@ public:
 	// BUG: Thread:: ~Thread() - must pure virtual
 	virtual  ~Thread() /* = 0*/;
 
-	xNO_COPY_ASSIGN(Thread)
+	xNO_COPY_ASSIGN(Thread);
 ///\}
 
     // actions

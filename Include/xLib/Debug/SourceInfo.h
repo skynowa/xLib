@@ -39,8 +39,8 @@ public:
 	explicit  SourceInfo(cSourceInfoOption &option);
 	virtual  ~SourceInfo() = default;
 
-	xNO_DEFAULT_CONSTRUCT(SourceInfo)
-	xNO_COPY_ASSIGN(SourceInfo)
+	xNO_DEFAULT_CONSTRUCT(SourceInfo);
+	xNO_COPY_ASSIGN(SourceInfo);
 ///\}
 
     cSourceInfoOption & option() const;

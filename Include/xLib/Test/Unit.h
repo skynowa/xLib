@@ -68,8 +68,8 @@ public:
 			 Unit(const UnitOption &option);
 	virtual ~Unit() = 0;
 
-	xNO_DEFAULT_CONSTRUCT(Unit)
-	xNO_COPY_ASSIGN(Unit)
+	xNO_DEFAULT_CONSTRUCT(Unit);
+	xNO_COPY_ASSIGN(Unit);
 
 	const UnitOption &option() const;
 ///\}

@@ -26,8 +26,8 @@ public:
 		///< Read options from the named option file instead of from my.cnf
 	virtual ~Connection() = default;
 
-	xNO_DEFAULT_CONSTRUCT(Connection)
-	xNO_COPY_ASSIGN(Connection)
+	xNO_DEFAULT_CONSTRUCT(Connection);
+	xNO_COPY_ASSIGN(Connection);
 ///\}
 
     cHandleMySqlConn &get() const;

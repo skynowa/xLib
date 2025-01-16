@@ -20,7 +20,7 @@ public:
 			 PowerSupply() = default;
 	virtual ~PowerSupply() = default;
 
-	xNO_COPY_ASSIGN(PowerSupply)
+	xNO_COPY_ASSIGN(PowerSupply);
 ///\}
 
 	enum class Status

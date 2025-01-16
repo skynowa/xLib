@@ -52,8 +52,8 @@ public:
 			 FsWatcher(std::cvec_tstring_t &dirPathsDisabled, std::ctstring_t &shellFilter);
 	virtual ~FsWatcher();
 
-	xNO_DEFAULT_CONSTRUCT(FsWatcher)
-	xNO_COPY_ASSIGN(FsWatcher)
+	xNO_DEFAULT_CONSTRUCT(FsWatcher);
+	xNO_COPY_ASSIGN(FsWatcher);
 ///\}
 
     bool_t openFiles(std::cvec_tstring_t &filePaths, std::cmap_tstring_t &cmds);

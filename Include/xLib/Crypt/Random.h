@@ -20,7 +20,7 @@ public:
 			 ISeedPolicy();
 	virtual ~ISeedPolicy() = default;
 
-	xNO_COPY_ASSIGN(ISeedPolicy)
+	xNO_COPY_ASSIGN(ISeedPolicy);
 ///\}
 
     virtual long_t next() = 0;
@@ -48,7 +48,7 @@ public:
 			 StdSeedPolicy();
 	virtual ~StdSeedPolicy() = default;
 
-	xNO_COPY_ASSIGN(StdSeedPolicy)
+	xNO_COPY_ASSIGN(StdSeedPolicy);
 ///\}
 
     virtual long_t next() final;
@@ -69,7 +69,7 @@ public:
 			 NativeSeedPolicy();
 	virtual ~NativeSeedPolicy();
 
-	xNO_COPY_ASSIGN(NativeSeedPolicy)
+	xNO_COPY_ASSIGN(NativeSeedPolicy);
 ///\}
 
     virtual long_t next() final;
@@ -100,7 +100,7 @@ public:
 			 Random();
 	virtual ~Random() = default;
 
-    xNO_COPY_ASSIGN(Random)
+    xNO_COPY_ASSIGN(Random);
 ///\}
 
     bool_t nextBool();

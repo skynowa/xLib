@@ -31,7 +31,7 @@ public:
 			 Blowfish();
 	virtual ~Blowfish();
 
-	xNO_COPY_ASSIGN(Blowfish)
+	xNO_COPY_ASSIGN(Blowfish);
 ///\}
 
 ///\name set key

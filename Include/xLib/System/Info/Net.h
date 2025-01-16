@@ -20,7 +20,7 @@ public:
 			 Net() = default;
 	virtual ~Net() = default;
 
-	xNO_COPY_ASSIGN(Net)
+	xNO_COPY_ASSIGN(Net);
 ///\}
 
 	bool_t isVpnActive() const;

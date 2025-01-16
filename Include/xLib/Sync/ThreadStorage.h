@@ -20,7 +20,7 @@ public:
 			 ThreadStorage();
 	virtual ~ThreadStorage();
 
-	xNO_COPY_ASSIGN(ThreadStorage)
+	xNO_COPY_ASSIGN(ThreadStorage);
 ///\}
 
     bool_t   isValid() const;

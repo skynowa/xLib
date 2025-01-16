@@ -22,7 +22,7 @@ public:
 			 AutoIpcMutex(IpcMutex &mutex, std::ctstring_t &name);
 	virtual ~AutoIpcMutex();
 
-	xNO_COPY_ASSIGN(AutoIpcMutex)
+	xNO_COPY_ASSIGN(AutoIpcMutex);
 ///\}
 
 private:

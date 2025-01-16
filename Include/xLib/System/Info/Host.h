@@ -20,7 +20,7 @@ public:
 			 Host() = default;
 	virtual ~Host() = default;
 
-	xNO_COPY_ASSIGN(Host)
+	xNO_COPY_ASSIGN(Host);
 ///\}
 
 	std::tstring_t name() const;

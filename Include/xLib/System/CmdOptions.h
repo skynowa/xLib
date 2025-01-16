@@ -46,7 +46,7 @@ public:
 			 CmdOptions() = default;
 	virtual ~CmdOptions() = default;
 
-	xNO_COPY_ASSIGN(CmdOptions)
+	xNO_COPY_ASSIGN(CmdOptions);
 ///\}
 
     void_t parse(cint_t argsNum, cptr_ctchar_t argv[], const std::vector<CmdOptionsUsage> &usage);

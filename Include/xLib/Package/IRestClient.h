@@ -23,7 +23,7 @@ public:
 			 IRestClient() = default;
 	virtual ~IRestClient() = 0;
 
-	xNO_COPY_ASSIGN(IRestClient)
+	xNO_COPY_ASSIGN(IRestClient);
 ///\}
 
 protected:

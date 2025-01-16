@@ -25,7 +25,7 @@ public:
 	explicit  Config(std::ctstring_t &filePath);
 	virtual  ~Config();
 
-	xNO_COPY_ASSIGN(Config)
+	xNO_COPY_ASSIGN(Config);
 ///\}
 
 ///\name Overrides

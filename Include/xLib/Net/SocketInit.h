@@ -22,8 +22,8 @@ public:
 	virtual ~SocketInit();
 		///< clean winsock DLL
 
-	xNO_DEFAULT_CONSTRUCT(SocketInit)
-	xNO_COPY_ASSIGN(SocketInit)
+	xNO_DEFAULT_CONSTRUCT(SocketInit);
+	xNO_COPY_ASSIGN(SocketInit);
 ///\}
 
 xPLATFORM_IMPL:

@@ -20,7 +20,7 @@ public:
 			 Cpu() = default;
 	virtual ~Cpu() = default;
 
-	xNO_COPY_ASSIGN(Cpu)
+	xNO_COPY_ASSIGN(Cpu);
 ///\}
 
     enum class Vendor

@@ -25,7 +25,7 @@ public:
 	virtual ~Iconv();
 
     xNO_DEFAULT_CONSTRUCT(Iconv);
-    xNO_COPY_ASSIGN(Iconv)
+    xNO_COPY_ASSIGN(Iconv);
 ///\}
 
     bool_t convert(std::ctstring_t &input, std::tstring_t *output) const;
