@@ -46,6 +46,7 @@ Translate::run(
 	   /**
 		* HTTP POST request:
 		*
+		* \code{.html}
 		* <form action="/m" class="">
 		*     ...
 		*     <input type="hidden" name="hl" value="ru"/>
@@ -56,6 +57,7 @@ Translate::run(
 		*     <input type="text"   name="q" style="width:65%" maxlength="2048" value="волк"/><br>
 		*     <input type="submit" value="Перевести"/>
 		* </form>
+		* \endcode
 		*/
 
 		dataIn.url            = xT("https://translate.google.com/m");

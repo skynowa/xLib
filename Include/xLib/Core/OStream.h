@@ -16,15 +16,15 @@ namespace xl::core
 
 class OStream :
 	public IStr
-    ///< print string
+    /// print string
 {
 public:
 ///\name ctors, dtor
 ///\{
-				   OStream() = default;
-	virtual       ~OStream() = default;
+			 OStream() = default;
+	virtual ~OStream() = default;
 
-	xNO_COPY_ASSIGN(OStream)
+	xNO_COPY_ASSIGN(OStream);
 ///\}
 
 ///\name Overrides
@@ -194,7 +194,7 @@ public:
 		std::tcout << std::endl;
 	}
 
-	xNO_COPY_ASSIGN(Cout)
+	xNO_COPY_ASSIGN(Cout);
 ///\}
 
 	template<typename T>

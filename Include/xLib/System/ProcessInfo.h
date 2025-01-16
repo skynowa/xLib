@@ -21,8 +21,8 @@ public:
 	explicit ProcessInfo(const Process::id_t id);
 	virtual ~ProcessInfo() = default;
 
-	xNO_DEFAULT_CONSTRUCT(ProcessInfo)
-	xNO_COPY_ASSIGN(ProcessInfo)
+	xNO_DEFAULT_CONSTRUCT(ProcessInfo);
+	xNO_COPY_ASSIGN(ProcessInfo);
 ///\}
 
     ulong_t        cpuUsage() const;

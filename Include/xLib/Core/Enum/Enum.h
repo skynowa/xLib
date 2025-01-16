@@ -36,7 +36,7 @@ public:
 	explicit Enum(std::tstring_t value);
    ~Enum() = default;
 
-	xNO_COPY_ASSIGN(Enum)
+	xNO_COPY_ASSIGN(Enum);
 ///\}
 
 ///\name Overrides

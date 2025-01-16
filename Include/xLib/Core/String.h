@@ -19,8 +19,8 @@ class String
 public:
 ///\name ctors, dtor
 ///\{
-	xNO_DEFAULT_CONSTRUCT(String)
-	xNO_COPY_ASSIGN(String)
+	xNO_DEFAULT_CONSTRUCT(String);
+	xNO_COPY_ASSIGN(String);
 ///\}
 
     /*******************************************************************************
@@ -230,8 +230,8 @@ class StringCI
 public:
 ///\name ctors, dtor
 ///\{
-	xNO_DEFAULT_CONSTRUCT(StringCI)
-	xNO_COPY_ASSIGN(StringCI)
+	xNO_DEFAULT_CONSTRUCT(StringCI);
+	xNO_COPY_ASSIGN(StringCI);
 ///\}
 
     /*******************************************************************************

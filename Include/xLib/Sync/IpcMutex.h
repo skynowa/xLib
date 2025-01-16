@@ -27,7 +27,7 @@ public:
 			 IpcMutex() = default;
 	virtual ~IpcMutex() = default;
 
-	xNO_COPY_ASSIGN(IpcMutex)
+	xNO_COPY_ASSIGN(IpcMutex);
 ///\}
 
     const handle_t & handle() const;

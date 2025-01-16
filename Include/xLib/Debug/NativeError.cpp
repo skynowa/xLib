@@ -1,5 +1,5 @@
 /**
- * \file  NativeError.inl
+ * \file  NativeError.cpp
  * \brief system last error
  */
 

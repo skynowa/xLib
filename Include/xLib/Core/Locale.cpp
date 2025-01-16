@@ -1,5 +1,5 @@
 /**
- * \file  Locale.inl
+ * \file  Locale.cpp
  * \brief locale
  */
 

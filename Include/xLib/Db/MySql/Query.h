@@ -24,8 +24,8 @@ public:
 			 Query(const Connection &conn, std::ctstring_t &sql);
 	virtual ~Query() = default;
 
-	xNO_DEFAULT_CONSTRUCT(Query)
-	xNO_COPY_ASSIGN(Query)
+	xNO_DEFAULT_CONSTRUCT(Query);
+	xNO_COPY_ASSIGN(Query);
 ///\}
 
 ///\name Executes the SQL statement
@@ -49,8 +49,8 @@ public:
 			 EscapeQuoted(const Connection &conn, std::ctstring_t &sqlValue);
 	virtual ~EscapeQuoted() = default;
 
-	xNO_DEFAULT_CONSTRUCT(EscapeQuoted)
-	xNO_COPY_ASSIGN(EscapeQuoted)
+	xNO_DEFAULT_CONSTRUCT(EscapeQuoted);
+	xNO_COPY_ASSIGN(EscapeQuoted);
 ///\}
 
 	std::tstring_t forQuote(std::ctstring_t &forQuote) const;

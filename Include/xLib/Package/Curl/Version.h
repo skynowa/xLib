@@ -26,7 +26,7 @@ public:
 	Version() = default;
 	~Version() = default;
 
-	xNO_COPY_ASSIGN(Version)
+	xNO_COPY_ASSIGN(Version);
 ///\}
 
 	CURLversion    version() const;

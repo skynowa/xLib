@@ -26,7 +26,7 @@ public:
 			 ConsoleUI() = default;
 	virtual ~ConsoleUI() = default;
 
-	xNO_COPY_ASSIGN(ConsoleUI)
+	xNO_COPY_ASSIGN(ConsoleUI);
 ///\}
 	enum class Result
 		/// modal result

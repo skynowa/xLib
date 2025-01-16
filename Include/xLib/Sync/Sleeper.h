@@ -21,7 +21,7 @@ public:
 			 Sleeper();
 	virtual ~Sleeper() = default;
 
-	xNO_COPY_ASSIGN(Sleeper)
+	xNO_COPY_ASSIGN(Sleeper);
 ///\}
 
     void_t sleep(culong_t &timeoutMsec);

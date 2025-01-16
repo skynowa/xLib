@@ -65,8 +65,8 @@ public:
 
     virtual ~FileInfo();
 
-    xNO_DEFAULT_CONSTRUCT(FileInfo)
-    xNO_COPY_ASSIGN(FileInfo)
+    xNO_DEFAULT_CONSTRUCT(FileInfo);
+    xNO_COPY_ASSIGN(FileInfo);
 ///\}
 
     std::tstring_t path() const;

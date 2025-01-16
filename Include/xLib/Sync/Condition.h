@@ -20,7 +20,7 @@ public:
 			 Condition() = default;
 	virtual ~Condition();
 
-	xNO_COPY_ASSIGN(Condition)
+	xNO_COPY_ASSIGN(Condition);
 ///\}
 
 #if !xENV_WIN

@@ -59,7 +59,7 @@ public:
 			 Process();
 	virtual ~Process();
 
-	xNO_COPY_ASSIGN(Process)
+	xNO_COPY_ASSIGN(Process);
 ///\}
 
     void_t     create(std::ctstring_t &filePath, std::cvec_tstring_t &params,

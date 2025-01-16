@@ -1,5 +1,5 @@
 /**
- * \file  AutoIpcMutex.inl
+ * \file  AutoIpcMutex.cpp
  * \brief auto mutex
  */
 

@@ -39,8 +39,8 @@ public:
 			 Application(std::ctstring_t &appGuid, std::ctstring_t &locale);
 	virtual ~Application() = default;
 
-	xNO_DEFAULT_CONSTRUCT(Application)
-	xNO_COPY_ASSIGN(Application)
+	xNO_DEFAULT_CONSTRUCT(Application);
+	xNO_COPY_ASSIGN(Application);
 ///\}
 
     void_t           setDevel(cbool_t flag);

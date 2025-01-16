@@ -1,5 +1,5 @@
 /**
- * \file  Const.inl
+ * \file  Const.cpp
  * \brief constants
  */
 

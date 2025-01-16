@@ -33,7 +33,7 @@ public:
 		_log.write(xT("\n\n::: Finish %s :::\n"), _str.c_str());
 	}
 
-    xNO_COPY_ASSIGN(AutoLog)
+    xNO_COPY_ASSIGN(AutoLog);
 ///\}
 
 private:

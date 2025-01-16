@@ -20,7 +20,7 @@ public:
 			 Os() = default;
 	virtual ~Os() = default;
 
-	xNO_COPY_ASSIGN(Os)
+	xNO_COPY_ASSIGN(Os);
 ///\}
 
     enum class Type

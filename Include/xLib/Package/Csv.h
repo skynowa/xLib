@@ -47,7 +47,7 @@ public:
 	explicit  CsvReader(cCsvOption &option);
 	virtual  ~CsvReader() = default;
 
-	xNO_COPY_ASSIGN(CsvReader)
+	xNO_COPY_ASSIGN(CsvReader);
 ///\}
 
     bool_t         loadFile(std::ctstring_t &filePath);
@@ -77,7 +77,7 @@ public:
 	explicit  CsvWriter(cCsvOption &option);
 	virtual  ~CsvWriter() = delete;
 
-    xNO_COPY_ASSIGN(CsvWriter)
+    xNO_COPY_ASSIGN(CsvWriter);
 ///\}
 
     void_t     saveFile(crow_t &header, crows_t &rows, std::ctstring_t &filePath);

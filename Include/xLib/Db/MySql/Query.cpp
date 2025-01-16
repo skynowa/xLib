@@ -63,7 +63,7 @@ Query::use() const
 
 //-------------------------------------------------------------------------------------------------
 EscapeQuoted::EscapeQuoted(
-	const Connection &a_conn,		///<
+	const Connection &a_conn,		///< connection
 	std::ctstring_t  &a_sqlValue	///< SQL string value
 ) :
 	_conn    {a_conn},

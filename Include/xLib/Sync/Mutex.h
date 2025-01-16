@@ -26,7 +26,7 @@ public:
 			 Mutex() = default;
 	virtual ~Mutex();
 
-	xNO_COPY_ASSIGN(Mutex)
+	xNO_COPY_ASSIGN(Mutex);
 ///\}
 
     const handle_t & handle() const;

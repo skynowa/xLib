@@ -22,7 +22,7 @@ public:
 			 Debugger() = default;
 	virtual ~Debugger() = default;
 
-	xNO_COPY_ASSIGN(Debugger)
+	xNO_COPY_ASSIGN(Debugger);
 ///\}
 
     bool_t         isEnabled() const;

@@ -23,8 +23,8 @@ public:
     explicit File(const FileInfo &fileInfo);
     virtual ~File();
 
-	xNO_DEFAULT_CONSTRUCT(File)
-    xNO_COPY_ASSIGN(File)
+	xNO_DEFAULT_CONSTRUCT(File);
+    xNO_COPY_ASSIGN(File);
 ///\}
 
 ///\name actions

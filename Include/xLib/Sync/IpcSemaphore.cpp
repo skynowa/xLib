@@ -1,5 +1,5 @@
 /**
- * \file  IpcSemaphore.inl
+ * \file  IpcSemaphore.cpp
  * \brief semaphore
  */
 

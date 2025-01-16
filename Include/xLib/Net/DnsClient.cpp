@@ -1,5 +1,5 @@
 /**
- * \file  DnsClient.inl
+ * \file  DnsClient.cpp
  * \brief DNS client
  */
 
@@ -183,10 +183,10 @@ DnsClient::nameInfo(
 /* static */
 void_t
 DnsClient::hostAddrInfo(
-    std::ctstring_t  &a_hostName,
-    std::ctstring_t  &a_port,
-    caddrinfo_t      *out_hints,		///< maybe nullptr
-    addrinfo_t      **out_addrInfo
+    std::ctstring_t  &a_hostName,  ///< host name
+    std::ctstring_t  &a_port,      ///< port
+    caddrinfo_t      *out_hints,   ///< caddrinfo_t (maybe nullptr)
+    addrinfo_t      **out_addrInfo ///< [out] caddrinfo_t
 )
 {
     xTEST(!a_hostName.empty());

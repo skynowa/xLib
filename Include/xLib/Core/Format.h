@@ -15,13 +15,13 @@ namespace xl::core
 
 template<typename StreamT>
 class FormatT
-    ///< format string
+    /// format string
 {
 public:
 ///\name ctors, dtor
 ///\{
-	xNO_DEFAULT_CONSTRUCT(FormatT)
-	xNO_COPY_ASSIGN(FormatT)
+	xNO_DEFAULT_CONSTRUCT(FormatT);
+	xNO_COPY_ASSIGN(FormatT);
 ///\}
 
     template<typename ...ArgsT>

@@ -23,7 +23,8 @@ namespace xl::core
 /* static */
 std::tstring_t
 FormatC::str(
-    cptr_ctchar_t a_format, ...    ///< string format
+    cptr_ctchar_t a_format, ///< string format
+    ...                     ///< arguments
 )
 {
     xTEST_NA(a_format);

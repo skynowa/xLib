@@ -1,5 +1,5 @@
 /**
- * \file  AutoMutex.h
+ * \file  AutoMutex.cpp
  * \brief auto critical section (using between threads)
  */
 

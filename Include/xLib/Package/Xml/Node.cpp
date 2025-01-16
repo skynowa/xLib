@@ -86,8 +86,8 @@ Node::text() const
 //-------------------------------------------------------------------------------------------------
 void
 Node::findNodes(
-	std::cvec_tstring_t &a_xpaths,	///<
-	std::vector<Node>   &out_values	///< [out]
+	std::cvec_tstring_t &a_xpaths,	///< XPaths
+	std::vector<Node>   &out_values	///< [out] result
 ) const
 {
 	out_values.clear();
@@ -104,8 +104,8 @@ Node::findNodes(
 //-------------------------------------------------------------------------------------------------
 void
 Node::node(
-	std::ctstring_t &a_xpath,	///<
-	Node            &out_value	///< [out]
+	std::ctstring_t &a_xpath,	///< XPath
+	Node            &out_value	///< [out] result
 ) const
 {
     std::vector<Node> nodes_;
@@ -117,8 +117,8 @@ Node::node(
 //-------------------------------------------------------------------------------------------------
 void
 Node::nodes(
-	std::ctstring_t   &a_xpath,	///<
-	std::vector<Node> &out_res	///< [out]
+	std::ctstring_t   &a_xpath,	///< XPath
+	std::vector<Node> &out_res	///< [out] results
 ) const
 {
 	out_res.clear();
@@ -161,8 +161,8 @@ Node::nodes(
 //-------------------------------------------------------------------------------------------------
 void
 Node::texts(
-	std::ctstring_t    &a_xpath,	///<
-	std::vec_tstring_t &out_values	///< [out]
+	std::ctstring_t    &a_xpath,	///< XPath
+	std::vec_tstring_t &out_values	///< [out] results
 ) const
 {
 	out_values.clear();
@@ -183,8 +183,8 @@ Node::childSize() const
 //-------------------------------------------------------------------------------------------------
 void
 Node::childMap(
-	std::ctstring_t    &a_xpath,	///<
-	std::map_tstring_t &out_values	///< [out]
+	std::ctstring_t    &a_xpath,	///< XPath
+	std::map_tstring_t &out_values	///< [out] result
 ) const
 {
 	out_values.clear();

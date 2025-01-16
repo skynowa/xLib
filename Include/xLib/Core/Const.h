@@ -25,8 +25,8 @@ class Const
 public:
 ///\name ctors, dtor
 ///\{
-	xNO_DEFAULT_CONSTRUCT(Const)
-	xNO_COPY_ASSIGN(Const)
+	xNO_DEFAULT_CONSTRUCT(Const);
+	xNO_COPY_ASSIGN(Const);
 ///\}
 
 	// strEmpty (empty string)

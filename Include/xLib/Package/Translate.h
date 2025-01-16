@@ -24,7 +24,7 @@ public:
 			 Translate() = default;
 	virtual ~Translate() = default;
 
-	xNO_COPY_ASSIGN(Translate)
+	xNO_COPY_ASSIGN(Translate);
 ///\}
 
     void_t run(std::ctstring_t &textFrom, std::tstring_t *textToBrief, std::tstring_t *textToDetail,

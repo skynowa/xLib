@@ -32,8 +32,8 @@ public:
 	explicit  Archive(const Type type);
 			 ~Archive() = default;
 
-	xNO_DEFAULT_CONSTRUCT(Archive)
-	xNO_COPY_ASSIGN(Archive)
+	xNO_DEFAULT_CONSTRUCT(Archive);
+	xNO_COPY_ASSIGN(Archive);
 ///\}
 
 	// Compress

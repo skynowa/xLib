@@ -44,7 +44,7 @@ public:
 				cbool_t isGroupAutoDelete);
 	virtual ~ThreadPool();
 
-    xNO_COPY_ASSIGN(ThreadPool)
+    xNO_COPY_ASSIGN(ThreadPool);
 ///\}
 
 

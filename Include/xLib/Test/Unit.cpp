@@ -132,9 +132,9 @@ bool_t
 Unit::unit() /* = 0 */
 {
    /**
-    * \example unit
+    * Sample
     *
-    * \code
+    * \code{.c++}
     * xTEST_CASE("CaseName")
     * {
     *     std::ctstring_t testData[][2]

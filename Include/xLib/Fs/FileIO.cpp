@@ -198,8 +198,8 @@ FileIO::read(
 //-------------------------------------------------------------------------------------------------
 int_t
 FileIO::scanf(
-    cptr_ctchar_t a_format,	///<
-	...						///< [out]
+    cptr_ctchar_t a_format,	///< string format
+	...						///< [out] arguments
 ) const
 {
     int_t iRv {};

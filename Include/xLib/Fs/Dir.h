@@ -25,8 +25,8 @@ public:
 	explicit  Dir(std::ctstring_t &dirPath);
 	virtual  ~Dir() = default;
 
-	xNO_DEFAULT_CONSTRUCT(Dir)
-	xNO_COPY_ASSIGN(Dir)
+	xNO_DEFAULT_CONSTRUCT(Dir);
+	xNO_COPY_ASSIGN(Dir);
 
 	static Dir current();
 	static Dir temp();

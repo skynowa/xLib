@@ -422,24 +422,24 @@
 ///\name Class disallows
 ///\{
 #define xNO_DEFAULT_CONSTRUCT(className) \
-    className() = delete;
+    className() = delete
 	///< disallow default constructor
 #define xNO_COPY(className) \
-    className(const className &) = delete;
+    className(const className &) = delete
     ///< disallow copy
 #define xNO_MOVE(className) \
-    className(className &&) = delete;
+    className(className &&) = delete
     ///< disallow move
 #define xNO_ASSIGN(className) \
-    className & operator = (const className &) = delete;
+    className & operator = (const className &) = delete
     ///< disallow assign
 #define xNO_MOVE_ASSIGN(className) \
-    className & operator = (className &&) = delete;
+    className & operator = (className &&) = delete
     ///< disallow move assign
 #define xNO_COPY_ASSIGN(className) \
-    xNO_COPY(className) \
-    xNO_MOVE(className) \
-    xNO_ASSIGN(className) \
+    xNO_COPY(className); \
+    xNO_MOVE(className); \
+    xNO_ASSIGN(className); \
     xNO_MOVE_ASSIGN(className)
     ///< disallow copy, move, assign, move assign
 #define xNO_HEAP \

@@ -22,8 +22,8 @@ public:
 	explicit Environment(std::ctstring_t &name);
 	virtual ~Environment() = default;
 
-	xNO_DEFAULT_CONSTRUCT(Environment)
-	xNO_COPY_ASSIGN(Environment)
+	xNO_DEFAULT_CONSTRUCT(Environment);
+	xNO_COPY_ASSIGN(Environment);
 
 	static Environment path();
         ///< get PATH values (/usr/bin ... pathes) with separator
@@ -75,7 +75,7 @@ public:
 			 Environments() = default;
 	virtual ~Environments() = default;
 
-	xNO_COPY_ASSIGN(Environments)
+	xNO_COPY_ASSIGN(Environments);
 ///\}
 
     void_t             setVars(const std::set<std::pair_tstring_t> &vars) const;

@@ -40,7 +40,7 @@ public:
 		_observers.clear();
 	}
 
-	xNO_COPY_ASSIGN(Observers)
+	xNO_COPY_ASSIGN(Observers);
 ///\}
 
     void_t attach(IObserver<T> *a_observer)

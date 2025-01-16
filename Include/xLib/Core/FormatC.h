@@ -13,7 +13,7 @@ namespace xl::core
 {
 
 class FormatC
-    ///< format string in C style
+    /// format string in C style
 {
 public:
 ///\name ctors, dtor
