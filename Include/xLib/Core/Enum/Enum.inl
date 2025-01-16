@@ -1,5 +1,5 @@
 /**
- * \file   Enum.cpp
+ * \file   Enum.inl
  * \brief  Enumeration
  */
 

@@ -26,8 +26,8 @@ public:
 	explicit  Path(std::ctstring_t &filePath);
 	virtual  ~Path();
 
-	xNO_DEFAULT_CONSTRUCT(Path)
-	xNO_COPY_ASSIGN(Path)
+	xNO_DEFAULT_CONSTRUCT(Path);
+	xNO_COPY_ASSIGN(Path);
 
    /**
 	* Standard paths

@@ -22,7 +22,7 @@ public:
              Profiler();
 	virtual ~Profiler();
 
-	xNO_COPY_ASSIGN(Profiler)
+	xNO_COPY_ASSIGN(Profiler);
 ///\}
 
     void_t         setLogPath(std::ctstring_t &logPath);

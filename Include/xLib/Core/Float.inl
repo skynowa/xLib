@@ -47,21 +47,21 @@ Float<T>::Float(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-const T &
+inline const T &
 Float<T>::get() const /* final */
 {
 	return _value;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-std::tstring_t
+inline std::tstring_t
 Float<T>::str() const /* final */
 {
 	return std::to_string(_value);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-int_t
+inline int_t
 Float<T>::compare(
 	const T &a_value
 ) const /* final */

@@ -117,7 +117,9 @@
     ///< semaphore maximum value (tested on Win7 x64)
 #define xCUSTOM_SYSCONF_SC_GETPW_R_SIZE_MAX_UNIX \
     (16384L)
+    ///< \code{.c++}
     ///< ::sysconf(_SC_GETPW_R_SIZE_MAX)
+    ///< \endcode
 
 // xTHREAD_NAME_LENGTH_MAX
 // TODO: [skynowa] xTHREAD_NAME_LENGTH_MAX - fix unicode version

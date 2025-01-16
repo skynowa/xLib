@@ -214,10 +214,10 @@ HttpClient::isSuccess(
 //-------------------------------------------------------------------------------------------------
 void_t
 HttpClient::setOptionsDefault(
-	OptionIn        *a_optionIn,		///< [in,out]
-	std::ctstring_t &a_buffRead,		///<
-	std::tstring_t  *out_buffHeader,	///< [out]
-	std::tstring_t  *out_buffData		///< [out]
+	OptionIn        *a_optionIn,		///< [in,out] incoming options
+	std::ctstring_t &a_buffRead,		///< buffer for read
+	std::tstring_t  *out_buffHeader,	///< [out] buffer for header
+	std::tstring_t  *out_buffData		///< [out] buffer for data
 )
 {
 	xTEST(_handle.isValid());

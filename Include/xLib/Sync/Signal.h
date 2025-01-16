@@ -55,7 +55,7 @@ public:
 			 Signal() = default;
 	virtual ~Signal() = default;
 
-	xNO_COPY_ASSIGN(Signal)
+	xNO_COPY_ASSIGN(Signal);
 ///\}
 
     std::sig_atomic_t state() const;

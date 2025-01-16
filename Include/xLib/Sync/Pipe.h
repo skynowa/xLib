@@ -23,7 +23,7 @@ public:
 			 Pipe();
 	virtual ~Pipe();
 
-	xNO_COPY_ASSIGN(Pipe)
+	xNO_COPY_ASSIGN(Pipe);
 ///\}
 
 ///\name Overrides

@@ -20,7 +20,7 @@ public:
 			 Ram() = default;
 	virtual ~Ram() = default;
 
-	xNO_COPY_ASSIGN(Ram)
+	xNO_COPY_ASSIGN(Ram);
 ///\}
 
 	ulonglong_t total() const;

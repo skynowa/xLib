@@ -20,7 +20,7 @@ public:
              GitClient();
     virtual ~GitClient() = default;
 
-    xNO_COPY_ASSIGN(GitClient)
+    xNO_COPY_ASSIGN(GitClient);
 ///\}
 
 	bool           isGitDir() const;

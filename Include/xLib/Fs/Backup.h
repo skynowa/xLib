@@ -32,8 +32,8 @@ public:
 	explicit  Backup(std::ctstring_t &filePath, std::ctstring_t &destDirPath, cPeriod period);
 	virtual  ~Backup() = default;
 
-	xNO_DEFAULT_CONSTRUCT(Backup)
-	xNO_COPY_ASSIGN(Backup)
+	xNO_DEFAULT_CONSTRUCT(Backup);
+	xNO_COPY_ASSIGN(Backup);
 ///\}
 
 	enum class Error

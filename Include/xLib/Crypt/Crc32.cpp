@@ -1,5 +1,5 @@
 /**
- * \file  Crc32.inl
+ * \file  Crc32.cpp
  * \brief Crc32
  */
 

@@ -205,10 +205,10 @@ Client::unescapeUrl(
 /* static */
 std::size_t
 Client::onWriteHeader(
-	void_t       *a_buff,		///<
-	std::csize_t  a_size,		///<
-	std::csize_t  a_items,		///<
-	void_t       *out_userData	///< [in,out]
+	void_t       *a_buff,		///< buffer
+	std::csize_t  a_size,		///< buffer size
+	std::csize_t  a_items,		///< items number
+	void_t       *out_userData	///< [in,out] result
 )
 {
 	xTEST_PTR(a_buff);
@@ -228,10 +228,10 @@ Client::onWriteHeader(
 /* static */
 std::size_t
 Client::onWriteData(
-	void_t       *a_buff,		///<
-	std::csize_t  a_size,		///<
-	std::csize_t  a_items,		///<
-	void_t       *out_userData	///< [in,out]
+	void_t       *a_buff,		///< buffer
+	std::csize_t  a_size,		///< buffer size
+	std::csize_t  a_items,		///< items number
+	void_t       *out_userData	///< [in,out] result
 )
 {
 	xTEST_PTR(a_buff);
@@ -251,9 +251,9 @@ Client::onWriteData(
 /* static */
 std::size_t
 Client::onReadData(
-	void_t       *out_buff,		///< [out]
-	std::csize_t  a_size,		///<
-	std::csize_t  a_items,		///<
+	void_t       *out_buff,		///< [out] buffer
+	std::csize_t  a_size,		///< buffer size
+	std::csize_t  a_items,		///< items number
 	void_t       *out_userData	///< [in,out]
 )
 {
@@ -294,10 +294,10 @@ Client::onReadData(
 /* static */
 CURLcode
 Client::_onDebugOption(
-	CURL                *a_curl,		///<
-	const curl_infotype  a_type,		///<
-	char                *a_buff,		///<
-	std::csize_t         a_size,		///<
+	CURL                *a_curl,		///< CURL
+	const curl_infotype  a_type,		///< curl_infotype
+	char                *a_buff,		///< buffer
+	std::csize_t         a_size,		///< buffer size
 	void_t              *out_userData	///< [out] as OptionIn::DebugOption
 )
 {

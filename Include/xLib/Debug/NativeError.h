@@ -17,8 +17,8 @@ class NativeError
 public:
 ///\name ctors, dtor
 ///\{
-	xNO_DEFAULT_CONSTRUCT(NativeError)
-	xNO_COPY_ASSIGN(NativeError)
+	xNO_DEFAULT_CONSTRUCT(NativeError);
+	xNO_COPY_ASSIGN(NativeError);
 ///\}
 
 xPUBLIC_STATIC:

@@ -17,8 +17,8 @@ class Utils
 public:
 ///\name ctors, dtor
 ///\{
-	xNO_DEFAULT_CONSTRUCT(Utils)
-	xNO_COPY_ASSIGN(Utils)
+	xNO_DEFAULT_CONSTRUCT(Utils);
+	xNO_COPY_ASSIGN(Utils);
 ///\}
 
 ///\name Delete
@@ -111,7 +111,7 @@ public:
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 class ConstCast
-    ///< make constant variable
+    /// make constant variable
 {
 public:
     explicit ConstCast(const T &a_value) :

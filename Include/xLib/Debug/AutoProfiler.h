@@ -21,8 +21,8 @@ public:
 			 AutoProfiler(std::ctstring_t &filePath, cptr_ctchar_t comment, ...);
 	virtual ~AutoProfiler();
 
-    xNO_DEFAULT_CONSTRUCT(AutoProfiler)
-    xNO_COPY_ASSIGN(AutoProfiler)
+    xNO_DEFAULT_CONSTRUCT(AutoProfiler);
+    xNO_COPY_ASSIGN(AutoProfiler);
 ///\}
 
 private:

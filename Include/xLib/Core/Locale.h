@@ -20,7 +20,7 @@ public:
 			Locale() = default;
    virtual ~Locale() = default;
 
-   xNO_COPY_ASSIGN(Locale)
+   xNO_COPY_ASSIGN(Locale);
 ///\}
 
    std::tstring_t current() const;

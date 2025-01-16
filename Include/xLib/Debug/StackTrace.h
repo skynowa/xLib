@@ -40,7 +40,7 @@ public:
 	explicit  StackTrace(cStackTraceOption &option);
 	virtual  ~StackTrace() = default;
 
-    xNO_COPY_ASSIGN(StackTrace)
+    xNO_COPY_ASSIGN(StackTrace);
 ///\}
 
 ///\name Overrides

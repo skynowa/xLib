@@ -21,7 +21,7 @@ public:
 			 FeatureFlag() = default;
 	virtual ~FeatureFlag() = default;
 
-	xNO_COPY_ASSIGN(FeatureFlag)
+	xNO_COPY_ASSIGN(FeatureFlag);
 ///\}
 
 	xPROPERTY(std::tstring_t, name, Name);

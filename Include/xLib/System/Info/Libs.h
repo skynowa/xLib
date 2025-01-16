@@ -20,7 +20,7 @@ public:
 			 Libs() = default;
 	virtual ~Libs() = default;
 
-	xNO_COPY_ASSIGN(Libs)
+	xNO_COPY_ASSIGN(Libs);
 ///\}
 
 #if xENV_UNIX

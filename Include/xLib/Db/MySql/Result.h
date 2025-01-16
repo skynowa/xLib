@@ -1,5 +1,5 @@
 /**
- * \file  IResult.h
+ * \file  Result.h
  * \brief MySql client
  *
  * \see mysqlpp
@@ -27,8 +27,8 @@ public:
     explicit  IResult(const Connection &connection);
 	virtual  ~IResult() = 0;
 
-	xNO_DEFAULT_CONSTRUCT(IResult)
-    xNO_COPY_ASSIGN(IResult)
+	xNO_DEFAULT_CONSTRUCT(IResult);
+    xNO_COPY_ASSIGN(IResult);
 ///\}
 
     HandleMySqlResult &get();
@@ -75,8 +75,8 @@ public:
 	explicit  StoreResult(const Connection &connection);
 	virtual  ~StoreResult() = default;
 
-	xNO_DEFAULT_CONSTRUCT(StoreResult)
-    xNO_COPY_ASSIGN(StoreResult)
+	xNO_DEFAULT_CONSTRUCT(StoreResult);
+    xNO_COPY_ASSIGN(StoreResult);
 ///\}
 };
 //-------------------------------------------------------------------------------------------------
@@ -90,8 +90,8 @@ public:
 	explicit  UseResult(const Connection &connection);
 	virtual  ~UseResult() = default;
 
-	xNO_DEFAULT_CONSTRUCT(UseResult)
-	xNO_COPY_ASSIGN(UseResult)
+	xNO_DEFAULT_CONSTRUCT(UseResult);
+	xNO_COPY_ASSIGN(UseResult);
 ///\}
 };
 //-------------------------------------------------------------------------------------------------

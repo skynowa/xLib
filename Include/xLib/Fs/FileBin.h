@@ -21,8 +21,8 @@ public:
     explicit FileBin(std::ctstring_t &filePath);
     virtual ~FileBin() = default;
 
-    xNO_DEFAULT_CONSTRUCT(FileBin)
-    xNO_COPY_ASSIGN(FileBin)
+    xNO_DEFAULT_CONSTRUCT(FileBin);
+    xNO_COPY_ASSIGN(FileBin);
 ///\}
 
     void_t read(std::ustring_t *content) const;

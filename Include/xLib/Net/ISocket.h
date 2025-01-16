@@ -2,6 +2,7 @@
  * \file  ISocket.h
  * \brief blocking socket
  *
+ * \code
  * +-----------------------------------------------------+ +----------------------------------------------------+
  * | TCP Server               | TCP Client               | | UDP Server               | UDP Client              |
  * |--------------------------|--------------------------| |--------------------------|-------------------------|
@@ -32,6 +33,7 @@
  * | // Deinitialize Winsock  | // Deinitialize Winsock  | | // Deinitialize Winsock  | // Deinitialize Winsock |
  * | WSACleanup()             | WSACleanup()             | | WSACleanup()             | WSACleanup()            |
  * +-----------------------------------------------------+ +----------------------------------------------------+
+ * \endcode
  */
 
 
@@ -235,7 +237,7 @@ public:
 			 ISocket() = default;
 	virtual ~ISocket() = 0;
 
-	xNO_COPY_ASSIGN(ISocket)
+	xNO_COPY_ASSIGN(ISocket);
 ///\}
 
 	/*******************************************************************************

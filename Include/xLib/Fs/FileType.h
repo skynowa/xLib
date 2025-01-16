@@ -65,8 +65,8 @@ public:
     explicit FileType(std::ctstring_t &filePath);
     virtual ~FileType() = default;
 
-    xNO_DEFAULT_CONSTRUCT(FileType)
-    xNO_COPY_ASSIGN(FileType)
+    xNO_DEFAULT_CONSTRUCT(FileType);
+    xNO_COPY_ASSIGN(FileType);
 ///\}
 
     std::ctstring_t & filePath() const;

@@ -75,8 +75,8 @@ Iconv::~Iconv()
 //-------------------------------------------------------------------------------------------------
 bool_t
 Iconv::convert(
-	std::ctstring_t &a_input,	///<
-	std::tstring_t  *a_output	///< [out]
+	std::ctstring_t &a_input,	///< input string
+	std::tstring_t  *a_output	///< [out] result
 ) const
 {
 	xTEST_PTR(_iconv);

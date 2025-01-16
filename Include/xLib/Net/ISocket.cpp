@@ -1,5 +1,5 @@
 /**
- * \file  ISocket.inl
+ * \file  ISocket.cpp
  * \brief blocking socket
  */
 

@@ -34,7 +34,7 @@ public:
 			 ILog() = default;
 	virtual ~ILog() = 0;
 
-	xNO_COPY_ASSIGN(ILog)
+	xNO_COPY_ASSIGN(ILog);
 ///\}
 
     void_t         setEnabled(cbool_t flag);

@@ -20,8 +20,8 @@ public:
 	explicit  Db(const Options &options);
 	virtual  ~Db() = default;
 
-	xNO_DEFAULT_CONSTRUCT(Db)
-	xNO_COPY_ASSIGN(Db)
+	xNO_DEFAULT_CONSTRUCT(Db);
+	xNO_COPY_ASSIGN(Db);
 ///\}
 
 	void_t show(std::ctstring_t &sqlLike, std::vec_tstring_t *dbNames) const;

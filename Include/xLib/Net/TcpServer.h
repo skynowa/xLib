@@ -22,7 +22,7 @@ public:
 			 TcpServer() = default;
 	virtual ~TcpServer() = default;
 
-    xNO_COPY_ASSIGN(TcpServer)
+    xNO_COPY_ASSIGN(TcpServer);
 ///\}
 
     void_t   bind(cushort_t &port) const;

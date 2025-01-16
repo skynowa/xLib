@@ -38,8 +38,8 @@ public:
         ///< for Debugger
     virtual ~ErrorReport() = default;
 
-	xNO_DEFAULT_CONSTRUCT(ErrorReport)
-    xNO_COPY_ASSIGN(ErrorReport)
+	xNO_DEFAULT_CONSTRUCT(ErrorReport);
+    xNO_COPY_ASSIGN(ErrorReport);
 ///\}
 
 ///\name Overrides

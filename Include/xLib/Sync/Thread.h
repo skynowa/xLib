@@ -58,7 +58,7 @@ public:
 	// BUG: Thread:: ~Thread() - must pure virtual
 	virtual  ~Thread() /* = 0*/;
 
-	xNO_COPY_ASSIGN(Thread)
+	xNO_COPY_ASSIGN(Thread);
 ///\}
 
     // actions
@@ -135,8 +135,8 @@ public:
     bool_t isHandleValid() const;
     bool_t isIdValid() const;
 
-    static bool_t isHandleValid(chandle_t &handle);
-    static bool_t isIdValid(cid_t &id);
+    static bool_t isHandleValid(chandle_t handle);
+    static bool_t isIdValid(cid_t id);
 
     // other
     handle_t handle() const;
@@ -155,7 +155,7 @@ public:
         ///< opens an existing thread object
 
     // current thread
-    static bool_t   isCurrent(cid_t &id);
+    static bool_t   isCurrent(cid_t id);
         ///< is current id
     static id_t     currentId();
         ///< get the thread identifier of the calling thread

@@ -22,8 +22,8 @@ public:
 			 Finder(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter);
 	virtual ~Finder();
 
-	xNO_DEFAULT_CONSTRUCT(Finder)
-	xNO_COPY_ASSIGN(Finder)
+	xNO_DEFAULT_CONSTRUCT(Finder);
+	xNO_COPY_ASSIGN(Finder);
 ///\}
 
     std::ctstring_t & rootDirPath() const;

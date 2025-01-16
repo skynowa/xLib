@@ -22,7 +22,7 @@ public:
 	explicit AutoMutex(Mutex *mutex);
 	virtual ~AutoMutex();
 
-	xNO_COPY_ASSIGN(AutoMutex)
+	xNO_COPY_ASSIGN(AutoMutex);
 ///\}
 
 private:

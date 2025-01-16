@@ -25,7 +25,7 @@ public:
 	explicit  Config(std::ctstring_t &filePath);
 	virtual  ~Config();
 
-	xNO_COPY_ASSIGN(Config)
+	xNO_COPY_ASSIGN(Config);
 ///\}
 
 ///\name Overrides
@@ -65,13 +65,11 @@ public:
     void_t setValue(std::ctstring_t &key, const T value);
 ///\}
 
-xPRIVATE_STATIC:
-    static std::ctstring_t _separator; ///< separator between key and value
-
 private:
     FileInfo           _fileInfo;
     FileText           _file;
-    std::map_tstring_t _config; ///< std::map of keys and values
+    std::map_tstring_t _config;    ///< std::map of keys and values
+    std::ctstring_t    _separator; ///< separator between key and value
 };
 
 } // namespace

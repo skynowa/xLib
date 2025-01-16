@@ -25,7 +25,7 @@ public:
 			 Guid() = default;
 	virtual ~Guid() = default;
 
-	xNO_COPY_ASSIGN(Guid)
+	xNO_COPY_ASSIGN(Guid);
 ///\}
 
 ///\name Overrides

@@ -21,7 +21,8 @@ class Float final :
 	public IGetConstRef<T>,
 	public IStr,
 	public ICompare<T>
-    ///< Float's operations
+	///< Float's operations
+	///< \tparam T Float type (float, double, long double)
 {
 	static_assert(std::is_floating_point_v<T>, "T must be a floating-point type");
 
@@ -74,7 +75,7 @@ public:
 #undef xFLOAT_T_OPERATOR
 ///\}
 
-///\name Determines
+///\name Determinators
 ///\{
 	bool_t isNull() const;
 		///< checks if the given number is 0.0
@@ -121,8 +122,8 @@ FLongDouble operator ""xld (culonglong_t value);
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-#include <xLib/Core/Float.inl>
-
+#include "Float.inl"
+//-------------------------------------------------------------------------------------------------
 /**
  * [+] struct Float :
  * 			IComparable,

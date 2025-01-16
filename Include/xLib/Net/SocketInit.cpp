@@ -1,5 +1,5 @@
 /**
- * \file  SocketInit.inl
+ * \file  SocketInit.cpp
  * \brief initiates use of the Winsock DLL by a process
  */
 

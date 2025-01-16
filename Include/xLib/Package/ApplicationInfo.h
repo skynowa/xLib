@@ -39,7 +39,7 @@ public:
 			 ApplicationInfo() = default;
 	virtual ~ApplicationInfo() = default;
 ///\}
-///
+
     std::tstring_t versionFull() const;
 };
 

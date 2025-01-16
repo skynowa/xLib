@@ -29,7 +29,7 @@ public:
 	CrashCallback()= default;
 	~CrashCallback()= default;
 
-	xNO_COPY_ASSIGN(CrashCallback)
+	xNO_COPY_ASSIGN(CrashCallback);
 ///\}
 
     static void_t onSignals(int_t a_signal)
@@ -138,7 +138,9 @@ std::ctstring_t langDirName   = xT("Lang");
 namespace xl::package
 {
 
+///\cond Doxygen_OFF
 ApplicationInfo Application::_info;
+///\endcond
 //-------------------------------------------------------------------------------------------------
 Application::Application(
     std::ctstring_t &a_appGuid, ///< application GUID

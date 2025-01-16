@@ -255,6 +255,7 @@ GitClient::localBranchesNum() const
 
 //-------------------------------------------------------------------------------------------------
 /**
+ \code{.py}
  git_states=""
 
  get_git_states()
@@ -294,6 +295,7 @@ GitClient::localBranchesNum() const
 		git_states="●${git_states}"
 	fi
  }
+ \endcode
 */
 std::tstring_t
 GitClient::filesStatuses() const
@@ -343,6 +345,7 @@ GitClient::filesStatuses() const
 }
 //-------------------------------------------------------------------------------------------------
 /**
+  \code{.py}
  find_git_ahead_behind()
  {
 	if ! $(is_git); then
@@ -361,11 +364,12 @@ GitClient::filesStatuses() const
 	[[ $ahead != "0" ]]  && git_ahead_behind="↑${ahead}"
 	[[ $behind != "0" ]] && git_ahead_behind="↓${behind}"
  }
+ \endcode
 */
 void_t
 GitClient::commitsAheadBehind(
-	std::size_t *out_aheadNum,	///< [out]
-	std::size_t *out_behindNum	///< [out]
+	std::size_t *out_aheadNum,	///< [out] ahead number
+	std::size_t *out_behindNum	///< [out] behind number
 ) const
 {
 	Utils::ptrAssignT(out_aheadNum,  std::size_t{});
@@ -409,7 +413,7 @@ GitClient::stashesNum() const
 void_t
 GitClient::modifiedFiles(
 	std::cvec_tstring_t &a_filterFileExts,	///< (Maybe empty)
-	std::vec_tstring_t  *out_filePathes		///< [out]
+	std::vec_tstring_t  *out_filePathes		///< [out] file paths
 ) const
 {
 	xCHECK_DO(out_filePathes == nullptr, return);
@@ -450,8 +454,8 @@ GitClient::modifiedFiles(
 //-------------------------------------------------------------------------------------------------
 void_t
 GitClient::trackedFiles(
-	std::cvec_tstring_t &a_filterFileExts,	///<
-	std::vec_tstring_t  *out_filePathes		///< [out]
+	std::cvec_tstring_t &a_filterFileExts,	///< filter file extentions
+	std::vec_tstring_t  *out_filePathes		///< [out] file paths
 ) const
 {
 	xCHECK_DO(out_filePathes == nullptr, return);

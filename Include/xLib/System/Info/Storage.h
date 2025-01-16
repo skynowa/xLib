@@ -20,7 +20,7 @@ public:
 			 Storage() = default;
 	virtual ~Storage() = default;
 
-	xNO_COPY_ASSIGN(Storage)
+	xNO_COPY_ASSIGN(Storage);
 ///\}
 
 	ulong_t pageSize() const;

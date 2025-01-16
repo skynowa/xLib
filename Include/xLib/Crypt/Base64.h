@@ -20,7 +20,7 @@ public:
 			 Base64() = default;
 	virtual ~Base64() = default;
 
-	xNO_COPY_ASSIGN(Base64)
+	xNO_COPY_ASSIGN(Base64);
 ///\}
 
     std::string encode(cuchar_t *bytes, std::csize_t size);

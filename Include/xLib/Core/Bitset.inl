@@ -14,6 +14,7 @@ namespace xl::core
 
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+inline
 Bitset<T>::Bitset(
     const Bitset &a_values
 ) :
@@ -22,6 +23,7 @@ Bitset<T>::Bitset(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
+inline
 Bitset<T>::Bitset(
     const T a_values
 ) :
@@ -30,7 +32,7 @@ Bitset<T>::Bitset(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-Bitset<T> &
+inline Bitset<T> &
 Bitset<T>::operator = (
     const Bitset &a_values
 )
@@ -43,7 +45,7 @@ Bitset<T>::operator = (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-T &
+inline T &
 Bitset<T>::operator [] (
     std::csize_t a_index
 )
@@ -54,14 +56,14 @@ Bitset<T>::operator [] (
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-T &
+inline T &
 Bitset<T>::get() const
 {
     return _flags;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-void_t
+inline void_t
 Bitset<T>::set(
     const T a_values
 )
@@ -70,14 +72,14 @@ Bitset<T>::set(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-void_t
+inline void_t
 Bitset<T>::clear()
 {
     _flags = 0;
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-bool_t
+inline bool_t
 Bitset<T>::test(
 	std::csize_t a_index
 ) const
@@ -86,7 +88,7 @@ Bitset<T>::test(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-bool_t
+inline bool_t
 Bitset<T>::isSetBit(
     const T a_value
 ) const
@@ -104,7 +106,7 @@ Bitset<T>::isSetAnyBit(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-void_t
+inline void_t
 Bitset<T>::setBit(
     const T a_value
 )
@@ -113,7 +115,7 @@ Bitset<T>::setBit(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-void_t
+inline void_t
 Bitset<T>::unsetBit(
     const T a_value
 )
@@ -122,7 +124,7 @@ Bitset<T>::unsetBit(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-void_t
+inline void_t
 Bitset<T>::flipBit(
     const T a_value
 )
@@ -131,8 +133,7 @@ Bitset<T>::flipBit(
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
-constexpr
-std::size_t
+inline constexpr std::size_t
 Bitset<T>::size() const
 {
 	return (sizeof(T) * CHAR_BIT);
@@ -140,7 +141,7 @@ Bitset<T>::size() const
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 template<typename StreamT>
-void_t
+inline void_t
 Bitset<T>::print(
 	StreamT &a_os
 ) const

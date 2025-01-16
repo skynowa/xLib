@@ -25,7 +25,7 @@ public:
 			 Console();
 	virtual ~Console();
 
-	xNO_COPY_ASSIGN(Console)
+	xNO_COPY_ASSIGN(Console);
 ///\}
 
     /*******************************************************************************
