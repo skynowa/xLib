@@ -47,15 +47,16 @@
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
-// xSTDCALL
+///\name xSTDCALL - calling convention
+///\{
 #if   xENV_WIN
-    #define xSTDCALL \
-        __stdcall
+	#define xSTDCALL \
+		__stdcall
 #elif xENV_UNIX
-    #define xSTDCALL \
-        xNOT_AVAILABLE
+	#define xSTDCALL \
+		xNOT_AVAILABLE
 #endif
-    ///< calling convention
+///\}
 //-------------------------------------------------------------------------------------------------
 ///\name Usings
 ///\{
