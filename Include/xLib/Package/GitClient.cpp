@@ -46,6 +46,7 @@ GitClient::isGitDir() const
 /**
  * HTTP(s)/Git proto
  *
+ * \code
  * - git@bitbucket.org:skynowa/faq.git
  * - ssh://git@gitlab.maklai.dev:8999/suppliers/services-sync.git
  * - ssh://git@stash.fabrica.net.ua:7999/trav/booked.git
@@ -53,6 +54,7 @@ GitClient::isGitDir() const
  * - https://github.com/FIvanO/PocketBookTest
  *
  * - https://skynowa@git.code.sf.net/p/x-lib/code
+ * \endcode
  */
 std::tstring_t
 GitClient::repoUrl() const
@@ -143,7 +145,9 @@ GitClient::gitlabRepoGroupName() const
    /**
 	* URL
 	*
+	* \code
 	* ssh://git@gitlab.maklai.dev:8999/tripnet/services.git
+	* \endcode
 	*/
 	std::ctstring_t &url = repoUrl();
 	// Cout() << xTRACE_VAR(url);
@@ -495,6 +499,7 @@ GitClient::modifiedFilesLineFilter() const
 	xCHECK_DO(!isGitDir(), return);
 
    /**
+    * \code{.py}
 	* def getGitModifiedFilesLineFilter(self):
 	* 	"" Get current GIT modified lines line filter (JSON) ""
 	*
@@ -554,6 +559,7 @@ GitClient::modifiedFilesLineFilter() const
 	* 		separators = (',', ':'))
 	*
 	* 	return line_filter_json
+	* \endcode
 	*/
 }
 //-------------------------------------------------------------------------------------------------
