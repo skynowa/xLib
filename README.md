@@ -15,7 +15,7 @@
 - Language: C++ 20
 - Platforms:
 
-  - Windows: (XP >)
+  - Windows (XP >)
   - Unix:
       - Ubuntu 20.04
       - BSD
