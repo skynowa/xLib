@@ -41,4 +41,5 @@
 
 ## Documentation
 
-- https://skynowa.github.io/
+- [GitHub Pages](https://skynowa.github.io/)
+- [Repository](https://github.com/skynowa/skynowa.github.io/actions)
