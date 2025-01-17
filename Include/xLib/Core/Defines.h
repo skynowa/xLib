@@ -243,7 +243,7 @@
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
-///\name xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
+///\name BAD native handles
 ///\{
 #if   xENV_WIN
     #define xNATIVE_HANDLE_NULL    ( static_cast<native_handle_t>( nullptr ) )
@@ -256,9 +256,15 @@
     #define xNATIVE_HANDLE_INVALID ( static_cast<native_handle_t>( - 1 ) )
         ///< native handle value "invalid"
 #endif
+
+// xWND_NATIVE_HANDLE_NULL
+#if xENV_WIN
+    #define xWND_NATIVE_HANDLE_NULL ( static_cast<HWND>( nullptr ) )
+        ///< window native handle value "null"
+#endif
 ///\}
 //-------------------------------------------------------------------------------------------------
-///\name xFIND_DIR_HANDLE_NULL
+///\name BAD find directory handle
 ///\{
 #if   xENV_WIN
     #define xFIND_DIR_HANDLE_NULL ( static_cast<find_dir_handle_t>( INVALID_HANDLE_VALUE ) )
@@ -269,7 +275,7 @@
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
-///\name xSOCKET_ERROR, xSOCKET_HANDLE_INVALID
+///\name BAD socket native handles
 ///\{
 #if xENV_WIN
     #define xSOCKET_ERROR          ( SOCKET_ERROR )
@@ -283,13 +289,6 @@
         ///< socket native handle value "null"
 #endif
 ///\}
-//-------------------------------------------------------------------------------------------------
-// xWND_NATIVE_HANDLE_NULL
-#if xENV_WIN
-    #define xWND_NATIVE_HANDLE_NULL ( static_cast<HWND>( nullptr ) )
-        ///< window native handle value "null"
-#endif
-
 //-------------------------------------------------------------------------------------------------
 ///\name Generic test for success on any status value (for Windows XP)
 ///\{
@@ -321,7 +320,7 @@
         ///< hot key
 #endif
 //-------------------------------------------------------------------------------------------------
-///\name xFOR_EACH
+///\name Reverse for_each
 ///\{
 #define xFOR_EACH_R(it_t, it, cont) \
     for (it_t::reverse_iterator       it((cont).rbegin()); it != (cont).rend(); ++ it)
@@ -332,7 +331,7 @@
     ///< iterate STL container (using it_t::const_reverse_iterator)
 ///\}
 //-------------------------------------------------------------------------------------------------
-///\name xTHROW_REPORT, xTRY, xCATCH_ALL
+///\name Exception with debug::ErrorReport
 ///\{
 #define xTHROW_REPORT(msg) \
     { \
@@ -346,8 +345,7 @@
         throw Exception() << report.str(); \
     }
     ///< like throw
-#define xTRY \
-    try
+#define xTRY try
     ///< like try
 #define xCATCH_ALL \
     catch (const Exception &a_ex) {          \
@@ -360,7 +358,7 @@
     catch (...) {                            \
         xTEST_FAIL_MSG(xT("unknown error")); \
     }
-    ///< catch Exception, std::exception and all other exceptions
+    ///< catch debug::Exception, std::exception and all other exceptions
 ///\}
 //-------------------------------------------------------------------------------------------------
 ///\name Class disallows

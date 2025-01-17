@@ -1,0 +1,9 @@
+/* custom.css */
+
+.groupHeader h2 {
+    color: #1E90FF; /* Change text color */
+    background-color: #F0F8FF; /* Add a background color */
+    font-style: italic; /* Make it italic */
+    border-bottom: 2px solid #1E90FF; /* Add a bottom border */
+    padding: 5px;
+}
