@@ -1241,6 +1241,9 @@ HTML_EXTRA_STYLESHEET  = # Themes/custom_extra.css
 
 HTML_EXTRA_FILES       =
 
+# HTML_COLORSTYLE
+HTML_COLORSTYLE        = DARK # required with Doxygen >= 1.9.5
+
 # The HTML_COLORSTYLE_HUE tag controls the color of the HTML output. Doxygen
 # will adjust the colors in the style sheet and background images according to
 # this color. Hue is specified as an angle on a colorwheel, see
