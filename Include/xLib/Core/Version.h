@@ -14,9 +14,9 @@
     ///< xLib version
 
 #if cmGIT_REVISION_FOUND
-    #define xLIB_GIT_REVISION_BRANCH  cmGIT_REVISION_BRANCH
+    #define xLIB_GIT_REVISION_BRANCH cmGIT_REVISION_BRANCH
         ///< xLib Git revision branch
-    #define xLIB_GIT_REVISION_HASH    cmGIT_REVISION_HASH
+    #define xLIB_GIT_REVISION_HASH   cmGIT_REVISION_HASH
         ///< xLib Git revision hash
 #endif
 
@@ -31,8 +31,6 @@
     ///< xLib home page
 #define xLIB_EMAIL          xT("skynowa@gmail.com")
     ///< xLib email
-#define xLIB_SKYPE          xT("skynowa777")
-    ///< xLib skype
 //-------------------------------------------------------------------------------------------------
 // TODO: Version.h.in from CMake
 //-------------------------------------------------------------------------------------------------
