@@ -1,6 +1,6 @@
 /**
  * \file  Connection.cpp
- * \brief Database connection
+ * \brief DB connection
  */
 
 

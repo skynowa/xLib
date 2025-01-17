@@ -1,6 +1,6 @@
 /**
  * \file  Error.cpp
- * \brief MySql error
+ * \brief Error
  */
 
 

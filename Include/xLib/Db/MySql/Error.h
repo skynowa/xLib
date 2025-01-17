@@ -1,6 +1,6 @@
 /**
  * \file  Error.h
- * \brief MySql error
+ * \brief Error
  */
 
 

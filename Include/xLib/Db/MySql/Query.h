@@ -1,6 +1,6 @@
 /**
  * \file  Query.h
- * \brief MySql query
+ * \brief SQL query
  */
 
 
