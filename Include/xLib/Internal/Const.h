@@ -1,6 +1,8 @@
 /**
  * \file  Const.h
  * \brief Constants
+ *
+ * \internal
  */
 
 

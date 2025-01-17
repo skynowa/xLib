@@ -1,6 +1,8 @@
 /**
- * \file   Internal.h
- * \brief  for internal use
+ * \file  Internal.h
+ * \brief for internal use
+ *
+ * \internal
  */
 
 
@@ -33,10 +35,10 @@ template<
 	typename ImplT
 	>
 struct Type
-    ///< enum values
+    /// enum values
 {
-	const CrossT cross;  ///< crossplatform value
-	const ImplT  impl;   ///< implementation (native) value
+	const CrossT cross; ///< crossplatform value
+	const ImplT  impl;  ///< implementation (native) value
 };
 
 template<
@@ -45,7 +47,7 @@ template<
 	std::csize_t SizeT
 	>
 class Types
-    ///< convert implementation (native) <-> crossplatform values
+    /// convert implementation (native) <-> crossplatform values
 {
 public:
 	// TOOD: array -> map
@@ -53,13 +55,13 @@ public:
         ///< crossplatform to implementation (native) values
 
     CrossT
-    toCross(std::cssize_t a_value)
+    toCross(std::cssize_t a_value) const
     {
         return static_cast<CrossT>( this->values[a_value].cross );
     }
         ///< implementation (native) value to crossplatform
     ImplT
-    toImpl(std::cssize_t a_value)
+    toImpl(std::cssize_t a_value) const
     {
         return static_cast<ImplT>( this->values[a_value].impl );
     }

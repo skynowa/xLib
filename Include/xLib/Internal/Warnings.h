@@ -1,6 +1,8 @@
 /**
- * \file   Warnings.h
- * \brief  warnings on/off
+ * \file  Warnings.h
+ * \brief warnings on/off
+ *
+ * \internal
  */
 
 
