@@ -190,7 +190,7 @@
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
-///\name Formattong qualifiers
+///\name Formatting qualifiers
 ///\{
 #if   xENV_WIN
     #ifdef xARCH_BITS_32
@@ -241,7 +241,6 @@
             ///< qualifier for long_t long_t int_t (hex)
     #endif
 #endif
-    ///< qualifiers
 ///\}
 //-------------------------------------------------------------------------------------------------
 ///\name xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
