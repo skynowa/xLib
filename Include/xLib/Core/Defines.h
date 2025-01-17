@@ -7,18 +7,22 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-///\name xTEXT, xT (Ansi, Unicode string)
+///\name Ansi / Unicode string depend on Unicode config
 ///\{
 #if xUNICODE
     #define xTEXT(x) L##x
+        ///< Ansi/Unicode string
     #define xT(x)    xTEXT(x)
+        ///< Ansi/Unicode string
 #else
     #define xTEXT(x) x
+        ///< Ansi/Unicode string
     #define xT(x)    xTEXT(x)
+        ///< Ansi/Unicode string
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
-///\name xDECL, xDECL_TEMPL
+///\name Export / import DLL information
 ///\{
 #if xENV_WIN && cmOPTION_PROJECT_LIB_SHARE
     #if xAPI_EXPORTS
@@ -40,12 +44,14 @@
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
-///\name xSTDCALL - calling convention
+///\name Calling convention
 ///\{
 #if   xENV_WIN
 	#define xSTDCALL __stdcall
+		///< https://learn.microsoft.com/en-us/cpp/cpp/stdcall
 #elif xENV_UNIX
 	#define xSTDCALL xNOT_AVAILABLE
+		///< N/a
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
@@ -54,7 +60,7 @@
 #define xUSING_CONST(t)     using c##t = const t
     ///< using const types
 #define xUSING_PTR_CONST(t) using cptr_##c##t = const t * const
-    ///< using const types
+    ///< using pointer const types
 ///\}
 //-----------------------------------------------------------------------------------------------
 ///\name Converters
@@ -83,23 +89,22 @@
     ///< get array size
 #define xSWITCH_CASE_RETURN_STR(x) case (x): return (#x)
     ///< help for switch (not for `enum class`)
-///\}
-//-------------------------------------------------------------------------------------------------
+
 // xUNUSED
 #if   (xCOMPILER_MINGW || xCOMPILER_MS)
-    #define xUNUSED(arg) ( static_cast<void>( arg ) )
+	#define xUNUSED(arg) ( static_cast<void>( arg ) )
 #elif xCOMPILER_GNUC
-    #define xUNUSED(arg) { static_cast<void>( true ? (arg) : (arg) ); }
+	#define xUNUSED(arg) { static_cast<void>( true ? (arg) : (arg) ); }
 #else
-    #define xUNUSED(arg) ( static_cast<void>( arg ) )
+	#define xUNUSED(arg) ( static_cast<void>( arg ) )
 #endif
-    ///< hide "unused variable" warnings
-//-------------------------------------------------------------------------------------------------
-// xUNKNOWN_CSTRING
+	///< hide "unused variable" warnings
+
 #define xUNKNOWN_CSTRING xT("[unknown]")
-    ///< C string as unknown value
+	///< C string as unknown value
+///\}
 //-------------------------------------------------------------------------------------------------
-///\name Temporary enable/disable code
+///\name Temporary enable / disable code
 ///\{
 #define xTEMP_ENABLED  1
     ///< temporary code enabled
@@ -148,7 +153,6 @@
 
 #define xSOURCE_AT xFILE xT(":") xSTRINGIZE(xLINE)
     ///< source information
-
 #define xSOURCE_AT_EXPR(expr) xFILE xT(":") xSTRINGIZE(xLINE) #expr
     ///< source information
 
@@ -161,8 +165,7 @@
     ///< build source date time stamp
 
 #define xCOUNTER __COUNTER__
-    ///< Expands to an integer starting with 0 and
-    ///< incrementing by 1 every time it is used in a compiland
+    ///< expands to an int starting with 0, incrementing by 1 every time it is used in a compiland
 ///\}
 //-------------------------------------------------------------------------------------------------
 ///\name Variable arguments
@@ -170,9 +173,9 @@
 #if defined(va_start)
     #define xVA_START(val, fmt) ( va_start(val, fmt) )
 #endif
-    ///< initializes ap for subsequent use by xVA_ARG() and xVA_END(), and must be called first
+		///< initializes ap for subsequent use by xVA_ARG() and xVA_END(), and must be called first
 
-#if defined(va_copy)
+#if   defined(va_copy)
     #define xVA_COPY(dest, src) ( va_copy(dest, src) )
 #elif defined(__va_copy)
     #define xVA_COPY(dest, src) ( __va_copy(dest, src) )
@@ -184,8 +187,7 @@
 #if defined(va_end)
     #define xVA_END(val) ( va_end(val) )
 #endif
-    ///< Each invocation of xVA_START() must be matched by a corresponding invocation of xVA_END()
-    ///< in the same function
+        ///< Each invocation of xVA_START() must be matched by a corresponding invocation of xVA_END() in the same function
 ///\}
 //-------------------------------------------------------------------------------------------------
 ///\name Formattong qualifiers
