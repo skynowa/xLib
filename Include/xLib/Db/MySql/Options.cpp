@@ -1,6 +1,6 @@
 /**
  * \file  Options.cpp
- * \brief
+ * \brief Connection options
  */
 
 

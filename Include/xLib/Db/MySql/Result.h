@@ -1,6 +1,6 @@
 /**
  * \file  Result.h
- * \brief MySql client
+ * \brief SQL query result
  *
  * \see mysqlpp
  * - https://tangentsoft.com/mysqlpp/file?name=examples/simple1.cpp

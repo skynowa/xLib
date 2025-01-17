@@ -1,6 +1,6 @@
 /**
  * \file  Db.h
- * \brief MySql DB
+ * \brief Database
  */
 
 

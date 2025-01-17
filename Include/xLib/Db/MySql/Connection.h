@@ -1,6 +1,6 @@
 /**
  * \file  Connection.h
- * \brief MySql client
+ * \brief DB connection
  */
 
 

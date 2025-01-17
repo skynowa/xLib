@@ -1,6 +1,6 @@
 /**
  * \file  Types.h
- * \brief
+ * \brief Custom types
  */
 
 

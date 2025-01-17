@@ -1,6 +1,6 @@
 /**
  * \file  Result.cpp
- * \brief
+ * \brief SQL query result
  */
 
 
