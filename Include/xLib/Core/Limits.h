@@ -118,13 +118,11 @@
     ///< as \code ::sysconf(_SC_GETPW_R_SIZE_MAX) \endcode
 
 // TODO: [skynowa] xTHREAD_NAME_LENGTH_MAX - fix unicode version
-///\def   xTHREAD_NAME_LENGTH_MAX
-///\brief thread name max length
-///\{
 #if   xENV_WIN
 	#define xTHREAD_NAME_LENGTH_MAX ( static_cast<std::size_t>(32) )
 #elif xENV_UNIX
 	#define xTHREAD_NAME_LENGTH_MAX ( static_cast<std::size_t>(16) )
 #endif
+	///< thread name max length
 ///\}
 //-------------------------------------------------------------------------------------------------
