@@ -235,7 +235,7 @@ StoreResult::StoreResult(
    /**
 	* Retrieves all the rows immediately (small result)
 	*
-	* \return NULL if:
+	* Return NULL if:
     *
 	* - There was a malloc() failure (for example, if the result set was too large).
 	* - The data could not be read (an error occurred on the connection).
