@@ -2204,6 +2204,7 @@ PREDEFINED             = \
     xENV_UNIX=1 \
     xENV_LINUX=1 \
     xOS_LINUX=1 \
+    xUNICODE=0 \
     \
     xUSING_CONST(t)={} \
     xPROPERTY_STATIC((ApplicationInfo, info, Info))={} \
