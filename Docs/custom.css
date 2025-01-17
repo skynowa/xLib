@@ -1,0 +1,9 @@
+/* custom.css */
+
+.groupHeader h2 {
+    color: #1E90FF;
+    background-color: #F0F8FF;
+    font-style: italic;
+    border-bottom: 2px solid #1E90FF;
+    padding: 5px;
+}
