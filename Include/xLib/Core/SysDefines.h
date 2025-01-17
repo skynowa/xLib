@@ -2,7 +2,8 @@
  * \file  SysDefines.h
  * \brief predefined macros
  *
- * https://sourceforge.net/p/predef/wiki/Home/
+ * \see
+ * https://sourceforge.net/p/predef/wiki/Home/\n
  * https://github.com/jeffhammond/HPCInfo/blob/master/docs/Preprocessor-Macros.md
  */
 
@@ -15,19 +16,19 @@
 //-------------------------------------------------------------------------------------------------
 ///\name Utils
 ///\{
-#define xVER_FULL(major, minor, patch) \
-    (major * 10000 + minor * 100 + patch)
-    ///< version builder
+#define xVER_FULL(major, minor, patch)     (major * 10000 + minor * 100 + patch)
+    ///< version builder as int
 #define xVER_FULL_STR(major, minor, patch) \
-    (xSTRINGIZE(major) xT(".") xSTRINGIZE(minor) xT(".") xSTRINGIZE(patch))
-    ///< version builder
+	(xSTRINGIZE(major) xT(".") xSTRINGIZE(minor) xT(".") xSTRINGIZE(patch))
+    ///< version builder as string
 
+// xLINUX_KERNEL_VER
 #if !defined(KERNEL_VERSION)
     #define xLINUX_KERNEL_VER(a, b, c) (((a) << 16) + ((b) << 8) + (c))
 #else
-    #define xLINUX_KERNEL_VER KERNEL_VERSION
+    #define xLINUX_KERNEL_VER           KERNEL_VERSION
 #endif
-    ///< get Linux kernel version
+    ///< Linux kernel version
 ///\}
 //-------------------------------------------------------------------------------------------------
 ///\name C language standard
@@ -62,7 +63,7 @@
 #else
 	#if defined(_MSC_VER)
 		// Force lang standart
-		#define xLANG_C17 1
+		#define xLANG_C20 1
 	#else
 		#error xLib: unsupported C language standard
 	#endif
@@ -197,6 +198,12 @@
     ///< Windows Vista, Windows Server 2008
 #define xOS_WIN_7       0x0601
     ///< Windows 7, Windows Server 2008 R2
+#define xOS_WIN_WIN8    0x0602
+	///< Windows 8
+#define xOS_WIN_WIN8_1  0x0603
+	///< Windows 8.1
+#define xOS_WIN_WIN10   0x0A00
+	///< Windows 10
 
 #define xOS_LINUX_VER   LINUX_VERSION_CODE
     ///< Linux version
@@ -378,11 +385,9 @@
 //-------------------------------------------------------------------------------------------------
 ///\name Etc
 ///\{
-#define xCOMPILER_FLAGS \
-	cmXLIB_COMPILER_FLAGS
+#define xCOMPILER_FLAGS cmXLIB_COMPILER_FLAGS
 	///< Compiler flags
-#define xXLIB_LIBRARIES \
-	cmXLIB_LIBRARIES
+#define xXLIB_LIBRARIES cmXLIB_LIBRARIES
 	///< xLib linked linraries
 ///\}
 //-------------------------------------------------------------------------------------------------

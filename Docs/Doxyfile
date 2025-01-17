@@ -2205,6 +2205,7 @@ PREDEFINED             = \
     xENV_LINUX=1 \
     xOS_LINUX=1 \
     xUNICODE=0 \
+    xLANG_CPP20=1 \
     \
     xUSING_CONST(t)={} \
     xPROPERTY_STATIC((ApplicationInfo, info, Info))={} \

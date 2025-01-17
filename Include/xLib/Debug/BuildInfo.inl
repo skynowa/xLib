@@ -150,6 +150,12 @@ BuildInfo::os() const
             osVersion = xT("Vista, Windows Server 2008");
         #elif (xOS_WIN_VER == xOS_WIN_7)
             osVersion = xT("7, Windows Server 2008 R2");
+        #elif (xOS_WIN_VER == xOS_WIN_WIN8)
+            osVersion = xT("8");
+        #elif (xOS_WIN_VER == xOS_WIN_WIN8_1)
+            osVersion = xT("8.1");
+        #elif (xOS_WIN_VER == xOS_WIN_WIN10)
+            osVersion = xT("10");
         #endif
     #elif (xOS_ANDROID || xOS_LINUX)
         cint_t versionMajor = (xOS_LINUX_VER & 0x00FF0000) >> 16;
