@@ -10,15 +10,11 @@
 ///\name xTEXT, xT (Ansi, Unicode string)
 ///\{
 #if xUNICODE
-    #define xTEXT(x) \
-        L##x
-    #define xT(x) \
-        xTEXT(x)
+    #define xTEXT(x) L##x
+    #define xT(x)    xTEXT(x)
 #else
-    #define xTEXT(x) \
-        x
-    #define xT(x) \
-        xTEXT(x)
+    #define xTEXT(x) x
+    #define xT(x)    xTEXT(x)
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
@@ -26,17 +22,14 @@
 ///\{
 #if xENV_WIN && cmOPTION_PROJECT_LIB_SHARE
     #if xAPI_EXPORTS
-        #define xDECL \
-            __declspec(dllexport)
+        #define xDECL       __declspec(dllexport)
             ///< export DLL information
         #define xDECL_TEMPL
             ///< export DLL information
     #else
-        #define xDECL \
-            __declspec(dllimport)
+        #define xDECL       __declspec(dllimport)
             ///< import DLL information
-        #define xDECL_TEMPL \
-            extern
+        #define xDECL_TEMPL extern
             ///< import DLL information
     #endif
 #elif xENV_UNIX
@@ -50,76 +43,60 @@
 ///\name xSTDCALL - calling convention
 ///\{
 #if   xENV_WIN
-	#define xSTDCALL \
-		__stdcall
+	#define xSTDCALL __stdcall
 #elif xENV_UNIX
-	#define xSTDCALL \
-		xNOT_AVAILABLE
+	#define xSTDCALL xNOT_AVAILABLE
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
 ///\name Usings
 ///\{
-#define xUSING_CONST(t) \
-    using c##t = const t
+#define xUSING_CONST(t)     using c##t = const t
     ///< using const types
-#define xUSING_PTR_CONST(t) \
-    using cptr_##c##t = const t * const
+#define xUSING_PTR_CONST(t) using cptr_##c##t = const t * const
     ///< using const types
 ///\}
 //-----------------------------------------------------------------------------------------------
 ///\name Converters
 ///\{
 #if xUNICODE
-    #define xA2T(a) \
-        ( String::castW(a) )
+    #define xA2T(a) ( String::castW(a) )
         ///< convert std::string to std::wstring
-    #define xT2A(t) \
-        ( String::castA(t) )
+    #define xT2A(t) ( String::castA(t) )
         ///< convert std::wstring to std::string
 #else
-    #define xA2T(a) \
-        ( a )
+    #define xA2T(a) ( a )
         ///< convert std::string to std::wstring
-    #define xT2A(t) \
-        ( t )
+    #define xT2A(t) ( t )
         ///< convert std::wstring to std::string
 #endif
 
-#define xT2U(t) \
-    std::ustring_t( (t).cbegin(),  (t).cbegin()  + (t).size()  )
+#define xT2U(t) std::ustring_t( (t).cbegin(), (t).cbegin()  + (t).size()  )
     ///< convert std::tstring_t to std::ustring_t
-#define xU2T(u) \
-    std::tstring_t( (u).cbegin(), (u).cbegin() + (u).size() )
+#define xU2T(u) std::tstring_t( (u).cbegin(), (u).cbegin() + (u).size() )
     ///< convert std::ustring_t to std::tstring_t
 ///\}
 //-------------------------------------------------------------------------------------------------
 ///\name Utils
 ///\{
-#define xARRAY_SIZE(a) \
-    ( sizeof(a) / sizeof((a)[0]) )
+#define xARRAY_SIZE(a) ( sizeof(a) / sizeof((a)[0]) )
     ///< get array size
-#define xSWITCH_CASE_RETURN_STR(x) \
-    case (x): return (#x)
+#define xSWITCH_CASE_RETURN_STR(x) case (x): return (#x)
     ///< help for switch (not for `enum class`)
 ///\}
 //-------------------------------------------------------------------------------------------------
 // xUNUSED
 #if   (xCOMPILER_MINGW || xCOMPILER_MS)
-    #define xUNUSED(arg) \
-    ( static_cast<void>( arg ) )
+    #define xUNUSED(arg) ( static_cast<void>( arg ) )
 #elif xCOMPILER_GNUC
-    #define xUNUSED(arg) \
-    { static_cast<void>( true ? (arg) : (arg) ); }
+    #define xUNUSED(arg) { static_cast<void>( true ? (arg) : (arg) ); }
 #else
-    #define xUNUSED(arg) \
-    ( static_cast<void>( arg ) )
+    #define xUNUSED(arg) ( static_cast<void>( arg ) )
 #endif
     ///< hide "unused variable" warnings
 //-------------------------------------------------------------------------------------------------
 // xUNKNOWN_CSTRING
-#define xUNKNOWN_CSTRING \
-    xT("[unknown]")
+#define xUNKNOWN_CSTRING xT("[unknown]")
     ///< C string as unknown value
 //-------------------------------------------------------------------------------------------------
 ///\name Temporary enable/disable code
@@ -152,51 +129,38 @@
 //-------------------------------------------------------------------------------------------------
 ///\name Build in macros
 ///\{
-#define xFILE \
-	xT(__FILE__)
+#define xFILE      xT(__FILE__)
     ///< source file path
-#define xBASE_FILE \
-    ((std::strrchr(xFILE, '/') == nullptr) ? xFILE : std::strrchr(xFILE, '/') + 1)
+#define xBASE_FILE ((std::strrchr(xFILE, '/') == nullptr) ? xFILE : std::strrchr(xFILE, '/') + 1)
     ///< file basename
-#define xLINE \
-	__LINE__
+#define xLINE      __LINE__
     ///< source code line number
 
 // xFUNCTION
 #if   xCOMPILER_MS
-    #define xFUNCTION \
-        xT(__FUNCTION__)
+    #define xFUNCTION xT(__FUNCTION__)
 #elif xCOMPILER_GNUC || xCOMPILER_MINGW
-    #define xFUNCTION \
-        xA2T(__PRETTY_FUNCTION__)
+    #define xFUNCTION xA2T(__PRETTY_FUNCTION__)
 #else
-    #define xFUNCTION \
-        xUNKNOWN_CSTRING
+    #define xFUNCTION xUNKNOWN_CSTRING
 #endif
     ///< source function name
 
-#define xSOURCE_AT \
-    xFILE xT(":") xSTRINGIZE(xLINE)
+#define xSOURCE_AT xFILE xT(":") xSTRINGIZE(xLINE)
     ///< source information
 
-#define xSOURCE_AT_EXPR(expr) \
-    xFILE xT(":") xSTRINGIZE(xLINE) #expr
+#define xSOURCE_AT_EXPR(expr) xFILE xT(":") xSTRINGIZE(xLINE) #expr
     ///< source information
 
 // xDATE
-#define xDATE \
-    xT(__DATE__)
+#define xDATE     xT(__DATE__)
     ///< build source date stamp
-#define xTIME \
-    xT(__TIME__)
+#define xTIME     xT(__TIME__)
     ///< build source time stamp
-
-#define xDATETIME \
-    xDATE xT(" ") xTIME
+#define xDATETIME xDATE xT(" ") xTIME
     ///< build source date time stamp
 
-#define xCOUNTER \
-    __COUNTER__
+#define xCOUNTER __COUNTER__
     ///< Expands to an integer starting with 0 and
     ///< incrementing by 1 every time it is used in a compiland
 ///\}
@@ -204,26 +168,21 @@
 ///\name Variable arguments
 ///\{
 #if defined(va_start)
-    #define xVA_START(val, fmt) \
-        ( va_start(val, fmt) )
+    #define xVA_START(val, fmt) ( va_start(val, fmt) )
 #endif
     ///< initializes ap for subsequent use by xVA_ARG() and xVA_END(), and must be called first
 
 #if defined(va_copy)
-    #define xVA_COPY(dest, src) \
-        ( va_copy(dest, src) )
+    #define xVA_COPY(dest, src) ( va_copy(dest, src) )
 #elif defined(__va_copy)
-    #define xVA_COPY(dest, src) \
-        ( __va_copy(dest, src) )
+    #define xVA_COPY(dest, src) ( __va_copy(dest, src) )
 #else
-    #define xVA_COPY(dest, src) \
-        ( (void_t *)std::memcpy(&dest, &src, sizeof(va_list)) )
+    #define xVA_COPY(dest, src) ( (void_t *)std::memcpy(&dest, &src, sizeof(va_list)) )
 #endif
     ///< copy xVA_LIST
 
 #if defined(va_end)
-    #define xVA_END(val) \
-        ( va_end(val) )
+    #define xVA_END(val) ( va_end(val) )
 #endif
     ///< Each invocation of xVA_START() must be matched by a corresponding invocation of xVA_END()
     ///< in the same function
@@ -286,18 +245,14 @@
 ///\name xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
 ///\{
 #if   xENV_WIN
-    #define xNATIVE_HANDLE_NULL \
-        ( static_cast<native_handle_t>( nullptr ) )
+    #define xNATIVE_HANDLE_NULL    ( static_cast<native_handle_t>( nullptr ) )
         ///< native handle value "null"
-    #define xNATIVE_HANDLE_INVALID \
-        ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )
+    #define xNATIVE_HANDLE_INVALID ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )
         ///< native handle value "invalid"
 #elif xENV_UNIX
-    #define xNATIVE_HANDLE_NULL \
-        ( static_cast<native_handle_t>( 0 ) )
+    #define xNATIVE_HANDLE_NULL    ( static_cast<native_handle_t>( 0 ) )
         ///< native handle value "null"
-    #define xNATIVE_HANDLE_INVALID \
-        ( static_cast<native_handle_t>( - 1 ) )
+    #define xNATIVE_HANDLE_INVALID ( static_cast<native_handle_t>( - 1 ) )
         ///< native handle value "invalid"
 #endif
 ///\}
@@ -305,12 +260,10 @@
 ///\name xFIND_DIR_HANDLE_NULL
 ///\{
 #if   xENV_WIN
-    #define xFIND_DIR_HANDLE_NULL \
-        ( static_cast<find_dir_handle_t>( INVALID_HANDLE_VALUE ) )
+    #define xFIND_DIR_HANDLE_NULL ( static_cast<find_dir_handle_t>( INVALID_HANDLE_VALUE ) )
         ///< find directory handle
 #elif xENV_UNIX
-    #define xFIND_DIR_HANDLE_NULL \
-        ( static_cast<find_dir_handle_t>( nullptr ) )
+    #define xFIND_DIR_HANDLE_NULL ( static_cast<find_dir_handle_t>( nullptr ) )
         ///< find directory handle
 #endif
 ///\}
@@ -318,26 +271,21 @@
 ///\name xSOCKET_ERROR, xSOCKET_HANDLE_INVALID
 ///\{
 #if xENV_WIN
-    #define xSOCKET_ERROR \
-        ( SOCKET_ERROR )
+    #define xSOCKET_ERROR          ( SOCKET_ERROR )
         ///< socket native handle value "error"
-    #define xSOCKET_HANDLE_INVALID \
-        ( static_cast<socket_t>( INVALID_SOCKET ) )
+    #define xSOCKET_HANDLE_INVALID ( static_cast<socket_t>( INVALID_SOCKET ) )
         ///< socket native handle value "null"
 #elif xENV_UNIX
-    #define xSOCKET_ERROR \
-        ( - 1 )
+    #define xSOCKET_ERROR          ( - 1 )
         ///< socket native handle value "error"
-    #define xSOCKET_HANDLE_INVALID \
-        ( static_cast<socket_t>( - 1 ) )
+    #define xSOCKET_HANDLE_INVALID ( static_cast<socket_t>( - 1 ) )
         ///< socket native handle value "null"
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
 // xWND_NATIVE_HANDLE_NULL
 #if xENV_WIN
-    #define xWND_NATIVE_HANDLE_NULL \
-        ( static_cast<HWND>( nullptr ) )
+    #define xWND_NATIVE_HANDLE_NULL ( static_cast<HWND>( nullptr ) )
         ///< window native handle value "null"
 #endif
 
@@ -346,34 +294,29 @@
 ///\{
 #if xENV_WIN
     #ifndef NT_SUCCESS
-        #define NT_SUCCESS(Status) \
-            (((NTSTATUS)(Status)) >= 0)
+        #define NT_SUCCESS(Status)     (((NTSTATUS)(Status)) >= 0)
             ///< generic test for success on any status value
     #endif
 
     #ifndef NT_INFORMATION
-        #define NT_INFORMATION(Status) \
-            ((((ULONG)(Status)) >> 30) == 1)
+        #define NT_INFORMATION(Status) ((((ULONG)(Status)) >> 30) == 1)
             ///< generic test for success on any status value
     #endif
 
     #ifndef NT_WARNING
-        #define NT_WARNING(Status) \
-            ((((ULONG)(Status)) >> 30) == 2)
+        #define NT_WARNING(Status)     ((((ULONG)(Status)) >> 30) == 2)
             ///< generic test for success on any status value
     #endif
 
     #ifndef NT_ERROR
-        #define NT_ERROR(Status) \
-            ((((ULONG)(Status)) >> 30) == 3)
+        #define NT_ERROR(Status)       ((((ULONG)(Status)) >> 30) == 3)
             ///< generic test for success on any status value
     #endif
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
 #if xENV_WIN
-    #define xHOTKEY(modifier, key) \
-        ((((modifier) & 0xFF) << 8) | ((key) & 0xFF))
+    #define xHOTKEY(modifier, key) ((((modifier) & 0xFF) << 8) | ((key) & 0xFF))
         ///< hot key
 #endif
 //-------------------------------------------------------------------------------------------------
@@ -421,20 +364,15 @@
 //-------------------------------------------------------------------------------------------------
 ///\name Class disallows
 ///\{
-#define xNO_DEFAULT_CONSTRUCT(className) \
-    className() = delete
+#define xNO_DEFAULT_CONSTRUCT(className) className() = delete
 	///< disallow default constructor
-#define xNO_COPY(className) \
-    className(const className &) = delete
+#define xNO_COPY(className)              className(const className &) = delete
     ///< disallow copy
-#define xNO_MOVE(className) \
-    className(className &&) = delete
+#define xNO_MOVE(className)              className(className &&) = delete
     ///< disallow move
-#define xNO_ASSIGN(className) \
-    className & operator = (const className &) = delete
+#define xNO_ASSIGN(className)            className & operator = (const className &) = delete
     ///< disallow assign
-#define xNO_MOVE_ASSIGN(className) \
-    className & operator = (className &&) = delete
+#define xNO_MOVE_ASSIGN(className)       className & operator = (className &&) = delete
     ///< disallow move assign
 #define xNO_COPY_ASSIGN(className) \
     xNO_COPY(className); \
