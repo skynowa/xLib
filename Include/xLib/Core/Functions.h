@@ -120,7 +120,7 @@
 	#elif xENV_BSD
 		#define xSTATVFS     ::statvfs
 	#elif xENV_APPLE
-		#define xSTATVFS     statfs	/// TODO: ::statfs64
+		#define xSTATVFS     statfs /// TODO: ::statfs64
 	#endif
 #endif
 ///\}
