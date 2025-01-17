@@ -172,8 +172,8 @@
 ///\{
 #if defined(va_start)
     #define xVA_START(val, fmt) ( va_start(val, fmt) )
-#endif
 		///< initializes ap for subsequent use by xVA_ARG() and xVA_END(), and must be called first
+#endif
 
 #if   defined(va_copy)
     #define xVA_COPY(dest, src) ( va_copy(dest, src) )
@@ -186,8 +186,8 @@
 
 #if defined(va_end)
     #define xVA_END(val) ( va_end(val) )
+        ///< Each invocation of xVA_START() must be of xVA_END() in the same function
 #endif
-        ///< Each invocation of xVA_START() must be matched by a corresponding invocation of xVA_END() in the same function
 ///\}
 //-------------------------------------------------------------------------------------------------
 ///\name Formattong qualifiers
