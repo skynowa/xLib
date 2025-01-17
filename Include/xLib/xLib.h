@@ -3,6 +3,19 @@
  * \brief All header
  */
 
+/**
+ * \mainpage
+ *
+ * This library is cross-platform and can be compiled and used on
+ * Windows, Linux, BSD, Apple OS famalies (x86, x64)
+ *
+ * \author author: skynowa \n
+ *         e-mail: skynowa@gmail.com \n
+ *         web:    https://github.com/skynowa/xLib
+ *
+ * \date   2008 - 2025
+ */
+
 
 #pragma once
 
