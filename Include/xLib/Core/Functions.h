@@ -12,7 +12,7 @@
     #include "Platform/Functions_ansi.h"
 #endif
 //-------------------------------------------------------------------------------------------------
-///\name xDUP2
+///\def xDUP2
 ///\{
 #if   xENV_WIN
 	#define xDUP2 ::_dup2
@@ -21,7 +21,7 @@
 #endif
 ///\}
 
-///\name xLOCKING
+///\def xLOCKING
 ///\{
 #if   xCOMPILER_MINGW
 	#define xLOCKING ::_locking
@@ -34,7 +34,7 @@
 #endif
 ///\}
 
-///\name xCHSIZE
+///\def xCHSIZE
 ///\{
 #if   xCOMPILER_MINGW
 	#define xCHSIZE ::chsize
@@ -47,7 +47,7 @@
 #endif
 ///\}
 
-///\name xIOCTLSOCKET
+///\def xIOCTLSOCKET
 ///\{
 #if   xENV_WIN
 	#define xIOCTLSOCKET ::ioctlsocket
@@ -56,7 +56,7 @@
 #endif
 ///\}
 
-///\name xADDR_INFO_GET
+///\def xADDR_INFO_GET
 ///\{
 #if   xCOMPILER_MINGW
 	#define xADDR_INFO_GET     ::getaddrinfo
@@ -73,7 +73,7 @@
 #endif
 ///\}
 
-///\name xADDR_INFO_FREE
+///\def xADDR_INFO_FREE
 ///\{
 #if   xENV_WIN
 	#if xCOMPILER_MS
@@ -86,7 +86,7 @@
 #endif
 ///\}
 
-///\name xNAME_INFO_GET
+///\def xNAME_INFO_GET
 ///\{
 #if   xCOMPILER_MINGW
 	#define xNAME_INFO_GET     ::getnameinfo
@@ -103,7 +103,8 @@
 #endif
 ///\}
 
-///\name xSTATVFS (filesystem statfs - struct and function)
+///\def   xSTATVFS
+///\brief Filesystem statfs - struct and function
 ///\{
 #if   xENV_WIN
 	xNA
@@ -124,7 +125,7 @@
 #endif
 ///\}
 
-///\name xISATTY
+///\def xISATTY
 ///\{
 #if   xENV_WIN
 	#define xISATTY ::_isatty
@@ -133,7 +134,7 @@
 #endif
 ///\}
 
-///\name xFILENO
+///\def xFILENO
 ///\{
 #if   xENV_WIN
 	#define xFILENO ::_fileno
