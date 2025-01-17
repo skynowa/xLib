@@ -9,12 +9,6 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Sync/IpcSemaphore.h>
 #include <xLib/Sync/Thread.h>
-
-#include <list>
-
-////#include <boost\function.hpp>
-////#include <boost\bind.hpp>
-////#include <functional>
 //-------------------------------------------------------------------------------------------------
 namespace xl::log
 {
