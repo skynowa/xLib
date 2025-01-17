@@ -1,11 +1,10 @@
 /**
  * \file  Common.h
- * \brief
+ * \brief Common includes
  */
 
 
 #pragma once
-
 //-------------------------------------------------------------------------------------------------
 #include <curl/curl.h>
 #include <curl/easy.h>

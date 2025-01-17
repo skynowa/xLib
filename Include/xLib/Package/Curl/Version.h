@@ -1,9 +1,9 @@
 /**
- * \file   Version.h
- * \brief  CURL client
+ * \file  Version.h
+ * \brief CURL version
  *
- * https://curl.haxx.se/libcurl/c/allfuncs.html
- * https://curl.haxx.se/libcurl/c/example.html
+ * \see   https://curl.haxx.se/libcurl/c/allfuncs.html\n
+ *        https://curl.haxx.se/libcurl/c/example.html
  */
 
 

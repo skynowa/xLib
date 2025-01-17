@@ -1,6 +1,6 @@
 /**
- * \file   Version.cpp
- * \brief  CURL client
+ * \file  Version.cpp
+ * \brief CURL version
  */
 
 
