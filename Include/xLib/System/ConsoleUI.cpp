@@ -120,7 +120,7 @@ ConsoleUI::promptBox(
 			xCHECK_DO(ch == keyEnter, break);
 			xCHECK_DO(ch == keyBackspace, out_answer->clear(); continue);
 
-			a_answer->push_back(ch);
+			out_answer->push_back(ch);
 		}
 
 		_console.writeLine(Const::strEmpty());
