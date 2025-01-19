@@ -249,8 +249,10 @@ Console::_isColorized(
 	std::tostream_t &a_stream /* = std::cout */
 ) const
 {
-	// An index to be used to access a private storage of I/O streams. See
-	// colorize / nocolorize I/O manipulators for details.
+   /**
+	* An index to be used to access a private storage of I/O streams. See
+	* colorize / nocolorize I/O manipulators for details
+	*/
 	static const int colorizeIndex = std::ios_base::xalloc();
 	if ( static_cast<bool_t>(a_stream.iword(colorizeIndex)) ) {
 		return true;
@@ -270,10 +272,13 @@ Console::_isAtty(
 {
     FILE *stdStream = _getStdStream(a_stream);
     if (stdStream == nullptr) {
-		// Unfortunately, fileno() ends with segmentation fault
-		// if invalid file descriptor is passed. So we need to
-		// handle this case gracefully and assume it's not a tty
-		// if standard stream is not detected, and 0 is returned.
+       /**
+		* Unfortunately, fileno() ends with segmentation fault
+		* if invalid file descriptor is passed. So we need to
+		* handle this case gracefully and assume it's not a tty
+		* if standard stream is not detected, and 0 is returned
+		*/
+
         return false;
     }
 
