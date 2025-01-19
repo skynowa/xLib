@@ -10,6 +10,8 @@
 
 ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/skynowa/xlib?color=red) ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/skynowa/xlib?color=green)
 
+[![Deploy Doxygen Documentation](https://github.com/skynowa/skynowa.github.io/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/skynowa/skynowa.github.io/actions/workflows/deploy-docs.yml)
+
 ## Features
 
 - Language: C++ 20
