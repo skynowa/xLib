@@ -46,7 +46,7 @@ GitClient::isGitDir() const
 /**
  * HTTP(s)/Git proto
  *
- * \code
+ * \verbatim
  * - git@bitbucket.org:skynowa/faq.git
  * - ssh://git@gitlab.maklai.dev:8999/suppliers/services-sync.git
  * - ssh://git@stash.fabrica.net.ua:7999/trav/booked.git
@@ -54,7 +54,7 @@ GitClient::isGitDir() const
  * - https://github.com/FIvanO/PocketBookTest
  *
  * - https://skynowa@git.code.sf.net/p/x-lib/code
- * \endcode
+ * \endverbatim
  */
 std::tstring_t
 GitClient::repoUrl() const
