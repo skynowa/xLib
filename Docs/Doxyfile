@@ -2218,6 +2218,8 @@ PREDEFINED             = \
     xPUBLIC_STATIC=public \
     xPRIVATE_STATIC=private \
     xPLATFORM_IMPL=private \
+    \
+    __cplusplus
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The
