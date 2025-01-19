@@ -95,13 +95,13 @@ ConsoleUI::promptBox(
 	std::ctstring_t &a_title,		///< title
 	std::ctstring_t &a_text,		///< input text
 	cbool_t          a_isVisible,	///< is input text visible
-	std::tstring_t  *a_answer		///< [out] answer
+	std::tstring_t  *out_answer		///< [out] answer
 ) const
 {
 	xTEST_NA(a_title);
 	xTEST_NA(a_text);
 	xTEST_NA(a_isVisible);
-	xTEST_PTR(a_answer);
+	xTEST_PTR(out_answer);
 
 	// Title
 	_console.write(a_title);
@@ -118,14 +118,14 @@ ConsoleUI::promptBox(
 		for ( ; ; ) {
 			ctchar_t ch = static_cast<tchar_t>( std::tcin.get() );
 			xCHECK_DO(ch == keyEnter, break);
-			xCHECK_DO(ch == keyBackspace, a_answer->clear(); continue);
+			xCHECK_DO(ch == keyBackspace, out_answer->clear(); continue);
 
 			a_answer->push_back(ch);
 		}
 
 		_console.writeLine(Const::strEmpty());
 
-		xCHECK_DO(a_answer->empty(), continue);
+		xCHECK_DO(out_answer->empty(), continue);
 
 		break;
 	}

@@ -28,6 +28,7 @@ public:
 
 	xNO_COPY_ASSIGN(ConsoleUI);
 ///\}
+
 	enum class Result
 		/// modal result
 	{
@@ -70,7 +71,8 @@ xPLATFORM_IMPL:
 	#endif
 
 	inline void_t
-	CtsConsole::promptPassword(char* const pwdBuffer, bool_t visible) {
+	CtsConsole::promptPassword(char* const pwdBuffer, bool_t visible)
+	{
 	#if __WIN32__ || _MSC_VER
 		bool_t     passwordEntered = false;
 		char     ch;
@@ -88,7 +90,6 @@ xPLATFORM_IMPL:
 		}
 		pwdBuffer[idx] = '\0';
 	#elif __unix__
-
 		#define CTS_KEYCODE_ENTER   10
 
 		initscr();             /* start curses mode */
