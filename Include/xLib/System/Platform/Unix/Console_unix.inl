@@ -46,16 +46,16 @@ Console::_setAttributes_impl(
 
     Foreground foregroundColor {};
     {
-        cint_t foregroundColorDefault = 39;
-        cint_t foregroundColorBlack   = 30;
-        cint_t foregroundColorRed     = 31;
-        cint_t foregroundColorBlue    = 34;
-        cint_t foregroundColorGreen   = 32;
-        cint_t foregroundColorCyan    = 36;
-        cint_t foregroundColorMagenta = 35;
-        cint_t foregroundColorYellow  = 33;
-        cint_t foregroundColorWhite   = 37;
-        cint_t foregroundColorGray    = 37;  // TODO: [skynowa] Console::setAttributes() - foregroundColorGray
+        constexpr int_t foregroundColorDefault = 39;
+        constexpr int_t foregroundColorBlack   = 30;
+        constexpr int_t foregroundColorRed     = 31;
+        constexpr int_t foregroundColorBlue    = 34;
+        constexpr int_t foregroundColorGreen   = 32;
+        constexpr int_t foregroundColorCyan    = 36;
+        constexpr int_t foregroundColorMagenta = 35;
+        constexpr int_t foregroundColorYellow  = 33;
+        constexpr int_t foregroundColorWhite   = 37;
+        constexpr int_t foregroundColorGray    = 37;  // TODO: [skynowa] Console::setAttributes() - foregroundColorGray
 
         int_t iRv {};
 
@@ -101,16 +101,16 @@ Console::_setAttributes_impl(
 
     Background backgroundColor {};
     {
-        cint_t backgroundColorDefault = 49;
-        cint_t backgroundColorBlack   = 40;
-        cint_t backgroundColorRed     = 41;
-        cint_t backgroundColorBlue    = 44;
-        cint_t backgroundColorGreen   = 42;
-        cint_t backgroundColorCyan    = 46;
-        cint_t backgroundColorMagenta = 45;
-        cint_t backgroundColorYellow  = 43;
-        cint_t backgroundColorWhite   = 47;
-        cint_t backgroundColorGray    = 47; // TODO: [skynowa] Console::setAttributes() - Unix - backgroundColorGray
+        constexpr int_t backgroundColorDefault = 49;
+        constexpr int_t backgroundColorBlack   = 40;
+        constexpr int_t backgroundColorRed     = 41;
+        constexpr int_t backgroundColorBlue    = 44;
+        constexpr int_t backgroundColorGreen   = 42;
+        constexpr int_t backgroundColorCyan    = 46;
+        constexpr int_t backgroundColorMagenta = 45;
+        constexpr int_t backgroundColorYellow  = 43;
+        constexpr int_t backgroundColorWhite   = 47;
+        constexpr int_t backgroundColorGray    = 47; // TODO: [skynowa] Console::setAttributes() - Unix - backgroundColorGray
 
         int_t iRv {};
 
@@ -160,13 +160,13 @@ Console::_setAttributes_impl(
         // The attributes must be separated by a semicolon (“;”).
         std::vec_tstring_t values;
 
-        cint_t attributeAllOff    = 0;
-        cint_t attributeBold      = 1;
-        cint_t attributeDim       = 2;
-        cint_t attributeUnderline = 4;
-        cint_t attributeBlink     = 5;
-        cint_t attributeReverse   = 7;
-        cint_t attributeHidden    = 8;
+        constexpr int_t attributeAllOff    = 0;
+        constexpr int_t attributeBold      = 1;
+        constexpr int_t attributeDim       = 2;
+        constexpr int_t attributeUnderline = 4;
+        constexpr int_t attributeBlink     = 5;
+        constexpr int_t attributeReverse   = 7;
+        constexpr int_t attributeHidden    = 8;
 
 		Bitset bits(a_attributes);
 
