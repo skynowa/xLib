@@ -197,8 +197,10 @@ xPLATFORM_IMPL:
     #include <windows.h>
 
     bool_t
-    create_console() {
+    create_console()
+    {
       FreeConsole();
+
       if (AllocConsole()) {
         int_t hCrt = _open_osfhandle((long_t) GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT);
         *stdout = *(::_fdopen(hCrt, "w"));
@@ -209,13 +211,8 @@ xPLATFORM_IMPL:
 
         return true;
       }
+
       return false;
     }
-
-    usage:
-
-    #ifdef DEBUG
-      create_console();
-    #endif // DEBUG
 #endif
 //-------------------------------------------------------------------------------------------------
