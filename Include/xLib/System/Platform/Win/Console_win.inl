@@ -85,16 +85,16 @@ Console::_setAttributes_impl(
         * \endcode
         */
 
-        const WORD foregroundColorDefault {};
-        const WORD foregroundColorBlack   {};
-        const WORD foregroundColorRed     {FOREGROUND_RED};
-        const WORD foregroundColorBlue    {FOREGROUND_BLUE};
-        const WORD foregroundColorGreen   {FOREGROUND_GREEN};
-        const WORD foregroundColorCyan    {FOREGROUND_GREEN | FOREGROUND_BLUE};
-        const WORD foregroundColorMagenta {FOREGROUND_RED | FOREGROUND_BLUE};
-        const WORD foregroundColorYellow  {FOREGROUND_RED | FOREGROUND_GREEN};
-        const WORD foregroundColorWhite   {FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE};
-        const WORD foregroundColorGray    {FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE};
+        constexpr WORD foregroundColorDefault {};
+        constexpr WORD foregroundColorBlack   {};
+        constexpr WORD foregroundColorRed     {FOREGROUND_RED};
+        constexpr WORD foregroundColorBlue    {FOREGROUND_BLUE};
+        constexpr WORD foregroundColorGreen   {FOREGROUND_GREEN};
+        constexpr WORD foregroundColorCyan    {FOREGROUND_GREEN | FOREGROUND_BLUE};
+        constexpr WORD foregroundColorMagenta {FOREGROUND_RED | FOREGROUND_BLUE};
+        constexpr WORD foregroundColorYellow  {FOREGROUND_RED | FOREGROUND_GREEN};
+        constexpr WORD foregroundColorWhite   {FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE};
+        constexpr WORD foregroundColorGray    {FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE};
 
         int_t iRv {};
 
@@ -140,16 +140,16 @@ Console::_setAttributes_impl(
 
     Background backgroundColor {};
     {
-        const WORD backgroundColorDefault {};
-        const WORD backgroundColorBlack   {};
-        const WORD backgroundColorRed     {BACKGROUND_RED};
-        const WORD backgroundColorBlue    {BACKGROUND_BLUE};
-        const WORD backgroundColorGreen   {BACKGROUND_GREEN};
-        const WORD backgroundColorCyan    {BACKGROUND_GREEN | BACKGROUND_BLUE};
-        const WORD backgroundColorMagenta {BACKGROUND_RED | BACKGROUND_BLUE};
-        const WORD backgroundColorYellow  {BACKGROUND_RED | BACKGROUND_GREEN};
-        const WORD backgroundColorWhite   {BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE};
-        const WORD backgroundColorGray    {BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE};
+        constexpr WORD backgroundColorDefault {};
+        constexpr WORD backgroundColorBlack   {};
+        constexpr WORD backgroundColorRed     {BACKGROUND_RED};
+        constexpr WORD backgroundColorBlue    {BACKGROUND_BLUE};
+        constexpr WORD backgroundColorGreen   {BACKGROUND_GREEN};
+        constexpr WORD backgroundColorCyan    {BACKGROUND_GREEN | BACKGROUND_BLUE};
+        constexpr WORD backgroundColorMagenta {BACKGROUND_RED | BACKGROUND_BLUE};
+        constexpr WORD backgroundColorYellow  {BACKGROUND_RED | BACKGROUND_GREEN};
+        constexpr WORD backgroundColorWhite   {BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE};
+        constexpr WORD backgroundColorGray    {BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE};
 
         int_t iRv {};
 
@@ -195,13 +195,13 @@ Console::_setAttributes_impl(
 
     WORD attrs {};
     {
-        const WORD attributeAllOff    {};
-        const WORD attributeBold      {FOREGROUND_INTENSITY};
-        const WORD attributeDim       {}; // IMPL: dim
-        const WORD attributeUnderline {}; xUNUSED(attributeUnderline); // not supported
-        const WORD attributeBlink     {}; xUNUSED(attributeBlink);     // not supported
-        const WORD attributeReverse   {}; xUNUSED(attributeReverse);   // not supported
-        const WORD attributeHidden    {}; xUNUSED(attributeHidden);    // not supported
+        constexpr WORD attributeAllOff    {};
+        constexpr WORD attributeBold      {FOREGROUND_INTENSITY};
+        constexpr WORD attributeDim       {}; // IMPL: dim
+        constexpr WORD attributeUnderline {}; xUNUSED(attributeUnderline); // not supported
+        constexpr WORD attributeBlink     {}; xUNUSED(attributeBlink);     // not supported
+        constexpr WORD attributeReverse   {}; xUNUSED(attributeReverse);   // not supported
+        constexpr WORD attributeHidden    {}; xUNUSED(attributeHidden);    // not supported
 
         attrs |= static_cast<WORD>(foregroundColor);
         attrs |= static_cast<WORD>(backgroundColor);
