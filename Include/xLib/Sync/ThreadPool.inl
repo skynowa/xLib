@@ -68,7 +68,7 @@ ThreadPool<T>::groupCreate(
     std::csize_t     &a_maxRunningTasks
 )
 {
-    xTEST_NA(a_stackSize);    // TODO: [skynowa] ThreadPool<T>::groupCreate() - MaxValue
+    xTEST_NA(a_stackSize); // TODO: [skynowa] ThreadPool<T>::groupCreate() - MaxValue
     xTEST_NA(a_funcPtr);
     xTEST_NA(a_param);
     xTEST_NA(a_numTasks);
