@@ -84,10 +84,10 @@ ThreadPool<T>::groupCreate(
     _numTasks        = a_numTasks;
     _maxRunningTasks = a_maxRunningTasks;
 
-    //-------------------------------------
-    //
+	//-------------------------------------
+	//
 	{
-	    cbool_t  isPaused       {false};
+		cbool_t  isPaused       {false};
 		cuint_t  stackSizeBytes {0};
 		void_t  *param          {};
 
