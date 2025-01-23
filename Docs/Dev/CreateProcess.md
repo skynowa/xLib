@@ -1,8 +1,7 @@
 
-# [std::system vs ::CreateProcess vs ::ShellExecute](https://asawicki.info/news_1767_launching_process_programmatically_system_vs_createprocess_vs_shellexecute)
+# [`std::system` vs `::CreateProcess` vs `::ShellExecute`](https://asawicki.info/news_1767_launching_process_programmatically_system_vs_createprocess_vs_shellexecute)
 
-
- |     | system() | CreateProcess()  <br>lpApplicationName | CreateProcess()  <br>lpCommandLine | ShellExecuteEx() |
+|     | system() | CreateProcess()  <br>lpApplicationName | CreateProcess()  <br>lpCommandLine | ShellExecuteEx() |
 | --- | --- | --- | --- | --- |
 | Works without extension? `"Test"` | Yes | No  | Yes | Yes |
 | Searching dir of the host app? | No  | No  | Yes | No  |
