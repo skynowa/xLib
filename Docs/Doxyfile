@@ -2216,7 +2216,7 @@ PREDEFINED             = \
     xLANG_CPP20=1 \
     \
     xUSING_CONST(t)={} \
-    xPROPERTY_STATIC((ApplicationInfo, info, Info))={} \
+    xPROPERTY_STATIC(type, name, Name)={} \
     xFLOAT_OPERATOR(op)={} \
     xFLOAT_T_OPERATOR(op)={} \
     \
