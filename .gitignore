@@ -8,9 +8,11 @@
 ################################################################################
 # dirs
 
-# Dcos
+# Docs
 Docs/html/
 Docs/latex/
+
+Docs/Doxyfile.bak
 
 # Binaries
 [Bb]in/
