@@ -1,6 +1,8 @@
 /**
  * \file  OStream.h
  * \brief print string
+ *
+ * \see   https://github.com/sharkdp/dbg-macro
  */
 
 
