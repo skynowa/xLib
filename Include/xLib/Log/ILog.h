@@ -77,4 +77,5 @@ private:
  * - Setter proxy class
  * - operator <<
  * - write as trace(), debug(), info(), ...
+ * - logIf() - with some condition
  */
