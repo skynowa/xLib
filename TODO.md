@@ -30,6 +30,10 @@
 - [ ] IOpenClose
 - [ ] IOperator =
 
+## Package
+
+- [ ] HttpClient - addPostFiles, impl
+
 ## Debug
 
 - [ ] Multi-repos - Debug.h move to StdStream project, and use StdStream in xLib
@@ -85,7 +89,8 @@ TODO: [win] Sync - close handle
 
 ## Doc
 
-- [ ] Doc - impl
+- [!] Doc - impl
+- [ ] Auto gen todo list at root of the project - impl
 
 ## Remove
 
