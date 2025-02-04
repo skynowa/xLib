@@ -113,6 +113,6 @@ endif()
 if (DEFINED XLIB_LOCATION)
     set(CONFIG_PATH "${XLIB_LOCATION}/Include/xLib/Config.h")
 
-    configure_file("${CONFIG_PATH}.in" ${CONFIG_PATH})
+    configure_file("${CONFIG_PATH}.in" ${CONFIG_PATH} @ONLY)
 endif()
 #--------------------------------------------------------------------------------------------------
