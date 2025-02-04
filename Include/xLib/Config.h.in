@@ -7,6 +7,8 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
+#cmakedefine cmOPTION_TS_NOW @cmOPTION_TS_NOW@
+
 ///@name project type: executable binary, static library, share (dynamic-link) library
 ///@{
 #cmakedefine cmOPTION_PROJECT_LIB_TYPE xT("@cmOPTION_PROJECT_LIB_TYPE@")
