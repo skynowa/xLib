@@ -51,7 +51,6 @@ include(CMake/Config.cmake)
 # set(CONAN_LIBS libssh2::libssh2 CURL::libcurl LibXml2::LibXml2 libmysqlclient::libmysqlclient openssl::openssl ZLIB::ZLIB)
 set(CONAN_LIBS
     CURL::libcurl
-    Iconv::Iconv
     LibXml2::LibXml2)
 
 message(STATUS "CONAN_LIBS: ${CONAN_LIBS}")
