@@ -274,7 +274,7 @@ endif()
 add_custom_target(template
     COMMAND
         ${CMAKE_COMMAND}
-        -DXLIB_LOCATION="${XLIB_LOCATION}" -DXLIB_TEMPLATES="${XLIB_TEMPLATES}"
+        -DXLIB_LOCATION=${XLIB_LOCATION} -DXLIB_TEMPLATES=${XLIB_TEMPLATES}
         -P ${XLIB_LOCATION}/CMake/Template.cmake
     COMMENT "Template - Generate..." VERBATIM)
 #--------------------------------------------------------------------------------------------------
