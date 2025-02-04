@@ -103,11 +103,8 @@ endif()
 # endif()
 
 if (Iconv_FOUND)
-    set(XLIB_INCLUDES ${XLIB_INCLUDES} ${Iconv_INCLUDE_DIRS})
-
-    if (cmICONV_LIBRARIES)
-        set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${Iconv_LIBRARIES})
-    endif()
+    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${Iconv_INCLUDE_DIRS})
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${Iconv_LIBRARIES})
 endif()
 
 if (ENV_UNIX)
