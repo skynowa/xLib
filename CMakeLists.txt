@@ -31,6 +31,7 @@ project (xLib
 
 #--------------------------------------------------------------------------------------------------
 set(XLIB_LOCATION  ${CMAKE_SOURCE_DIR})
+set(XLIB_DOCS      ${XLIB_LOCATION}/Docs)
 set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 #--------------------------------------------------------------------------------------------------
 
@@ -254,19 +255,17 @@ add_custom_target(uninstall
 
 #--------------------------------------------------------------------------------------------------
 configure_file(
-    "${XLIB_LOCATION}/Docs/Doxyfile.in"
-    "${XLIB_LOCATION}/Docs/Doxyfile"
-    @ONLY
-)
+    "${XLIB_DOCS}/Doxyfile.in"
+    "${XLIB_DOCS}/Doxyfile"
+    @ONLY)
 
 find_package(Doxygen)
 
 if (DOXYGEN_FOUND)
     add_custom_target(doxygen
-        COMMAND ${CMAKE_COMMAND} -E remove_directory ${DOXYGEN_OUTPUT_DIR} "${XLIB_LOCATION}/Docs/html"
-        COMMAND ${DOXYGEN_EXECUTABLE} "${XLIB_LOCATION}/Docs/Doxyfile" WORKING_DIRECTORY "${XLIB_LOCATION}/Docs"
-        COMMENT "Doxygen documentation - Generate..." VERBATIM
-    )
+        COMMAND ${CMAKE_COMMAND} -E remove_directory ${DOXYGEN_OUTPUT_DIR} "${XLIB_DOCS}/html"
+        COMMAND ${DOXYGEN_EXECUTABLE} "${XLIB_DOCS}/Doxyfile" WORKING_DIRECTORY "${XLIB_DOCS}"
+        COMMENT "Doxygen documentation - Generate..." VERBATIM)
 endif()
 #--------------------------------------------------------------------------------------------------
 # Template
@@ -275,8 +274,7 @@ add_custom_target(template
         ${CMAKE_COMMAND}
         -DXLIB_LOCATION="${XLIB_LOCATION}" -DXLIB_TEMPLATES="${XLIB_TEMPLATES}"
         -P ${XLIB_LOCATION}/CMake/Template.cmake
-    COMMENT
-        "Template...")
+    COMMENT "Template - Generate..." VERBATIM)
 #--------------------------------------------------------------------------------------------------
 
 
@@ -287,5 +285,6 @@ add_custom_target(template
 #--------------------------------------------------------------------------------------------------
 configure_file(
     ${XLIB_LOCATION}/Include/xLib/Config.h.in
-    ${XLIB_LOCATION}/Include/xLib/Config.h)
+    ${XLIB_LOCATION}/Include/xLib/Config.h
+    @ONLY)
 #--------------------------------------------------------------------------------------------------
