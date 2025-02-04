@@ -95,14 +95,6 @@ if (cmSSH2_FOUND)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmSSH2_LIBRARIES})
 endif()
 
-# if (cmICONV_FOUND)
-#     set(XLIB_INCLUDES ${XLIB_INCLUDES} ${cmICONV_INCLUDES})
-
-#     if (cmICONV_LIBRARIES)
-#         set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmICONV_LIBRARIES})
-#     endif()
-# endif()
-
 if (ENV_UNIX)
     if (cmEXECINFO_FOUND)
         set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${cmEXECINFO_INCLUDES})
