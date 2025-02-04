@@ -253,6 +253,22 @@ add_custom_target(uninstall
 #--------------------------------------------------------------------------------------------------
 
 #--------------------------------------------------------------------------------------------------
+configure_file(
+    "${XLIB_LOCATION}/Docs/Doxyfile.in"
+    "${XLIB_LOCATION}/Docs/Doxyfile"
+    @ONLY
+)
+
+find_package(Doxygen)
+
+if (DOXYGEN_FOUND)
+    add_custom_target(doxygen
+        COMMAND ${CMAKE_COMMAND} -E remove_directory ${DOXYGEN_OUTPUT_DIR} "${XLIB_LOCATION}/Docs/html"
+        COMMAND ${DOXYGEN_EXECUTABLE} "${XLIB_LOCATION}/Docs/Doxyfile" WORKING_DIRECTORY "${XLIB_LOCATION}/Docs"
+        COMMENT "Doxygen documentation - Generate..." VERBATIM
+    )
+endif()
+#--------------------------------------------------------------------------------------------------
 # Template
 add_custom_target(template
     COMMAND
