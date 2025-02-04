@@ -17,7 +17,6 @@ libmysqlclient/[>8.0.0]
 
 [generators]
 CMakeDeps # was cmake, cmake_paths
-CMakeToolchain
 
 [options]
 
