@@ -51,6 +51,7 @@ include(CMake/Config.cmake)
 # set(CONAN_LIBS libssh2::libssh2 CURL::libcurl LibXml2::LibXml2 libmysqlclient::libmysqlclient openssl::openssl ZLIB::ZLIB)
 set(CONAN_LIBS
     CURL::libcurl
+    Iconv::Iconv
     LibXml2::LibXml2)
 
 message(STATUS "CONAN_LIBS: ${CONAN_LIBS}")
@@ -257,7 +258,7 @@ add_custom_target(uninstall
 configure_file(
     "${XLIB_DOCS}/Doxyfile.in"
     "${XLIB_DOCS}/Doxyfile"
-    )
+    @ONLY)
 
 find_package(Doxygen)
 
@@ -286,5 +287,5 @@ add_custom_target(template
 configure_file(
     ${XLIB_LOCATION}/Include/xLib/Config.h.in
     ${XLIB_LOCATION}/Include/xLib/Config.h
-    )
+    @ONLY)
 #--------------------------------------------------------------------------------------------------
