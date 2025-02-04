@@ -45,6 +45,7 @@ list(APPEND CMAKE_MODULE_PATH
     "${CMAKE_ROOT}/Modules/CMakeLib"
     "${XLIB_LOCATION}/../xLib_conan")
 
+
 include(CMake/Config.cmake)
 
 # set(CONAN_LIBS libssh2::libssh2 CURL::libcurl LibXml2::LibXml2 libmysqlclient::libmysqlclient openssl::openssl ZLIB::ZLIB)
@@ -94,11 +95,19 @@ if (cmSSH2_FOUND)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmSSH2_LIBRARIES})
 endif()
 
-if (cmICONV_FOUND)
-    set(XLIB_INCLUDES ${XLIB_INCLUDES} ${cmICONV_INCLUDES})
+# if (cmICONV_FOUND)
+#     set(XLIB_INCLUDES ${XLIB_INCLUDES} ${cmICONV_INCLUDES})
+
+#     if (cmICONV_LIBRARIES)
+#         set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmICONV_LIBRARIES})
+#     endif()
+# endif()
+
+if (Iconv_FOUND)
+    set(XLIB_INCLUDES ${XLIB_INCLUDES} ${Iconv_INCLUDE_DIRS})
 
     if (cmICONV_LIBRARIES)
-        set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmICONV_LIBRARIES})
+        set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${Iconv_LIBRARIES})
     endif()
 endif()
 

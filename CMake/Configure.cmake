@@ -18,7 +18,7 @@ include(CheckCXXSourceCompiles)
 # find packages
 
 # System
-find_package(Threads     QUIET REQUIRED)
+# find_package(Threads     QUIET REQUIRED)
 find_package(OpenSSL     QUIET REQUIRED)
 find_package(CURL        QUIET REQUIRED)
 find_package(LibXml2     QUIET REQUIRED)
