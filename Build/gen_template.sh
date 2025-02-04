@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-
+#
+# \file  gen_template.sh
+# \brief Generate class template(s)
+#
 
 # vars
 PROJECT_NAME="xLib"
