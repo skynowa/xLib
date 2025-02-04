@@ -257,7 +257,7 @@ add_custom_target(uninstall
 configure_file(
     "${XLIB_DOCS}/Doxyfile.in"
     "${XLIB_DOCS}/Doxyfile"
-    @ONLY)
+    )
 
 find_package(Doxygen)
 
@@ -286,5 +286,5 @@ add_custom_target(template
 configure_file(
     ${XLIB_LOCATION}/Include/xLib/Config.h.in
     ${XLIB_LOCATION}/Include/xLib/Config.h
-    @ONLY)
+    )
 #--------------------------------------------------------------------------------------------------
