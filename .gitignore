@@ -1,12 +1,14 @@
 ################################################################################
 # \file  .gitignore
-# \brief Dirs and files ignoring by GIT
+# \brief Dirs and files ignoring by Git
 #
 ################################################################################
 
 
-################################################################################
-# dirs
+# xLib
+Include/xLib/Config.h
+xAnalyzer.sh
+auto-build.sh
 
 # Docs
 Docs/html/
@@ -24,17 +26,13 @@ build/
 .vscode/ipch/
 .vs/
 
+.project
+
 # CMake
 Testing/
-
-################################################################################
-# files
-Include/xLib/Config.h
-CMakeLists.txt.user
 cmake-build-*
-.project
-xAnalyzer.sh
-auto-build.sh
+
+CMakeLists.txt.user
 
 # PVS-Studio
 *.PVS-Studio.cfg
