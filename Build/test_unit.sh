@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 
-UNIT_TESTS=(BuildInfo)
+# UNIT_TESTS=(BuildInfo)
 # UNIT_TESTS=(Type)
 # UNIT_TESTS=(StackTrace)
 # UNIT_TESTS=(BuildInfo)
 # UNIT_TESTS=(FileText FileBin)
-# UNIT_TESTS=(Xml)
+UNIT_TESTS=(Xml)
 
 # BG='\e[46m'   # green
 # FG='\e[37m'   # white

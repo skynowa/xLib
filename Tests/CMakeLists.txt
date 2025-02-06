@@ -24,12 +24,16 @@ set(DIR_HOME $ENV{HOME})
 if (EXISTS "${CMAKE_ROOT}/Modules/CMakeLib")
     list(APPEND CMAKE_MODULE_PATH
         "${CMAKE_ROOT}/Modules/CMakeLib"
+        "${CMAKE_SOURCE_DIR}/../../xLib_conan"
         "${CMAKE_SOURCE_DIR}")
 else()
     list(APPEND CMAKE_MODULE_PATH
         "${DIR_HOME}/Projects/CMakeLib"
+        "${CMAKE_SOURCE_DIR}/../../xLib_conan"
         "${CMAKE_SOURCE_DIR}")
 endif()
+
+message(STATUS "CMAKE_MODULE_PATH : ${CMAKE_MODULE_PATH}")
 #--------------------------------------------------------------------------------------------------
 message(STATUS "\n::::: Conan :::::")
 
@@ -57,6 +61,13 @@ endif()
 
 message(STATUS "CURL_FOUND: ${CURL_FOUND}")
 
+if (Iconv_FOUND)
+    set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${Iconv_INCLUDE_DIRS})
+    set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${Iconv_LIBRARIES})
+endif()
+
+message(STATUS "Iconv_FOUND: ${Iconv_FOUND}")
+
 if (LIBXML2_FOUND)
     set(XLIB_INCLUDES    ${XLIB_INCLUDES}    ${LIBXML2_INCLUDE_DIRS})
     set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   ${LIBXML2_LIBRARIES})
@@ -74,14 +85,6 @@ endif()
 if (cmSSH2_FOUND)
     set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${cmSSH2_INCLUDES})
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmSSH2_LIBRARIES})
-endif()
-
-if (cmICONV_FOUND)
-    set(XLIB_INCLUDES ${XLIB_INCLUDES} ${cmICONV_INCLUDES})
-
-    if (cmICONV_LIBRARIES)
-        set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmICONV_LIBRARIES})
-    endif()
 endif()
 
 if (ENV_UNIX)
@@ -159,7 +162,7 @@ foreach(IT_SOURCE ${XLIB_TESTS_SOURCES})
     endif()
 
     target_link_libraries(${TEST_NAME} PUBLIC
-        ${CONAN_LIBS}
+        ${CONAN_LIBS}   # ?????
 
         ${cmXLIB_LIBRARIES}
         ${cmXLIB_EXTRA_LIBRARIES}

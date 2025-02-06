@@ -31,6 +31,7 @@ project (xLib
 
 #--------------------------------------------------------------------------------------------------
 set(XLIB_LOCATION  ${CMAKE_SOURCE_DIR})
+set(XLIB_DOCS      ${XLIB_LOCATION}/Docs)
 set(XLIB_TEMPLATES ${XLIB_LOCATION}/Tools/Templates)
 #--------------------------------------------------------------------------------------------------
 
@@ -77,6 +78,16 @@ if (CURL_FOUND)
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${CURL_LIBRARIES})
 endif()
 
+if (Iconv_FOUND)
+    set(XLIB_INCLUDES    ${XLIB_INCLUDES}    ${Iconv_INCLUDE_DIRS})
+    set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   ${Iconv_LIBRARIES})
+    set(XLIB_DEFINITIONS ${XLIB_DEFINITIONS} ${Iconv_DEFINITIONS})
+endif()
+
+message(STATUS "Iconv_FOUND        : ${Iconv_FOUND}")
+message(STATUS "Iconv_INCLUDE_DIRS : ${Iconv_INCLUDE_DIRS}")
+message(STATUS "Iconv_LIBRARIES    : ${Iconv_LIBRARIES}")
+
 if (LIBXML2_FOUND)
     set(XLIB_INCLUDES    ${XLIB_INCLUDES}    ${LIBXML2_INCLUDE_DIRS})
     set(XLIB_LIBRARIES   ${XLIB_LIBRARIES}   ${LIBXML2_LIBRARIES})
@@ -92,14 +103,6 @@ endif()
 if (cmSSH2_FOUND)
     set(XLIB_INCLUDES  ${XLIB_INCLUDES}  ${cmSSH2_INCLUDES})
     set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmSSH2_LIBRARIES})
-endif()
-
-if (cmICONV_FOUND)
-    set(XLIB_INCLUDES ${XLIB_INCLUDES} ${cmICONV_INCLUDES})
-
-    if (cmICONV_LIBRARIES)
-        set(XLIB_LIBRARIES ${XLIB_LIBRARIES} ${cmICONV_LIBRARIES})
-    endif()
 endif()
 
 if (ENV_UNIX)
@@ -253,14 +256,27 @@ add_custom_target(uninstall
 #--------------------------------------------------------------------------------------------------
 
 #--------------------------------------------------------------------------------------------------
+configure_file(
+    "${XLIB_DOCS}/Doxyfile.in"
+    "${XLIB_DOCS}/Doxyfile"
+    @ONLY)
+
+find_package(Doxygen)
+
+if (DOXYGEN_FOUND)
+    add_custom_target(doxygen
+        COMMAND ${CMAKE_COMMAND} -E remove_directory ${DOXYGEN_OUTPUT_DIR} "${XLIB_DOCS}/html"
+        COMMAND ${DOXYGEN_EXECUTABLE} "${XLIB_DOCS}/Doxyfile" WORKING_DIRECTORY "${XLIB_DOCS}"
+        COMMENT "Doxygen documentation - Generate..." VERBATIM)
+endif()
+#--------------------------------------------------------------------------------------------------
 # Template
 add_custom_target(template
     COMMAND
         ${CMAKE_COMMAND}
-        -DXLIB_LOCATION="${XLIB_LOCATION}" -DXLIB_TEMPLATES="${XLIB_TEMPLATES}"
+        -DXLIB_LOCATION=${XLIB_LOCATION} -DXLIB_TEMPLATES=${XLIB_TEMPLATES}
         -P ${XLIB_LOCATION}/CMake/Template.cmake
-    COMMENT
-        "Template...")
+    COMMENT "Template - Generate..." VERBATIM)
 #--------------------------------------------------------------------------------------------------
 
 
@@ -271,5 +287,6 @@ add_custom_target(template
 #--------------------------------------------------------------------------------------------------
 configure_file(
     ${XLIB_LOCATION}/Include/xLib/Config.h.in
-    ${XLIB_LOCATION}/Include/xLib/Config.h)
+    ${XLIB_LOCATION}/Include/xLib/Config.h
+    @ONLY)
 #--------------------------------------------------------------------------------------------------

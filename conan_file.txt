@@ -3,6 +3,7 @@
 ## Dependencies
 zlib/1.2.13
 openssl/1.1.1s
+libiconv/1.17
 
 ## Main
 # 1.10.0

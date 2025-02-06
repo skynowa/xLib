@@ -39,6 +39,8 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 set(cmCMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE})
+
+string(TIMESTAMP cmBUILD_TS "%Y-%m-%d %H:%M:%S")
 #--------------------------------------------------------------------------------------------------
 # options
 set(cmOPTION_PROJECT_LIB_TYPE      STATIC) # STATIC/SHARED/MODULE
@@ -70,6 +72,7 @@ message(STATUS "CMAKE_CXX_STANDARD             : ${CMAKE_CXX_STANDARD}")
 message(STATUS "CMAKE_C_STANDARD               : ${CMAKE_C_STANDARD}")
 message(STATUS "CMAKE_CONFIGURATION_TYPES      : ${CMAKE_CONFIGURATION_TYPES}")
 message(STATUS "cmCMAKE_BUILD_TYPE             : ${cmCMAKE_BUILD_TYPE}")
+message(STATUS "cmBUILD_TS                     : ${cmBUILD_TS}")
 message(STATUS "CMAKE_BUILD_PARALLEL_LEVEL     : ${CMAKE_BUILD_PARALLEL_LEVEL}")
 message(STATUS "CMAKE_ROOT                     : ${CMAKE_ROOT}")
 message(STATUS "CMAKE_INSTALL_PREFIX           : ${CMAKE_INSTALL_PREFIX}")
