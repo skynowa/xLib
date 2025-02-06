@@ -39,10 +39,10 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 set(cmCMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE})
+
+string(TIMESTAMP cmBUILD_TS "%Y-%m-%d %H:%M:%S")
 #--------------------------------------------------------------------------------------------------
 # options
-string(TIMESTAMP cmOPTION_TS_NOW "%Y-%m-%d %H:%M:%S")
-
 set(cmOPTION_PROJECT_LIB_TYPE      STATIC) # STATIC/SHARED/MODULE
 set(OPTION_UNICODE                 0)
 set(cmOPTION_DEBUG_MODE_STDOUT     1)
@@ -72,6 +72,7 @@ message(STATUS "CMAKE_CXX_STANDARD             : ${CMAKE_CXX_STANDARD}")
 message(STATUS "CMAKE_C_STANDARD               : ${CMAKE_C_STANDARD}")
 message(STATUS "CMAKE_CONFIGURATION_TYPES      : ${CMAKE_CONFIGURATION_TYPES}")
 message(STATUS "cmCMAKE_BUILD_TYPE             : ${cmCMAKE_BUILD_TYPE}")
+message(STATUS "cmBUILD_TS                     : ${cmBUILD_TS}")
 message(STATUS "CMAKE_BUILD_PARALLEL_LEVEL     : ${CMAKE_BUILD_PARALLEL_LEVEL}")
 message(STATUS "CMAKE_ROOT                     : ${CMAKE_ROOT}")
 message(STATUS "CMAKE_INSTALL_PREFIX           : ${CMAKE_INSTALL_PREFIX}")
@@ -79,7 +80,6 @@ message(STATUS "CMAKE_SOURCE_DIR               : ${CMAKE_SOURCE_DIR}")
 # message(STATUS "CMAKE_CXX_COMPILE_FEATURES     : ${CMAKE_CXX_COMPILE_FEATURES}")
 message("")
 message("Options")
-message(STATUS "cmOPTION_TS_NOW                : ${cmOPTION_TS_NOW}")
 message(STATUS "cmOPTION_PROJECT_LIB_TYPE      : ${cmOPTION_PROJECT_LIB_TYPE}")
 message(STATUS "OPTION_UNICODE                 : ${OPTION_UNICODE}")
 message(STATUS "cmOPTION_DEBUG_MODE_STDOUT     : ${cmOPTION_DEBUG_MODE_STDOUT}")
