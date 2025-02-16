@@ -101,7 +101,7 @@ Doc::parse(
 		_doc = {::xmlParseDoc( (const xmlChar *)a_str.data() ), ::xmlFreeDoc};
 	}
 
-	xTEST(!!_doc);
+	xTEST(static_cast<bool_t>(_doc));
 
 	// [out]
 	_rootNode(out_root);
@@ -114,7 +114,7 @@ Doc::parseFile(
 )
 {
 	_doc = {::xmlParseFile( a_filePath.c_str() ), ::xmlFreeDoc};
-	xTEST(!!_doc);
+	xTEST(static_cast<bool_t>(_doc));
 
 	// [out]
 	_rootNode(out_root);
