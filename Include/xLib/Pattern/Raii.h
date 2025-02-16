@@ -14,7 +14,7 @@ namespace xl::patterns
 template<typename T, void_t (T::*MemberT)(void_t)>
 class Raii final :
 	public IGet<T>
-    ///< RAII
+    /// RAII
 {
 public:
 ///\name ctors, dtor

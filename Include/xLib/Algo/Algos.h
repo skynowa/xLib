@@ -12,7 +12,7 @@ namespace xl::algos
 {
 
 class Algos
-    ///< Algorithms
+    /// Algorithms
 {
 public:
 ///\name ctors, dtor

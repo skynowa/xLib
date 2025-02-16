@@ -1,6 +1,6 @@
 /**
- * \file   SourceInfo.h
- * \brief  Source info
+ * \file  SourceInfo.h
+ * \brief Source info
  */
 
 
@@ -31,7 +31,7 @@ struct SourceInfoOption
 xUSING_CONST(SourceInfoOption);
 
 class SourceInfo
-    ///< Source info
+    /// Source info
 {
 public:
 ///\name ctors, dtor

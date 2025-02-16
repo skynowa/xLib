@@ -1,6 +1,6 @@
 /**
- * \file   Finder.h
- * \brief  filesystem finder
+ * \file  Finder.h
+ * \brief Filesystem finder
  */
 
 
@@ -14,7 +14,7 @@ namespace xl::fs
 {
 
 class Finder
-    ///< filesystem finder
+    /// Filesystem finder
 {
 public:
 ///\name ctors, dtor

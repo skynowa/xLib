@@ -1,6 +1,6 @@
 /**
- * \file   Finder.cpp
- * \brief  filesystem finder
+ * \file  Finder.cpp
+ * \brief Filesystem finder
  */
 
 

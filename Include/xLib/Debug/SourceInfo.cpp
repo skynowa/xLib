@@ -1,6 +1,6 @@
 /**
- * \file   SourceInfo.cpp
- * \brief  Source info
+ * \file  SourceInfo.cpp
+ * \brief Source info
  */
 
 
