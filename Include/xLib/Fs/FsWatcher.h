@@ -17,7 +17,7 @@ namespace xl::fs
 {
 
 class FsWatcher
-    ///< File system watcher
+    /// File system watcher
 {
 public:
 	enum class Event
