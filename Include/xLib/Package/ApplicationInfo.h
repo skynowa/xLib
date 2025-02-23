@@ -1,6 +1,6 @@
 /**
  * \file   ApplicationInfo.h
- * \brief  ApplicationInfo money
+ * \brief  Application information
  */
 
 
