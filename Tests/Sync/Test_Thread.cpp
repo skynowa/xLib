@@ -19,7 +19,7 @@ public:
 	virtual  ~CWorkThread() = default;
 
 protected:
-	uint_t onRun(void_t *pData) final;
+	uint_t onRun(void_t *data) final;
 };
 //-------------------------------------------------------------------------------------------------
 CWorkThread::CWorkThread(
@@ -31,10 +31,10 @@ CWorkThread::CWorkThread(
 //-------------------------------------------------------------------------------------------------
 uint_t
 CWorkThread::onRun(
-    void_t *pvData
+    void_t *data
 )
 {
-    xUNUSED(pvData);
+    xUNUSED(data);
 
     #if xTEST_IGNORE
         xTRACEV(xT("\n\tCWorkThread: start #%lu"), index);
