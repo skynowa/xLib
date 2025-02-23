@@ -45,3 +45,16 @@ public:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
+/**
+ * \addtogroup mBUG
+ * \{
+ * - ApplicationInfo - rm
+ * \}
+*/
+
+/**
+ * \addtogroup mIMPL
+ * \{
+ * - ApplicationInfo - rm
+ * \}
+*/

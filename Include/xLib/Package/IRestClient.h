@@ -33,12 +33,19 @@ protected:
 	log::FileLog       _log;
 	std::tstring_t     _dirTmp;
 	curl::HttpClient   _http {false};
-	/// TODO: DbClient
-	/// TODO: IRequest / IResponse
-	/// TODO: Json/Xml/Csv
-	/// TODO: MailClient / SlackClient
-	/// TODO: ErrorReport
 };
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
+
+/**
+ \addtogroup mTODO
+ \{
+ IRestClient:
+ - DbClient
+ - IRequest / IResponse
+ - Json/Xml/Csv
+ - MailClient / SlackClient
+ - ErrorReport
+ \}
+*/

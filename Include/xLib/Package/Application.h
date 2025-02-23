@@ -121,8 +121,21 @@ protected:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO: Application
- *
+\page    IMPL impl page
+\page    TODO todo page
+\page    BUG  bug page
+*/
+
+/**
+ * @defgroup  mTODO Todos
+ * @defgroup  mIMPL Impls
+ * @defgroup  mBUG Bugs
+ */
+
+/**
+ * \addtogroup mTODO
+ * \{
+ * Application:
  * - Usage
  * - Params
  * - ConsoleApp
@@ -131,4 +144,6 @@ protected:
  * - Singleton
  * - Log
  * - MT
- */
+ * \}
+*/
+
