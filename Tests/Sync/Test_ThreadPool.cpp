@@ -23,7 +23,7 @@ public:
     std::size_t index {};
 
     explicit  PoolThread(cbool_t isAutoDelete);
-    virtual  ~PoolThread();
+    virtual  ~PoolThread() = default;
 
     xNO_DEFAULT_CONSTRUCT(PoolThread);
     xNO_COPY_ASSIGN(PoolThread);
@@ -39,14 +39,10 @@ PoolThread::PoolThread(
 {
 }
 //-------------------------------------------------------------------------------------------------
-PoolThread::~PoolThread()
-{
-}
-//-------------------------------------------------------------------------------------------------
 uint_t
 PoolThread::onRun(
     void_t *a_param
-) /* override */
+) /* final */
 {
     xTEST_PTR(a_param);
 
