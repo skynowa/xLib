@@ -42,7 +42,7 @@ PoolThread::PoolThread(
 uint_t
 PoolThread::onRun(
     void_t *a_param
-) /* final */
+)
 {
     xTEST_PTR(a_param);
 
