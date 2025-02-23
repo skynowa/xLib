@@ -16,6 +16,8 @@ Docs/latex/
 Docs/xml/
 
 Docs/Doxyfile.bak
+Docs/DoxygenLayout.xml.bak
+Docs/DoxygenLayout_new.xml
 
 # Binaries
 [Bb]in/
