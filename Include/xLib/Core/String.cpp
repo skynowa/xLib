@@ -1,5 +1,5 @@
 /**
- * \file  String.inl
+ * \file  String.cpp
  * \brief string utils
  */
 
