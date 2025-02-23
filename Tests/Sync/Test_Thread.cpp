@@ -15,7 +15,7 @@ class CWorkThread :
 public:
 	size_t index {};
 
-	explicit  CWorkThread(cbool_t cbAutoDelete);
+	explicit  CWorkThread(cbool_t isAutoDelete);
 	virtual  ~CWorkThread() = default;
 
 protected:
@@ -23,9 +23,9 @@ protected:
 };
 //-------------------------------------------------------------------------------------------------
 CWorkThread::CWorkThread(
-    cbool_t a_AutoDelete
+    cbool_t a_isAutoDelete
 ) :
-    Thread(a_AutoDelete)
+    Thread(a_isAutoDelete)
 {
 }
 //-------------------------------------------------------------------------------------------------
