@@ -38,7 +38,7 @@ PROJECT_NAME           = xLib
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         = 1.0.0 2025-02-16 17:29:43
+PROJECT_NUMBER         = "1.0.0 2025-02-16 17:29:43"
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
@@ -259,7 +259,7 @@ TAB_SIZE               = 4
 # commands \{ and \} for these it is advised to use the version @{ and @} or use
 # a double escape (\\{ and \\})
 
-ALIASES                 += faq="\par FAQ:^^"
+ALIASES                = "faq=\par FAQ:^^"
 
 # Set the OPTIMIZE_OUTPUT_FOR_C tag to YES if your project consists of C sources
 # only. Doxygen will then generate output that is more tailored for C. For
@@ -708,7 +708,7 @@ GENERATE_DEPRECATEDLIST= YES
 # sections, marked by \if <section_label> ... \endif and \cond <section_label>
 # ... \endcond blocks.
 
-ENABLED_SECTIONS       =
+ENABLED_SECTIONS       = YES
 
 # The MAX_INITIALIZER_LINES tag determines the maximum number of lines that the
 # initial value of a variable or macro / define can have for it to appear in the
@@ -763,7 +763,7 @@ FILE_VERSION_FILTER    =
 # DoxygenLayout.xml, doxygen will parse it automatically even if the LAYOUT_FILE
 # tag is left empty.
 
-LAYOUT_FILE            =
+LAYOUT_FILE            = DoxygenLayout.xml
 
 # The CITE_BIB_FILES tag can be used to specify one or more bib files containing
 # the reference definitions. This must be a list of .bib files. The .bib
@@ -855,7 +855,8 @@ WARN_LOGFILE           =
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = ../Include \
-                         Dev
+                         Dev \
+                         ../Tests
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -2216,7 +2217,7 @@ PREDEFINED             = \
     xLANG_CPP20=1 \
     \
     xUSING_CONST(t)={} \
-    xPROPERTY_STATIC(type, name, Name)={} \
+    "xPROPERTY_STATIC(type,name,Name)={}" \
     xFLOAT_OPERATOR(op)={} \
     xFLOAT_T_OPERATOR(op)={} \
     \
