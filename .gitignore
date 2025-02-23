@@ -10,13 +10,6 @@ Include/xLib/Config.h
 xAnalyzer.sh
 auto-build.sh
 
-# Docs
-Docs/html/
-Docs/latex/
-Docs/xml/
-
-Docs/Doxyfile.bak
-
 # Binaries
 [Bb]in/
 build/

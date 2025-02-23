@@ -1,6 +1,6 @@
 /**
  * \file  IpcMutex.h
- * \brief mutex
+ * \brief IPC mutex
  */
 
 

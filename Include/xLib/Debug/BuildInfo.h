@@ -12,7 +12,7 @@ namespace xl::debug
 {
 
 class BuildInfo
-    ///< build information
+    /// build information
 {
 public:
 ///\name ctors, dtor

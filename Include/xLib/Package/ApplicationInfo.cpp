@@ -1,6 +1,6 @@
 /**
  * \file   ApplicationInfo.cpp
- * \brief  [Comments]
+ * \brief  Application information
  */
 
 
