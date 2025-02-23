@@ -127,9 +127,9 @@ protected:
 */
 
 /**
- * @defgroup  mTODO Todos
- * @defgroup  mIMPL Impls
- * @defgroup  mBUG Bugs
+ * @defgroup  mTODO mTodos
+ * @defgroup  mIMPL mImpls
+ * @defgroup  mBUG mBugs
  */
 
 /**
