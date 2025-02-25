@@ -65,7 +65,7 @@ public:
 
 /**
  * \addtogroup mIMPL
- * \{
+ *
  * \code{.cpp}
  * - [ ] ApplicationInfo - rm2
  * - [x] ApplicationInfo - rm2
@@ -73,5 +73,5 @@ public:
  * - [!] ApplicationInfo - rm2
  * - [-] ApplicationInfo - rm2
  * \endcode
- * \}
+ *
 */
