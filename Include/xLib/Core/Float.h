@@ -21,8 +21,7 @@ class Float final :
 	public IGetConstRef<T>,
 	public IStr,
 	public ICompare<T>
-	/// Float's operations
-	/// \tparam T Float type (float, double, long double)
+	/// Float's operations. \tparam T Float type (float, double, long double)
 {
 	static_assert(std::is_floating_point_v<T>, "T must be a floating-point type");
 
