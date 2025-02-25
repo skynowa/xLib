@@ -48,13 +48,16 @@ public:
 /**
  * \addtogroup mBUG
  * \{
- * - ApplicationInfo - rm
+ * - [ ] ApplicationInfo - rm
  * \}
 */
 
 /**
  * \addtogroup mIMPL
  * \{
- * - ApplicationInfo - rm
+ * - [x] ApplicationInfo - rm
+ * - [+] ApplicationInfo - rm
+ * - [!] ApplicationInfo - rm
+ * - [-] ApplicationInfo - rm
  * \}
 */
