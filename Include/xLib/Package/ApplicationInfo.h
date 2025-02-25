@@ -48,6 +48,7 @@ public:
 /**
  * \addtogroup mBUG
  * \{
+ * ApplicationInfo:
  * - [ ] ApplicationInfo - rm
  * \}
 */
@@ -55,23 +56,11 @@ public:
 /**
  * \addtogroup mIMPL
  * \{
+ * ApplicationInfo:
  * - [ ] ApplicationInfo - rm1
  * - [x] ApplicationInfo - rm1
  * - [+] ApplicationInfo - rm1
  * - [!] ApplicationInfo - rm1
  * - [-] ApplicationInfo - rm1
  * \}
-*/
-
-/**
- * \addtogroup mIMPL
- *
- * \code{.cpp}
- * - [ ] ApplicationInfo - rm2
- * - [x] ApplicationInfo - rm2
- * - [+] ApplicationInfo - rm2
- * - [!] ApplicationInfo - rm2
- * - [-] ApplicationInfo - rm2
- * \endcode
- *
 */
