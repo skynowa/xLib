@@ -90,6 +90,7 @@ TODO: [win] Sync - close handle
 ## Doc
 
 - [!] Doc - impl
+- [ ] \see as list (\n -> -)
 - [ ] Auto gen todo list at root of the project - impl
 
 ## Remove
