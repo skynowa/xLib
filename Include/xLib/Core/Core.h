@@ -25,6 +25,7 @@
 
 // xLib
 namespace xl
+	/// xLib namespace
 {
 
 namespace core {}
