@@ -65,7 +65,7 @@ Console::_setAttributes_impl(
     Foreground foregroundColor {};
     {
        /**
-        * \code{.c++}
+        * \code{.cpp}
         * #define COLOR_BLACK     0
         * #define COLOR_BLUE      1
         * #define COLOR_GREEN     2

@@ -1,6 +1,6 @@
 /**
  * \file   ApplicationInfo.h
- * \brief  ApplicationInfo money
+ * \brief  Application information
  */
 
 
@@ -45,3 +45,26 @@ public:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
+/**
+ * \addtogroup mBUG
+ * \{
+ * ApplicationInfo:
+ * - [ ] ApplicationInfo - rm
+ * \}
+*/
+
+/**
+ * \addtogroup mIMPL
+ * \{
+ * ApplicationInfo:
+ * - [❌] ApplicationInfo - rm1
+ * - [✅] ApplicationInfo - rm1
+ * - [⌛] ApplicationInfo - rm1
+ * - [🚩] ApplicationInfo - rm1
+ * - [ ] ApplicationInfo - rm1
+ * - [x] ApplicationInfo - rm1
+ * - [+] ApplicationInfo - rm1
+ * - [!] ApplicationInfo - rm1
+ * - [-] ApplicationInfo - rm1
+ * \}
+*/

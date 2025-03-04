@@ -134,7 +134,7 @@ Unit::unit() /* = 0 */
    /**
     * Sample
     *
-    * \code{.c++}
+    * \code{.cpp}
     * xTEST_CASE("CaseName")
     * {
     *     std::ctstring_t testData[][2]

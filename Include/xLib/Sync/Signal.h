@@ -38,7 +38,7 @@ namespace xl::sync
 {
 
 class Signal
-    ///< signal
+    /// signal
 {
 public:
 #if   xENV_WIN

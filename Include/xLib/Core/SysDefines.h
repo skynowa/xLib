@@ -3,8 +3,8 @@
  * \brief predefined macros
  *
  * \see
- * https://sourceforge.net/p/predef/wiki/Home/\n
- * https://github.com/jeffhammond/HPCInfo/blob/master/docs/Preprocessor-Macros.md
+ * - https://sourceforge.net/p/predef/wiki/Home/
+ * - https://github.com/jeffhammond/HPCInfo/blob/master/docs/Preprocessor-Macros.md
  */
 
 
