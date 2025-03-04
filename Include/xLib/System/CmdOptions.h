@@ -86,8 +86,8 @@ private:
  * - https://github.com/CLIUtils/CLI11 (https://cliutils.github.io/CLI11/book/chapters/options.html)
  * - https://github.com/docopt
  * - https://github.com/jarro2783/cxxopts
+ * - boost::options
  *
  * TODO:
- * -
  */
 //-------------------------------------------------------------------------------------------------
