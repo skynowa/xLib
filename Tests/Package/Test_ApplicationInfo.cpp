@@ -31,9 +31,6 @@ Test_ApplicationInfo::unit()
 		applicationInfo.vendorAuthor    = xT("[vendorAuthor]");
 		applicationInfo.vendorUrl       = xT("[vendorUrl]");
 		applicationInfo.vendorEmail     = xT("[vendorEmail]");
-		applicationInfo.vendorSkype     = xT("[vendorSkype]");
-		applicationInfo.vendorJabber    = xT("[vendorJabber]");
-		applicationInfo.vendorIcq       = xT("[vendorIcq]");
 
 		xTEST(!applicationInfo.name.empty());
 		xTEST(!applicationInfo.decription.empty());
@@ -50,9 +47,6 @@ Test_ApplicationInfo::unit()
 		xTEST(!applicationInfo.vendorAuthor.empty());
 		xTEST(!applicationInfo.vendorUrl.empty());
 		xTEST(!applicationInfo.vendorEmail.empty());
-		xTEST(!applicationInfo.vendorSkype.empty());
-		xTEST(!applicationInfo.vendorJabber.empty());
-		xTEST(!applicationInfo.vendorIcq.empty());
     }
 
     return true;
