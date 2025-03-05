@@ -1,5 +1,310 @@
 # Change log
 
+## doxygen-impl (#444)
+- **Commit:** [7e3ff38c7](https://github.com/skynowa/xLib/commit/7e3ff38c7)
+- **Author:** skynowa
+- **Date:** 2025-03-05
+
+## change-log-gen (#445)
+- **Commit:** [f46398c83](https://github.com/skynowa/xLib/commit/f46398c83)
+- **Author:** skynowa
+- **Date:** 2025-03-03
+
+## cmake-doxygen-doc-2 (#443)
+- **Commit:** [feb502980](https://github.com/skynowa/xLib/commit/feb502980)
+- **Author:** skynowa
+- **Date:** 2025-02-06
+
+## defines-review (#441)
+- **Commit:** [38d6b2753](https://github.com/skynowa/xLib/commit/38d6b2753)
+- **Author:** skynowa
+- **Date:** 2025-01-17
+
+## doxygen-docs-fix (#440)
+- **Commit:** [03973d8f2](https://github.com/skynowa/xLib/commit/03973d8f2)
+- **Author:** skynowa
+- **Date:** 2025-01-16
+
+## GitClient-remoteRepoNames-impl (#438)
+- **Commit:** [69c5c8c39](https://github.com/skynowa/xLib/commit/69c5c8c39)
+- **Author:** skynowa
+- **Date:** 2025-01-13
+
+## cpp-standart-review (#437)
+- **Commit:** [c651f41bd](https://github.com/skynowa/xLib/commit/c651f41bd)
+- **Author:** skynowa
+- **Date:** 2024-12-31
+
+## finder-is-dot (#436)
+- **Commit:** [cbc1b2e0b](https://github.com/skynowa/xLib/commit/cbc1b2e0b)
+- **Author:** skynowa
+- **Date:** 2024-11-13
+
+## path-proc-with-pred (#435)
+- **Commit:** [ecc276c27](https://github.com/skynowa/xLib/commit/ecc276c27)
+- **Author:** skynowa
+- **Date:** 2024-10-05
+
+## demangleName-impl (#434)
+- **Commit:** [bc1560f3f](https://github.com/skynowa/xLib/commit/bc1560f3f)
+- **Author:** skynowa
+- **Date:** 2024-09-27
+
+## type-review (#433)
+- **Commit:** [3e92dcce7](https://github.com/skynowa/xLib/commit/3e92dcce7)
+- **Author:** skynowa
+- **Date:** 2024-09-24
+
+## xml-with: Doc.cpp (+4) [66+/3-] - impl (#432)
+- **Commit:** [a43bfe80f](https://github.com/skynowa/xLib/commit/a43bfe80f)
+- **Author:** skynowa
+- **Date:** 2024-09-16
+
+## xml-is-valid (#431)
+- **Commit:** [3af301d01](https://github.com/skynowa/xLib/commit/3af301d01)
+- **Author:** skynowa
+- **Date:** 2024-09-12
+
+## DataToIption-review (#430)
+- **Commit:** [c0b94a718](https://github.com/skynowa/xLib/commit/c0b94a718)
+- **Author:** skynowa
+- **Date:** 2024-09-08
+
+## StackTrace-addrline-impl (#426)
+- **Commit:** [d9177e820](https://github.com/skynowa/xLib/commit/d9177e820)
+- **Author:** skynowa
+- **Date:** 2024-08-05
+
+## file-text-impl (#429)
+- **Commit:** [f0c7648d2](https://github.com/skynowa/xLib/commit/f0c7648d2)
+- **Author:** skynowa
+- **Date:** 2024-08-04
+
+## Revert "mmap_tstring_t-to: Unit.h (+9) [51+/45-] - impl (#427)" (#428)
+- **Commit:** [32c5881a9](https://github.com/skynowa/xLib/commit/32c5881a9)
+- **Author:** skynowa
+- **Date:** 2024-07-04
+
+## mmap_tstring_t-to: Unit.h (+9) [51+/45-] - impl (#427)
+- **Commit:** [be7e3fbc6](https://github.com/skynowa/xLib/commit/be7e3fbc6)
+- **Author:** skynowa
+- **Date:** 2024-07-04
+
+## stack-trace-review (#425)
+- **Commit:** [d38fcaf45](https://github.com/skynowa/xLib/commit/d38fcaf45)
+- **Author:** skynowa
+- **Date:** 2024-06-04
+
+## float-operators-impl (#424)
+- **Commit:** [41e398abd](https://github.com/skynowa/xLib/commit/41e398abd)
+- **Author:** skynowa
+- **Date:** 2024-05-24
+
+## conan-2.0 (#423)
+- **Commit:** [7ca4d5ca1](https://github.com/skynowa/xLib/commit/7ca4d5ca1)
+- **Author:** skynowa
+- **Date:** 2024-04-30
+
+## environment-value-first-of-impl (#422)
+- **Commit:** [67fde67f1](https://github.com/skynowa/xLib/commit/67fde67f1)
+- **Author:** skynowa
+- **Date:** 2024-02-05
+
+## environment-review-4 (#421)
+- **Commit:** [f2cb79090](https://github.com/skynowa/xLib/commit/f2cb79090)
+- **Author:** skynowa
+- **Date:** 2024-01-08
+
+## environment-review-3 (#420)
+- **Commit:** [bdb4a42ab](https://github.com/skynowa/xLib/commit/bdb4a42ab)
+- **Author:** skynowa
+- **Date:** 2024-01-08
+
+## environment-review-2 (#419)
+- **Commit:** [204b93dc3](https://github.com/skynowa/xLib/commit/204b93dc3)
+- **Author:** skynowa
+- **Date:** 2024-01-07
+
+## environment-review (#418)
+- **Commit:** [3f11cf661](https://github.com/skynowa/xLib/commit/3f11cf661)
+- **Author:** skynowa
+- **Date:** 2024-01-06
+
+## process-unix-impl (#417)
+- **Commit:** [3f1d71fbe](https://github.com/skynowa/xLib/commit/3f1d71fbe)
+- **Author:** skynowa
+- **Date:** 2024-01-02
+
+## process-shellExecute-impl (#416)
+- **Commit:** [a2fcc3112](https://github.com/skynowa/xLib/commit/a2fcc3112)
+- **Author:** skynowa
+- **Date:** 2023-12-29
+
+## backup-exception-rm (#415)
+- **Commit:** [616d1bf4a](https://github.com/skynowa/xLib/commit/616d1bf4a)
+- **Author:** skynowa
+- **Date:** 2023-12-17
+
+## double-impl (#414)
+- **Commit:** [86d5c60a0](https://github.com/skynowa/xLib/commit/86d5c60a0)
+- **Author:** skynowa
+- **Date:** 2023-12-16
+
+## dll-review (#413)
+- **Commit:** [9f0aff962](https://github.com/skynowa/xLib/commit/9f0aff962)
+- **Author:** skynowa
+- **Date:** 2023-12-12
+
+## curl-split-files (#412)
+- **Commit:** [ab6c43b0c](https://github.com/skynowa/xLib/commit/ab6c43b0c)
+- **Author:** skynowa
+- **Date:** 2023-12-12
+
+## xml-split-file (#411)
+- **Commit:** [96ee1de78](https://github.com/skynowa/xLib/commit/96ee1de78)
+- **Author:** skynowa
+- **Date:** 2023-12-12
+
+## curl-verison-review (#410)
+- **Commit:** [10ba628c2](https://github.com/skynowa/xLib/commit/10ba628c2)
+- **Author:** skynowa
+- **Date:** 2023-12-08
+
+## donate-rm (#409)
+- **Commit:** [b3a70a9c1](https://github.com/skynowa/xLib/commit/b3a70a9c1)
+- **Author:** skynowa
+- **Date:** 2023-12-08
+
+## curl-error (#408)
+- **Commit:** [f02caa5e3](https://github.com/skynowa/xLib/commit/f02caa5e3)
+- **Author:** skynowa
+- **Date:** 2023-12-08
+
+## ILastError-review (#407)
+- **Commit:** [7a9b244bc](https://github.com/skynowa/xLib/commit/7a9b244bc)
+- **Author:** skynowa
+- **Date:** 2023-12-04
+
+## xml-unique-ptrs-impl (#406)
+- **Commit:** [bee513468](https://github.com/skynowa/xLib/commit/bee513468)
+- **Author:** skynowa
+- **Date:** 2023-12-04
+
+## double-compare-ops (#405)
+- **Commit:** [d5d87c4df](https://github.com/skynowa/xLib/commit/d5d87c4df)
+- **Author:** skynowa
+- **Date:** 2023-08-15
+
+## config-re-impl (#404)
+- **Commit:** [5111aa9da](https://github.com/skynowa/xLib/commit/5111aa9da)
+- **Author:** skynowa
+- **Date:** 2023-08-15
+
+## xml-error-impl (#403)
+- **Commit:** [71d4970ed](https://github.com/skynowa/xLib/commit/71d4970ed)
+- **Author:** skynowa
+- **Date:** 2023-08-11
+
+## double-ops (#402)
+- **Commit:** [1f51a6aff](https://github.com/skynowa/xLib/commit/1f51a6aff)
+- **Author:** skynowa
+- **Date:** 2023-08-11
+
+## validator-impl (#401)
+- **Commit:** [37b9a78c0](https://github.com/skynowa/xLib/commit/37b9a78c0)
+- **Author:** skynowa
+- **Date:** 2023-08-04
+
+## path-rvo (#398)
+- **Commit:** [7236fa86f](https://github.com/skynowa/xLib/commit/7236fa86f)
+- **Author:** skynowa
+- **Date:** 2023-08-03
+
+## char-unprintable-impl (#400)
+- **Commit:** [6b292bdbc](https://github.com/skynowa/xLib/commit/6b292bdbc)
+- **Author:** skynowa
+- **Date:** 2023-08-03
+
+## char-review (#399)
+- **Commit:** [5f0774c57](https://github.com/skynowa/xLib/commit/5f0774c57)
+- **Author:** skynowa
+- **Date:** 2023-08-02
+
+## ConsoleUI-split (#397)
+- **Commit:** [76d1d4a38](https://github.com/skynowa/xLib/commit/76d1d4a38)
+- **Author:** skynowa
+- **Date:** 2023-01-27
+
+## handle-policy-move (#396)
+- **Commit:** [f8016d5ac](https://github.com/skynowa/xLib/commit/f8016d5ac)
+- **Author:** skynowa
+- **Date:** 2023-01-11
+
+## file-io-attach-detach-rm (#395)
+- **Commit:** [07b942184](https://github.com/skynowa/xLib/commit/07b942184)
+- **Author:** skynowa
+- **Date:** 2023-01-10
+
+## Handle policy review 2 (#388)
+- **Commit:** [8f1dbbe78](https://github.com/skynowa/xLib/commit/8f1dbbe78)
+- **Author:** skynowa
+- **Date:** 2023-01-09
+
+## system-info-review (#391)
+- **Commit:** [4b0aa928a](https://github.com/skynowa/xLib/commit/4b0aa928a)
+- **Author:** skynowa
+- **Date:** 2023-01-04
+
+## system-info (#390)
+- **Commit:** [1e297b6bf](https://github.com/skynowa/xLib/commit/1e297b6bf)
+- **Author:** skynowa
+- **Date:** 2023-01-04
+
+## ui-msgbox-rm (#389)
+- **Commit:** [bc13271d2](https://github.com/skynowa/xLib/commit/bc13271d2)
+- **Author:** skynowa
+- **Date:** 2023-01-03
+
+## handle-policy-review (#387)
+- **Commit:** [2047232a3](https://github.com/skynowa/xLib/commit/2047232a3)
+- **Author:** skynowa
+- **Date:** 2022-01-02
+
+## net-mail: Pop3Client.cpp - remove (#386)
+- **Commit:** [7809426fa](https://github.com/skynowa/xLib/commit/7809426fa)
+- **Author:** skynowa
+- **Date:** 2021-09-13
+
+## source-info-expr (#384)
+- **Commit:** [d99da5aab](https://github.com/skynowa/xLib/commit/d99da5aab)
+- **Author:** skynowa
+- **Date:** 2021-07-07
+
+## path-trash (#382)
+- **Commit:** [e5e785956](https://github.com/skynowa/xLib/commit/e5e785956)
+- **Author:** skynowa
+- **Date:** 2021-06-27
+
+## Enum-as-object (#381)
+- **Commit:** [94b7f0658](https://github.com/skynowa/xLib/commit/94b7f0658)
+- **Author:** skynowa
+- **Date:** 2021-06-24
+
+## path-object-review (#378)
+- **Commit:** [9a40231ae](https://github.com/skynowa/xLib/commit/9a40231ae)
+- **Author:** skynowa
+- **Date:** 2020-12-28
+
+## tests-data-move (#377)
+- **Commit:** [2a65cd7a0](https://github.com/skynowa/xLib/commit/2a65cd7a0)
+- **Author:** skynowa
+- **Date:** 2020-09-07
+
+## DirTemp-impl (#376)
+- **Commit:** [a63460aaf](https://github.com/skynowa/xLib/commit/a63460aaf)
+- **Author:** skynowa
+- **Date:** 2020-09-06
+
 ## Merge pull request #152 from skynowa/File-impl
 - **Commit:** [06799db1e](https://github.com/skynowa/xLib/commit/06799db1e)
 - **Author:** skynowa
@@ -20,19 +325,14 @@
 - **Author:** skynowa
 - **Date:** 2020-08-21
 
-## Merge branch 'master' of bitbucket.org:skynowa/xlib
-- **Commit:** [4b16c2718](https://github.com/skynowa/xLib/commit/4b16c2718)
-- **Author:** Sergey Shevchenko
-- **Date:** 2019-02-07
+## Merged in FileInfo-impl (pull request #8)
+- **Commit:** [13903af22](https://github.com/skynowa/xLib/commit/13903af22)
+- **Author:** skynowa
+- **Date:** 2020-08-20
 
 ## Merged in Cpp11-data-member-initializers (pull request #7)
 - **Commit:** [a56e47c9e](https://github.com/skynowa/xLib/commit/a56e47c9e)
 - **Author:** skynowa
-- **Date:** 2018-10-01
-
-## Merge remote-tracking branch 'origin/master' into Cpp11-data-member-initializers
-- **Commit:** [b3ceee966](https://github.com/skynowa/xLib/commit/b3ceee966)
-- **Author:** Sergey Shevchenko
 - **Date:** 2018-10-01
 
 ## Merged in cpp11-enums (pull request #6)
@@ -40,327 +340,17 @@
 - **Author:** skynowa
 - **Date:** 2018-09-27
 
-## Merge branch 'master' of bitbucket.org:skynowa/xlib
-- **Commit:** [bfbd3f9bb](https://github.com/skynowa/xLib/commit/bfbd3f9bb)
-- **Author:** Sergey Shevchenko
-- **Date:** 2018-06-28
-
 ## Merged in StdStreamV2 (pull request #2)
 - **Commit:** [83db0e072](https://github.com/skynowa/xLib/commit/83db0e072)
 - **Author:** skynowa
 - **Date:** 2018-06-01
-
-## Merge remote-tracking branch 'origin/master' into StdStreamV2
-- **Commit:** [c2cc236e5](https://github.com/skynowa/xLib/commit/c2cc236e5)
-- **Author:** Sergey Shevchenko
-- **Date:** 2018-05-24
-
-## Merge: master -> StdStreamV2
-- **Commit:** [f5e76446e](https://github.com/skynowa/xLib/commit/f5e76446e)
-- **Author:** skynowa
-- **Date:** 2018-03-19
-
-## Merge remote-tracking branch 'origin/master' into StdStreamV2
-- **Commit:** [eda05b35c](https://github.com/skynowa/xLib/commit/eda05b35c)
-- **Author:** Sergey Shevchenko
-- **Date:** 2018-03-01
-
-## Merge remote-tracking branch 'origin/master' into StdStreamV2
-- **Commit:** [2c86e826f](https://github.com/skynowa/xLib/commit/2c86e826f)
-- **Author:** Sergey Shevchenko
-- **Date:** 2018-03-01
-
-## Merge remote-tracking branch 'origin/master' into StdStreamV2
-- **Commit:** [7cbaca5e4](https://github.com/skynowa/xLib/commit/7cbaca5e4)
-- **Author:** skynowa
-- **Date:** 2018-02-19
-
-## Merge: master -> StdStreamV2
-- **Commit:** [062563920](https://github.com/skynowa/xLib/commit/062563920)
-- **Author:** Sergey Shevchenko
-- **Date:** 2018-02-17
-
-## Merge: master -> StdStreamV2
-- **Commit:** [738cbff83](https://github.com/skynowa/xLib/commit/738cbff83)
-- **Author:** skynowa
-- **Date:** 2017-11-25
 
 ## Merged in FsWatcher (pull request #5)
 - **Commit:** [410b82c3a](https://github.com/skynowa/xLib/commit/410b82c3a)
 - **Author:** skynowa
 - **Date:** 2017-11-24
 
-## Merge remote-tracking branch 'origin/master' into FsWatcher
-- **Commit:** [1a0b9ed76](https://github.com/skynowa/xLib/commit/1a0b9ed76)
-- **Author:** skynowa
-- **Date:** 2017-11-21
-
-## Merge remote-tracking branch 'origin/master' into FsWatcher
-- **Commit:** [588424227](https://github.com/skynowa/xLib/commit/588424227)
-- **Author:** skynowa
-- **Date:** 2017-11-21
-
-## Merge remote-tracking branch 'origin/master' into FsWatcher
-- **Commit:** [440bdc560](https://github.com/skynowa/xLib/commit/440bdc560)
-- **Author:** skynowa
-- **Date:** 2017-11-20
-
-## Merge remote-tracking branch 'origin/master' into FsWatcher
-- **Commit:** [66d1d1f75](https://github.com/skynowa/xLib/commit/66d1d1f75)
-- **Author:** skynowa
-- **Date:** 2017-11-19
-
-## Merge: master -> IO-FsWatcher
-- **Commit:** [e71049367](https://github.com/skynowa/xLib/commit/e71049367)
-- **Author:** skynowa
-- **Date:** 2017-11-17
-
-## Merge: master -> IO-FsWatcher
-- **Commit:** [b35ff6a7a](https://github.com/skynowa/xLib/commit/b35ff6a7a)
-- **Author:** skynowa
-- **Date:** 2017-11-17
-
 ## Merged in CurlClient (pull request #3)
 - **Commit:** [59c19831e](https://github.com/skynowa/xLib/commit/59c19831e)
 - **Author:** skynowa
 - **Date:** 2017-11-16
-
-## Merge: from master
-- **Commit:** [1568dca48](https://github.com/skynowa/xLib/commit/1568dca48)
-- **Author:** skynowa
-- **Date:** 2017-11-16
-
-## Merge remote-tracking branch 'origin/master' into CurlClient
-- **Commit:** [b5446d043](https://github.com/skynowa/xLib/commit/b5446d043)
-- **Author:** skynowa
-- **Date:** 2017-11-16
-
-## Merge: master -> FsWatcher
-- **Commit:** [74ce08742](https://github.com/skynowa/xLib/commit/74ce08742)
-- **Author:** skynowa
-- **Date:** 2017-11-03
-
-## Merge branch 'master' into CurlClient
-- **Commit:** [d738681a7](https://github.com/skynowa/xLib/commit/d738681a7)
-- **Author:** skynowa
-- **Date:** 2017-11-03
-
-## Merge branch 'master' into CurlClient
-- **Commit:** [aac048f83](https://github.com/skynowa/xLib/commit/aac048f83)
-- **Author:** skynowa
-- **Date:** 2017-11-03
-
-## Merge branch 'master' into CurlClient
-- **Commit:** [4fdb52d08](https://github.com/skynowa/xLib/commit/4fdb52d08)
-- **Author:** skynowa
-- **Date:** 2017-11-03
-
-## Merge branch 'master' into CurlClient
-- **Commit:** [09132d3cc](https://github.com/skynowa/xLib/commit/09132d3cc)
-- **Author:** skynowa
-- **Date:** 2017-11-03
-
-## Merge branch 'master' into IO-FsWatcher
-- **Commit:** [75888ee92](https://github.com/skynowa/xLib/commit/75888ee92)
-- **Author:** skynowa
-- **Date:** 2017-11-03
-
-## Merge branch 'master' into CurlClient
-- **Commit:** [3e2f1a297](https://github.com/skynowa/xLib/commit/3e2f1a297)
-- **Author:** skynowa
-- **Date:** 2017-11-03
-
-## Merge: master -> CurlClient
-- **Commit:** [59d13cade](https://github.com/skynowa/xLib/commit/59d13cade)
-- **Author:** skynowa
-- **Date:** 2017-11-03
-
-## Merge branch 'master' into IO-FsWatcher
-- **Commit:** [80ce1f7bb](https://github.com/skynowa/xLib/commit/80ce1f7bb)
-- **Author:** skynowa
-- **Date:** 2017-11-02
-
-## Merge branch 'master' into IO-FsWatcher
-- **Commit:** [e1ad6db6e](https://github.com/skynowa/xLib/commit/e1ad6db6e)
-- **Author:** skynowa
-- **Date:** 2017-11-02
-
-## Merge branch 'master' into IO-FsWatcher
-- **Commit:** [debee2589](https://github.com/skynowa/xLib/commit/debee2589)
-- **Author:** skynowa
-- **Date:** 2017-11-02
-
-## Merge branch 'master' into CurlClient
-- **Commit:** [0da4bc7dc](https://github.com/skynowa/xLib/commit/0da4bc7dc)
-- **Author:** skynowa
-- **Date:** 2017-11-01
-
-## Merge branch 'master' into IO-FsWatcher
-- **Commit:** [13c6f6981](https://github.com/skynowa/xLib/commit/13c6f6981)
-- **Author:** skynowa
-- **Date:** 2017-11-01
-
-## Merge branch 'master' into IO-FsWatcher
-- **Commit:** [10761939f](https://github.com/skynowa/xLib/commit/10761939f)
-- **Author:** skynowa
-- **Date:** 2017-11-01
-
-## Merge branch 'master' into CurlClient
-- **Commit:** [e0fac45b8](https://github.com/skynowa/xLib/commit/e0fac45b8)
-- **Author:** skynowa
-- **Date:** 2017-11-01
-
-## Merge remote-tracking branch 'origin/master' into StdStreamV2
-- **Commit:** [cb341ff9a](https://github.com/skynowa/xLib/commit/cb341ff9a)
-- **Author:** skynowa
-- **Date:** 2017-07-19
-
-## Merge remote-tracking branch 'origin/master' into StdStreamV2
-- **Commit:** [a1fd84955](https://github.com/skynowa/xLib/commit/a1fd84955)
-- **Author:** skynowa
-- **Date:** 2017-07-19
-
-## Merge branch 'master' of bitbucket.org:skynowa/xlib
-- **Commit:** [283c71987](https://github.com/skynowa/xLib/commit/283c71987)
-- **Author:** skynowa
-- **Date:** 2016-06-24
-
-## Merge: fix
-- **Commit:** [e2dc49053](https://github.com/skynowa/xLib/commit/e2dc49053)
-- **Author:** skynowa
-- **Date:** 2016-04-05
-
-## Merge: fix
-- **Commit:** [7b5541b38](https://github.com/skynowa/xLib/commit/7b5541b38)
-- **Author:** skynowa
-- **Date:** 2016-02-12
-
-## Merge develop -> master
-- **Commit:** [a47decf9d](https://github.com/skynowa/xLib/commit/a47decf9d)
-- **Author:** skynowa
-- **Date:** 2014-10-02
-
-## FIX: .gitignore, CxMacros
-- **Commit:** [c7143a8c4](https://github.com/skynowa/xLib/commit/c7143a8c4)
-- **Author:** skynowa
-- **Date:** 2012-07-20
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [6b2b4853b](https://github.com/skynowa/xLib/commit/6b2b4853b)
-- **Author:** skynowa
-- **Date:** 2012-03-09
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [e6829bcd2](https://github.com/skynowa/xLib/commit/e6829bcd2)
-- **Author:** skynowa
-- **Date:** 2012-03-14
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [ee819b977](https://github.com/skynowa/xLib/commit/ee819b977)
-- **Author:** skynowa
-- **Date:** 2012-03-12
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [4a2694095](https://github.com/skynowa/xLib/commit/4a2694095)
-- **Author:** skynowa
-- **Date:** 2012-03-09
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [09b1a3e31](https://github.com/skynowa/xLib/commit/09b1a3e31)
-- **Author:** skynowa
-- **Date:** 2012-03-09
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [aebe13208](https://github.com/skynowa/xLib/commit/aebe13208)
-- **Author:** skynowa
-- **Date:** 2012-03-09
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [4f91fe4c5](https://github.com/skynowa/xLib/commit/4f91fe4c5)
-- **Author:** skynowa
-- **Date:** 2012-03-09
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [19ee3389a](https://github.com/skynowa/xLib/commit/19ee3389a)
-- **Author:** skynowa
-- **Date:** 2012-03-09
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [a1baf3756](https://github.com/skynowa/xLib/commit/a1baf3756)
-- **Author:** skynowa
-- **Date:** 2012-03-09
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [cbb1d02ab](https://github.com/skynowa/xLib/commit/cbb1d02ab)
-- **Author:** skynowa
-- **Date:** 2012-03-09
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [7a865ccd0](https://github.com/skynowa/xLib/commit/7a865ccd0)
-- **Author:** skynowa
-- **Date:** 2012-03-08
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [4aca8c69c](https://github.com/skynowa/xLib/commit/4aca8c69c)
-- **Author:** skynowa
-- **Date:** 2012-03-08
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [6368904f7](https://github.com/skynowa/xLib/commit/6368904f7)
-- **Author:** skynowa
-- **Date:** 2012-03-08
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [0ee8c9515](https://github.com/skynowa/xLib/commit/0ee8c9515)
-- **Author:** skynowa
-- **Date:** 2012-03-08
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [6aaa9cb21](https://github.com/skynowa/xLib/commit/6aaa9cb21)
-- **Author:** skynowa
-- **Date:** 2012-03-08
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [256d5221e](https://github.com/skynowa/xLib/commit/256d5221e)
-- **Author:** skynowa
-- **Date:** 2012-03-08
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [265e0aa31](https://github.com/skynowa/xLib/commit/265e0aa31)
-- **Author:** skynowa
-- **Date:** 2012-02-14
-
-## Merge branch 'master' of https://bitbucket.org/skynowa/xlib
-- **Commit:** [45ff11512](https://github.com/skynowa/xLib/commit/45ff11512)
-- **Author:** skynowa
-- **Date:** 2012-02-05
-
-## FIX: CxTest_CxStackTrace
-- **Commit:** [edf981f39](https://github.com/skynowa/xLib/commit/edf981f39)
-- **Author:** sergey
-- **Date:** 2011-11-08
-
-## Merge branch 'master' of https://github.com/skynowa/xLib
-- **Commit:** [f65321c80](https://github.com/skynowa/xLib/commit/f65321c80)
-- **Author:** skynowa
-- **Date:** 2011-10-05
-
-## Merge branch 'master' of https://github.com/skynowa/xLib
-- **Commit:** [ddefc5128](https://github.com/skynowa/xLib/commit/ddefc5128)
-- **Author:** sergey
-- **Date:** 2011-09-27
-
-## REVIEW: xFunctions.h, xTypes.h
-- **Commit:** [a7150a705](https://github.com/skynowa/xLib/commit/a7150a705)
-- **Author:** sergey
-- **Date:** 2011-09-26
-
-## Merge branch 'xLib' of ssh://66.230.182.59/home/git/crystal_trader
-- **Commit:** [5c80c65ab](https://github.com/skynowa/xLib/commit/5c80c65ab)
-- **Author:** sergey
-- **Date:** 2011-08-16
-
-## Merge branch 'master' of https://github.com/skynowa/xLib
-- **Commit:** [709edbb29](https://github.com/skynowa/xLib/commit/709edbb29)
-- **Author:** sergey
-- **Date:** 2011-06-24
