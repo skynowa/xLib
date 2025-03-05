@@ -90,10 +90,9 @@ TODO: [win] Sync - close handle
 ## Doc
 
 - [!] Doc - impl
-- [!] Custom tags
+- [+] Custom tags
 - [ ] \see as list (\n -> -)
 - [?] Auto gen todo list at root of the project - impl
-- [ ] CMake target Doxygen - rm
 
 ## Remove
 
