@@ -193,9 +193,6 @@ Test_Application::unit()
 		data.vendorAuthor    = xT("[vendorAuthor]");
 		data.vendorUrl       = xT("[vendorUrl]");
 		data.vendorEmail     = xT("[vendorEmail]");
-		data.vendorSkype     = xT("[vendorSkype]");
-		data.vendorJabber    = xT("[vendorJabber]");
-		data.vendorIcq       = xT("[vendorIcq]");
 
 		UserApplication::setInfo(data);
 		xTEST_EQ(UserApplication::info().name,            data.name);
@@ -213,9 +210,6 @@ Test_Application::unit()
 		xTEST_EQ(UserApplication::info().vendorAuthor,    data.vendorAuthor);
 		xTEST_EQ(UserApplication::info().vendorUrl,       data.vendorUrl);
 		xTEST_EQ(UserApplication::info().vendorEmail,     data.vendorEmail);
-		xTEST_EQ(UserApplication::info().vendorSkype,     data.vendorSkype);
-		xTEST_EQ(UserApplication::info().vendorJabber,    data.vendorJabber);
-		xTEST_EQ(UserApplication::info().vendorIcq,       data.vendorIcq);
     }
 
     xTEST_CASE("files")

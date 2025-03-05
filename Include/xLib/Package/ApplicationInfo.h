@@ -30,9 +30,6 @@ public:
     std::tstring_t vendorAuthor;
     std::tstring_t vendorUrl;
     std::tstring_t vendorEmail;
-    std::tstring_t vendorSkype;
-    std::tstring_t vendorJabber;
-    std::tstring_t vendorIcq;
 
 ///\name ctors, dtor
 ///\{
