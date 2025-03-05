@@ -17,11 +17,8 @@
 - Language: C++ 20
 - Platforms:
 
-  - Windows (XP >)
-  - Unix:
-      - Ubuntu 20.04
-      - BSD
-      - Apple (OSX)
+    - Windows (XP >)
+    - Unix (Ubuntu 20.04, BSD, Apple (OSX))
 
 - Compilers:
     - GCC

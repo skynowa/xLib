@@ -1,6 +1,6 @@
 /**
  * \file  ICompare.inl
- * \brief
+ * \brief Comparable
  */
 
 

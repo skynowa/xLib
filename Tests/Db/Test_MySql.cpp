@@ -1,5 +1,5 @@
 /**
- * \file   Test_MySql_Fabrica.cpp
+ * \file  Test_MySql.cpp
  * \brief
  */
 

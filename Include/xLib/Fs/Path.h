@@ -2,7 +2,7 @@
  * \file  Path.h
  * \brief file system path
  *
- * https://github.com/Quintus/pathie-cpp/blob/master/src/path.cpp
+ * \faq   https://github.com/Quintus/pathie-cpp/blob/master/src/path.cpp
  */
 
 
@@ -32,8 +32,8 @@ public:
    /**
 	* Standard paths
 	*
-	* https://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum
-	* https://docs.microsoft.com/en-us/previous-versions/windows/embedded/aa453706(v%3Dmsdn.10)
+	* - https://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum
+	* - https://docs.microsoft.com/en-us/previous-versions/windows/embedded/aa453706(v%3Dmsdn.10)
 	*
 	* [TODO] desktop, documents, downloads, ...
 	*/

@@ -21,8 +21,7 @@ class Float final :
 	public IGetConstRef<T>,
 	public IStr,
 	public ICompare<T>
-	///< Float's operations
-	///< \tparam T Float type (float, double, long double)
+	/// Float's operations. \tparam T Float type (float, double, long double)
 {
 	static_assert(std::is_floating_point_v<T>, "T must be a floating-point type");
 
@@ -125,17 +124,20 @@ FLongDouble operator ""xld (culonglong_t value);
 #include "Float.inl"
 //-------------------------------------------------------------------------------------------------
 /**
- * [+] struct Float :
+ * \addtogroup mIMPL
+ *
+ * Float:
+ * - [+] struct Float :
  * 			IComparable,
  * 			IComparable<double>,
  * 			IConvertible,
  * 			IEquatable<double>,
  * 			IFormattable
- * TODO: delimiter
- * [+] str(), format float ???
- * [+] isInf()
+ * - TODO: delimiter
+ * - [+] str(), format float ???
+ * - [+] isInf()
  *
- * TODO: C library
- * [+] https://stackoverflow.com/questions/17333/what-is-the-most-effective-way-for-float-and-double-comparison
- * [+] https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
+ * - TODO: C library
+ * - [+] https://stackoverflow.com/questions/17333/what-is-the-most-effective-way-for-float-and-double-comparison
+ * - [+] https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
  */

@@ -1,5 +1,5 @@
 /**
- * \file   FileLog.inl
+ * \file   FileLog.cpp
  * \brief  logging to file
  */
 

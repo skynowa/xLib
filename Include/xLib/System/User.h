@@ -13,7 +13,7 @@ namespace xl::system
 {
 
 class User
-    ///< user info
+    /// user info
 {
 public:
 ///\name ctors, dtor

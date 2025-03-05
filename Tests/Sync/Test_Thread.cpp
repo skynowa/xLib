@@ -15,26 +15,26 @@ class CWorkThread :
 public:
 	size_t index {};
 
-	explicit  CWorkThread(cbool_t cbAutoDelete);
+	explicit  CWorkThread(cbool_t isAutoDelete);
 	virtual  ~CWorkThread() = default;
 
 protected:
-	uint_t onRun(void_t *pData) final;
+	uint_t onRun(void_t *data) final;
 };
 //-------------------------------------------------------------------------------------------------
 CWorkThread::CWorkThread(
-    cbool_t a_AutoDelete
+    cbool_t a_isAutoDelete
 ) :
-    Thread(a_AutoDelete)
+    Thread(a_isAutoDelete)
 {
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
 CWorkThread::onRun(
-    void_t *pvData
+    void_t *data
 )
 {
-    xUNUSED(pvData);
+    xUNUSED(data);
 
     #if xTEST_IGNORE
         xTRACEV(xT("\n\tCWorkThread: start #%lu"), index);

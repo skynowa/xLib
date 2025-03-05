@@ -47,7 +47,7 @@ public:
 	std::ctstring_t & str() const final;
 		///< report message
 ///\}
-///
+
     Type           type() const;
         ///< report type
 

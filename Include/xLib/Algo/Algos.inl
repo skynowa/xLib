@@ -1,5 +1,5 @@
 /**
- * \file   Algos.cpp
+ * \file   Algos.inl
  * \brief  Algorithms
  */
 
