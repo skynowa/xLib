@@ -29,7 +29,7 @@
 ## Repositories
 
 - https://github.com/skynowa/xLib
-- [ChangeLog.md](https://github.com/skynowa/xLib/blob/master/Docs/ChangeLog.md)
+- [Change Log](https://github.com/skynowa/xLib/blob/master/Docs/ChangeLog.md)
 
 ## Dependencies
 
