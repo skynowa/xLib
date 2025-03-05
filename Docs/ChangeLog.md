@@ -1,4 +1,4 @@
-# Change Log
+# Change log
 
 ## doxygen-impl (#444)
 - **Commit:** [7e3ff38c7](https://github.com/skynowa/xLib/commit/7e3ff38c7)
