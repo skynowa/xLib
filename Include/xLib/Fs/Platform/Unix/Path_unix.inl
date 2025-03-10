@@ -5,7 +5,7 @@
 
 
 #include <xLib/Core/Const.h>
-#include <xLib/System/Environment.h>
+#include <xLib/System/Env.h>
 
 namespace xl::fs
 {
@@ -86,7 +86,7 @@ Path::_homeDir_impl()
 	}
 
     // try to get from system environment
-    std::ctstring_t sRv = Environment(xT("HOME")).value();
+    std::ctstring_t sRv = Env(xT("HOME")).value();
     xTEST(!sRv.empty());
 
     return sRv;
@@ -106,7 +106,7 @@ Path::_trashDir_impl()
 
 		// env XDG_DATA_HOME
 		{
-			std::ctstring_t &xdgDataHome = Environment(xT("XDG_DATA_HOME")).value();
+			std::ctstring_t &xdgDataHome = Env(xT("XDG_DATA_HOME")).value();
 			if ( !xdgDataHome.empty() ) {
 				paths.emplace_back(xdgDataHome + xT("/Trash"));
 			}

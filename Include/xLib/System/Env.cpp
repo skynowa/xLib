@@ -1,10 +1,10 @@
 /**
- * \file  Environment.cpp
+ * \file  Env.cpp
  * \brief system environment variables
  */
 
 
-#include "Environment.h"
+#include "Env.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
@@ -16,9 +16,9 @@
 #include <xLib/Debug/Debugger.h>
 
 #if   xENV_WIN
-    #include "Platform/Win/Environment_win.inl"
+    #include "Platform/Win/Env_win.inl"
 #elif xENV_UNIX
-    #include "Platform/Unix/Environment_unix.inl"
+    #include "Platform/Unix/Env_unix.inl"
 #endif
 
 
@@ -31,7 +31,7 @@ namespace xl::system
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Environment::Environment(
+Env::Env(
 	std::ctstring_t &a_name
 ) :
 	_name{a_name}
@@ -40,8 +40,8 @@ Environment::Environment(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-Environment
-Environment::path()
+Env
+Env::path()
 {
 	std::ctstring_t name =
 	#if   xENV_WIN
@@ -50,17 +50,17 @@ Environment::path()
 		xT("PATH");
 	#endif
 
-	return Environment(name);
+	return Env(name);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Environment::str() const /* final */
+Env::str() const /* final */
 {
     return _name + Const::equal() + value();
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Environment::isExists() const
+Env::isExists() const
 {
     xCHECK_RET(_name.empty(), false);
 
@@ -68,7 +68,7 @@ Environment::isExists() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Environment::value() const
+Env::value() const
 {
     xCHECK_RET(!isExists(), std::tstring_t());
 
@@ -76,7 +76,7 @@ Environment::value() const
 }
 //-------------------------------------------------------------------------------------------------
 std::vec_tstring_t
-Environment::values() const
+Env::values() const
 {
     xCHECK_RET(!isExists(), std::vec_tstring_t{});
 
@@ -87,7 +87,7 @@ Environment::values() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::setValue(
+Env::setValue(
     std::ctstring_t &a_value
 ) const
 {
@@ -97,7 +97,7 @@ Environment::setValue(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::remove() const
+Env::remove() const
 {
     xCHECK_DO(!isExists(), return);
 
@@ -114,7 +114,7 @@ Environment::remove() const
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::csize_t
-Environment::_envMax()
+Env::_envMax()
 {
 	return
 	#if   xENV_WIN
@@ -130,7 +130,7 @@ Environment::_envMax()
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::ctstring_t
-Environment::_envsSeparator()
+Env::_envsSeparator()
 {
 	return
 	#if   xENV_WIN
@@ -141,7 +141,7 @@ Environment::_envsSeparator()
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Environment::_isNameValid() const
+Env::_isNameValid() const
 {
     xCHECK_RET(_name.empty(),                                      false);
     xCHECK_RET(_name.find(Const::equal()) != std::tstring_t::npos, false);
@@ -150,7 +150,7 @@ Environment::_isNameValid() const
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Environment::_isValueValid(
+Env::_isValueValid(
     std::ctstring_t &a_value
 ) const
 {
@@ -162,37 +162,37 @@ Environment::_isValueValid(
 
 
 /**************************************************************************************************
-*   Environments
+*   Envs
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Environments::setVars(
+Envs::setVars(
     const std::set<std::pair_tstring_t> &a_vars ///< vars ({"HOME=/usr/home","LOGNAME=home"})
 ) const
 {
 	for (const auto &[it_name, it_value] : a_vars) {
-		Environment env(it_name);
+		Env env(it_name);
 		env.setValue(it_value);
 	}
 }
 //-------------------------------------------------------------------------------------------------
 std::vec_tstring_t
-Environments::vars() const
+Envs::vars() const
 {
     return std::move( _vars_impl() );
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Environments::findFirstOf(
+Envs::findFirstOf(
 	std::cvec_tstring_t &a_names ///< var names
 ) const
 {
 	xCHECK_RET(a_names.empty(), std::tstring_t{});
 
 	for (const auto &it_name : a_names) {
-		Environment env(it_name);
+		Env env(it_name);
 		bool_t bRv = env.isExists();
 		xCHECK_DO(!bRv, continue);
 
@@ -204,7 +204,7 @@ Environments::findFirstOf(
 //-------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-Environments::expandVars(
+Envs::expandVars(
     std::ctstring_t &a_strWithVars
 )
 {
@@ -230,7 +230,7 @@ Environments::expandVars(
         std::ctstring_t &envName = String::trimChars(rawEnvName, sep);
 
         // expand var to temp string
-        std::ctstring_t &expandedEnvValue = Environment(envName).value();
+        std::ctstring_t &expandedEnvValue = Env(envName).value();
 
         // replace envVar(%var%) by expandedEnvVar
         sRv.replace(startSepPos, rawEnvName.size(), expandedEnvValue);

@@ -17,7 +17,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/Debugger.h>
-#include <xLib/System/Environment.h>
+#include <xLib/System/Env.h>
 #include <xLib/System/Info/Net.h>
 
 
@@ -51,7 +51,7 @@ Unit::option() const
 bool_t
 Unit::isGithubCI() const
 {
-	return Environment(xT("GITHUB_WORKSPACE")).isExists();
+	return Env(xT("GITHUB_WORKSPACE")).isExists();
 }
 //-------------------------------------------------------------------------------------------------
 bool_t

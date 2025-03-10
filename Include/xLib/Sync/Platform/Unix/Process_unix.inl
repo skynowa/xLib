@@ -95,7 +95,7 @@ Process::_create_impl(
 			*
 			* \see https://stackoverflow.com/questions/646930/cannot-connect-to-x-server-0-0-with-a-qt-application
 			*/
-			if (Environment env(xT("DISPLAY"));
+			if (Env env(xT("DISPLAY"));
 				env.isExists())
 			{
 				const auto str = const_cast<char *>( xT2A(env.str()).c_str() );

@@ -18,7 +18,7 @@
 #include <xLib/Log/Trace.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>
-#include <xLib/System/Environment.h>
+#include <xLib/System/Env.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Finder_win.inl"
@@ -252,7 +252,7 @@ Finder::fileInEnvPath(
     cbool_t          a_isRecursively
 )
 {
-    const Environment env = Environment::path();
+    const Env env = Env::path();
 
 	return file(env.values(), a_shellFilter, a_isRecursively);
 }

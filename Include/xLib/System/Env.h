@@ -1,5 +1,5 @@
 /**
- * \file  Environment.h
+ * \file  Env.h
  * \brief system environment variables
  */
 
@@ -12,20 +12,20 @@
 namespace xl::system
 {
 
-class Environment :
+class Env :
 	public IStr
     /// system environment variable
 {
 public:
 ///\name ctors, dtor
 ///\{
-	explicit Environment(std::ctstring_t &name);
-	virtual ~Environment() = default;
+	explicit Env(std::ctstring_t &name);
+	virtual ~Env() = default;
 
-	xNO_DEFAULT_CONSTRUCT(Environment);
-	xNO_COPY_ASSIGN(Environment);
+	xNO_DEFAULT_CONSTRUCT(Env);
+	xNO_COPY_ASSIGN(Env);
 
-	static Environment path();
+	static Env path();
         ///< get PATH values (/usr/bin ... pathes) with separator
 ///\}
 
@@ -66,16 +66,16 @@ xPLATFORM_IMPL:
     void_t         _remove_impl() const;
 };
 //-------------------------------------------------------------------------------------------------
-class Environments
+class Envs
 	/// system environment variables
 {
 public:
 ///\name ctors, dtor
 ///\{
-			 Environments() = default;
-	virtual ~Environments() = default;
+			 Envs() = default;
+	virtual ~Envs() = default;
 
-	xNO_COPY_ASSIGN(Environments);
+	xNO_COPY_ASSIGN(Envs);
 ///\}
 
     void_t             setVars(const std::set<std::pair_tstring_t> &vars) const;

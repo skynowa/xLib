@@ -1,5 +1,5 @@
 /**
- * \file   Test_Environment.cpp
+ * \file   Test_Env.cpp
  * \brief
  */
 
@@ -7,11 +7,11 @@
 #include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
-xTEST_UNIT(Test_Environment)
+xTEST_UNIT(Test_Env)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_Environment::unit()
+Test_Env::unit()
 {
     xTEST_CASE("str")
     {
@@ -24,7 +24,7 @@ Test_Environment::unit()
         };
 
         for (const auto &[it_var, it_value] : vars) {
-            Environment env(it_var);
+            Env env(it_var);
             env.setValue(it_value);
 
             const auto &test     = env.str();
@@ -44,7 +44,7 @@ Test_Environment::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Environment env(data[i][0]);
+            Env env(data[i][0]);
             env.setValue(data[i][1]);
 
             xTEST(env.isExists());
@@ -76,7 +76,7 @@ Test_Environment::unit()
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Environment env(data[i][0]);
+            Env env(data[i][0]);
 
             bool_t bStr1 = env.isExists();
             xTEST_EQ(String::castBool(data[i][1]), bStr1);
@@ -104,7 +104,7 @@ Test_Environment::unit()
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Environment env(data[i][0]);
+            Env env(data[i][0]);
 
             std::tstring_t str1 = env.value();
             std::tstring_t str2 = data[i][1];
@@ -123,14 +123,14 @@ Test_Environment::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Environment env(data[i][0]);
+            Env env(data[i][0]);
             env.remove();
 
             xTEST(!env.isExists());
         }
     }
 
-    xTEST_CASE("Environments::setVars")
+    xTEST_CASE("Envs::setVars")
     {
         const std::set<std::pair_tstring_t> vars
         {
@@ -140,18 +140,18 @@ Test_Environment::unit()
             {xT("ENV_TEST_4"), xT("value4")}
         };
 
-        Environments envs;
+        Envs envs;
         envs.setVars(vars);
     }
 
-    xTEST_CASE("Environments::vars")
+    xTEST_CASE("Envs::vars")
     {
-        Environments envs;
+        Envs envs;
         m_vsRv = envs.vars();
         xTEST(!m_vsRv.empty());
     }
 
-    xTEST_CASE("Environments::expandVars")
+    xTEST_CASE("Envs::expandVars")
     {
     #if   xENV_WIN
         std::ctstring_t data[][2]
@@ -170,17 +170,17 @@ Test_Environment::unit()
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str1 = Environments::expandVars(data[i][0]);
+            std::tstring_t str1 = Envs::expandVars(data[i][0]);
             std::tstring_t str2 = data[i][1];
             xTEST(StringCI::compare(str1, str2));
         }
     }
 
-    xTEST_CASE("Environments::findFirstOf")
+    xTEST_CASE("Envs::findFirstOf")
     {
         std::ctstring_t envName = xT("XLIB_ENV_2");
 
-        Environment env(envName);
+        Env env(envName);
         env.setValue("2");
 
         const data2_tstring_t datas[]
@@ -193,7 +193,7 @@ Test_Environment::unit()
         for (const auto &[it_test, it_expect] : datas) {
             std::cvec_tstring_t findEnvs = {xT("XLIB_ENV_1"), it_test, xT("XLIB_ENV_3")};
 
-            Environments envs;
+            Envs envs;
             m_sRv = envs.findFirstOf(findEnvs);
             xTEST_EQ(m_sRv, it_expect);
             }

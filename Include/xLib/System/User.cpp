@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Format.h>
 #include <xLib/Log/Trace.h>
-#include <xLib/System/Environment.h>
+#include <xLib/System/Env.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/SourceInfo.h>
 #include <xLib/Debug/ErrorReport.h>
@@ -84,7 +84,7 @@ User::name() const
 		#endif
 		};
 
-		Environments envs;
+		Envs envs;
 		sRv = envs.findFirstOf(envVars);
 		xCHECK_RET(!sRv.empty(), sRv);
 	}

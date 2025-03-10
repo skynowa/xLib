@@ -97,7 +97,7 @@ Dir::_temp_impl()
 {
     std::ctstring_t envDirTemp = xT("TMPDIR");
 
-    Environment env(envDirTemp);
+    Env env(envDirTemp);
 
     return env.isExists() ? env.value() : _dirTmp();
 }

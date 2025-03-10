@@ -1,5 +1,5 @@
 /**
- * \file  Environment.inl
+ * \file  Env.inl
  * \brief system environment variables
  */
 
@@ -16,7 +16,7 @@ namespace xl::system
 
 //-------------------------------------------------------------------------------------------------
 bool_t
-Environment::_isExists_impl() const
+Env::_isExists_impl() const
 {
     const char *pcszRv = ::getenv(xT2A(_name).c_str());
     xTEST_NA(pcszRv);
@@ -26,7 +26,7 @@ Environment::_isExists_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Environment::_value_impl() const
+Env::_value_impl() const
 {
     std::tstring_t sRv;
 
@@ -39,7 +39,7 @@ Environment::_value_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::_setValue_impl(
+Env::_setValue_impl(
     std::ctstring_t &a_value
 ) const
 {
@@ -50,7 +50,7 @@ Environment::_setValue_impl(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Environment::_remove_impl() const
+Env::_remove_impl() const
 {
 #if   xENV_LINUX
     int_t iRv = ::unsetenv(xT2A(_name).c_str());
@@ -64,7 +64,7 @@ Environment::_remove_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 std::vec_tstring_t
-Environments::_vars_impl() const
+Envs::_vars_impl() const
 {
     const auto env = ::environ;
 
