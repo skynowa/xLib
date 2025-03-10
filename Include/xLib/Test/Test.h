@@ -2,8 +2,11 @@
  * \file  Test.h
  * \brief code testing
  *
- * \see   https://github.com/doctest/doctest\n
- *        https://github.com/google/fuzztest
+ * \see
+ *
+ * - https://github.com/doctest/doctest
+ * - https://github.com/google/fuzztest
+ * - https://github.com/CxxTest/cxxtest
  */
 
 
@@ -291,4 +294,12 @@
                 << __FUNCTION__ << ": (" << #expr << ")" << std::endl; \
         } \
     }
+//-------------------------------------------------------------------------------------------------
+/**
+ * \addtogroup mTODO
+ * \{
+ * Test.h:
+ * - [ ] xTEST_EQ_MSG_PRIVATE impl - as function
+ * \}
+*/
 //-------------------------------------------------------------------------------------------------
