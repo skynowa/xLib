@@ -78,6 +78,8 @@ public:
 	xNO_COPY_ASSIGN(Envs);
 ///\}
 
+    void_t             setVars(const std::tstring_t &envFilePath) const;
+        ///< set or change values from env file (for example ".env")
     void_t             setVars(const std::set<std::pair_tstring_t> &vars) const;
         ///< set or change values
     std::vec_tstring_t vars() const;

@@ -14,6 +14,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/Debugger.h>
+#include <xLib/Fs/Config.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Env_win.inl"
@@ -166,6 +167,20 @@ Env::_isValueValid(
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+void_t
+Envs::setVars(
+	const std::tstring_t &a_envFilePath ///< file with vars ({"HOME=/usr/home","LOGNAME=home"})
+) const
+{
+	Config config(a_envFilePath);
+	config.read();
+
+	for (const auto &[it_name, it_value] : config.get() ) {
+		Env env(it_name);
+		env.setValue(it_value);
+	}
+}
 //-------------------------------------------------------------------------------------------------
 void_t
 Envs::setVars(
