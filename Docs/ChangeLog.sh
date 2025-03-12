@@ -13,6 +13,6 @@ echo "# Change Log" > "$LOGFILE"
 echo "" >> "$LOGFILE"
 
 # Extract merge commits and format as Markdown
-git log master --grep="#[0-9]\+" --pretty=format:"## %s%n- **Commit:** [%h](${GIT_REPOSITORY}/commit/%h)%n- **Author:** %an%n- **Date:** %cd%n" --date=short >> "$LOGFILE"
+git log master --grep="#[0-9]\+" --pretty=format:"## %s%n%n- **Commit:** [%h](${GIT_REPOSITORY}/commit/%h)%n- **Author:** %an%n- **Date:** %cd%n" --date=short >> "$LOGFILE"
 
 echo "$LOGFILE - Saved"
