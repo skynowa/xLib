@@ -14,9 +14,13 @@
 
     <tab type="modules" title="📦 Modules" visible="yes" intro=""/>
 
+    <!--
     <tab type="namespaces" title="{} Namespaces" visible="yes">
       <tab type="namespacelist" visible="yes" title="" intro=""/>
-      <!-- <tab type="namespacemembers" visible="yes" title="" intro=""/> -->
+      <tab type="namespacemembers" visible="yes" title="" intro=""/>
+    </tab>
+    -->
+    <tab type="namespacelist" title="{} Namespaces" visible="yes">
     </tab>
 
     <tab type="interfaces" title="Interfaces" visible="yes">
