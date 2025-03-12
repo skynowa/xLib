@@ -9,7 +9,7 @@ LOGFILE="ChangeLog.md"
 GIT_REPOSITORY="https://github.com/skynowa/xLib"
 
 # Header
-echo "# Change Log" > "$LOGFILE"
+echo "# Change Log {#id_changelog}" > "$LOGFILE"
 echo "" >> "$LOGFILE"
 
 # Extract merge commits and format as Markdown

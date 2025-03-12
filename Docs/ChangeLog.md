@@ -1,4 +1,4 @@
-# Change Log
+# Change Log {#id_changelog}
 
 ## doxygen-impl (#444)
 
