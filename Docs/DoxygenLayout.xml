@@ -14,6 +14,11 @@
 
     <tab type="modules" title="📦 Modules" visible="yes" intro=""/>
 
+    <tab type="files" title="📂 Files" visible="yes">
+      <tab type="filelist" visible="yes" title="" intro=""/>
+      <tab type="globals" visible="yes" title="" intro=""/>
+    </tab>
+
     <!--
     <tab type="namespaces" title="{} Namespaces" visible="yes">
       <tab type="namespacelist" visible="yes" title="" intro=""/>
@@ -45,11 +50,6 @@
       <tab type="exceptionlist" visible="yes" title="" intro=""/>
       <tab type="exceptionindex" visible="$ALPHABETICAL_INDEX" title=""/>
       <tab type="exceptionhierarchy" visible="yes" title="" intro=""/>
-    </tab>
-
-    <tab type="files" title="📂 Files" visible="yes">
-      <tab type="filelist" visible="yes" title="" intro=""/>
-      <tab type="globals" visible="yes" title="" intro=""/>
     </tab>
 
     <tab type="examples" title="💡Examples" visible="yes" intro=""/>
