@@ -34,7 +34,7 @@ namespace xl::sync
 /* virtual */
 Mutex::~Mutex()
 {
-    _destruc_impl();
+	_destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 const Mutex::handle_t &

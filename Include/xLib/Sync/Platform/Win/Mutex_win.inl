@@ -14,7 +14,7 @@ namespace xl::sync
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Mutex::_destruc_impl()
+Mutex::_destruct_impl()
 {
     bool_t bRv {};
 
