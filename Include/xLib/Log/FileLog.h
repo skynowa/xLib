@@ -22,8 +22,8 @@ public:
     enum class LogSizes : std::size_t
         /// log size
     {
-        lsDefaultMb    = xMB(20),
-        lsDefaultMaxMb = xMB(50)
+        DefaultMb    = xMB(20),
+        DefaultMaxMb = xMB(50)
     };
     xUSING_CONST(LogSizes);
 

@@ -30,7 +30,7 @@ namespace xl::log
 
 //-------------------------------------------------------------------------------------------------
 FileLog::FileLog() :
-    _fileSizeMaxBytes( static_cast<std::size_t>(LogSizes::lsDefaultMb) )
+    _fileSizeMaxBytes( static_cast<std::size_t>(LogSizes::DefaultMb) )
 {
     xTEST(_filePath.empty());
 }

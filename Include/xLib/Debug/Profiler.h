@@ -39,7 +39,7 @@ public:
 
 private:
     bool_t       _isStarted {};  ///< is started
-    FileLog      _log {FileLog::LogSizes::lsDefaultMb};   ///< file log
+    FileLog      _log {FileLog::LogSizes::DefaultMb};   ///< file log
 
     std::clock_t _start {};      ///< start value
     std::clock_t _stop {};       ///< stop value
