@@ -91,6 +91,14 @@ Failer::bug_IllegalInstruction()
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
+Failer::bug_CauseCalamity()
+{
+	// TODO
+
+	return false;
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
 Failer::bug_UnhandledException()
 {
 	std::vector<std::size_t> vecRv;
