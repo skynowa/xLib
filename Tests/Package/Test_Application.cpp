@@ -59,9 +59,6 @@ Failer::bug_CauseSegfault()
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-bug_StackOverflow();
-
-bool_t
 Failer::bug_StackOverflow()
 {
 #if xTEMP_DISABLED
