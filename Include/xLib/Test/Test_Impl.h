@@ -6,15 +6,42 @@
 
 #pragma once
 
-#include <xLib/Core/Format.h>
 #include <xLib/Debug/ErrorReport.h>
+#include <xLib/Debug/SourceInfo.h>
+#include <xLib/Core/Format.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
 //-------------------------------------------------------------------------------------------------
+#if 0
+	namespace xl::debug
+	{
+
+	class ErrorReport;
+	class SourceInfoOption;
+	class SourceInfo;
+
+	}
+
+	namespace v
+	{
+
+	class Format;
+
+	}
+
+	namespace xl::debug
+	{
+
+	class Debugger;
+
+	}
+#endif
+
+
 template<typename T1, typename T2>
 inline void
 testEqMsg_impl(
-	ErrorReport::cType  a_reportType,
+	const xl::debug::ErrorReport::Type  a_reportType,
 	xl::culong_t        a_nativeError,
 	std::ctstring_t    &a_file,
 	std::csize_t        a_line,
@@ -30,19 +57,19 @@ testEqMsg_impl(
 {
 	xl::culong_t nativeError { a_nativeError };
 
-	cSourceInfoOption sourceInfoOption
+	const xl::debug::SourceInfoOption sourceInfoOption
 	{
 		a_file, a_line, a_function, a_counter,
 		a_val1Str, a_val2Str,
-		Format::str(xT("{}"), a_val1),
-		Format::str(xT("{}"), a_val2),
+		"", // xl::core::Format::str(xT("{}"), a_val1),
+		"", // xl::core::Format::str(xT("{}"), a_val2),
 		a_op
 	};
 
-	SourceInfo       sourceInfo(sourceInfoOption);
-	std::ctstring_t &stackTrace = StackTrace().str();
+	xl::debug::SourceInfo       sourceInfo(sourceInfoOption);
+	std::ctstring_t &stackTrace = xl::debug::StackTrace().str();
 
-	ErrorReport report(a_reportType, nativeError, sourceInfo, stackTrace, a_msg);
-	Debugger().reportMake(report);
+	xl::debug::ErrorReport report(a_reportType, nativeError, sourceInfo, stackTrace, a_msg);
+	xl::debug::Debugger().reportMake(report);
 }
 //-------------------------------------------------------------------------------------------------
