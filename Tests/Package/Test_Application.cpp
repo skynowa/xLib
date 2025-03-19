@@ -12,7 +12,7 @@ xTEST_UNIT(Test_Application)
 class Failer
 {
 public:
-    void_t bug();
+    void_t run();
 
 private:
 	int_t  bug_DivideByZero();
@@ -105,7 +105,7 @@ Failer::bug_UnhandledException()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Failer::bug()
+Failer::run()
 {
 	//// ::: set BUG here :::
 
@@ -134,7 +134,7 @@ public:
     onRun() override
     {
     	// TODO: Failer - fix for test
-        /// Failer().bug();
+        /// Failer().run();
 
         return ExitCode::Success;
     }
