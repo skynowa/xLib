@@ -3,11 +3,12 @@
  * \brief Stackrace of the caller function
  *
  * \see
- * https://github.com/jeremy-rifkin/cpptrace\n
- * https://gist.github.com/jvranish/4441299\n
- * https://github.com/ianlancetaylor/libbacktrace\n
- * https://stackoverflow.com/questions/3899870/how-to-print-a-stack-trace-whenever-a-certain-function-is-called\n
- * https://chromium.googlesource.com/external/github.com/abseil/abseil-cpp/+/HEAD/absl/debugging/internal/demangle.cc\n
+ *
+ * - https://github.com/jeremy-rifkin/cpptrace
+ * - https://gist.github.com/jvranish/4441299
+ * - https://github.com/ianlancetaylor/libbacktrace
+ * - https://stackoverflow.com/questions/3899870/how-to-print-a-stack-trace-whenever-a-certain-function-is-called
+ * - https://chromium.googlesource.com/external/github.com/abseil/abseil-cpp/+/HEAD/absl/debugging/internal/demangle.cc
  */
 
 

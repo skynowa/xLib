@@ -14,7 +14,7 @@ namespace xl::sync
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Mutex::_destruc_impl()
+Mutex::_destruct_impl()
 {
     int_t iRv = ::pthread_mutex_destroy(&_handle);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
