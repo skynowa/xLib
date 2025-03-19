@@ -107,15 +107,15 @@ Failer::bug_UnhandledException()
 void_t
 Failer::run()
 {
-	//// ::: set BUG here :::
+    // ::: set BUG here :::
 
-	std::tcout << bug_DivideByZero()       << std::endl;
-//	std::tcout << bug_CauseSegfault()      << std::endl;
-//	std::tcout << bug_StackOverflow()      << std::endl;
-//	std::tcout << bug_InfiniteLoop()       << std::endl;
-//	std::tcout << bug_IllegalInstruction() << std::endl;
-//	std::tcout << bug_StackOverflow()      << std::endl;
-//	std::tcout << bug_UnhandledException() << std::endl;
+    std::tcout << bug_DivideByZero()       << std::endl;
+    // std::tcout << bug_CauseSegfault()      << std::endl;
+    // std::tcout << bug_StackOverflow()      << std::endl;
+    // std::tcout << bug_InfiniteLoop()       << std::endl;
+    // std::tcout << bug_IllegalInstruction() << std::endl;
+    // std::tcout << bug_StackOverflow()      << std::endl;
+    // std::tcout << bug_UnhandledException() << std::endl;
 }
 //-------------------------------------------------------------------------------------------------
 class UserApplication :
@@ -128,6 +128,7 @@ public:
 	{
 	}
 
+    xNO_DEFAULT_CONSTRUCT(UserApplication);
     xNO_COPY_ASSIGN(UserApplication);
 
     virtual ExitCode
