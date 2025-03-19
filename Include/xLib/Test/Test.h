@@ -84,7 +84,7 @@
 
 #define xTEST_FAIL_MSG_IMPL(reportType, msg) \
     if (true) { \
-        culong_t          nativeError__    { NativeError::get() }; \
+        culong_t          nativeError__ { NativeError::get() }; \
         cSourceInfoOption sourceInfoOption__ {xFILE, xLINE, xFUNCTION, xCOUNTER, \
             xLEX_TO_STR(false), {}, {}, {}, {}}; \
         SourceInfo        sourceInfo__(sourceInfoOption__); \
