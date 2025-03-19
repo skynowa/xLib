@@ -2,8 +2,10 @@
  * \file  DateTime.h
  * \brief date, time
  *
- * Libs:
+ * \libs
+ *
  * - https://howardhinnant.github.io/date/date.html
+ * - https://sdk.amazonaws.com/cpp/api/LATEST/aws-cpp-sdk-core/html/class_aws_1_1_utils_1_1_date_time.html
  */
 
 
