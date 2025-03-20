@@ -52,37 +52,42 @@
 
 // C++
 #include <algorithm>
+#include <functional>
+
 #include <bitset>
 #include <complex>
-#include <deque>
+
 #include <exception>
-#include <fstream>
-#include <functional>
-#include <iomanip>
+#include <stdexcept>
+
 #include <ios>
 #include <iosfwd>	// TODO: use only <iosfwd>
 #include <iostream>
 #include <istream>
+#include <ostream>
+#include <sstream>
+#include <fstream>
+#include <streambuf>
+#include <iomanip>
+
 #include <iterator>
 #include <limits>
-#include <list>
+#include <utility>
 #include <locale>
-#include <map>
 #include <memory>
 #include <new>
 #include <numeric>
-#include <ostream>
-#include <queue>
-#include <set>
-#include <sstream>
-#include <stack>
-#include <stdexcept>
-#include <streambuf>
-#include <string>
 #include <typeinfo>
-#include <utility>
+
+#include <string>
 #include <valarray>
 #include <vector>
+#include <list>
+#include <set>
+#include <map>
+#include <queue>
+#include <deque>
+#include <stack>
 
 // C++11
 #if (__cplusplus >= 201103L) // xLANG_CPP11
