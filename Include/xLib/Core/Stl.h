@@ -60,14 +60,21 @@
 #include <exception>
 #include <stdexcept>
 
-#include <ios>
-#include <iosfwd>	// TODO: use only <iosfwd>
-#include <iostream>
-#include <istream>
-#include <ostream>
-#include <sstream>
-#include <fstream>
-#include <streambuf>
+/// RAT
+#if 1
+	#include <iostream>
+	#include <fstream>
+#else
+	#include <ios>
+	#include <iosfwd>	// TODO: use only <iosfwd>
+	#include <iostream>
+	#include <istream>
+	#include <ostream>
+	#include <sstream>
+	#include <fstream>
+	#include <streambuf>
+#endif
+
 #include <iomanip>
 
 #include <iterator>
