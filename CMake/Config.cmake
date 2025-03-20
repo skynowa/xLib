@@ -43,15 +43,10 @@ set(cmCMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE})
 string(TIMESTAMP cmBUILD_TS "%Y-%m-%d %H:%M:%S")
 #--------------------------------------------------------------------------------------------------
 # options
-set(cmOPTION_PROJECT_LIB_TYPE      STATIC) # STATIC/SHARED/MODULE
-set(OPTION_UNICODE                 0)
-set(cmOPTION_DEBUG_MODE_STDOUT     1)
-set(cmOPTION_DEBUG_MODE_LOG        0)
-set(cmOPTION_DEBUG_MODE_STDOUT_LOG 0)
-set(cmOPTION_DEBUG_MODE_EXCEPTION  0)
-set(cmOPTION_DEBUG_MODE_NO         0)
-set(cmOPTION_BUILD_MSG             0)
-# set(cmXLIB_DATA_DIR                "/home/runner/work/xLib/xLib/xLib/Data")   # Github CI
+set(cmOPTION_PROJECT_LIB_TYPE STATIC) # STATIC/SHARED/MODULE
+set(OPTION_UNICODE            0)
+set(cmOPTION_BUILD_MSG        0)
+# set(cmXLIB_DATA_DIR           "/home/runner/work/xLib/xLib/xLib/Data")   # Github CI
 get_filename_component(cmXLIB_DATA_DIR "./Data" ABSOLUTE)
 #--------------------------------------------------------------------------------------------------
 # Trace
@@ -82,11 +77,6 @@ message("")
 message("Options")
 message(STATUS "cmOPTION_PROJECT_LIB_TYPE      : ${cmOPTION_PROJECT_LIB_TYPE}")
 message(STATUS "OPTION_UNICODE                 : ${OPTION_UNICODE}")
-message(STATUS "cmOPTION_DEBUG_MODE_STDOUT     : ${cmOPTION_DEBUG_MODE_STDOUT}")
-message(STATUS "cmOPTION_DEBUG_MODE_LOG        : ${cmOPTION_DEBUG_MODE_LOG}")
-message(STATUS "cmOPTION_DEBUG_MODE_STDOUT_LOG : ${cmOPTION_DEBUG_MODE_STDOUT_LOG}")
-message(STATUS "cmOPTION_DEBUG_MODE_EXCEPTION  : ${cmOPTION_DEBUG_MODE_EXCEPTION}")
-message(STATUS "cmOPTION_DEBUG_MODE_NO         : ${cmOPTION_DEBUG_MODE_NO}")
 message(STATUS "cmOPTION_BUILD_MSG             : ${cmOPTION_BUILD_MSG}")
 message(STATUS "cmXLIB_DATA_DIR                : ${cmXLIB_DATA_DIR}")
 message("-------------------------------------------------")
