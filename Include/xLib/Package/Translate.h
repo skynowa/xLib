@@ -2,7 +2,7 @@
  * \file  Translate.h
  * \brief Translate text
  *
- * https://bitbucket.org/skynowa/iteacher/src/master/Classes/GoogleTranslator.h
+ * \libs  https://bitbucket.org/skynowa/iteacher/src/master/Classes/GoogleTranslator.h
  */
 
 

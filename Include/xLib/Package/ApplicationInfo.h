@@ -65,3 +65,20 @@ public:
  * - [-] ApplicationInfo - rm1
  * \}
 */
+
+/**
+ * \file ApplicationInfo.h
+ * \todo
+ *
+ * ApplicationInfo:
+ * - [❌] ApplicationInfo - rm1
+ * - [✅] ApplicationInfo - rm1
+ * - [⌛] ApplicationInfo - rm1
+ * - [🚩] ApplicationInfo - rm1
+ * - [ ] ApplicationInfo - rm1
+ * - [x] ApplicationInfo - rm1
+ * - [+] ApplicationInfo - rm1
+ * - [!] ApplicationInfo - rm1
+ * - [-] ApplicationInfo - rm1
+ *
+*/

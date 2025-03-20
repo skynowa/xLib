@@ -1,6 +1,6 @@
 /**
  * \file  Application.cpp
- * \brief
+ * \brief Console application
  */
 
 

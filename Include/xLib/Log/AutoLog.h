@@ -1,5 +1,5 @@
 /**
- * \file  ILog.h
+ * \file  AutoLog.h
  * \brief logging
  */
 

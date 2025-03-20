@@ -1,8 +1,9 @@
 /**
  * \file  Application.h
- * \brief
+ * \brief Console application
  *
- * Features:
+ * \feat
+ *
  * - arguments
  * - signals
  * - build info
