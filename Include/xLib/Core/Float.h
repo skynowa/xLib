@@ -124,6 +124,7 @@ FLongDouble operator ""xld (culonglong_t value);
 #include "Float.inl"
 //-------------------------------------------------------------------------------------------------
 /**
+ * \file Float.h
  * \addtogroup mIMPL
  *
  * Float:
