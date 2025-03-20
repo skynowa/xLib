@@ -7,7 +7,7 @@
 
 
 #pragma once
-
+//-------------------------------------------------------------------------------------------------
 #if   xCOMPILER_MINGW
     #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #elif xCOMPILER_MS
@@ -18,3 +18,4 @@
 #elif xCOMPILER_GNUC
     #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #endif
+//-------------------------------------------------------------------------------------------------
