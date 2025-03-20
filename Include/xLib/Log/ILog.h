@@ -13,7 +13,6 @@ namespace xl::log
 
 class ILog
     /// logging
-    /// TODO: https://oopscenities.net/2011/04/30/c-the-curiously-recurring-template-pattern/#more-21
 {
 public:
 	enum class Level
@@ -59,8 +58,11 @@ private:
 //-------------------------------------------------------------------------------------------------
 
 /**
- * TODO
+ * \file  ILog.h
  *
+ * \todo
+ *
+ * - https://oopscenities.net/2011/04/30/c-the-curiously-recurring-template-pattern/#more-21
  * - class LogMsg:
  *
  *   - Date
