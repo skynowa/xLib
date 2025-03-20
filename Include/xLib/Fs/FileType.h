@@ -7,8 +7,6 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
