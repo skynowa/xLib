@@ -7,6 +7,7 @@
 #include "Profiler.h"
 
 #include <xLib/Core/String.h>
+#include <xLib/Core/DateTime.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>

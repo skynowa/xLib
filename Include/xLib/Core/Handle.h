@@ -7,21 +7,6 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-namespace xl::core
-{
-
-namespace debug
-{
-
-class NativeError;
-class StackTrace;
-class ErrorReport;
-class Debugger;
-
-}
-
-} // namespace
-//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Interface/IHandle.h>
