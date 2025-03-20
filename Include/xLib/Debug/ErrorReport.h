@@ -35,7 +35,8 @@ public:
 ///\{
     ErrorReport(cType type, culong_t nativeError, const SourceInfo &sourceInfo,
                     std::ctstring_t &stackTrace, std::ctstring_t &comment);
-        ///< for Debugger
+    ErrorReport(culong_t nativeError, const SourceInfo &sourceInfo, std::ctstring_t &stackTrace,
+                    std::ctstring_t &comment);
     virtual ~ErrorReport() = default;
 
 	xNO_DEFAULT_CONSTRUCT(ErrorReport);
