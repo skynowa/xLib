@@ -86,4 +86,8 @@ private:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-// TODO: https://abseil.io/docs/cpp/guides/status
+/**
+ * \file ErrorReport.h
+ *
+ * \todo https://abseil.io/docs/cpp/guides/status
+ */

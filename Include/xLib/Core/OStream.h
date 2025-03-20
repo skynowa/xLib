@@ -2,7 +2,7 @@
  * \file  OStream.h
  * \brief print string
  *
- * \see   https://github.com/sharkdp/dbg-macro
+ * \libs  https://github.com/sharkdp/dbg-macro
  */
 
 

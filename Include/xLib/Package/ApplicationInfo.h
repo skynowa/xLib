@@ -64,7 +64,7 @@ public:
  * - [!] ApplicationInfo - rm1
  * - [-] ApplicationInfo - rm1
  * \}
-*/
+ */
 
 /**
  * \file ApplicationInfo.h
@@ -80,5 +80,4 @@ public:
  * - [+] ApplicationInfo - rm1
  * - [!] ApplicationInfo - rm1
  * - [-] ApplicationInfo - rm1
- *
-*/
+ */

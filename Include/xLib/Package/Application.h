@@ -146,5 +146,4 @@ protected:
  * - Log
  * - MT
  * \}
-*/
-
+ */
