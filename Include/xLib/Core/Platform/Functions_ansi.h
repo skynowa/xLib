@@ -5,7 +5,7 @@
 
 
 #pragma once
-
+//-------------------------------------------------------------------------------------------------
     #define tcin          cin
     #define tcout         cout
     #define tcerr         cerr
@@ -107,3 +107,4 @@
     #define xTISUPPER_L   xTISUPPER
     #define xTTOLOWER_L   xTTOLOWER
     #define xTTOUPPER_L   xTTOUPPER
+//-------------------------------------------------------------------------------------------------
