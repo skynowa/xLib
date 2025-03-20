@@ -17,14 +17,13 @@
 	#include <xLib/Debug/Debugger.h>
 	#include <xLib/Fs/Config.h>
 #else
+	#include <xLib/Core/String.h>
+	#include <xLib/Core/Format.h>
 	#include <xLib/Debug/Debug.h>
-
 	#include <xLib/Debug/NativeError.h>
 	#include <xLib/Debug/SourceInfo.h>
-	#include <xLib/Core/Format.h>
-	#include <xLib/Core/String.h>
-	#include <xLib/Fs/Config.h>
 	#include <xLib/Test/Test.h>
+	#include <xLib/Fs/Config.h>
 #endif
 
 #if   xENV_WIN
