@@ -23,11 +23,11 @@ public:
     enum class Type
         /// type
     {
-        Unknown,  ///< unknown
-        Stdout,   ///< to std::cout
-        Log,      ///< to log
-        StdoutLog,///< to std::cout and log
-        Exception ///< to exception
+        Unknown,   ///< unknown
+        Stdout,    ///< to std::cout
+        Log,       ///< to log
+        StdoutLog, ///< to std::cout and log
+        Exception  ///< to exception
     };
     xUSING_CONST(Type);
 
