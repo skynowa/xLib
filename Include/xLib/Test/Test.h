@@ -13,20 +13,7 @@
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-// _xREPORT_TYPE
-#if   cmOPTION_DEBUG_MODE_STDOUT
-    #define _xREPORT_TYPE ErrorReport::Type::Stdout
-#elif cmOPTION_DEBUG_MODE_LOG
-    #define _xREPORT_TYPE ErrorReport::Type::Log
-#elif cmOPTION_DEBUG_MODE_STDOUT_LOG
-    #define _xREPORT_TYPE ErrorReport::Type::StdoutLog
-#elif cmOPTION_DEBUG_MODE_EXCEPTION
-    #define _xREPORT_TYPE ErrorReport::Type::Exception
-#else
-	#error "xLib: cmOPTION_DEBUG_MODE_<unknown>"
-#endif
-//-------------------------------------------------------------------------------------------------
-#define xTEST_EQ_MSG_PRIVATE(op, reportType, val1, val2, msg) \
+#define xTEST_EQ_MSG_PRIVATE(op, val1, val2, msg) \
 	if ( !((val1) op (val2)) ) { \
 		culong_t         nativeError__ { NativeError::get() }; \
 		\
@@ -41,11 +28,11 @@
 		SourceInfo       sourceInfo__(sourceInfoOption__); \
 		std::ctstring_t &stackTrace__ = StackTrace().str(); \
 		\
-		ErrorReport report__(reportType, nativeError__, sourceInfo__, stackTrace__, (msg)); \
+		ErrorReport report__(nativeError__, sourceInfo__, stackTrace__, (msg)); \
 		Debugger().reportMake(report__); \
 	}
 
-#define xTEST_PTR_MSG_PRIVATE(op, reportType, ptr, msg) \
+#define xTEST_PTR_MSG_PRIVATE(op, ptr, msg) \
     if ( !(ptr op nullptr) ) { \
         culong_t         nativeError__ { NativeError::get() }; \
         \
@@ -60,29 +47,29 @@
         SourceInfo       sourceInfo__(sourceInfoOption__); \
         std::ctstring_t &stackTrace__ = StackTrace().str(); \
         \
-        ErrorReport report__(reportType, nativeError__, sourceInfo__, stackTrace__, (msg)); \
+        ErrorReport report__(nativeError__, sourceInfo__, stackTrace__, (msg)); \
         Debugger().reportMake(report__); \
     }
 
-#define xTEST_EQ_MSG_IMPL(reportType, val1, val2, msg) \
-	xTEST_EQ_MSG_PRIVATE(==, reportType, val1, val2, msg)
-#define xTEST_DIFF_MSG_IMPL(reportType, val1, val2, msg) \
-    xTEST_EQ_MSG_PRIVATE(!=, reportType, val1, val2, msg)
-#define xTEST_LESS_MSG_IMPL(reportType, val1, val2, msg) \
-	xTEST_EQ_MSG_PRIVATE(<,  reportType, val1, val2, msg)
-#define xTEST_GR_MSG_IMPL(reportType, val1, val2, msg) \
-	xTEST_EQ_MSG_PRIVATE(>,  reportType, val1, val2, msg)
-#define xTEST_LESS_EQ_MSG_IMPL(reportType, val1, val2, msg) \
-    xTEST_EQ_MSG_PRIVATE(<=, reportType, val1, val2, msg)
-#define xTEST_GR_EQ_MSG_IMPL(reportType, val1, val2, msg) \
-    xTEST_EQ_MSG_PRIVATE(>=, reportType, val1, val2, msg)
+#define xTEST_EQ_MSG_IMPL(val1, val2, msg) \
+	xTEST_EQ_MSG_PRIVATE(==, val1, val2, msg)
+#define xTEST_DIFF_MSG_IMPL(val1, val2, msg) \
+    xTEST_EQ_MSG_PRIVATE(!=, val1, val2, msg)
+#define xTEST_LESS_MSG_IMPL(val1, val2, msg) \
+	xTEST_EQ_MSG_PRIVATE(<,  val1, val2, msg)
+#define xTEST_GR_MSG_IMPL(val1, val2, msg) \
+	xTEST_EQ_MSG_PRIVATE(>,  val1, val2, msg)
+#define xTEST_LESS_EQ_MSG_IMPL(val1, val2, msg) \
+    xTEST_EQ_MSG_PRIVATE(<=, val1, val2, msg)
+#define xTEST_GR_EQ_MSG_IMPL(val1, val2, msg) \
+    xTEST_EQ_MSG_PRIVATE(>=, val1, val2, msg)
 
-#define xTEST_PTR_MSG_IMPL(reportType, ptr, msg) \
-	xTEST_PTR_MSG_PRIVATE(!=, reportType, ptr, msg)
-#define xTEST_PTR_FAIL_MSG_IMPL(reportType, ptr, msg) \
-	xTEST_PTR_MSG_PRIVATE(==, reportType, ptr, msg)
+#define xTEST_PTR_MSG_IMPL(ptr, msg) \
+	xTEST_PTR_MSG_PRIVATE(!=, ptr, msg)
+#define xTEST_PTR_FAIL_MSG_IMPL(ptr, msg) \
+	xTEST_PTR_MSG_PRIVATE(==, ptr, msg)
 
-#define xTEST_FAIL_MSG_IMPL(reportType, msg) \
+#define xTEST_FAIL_MSG_IMPL(msg) \
     if (true) { \
         culong_t          nativeError__ { NativeError::get() }; \
         cSourceInfoOption sourceInfoOption__ {xFILE, xLINE, xFUNCTION, xCOUNTER, \
@@ -90,59 +77,59 @@
         SourceInfo        sourceInfo__(sourceInfoOption__); \
         std::ctstring_t  &stackTrace__ = StackTrace().str(); \
         \
-        ErrorReport report__(reportType, nativeError__, sourceInfo__, stackTrace__, (msg)); \
+        ErrorReport report__(nativeError__, sourceInfo__, stackTrace__, (msg)); \
         Debugger().reportMake(report__); \
     }
 
 #define xTEST_EQ(val1, val2) \
-	xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, val1, val2, xT(""))
+	xTEST_EQ_MSG_IMPL      (val1, val2, xT(""))
 #define xTEST_EQ_MSG(val1, val2, msg) \
-	xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, val1, val2, msg)
+	xTEST_EQ_MSG_IMPL      (val1, val2, msg)
 
 #define xTEST_DIFF(val1, val2) \
-	xTEST_DIFF_MSG_IMPL    (_xREPORT_TYPE, val1, val2, xT(""))
+	xTEST_DIFF_MSG_IMPL    (val1, val2, xT(""))
 #define xTEST_DIFF_MSG(val1, val2, msg) \
-	xTEST_DIFF_MSG_IMPL    (_xREPORT_TYPE, val1, val2, msg)
+	xTEST_DIFF_MSG_IMPL    (val1, val2, msg)
 
 #define xTEST_LESS(val1, val2) \
-	xTEST_LESS_MSG_IMPL    (_xREPORT_TYPE, val1, val2, xT(""))
+	xTEST_LESS_MSG_IMPL    (val1, val2, xT(""))
 #define xTEST_LESS_MSG(val1, val2, msg) \
-	xTEST_LESS_MSG_IMPL    (_xREPORT_TYPE, val1, val2, msg)
+	xTEST_LESS_MSG_IMPL    (val1, val2, msg)
 
 #define xTEST_GR(val1, val2) \
-	xTEST_GR_MSG_IMPL      (_xREPORT_TYPE, val1, val2, xT(""))
+	xTEST_GR_MSG_IMPL      (val1, val2, xT(""))
 #define xTEST_GR_MSG(val1, val2, msg) \
-	xTEST_GR_MSG_IMPL      (_xREPORT_TYPE, val1, val2, msg)
+	xTEST_GR_MSG_IMPL      (val1, val2, msg)
 
 #define xTEST_LESS_EQ(val1, val2) \
-	xTEST_LESS_EQ_MSG_IMPL (_xREPORT_TYPE, val1, val2, xT(""))
+	xTEST_LESS_EQ_MSG_IMPL (val1, val2, xT(""))
 #define xTEST_LESS_EQ_MSG(val1, val2, msg) \
-	xTEST_LESS_EQ_MSG_IMPL (_xREPORT_TYPE, val1, val2, msg)
+	xTEST_LESS_EQ_MSG_IMPL (val1, val2, msg)
 
 #define xTEST_GR_EQ(val1, val2) \
-	xTEST_GR_EQ_MSG_IMPL   (_xREPORT_TYPE, val1, val2, xT(""))
+	xTEST_GR_EQ_MSG_IMPL   (val1, val2, xT(""))
 #define xTEST_GR_EQ_MSG(val1, val2, msg) \
-	xTEST_GR_EQ_MSG_IMPL   (_xREPORT_TYPE, val1, val2, msg)
+	xTEST_GR_EQ_MSG_IMPL   (val1, val2, msg)
 
 #define xTEST_PTR(ptr) \
-	xTEST_PTR_MSG_IMPL     (_xREPORT_TYPE, ptr, xT(""))
+	xTEST_PTR_MSG_IMPL     (ptr, xT(""))
 #define xTEST_PTR_MSG(ptr, msg) \
-	xTEST_PTR_MSG_IMPL     (_xREPORT_TYPE, ptr, msg)
+	xTEST_PTR_MSG_IMPL     (ptr, msg)
 
 #define xTEST_PTR_FAIL(ptr) \
-	xTEST_PTR_FAIL_MSG_IMPL(_xREPORT_TYPE, ptr, xT(""))
+	xTEST_PTR_FAIL_MSG_IMPL(ptr, xT(""))
 #define xTEST_PTR_FAIL_MSG(ptr, msg) \
-	xTEST_PTR_FAIL_MSG_IMPL(_xREPORT_TYPE, ptr, msg)
+	xTEST_PTR_FAIL_MSG_IMPL(ptr, msg)
 
 #define xTEST_FAIL \
-	xTEST_FAIL_MSG_IMPL    (_xREPORT_TYPE, xT(""))
+	xTEST_FAIL_MSG_IMPL    (xT(""))
 #define xTEST_FAIL_MSG(msg) \
-	xTEST_FAIL_MSG_IMPL    (_xREPORT_TYPE, msg)
+	xTEST_FAIL_MSG_IMPL    (msg)
 
 #define xTEST(expr) \
-	xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, expr, true, xT(""))
+	xTEST_EQ_MSG_IMPL      (expr, true, xT(""))
 #define xTEST_MSG(expr, msg) \
-	xTEST_EQ_MSG_IMPL      (_xREPORT_TYPE, expr, true, msg)
+	xTEST_EQ_MSG_IMPL      (expr, true, msg)
 
 #define xTEST_THROW(expr, exception_t)          \
 	{                                           \

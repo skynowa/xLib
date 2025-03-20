@@ -49,6 +49,16 @@ ErrorReport::ErrorReport(
     }
 }
 //-------------------------------------------------------------------------------------------------
+ErrorReport::ErrorReport(
+    culong_t          a_nativeError,
+    const SourceInfo &a_sourceInfo,
+    std::ctstring_t  &a_stackTrace,
+    std::ctstring_t  &a_comment
+) :
+	ErrorReport(Type::StdoutLog, a_nativeError, a_sourceInfo, a_stackTrace, a_comment)
+{
+}
+//-------------------------------------------------------------------------------------------------
 std::ctstring_t &
 ErrorReport::str() const /* final */
 {
