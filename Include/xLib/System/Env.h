@@ -1,6 +1,10 @@
 /**
  * \file  Env.h
  * \brief system environment variables
+ *
+ * \libs
+ *
+ * - https://github.com/TUM-I5/utils/blob/master/env.h
  */
 
 
