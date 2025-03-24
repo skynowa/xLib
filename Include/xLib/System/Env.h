@@ -106,7 +106,7 @@ private:
  * \file  Env.h
  * \todo
  *
- * - [ ] Prefix for name
+ * - [+] Prefix for name
  * - [ ] Dll path (LD_LIBRARY_PATH)
  *
  * Imports - https://docs.conan.io/en/latest/using_packages/conanfile_txt.html#imports-txt
