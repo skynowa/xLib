@@ -3,6 +3,11 @@
  * \brief file system path
  *
  * \faq   https://github.com/Quintus/pathie-cpp/blob/master/src/path.cpp
+ *
+ * \libs
+ *
+ * - Standard paths - https://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum
+ * - Standard paths - https://docs.microsoft.com/en-us/previous-versions/windows/embedded/aa453706(v%3Dmsdn.10)
  */
 
 
@@ -28,15 +33,6 @@ public:
 
 	xNO_DEFAULT_CONSTRUCT(Path);
 	xNO_COPY_ASSIGN(Path);
-
-   /**
-	* Standard paths
-	*
-	* - https://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum
-	* - https://docs.microsoft.com/en-us/previous-versions/windows/embedded/aa453706(v%3Dmsdn.10)
-	*
-	* [TODO] desktop, documents, downloads, ...
-	*/
 
 	// files
 	static Path exe();
@@ -188,11 +184,17 @@ xPLATFORM_IMPL:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO
+ * \file  Path.h
  *
+ * \todo
+ *
+ * - [ ] Standard paths - desktop, documents, downloads, ...
  * - [ ] ctor - filePath -> fsPath
  * - [ ] isRootPath()
  * - [ ] proc - use in xLib
- * - [+] Utils::readSymLink - move to Path
+ *
+ * \done
+ *
+ * - Utils::readSymLink - move to Path
  */
 //-------------------------------------------------------------------------------------------------
