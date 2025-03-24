@@ -124,6 +124,8 @@ private:
  * In Windows and OSX, the simplest approach is to copy the shared libraries to the executable
  * folder, so they are found by the executable, without having to modify the path.
  *
+ * - [ ] Default values
+ *
  * \done
  *
  * - Prefix for name
