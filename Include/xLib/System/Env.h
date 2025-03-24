@@ -106,7 +106,6 @@ private:
  * \file  Env.h
  * \todo
  *
- * - [+] Prefix for name
  * - [ ] Dll path (LD_LIBRARY_PATH)
  *
  * Imports - https://docs.conan.io/en/latest/using_packages/conanfile_txt.html#imports-txt
@@ -120,5 +119,8 @@ private:
  * Conan is intended for developers, so it avoids such manipulation of the OS environment.
  * In Windows and OSX, the simplest approach is to copy the shared libraries to the executable
  * folder, so they are found by the executable, without having to modify the path.
+ *
+ * \done
+ * - [+] Prefix for name
  */
 //-------------------------------------------------------------------------------------------------
