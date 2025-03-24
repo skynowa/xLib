@@ -90,7 +90,5 @@ private:
  * - https://github.com/docopt
  * - https://github.com/jarro2783/cxxopts
  * - boost::options
- *
- * \todo
  */
 //-------------------------------------------------------------------------------------------------
