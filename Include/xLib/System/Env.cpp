@@ -44,8 +44,7 @@ Env::Env(
 	std::ctstring_t &a_prefix,
 	std::ctstring_t &a_name
 ) :
-	_prefix{a_prefix},
-	_name  {a_name}
+	_prefix_name{a_prefix + a_name}
 {
     xTEST(_isNameValid());
 }
@@ -67,13 +66,13 @@ Env::path()
 std::tstring_t
 Env::str() const /* final */
 {
-    return _name + Const::equal() + value();
+    return _prefix_name + Const::equal() + value();
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
 Env::isExists() const
 {
-    xCHECK_RET(_name.empty(), false);
+    xCHECK_RET(_prefix_name.empty(), false);
 
     return _isExists_impl();
 }
@@ -154,8 +153,8 @@ Env::_envsSeparator()
 bool_t
 Env::_isNameValid() const
 {
-    xCHECK_RET(_name.empty(),                                      false);
-    xCHECK_RET(_name.find(Const::equal()) != std::tstring_t::npos, false);
+    xCHECK_RET(_prefix_name.empty(),                                      false);
+    xCHECK_RET(_prefix_name.find(Const::equal()) != std::tstring_t::npos, false);
 
     return true;
 }

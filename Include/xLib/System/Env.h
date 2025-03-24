@@ -53,8 +53,7 @@ private:
 	static std::ctstring_t _envsSeparator();
 		///< vars separator
 
-    std::ctstring_t _prefix;
-    std::ctstring_t _name;
+    std::ctstring_t _prefix_name;
 
     bool_t _isNameValid() const;
         ///< is valid environment variable name
@@ -101,9 +100,11 @@ private:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO:
+ * \file  Env.h
+ * \todo
  *
- * [ ] Dll path (LD_LIBRARY_PATH)
+ * - [ ] Prefix for name
+ * - [ ] Dll path (LD_LIBRARY_PATH)
  *
  * Imports - https://docs.conan.io/en/latest/using_packages/conanfile_txt.html#imports-txt
  * There are some differences between shared libraries on Linux (*.so), Windows (*.dll) and
