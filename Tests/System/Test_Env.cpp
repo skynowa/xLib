@@ -13,192 +13,221 @@ xTEST_UNIT(Test_Env)
 bool_t
 Test_Env::unit()
 {
-    xTEST_CASE("str")
-    {
-        const std::set<std::pair_tstring_t> vars
-        {
-            {xT("ENV_TEST_1"), xT("value1")},
-            {xT("ENV_TEST_2"), xT("value2")},
-            {xT("ENV_TEST_3"), xT("value3")},
-            {xT("ENV_TEST_4"), xT("value4")}
-        };
+	std::ctstring_t prefixes[] {"SKYNOWA_", "1", ""};
 
-        for (const auto &[it_var, it_value] : vars) {
-            Env env(it_var);
-            env.setValue(it_value);
+	/**************************************************
+	* Env
+	*
+	**************************************************/
 
-            const auto &test     = env.str();
-            const auto &expected = it_var + Const::equal() + it_value;
-            xTEST_EQ(test, expected);
-        }
-    }
+	xTEST_CASE("str")
+	{
+		for (const auto &it_prefix : prefixes) {
+			const std::set<std::pair_tstring_t> vars
+			{
+				{xT("ENV_TEST_1"), xT("value1")},
+				{xT("ENV_TEST_2"), xT("value2")},
+				{xT("ENV_TEST_3"), xT("value3")},
+				{xT("ENV_TEST_4"), xT("value4")}
+			};
 
-    xTEST_CASE("setValue")
-    {
-        std::ctstring_t data[][2]
-        {
-            {xT("ENV_TEST_1"), xT("value1")},
-            {xT("ENV_TEST_2"), xT("value2")},
-            {xT("ENV_TEST_3"), xT("value3")},
-            {xT("ENV_TEST_4"), xT("value4")}
-        };
+			for (const auto &[it_var, it_value] : vars) {
+				Env env(it_prefix, it_var);
+				env.setValue(it_value);
 
-        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Env env(data[i][0]);
-            env.setValue(data[i][1]);
+				const auto &test     = env.str();
+				const auto &expected = it_prefix + it_var + Const::equal() + it_value;
+				xTEST_EQ(test, expected);
+			}
+		}
+	}
 
-            xTEST(env.isExists());
-        }
-    }
+	xTEST_CASE("setValue")
+	{
+		for (const auto &it_prefix : prefixes) {
+			std::ctstring_t data[][2]
+			{
+				{xT("ENV_TEST_1"), xT("value1")},
+				{xT("ENV_TEST_2"), xT("value2")},
+				{xT("ENV_TEST_3"), xT("value3")},
+				{xT("ENV_TEST_4"), xT("value4")}
+			};
 
-    xTEST_CASE("isExists")
-    {
-    #if   xENV_WIN
-        std::ctstring_t data[][2]
-        {
-            {xT("ENV_TEST_1"), xT("true")},
-            {xT("ENV_TEST_2"), xT("true")},
-            {xT("ENV_TEST_3"), xT("true")},
-            {xT("ENV_TEST_4"), xT("true")},
+			for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+				Env env(it_prefix, data[i][0]);
+				env.setValue(data[i][1]);
 
-            {xT("OS"),         xT("true") },
-            {xT("XXXL"),       xT("false")},
-            {xT("windir"),     xT("true") }
-        };
-    #elif xENV_UNIX
-        std::ctstring_t data[][2]
-        {
-            {xT("ENV_TEST_1"), xT("true")},
-            {xT("ENV_TEST_2"), xT("true")},
-            {xT("ENV_TEST_3"), xT("true")},
-            {xT("ENV_TEST_4"), xT("true")},
-        };
-    #endif
+				xTEST(env.isExists());
+			}
+		}
+	}
 
-        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Env env(data[i][0]);
+	xTEST_CASE("isExists")
+	{
+		for (const auto &it_prefix : prefixes) {
+		#if   xENV_WIN
+			std::ctstring_t data[][2]
+			{
+				{xT("ENV_TEST_1"), xT("true")},
+				{xT("ENV_TEST_2"), xT("true")},
+				{xT("ENV_TEST_3"), xT("true")},
+				{xT("ENV_TEST_4"), xT("true")},
 
-            bool_t bStr1 = env.isExists();
-            xTEST_EQ(String::castBool(data[i][1]), bStr1);
-        }
-    }
+				{xT("OS"),         xT("true") },
+				{xT("XXXL"),       xT("false")},
+				{xT("windir"),     xT("true") }
+			};
+		#elif xENV_UNIX
+			std::ctstring_t data[][2]
+			{
+				{xT("ENV_TEST_1"), xT("true")},
+				{xT("ENV_TEST_2"), xT("true")},
+				{xT("ENV_TEST_3"), xT("true")},
+				{xT("ENV_TEST_4"), xT("true")},
+			};
+		#endif
 
-    xTEST_CASE("value")
-    {
-    #if   xENV_WIN
-        std::ctstring_t data[][2]
-        {
-            {xT("ENV_TEST_1"), xT("value1")},
-            {xT("ENV_TEST_2"), xT("value2")},
-            {xT("ENV_TEST_3"), xT("value3")},
-            {xT("ENV_TEST_4"), xT("value4")},
-        };
-    #elif xENV_UNIX
-        std::ctstring_t data[][2]
-        {
-            {xT("ENV_TEST_1"), xT("value1")},
-            {xT("ENV_TEST_2"), xT("value2")},
-            {xT("ENV_TEST_3"), xT("value3")},
-            {xT("ENV_TEST_4"), xT("value4")}
-        };
-    #endif
+			for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+				Env env(it_prefix, data[i][0]);
 
-        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Env env(data[i][0]);
+				bool_t bStr1 = env.isExists();
+				xTEST_EQ(String::castBool(data[i][1]), bStr1);
+			}
+		}
+	}
 
-            std::tstring_t str1 = env.value();
-            std::tstring_t str2 = data[i][1];
-            xTEST_EQ(str1, str2);
-        }
-    }
+	xTEST_CASE("value")
+	{
+		for (const auto &it_prefix : prefixes) {
+		#if   xENV_WIN
+			std::ctstring_t data[][2]
+			{
+				{xT("ENV_TEST_1"), xT("value1")},
+				{xT("ENV_TEST_2"), xT("value2")},
+				{xT("ENV_TEST_3"), xT("value3")},
+				{xT("ENV_TEST_4"), xT("value4")},
+			};
+		#elif xENV_UNIX
+			std::ctstring_t data[][2]
+			{
+				{xT("ENV_TEST_1"), xT("value1")},
+				{xT("ENV_TEST_2"), xT("value2")},
+				{xT("ENV_TEST_3"), xT("value3")},
+				{xT("ENV_TEST_4"), xT("value4")}
+			};
+		#endif
 
-    xTEST_CASE("remove")
-    {
-        std::ctstring_t data[][2]
-        {
-            {xT("ENV_TEST_1"), xT("value1")},
-            {xT("ENV_TEST_2"), xT("value2")},
-            {xT("ENV_TEST_3"), xT("value3")},
-            {xT("ENV_TEST_4"), xT("value4")}
-        };
+			for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+				Env env(it_prefix, data[i][0]);
 
-        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Env env(data[i][0]);
-            env.remove();
+				std::tstring_t str1 = env.value();
+				std::tstring_t str2 = data[i][1];
+				xTEST_EQ(str1, str2);
+			}
+		}
+	}
 
-            xTEST(!env.isExists());
-        }
-    }
+	xTEST_CASE("remove")
+	{
+		for (const auto &it_prefix : prefixes) {
+			std::ctstring_t data[][2]
+			{
+				{xT("ENV_TEST_1"), xT("value1")},
+				{xT("ENV_TEST_2"), xT("value2")},
+				{xT("ENV_TEST_3"), xT("value3")},
+				{xT("ENV_TEST_4"), xT("value4")}
+			};
 
-    xTEST_CASE("Envs::setVars")
-    {
-        const std::set<std::pair_tstring_t> vars
-        {
-            {xT("ENV_TEST_1"), xT("value1")},
-            {xT("ENV_TEST_2"), xT("value2")},
-            {xT("ENV_TEST_3"), xT("value3")},
-            {xT("ENV_TEST_4"), xT("value4")}
-        };
+			for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+				Env env(it_prefix, data[i][0]);
+				env.remove();
 
-        Envs envs;
-        envs.setVars(vars);
-    }
+				xTEST(!env.isExists());
+			}
+		}
+	}
 
-    xTEST_CASE("Envs::vars")
-    {
-        Envs envs;
-        m_vsRv = envs.vars();
-        xTEST(!m_vsRv.empty());
-    }
+	/**************************************************
+	* Envs
+	*
+	**************************************************/
 
-    xTEST_CASE("Envs::expandVars")
-    {
-    #if   xENV_WIN
-        std::ctstring_t data[][2]
-        {
-            {xT(" System root: %SystemRoot%"),  xT(" System root: C:\\Windows")},
-            {xT("Windows Dir: %windir% "),      xT("Windows Dir: C:\\Windows ")}
-        };
-    #elif xENV_UNIX
-        std::ctstring_t data[][2]
-        {
-            {xT("111%ENV_TEST_1%"),    xT("111value1")},
-            {xT("%ENV_TEST_2%111"),    xT("value2111")},
-            {xT("ttt%ENV_TEST_3%"),    xT("tttvalue3")},
-            {xT("rrr%ENV_TEST_4%rrr"), xT("rrrvalue4rrr")}
-        };
-    #endif
+	xTEST_CASE("Envs::setVars")
+	{
+		for (const auto &it_prefix : prefixes) {
+			const std::set<std::pair_tstring_t> vars
+			{
+				{xT("ENV_TEST_1"), xT("value1")},
+				{xT("ENV_TEST_2"), xT("value2")},
+				{xT("ENV_TEST_3"), xT("value3")},
+				{xT("ENV_TEST_4"), xT("value4")}
+			};
 
-        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str1 = Envs::expandVars(data[i][0]);
-            std::tstring_t str2 = data[i][1];
-            xTEST(StringCI::compare(str1, str2));
-        }
-    }
+			Envs envs(it_prefix);
+			envs.setVars(vars);
+		}
+	}
 
-    xTEST_CASE("Envs::findFirstOf")
-    {
-        std::ctstring_t envName = xT("XLIB_ENV_2");
+	xTEST_CASE("Envs::vars")
+	{
+		for (const auto &it_prefix : prefixes) {
+			Envs envs(it_prefix);
+			m_vsRv = envs.vars();
+			xTEST(!m_vsRv.empty());
+		}
+	}
 
-        Env env(envName);
-        env.setValue("2");
+	xTEST_CASE("Envs::findFirstOf")
+	{
+		for (const auto &it_prefix : prefixes) {
+			std::ctstring_t envName = xT("XLIB_ENV_2");
 
-        const data2_tstring_t datas[]
-        {
-            {xT("__XLIB_ENV_1"), {}},
-            {envName,            xT("2")},
-            {xT("__XLIB_ENV_3"), {}}
-        };
+			Env env(it_prefix, envName);
+			env.setValue("2");
 
-        for (const auto &[it_test, it_expect] : datas) {
-            std::cvec_tstring_t findEnvs = {xT("XLIB_ENV_1"), it_test, xT("XLIB_ENV_3")};
+			const data2_tstring_t datas[]
+			{
+				{xT("__XLIB_ENV_1"), {}},
+				{ envName,           xT("2")},
+				{xT("__XLIB_ENV_3"), {}}
+			};
 
-            Envs envs;
-            m_sRv = envs.findFirstOf(findEnvs);
-            xTEST_EQ(m_sRv, it_expect);
-            }
-    }
+			for (const auto &[it_test, it_expect] : datas) {
+				std::cvec_tstring_t findEnvs = {xT("XLIB_ENV_1"), it_test, xT("XLIB_ENV_3")};
 
-    return true;
+				Envs envs(it_prefix);
+				m_sRv = envs.findFirstOf(findEnvs);
+				xTEST_EQ(m_sRv, it_expect);
+			}
+		}
+	}
+
+
+	xTEST_CASE("Envs::expandVars")
+	{
+	#if   xENV_WIN
+		std::ctstring_t data[][2]
+		{
+			{xT(" System root: %SystemRoot%"),  xT(" System root: C:\\Windows")},
+			{xT("Windows Dir: %windir% "),      xT("Windows Dir: C:\\Windows ")}
+		};
+	#elif xENV_UNIX
+		std::ctstring_t data[][2]
+		{
+			{xT("111%ENV_TEST_1%"),    xT("111value1")},
+			{xT("%ENV_TEST_2%111"),    xT("value2111")},
+			{xT("ttt%ENV_TEST_3%"),    xT("tttvalue3")},
+			{xT("rrr%ENV_TEST_4%rrr"), xT("rrrvalue4rrr")}
+		};
+	#endif
+
+		for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+			std::tstring_t str1 = Envs::expandVars(data[i][0]);
+			std::tstring_t str2 = data[i][1];
+			xTEST(StringCI::compare(str1, str2));
+		}
+	}
+
+	return true;
 }
 //-------------------------------------------------------------------------------------------------

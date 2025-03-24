@@ -20,6 +20,7 @@ public:
 ///\name ctors, dtor
 ///\{
 	explicit Env(std::ctstring_t &name);
+	explicit Env(std::ctstring_t &prefix, std::ctstring_t &name);
 	virtual ~Env() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Env);
@@ -52,7 +53,7 @@ private:
 	static std::ctstring_t _envsSeparator();
 		///< vars separator
 
-    std::ctstring_t _name;
+    std::ctstring_t _prefix_name;
 
     bool_t _isNameValid() const;
         ///< is valid environment variable name
@@ -72,7 +73,8 @@ class Envs
 public:
 ///\name ctors, dtor
 ///\{
-			 Envs() = default;
+			 Envs();
+	explicit Envs(std::ctstring_t &prefix);
 	virtual ~Envs() = default;
 
 	xNO_COPY_ASSIGN(Envs);
@@ -92,6 +94,8 @@ xPUBLIC_STATIC:
         ///< expands strings by separator "%"
 
 private:
+    std::ctstring_t _prefix;
+
     std::vec_tstring_t _vars_impl() const;
 };
 //-------------------------------------------------------------------------------------------------
@@ -99,9 +103,10 @@ private:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO:
+ * \file  Env.h
+ * \todo
  *
- * [ ] Dll path (LD_LIBRARY_PATH)
+ * - [ ] Dll path (LD_LIBRARY_PATH)
  *
  * Imports - https://docs.conan.io/en/latest/using_packages/conanfile_txt.html#imports-txt
  * There are some differences between shared libraries on Linux (*.so), Windows (*.dll) and
@@ -114,5 +119,9 @@ private:
  * Conan is intended for developers, so it avoids such manipulation of the OS environment.
  * In Windows and OSX, the simplest approach is to copy the shared libraries to the executable
  * folder, so they are found by the executable, without having to modify the path.
+ *
+ * \done
+ *
+ * - Prefix for name
  */
 //-------------------------------------------------------------------------------------------------
