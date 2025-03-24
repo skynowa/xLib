@@ -187,6 +187,9 @@ xPLATFORM_IMPL:
  * - [ ] ctor - filePath -> fsPath
  * - [ ] isRootPath()
  * - [ ] proc - use in xLib
+ *
+ * \done
+ *
  * - [+] Utils::readSymLink - move to Path
  *
  * \libs Standard paths
