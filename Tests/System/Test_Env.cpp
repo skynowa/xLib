@@ -13,7 +13,14 @@ xTEST_UNIT(Test_Env)
 bool_t
 Test_Env::unit()
 {
-	std::ctstring_t prefixes[] {"SKYNOWA_", "1", ""};
+	std::ctstring_t prefixes[]
+	{
+		Path::exe().fileBaseName() + "_",
+		"XLIB_",
+		"1_",
+		"_",
+		""
+	};
 
 	/**************************************************
 	* Env
