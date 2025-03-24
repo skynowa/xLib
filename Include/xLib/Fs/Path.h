@@ -190,7 +190,7 @@ xPLATFORM_IMPL:
  *
  * \done
  *
- * - [+] Utils::readSymLink - move to Path
+ * - Utils::readSymLink - move to Path
  *
  * \libs Standard paths
  *
