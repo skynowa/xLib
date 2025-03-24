@@ -61,14 +61,16 @@ private:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * FEATURES:
+ * \file CmdOptions.h
+ *
+ * \feat
  *
  * - Params
  *    - default params (--help, --debug)
  *    - param format: "one,-o,--one"
- * 	  - param bind to callback
- * 	  - ignore_case
- * 	  - ignore_underscore
+ *    - param bind to callback
+ *    - ignore_case
+ *    - ignore_underscore
  *    - Validator, check bad params
  *
  * - Print usage
@@ -80,7 +82,8 @@ private:
  *
  * - delimiter (=)
  *
- * FAQ:
+ * \libs
+ *
  * - https://github.com/TUM-I5/SWE/blob/master/Source/Tools/Args.hpp
  * - https://github.com/CppMicroServices/CppMicroServices/blob/development/third_party/optionparser.h
  * - https://github.com/CLIUtils/CLI11 (https://cliutils.github.io/CLI11/book/chapters/options.html)
@@ -88,6 +91,6 @@ private:
  * - https://github.com/jarro2783/cxxopts
  * - boost::options
  *
- * TODO:
+ * \todo
  */
 //-------------------------------------------------------------------------------------------------
