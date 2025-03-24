@@ -3,6 +3,11 @@
  * \brief file system path
  *
  * \faq   https://github.com/Quintus/pathie-cpp/blob/master/src/path.cpp
+ *
+ * \libs
+ *
+ * - Standard paths - https://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum
+ * - Standard paths - https://docs.microsoft.com/en-us/previous-versions/windows/embedded/aa453706(v%3Dmsdn.10)
  */
 
 
@@ -179,7 +184,7 @@ xPLATFORM_IMPL:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * \file Path.h
+ * \file  Path.h
  *
  * \todo
  *
@@ -191,10 +196,5 @@ xPLATFORM_IMPL:
  * \done
  *
  * - Utils::readSymLink - move to Path
- *
- * \libs Standard paths
- *
- * - https://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum
- * - https://docs.microsoft.com/en-us/previous-versions/windows/embedded/aa453706(v%3Dmsdn.10)
  */
 //-------------------------------------------------------------------------------------------------

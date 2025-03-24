@@ -278,6 +278,7 @@ ALIASES                = "faq=\par ❓FAQ:^^" \
                          "doc=\par 📖 Doc:^^" \
                          "libs=\par 📚 Libraries:^^" \
                          "feat=\par ✨ Features:^^" \
+                         "todo=\par ☑️ Todo:^^"
                          "done=\par ✅ Done:^^"
 
 # Set the OPTIMIZE_OUTPUT_FOR_C tag to YES if your project consists of C sources
