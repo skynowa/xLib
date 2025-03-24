@@ -33,9 +33,19 @@ namespace xl::system
 
 //-------------------------------------------------------------------------------------------------
 Env::Env(
+	std::ctstring_t &a_prefix,
 	std::ctstring_t &a_name
 ) :
-	_name{a_name}
+	_prefix{a_prefix},
+	_name  {a_name}
+{
+    xTEST(_isNameValid());
+}
+//-------------------------------------------------------------------------------------------------
+Env::Env(
+	std::ctstring_t &a_name
+) :
+	Env{{}, a_name}
 {
     xTEST(_isNameValid());
 }

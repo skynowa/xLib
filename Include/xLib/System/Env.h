@@ -20,6 +20,7 @@ public:
 ///\name ctors, dtor
 ///\{
 	explicit Env(std::ctstring_t &name);
+	explicit Env(std::ctstring_t &prefix, std::ctstring_t &name);
 	virtual ~Env() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Env);
@@ -52,6 +53,7 @@ private:
 	static std::ctstring_t _envsSeparator();
 		///< vars separator
 
+    std::ctstring_t _prefix;
     std::ctstring_t _name;
 
     bool_t _isNameValid() const;
