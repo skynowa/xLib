@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 
-UNIT_TESTS=(DateTime)
+UNIT_TESTS=(Env)
+# UNIT_TESTS=(DateTime)
 # UNIT_TESTS=(Type)
 # UNIT_TESTS=(StackTrace)
 # UNIT_TESTS=(BuildInfo)
