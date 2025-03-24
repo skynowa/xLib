@@ -2,7 +2,7 @@
  * \file  StackTrace.h
  * \brief Stackrace of the caller function
  *
- * \see
+ * \libs
  *
  * - https://github.com/jeremy-rifkin/cpptrace
  * - https://gist.github.com/jvranish/4441299
