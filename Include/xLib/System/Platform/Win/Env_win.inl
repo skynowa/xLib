@@ -77,7 +77,7 @@ Envs::_vars_impl() const
     // variable strings are separated by nullptr byte,
     // and the block is terminated by a nullptr byte
     for (
-        LPTSTR var = static_cast<LPTSTR>(lpvEnv);
+        auto var = static_cast<LPTSTR>(lpvEnv);
         *var != xT('\0');
         var += ::lstrlen(var) + 1)
     {
