@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Env)
 bool_t
 Test_Env::unit()
 {
-	std::ctstring_t prefixes[] {"SKYNOWA_", ""};
+	std::ctstring_t prefixes[] {"SKYNOWA_", "1", ""};
 
 	/**************************************************
 	* Env
