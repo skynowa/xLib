@@ -121,6 +121,7 @@ private:
  * folder, so they are found by the executable, without having to modify the path.
  *
  * \done
- * - [+] Prefix for name
+ *
+ * - Prefix for name
  */
 //-------------------------------------------------------------------------------------------------
