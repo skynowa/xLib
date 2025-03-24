@@ -29,15 +29,6 @@ public:
 	xNO_DEFAULT_CONSTRUCT(Path);
 	xNO_COPY_ASSIGN(Path);
 
-   /**
-	* Standard paths
-	*
-	* - https://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum
-	* - https://docs.microsoft.com/en-us/previous-versions/windows/embedded/aa453706(v%3Dmsdn.10)
-	*
-	* [TODO] desktop, documents, downloads, ...
-	*/
-
 	// files
 	static Path exe();
 	static Path dll();
@@ -188,11 +179,20 @@ xPLATFORM_IMPL:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO
+ * \file Path.h
+ *
+ * \todo
  *
  * - [ ] ctor - filePath -> fsPath
  * - [ ] isRootPath()
  * - [ ] proc - use in xLib
  * - [+] Utils::readSymLink - move to Path
+ *
+ * \libs Standard paths
+ *
+ * - https://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum
+ * - https://docs.microsoft.com/en-us/previous-versions/windows/embedded/aa453706(v%3Dmsdn.10)
+ *
+ * \todo desktop, documents, downloads, ...
  */
 //-------------------------------------------------------------------------------------------------
