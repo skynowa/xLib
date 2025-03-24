@@ -177,6 +177,18 @@ Env::_isValueValid(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+Envs::Envs() :
+	Envs(xT(""))
+{
+}
+//-------------------------------------------------------------------------------------------------
+Envs::Envs(
+	std::ctstring_t &a_prefix
+) :
+	_prefix{a_prefix}
+{
+}
+//-------------------------------------------------------------------------------------------------
 void_t
 Envs::setVars(
 	const std::tstring_t &a_envFilePath ///< file with vars ({"HOME=/usr/home","LOGNAME=home"})
@@ -186,7 +198,7 @@ Envs::setVars(
 	config.read();
 
 	for (const auto &[it_name, it_value] : config.get() ) {
-		Env env(it_name);
+		Env env(_prefix, it_name);
 		env.setValue(it_value);
 	}
 }
@@ -197,7 +209,7 @@ Envs::setVars(
 ) const
 {
 	for (const auto &[it_name, it_value] : a_vars) {
-		Env env(it_name);
+		Env env(_prefix, it_name);
 		env.setValue(it_value);
 	}
 }
@@ -216,7 +228,7 @@ Envs::findFirstOf(
 	xCHECK_RET(a_names.empty(), std::tstring_t{});
 
 	for (const auto &it_name : a_names) {
-		Env env(it_name);
+		Env env(_prefix, it_name);
 		bool_t bRv = env.isExists();
 		xCHECK_DO(!bRv, continue);
 

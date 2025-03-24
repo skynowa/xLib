@@ -73,7 +73,8 @@ class Envs
 public:
 ///\name ctors, dtor
 ///\{
-			 Envs() = default;
+			 Envs();
+	explicit Envs(std::ctstring_t &prefix);
 	virtual ~Envs() = default;
 
 	xNO_COPY_ASSIGN(Envs);
@@ -93,6 +94,8 @@ xPUBLIC_STATIC:
         ///< expands strings by separator "%"
 
 private:
+    std::ctstring_t _prefix;
+
     std::vec_tstring_t _vars_impl() const;
 };
 //-------------------------------------------------------------------------------------------------

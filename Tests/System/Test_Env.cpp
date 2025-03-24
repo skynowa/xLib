@@ -144,24 +144,54 @@ Test_Env::unit()
 
     xTEST_CASE("Envs::setVars")
     {
-        const std::set<std::pair_tstring_t> vars
-        {
-            {xT("ENV_TEST_1"), xT("value1")},
-            {xT("ENV_TEST_2"), xT("value2")},
-            {xT("ENV_TEST_3"), xT("value3")},
-            {xT("ENV_TEST_4"), xT("value4")}
-        };
+		for (const auto &it_prefix : prefixes) {
+			const std::set<std::pair_tstring_t> vars
+			{
+				{xT("ENV_TEST_1"), xT("value1")},
+				{xT("ENV_TEST_2"), xT("value2")},
+				{xT("ENV_TEST_3"), xT("value3")},
+				{xT("ENV_TEST_4"), xT("value4")}
+			};
 
-        Envs envs;
-        envs.setVars(vars);
+			Envs envs(it_prefix);
+			envs.setVars(vars);
+		}
     }
 
     xTEST_CASE("Envs::vars")
     {
-        Envs envs;
-        m_vsRv = envs.vars();
-        xTEST(!m_vsRv.empty());
+		for (const auto &it_prefix : prefixes) {
+			Envs envs(it_prefix);
+			m_vsRv = envs.vars();
+			xTEST(!m_vsRv.empty());
+		}
     }
+
+    xTEST_CASE("Envs::findFirstOf")
+    {
+		for (const auto &it_prefix : prefixes) {
+			std::ctstring_t envName = xT("XLIB_ENV_2");
+
+			Env env(it_prefix, envName);
+			env.setValue("2");
+
+			const data2_tstring_t datas[]
+			{
+				{xT("__XLIB_ENV_1"), {}},
+				{ envName,           xT("2")},
+				{xT("__XLIB_ENV_3"), {}}
+			};
+
+			for (const auto &[it_test, it_expect] : datas) {
+				std::cvec_tstring_t findEnvs = {xT("XLIB_ENV_1"), it_test, xT("XLIB_ENV_3")};
+
+				Envs envs(it_prefix);
+				m_sRv = envs.findFirstOf(findEnvs);
+				xTEST_EQ(m_sRv, it_expect);
+			}
+		}
+    }
+
 
     xTEST_CASE("Envs::expandVars")
     {
@@ -186,29 +216,6 @@ Test_Env::unit()
             std::tstring_t str2 = data[i][1];
             xTEST(StringCI::compare(str1, str2));
         }
-    }
-
-    xTEST_CASE("Envs::findFirstOf")
-    {
-        std::ctstring_t envName = xT("XLIB_ENV_2");
-
-        Env env(envName);
-        env.setValue("2");
-
-        const data2_tstring_t datas[]
-        {
-            {xT("__XLIB_ENV_1"), {}},
-            {envName,            xT("2")},
-            {xT("__XLIB_ENV_3"), {}}
-        };
-
-        for (const auto &[it_test, it_expect] : datas) {
-            std::cvec_tstring_t findEnvs = {xT("XLIB_ENV_1"), it_test, xT("XLIB_ENV_3")};
-
-            Envs envs;
-            m_sRv = envs.findFirstOf(findEnvs);
-            xTEST_EQ(m_sRv, it_expect);
-            }
     }
 
     return true;
