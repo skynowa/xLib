@@ -282,7 +282,7 @@ ALIASES                = "faq=\par ❓FAQ:^^" \
                          "todo=\par ☑️ Todo:^^" \
                          "done=\par ✅ Done:^^" \
                          \
-                         "win=\par 🪟 Win:^^" \
+                         "win=\par 🪟 Windows:^^" \
                          "unix=\par 🖥️ Unix:^^" \
                          "linux=\par 🐧 Linux:^^" \
                          "freebsd=\par 🌊 FreeBSD:^^" \

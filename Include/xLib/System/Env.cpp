@@ -243,8 +243,6 @@ Envs::expandVars(
     std::ctstring_t &a_strWithVars
 )
 {
-	// Win: Same as ::ExpandEnvironmentStrings()
-
     std::tstring_t sRv = a_strWithVars;
 
 	// TODO: [unix] "$" as separator: $VAR, ${VAR}
