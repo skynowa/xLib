@@ -16,22 +16,26 @@
 //-------------------------------------------------------------------------------------------------
 #if 1
 
+namespace xl::debug
+{
+
+class ErrorReport;
+class ErrorReport {
+public:
+    enum class Type;  // Forward declaration
+};
+class SourceInfoOption;
+class SourceInfo;
+class StackTrace;
+class Debugger;
+
+}
+
 namespace core
 {
 
 template<typename StreamT>
 class FormatT;
-
-}
-
-namespace xl::debug
-{
-
-class ErrorReport;
-class SourceInfoOption;
-class SourceInfo;
-class StackTrace;
-class Debugger;
 
 }
 
@@ -43,8 +47,8 @@ namespace xl::test
 template<typename T1, typename T2>
 inline void
 testEqMsg_impl(
-	const xl::debug::ErrorReport::Type  a_reportType,
-	xl::culong_t        a_nativeError,
+	const ErrorReport::Type  a_reportType,
+	culong_t            a_nativeError,
 	std::ctstring_t    &a_file,
 	std::csize_t        a_line,
 	std::ctstring_t    &a_function,
