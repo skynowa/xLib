@@ -12,6 +12,10 @@
 
 #pragma once
 
+#ifndef XLIB_TEST_TEST_H
+#define XLIB_TEST_TEST_H
+
+#include "Test_Impl.h"
 //-------------------------------------------------------------------------------------------------
 #if 0
 	#define xTEST_EQ_MSG_PRIVATE(op, val1, val2, msg) \
@@ -33,8 +37,6 @@
 			Debugger().reportMake(report__); \
 		}
 #else
-	#include "Test_Impl.h"
-
 	#define xTEST_EQ_MSG_PRIVATE(op, val1, val2, msg) \
 		if ( !((val1) op (val2)) ) { \
 			testEqMsg_impl( \
@@ -323,6 +325,9 @@
                 << __FUNCTION__ << ": (" << #expr << ")" << std::endl; \
         } \
     }
+//-------------------------------------------------------------------------------------------------
+#endif
+
 //-------------------------------------------------------------------------------------------------
 /**
  * \file  Test.h
