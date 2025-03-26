@@ -122,12 +122,6 @@ protected:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
-\page    IMPL impl page
-\page    TODO todo page
-\page    BUG  bug page
-*/
-
-/**
  * \file Application.h
  * \todo
  *
