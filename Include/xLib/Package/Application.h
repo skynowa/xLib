@@ -128,15 +128,9 @@ protected:
 */
 
 /**
- * @defgroup  mTODO mTodos
- * @defgroup  mIMPL mImpls
- * @defgroup  mBUG mBugs
- */
-
-/**
- * \addtogroup mTODO
- * \{
- * Application:
+ * \file Application.h
+ * \todo
+ *
  * - Usage
  * - Params
  * - ConsoleApp
@@ -145,5 +139,4 @@ protected:
  * - Singleton
  * - Log
  * - MT
- * \}
  */

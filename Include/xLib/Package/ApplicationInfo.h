@@ -42,42 +42,4 @@ public:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-/**
- * \addtogroup mBUG
- * \{
- * ApplicationInfo:
- * - [ ] ApplicationInfo - rm
- * \}
-*/
 
-/**
- * \addtogroup mIMPL
- * \{
- * ApplicationInfo:
- * - [❌] ApplicationInfo - rm1
- * - [✅] ApplicationInfo - rm1
- * - [⌛] ApplicationInfo - rm1
- * - [🚩] ApplicationInfo - rm1
- * - [ ] ApplicationInfo - rm1
- * - [x] ApplicationInfo - rm1
- * - [+] ApplicationInfo - rm1
- * - [!] ApplicationInfo - rm1
- * - [-] ApplicationInfo - rm1
- * \}
- */
-
-/**
- * \file ApplicationInfo.h
- * \todo
- *
- * ApplicationInfo:
- * - [❌] ApplicationInfo - rm1
- * - [✅] ApplicationInfo - rm1
- * - [⌛] ApplicationInfo - rm1
- * - [🚩] ApplicationInfo - rm1
- * - [ ] ApplicationInfo - rm1
- * - [x] ApplicationInfo - rm1
- * - [+] ApplicationInfo - rm1
- * - [!] ApplicationInfo - rm1
- * - [-] ApplicationInfo - rm1
- */

@@ -37,15 +37,13 @@ protected:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-
 /**
- \addtogroup mTODO
- \{
- IRestClient:
- - DbClient
- - IRequest / IResponse
- - Json/Xml/Csv
- - MailClient / SlackClient
- - ErrorReport
- \}
-*/
+ * \file IRestClient.h
+ * \todo
+ *
+ * - DbClient
+ * - IRequest / IResponse
+ * - Json/Xml/Csv
+ * - MailClient / SlackClient
+ * - ErrorReport
+ */
