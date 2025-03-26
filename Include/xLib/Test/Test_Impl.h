@@ -28,12 +28,6 @@ namespace xl::debug
 class ErrorReport;
 class SourceInfoOption;
 class SourceInfo;
-
-}
-
-namespace xl::debug
-{
-
 class Debugger;
 
 }
