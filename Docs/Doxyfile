@@ -43,7 +43,7 @@ PROJECT_NAME           = xLib
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         = "1.0.0 2025-03-25 02:07:29"
+PROJECT_NUMBER         = "1.0.0 2025-03-26 22:56:33"
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
@@ -884,6 +884,7 @@ WARN_LOGFILE           =
 
 INPUT                  = ../Include \
                          ../README.md \
+                         ../TODO.md \
                          ChangeLog.md \
                          Dev
                          # ../Tests

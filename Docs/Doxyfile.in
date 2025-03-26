@@ -884,6 +884,7 @@ WARN_LOGFILE           =
 
 INPUT                  = ../Include \
                          ../README.md \
+                         ../TODO.md \
                          ChangeLog.md \
                          Dev
                          # ../Tests
