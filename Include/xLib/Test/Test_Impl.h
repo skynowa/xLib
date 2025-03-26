@@ -12,31 +12,33 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
 //-------------------------------------------------------------------------------------------------
-#if 0
-	namespace xl::debug
-	{
+#if 1
 
-	class ErrorReport;
-	class SourceInfoOption;
-	class SourceInfo;
+namespace core
+{
 
-	}
+template<typename StreamT>
+class FormatT;
 
-	namespace v
-	{
+}
 
-	class Format;
+namespace xl::debug
+{
 
-	}
+class ErrorReport;
+class SourceInfoOption;
+class SourceInfo;
 
-	namespace xl::debug
-	{
+}
 
-	class Debugger;
+namespace xl::debug
+{
 
-	}
+class Debugger;
+
+}
+
 #endif
-
 
 template<typename T1, typename T2>
 inline void
