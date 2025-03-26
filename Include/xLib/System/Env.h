@@ -1,6 +1,10 @@
 /**
  * \file  Env.h
  * \brief system environment variables
+ *
+ * \libs
+ *
+ * - https://github.com/TUM-I5/utils/blob/master/env.h
  */
 
 
@@ -92,6 +96,7 @@ public:
 xPUBLIC_STATIC:
     static std::tstring_t expandVars(std::ctstring_t &strWithVars);
         ///< expands strings by separator "%"
+        ///< \win Same as ::ExpandEnvironmentStrings()
 
 private:
     std::ctstring_t _prefix;
@@ -119,6 +124,8 @@ private:
  * Conan is intended for developers, so it avoids such manipulation of the OS environment.
  * In Windows and OSX, the simplest approach is to copy the shared libraries to the executable
  * folder, so they are found by the executable, without having to modify the path.
+ *
+ * - [ ] Default values
  *
  * \done
  *

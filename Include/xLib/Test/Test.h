@@ -2,7 +2,7 @@
  * \file  Test.h
  * \brief code testing
  *
- * \see
+ * \libs
  *
  * - https://github.com/doctest/doctest
  * - https://github.com/google/fuzztest
@@ -325,10 +325,10 @@
     }
 //-------------------------------------------------------------------------------------------------
 /**
- * \addtogroup mTODO
- * \{
- * Test.h:
+ * \file  Test.h
+ *
+ * \todo
+ *
  * - [ ] xTEST_EQ_MSG_PRIVATE impl - as function
- * \}
-*/
+ */
 //-------------------------------------------------------------------------------------------------

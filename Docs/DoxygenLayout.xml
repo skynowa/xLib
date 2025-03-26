@@ -4,11 +4,13 @@
   <navindex>
     <tab type="mainpage" title="🏠 Main" visible="yes" intro=""/>
 
+    <!--
     <tab type="usergroup" title="✅ TODOs" url="@ref mTODO" intro="">
       <tab type="user" visible="yes" url="@ref mTODO" title="Todos" intro=""/>
       <tab type="user" visible="yes" url="@ref mIMPL" title="Impls" intro=""/>
       <tab type="user" visible="yes" url="@ref mBUG" title="Bugs" intro=""/>
     </tab>
+    -->
 
     <tab type="pages" title="📄 Pages" visible="yes" intro=""/>
 

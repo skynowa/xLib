@@ -125,20 +125,21 @@ FLongDouble operator ""xld (culonglong_t value);
 //-------------------------------------------------------------------------------------------------
 /**
  * \file Float.h
- * \addtogroup mIMPL
+ * \todo
  *
- * Float:
- * - [+] struct Float :
- * 			IComparable,
- * 			IComparable<double>,
- * 			IConvertible,
- * 			IEquatable<double>,
- * 			IFormattable
- * - TODO: delimiter
- * - [+] str(), format float ???
- * - [+] isInf()
+ * - Delimiter
  *
- * - TODO: C library
- * - [+] https://stackoverflow.com/questions/17333/what-is-the-most-effective-way-for-float-and-double-comparison
- * - [+] https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
+ * \done
+ *
+ * - struct Float:
+ * 		IComparable,
+ * 		IComparable<double>,
+ * 		IConvertible,
+ * 		IEquatable<double>,
+ * 		IFormattable
+ * - str(), format float ???
+ * - isInf()
+ * - C library
+ * 		- https://stackoverflow.com/questions/17333/what-is-the-most-effective-way-for-float-and-double-comparison
+ * 		- https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
  */

@@ -51,7 +51,9 @@ private:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO
+ * \file  Profiler.h
+ *
+ * \todo
  *
  * - Port to std::chrono
  * - http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html

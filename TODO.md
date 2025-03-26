@@ -66,7 +66,7 @@ PathDetail
 
 ## Sync
 
-TODO: [win] Sync - close handle
+- [ ] [win] Sync - close handle
 
 ## Build
 
@@ -91,7 +91,7 @@ TODO: [win] Sync - close handle
 
 - [!] Doc - impl
 - [+] Custom tags
-- [ ] \see as list (\n -> -)
+- [+] `\see` as list (`\n` -> -)
 - [?] Auto gen todo list at root of the project - impl
 - [!] Auto gen Change Log - impl
 
@@ -101,4 +101,4 @@ TODO: [win] Sync - close handle
 
 ## Etc
 
-[ ] https://github.com/eyjian/mooon/blob/master/mooon/CMake.common (eyjian/mooon)
+- [ ] https://github.com/eyjian/mooon/blob/master/mooon/CMake.common (eyjian/mooon)

@@ -21,7 +21,7 @@ public:
 ///\name ctors, dtor
 ///\{
 			 IRestClient() = default;
-	virtual ~IRestClient() = 0;
+	virtual ~IRestClient() = default;
 
 	xNO_COPY_ASSIGN(IRestClient);
 ///\}
@@ -37,15 +37,13 @@ protected:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-
 /**
- \addtogroup mTODO
- \{
- IRestClient:
- - DbClient
- - IRequest / IResponse
- - Json/Xml/Csv
- - MailClient / SlackClient
- - ErrorReport
- \}
-*/
+ * \file IRestClient.h
+ * \todo
+ *
+ * - DbClient
+ * - IRequest / IResponse
+ * - Json/Xml/Csv
+ * - MailClient / SlackClient
+ * - ErrorReport
+ */
