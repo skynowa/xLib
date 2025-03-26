@@ -21,7 +21,7 @@ public:
 ///\name ctors, dtor
 ///\{
 			 IRestClient() = default;
-	virtual ~IRestClient() = 0;
+	virtual ~IRestClient() = default;
 
 	xNO_COPY_ASSIGN(IRestClient);
 ///\}
