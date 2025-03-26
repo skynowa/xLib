@@ -15,7 +15,29 @@
 #ifndef XLIB_TEST_TEST_H
 #define XLIB_TEST_TEST_H
 
-#include "Test_Impl.h"
+//-------------------------------------------------------------------------------------------------
+#if 0
+
+namespace core
+{
+
+template<typename StreamT>
+class FormatT;
+
+}
+
+namespace xl::debug
+{
+
+class ErrorReport;
+class SourceInfoOption;
+class SourceInfo;
+class StackTrace;
+class Debugger;
+
+}
+
+#endif
 //-------------------------------------------------------------------------------------------------
 #if 0
 	#define xTEST_EQ_MSG_PRIVATE(op, val1, val2, msg) \
@@ -325,6 +347,8 @@
                 << __FUNCTION__ << ": (" << #expr << ")" << std::endl; \
         } \
     }
+//-------------------------------------------------------------------------------------------------
+#include <xLib/Test/TestMsg.cpp>
 //-------------------------------------------------------------------------------------------------
 #endif
 

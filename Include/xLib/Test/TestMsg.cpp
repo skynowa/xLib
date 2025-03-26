@@ -1,18 +1,18 @@
 /**
- * \file  Test_Impl.h
+ * \file  TestMsg.cpp
  * \brief code testing
  */
 
 
-#pragma once
-
-#include <xLib/Debug/ErrorReport.h>
-#include <xLib/Debug/SourceInfo.h>
-#include <xLib/Core/Format.h>
-#include <xLib/Debug/Debugger.h>
-#include <xLib/Debug/StackTrace.h>
-//-------------------------------------------------------------------------------------------------
 #if 1
+	#include <xLib/Debug/ErrorReport.h>
+	#include <xLib/Debug/SourceInfo.h>
+	#include <xLib/Core/Format.h>
+	#include <xLib/Debug/StackTrace.h>
+	#include <xLib/Debug/Debugger.h>
+#endif
+//-------------------------------------------------------------------------------------------------
+#if 0
 
 namespace core
 {
@@ -28,11 +28,15 @@ namespace xl::debug
 class ErrorReport;
 class SourceInfoOption;
 class SourceInfo;
+class StackTrace;
 class Debugger;
 
 }
 
 #endif
+
+namespace xl::test
+{
 
 template<typename T1, typename T2>
 inline void
@@ -57,8 +61,8 @@ testEqMsg_impl(
 	{
 		a_file, a_line, a_function, a_counter,
 		a_val1Str, a_val2Str,
-		"", // xl::core::Format::str(xT("{}"), a_val1),
-		"", // xl::core::Format::str(xT("{}"), a_val2),
+		xl::core::Format::str(xT("{}"), a_val1),
+		xl::core::Format::str(xT("{}"), a_val2),
 		a_op
 	};
 
@@ -67,5 +71,7 @@ testEqMsg_impl(
 
 	xl::debug::ErrorReport report(a_reportType, nativeError, sourceInfo, stackTrace, a_msg);
 	xl::debug::Debugger().reportMake(report);
-}
+}	///<
+
+} // namespace
 //-------------------------------------------------------------------------------------------------

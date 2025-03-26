@@ -7,7 +7,6 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Debug/SourceInfo.h>
 #include <xLib/Interface/IStr.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::debug

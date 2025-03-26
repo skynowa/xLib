@@ -11,6 +11,7 @@
 #include <xLib/Core/Format.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/System/Console.h>
+#include <xLib/Debug/SourceInfo.h>
 #include <xLib/Debug/BuildInfo.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Fs/Path.h>
