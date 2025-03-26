@@ -13,6 +13,7 @@
 #include <xLib/System/Console.h>
 #include <xLib/Debug/BuildInfo.h>
 #include <xLib/Debug/Exception.h>
+#include <xLib/Debug/SourceInfo.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Sync/Thread.h>
 
