@@ -129,6 +129,10 @@ FormatT<StreamT>::_testFmt(
 		} // for (a_fmt)
 	}
 
+#ifndef xTEST_FAIL_MSG
+    #error "xTEST_FAIL_MSG is not defined"
+#endif
+
 	if (specifierOpenNum != specifierCloseNum) {
 		xTEST_FAIL_MSG(xT("specifierOpenNum != specifierCloseNum"));
 		return false;
