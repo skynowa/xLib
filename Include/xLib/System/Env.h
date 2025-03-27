@@ -96,7 +96,7 @@ public:
 xPUBLIC_STATIC:
     static std::tstring_t expandVars(std::ctstring_t &strWithVars);
         ///< expands strings by separator "%"
-        ///< \win Same as ::ExpandEnvironmentStrings()
+        ///< \win Same as ExpandEnvironmentStrings()
 
 private:
     std::ctstring_t _prefix;
