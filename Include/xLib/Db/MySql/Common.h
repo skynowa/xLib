@@ -2,15 +2,16 @@
  * \file  Common.h
  * \brief MySql client
  *
- * \see MySQL API:
+ * \see MySQL API
+ *
  * - https://dev.mysql.com/doc/c-api/5.7/en/
  * - https://dev.mysql.com/doc/c-api/5.7/en/c-api-basic-function-reference.html
  *
- * \see MySQL libraries:
+ * \libs MySQL libraries
+ *
  * - https://github.com/mysql/mysql-connector-cpp
  * - https://tangentsoft.com/mysqlpp/
  * - https://libtabula.org/
- *
  * - https://github.com/Kmykhail/SqlWrapper/blob/master/wrapper/SqlWrapper.h
  */
 
@@ -51,7 +52,8 @@ std::ctstring_t nullStr {xT("NULL")};
 }
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO:
+ * \file  Common.h
+ * \todo
  *
  * - Info
  * + Options

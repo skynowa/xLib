@@ -38,15 +38,14 @@ protected:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-
-/*
-Server
-
-Initialize Winsock.
-Create a socket.
-Bind the socket.
-Listen on the socket for a client.
-Accept a connection from a client.
-Receive and send data.
-Disconnect.
+/**
+ * Server
+ *
+ * - Initialize Winsock.
+ * - Create a socket.
+ * - Bind the socket.
+ * - Listen on the socket for a client.
+ * - Accept a connection from a client.
+ * - Receive and send data.
+ * - Disconnect.
 */

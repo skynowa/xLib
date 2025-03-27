@@ -124,7 +124,10 @@ private:
 #include "Client.inl"
 
 /**
- * TODO: curl_easy
+ * \file   Client.h
+ * \todo
+ *
+ * curl_easy
  *
  * url_easy_cleanup
  * curl_easy_duphandle

@@ -65,8 +65,7 @@ xPLATFORM_IMPL:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-
-/*
-    SysV  semaphores are semget/semop/semctl
-    POSIX semaphores are sem_open/sem_close/sem_*
-*/
+/**
+ * SysV  semaphores are semget/semop/semctl
+ * POSIX semaphores are sem_open/sem_close/sem_*
+ */

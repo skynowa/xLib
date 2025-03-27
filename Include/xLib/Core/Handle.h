@@ -8,7 +8,6 @@
 
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
-#include <xLib/Core/Format.h>
 #include <xLib/Interface/IHandle.h>
 
 #if   xENV_WIN
@@ -137,7 +136,8 @@ xUSING_CONST(HandleSocket);
 ///\}
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO
+ * \file  Handle.h
+ * \todo
  *
  * - operator bool
  */

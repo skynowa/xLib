@@ -94,8 +94,13 @@ xPLATFORM_IMPL:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-// TODO: [skynowa] int events=wxFSW_EVENT_ALL
-// TODO: [skynowa] followSymLinks
-// TODO: [skynowa] followSymLinksOutOfScope
-// TODO: [skynowa] Dir/file events
+/**
+ * \file   FsWatcher.h
+ * \todo
+ *
+ * - int events=wxFSW_EVENT_ALL
+ * - followSymLinks
+ * - followSymLinksOutOfScope
+ * - Dir/file events
+ */
 //-------------------------------------------------------------------------------------------------

@@ -104,7 +104,8 @@ xPLATFORM_IMPL:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO
+ * \file  FileInfo.h
+ * \todo
  *
  * - Format - Unix, DOS, ...
  * - Encoding - UTF-8, ISO-8859-1, ...

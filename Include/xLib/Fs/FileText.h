@@ -41,7 +41,8 @@ private:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO
+ * \file  FileText.h
+ * \todo
  *
  * - std::map_tstring_t -> std::multimap
  * - use text/bin methods vs FileIO

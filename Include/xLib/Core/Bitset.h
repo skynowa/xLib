@@ -3,9 +3,12 @@
  * \brief bit mask flags
  *
  * like std::bitset
- * https://codereview.stackexchange.com/questions/86623/c-bitset-implementation
- * https://raw.githubusercontent.com/m-peko/bitflags/master/include/bitflags/bitflags.hpp
- * https://github.com/mostsignificant/util/blob/master/src/flags.cpp
+ *
+ * \libs
+ *
+ * - https://codereview.stackexchange.com/questions/86623/c-bitset-implementation
+ * - https://raw.githubusercontent.com/m-peko/bitflags/master/include/bitflags/bitflags.hpp
+ * - https://github.com/mostsignificant/util/blob/master/src/flags.cpp
  */
 
 
@@ -69,9 +72,10 @@ private:
 #include "Bitset.inl"
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO
+ * \file Bitset.h
+ * \todo
  *
- * https://gcc.gnu.org/onlinedocs/cpp/C_002b_002b-Named-Operators.html#C_002b_002b-Named-Operators
- * https://github.com/oliora/bitmask
+ * - https://gcc.gnu.org/onlinedocs/cpp/C_002b_002b-Named-Operators.html#C_002b_002b-Named-Operators
+ * - https://github.com/oliora/bitmask
  */
 //-------------------------------------------------------------------------------------------------

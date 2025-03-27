@@ -2,7 +2,7 @@
  * \file  Common.h
  * \brief Common includes
  *
- * \see   [cURLpp is a C++ wrapper for libcURL](https://github.com/jpbarrette/curlpp)
+ * \libs  [cURLpp is a C++ wrapper for libcURL](https://github.com/jpbarrette/curlpp)
  */
 
 
