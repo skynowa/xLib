@@ -24,7 +24,7 @@ public:
 ///\name ctors, dtor
 ///\{
 	explicit Env(std::ctstring_t &name);
-	explicit Env(std::ctstring_t &ns, std::ctstring_t &name);
+	         Env(std::ctstring_t &ns, std::ctstring_t &name);
 	virtual ~Env() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Env);
