@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Env)
 bool_t
 Test_Env::unit()
 {
-	std::ctstring_t prefixes[]
+	std::ctstring_t nss[]
 	{
 		Path::exe().fileBaseName() + "_",
 		"XLIB_",
@@ -29,7 +29,7 @@ Test_Env::unit()
 
 	xTEST_CASE("str")
 	{
-		for (const auto &it_prefix : prefixes) {
+		for (const auto &it_ns : nss) {
 			const std::map_tstring_t vars
 			{
 				{xT("ENV_TEST_1"), xT("value1")},
@@ -39,11 +39,11 @@ Test_Env::unit()
 			};
 
 			for (const auto &[it_var, it_value] : vars) {
-				Env env(it_prefix, it_var);
+				Env env(it_ns, it_var);
 				env.setValue(it_value);
 
 				const auto &test     = env.str();
-				const auto &expected = it_prefix + it_var + Const::equal() + it_value;
+				const auto &expected = it_ns + it_var + Const::equal() + it_value;
 				xTEST_EQ(test, expected);
 			}
 		}
@@ -51,7 +51,7 @@ Test_Env::unit()
 
 	xTEST_CASE("setValue")
 	{
-		for (const auto &it_prefix : prefixes) {
+		for (const auto &it_ns : nss) {
 			std::ctstring_t data[][2]
 			{
 				{xT("ENV_TEST_1"), xT("value1")},
@@ -61,7 +61,7 @@ Test_Env::unit()
 			};
 
 			for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-				Env env(it_prefix, data[i][0]);
+				Env env(it_ns, data[i][0]);
 				env.setValue(data[i][1]);
 
 				xTEST(env.isExists());
@@ -71,7 +71,7 @@ Test_Env::unit()
 
 	xTEST_CASE("isExists")
 	{
-		for (const auto &it_prefix : prefixes) {
+		for (const auto &it_ns : nss) {
 		#if   xENV_WIN
 			std::ctstring_t data[][2]
 			{
@@ -95,7 +95,7 @@ Test_Env::unit()
 		#endif
 
 			for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-				Env env(it_prefix, data[i][0]);
+				Env env(it_ns, data[i][0]);
 
 				bool_t bStr1 = env.isExists();
 				xTEST_EQ(String::castBool(data[i][1]), bStr1);
@@ -105,7 +105,7 @@ Test_Env::unit()
 
 	xTEST_CASE("value")
 	{
-		for (const auto &it_prefix : prefixes) {
+		for (const auto &it_ns : nss) {
 		#if   xENV_WIN
 			std::ctstring_t data[][2]
 			{
@@ -125,7 +125,7 @@ Test_Env::unit()
 		#endif
 
 			for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-				Env env(it_prefix, data[i][0]);
+				Env env(it_ns, data[i][0]);
 
 				std::tstring_t str1 = env.value();
 				std::tstring_t str2 = data[i][1];
@@ -136,7 +136,7 @@ Test_Env::unit()
 
 	xTEST_CASE("remove")
 	{
-		for (const auto &it_prefix : prefixes) {
+		for (const auto &it_ns : nss) {
 			std::ctstring_t data[][2]
 			{
 				{xT("ENV_TEST_1"), xT("value1")},
@@ -146,7 +146,7 @@ Test_Env::unit()
 			};
 
 			for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-				Env env(it_prefix, data[i][0]);
+				Env env(it_ns, data[i][0]);
 				env.remove();
 
 				xTEST(!env.isExists());
@@ -159,9 +159,35 @@ Test_Env::unit()
 	*
 	**************************************************/
 
-	xTEST_CASE("Envs::setVars")
+	xTEST_CASE("Envs::setVars(envFilePath)")
 	{
-		for (const auto &it_prefix : prefixes) {
+		std::ctstring_t ns          = xT("SKYNOWA_");
+		std::ctstring_t envFilePath = option().testDirPath + xT("/System/env_1.txt");
+		// TODO: env_2.txt
+		// std::ctstring_t envFilePath = option().testDirPath + xT("/System/env_2.txt");
+
+		Cout() << xTRACE_VAR_2(envFilePath, ns);
+
+		const std::map_tstring_t vars
+		{
+			{xT("DB_HOST"),     xT("127.0.0.1")},
+			{xT("DB_PASSWORD"), xT("secret")},
+			{xT("DB_USER"),     xT("admin")},
+			{xT("X_APIKEY"),    xT("xyz")},
+			{xT("Y_APIKEY"),    xT("abc")}
+		};
+
+		Envs envs(ns);
+		envs.setVars(envFilePath);
+
+		for (const auto &[it_name, it_value] : vars) {
+			xTEST_EQ(envs[it_name], it_value);
+		}
+	}
+
+	xTEST_CASE("Envs::setVars(vars)")
+	{
+		for (const auto &it_ns : nss) {
 			const std::map_tstring_t vars
 			{
 				{xT("ENV_TEST_1"), xT("value1")},
@@ -170,15 +196,15 @@ Test_Env::unit()
 				{xT("ENV_TEST_4"), xT("value4")}
 			};
 
-			Envs envs(it_prefix);
+			Envs envs(it_ns);
 			envs.setVars(vars);
 		}
 	}
 
 	xTEST_CASE("Envs::vars")
 	{
-		for (const auto &it_prefix : prefixes) {
-			Envs envs(it_prefix);
+		for (const auto &it_ns : nss) {
+			Envs envs(it_ns);
 			const auto spRv = envs.vars();
 			xTEST(!spRv.empty());
 		}
@@ -186,10 +212,10 @@ Test_Env::unit()
 
 	xTEST_CASE("Envs::findFirstOf")
 	{
-		for (const auto &it_prefix : prefixes) {
+		for (const auto &it_ns : nss) {
 			std::ctstring_t envName = xT("XLIB_ENV_2");
 
-			Env env(it_prefix, envName);
+			Env env(it_ns, envName);
 			env.setValue("2");
 
 			const data2_tstring_t datas[]
@@ -202,7 +228,7 @@ Test_Env::unit()
 			for (const auto &[it_test, it_expect] : datas) {
 				std::cvec_tstring_t findEnvs = {xT("XLIB_ENV_1"), it_test, xT("XLIB_ENV_3")};
 
-				Envs envs(it_prefix);
+				Envs envs(it_ns);
 				m_sRv = envs.findFirstOf(findEnvs);
 				xTEST_EQ(m_sRv, it_expect);
 			}
@@ -211,10 +237,10 @@ Test_Env::unit()
 
 	xTEST_CASE("Envs::operator []")
 	{
-		for (const auto &it_prefix : prefixes) {
+		for (const auto &it_ns : nss) {
 			std::ctstring_t envName = xT("XLIB_ENV_2");
 
-			Env env(it_prefix, envName);
+			Env env(it_ns, envName);
 			env.setValue("2");
 
 			const data2_tstring_t datas[]
@@ -225,7 +251,7 @@ Test_Env::unit()
 			};
 
 			for (const auto &[it_test, it_expect] : datas) {
-				Envs envs(it_prefix);
+				Envs envs(it_ns);
 				m_sRv = envs[it_test];
 				xTEST_EQ(m_sRv, it_expect);
 			}

@@ -24,7 +24,7 @@ public:
 ///\name ctors, dtor
 ///\{
 	explicit Env(std::ctstring_t &name);
-	explicit Env(std::ctstring_t &prefix, std::ctstring_t &name);
+	explicit Env(std::ctstring_t &ns, std::ctstring_t &name);
 	virtual ~Env() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Env);
@@ -57,7 +57,7 @@ private:
 	static std::ctstring_t _envsSeparator();
 		///< vars separator
 
-    std::ctstring_t _prefix; ///< Like a "namespace" prefix
+    std::ctstring_t _nsName; ///< Like a "namespace" prefix + variable name
 
     bool_t _isNameValid() const;
         ///< is valid environment variable name
@@ -78,7 +78,7 @@ public:
 ///\name ctors, dtor
 ///\{
 			 Envs();
-	explicit Envs(std::ctstring_t &prefix);
+	explicit Envs(std::ctstring_t &ns);
 	virtual ~Envs() = default;
 
 	xNO_COPY_ASSIGN(Envs);
@@ -108,7 +108,7 @@ xPUBLIC_STATIC:
         ///< \win Same as ExpandEnvironmentStrings()
 
 private:
-    std::ctstring_t _prefix; ///< Like a "namespace" prefix
+    std::ctstring_t _ns; ///< Like a "namespace" prefix
 
 xPLATFORM_IMPL:
     std::vec_tstring_t _vars_impl() const;
@@ -136,6 +136,7 @@ xPLATFORM_IMPL:
  * folder, so they are found by the executable, without having to modify the path.
  *
  * - [ ] Default values
+ * - [ ] .env file - ok with commets, empty line
  *
  * \done
  *
