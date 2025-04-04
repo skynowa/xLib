@@ -67,7 +67,6 @@ std::vec_tstring_t
 Envs::_vars_impl() const
 {
     const auto env = ::environ;
-
     xTEST_PTR(env);
 
     std::vec_tstring_t args;
