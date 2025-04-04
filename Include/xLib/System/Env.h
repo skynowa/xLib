@@ -86,7 +86,7 @@ public:
 
 ///\name Setters
 ///\{
-	void_t             setVars(const std::tstring_t &envFilePath) const;
+	void_t             setVars(std::ctstring_t &envFilePath) const;
 		///< set or change values from env file (for example ".env")
 	void_t             setVars(const std::set<std::pair_tstring_t> &vars) const;
 		///< set or change values
@@ -98,6 +98,8 @@ public:
 		///< get all values
 	std::tstring_t     findFirstOf(std::cvec_tstring_t &names) const;
 		///< get first value by names
+
+	std::tstring_t     operator[](std::ctstring_t &a_name) const;
 ///\}
 
 xPUBLIC_STATIC:

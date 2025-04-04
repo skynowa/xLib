@@ -190,7 +190,7 @@ Envs::Envs(
 //-------------------------------------------------------------------------------------------------
 void_t
 Envs::setVars(
-	const std::tstring_t &a_envFilePath ///< file with vars ({"HOME=/usr/home","LOGNAME=home"})
+	std::ctstring_t &a_envFilePath ///< file with vars ({"HOME=/usr/home","LOGNAME=home"})
 ) const
 {
 	Config config(a_envFilePath);
@@ -235,6 +235,18 @@ Envs::findFirstOf(
 	}
 
 	return {};
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Envs::operator [] (
+	std::ctstring_t &a_name ///< var name
+) const
+{
+	xCHECK_RET(a_name.empty(), std::tstring_t{});
+
+	Env env(_prefix, a_name);
+
+	return env.value();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

@@ -209,6 +209,29 @@ Test_Env::unit()
 		}
 	}
 
+	xTEST_CASE("Envs::operator []")
+	{
+		for (const auto &it_prefix : prefixes) {
+			std::ctstring_t envName = xT("XLIB_ENV_2");
+
+			Env env(it_prefix, envName);
+			env.setValue("2");
+
+			const data2_tstring_t datas[]
+			{
+				{xT("__XLIB_ENV_1"), {}},
+				{ envName,           xT("2")},
+				{xT("__XLIB_ENV_3"), {}}
+			};
+
+			for (const auto &[it_test, it_expect] : datas) {
+				Envs envs(it_prefix);
+				m_sRv = envs[it_test];
+				xTEST_EQ(m_sRv, it_expect);
+			}
+		}
+	}
+
 
 	xTEST_CASE("Envs::expandVars")
 	{
