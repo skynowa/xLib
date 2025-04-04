@@ -35,9 +35,6 @@ Test_Env::unit()
 
 		env.setValue(expected);
 		xTEST_EQ(env.value(), expected);
-
-		Cout() << xTRACE_VAR(env.value());
-		Cout() << xTRACE_VAR(Envs(xT("SKYNOWA_")).vars());
 	}
 
 	xTEST_CASE("ctor - path")
