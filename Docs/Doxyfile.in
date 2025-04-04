@@ -278,6 +278,7 @@ ALIASES                = "faq=\par ❓FAQ:^^" \
                          "doc=\par 📖 Doc:^^" \
                          "libs=\par 📚 Libraries:^^" \
                          "feat=\par ✨ Features:^^" \
+                         "see=\par 🔗 See also:^^" \
                          \
                          "todo=\par ☑️ Todo:^^" \
                          "done=\par ✅ Done:^^" \

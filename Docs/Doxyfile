@@ -43,7 +43,7 @@ PROJECT_NAME           = "xLib"
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         = "1.0.0 2025-04-04 19:55:29"
+PROJECT_NUMBER         = "1.0.0 2025-04-04 20:29:35"
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
@@ -278,6 +278,7 @@ ALIASES                = "faq=\par ❓FAQ:^^" \
                          "doc=\par 📖 Doc:^^" \
                          "libs=\par 📚 Libraries:^^" \
                          "feat=\par ✨ Features:^^" \
+                         "see=\par 🔗 See also:^^" \
                          \
                          "todo=\par ☑️ Todo:^^" \
                          "done=\par ✅ Done:^^" \

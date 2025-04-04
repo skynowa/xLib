@@ -12,7 +12,9 @@
 
 [![Deploy Doxygen Documentation](https://github.com/skynowa/skynowa.github.io/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/skynowa/skynowa.github.io/actions/workflows/deploy-docs.yml)
 
-## Features
+-----
+
+## ✨ Features
 
 - Language: C++ 20
 - Platforms:
@@ -26,21 +28,21 @@
     - MSVC
     - MinGW
 
-## Repositories
+## 📦 Repositories
 
 - https://github.com/skynowa/xLib
 - [Change Log](https://github.com/skynowa/xLib/blob/master/Docs/ChangeLog.md)
 
-## Dependencies
+## 🔗 Dependencies
 
 - https://github.com/skynowa/CMakeLib
 
-## Examples
+## 💡 Examples
 
 - [TODO] Impl
 - [Tests](https://github.com/skynowa/xLib/tree/master/Tests)
 
-## Documentation
+## 📑 Documentation
 
 - [GitHub Pages](https://skynowa.github.io/)
 - [Repository](https://github.com/skynowa/skynowa.github.io/actions)
