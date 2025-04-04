@@ -238,10 +238,9 @@ Envs::findFirstOf(
 
 	for (const auto &it_name : a_names) {
 		Env env(_prefix, it_name);
-		bool_t bRv = env.isExists();
-		xCHECK_DO(!bRv, continue);
-
-		return env.value();
+		if ( env.isExists() ) {
+			return env.value();
+		}
 	}
 
 	return {};
