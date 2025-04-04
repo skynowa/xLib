@@ -98,7 +98,7 @@ public:
 		///< get all values
 	std::tstring_t findFirstOf(std::cvec_tstring_t &names) const;
 		///< get first value by names
-	std::tstring_t operator[](std::ctstring_t &name) const;
+	std::tstring_t operator [] (std::ctstring_t &name) const;
 		///< get value by name
 ///\}
 
