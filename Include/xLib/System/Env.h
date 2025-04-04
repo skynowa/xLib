@@ -57,7 +57,7 @@ private:
 	static std::ctstring_t _envsSeparator();
 		///< vars separator
 
-    std::ctstring_t _prefix_name;
+    std::ctstring_t _prefix_name; ///< Like a "namepace" prefix
 
     bool_t _isNameValid() const;
         ///< is valid environment variable name
@@ -106,8 +106,9 @@ xPUBLIC_STATIC:
         ///< \win Same as ExpandEnvironmentStrings()
 
 private:
-    std::ctstring_t _prefix;
+    std::ctstring_t _prefix; ///< Like a "namepace" prefix
 
+xPLATFORM_IMPL:
     std::vec_tstring_t _vars_impl() const;
 };
 //-------------------------------------------------------------------------------------------------

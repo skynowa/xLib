@@ -33,15 +33,15 @@ namespace xl::system
 
 //-------------------------------------------------------------------------------------------------
 Env::Env(
-	std::ctstring_t &a_name
+	std::ctstring_t &a_name ///< Like a "namepace" prefix
 ) :
 	Env{{}, a_name}
 {
 }
 //-------------------------------------------------------------------------------------------------
 Env::Env(
-	std::ctstring_t &a_prefix,
-	std::ctstring_t &a_name
+	std::ctstring_t &a_prefix, ///< Like a "namepace" prefix
+	std::ctstring_t &a_name    ///< variable name
 ) :
 	_prefix_name{a_prefix + a_name}
 {
@@ -182,7 +182,7 @@ Envs::Envs() :
 }
 //-------------------------------------------------------------------------------------------------
 Envs::Envs(
-	std::ctstring_t &a_prefix
+	std::ctstring_t &a_prefix ///< Like a "namepace" prefix
 ) :
 	_prefix{a_prefix}
 {
