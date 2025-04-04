@@ -179,8 +179,8 @@ Test_Env::unit()
 	{
 		for (const auto &it_prefix : prefixes) {
 			Envs envs(it_prefix);
-			m_vsRv = envs.vars();
-			xTEST(!m_vsRv.empty());
+			const auto spRv = envs.vars();
+			xTEST(!spRv.empty());
 		}
 	}
 

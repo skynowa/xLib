@@ -213,10 +213,20 @@ Envs::setVars(
 	}
 }
 //-------------------------------------------------------------------------------------------------
-std::vec_tstring_t
+std::set<std::pair_tstring_t>
 Envs::vars() const
 {
-    return std::move( _vars_impl() );
+	std::set<std::pair_tstring_t> spRv;
+
+	for (const auto &it_var : _vars_impl()) {
+		std::vec_tstring_t items;
+		String::split(it_var, Const::equal(), &items);
+		xCHECK_DO(items.size() != 2, continue);
+
+		spRv.emplace(items[0], items[1]);
+	}
+
+    return std::move(spRv);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
