@@ -27,6 +27,25 @@ Test_Env::unit()
 	*
 	**************************************************/
 
+	xTEST_CASE("ctor - userNs")
+	{
+		std::ctstring_t expected = xT("TEST_XXX");
+
+		auto env = Env::userNs(xT("KEY_XXX"));
+
+		env.setValue(expected);
+		xTEST_EQ(env.value(), expected);
+
+		Cout() << xTRACE_VAR(env.value());
+		Cout() << xTRACE_VAR(Envs(xT("SKYNOWA_")).vars());
+	}
+
+	xTEST_CASE("ctor - path")
+	{
+		auto env = Env::path();
+		xTEST(!env.value().empty());
+	}
+
 	xTEST_CASE("str")
 	{
 		for (const auto &it_ns : nss) {
@@ -166,8 +185,6 @@ Test_Env::unit()
 		// TODO: env_2.txt
 		// std::ctstring_t envFilePath = option().testDirPath + xT("/System/env_2.txt");
 
-		Cout() << xTRACE_VAR_2(envFilePath, ns);
-
 		const std::map_tstring_t vars
 		{
 			{xT("DB_HOST"),     xT("127.0.0.1")},
@@ -179,8 +196,7 @@ Test_Env::unit()
 
 		Envs envs(ns);
 		envs.setVars(envFilePath);
-
-		Cout() << xTRACE_VAR(envs.vars());
+		// Cout() << xTRACE_VAR(envs.vars());
 
 		for (const auto &[it_name, it_value] : vars) {
 			xTEST_EQ(envs[it_name], it_value);

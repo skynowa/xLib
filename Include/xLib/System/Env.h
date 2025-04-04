@@ -30,6 +30,8 @@ public:
     xNO_DEFAULT_CONSTRUCT(Env);
     xNO_COPY_ASSIGN(Env);
 
+    static Env userNs(std::ctstring_t &name);
+        ///< get environment with [current user name] namespace
     static Env path();
         ///< get PATH values (/usr/bin ... pathes) with separator
 ///\}
@@ -53,7 +55,7 @@ public:
 
 private:
     static std::csize_t    _envMax();
-        ///< maximum permissible string length of an environmental variable
+        ///< maximum permissible string length of an environment variable
 	static std::ctstring_t _envsSeparator();
 		///< vars separator
 
