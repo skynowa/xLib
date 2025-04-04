@@ -1,6 +1,8 @@
 # xLib - C++ cross-platform library
 
 ![GitHub Watchers](https://img.shields.io/github/watchers/skynowa/xLib)
+[![GitHub Stars](https://img.shields.io/github/stars/skynowa/xLib?color=ff69b4)](https://github.com/skynowa/xLib/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/skynowa/xLib?color=ff69b4)](https://github.com/skynowa/xLib/network)
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
 
