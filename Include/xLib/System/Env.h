@@ -23,14 +23,14 @@ class Env :
 public:
 ///\name ctors, dtor
 ///\{
-	explicit Env(std::ctstring_t &name);
-	         Env(std::ctstring_t &ns, std::ctstring_t &name);
-	virtual ~Env() = default;
+    explicit Env(std::ctstring_t &name);
+             Env(std::ctstring_t &ns, std::ctstring_t &name);
+    virtual ~Env() = default;
 
-	xNO_DEFAULT_CONSTRUCT(Env);
-	xNO_COPY_ASSIGN(Env);
+    xNO_DEFAULT_CONSTRUCT(Env);
+    xNO_COPY_ASSIGN(Env);
 
-	static Env path();
+    static Env path();
         ///< get PATH values (/usr/bin ... pathes) with separator
 ///\}
 
