@@ -88,13 +88,13 @@ public:
 ///\{
 	void_t setVars(std::ctstring_t &envFilePath) const;
 		///< set or change values from env file (for example ".env")
-	void_t setVars(const std::set<std::pair_tstring_t> &vars) const;
+	void_t setVars(const std::map_tstring_t &vars) const;
 		///< set or change values
 ///\}
 
 ///\name Getters
 ///\{
-	std::set<std::pair_tstring_t> vars() const;
+	std::map_tstring_t vars() const;
 		///< get all values
 	std::tstring_t findFirstOf(std::cvec_tstring_t &names) const;
 		///< get first value by names

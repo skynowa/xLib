@@ -30,7 +30,7 @@ Test_Env::unit()
 	xTEST_CASE("str")
 	{
 		for (const auto &it_prefix : prefixes) {
-			const std::set<std::pair_tstring_t> vars
+			const std::map_tstring_t vars
 			{
 				{xT("ENV_TEST_1"), xT("value1")},
 				{xT("ENV_TEST_2"), xT("value2")},
@@ -162,7 +162,7 @@ Test_Env::unit()
 	xTEST_CASE("Envs::setVars")
 	{
 		for (const auto &it_prefix : prefixes) {
-			const std::set<std::pair_tstring_t> vars
+			const std::map_tstring_t vars
 			{
 				{xT("ENV_TEST_1"), xT("value1")},
 				{xT("ENV_TEST_2"), xT("value2")},

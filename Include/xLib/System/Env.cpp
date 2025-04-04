@@ -204,7 +204,7 @@ Envs::setVars(
 //-------------------------------------------------------------------------------------------------
 void_t
 Envs::setVars(
-    const std::set<std::pair_tstring_t> &a_vars ///< vars ({"HOME=/usr/home","LOGNAME=home"})
+    const std::map_tstring_t &a_vars ///< vars ({"HOME=/usr/home","LOGNAME=home"})
 ) const
 {
 	for (const auto &[it_name, it_value] : a_vars) {
@@ -213,10 +213,10 @@ Envs::setVars(
 	}
 }
 //-------------------------------------------------------------------------------------------------
-std::set<std::pair_tstring_t>
+std::map_tstring_t
 Envs::vars() const
 {
-	std::set<std::pair_tstring_t> spRv;
+	std::map_tstring_t spRv;
 
 	for (const auto &it_var : _vars_impl()) {
 		std::vec_tstring_t items;
