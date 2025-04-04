@@ -89,11 +89,11 @@ PathDetail
 
 ## Doc
 
-- [!] Doc - impl
+- [+] Doc - impl
 - [+] Custom tags
 - [+] `\see` as list (`\n` -> -)
 - [?] Auto gen todo list at root of the project - impl
-- [!] Auto gen Change Log - impl
+- [+] Auto gen Change Log - impl
 
 ## Remove
 
