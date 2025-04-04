@@ -10,6 +10,10 @@
  * - configs
  * - donate
  * - locale
+ *
+ * \libs
+ *
+ * - https://github.com/1nfiniteloop/cpp-env/blob/main/source/application/src/Application.cc
  */
 
 
