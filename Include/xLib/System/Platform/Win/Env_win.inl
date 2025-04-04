@@ -81,7 +81,11 @@ Envs::_vars_impl() const
         *var != xT('\0');
         var += ::lstrlen(var) + 1)
     {
-        args.push_back(var);
+        std::ctstring_t &it_str = *var;
+        // Check namespace
+        xCHECK_DO(!it_str.starts_with(_ns), continue);
+
+        args.emplace_back(it_str);
     }
 
     BOOL blRv = ::FreeEnvironmentStrings(lpvEnv);

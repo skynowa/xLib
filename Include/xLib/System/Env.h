@@ -112,6 +112,7 @@ private:
 
 xPLATFORM_IMPL:
     std::vec_tstring_t _vars_impl() const;
+        ///< variables with values (DESKTOP_SESSION=xfce, ...)
 };
 //-------------------------------------------------------------------------------------------------
 

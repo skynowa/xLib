@@ -73,7 +73,11 @@ Envs::_vars_impl() const
     std::vec_tstring_t args;
 
     for (size_t i = 0; env[i] != 0; ++ i) {
-        args.push_back( xA2T(env[i]) );
+        std::ctstring_t &it_str = xA2T(env[i]);
+        // Check namespace
+        xCHECK_DO(!it_str.starts_with(_ns), continue);
+
+        args.emplace_back(it_str);
     }
 
     return std::move(args);
