@@ -219,6 +219,7 @@ Envs::vars() const
 	std::map_tstring_t spRv;
 
 	for (const auto &it_var : _vars_impl()) {
+		// Check namespace
 		xCHECK_DO(!it_var.starts_with(_ns), continue);
 
 		std::vec_tstring_t items;
