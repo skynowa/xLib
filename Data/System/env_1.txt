@@ -1,0 +1,5 @@
+DB_HOST=127.0.0.1
+DB_PASSWORD=secret
+DB_USER=admin
+X_APIKEY=xyz
+Y_APIKEY=abc
