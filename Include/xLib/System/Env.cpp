@@ -208,10 +208,7 @@ Envs::setVars(
 	Config config(a_envFilePath);
 	config.read();
 
-	for (const auto &[it_name, it_value] : config.get() ) {
-		Env env(_ns, it_name);
-		env.setValue(it_value);
-	}
+	setVars( config.get() );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
