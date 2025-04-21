@@ -35,10 +35,6 @@ public:
         ///< get handle
     void_t         load();
         ///< load
-    bool_t         isProcExists(std::ctstring_t &procName) const;
-        ///< is function exists
-    proc_address_t procAddress(std::ctstring_t &procName) const;
-        ///< get address of an exported function or variable
 
     template<typename ProcAddressT>
     ProcAddressT
@@ -53,6 +49,11 @@ public:
 private:
     std::ctstring_t _dllPath; ///< file path
     HandleDll       _handle;  ///< dll module handle
+
+    bool_t         isProcExists(std::ctstring_t &procName) const;
+        ///< is function exists
+    proc_address_t procAddress(std::ctstring_t &procName) const;
+        ///< get address of an exported function or variable
 
 xPLATFORM_IMPL:
     void_t         _load_impl();
