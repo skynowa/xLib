@@ -40,6 +40,16 @@ public:
     proc_address_t procAddress(std::ctstring_t &procName) const;
         ///< get address of an exported function or variable
 
+    template<typename ProcAddressT>
+    ProcAddressT
+    proc(std::ctstring_t &procName) const
+    {
+        proc_address_t paRv = procAddress(procName);
+        xCHECK_RET(paRv == nullptr, ProcAddressT{});
+
+        return reinterpret_cast<ProcAddressT>(paRv);
+    }
+
 private:
     std::ctstring_t _dllPath; ///< file path
     HandleDll       _handle;  ///< dll module handle
