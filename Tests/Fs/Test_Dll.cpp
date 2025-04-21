@@ -22,7 +22,7 @@ Test_Dll::unit()
 		};
 	#elif xENV_UNIX
 		#if   xENV_LINUX
-			const data2_tstring_t data[]
+			const data2_tstring_t datas[]
 			{
 				{Format::str(xT("libm.{}.6"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
 			};
@@ -42,8 +42,8 @@ Test_Dll::unit()
 		#endif
 	#endif
 
-        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            Dll dll(data[i].test);
+        for (const auto &it_data : datas) {
+            Dll dll(it_data.test);
 
             m_bRv = dll.get().isValid();
             xTEST(!m_bRv);
@@ -56,12 +56,12 @@ Test_Dll::unit()
             xTEST(m_bRv);
 
             // isProcExists
-            m_bRv = dll.isProcExists(data[i].expect);
+            m_bRv = dll.isProcExists(it_data.expect);
             xTEST(m_bRv);
 
             // procAddress
         #if   xENV_WIN
-            Dll::proc_address_t paRv = dll.procAddress(data[i].expect);
+            Dll::proc_address_t paRv = dll.procAddress(it_data.expect);
             xTEST_PTR(paRv);
 
             using ptr_dll_func_t = void_t (__stdcall *)(ulong_t, ulong_t);
@@ -69,7 +69,7 @@ Test_Dll::unit()
 
             loadBeep(1, 1);
         #elif xENV_UNIX
-            Dll::proc_address_t paRv = dll.procAddress(data[i].expect);
+            Dll::proc_address_t paRv = dll.procAddress(it_data.expect);
             xTEST_PTR(paRv);
 
             using ptr_dll_func_t = double (*)(double);
@@ -82,7 +82,7 @@ Test_Dll::unit()
             // isLoaded
             m_bRv = dll.get().isValid();
             xTEST(m_bRv);
-        } // for (i)
+        } // for (datas)
     }
 
     return true;
