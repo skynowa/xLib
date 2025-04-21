@@ -134,7 +134,7 @@ ProcessInfo::_commandLine_impl(
             bool_t bRv = dll.isProcExists(xT("NtQueryInformationProcess"));
             xTEST(bRv);
 
-            auto func = (func_t)dll.procAddress(xT("NtQueryInformationProcess"));
+            auto func = dll.proc<func_t>(xT("NtQueryInformationProcess"));
             xTEST_PTR(func);
 
         #if xARCH_BITS_32

@@ -31,7 +31,7 @@ Cpu::_currentNum_impl() const
     bool_t bRv = dll.isProcExists(xT("GetCurrentProcessorNumber"));
     xCHECK_RET(!bRv, 0UL);
 
-    auto func = (func_t)dll.procAddress(xT("GetCurrentProcessorNumber"));
+    auto func = dll.proc<func_t>(xT("GetCurrentProcessorNumber"));
     xTEST_PTR(func);
 
     ulong_t ulRv = func();

@@ -308,8 +308,7 @@ Process::_currentParentId_impl()
     ULONG                     processInformation[6] = {};
     DWORD                     returnSizeBytes       = {};
 
-    auto DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)
-        dll.procAddress(xT("NtQueryInformationProcess"));
+    auto DllNtQueryInformationProcess = dll.proc<Dll_NtQueryInformationProcess_t>(xT("NtQueryInformationProcess"));
     xTEST_PTR(DllNtQueryInformationProcess);
 
     // TODO: [skynowa] ProcessBasicInformation (for x64)
