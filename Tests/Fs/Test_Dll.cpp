@@ -60,18 +60,15 @@ Test_Dll::unit()
             xTEST(m_bRv);
 
             // procAddress
-        #if   xENV_WIN
             Dll::proc_address_t paRv = dll.procAddress(it_data.expect);
             xTEST_PTR(paRv);
 
+        #if   xENV_WIN
             using ptr_dll_func_t = void_t (__stdcall *)(ulong_t, ulong_t);
             ptr_dll_func_t funcBeep = reinterpret_cast<ptr_dll_func_t>(paRv);
 
             funcBeep(1, 1);
         #elif xENV_UNIX
-            Dll::proc_address_t paRv = dll.procAddress(it_data.expect);
-            xTEST_PTR(paRv);
-
             using ptr_dll_func_t = double (*)(double);
             ptr_dll_func_t funcCosine = reinterpret_cast<ptr_dll_func_t>(paRv);
 
