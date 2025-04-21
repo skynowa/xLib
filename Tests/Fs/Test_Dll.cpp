@@ -65,17 +65,17 @@ Test_Dll::unit()
             xTEST_PTR(paRv);
 
             using ptr_dll_func_t = void_t (__stdcall *)(ulong_t, ulong_t);
-            ptr_dll_func_t loadBeep = reinterpret_cast<ptr_dll_func_t>(paRv);
+            ptr_dll_func_t funcBeep = reinterpret_cast<ptr_dll_func_t>(paRv);
 
-            loadBeep(1, 1);
+            funcBeep(1, 1);
         #elif xENV_UNIX
             Dll::proc_address_t paRv = dll.procAddress(it_data.expect);
             xTEST_PTR(paRv);
 
             using ptr_dll_func_t = double (*)(double);
-            ptr_dll_func_t cosine = reinterpret_cast<ptr_dll_func_t>(paRv);
+            ptr_dll_func_t funcCosine = reinterpret_cast<ptr_dll_func_t>(paRv);
 
-            const FDouble dRv( cosine(2.0) );
+            const FDouble dRv( funcCosine(2.0) );
             xTEST_LESS(dRv, -0.4 /* -0.41614683654 */);
         #endif
 
