@@ -13,32 +13,23 @@ xTEST_UNIT(Test_Dll)
 bool_t
 Test_Dll::unit()
 {
-#if   xENV_WIN
 	const data2_tstring_t datas[]
 	{
+	#if   xENV_WIN
 		{Format::str(xT("kernel32.{}"), Path::fileExt(Path::FileExt::Dll)), xT("Beep")}
-	};
-#elif xENV_UNIX
-	#if   xENV_LINUX
-		const data2_tstring_t datas[]
-		{
+	#elif xENV_UNIX
+		#if   xENV_LINUX
 			{Format::str(xT("libm.{}.6"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
-		};
-	#elif xENV_BSD
-		// TEST: if -static Dll::load() don't load any 'so'-libraries
-		return false;
+		#elif xENV_BSD
+			// TEST: if -static Dll::load() don't load any 'so'-libraries
+			static_assert(false);
 
-		const data2_tstring_t datas[]
-		{
 			{Format::str(xT("libm.{}.6"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
-		};
-	#elif xENV_APPLE
-		const data2_tstring_t datas[]
-		{
+		#elif xENV_APPLE
 			{Format::str(xT("libm.{}"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
-		};
+		#endif
 	#endif
-#endif
+	};
 
 	for (const auto &it_data : datas) {
 		xTEST_CASE("Dll")
