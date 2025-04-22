@@ -32,13 +32,19 @@ Test_Dll::unit()
 	};
 
 	for (const auto &it_data : datas) {
+		const auto &dllPath  = it_data.test;
+		const auto &funcName = it_data.expect;
+
+		Dll dll(dllPath);
+
 		xTEST_CASE("Dll")
 		{
-			Dll dll(it_data.test);
-
 			m_bRv = dll.isOk();
 			xTEST(!m_bRv);
+		}
 
+		xTEST_CASE("load")
+		{
 			// load
 			dll.load();
 			xTEST(dll.isOk());
@@ -47,10 +53,13 @@ Test_Dll::unit()
 			if (!dll) {
 				xTEST(false);
 			}
+		}
 
+		xTEST_CASE("symbol")
+		{
 		#if   xENV_WIN
 			using func_t = void_t (__stdcall *)(ulong_t, ulong_t);
-			auto func = reinterpret_cast<func_t>(paRv);
+			auto func = dll.symbol<func_t>(funcName);
 
 			func(1, 1);
 		#elif xENV_UNIX
@@ -62,17 +71,17 @@ Test_Dll::unit()
 				xTEST_LESS(dRv, -0.4 /* -0.41614683654 */);
 			#else
 				using func_t = double (*)(double);
-				auto func = dll.symbol<func_t>(it_data.expect);
+				auto func = dll.symbol<func_t>(funcName);
 
 				const FDouble dRv( func(2.0) );
 				xTEST_LESS(dRv, -0.4 /* -0.41614683654 */);
 			#endif
 		#endif
-
-			// isLoaded
-			m_bRv = dll.isOk();
-			xTEST(m_bRv);
 		}
+
+		// isLoaded
+		m_bRv = dll.isOk();
+		xTEST(m_bRv);
 	} // for (datas)
 
     return true;
