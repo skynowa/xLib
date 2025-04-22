@@ -43,6 +43,17 @@ Test_Dll::unit()
 			xTEST(!m_bRv);
 		}
 
+		xTEST_CASE("isOk")
+		{
+			m_bRv = dll.isOk();
+			xTEST(m_bRv);
+			xTEST(!!dll.isOk());
+
+			if (!dll) {
+				xTEST(false);
+			}
+		}
+
 		xTEST_CASE("load")
 		{
 			// load
