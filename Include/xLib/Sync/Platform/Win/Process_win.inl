@@ -305,8 +305,8 @@ Process::_currentParentId_impl()
 #else
     const PROCESSINFOCLASS    infoClass             = ProcessWow64Information;
 #endif
-    ULONG                     processInformation[6] = {};
-    DWORD                     returnSizeBytes       = {};
+    ULONG                     processInformation[6] {};
+    DWORD                     returnSizeBytes       {};
     Dll_NtQueryInformationProcess_t
     DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)
         dll.procAddress(xT("NtQueryInformationProcess"));
