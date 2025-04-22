@@ -37,7 +37,7 @@ Test_Dll::unit()
 
 		Dll dll(dllPath);
 
-		xTEST_CASE("Dll")
+		xTEST_CASE("ctor")
 		{
 			m_bRv = dll.isOk();
 			xTEST(!m_bRv);
@@ -63,19 +63,11 @@ Test_Dll::unit()
 
 			func(1, 1);
 		#elif xENV_UNIX
-			#if 0
-				using func_t = double (*)(double);
-				auto func = reinterpret_cast<func_t>(paRv);
+			using func_t = double (*)(double);
+			auto func = dll.symbol<func_t>(funcName);
 
-				const FDouble dRv( func(2.0) );
-				xTEST_LESS(dRv, -0.4 /* -0.41614683654 */);
-			#else
-				using func_t = double (*)(double);
-				auto func = dll.symbol<func_t>(funcName);
-
-				const FDouble dRv( func(2.0) );
-				xTEST_LESS(dRv, -0.4 /* -0.41614683654 */);
-			#endif
+			const FDouble dRv( func(2.0) );
+			xTEST_LESS(dRv, -0.4 /* -0.41614683654 */);
 		#endif
 		}
 
