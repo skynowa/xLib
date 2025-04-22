@@ -46,7 +46,6 @@ public:
     symbol(std::ctstring_t &procName) const
     {
         proc_address_t paRv = procAddress(procName);
-        xCHECK_RET(paRv == nullptr, ProcAddressT{});
 
         return reinterpret_cast<ProcAddressT>(paRv);
     }
