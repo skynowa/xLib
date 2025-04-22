@@ -8,11 +8,13 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
+#include <xLib/Interface/IValid.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
 
-class Dll
+class Dll :
+    public xl::interface_::IValid
     /// dynamic linking loader
 {
 public:
@@ -29,6 +31,11 @@ public:
 
 	xNO_DEFAULT_CONSTRUCT(Dll);
 	xNO_COPY_ASSIGN(Dll);
+///\}
+
+///\name Overrides
+///\{
+	bool_t isOk() const final;
 ///\}
 
     HandleDll     &get();
