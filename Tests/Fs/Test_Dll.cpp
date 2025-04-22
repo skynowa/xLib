@@ -58,22 +58,22 @@ Test_Dll::unit()
             }
 
         #if   xENV_WIN
-            using ptr_dll_func_t = void_t (__stdcall *)(ulong_t, ulong_t);
-            auto procBeep = reinterpret_cast<ptr_dll_func_t>(paRv);
+            using func_t = void_t (__stdcall *)(ulong_t, ulong_t);
+            auto func = reinterpret_cast<func_t>(paRv);
 
-            procBeep(1, 1);
+            func(1, 1);
         #elif xENV_UNIX
 			#if 0
-				using ptr_dll_func_t = double (*)(double);
-				auto procCosine = reinterpret_cast<ptr_dll_func_t>(paRv);
+				using func_t = double (*)(double);
+				auto func = reinterpret_cast<func_t>(paRv);
 
-				const FDouble dRv( procCosine(2.0) );
+				const FDouble dRv( func(2.0) );
 				xTEST_LESS(dRv, -0.4 /* -0.41614683654 */);
 			#else
-				using ptr_dll_func_t = double (*)(double);
-				auto procCosine = dll.proc<ptr_dll_func_t>(it_data.expect);
+				using func_t = double (*)(double);
+				auto func = dll.symbol<func_t>(it_data.expect);
 
-				const FDouble dRv( procCosine(2.0) );
+				const FDouble dRv( func(2.0) );
 				xTEST_LESS(dRv, -0.4 /* -0.41614683654 */);
 			#endif
         #endif

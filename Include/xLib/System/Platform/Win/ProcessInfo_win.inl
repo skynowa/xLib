@@ -132,7 +132,7 @@ ProcessInfo::_commandLine_impl(
             dll.load(xT("ntdll.dll"));
             xCHECK_RET(!dll.isOk(), nullptr);
 
-            auto func = dll.proc<func_t>(xT("NtQueryInformationProcess"));
+            auto func = dll.symbol<func_t>(xT("NtQueryInformationProcess"));
             xTEST_PTR(func);
 
         #if xARCH_BITS_32

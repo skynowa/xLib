@@ -43,7 +43,7 @@ public:
 
     template<typename ProcAddressT>
     ProcAddressT
-    proc(std::ctstring_t &procName) const
+    symbol(std::ctstring_t &procName) const
     {
         proc_address_t paRv = procAddress(procName);
         xCHECK_RET(paRv == nullptr, ProcAddressT{});

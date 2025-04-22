@@ -126,17 +126,17 @@ Os::_arch_impl() const
     Arch oaRv = Arch::Unknown;
 
 #if   xARCH_BITS_32
-	using IsWow64Process_t = BOOL (WINAPI *)(HANDLE hProcess, PBOOL Wow64Process);
+	using func_t = BOOL (/* WINAPI */ *)(HANDLE hProcess, PBOOL Wow64Process);
 
 	Dll dll(xT("kernel32.dll"));
 	dll.load();
 
-	auto IsWow64Process = dll.proc<IsWow64Process_t>(xT("IsWow64Process"));
-	if (IsWow64Process != nullptr) {
-		BOOL is64BitOs      = FALSE;
-		BOOL isWow64Process = IsWow64Process(::GetCurrentProcess(), &is64BitOs);
+	auto func = dll.symbol<func_t>(xT("IsWow64Process"));
+	if (func != nullptr) {
+		BOOL is64BitOs = FALSE;
+		BOOL blRv = func(::GetCurrentProcess(), &is64BitOs);
 
-		oaRv = (isWow64Process && is64BitOs) ? Arch::Bit64 : Arch::Bit32;
+		oaRv = (blRv && is64BitOs) ? Arch::Bit64 : Arch::Bit32;
 	} else {
 		oaRv = Arch::Bit32;
 	}
