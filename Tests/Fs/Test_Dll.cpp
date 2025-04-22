@@ -77,8 +77,8 @@ Test_Dll::unit()
 			using func_t = double (*)(double);
 			auto func = dll.symbol<func_t>(funcName);
 
-			const FDouble dRv( func(2.0) );
-			xTEST_LESS(dRv, -0.4 /* -0.41614683654 */);
+			const FDouble dRv( func(2 * M_PI) );
+			xTEST_EQ(dRv, 1.0);
 		#endif
 		}
 
