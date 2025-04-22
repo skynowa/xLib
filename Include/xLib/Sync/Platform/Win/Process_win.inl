@@ -290,8 +290,7 @@ Process::_currentParentId_impl()
         PROCESSINFOCLASS ProcessInformationClass,
         PVOID            ProcessInformation,
         ULONG            ProcessInformationLength,
-        PULONG           ReturnLength
-    );
+        PULONG           ReturnLength);
 
     const id_t invalidId = (DWORD)- 1;
 
