@@ -45,7 +45,6 @@ Test_Dll::unit()
 
 		xTEST_CASE("load")
 		{
-			// load
 			dll.load();
 			xTEST(dll.isOk());
 			xTEST(!!dll.isOk());
