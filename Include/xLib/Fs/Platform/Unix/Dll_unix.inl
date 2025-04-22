@@ -20,26 +20,6 @@ Dll::_load_impl()
     xTEST_MSG(_handle.isValid(), NativeError::format());
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
-Dll::_isSymbolExists_impl(
-    std::ctstring_t &a_procName
-) const
-{
-    xTEST(_handle.isValid());
-
-    const char *error {};
-
-    error = ::dlerror();
-    xTEST_PTR_FAIL(error);
-
-    (void_t)::dlsym(_handle.get(), xT2A(a_procName).c_str());
-
-    error = ::dlerror();
-    xCHECK_RET(error != nullptr, false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
 Dll::proc_address_t
 Dll::_procAddress_impl(
     std::ctstring_t &a_procName
