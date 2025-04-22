@@ -45,7 +45,7 @@ public:
     ProcAddressT
     symbol(std::ctstring_t &procName) const
     {
-        proc_address_t paRv = procAddress(procName);
+        proc_address_t paRv = _procAddress_impl(procName);
 
         return reinterpret_cast<ProcAddressT>(paRv);
     }
@@ -54,15 +54,13 @@ private:
     std::ctstring_t _dllPath; ///< file path
     HandleDll       _handle;  ///< dll module handle
 
-    bool_t         isProcExists(std::ctstring_t &procName) const;
+    bool_t         isSymbolExists(std::ctstring_t &procName) const;
         ///< is function exists
-    proc_address_t procAddress(std::ctstring_t &procName) const;
-        ///< get address of an exported function or variable
 
 xPLATFORM_IMPL:
     void_t         _load_impl();
         ///< load
-    bool_t         _isProcExists_impl(std::ctstring_t &procName) const;
+    bool_t         _isSymbolExists_impl(std::ctstring_t &procName) const;
         ///< is function exists
     proc_address_t _procAddress_impl(std::ctstring_t &procName) const;
         ///< get address of an exported function or variable

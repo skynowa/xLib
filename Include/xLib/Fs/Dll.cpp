@@ -61,19 +61,11 @@ Dll::load()
 
 //-------------------------------------------------------------------------------------------------
 bool_t
-Dll::isProcExists(
+Dll::isSymbolExists(
     std::ctstring_t &a_procName
 ) const
 {
-    return _isProcExists_impl(a_procName);
-}
-//-------------------------------------------------------------------------------------------------
-Dll::proc_address_t
-Dll::procAddress(
-    std::ctstring_t &a_procName
-) const
-{
-    return _procAddress_impl(a_procName);
+    return _isSymbolExists_impl(a_procName);
 }
 //-------------------------------------------------------------------------------------------------
 

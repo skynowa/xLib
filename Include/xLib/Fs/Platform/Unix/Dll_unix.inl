@@ -21,7 +21,7 @@ Dll::_load_impl()
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Dll::_isProcExists_impl(
+Dll::_isSymbolExists_impl(
     std::ctstring_t &a_procName
 ) const
 {
