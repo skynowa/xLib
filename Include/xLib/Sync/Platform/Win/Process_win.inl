@@ -303,8 +303,8 @@ Process::_currentParentId_impl()
 #else
     const PROCESSINFOCLASS    infoClass             = ProcessWow64Information;
 #endif
-    ULONG                     processInformation[6] = {};
-    DWORD                     returnSizeBytes       = {};
+    ULONG                     processInformation[6] {};
+    DWORD                     returnSizeBytes       {};
 
     auto func = dll.symbol<func_t>(xT("NtQueryInformationProcess"));
     xTEST_PTR(func);
