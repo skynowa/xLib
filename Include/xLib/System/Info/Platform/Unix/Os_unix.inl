@@ -60,37 +60,6 @@ Os::_formatOs_impl() const
 Os::Arch
 Os::_arch_impl() const
 {
-	{
-	#if 1
-		#define BOOL int
-		#define FALSE 0
-		#define HANDLE int
-		#define PBOOL int*
-		#define GetCurrentProcess getpid
-
-		Arch oaRv = Arch::Unknown;
-
-		{
-			using func_t = BOOL (/* WINAPI */ *)(HANDLE hProcess, PBOOL Wow64Process);
-
-			Dll dll(xT("kernel32.dll"));
-			dll.load();
-
-			auto func = dll.symbol<func_t>(xT("IsWow64Process"));
-			if (func != nullptr) {
-				BOOL is64BitOs = FALSE;
-				BOOL blRv = func(::GetCurrentProcess(), &is64BitOs);
-
-				oaRv = (blRv && is64BitOs) ? Arch::Bit64 : Arch::Bit32;
-			} else {
-				oaRv = Arch::Bit32;
-			}
-		}
-
-		xUNUSED(oaRv);
-	#endif
-	}
-
     Arch oaRv = Arch::Unknown;
 
     std::tstring_t infoMachine;
