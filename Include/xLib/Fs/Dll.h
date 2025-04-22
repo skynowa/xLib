@@ -38,9 +38,7 @@ public:
 	bool_t isOk() const final;
 ///\}
 
-    HandleDll     &get();
-        ///< get handle
-    void_t         load();
+    void_t load();
         ///< load
 
     template<typename ProcAddressT>

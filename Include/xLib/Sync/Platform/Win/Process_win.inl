@@ -296,6 +296,7 @@ Process::_currentParentId_impl()
 
     Dll dll;
     dll.load(xT("ntdll.dll"));
+    xCHECK_RET(!dll.isOk(), invalidId);
 
     bool_t bRv = dll.isProcExists(xT("NtQueryInformationProcess"));
     xCHECK_RET(!bRv, invalidId);

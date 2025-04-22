@@ -45,15 +45,21 @@ Test_Dll::unit()
         for (const auto &it_data : datas) {
             Dll dll(it_data.test);
 
-            m_bRv = dll.get().isValid();
+            m_bRv = dll.isOk();
             xTEST(!m_bRv);
 
             // load
             dll.load();
 
             // isLoaded
-            m_bRv = dll.get().isValid();
+            m_bRv = dll.isOk();
             xTEST(m_bRv);
+            xTEST(dll.isOk());
+            xTEST(!!dll.isOk());
+
+            if (!dll) {
+                xTEST(false);
+            }
 
 		#if 0
 			// isProcExists
@@ -87,7 +93,7 @@ Test_Dll::unit()
         #endif
 
             // isLoaded
-            m_bRv = dll.get().isValid();
+            m_bRv = dll.isOk();
             xTEST(m_bRv);
         } // for (datas)
     }

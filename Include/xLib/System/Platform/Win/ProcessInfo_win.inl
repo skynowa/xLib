@@ -130,6 +130,7 @@ ProcessInfo::_commandLine_impl(
         {
             Dll dll;
             dll.load(xT("ntdll.dll"));
+            xCHECK_RET(!dll.isOk(), nullptr);
 
             bool_t bRv = dll.isProcExists(xT("NtQueryInformationProcess"));
             xTEST(bRv);
