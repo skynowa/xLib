@@ -71,9 +71,11 @@ Test_Dll::unit()
 		#endif
 		}
 
-		// isLoaded
-		m_bRv = dll.isOk();
-		xTEST(m_bRv);
+		xTEST_CASE("isOk")
+		{
+			m_bRv = dll.isOk();
+			xTEST(m_bRv);
+		}
 	} // for (datas)
 
     return true;
