@@ -68,12 +68,12 @@ Test_Dll::unit()
 		xTEST_CASE("symbol")
 		{
 		#if   xENV_WIN
-			using func_t = void_t (__stdcall *)(ulong_t, ulong_t);
+			using func_t = xFUNC_PTR(void_t, ulong_t, ulong_t);
 			auto func = dll.symbol<func_t>(funcName);
 
 			func(1, 1);
 		#elif xENV_UNIX
-			using func_t = xFUNC_PTR(double, __cdecl, double);
+			using func_t = xFUNC_PTR(double, double);
 			auto func = dll.symbol<func_t>(funcName);
 
 			const FDouble dRv( func(2 * M_PI) );

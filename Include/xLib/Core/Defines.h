@@ -58,9 +58,9 @@
 ///\name Function pointer types with calling convention
 ///\{
 #if   xENV_WIN
-	#define xFUNC_PTR(RetType, CallConv, ...) RetType (CallConv *)(__VA_ARGS__)
+	#define xFUNC_PTR(RetType, ...) RetType (__stdcall *)(__VA_ARGS__)
 #elif xENV_UNIX
-	#define xFUNC_PTR(RetType, CallConv, ...) RetType (*)(__VA_ARGS__)
+	#define xFUNC_PTR(RetType, ...) RetType (*)(__VA_ARGS__)
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
