@@ -55,6 +55,15 @@
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
+///\name Function pointer types with calling convention
+///\{
+#if   xENV_WIN
+	#define xFUNC_PTR(RetType, CallConv, ...) RetType (CallConv *)(__VA_ARGS__)
+#elif xENV_UNIX
+	#define xFUNC_PTR(RetType, CallConv, ...) RetType (*)(__VA_ARGS__)
+#endif
+///\}
+//-------------------------------------------------------------------------------------------------
 ///\name Usings
 ///\{
 #define xUSING_CONST(t)     using c##t = const t
