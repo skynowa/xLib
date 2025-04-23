@@ -55,12 +55,14 @@
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
-///\name Function pointer types with calling convention
+///\name Function pointer type with calling convention
 ///\{
 #if   xENV_WIN
 	#define xFUNC_PTR(RetType, ...) RetType (__stdcall *)(__VA_ARGS__)
+		///< with __stdcall (WINAPI)
 #elif xENV_UNIX
 	#define xFUNC_PTR(RetType, ...) RetType (*)(__VA_ARGS__)
+		///< with __cdecl
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
