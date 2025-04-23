@@ -41,14 +41,31 @@ public:
     void_t load();
         ///< load
 
-    template<typename ProcAddressT>
-    ProcAddressT
-    symbol(std::ctstring_t &procName) const
+#if 0
+	template<typename ProcAddressT>
+	ProcAddressT
+	symbol(std::ctstring_t &procName) const
+	{
+		proc_address_t paRv = _procAddress_impl(procName);
+
+		return reinterpret_cast<ProcAddressT>(paRv);
+	}
+
+	template<typename ProcAddressT>
+	bool_t
+	isSymbolExists(std::ctstring_t &procName) const
+	{
+		return (symbol<ProcAddressT>(procName) != nullptr);
+	}
+#else
+    template<typename Ret, typename... Args>
+    auto
+    symbol(std::ctstring_t &procName) const -> Ret (*)(Args...)
     {
         proc_address_t paRv = _procAddress_impl(procName);
-
-        return reinterpret_cast<ProcAddressT>(paRv);
+        return reinterpret_cast<Ret (*)(Args...)>(paRv);
     }
+#endif
 
 private:
     std::ctstring_t _dllPath; ///< file path
