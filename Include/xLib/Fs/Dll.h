@@ -50,13 +50,6 @@ public:
 
 		return reinterpret_cast<ProcAddressT>(paRv);
 	}
-
-	template<typename ProcAddressT>
-	bool_t
-	isSymbolExists(std::ctstring_t &procName) const
-	{
-		return (symbol<ProcAddressT>(procName) != nullptr);
-	}
 #else
     template<typename ReturnT, typename... ArgsT>
     auto
