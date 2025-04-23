@@ -41,11 +41,15 @@ public:
     void_t load();
         ///< load
 
-#if 0
+#if 1
 	template<typename ProcAddressT>
 	ProcAddressT
 	symbol(std::ctstring_t &procName) const
 	{
+		static_assert(
+			std::is_pointer_v<ProcAddressT> && std::is_function_v<std::remove_pointer_t<ProcAddressT>>,
+			"symbol<T>: T must be a pointer to function type (e.g. Return (__stdcall *)(Args...))");
+
 		proc_address_t paRv = _procAddress_impl(procName);
 
 		return reinterpret_cast<ProcAddressT>(paRv);

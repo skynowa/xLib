@@ -73,7 +73,7 @@ Test_Dll::unit()
 
 			func(1, 1);
 		#elif xENV_UNIX
-			#if 0
+			#if 1
 				using func_t = double (*)(double);
 				auto func = dll.symbol<func_t>(funcName);
 
