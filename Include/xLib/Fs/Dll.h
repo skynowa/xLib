@@ -26,7 +26,7 @@ public:
 
 ///\name ctors, dtor
 ///\{
-	explicit  Dll(std::ctstring_t &dllPath);
+	explicit  Dll(std::ctstring_t &dllName);
 	virtual  ~Dll() = default;
 
 	xNO_DEFAULT_CONSTRUCT(Dll);
@@ -68,7 +68,7 @@ public:
 #endif
 
 private:
-    std::ctstring_t _dllPath; ///< file path
+    std::ctstring_t _dllName; ///< file path
     HandleDll       _handle;  ///< dll module handle
 
 xPLATFORM_IMPL:

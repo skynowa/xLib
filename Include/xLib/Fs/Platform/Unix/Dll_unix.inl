@@ -16,7 +16,7 @@ namespace xl::fs
 void_t
 Dll::_load_impl()
 {
-    _handle = ::dlopen(xT2A(_dllPath).c_str(), RTLD_LAZY | RTLD_GLOBAL);
+    _handle = ::dlopen(xT2A(_dllName).c_str(), RTLD_LAZY | RTLD_GLOBAL);
     xTEST_MSG(_handle.isValid(), NativeError::format());
 }
 //-------------------------------------------------------------------------------------------------

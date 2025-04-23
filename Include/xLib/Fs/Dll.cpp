@@ -31,9 +31,9 @@ namespace xl::fs
 
 //-------------------------------------------------------------------------------------------------
 Dll::Dll(
-	std::ctstring_t &a_dllPath
+	std::ctstring_t &a_dllName
 ) :
-	_dllPath{a_dllPath}
+	_dllName{a_dllName}
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ void_t
 Dll::load()
 {
     xTESTS_NA;
-    xTEST(!_dllPath.empty());
+    xTEST(!_dllName.empty());
 
     _load_impl();
 }

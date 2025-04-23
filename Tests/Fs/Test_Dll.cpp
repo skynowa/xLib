@@ -32,10 +32,10 @@ Test_Dll::unit()
 	};
 
 	for (const auto &it_data : datas) {
-		const auto &dllPath  = it_data.test;
+		const auto &dllName  = it_data.test;
 		const auto &funcName = it_data.expect;
 
-		Dll dll(dllPath);
+		Dll dll(dllName);
 
 		xTEST_CASE("ctor")
 		{

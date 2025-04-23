@@ -16,7 +16,7 @@ namespace xl::fs
 void_t
 Dll::_load_impl()
 {
-    _handle = ::LoadLibrary(_dllPath.c_str());
+    _handle = ::LoadLibrary(_dllName.c_str());
     xTEST(_handle.isValid());
 }
 //-------------------------------------------------------------------------------------------------
