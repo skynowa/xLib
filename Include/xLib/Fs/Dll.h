@@ -58,12 +58,12 @@ public:
 		return (symbol<ProcAddressT>(procName) != nullptr);
 	}
 #else
-    template<typename Ret, typename... Args>
+    template<typename ReturnT, typename... ArgsT>
     auto
-    symbol(std::ctstring_t &procName) const -> Ret (*)(Args...)
+    symbol(std::ctstring_t &procName) const -> ReturnT (*)(ArgsT...)
     {
         proc_address_t paRv = _procAddress_impl(procName);
-        return reinterpret_cast<Ret (*)(Args...)>(paRv);
+        return reinterpret_cast<ReturnT (*)(ArgsT...)>(paRv);
     }
 #endif
 
