@@ -126,7 +126,7 @@ Os::_arch_impl() const
     Arch oaRv = Arch::Unknown;
 
 #if   xARCH_BITS_32
-	using func_t = BOOL (/* WINAPI */ *)(HANDLE hProcess, PBOOL Wow64Process);
+	using func_t = BOOL (WINAPI *)(HANDLE hProcess, PBOOL Wow64Process);
 
 	Dll dll(xT("kernel32.dll"));
 	dll.load();
