@@ -41,7 +41,6 @@ public:
     void_t load();
         ///< load
 
-#if 1
 	template<typename ProcAddressT>
 	ProcAddressT
 	symbol(std::ctstring_t &procName) const
@@ -54,15 +53,6 @@ public:
 
 		return reinterpret_cast<ProcAddressT>(paRv);
 	}
-#else
-    template<typename ReturnT, typename... ArgsT>
-    auto
-    symbol(std::ctstring_t &procName) const -> ReturnT (*)(ArgsT...)
-    {
-        proc_address_t paRv = _procAddress_impl(procName);
-        return reinterpret_cast<ReturnT (*)(ArgsT...)>(paRv);
-    }
-#endif
 
 private:
     std::ctstring_t _dllPath; ///< file path

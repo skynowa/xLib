@@ -73,18 +73,11 @@ Test_Dll::unit()
 
 			func(1, 1);
 		#elif xENV_UNIX
-			#if 1
-				using func_t = double (*)(double);
-				auto func = dll.symbol<func_t>(funcName);
+			using func_t = double (*)(double);
+			auto func = dll.symbol<func_t>(funcName);
 
-				const FDouble dRv( func(2 * M_PI) );
-				xTEST_EQ(dRv, 1.0);
-			#else
-				auto func = dll.symbol<double, double>(funcName);
-
-				const FDouble dRv( func(2 * M_PI) );
-				xTEST_EQ(dRv, 1.0);
-			#endif
+			const FDouble dRv( func(2 * M_PI) );
+			xTEST_EQ(dRv, 1.0);
 		#endif
 		}
 
