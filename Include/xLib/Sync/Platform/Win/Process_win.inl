@@ -285,7 +285,7 @@ Process::_currentParentId_impl()
 	};
 #endif
 
-    using func_t = NTSTATUS (WINAPI *) (
+    using func_t = xFUNC_PTR(NTSTATUS,
         HANDLE           ProcessHandle,
         PROCESSINFOCLASS ProcessInformationClass,
         PVOID            ProcessInformation,

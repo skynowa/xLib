@@ -23,7 +23,7 @@ Cpu::_num_impl() const
 ulong_t
 Cpu::_currentNum_impl() const
 {
-    using func_t = DWORD (WINAPI *)(void_t);
+    using func_t = xFUNC_PTR(DWORD, void_t);
 
     Dll dll;
     dll.load(xT("kernel32.dll"));

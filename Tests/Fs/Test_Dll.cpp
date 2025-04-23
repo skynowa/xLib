@@ -73,7 +73,7 @@ Test_Dll::unit()
 
 			func(1, 1);
 		#elif xENV_UNIX
-			using func_t = xFUNC_PTR(double, double);
+			using func_t = xFUNC_PTR(double, double x);
 			auto func = dll.symbol<func_t>(funcName);
 
 			const FDouble dRv( func(2 * M_PI) );
