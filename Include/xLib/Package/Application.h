@@ -13,6 +13,7 @@
  *
  * \libs
  *
+ * - https://github.com/retf/Boost.Application
  * - https://github.com/1nfiniteloop/cpp-env/blob/main/source/application/src/Application.cc
  */
 
