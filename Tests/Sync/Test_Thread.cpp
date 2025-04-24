@@ -40,8 +40,8 @@ CWorkThread::onRun(
         xTRACEV(xT("\n\tCWorkThread: start #%lu"), index);
     #endif
 
-    uint_t uiRes = 0;
-    bool_t   bRv   = false;
+    uint_t uiRes {};
+    bool_t bRv {};
 
     // isCurrent
     bRv = Thread::isCurrent();
@@ -88,7 +88,7 @@ Test_Thread::unit()
     cbool_t cbIsPaused   = true;
     cbool_t cbAutoDelete = false;
 
-    CWorkThread *pthT = new CWorkThread(cbAutoDelete);
+   auto *pthT = new CWorkThread(cbAutoDelete);
 
     pthT->setTag(0);
     ////pthT->vOnExit2  = vOnExitHandle;
@@ -133,7 +133,7 @@ Test_Thread::unit()
 
     xTEST_CASE("vSetPriority, tpGetPriority")
     {
-        const Thread::Priority ctpPriority = Thread::Priority::tpLowest;
+        const auto ctpPriority = Thread::Priority::tpLowest;
 
         #if   xENV_WIN
             pthT->setPriority(ctpPriority);
@@ -275,20 +275,18 @@ Test_Thread::unit()
 
     xTEST_CASE("vPause")
     {
-        #if 1
-            m_bRv = pthT->isPaused();
-            xTEST(!m_bRv);
+		m_bRv = pthT->isPaused();
+		xTEST(!m_bRv);
 
-            pthT->pause();
+		pthT->pause();
 
-            m_bRv = pthT->isPaused();
-            xTEST(m_bRv);
+		m_bRv = pthT->isPaused();
+		xTEST(m_bRv);
 
-            pthT->resume();
+		pthT->resume();
 
-            m_bRv = pthT->isPaused();
-            xTEST(!m_bRv);
-        #endif
+		m_bRv = pthT->isPaused();
+		xTEST(!m_bRv);
     }
 
     xTEST_CASE("exit")
@@ -388,7 +386,8 @@ Test_Thread::unit()
 
     xTEST_CASE("sleep")
     {
-        culong_t caulData[] = {
+        culong_t caulData[]
+        {
             0,
             1
             // ULONG_MIN,
@@ -399,13 +398,11 @@ Test_Thread::unit()
             culong_t cuiMsec = caulData[i];
 
             DateTime dtTime1;
-
             dtTime1 = DateTime::current();
 
             Thread::currentSleep(cuiMsec);
 
             DateTime dtTime2;
-
             dtTime2 = DateTime::current();
 
             xTEST_GR_EQ(dtTime2.toMsec(), dtTime1.toMsec());
