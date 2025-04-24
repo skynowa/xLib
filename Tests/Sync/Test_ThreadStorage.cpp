@@ -35,7 +35,7 @@ Test_ThreadStorage::unit()
             m_bRv = tls.isSet();
             xTEST(m_bRv);
 
-            ulong_t *pulRes = static_cast<ulong_t *>( tls.value() );
+            auto pulRes = static_cast<ulong_t *>( tls.value() );
             xTEST_PTR(pulRes);
             xTEST_EQ(culData, ulong_t(*pulRes));
 

@@ -31,7 +31,7 @@ watch(
 {
     int_t iRv  = - 1;
 
-    clong_t id = *(static_cast<long_t *>( a_param ));
+    auto id = *(static_cast<long_t *>( a_param ));
     xUNUSED(id);
 
     Trace() << Format::str(xT("watch(): starting thread {}"), id);
@@ -78,7 +78,7 @@ job(
 {
     int_t iRv  = - 1;
 
-    clong_t id = *(static_cast<long_t *>( a_param ));
+    auto id = *(static_cast<long_t *>( a_param ));
     xUNUSED(id);
 
     for (size_t i = 0; i < ::jobLoops; ++ i) {

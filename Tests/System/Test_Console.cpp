@@ -21,7 +21,7 @@ Test_Console::unit()
 
         Console::cForeground foreground = Console::Foreground::Green;
         Console::cBackground background = Console::Background::Default;
-        cint_t              attributes =
+        auto                 attributes =
 			static_cast<int_t>(Console::Attribute::Bold) |
 			static_cast<int_t>(Console::Attribute::Underline) |
 			static_cast<int_t>(Console::Attribute::Reverse);
