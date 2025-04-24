@@ -37,10 +37,10 @@ Dll::Dll(
 {
 }
 //-------------------------------------------------------------------------------------------------
-HandleDll &
-Dll::get()
+bool_t
+Dll::isOk() const /* final */
 {
-    return _handle;
+	return _handle.isValid();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -50,22 +50,6 @@ Dll::load()
     xTEST(!_dllPath.empty());
 
     _load_impl();
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-Dll::isProcExists(
-    std::ctstring_t &a_procName
-) const
-{
-    return _isProcExists_impl(a_procName);
-}
-//-------------------------------------------------------------------------------------------------
-Dll::proc_address_t
-Dll::procAddress(
-    std::ctstring_t &a_procName
-) const
-{
-    return _procAddress_impl(a_procName);
 }
 //-------------------------------------------------------------------------------------------------
 

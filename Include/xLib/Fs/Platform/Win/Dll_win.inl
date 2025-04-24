@@ -20,27 +20,14 @@ Dll::_load_impl()
     xTEST(_handle.isValid());
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
-Dll::_isProcExists_impl(
-    std::ctstring_t &a_procName
-) const
-{
-	xTEST(_handle.isValid());
-
-    proc_address_t paRv = ::GetProcAddress(_handle.get(), xT2A(a_procName).c_str());
-    xCHECK_RET(paRv == nullptr, false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-Dll::proc_address_t
-Dll::_procAddress_impl(
+Dll::symbol_address_t
+Dll::_symbolAddress_impl(
     std::ctstring_t &a_procName
 ) const
 {
     xTEST(_handle.isValid());
 
-    proc_address_t paRv = ::GetProcAddress(_handle.get(), xT2A(a_procName).c_str());
+    symbol_address_t paRv = ::GetProcAddress(_handle.get(), xT2A(a_procName).c_str());
     xTEST_PTR(paRv);
 
     return paRv;

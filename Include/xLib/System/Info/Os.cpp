@@ -11,6 +11,7 @@
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Fs/FileText.h>
+#include <xLib/Fs/Dll.h>
 #include <xLib/System/Env.h>
 
 #if   xENV_WIN

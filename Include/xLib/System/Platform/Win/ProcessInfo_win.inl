@@ -114,9 +114,12 @@ ProcessInfo::_commandLine_impl(
     };
 #endif
 
-    using func_t = NTSTATUS (WINAPI *) (HANDLE ProcessHandle,
-        PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation,
-        ULONG ProcessInformationLength, PULONG ReturnLength);
+    using func_t = xFUNC_PTR(NTSTATUS,
+        HANDLE           ProcessHandle,
+        PROCESSINFOCLASS ProcessInformationClass,
+        PVOID            ProcessInformation,
+        ULONG            ProcessInformationLength,
+        PULONG           ReturnLength);
 
     struct _Functor
     {
@@ -127,11 +130,9 @@ ProcessInfo::_commandLine_impl(
         {
             Dll dll;
             dll.load(xT("ntdll.dll"));
+            xCHECK_RET(!dll, nullptr);
 
-            bool_t bRv = dll.isProcExists(xT("NtQueryInformationProcess"));
-            xTEST(bRv);
-
-            func_t func = (func_t)dll.procAddress(xT("NtQueryInformationProcess"));
+            auto func = dll.symbol<func_t>(xT("NtQueryInformationProcess"));
             xTEST_PTR(func);
 
         #if xARCH_BITS_32
