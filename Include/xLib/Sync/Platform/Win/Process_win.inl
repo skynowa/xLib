@@ -296,7 +296,7 @@ Process::_currentParentId_impl()
 
     Dll dll;
     dll.load(xT("ntdll.dll"));
-    xCHECK_RET(!dll.isOk(), invalidId);
+    xCHECK_RET(!dll, invalidId);
 
 #if xARCH_BITS_32
     const PROCESSINFOCLASS    infoClass             = ProcessBasicInformation;
