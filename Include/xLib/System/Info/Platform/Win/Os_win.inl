@@ -130,6 +130,7 @@ Os::_arch_impl() const
 
 	Dll dll(xT("kernel32.dll"));
 	dll.load();
+	xCHECK_RET(!dll, Arch::Bit32);
 
 	auto func = dll.symbol<func_t>(xT("IsWow64Process"));
 	if (func != nullptr) {
