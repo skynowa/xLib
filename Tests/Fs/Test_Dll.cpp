@@ -13,6 +13,22 @@ xTEST_UNIT(Test_Dll)
 bool_t
 Test_Dll::unit()
 {
+	xTEST_CASE("sample")
+	{
+	#if xENV_WIN
+		// TEST
+	#elif xENV_UNIX
+		Dll dll(xT("libm.so.6"));
+		dll.load();
+		xTEST(dll.isOk());
+
+		auto func = dll.symbol<xFUNC_PTR(double, double x)>(xT("cos"));
+
+		const FDouble dRv( func(2 * M_PI) );
+		xTEST_EQ(dRv, 1.0);
+	#endif
+	}
+
 	const data2_tstring_t datas[]
 	{
 	#if   xENV_WIN
@@ -48,6 +64,7 @@ Test_Dll::unit()
 			dll.load();
 			xTEST(dll.isOk());
 			xTEST(!!dll.isOk());
+			xTEST(static_cast<bool_t>(dll));
 
 			if (!dll) {
 				xTEST(false);

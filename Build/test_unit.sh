@@ -2,8 +2,8 @@
 
 
 # UNIT_TESTS=(Thread)
-# UNIT_TESTS=(Dll)
-UNIT_TESTS=(Env)
+UNIT_TESTS=(Dll)
+# UNIT_TESTS=(Env)
 # UNIT_TESTS=(DateTime)
 # UNIT_TESTS=(Type)
 # UNIT_TESTS=(StackTrace)
