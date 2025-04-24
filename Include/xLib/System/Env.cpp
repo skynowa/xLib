@@ -33,17 +33,17 @@ namespace xl::system
 
 //-------------------------------------------------------------------------------------------------
 Env::Env(
-	std::ctstring_t &a_name ///< Like a "namespace" prefix
+	std::ctstring_t &a_name ///< variable name
 ) :
 	Env{{}, a_name}
 {
 }
 //-------------------------------------------------------------------------------------------------
 Env::Env(
-	std::ctstring_t &a_prefix, ///< Like a "namespace" prefix
-	std::ctstring_t &a_name    ///< variable name
+	std::ctstring_t &a_ns,  ///< Like a "namespace" prefix
+	std::ctstring_t &a_name ///< variable name
 ) :
-	_prefix{a_prefix + a_name}
+	_nsName{a_ns + a_name}
 {
     xTEST(_isNameValid());
 }
@@ -65,13 +65,13 @@ Env::path()
 std::tstring_t
 Env::str() const /* final */
 {
-    return _prefix + Const::equal() + value();
+    return _nsName + Const::equal() + value();
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
 Env::isExists() const
 {
-    xCHECK_RET(_prefix.empty(), false);
+    xCHECK_RET(_nsName.empty(), false);
 
     return _isExists_impl();
 }
@@ -152,8 +152,8 @@ Env::_envsSeparator()
 bool_t
 Env::_isNameValid() const
 {
-    xCHECK_RET(_prefix.empty(),                                      false);
-    xCHECK_RET(_prefix.find(Const::equal()) != std::tstring_t::npos, false);
+    xCHECK_RET(_nsName.empty(),                                      false);
+    xCHECK_RET(_nsName.find(Const::equal()) != std::tstring_t::npos, false);
 
     return true;
 }
@@ -182,9 +182,9 @@ Envs::Envs() :
 }
 //-------------------------------------------------------------------------------------------------
 Envs::Envs(
-	std::ctstring_t &a_prefix ///< Like a "namespace" prefix
+	std::ctstring_t &a_ns ///< Like a "namespace" prefix
 ) :
-	_prefix{a_prefix}
+	_ns{a_ns}
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -196,10 +196,7 @@ Envs::setVars(
 	Config config(a_envFilePath);
 	config.read();
 
-	for (const auto &[it_name, it_value] : config.get() ) {
-		Env env(_prefix, it_name);
-		env.setValue(it_value);
-	}
+	setVars( config.get() );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -208,7 +205,7 @@ Envs::setVars(
 ) const
 {
 	for (const auto &[it_name, it_value] : a_vars) {
-		Env env(_prefix, it_name);
+		Env env(_ns, it_name);
 		env.setValue(it_value);
 	}
 }
@@ -237,7 +234,7 @@ Envs::findFirstOf(
 	xCHECK_RET(a_names.empty(), std::tstring_t{});
 
 	for (const auto &it_name : a_names) {
-		Env env(_prefix, it_name);
+		Env env(_ns, it_name);
 		if ( env.isExists() ) {
 			return env.value();
 		}
@@ -253,7 +250,7 @@ Envs::operator [] (
 {
 	xCHECK_RET(a_name.empty(), std::tstring_t{});
 
-	Env env(_prefix, a_name);
+	Env env(_ns, a_name);
 
 	return env.value();
 }

@@ -285,7 +285,7 @@ Process::_currentParentId_impl()
 	};
 #endif
 
-    using Dll_NtQueryInformationProcess_t = NTSTATUS (WINAPI *) (
+    using func_t = xFUNC_PTR(NTSTATUS,
         HANDLE           ProcessHandle,
         PROCESSINFOCLASS ProcessInformationClass,
         PVOID            ProcessInformation,
@@ -296,9 +296,7 @@ Process::_currentParentId_impl()
 
     Dll dll;
     dll.load(xT("ntdll.dll"));
-
-    bool_t bRv = dll.isProcExists(xT("NtQueryInformationProcess"));
-    xCHECK_RET(!bRv, invalidId);
+    xCHECK_RET(!dll, invalidId);
 
 #if xARCH_BITS_32
     const PROCESSINFOCLASS    infoClass             = ProcessBasicInformation;
@@ -307,13 +305,12 @@ Process::_currentParentId_impl()
 #endif
     ULONG                     processInformation[6] {};
     DWORD                     returnSizeBytes       {};
-    Dll_NtQueryInformationProcess_t
-    DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)
-        dll.procAddress(xT("NtQueryInformationProcess"));
-    xTEST_PTR(DllNtQueryInformationProcess);
+
+    auto func = dll.symbol<func_t>(xT("NtQueryInformationProcess"));
+    xTEST_PTR(func);
 
     // TODO: [skynowa] ProcessBasicInformation (for x64)
-    NTSTATUS ntsRv = DllNtQueryInformationProcess(currentHandle(), infoClass, &processInformation,
+    NTSTATUS ntsRv = func(currentHandle(), infoClass, &processInformation,
         sizeof(processInformation), &returnSizeBytes);
     xTEST(NT_SUCCESS(ntsRv));
     xTEST_EQ(size_t(returnSizeBytes), sizeof(processInformation));

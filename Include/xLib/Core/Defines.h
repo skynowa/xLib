@@ -48,12 +48,15 @@
 ///\{
 #if   xENV_WIN
 	#define xSTDCALL __stdcall
-		///< https://learn.microsoft.com/en-us/cpp/cpp/stdcall
+		///< https://learn.microsoft.com/en-us/cpp/cpp/stdcall (WINAPI)
 #elif xENV_UNIX
 	#define xSTDCALL xNOT_AVAILABLE
-		///< N/a
+		///< n/a (__cdecl)
 #endif
 ///\}
+
+#define xFUNC_PTR(returnType, ...) returnType (xSTDCALL *)(__VA_ARGS__)
+	///< Function pointer type with calling convention
 //-------------------------------------------------------------------------------------------------
 ///\name Usings
 ///\{

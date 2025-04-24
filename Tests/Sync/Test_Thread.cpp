@@ -40,8 +40,8 @@ CWorkThread::onRun(
         xTRACEV(xT("\n\tCWorkThread: start #%lu"), index);
     #endif
 
-    uint_t uiRes = 0;
-    bool_t   bRv   = false;
+    uint_t uiRes {};
+    bool_t bRv {};
 
     // isCurrent
     bRv = Thread::isCurrent();
@@ -88,7 +88,7 @@ Test_Thread::unit()
     cbool_t cbIsPaused   = true;
     cbool_t cbAutoDelete = false;
 
-    CWorkThread *pthT = new CWorkThread(cbAutoDelete);
+   auto *pthT = new CWorkThread(cbAutoDelete);
 
     pthT->setTag(0);
     ////pthT->vOnExit2  = vOnExitHandle;
@@ -133,7 +133,7 @@ Test_Thread::unit()
 
     xTEST_CASE("vSetPriority, tpGetPriority")
     {
-        const Thread::Priority ctpPriority = Thread::Priority::tpLowest;
+        const auto ctpPriority = Thread::Priority::tpLowest;
 
         #if   xENV_WIN
             pthT->setPriority(ctpPriority);
@@ -275,20 +275,18 @@ Test_Thread::unit()
 
     xTEST_CASE("vPause")
     {
-        #if 1
-            m_bRv = pthT->isPaused();
-            xTEST(!m_bRv);
+		m_bRv = pthT->isPaused();
+		xTEST(!m_bRv);
 
-            pthT->pause();
+		pthT->pause();
 
-            m_bRv = pthT->isPaused();
-            xTEST(m_bRv);
+		m_bRv = pthT->isPaused();
+		xTEST(m_bRv);
 
-            pthT->resume();
+		pthT->resume();
 
-            m_bRv = pthT->isPaused();
-            xTEST(!m_bRv);
-        #endif
+		m_bRv = pthT->isPaused();
+		xTEST(!m_bRv);
     }
 
     xTEST_CASE("exit")
@@ -331,29 +329,18 @@ Test_Thread::unit()
 
     xTEST_CASE("isCurrent")
     {
-        Thread::id_t aulData[5][2] = {{0}};
+		const Data2<Thread::id_t, bool_t> datas []
+		{
+			{Thread::currentId(), true},
+			{(ulong_t)Thread::currentId() - 1, false},
+			{0,   false},
+			{- 1, false},
+			{- 1, false}
+		};
 
-        aulData[0][0] = (Thread::id_t)Thread::currentId();
-        aulData[0][1] = (Thread::id_t)true;
-
-        aulData[1][0] = (Thread::id_t)((ulong_t)Thread::currentId() - 1);
-        aulData[1][1] = (Thread::id_t)false;
-
-        aulData[2][0] = (Thread::id_t)0;
-        aulData[2][1] = (Thread::id_t)false;
-
-        aulData[3][0] = (Thread::id_t) - 1;
-        aulData[3][1] = (Thread::id_t)false;
-
-        aulData[4][0] = (Thread::id_t)- 1;
-        aulData[4][1] = (Thread::id_t)false;
-
-        for (std::size_t i = 0; i < xARRAY_SIZE(aulData); ++ i) {
-            const Thread::id_t culId = aulData[i][0];
-            auto               bRes  = static_cast<bool_t>( (ulong_t)aulData[i][1] );
-
-            m_bRv = Thread::isCurrent(culId);
-            xTEST(bRes);
+        for (const auto &[it_test, it_expect] : datas) {
+            m_bRv = Thread::isCurrent(it_test);
+            xTEST_EQ(m_bRv, it_expect);
         }
     }
 
@@ -366,7 +353,7 @@ Test_Thread::unit()
     xTEST_CASE("handle")
     {
         Thread::handle_t hRv = Thread::currentHandle();
-        xTEST_DIFF(0ULL, (ulonglong_t)hRv);
+        xTEST_DIFF((ulonglong_t)hRv, 0ULL);
     }
 
     xTEST_CASE("id")
@@ -388,7 +375,8 @@ Test_Thread::unit()
 
     xTEST_CASE("sleep")
     {
-        culong_t caulData[] = {
+        culong_t caulData[]
+        {
             0,
             1
             // ULONG_MIN,
@@ -399,13 +387,11 @@ Test_Thread::unit()
             culong_t cuiMsec = caulData[i];
 
             DateTime dtTime1;
-
             dtTime1 = DateTime::current();
 
             Thread::currentSleep(cuiMsec);
 
             DateTime dtTime2;
-
             dtTime2 = DateTime::current();
 
             xTEST_GR_EQ(dtTime2.toMsec(), dtTime1.toMsec());

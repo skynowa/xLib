@@ -1,5 +1,11 @@
 # Change Log {#id_changelog}
 
+## dll-review (#452)
+
+- **Commit:** [d5717457c](https://github.com/skynowa/xLib/commit/d5717457c)
+- **Author:** skynowa
+- **Date:** 2025-04-24
+
 ## env-prefix-impl (#450)
 
 - **Commit:** [4defc7e07](https://github.com/skynowa/xLib/commit/4defc7e07)
