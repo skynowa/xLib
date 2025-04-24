@@ -1,5 +1,11 @@
 # Change Log {#id_changelog}
 
+## env-namespace-fix (#451)
+
+- **Commit:** [8b83d3d0b](https://github.com/skynowa/xLib/commit/8b83d3d0b)
+- **Author:** skynowa
+- **Date:** 2025-04-24
+
 ## dll-review (#452)
 
 - **Commit:** [d5717457c](https://github.com/skynowa/xLib/commit/d5717457c)
