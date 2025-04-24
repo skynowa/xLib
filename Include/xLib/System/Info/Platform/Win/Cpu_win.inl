@@ -27,7 +27,7 @@ Cpu::_currentNum_impl() const
 
     Dll dll;
     dll.load(xT("kernel32.dll"));
-    xCHECK_RET(!dll.isOk(), 0UL);
+    xCHECK_RET(!dll, 0UL);
 
     auto func = dll.symbol<func_t>(xT("GetCurrentProcessorNumber"));
     xTEST_PTR(func);
