@@ -29,8 +29,8 @@ public:
     std::tstring_t str(std::ctstring_view_t fmt, const ArgsT &...args);
 
 private:
-	static constexpr bool_t              _isTest {true};		///< test formatted string
-    static constexpr std::tstring_view_t _specifier {xT("{}")};	///<
+	static inline constexpr bool_t              _isTest {true};		///< test formatted string
+    static inline constexpr std::tstring_view_t _specifier {xT("{}")};	///<
         ///< specifier
 
 	template<typename T>
