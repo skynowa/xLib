@@ -23,15 +23,13 @@ Cpu::_num_impl() const
 ulong_t
 Cpu::_currentNum_impl() const
 {
-    using func_t = DWORD (WINAPI *)(void_t);
+    using func_t = xFUNC_PTR(DWORD, void_t);
 
     Dll dll;
     dll.load(xT("kernel32.dll"));
+    xCHECK_RET(!dll, 0UL);
 
-    bool_t bRv = dll.isProcExists(xT("GetCurrentProcessorNumber"));
-    xCHECK_RET(!bRv, 0UL);
-
-    func_t func = (func_t)dll.procAddress(xT("GetCurrentProcessorNumber"));
+    auto func = dll.symbol<func_t>(xT("GetCurrentProcessorNumber"));
     xTEST_PTR(func);
 
     ulong_t ulRv = func();

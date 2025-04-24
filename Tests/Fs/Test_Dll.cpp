@@ -13,74 +13,80 @@ xTEST_UNIT(Test_Dll)
 bool_t
 Test_Dll::unit()
 {
-    xTEST_CASE("Dll")
-    {
+	const data2_tstring_t datas[]
+	{
 	#if   xENV_WIN
-		const data2_tstring_t datas[]
-		{
-			{Format::str(xT("kernel32.{}"), Path::fileExt(Path::FileExt::Dll)), xT("Beep")}
-		};
+		{Format::str(xT("kernel32.{}"), Path::fileExt(Path::FileExt::Dll)), xT("Beep")}
 	#elif xENV_UNIX
 		#if   xENV_LINUX
-			const data2_tstring_t datas[]
-			{
-				{Format::str(xT("libm.{}.6"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
-			};
+			{Format::str(xT("libm.{}.6"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
 		#elif xENV_BSD
 			// TEST: if -static Dll::load() don't load any 'so'-libraries
-			return false;
+			static_assert(false);
 
-			const data2_tstring_t datas[]
-			{
-				{Format::str(xT("libm.{}.6"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
-			};
+			{Format::str(xT("libm.{}.6"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
 		#elif xENV_APPLE
-			const data2_tstring_t datas[]
-			{
-				{Format::str(xT("libm.{}"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
-			};
+			{Format::str(xT("libm.{}"), Path::fileExt(Path::FileExt::Dll)), xT("cos")}
 		#endif
 	#endif
+	};
 
-        for (const auto &it_data : datas) {
-            Dll dll(it_data.test);
+	for (const auto &it_data : datas) {
+		const auto &dllPath  = it_data.test;
+		const auto &funcName = it_data.expect;
 
-            m_bRv = dll.get().isValid();
-            xTEST(!m_bRv);
+		Dll dll(dllPath);
 
-            // load
-            dll.load();
+		xTEST_CASE("ctor")
+		{
+			m_bRv = dll.isOk();
+			xTEST(!m_bRv);
+		}
 
-            // isLoaded
-            m_bRv = dll.get().isValid();
-            xTEST(m_bRv);
+		xTEST_CASE("load")
+		{
+			dll.load();
+			xTEST(dll.isOk());
+			xTEST(!!dll.isOk());
 
-            // isProcExists
-            m_bRv = dll.isProcExists(it_data.expect);
-            xTEST(m_bRv);
+			if (!dll) {
+				xTEST(false);
+			}
+		}
 
-            // procAddress
-            Dll::proc_address_t paRv = dll.procAddress(it_data.expect);
-            xTEST_PTR(paRv);
+		xTEST_CASE("isOk")
+		{
+			m_bRv = dll.isOk();
+			xTEST(m_bRv);
+			xTEST(!!dll.isOk());
 
-        #if   xENV_WIN
-            using ptr_dll_func_t = void_t (__stdcall *)(ulong_t, ulong_t);
-            ptr_dll_func_t funcBeep = reinterpret_cast<ptr_dll_func_t>(paRv);
+			if (!dll) {
+				xTEST(false);
+			}
+		}
 
-            funcBeep(1, 1);
-        #elif xENV_UNIX
-            using ptr_dll_func_t = double (*)(double);
-            ptr_dll_func_t funcCosine = reinterpret_cast<ptr_dll_func_t>(paRv);
+		xTEST_CASE("symbol")
+		{
+		#if   xENV_WIN
+			using func_t = xFUNC_PTR(void_t, ulong_t, ulong_t);
+			auto func = dll.symbol<func_t>(funcName);
 
-            const FDouble dRv( funcCosine(2.0) );
-            xTEST_LESS(dRv, -0.4 /* -0.41614683654 */);
-        #endif
+			func(1, 1);
+		#elif xENV_UNIX
+			using func_t = xFUNC_PTR(double, double x);
+			auto func = dll.symbol<func_t>(funcName);
 
-            // isLoaded
-            m_bRv = dll.get().isValid();
-            xTEST(m_bRv);
-        } // for (datas)
-    }
+			const FDouble dRv( func(2 * M_PI) );
+			xTEST_EQ(dRv, 1.0);
+		#endif
+		}
+
+		xTEST_CASE("isOk")
+		{
+			m_bRv = dll.isOk();
+			xTEST(m_bRv);
+		}
+	} // for (datas)
 
     return true;
 }

@@ -8,11 +8,13 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Handle.h>
+#include <xLib/Interface/IValid.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::fs
 {
 
-class Dll
+class Dll :
+    public xl::interface_::IValid
     /// dynamic linking loader
 {
 public:
@@ -31,14 +33,26 @@ public:
 	xNO_COPY_ASSIGN(Dll);
 ///\}
 
-    HandleDll     &get();
-        ///< get handle
-    void_t         load();
+///\name Overrides
+///\{
+	bool_t isOk() const final;
+///\}
+
+    void_t load();
         ///< load
-    bool_t         isProcExists(std::ctstring_t &procName) const;
-        ///< is function exists
-    proc_address_t procAddress(std::ctstring_t &procName) const;
-        ///< get address of an exported function or variable
+
+	template<typename ProcAddressT>
+	ProcAddressT
+	symbol(std::ctstring_t &procName) const
+	{
+		static_assert(
+			std::is_pointer_v<ProcAddressT> && std::is_function_v<std::remove_pointer_t<ProcAddressT>>,
+			"symbol<T>: T must be a pointer to function type (e.g. Return (__stdcall *)(Args...))");
+
+		proc_address_t paRv = _procAddress_impl(procName);
+
+		return reinterpret_cast<ProcAddressT>(paRv);
+	}
 
 private:
     std::ctstring_t _dllPath; ///< file path
@@ -47,8 +61,6 @@ private:
 xPLATFORM_IMPL:
     void_t         _load_impl();
         ///< load
-    bool_t         _isProcExists_impl(std::ctstring_t &procName) const;
-        ///< is function exists
     proc_address_t _procAddress_impl(std::ctstring_t &procName) const;
         ///< get address of an exported function or variable
 };
