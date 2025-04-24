@@ -54,11 +54,9 @@
 		///< n/a (__cdecl)
 #endif
 ///\}
-//-------------------------------------------------------------------------------------------------
-///\name Function pointer type with calling convention
-///\{
-#define xFUNC_PTR(RetType, ...) RetType (xSTDCALL *)(__VA_ARGS__)
-///\}
+
+#define xFUNC_PTR(returnType, ...) returnType (xSTDCALL *)(__VA_ARGS__)
+	///< Function pointer type with calling convention
 //-------------------------------------------------------------------------------------------------
 ///\name Usings
 ///\{
