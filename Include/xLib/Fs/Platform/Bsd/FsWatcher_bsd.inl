@@ -29,7 +29,7 @@ FsWatcher::_watch_impl()
         NOTE_EXTEND | NOTE_LINK | NOTE_OPEN | NOTE_READ | NOTE_RENAME | NOTE_REVOKE | NOTE_WRITE);
 
     struct kevent change[ _filePaths.size() ];
-    const int     changeSize = static_cast<int>( _filePaths.size() );
+    const auto    changeSize = static_cast<int>( _filePaths.size() );
 
     for (size_t i = 0; i < _filePaths.size(); ++ i) {
         std::tstring_t &itFilePath = _filePaths[i];
