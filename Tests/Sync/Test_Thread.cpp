@@ -353,7 +353,7 @@ Test_Thread::unit()
     xTEST_CASE("handle")
     {
         Thread::handle_t hRv = Thread::currentHandle();
-        xTEST_DIFF(0ULL, (ulonglong_t)hRv);
+        xTEST_DIFF((ulonglong_t)hRv, 0ULL);
     }
 
     xTEST_CASE("id")
