@@ -30,8 +30,6 @@ public:
     xNO_DEFAULT_CONSTRUCT(Env);
     xNO_COPY_ASSIGN(Env);
 
-    static Env userNs(std::ctstring_t &name);
-        ///< get environment with [current user name] namespace
     static Env path();
         ///< get PATH values (/usr/bin ... pathes) with separator
 ///\}

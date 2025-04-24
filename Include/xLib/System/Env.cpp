@@ -15,7 +15,6 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Fs/Config.h>
-#include <xLib/System/User.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Env_win.inl"
@@ -47,17 +46,6 @@ Env::Env(
 	_nsName{a_ns + a_name}
 {
     xTEST(_isNameValid());
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-Env
-Env::userNs(
-	std::ctstring_t &a_name
-)
-{
-	std::ctstring_t ns = String::toUpperCase( User().name() ) + xT("_");
-
-	return Env(ns, a_name);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
