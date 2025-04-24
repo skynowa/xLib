@@ -2,18 +2,11 @@
  * \file  Process.h
  * \brief process
  *
- * Features:
+ * \feat
+ *
  * - get/set process name
  * - check file for xecutable writes
  * - set environments variables
- *
- * TODO: setLocale
- * TODO: use pipes
- * TODO: stopable, pause, ...  (exit by signal)
- * TODO: restartable (exit by signal)
- * TODO: command line params (usage, ...)
- * TODO: as singleton
- * TODO: multi-process
  */
 
 
@@ -173,3 +166,19 @@ xPLATFORM_IMPL:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
+/**
+ * \file  Process.h
+ * \todo
+ *
+ * - get/set process name
+ * - check file for xecutable writes
+ * - set environments variables
+ *
+ * - setLocale
+ * - use pipes
+ * - stopable, pause, ...  (exit by signal)
+ * - restartable (exit by signal)
+ * - command line params (usage, ...)
+ * - as singleton
+ * - multi-process
+ */

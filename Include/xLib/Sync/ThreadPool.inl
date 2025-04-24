@@ -476,7 +476,7 @@ ThreadPool<T>::_taskRemove(
     Thread *a_item
 )
 {
-    T *task = static_cast<T *>( a_item );
+	auto task = static_cast<T *>( a_item );
     xTEST_PTR(task);
     xTEST(task->isRunning());
 

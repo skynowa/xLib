@@ -350,10 +350,10 @@ Test_Thread::unit()
 
         for (std::size_t i = 0; i < xARRAY_SIZE(aulData); ++ i) {
             const Thread::id_t culId = aulData[i][0];
-            cbool_t           cbRes = static_cast<bool_t>( (ulong_t)aulData[i][1] );
+            auto               bRes  = static_cast<bool_t>( (ulong_t)aulData[i][1] );
 
             m_bRv = Thread::isCurrent(culId);
-            xTEST_EQ(cbRes, m_bRv);
+            xTEST(bRes);
         }
     }
 

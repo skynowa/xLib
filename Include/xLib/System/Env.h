@@ -57,7 +57,7 @@ private:
 	static std::ctstring_t _envsSeparator();
 		///< vars separator
 
-    std::ctstring_t _prefix_name;
+    std::ctstring_t _prefix; ///< Like a "namespace" prefix
 
     bool_t _isNameValid() const;
         ///< is valid environment variable name
@@ -84,23 +84,33 @@ public:
 	xNO_COPY_ASSIGN(Envs);
 ///\}
 
-    void_t             setVars(const std::tstring_t &envFilePath) const;
-        ///< set or change values from env file (for example ".env")
-    void_t             setVars(const std::set<std::pair_tstring_t> &vars) const;
-        ///< set or change values
-    std::vec_tstring_t vars() const;
-        ///< get all values
-    std::tstring_t     findFirstOf(std::cvec_tstring_t &names) const;
-        ///< get first value by names
+///\name Setters
+///\{
+	void_t setVars(std::ctstring_t &envFilePath) const;
+		///< set or change values from env file (for example ".env")
+	void_t setVars(const std::map_tstring_t &vars) const;
+		///< set or change values
+///\}
+
+///\name Getters
+///\{
+	std::map_tstring_t vars() const;
+		///< get all values
+	std::tstring_t     findFirstOf(std::cvec_tstring_t &names) const;
+		///< get first value by names
+	std::tstring_t     operator [] (std::ctstring_t &name) const;
+		///< get value by name
+///\}
 
 xPUBLIC_STATIC:
     static std::tstring_t expandVars(std::ctstring_t &strWithVars);
         ///< expands strings by separator "%"
-        ///< \win Same as ::ExpandEnvironmentStrings()
+        ///< \win Same as ExpandEnvironmentStrings()
 
 private:
-    std::ctstring_t _prefix;
+    std::ctstring_t _prefix; ///< Like a "namespace" prefix
 
+xPLATFORM_IMPL:
     std::vec_tstring_t _vars_impl() const;
 };
 //-------------------------------------------------------------------------------------------------

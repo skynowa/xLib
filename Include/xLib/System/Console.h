@@ -2,9 +2,10 @@
  * \file  Console.h
  * \brief Shell console
  *
- * \see
- * https://github.com/ikalnytskyi/termcolor/blob/master/include/termcolor/termcolor.hpp
- * https://github.com/yurablok/colored-cout/blob/master/colored_cout.h
+ * \libs
+ *
+ * - https://github.com/ikalnytskyi/termcolor/blob/master/include/termcolor/termcolor.hpp
+ * - https://github.com/yurablok/colored-cout/blob/master/colored_cout.h
  */
 
 
@@ -186,7 +187,8 @@ xPLATFORM_IMPL:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO: Console
+ * \file  Console.h
+ * \todo
  *
  */
 

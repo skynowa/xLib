@@ -86,7 +86,7 @@ Cpu::_model_impl() const
 
     (void_t)::__cpuid(cpuInfo, 0x80000000);
 
-    uint_t highestFeatureEx = static_cast<uint_t>( cpuInfo[0] );
+    auto highestFeatureEx = static_cast<uint_t>( cpuInfo[0] );
 
     // get processor brand name
     if (highestFeatureEx >= 0x80000004) {
@@ -167,7 +167,7 @@ Cpu::_usage_impl() const
     s_sysUserOld.QuadPart   = ulSysUser.QuadPart;
     s_sysKernelOld.QuadPart = ulSysKernel.QuadPart;
 
-    ulong_t ulRv = static_cast<ulong_t>( dRv );
+    auto ulRv = static_cast<ulong_t>( dRv );
 
     return ulRv;
 }

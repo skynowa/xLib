@@ -108,7 +108,8 @@ xPLATFORM_IMPL:
 } // namespace
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO:
+ * \file  FileType.h
+ * \todo
  *
  * - Type: https://docs.microsoft.com/en-us/cpp/standard-library/filesystem-enumerations?view=vs-2019
  *	NotFound -1 Represents a file that does not exist.

@@ -50,13 +50,12 @@ xPLATFORM_IMPL:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-
 /**
-    Client
-
-    Initialize Winsock.
-    Create a socket.
-    Connect to the server.
-    Send and receive data.
-    Disconnect.
-*/
+ * Client
+ *
+ * - Initialize Winsock.
+ * - Create a socket.
+ * - Connect to the server.
+ * - Send and receive data.
+ * - Disconnect.
+ */

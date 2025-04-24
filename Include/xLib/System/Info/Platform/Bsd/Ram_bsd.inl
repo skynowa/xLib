@@ -67,7 +67,7 @@ Ram::_usage_impl() const
 
     culonglong_t ramUsage = ramTotal - ramFree;
 
-    ulong_t ulRv = static_cast<ulong_t>( Utils::intSafeDiv(ramUsage * 100.0, ramTotal) );
+    auto ulRv = static_cast<ulong_t>( Utils::intSafeDiv(ramUsage * 100.0, ramTotal) );
     xTEST_EQ(ramTotal, ramUsage + ramFree);
 
     return ulRv;

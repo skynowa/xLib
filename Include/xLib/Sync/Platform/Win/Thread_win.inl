@@ -21,7 +21,7 @@ Thread::_create_impl(
 {
     id_t id {};
 
-    HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(nullptr, a_stackSizeBytes, _func, this,
+    auto hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(nullptr, a_stackSizeBytes, _func, this,
         0U, (uint_t *)&id) );
     xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
     xTEST_LESS(0UL, id);
@@ -275,7 +275,7 @@ Thread::_setPriority_impl(
 Thread::Priority
 Thread::_priority_impl() const
 {
-    cPriority tpRv = static_cast<Priority>( ::GetThreadPriority(_handle) );
+	const auto tpRv = static_cast<Priority>( ::GetThreadPriority(_handle) );
     xTEST_DIFF(static_cast<int_t>(tpRv), static_cast<int_t>(Priority::tpError));
 
     return tpRv;

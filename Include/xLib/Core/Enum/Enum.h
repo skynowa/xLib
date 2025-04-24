@@ -2,13 +2,14 @@
  * \file   Enum.h
  * \brief  Enumeration
  *
- * \see
- * http://www.yolinux.com/TUTORIALS/C++Enum.html\n
- * https://www.reddit.com/r/cpp/comments/48l2yo/automatically_printing_enum_names/\n
- * http://www.edm2.com/0405/enumeration.html\n
- * https://docs.microsoft.com/en-us/dotnet/api/system.enum.getunderlyingtype?view=netframework-4.7.2\n
- * https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Safe_Enum\n
- * https://github.com/shaovoon/EnumConvGen/blob/master/ParseEnum/ParseEnum/EnumStrConv.h
+ * \libs
+ *
+ * - http://www.yolinux.com/TUTORIALS/C++Enum.html\n
+ * - https://www.reddit.com/r/cpp/comments/48l2yo/automatically_printing_enum_names/\n
+ * - http://www.edm2.com/0405/enumeration.html\n
+ * - https://docs.microsoft.com/en-us/dotnet/api/system.enum.getunderlyingtype?view=netframework-4.7.2\n
+ * - https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Type_Safe_Enum\n
+ * - https://github.com/shaovoon/EnumConvGen/blob/master/ParseEnum/ParseEnum/EnumStrConv.h
  */
 
 
@@ -71,7 +72,8 @@ private:
 #include "Enum.inl"
 //-------------------------------------------------------------------------------------------------
 /**
- * TODO:
+ * \file Enum.h
+ * \todo
  *
  * - begin(), end()
  *

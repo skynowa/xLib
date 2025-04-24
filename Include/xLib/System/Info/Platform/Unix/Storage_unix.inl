@@ -17,7 +17,7 @@ Storage::_pageSize_impl() const
     xTEST_DIFF(liRv, - 1L);
     xTEST_GR(liRv, 0L);
 
-    ulong_t ulRv = static_cast<ulong_t>( liRv );
+    auto ulRv = static_cast<ulong_t>( liRv );
     xTEST_GR(ulRv, 0UL);
 
     return ulRv;

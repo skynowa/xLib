@@ -137,7 +137,7 @@ File::wipe(
 				// fill by 0x55 (01010101), 0xAA (10101010), random char
 				cuchar_t bytes[] {0x55, 0xAA, NativeRandom().nextChar<uchar_t>()};
 
-				for (const auto &it_byte : bytes) {
+				for (const auto it_byte : bytes) {
 					writer(it_byte);
 				}
 			} // for (p)

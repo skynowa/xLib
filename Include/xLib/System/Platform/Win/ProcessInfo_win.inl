@@ -126,7 +126,6 @@ ProcessInfo::_commandLine_impl(
         )
         {
             Dll dll;
-
             dll.load(xT("ntdll.dll"));
 
             bool_t bRv = dll.isProcExists(xT("NtQueryInformationProcess"));
@@ -180,7 +179,7 @@ ProcessInfo::_commandLine_impl(
 
     // allocate memory to hold the command line
     {
-        WCHAR *commandLineContents = static_cast<WCHAR *>( ::malloc(commandLine.Length) );
+    	auto commandLineContents = static_cast<WCHAR *>( ::malloc(commandLine.Length) );
         xTEST_PTR(commandLineContents);
 
         // read the command line

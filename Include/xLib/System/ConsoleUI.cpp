@@ -116,7 +116,7 @@ ConsoleUI::promptBox(
 		_console.write(a_text + xT(": "));
 
 		for ( ; ; ) {
-			ctchar_t ch = static_cast<tchar_t>( std::tcin.get() );
+			const auto ch = static_cast<tchar_t>( std::tcin.get() );
 			xCHECK_DO(ch == keyEnter, break);
 			xCHECK_DO(ch == keyBackspace, out_answer->clear(); continue);
 
@@ -157,7 +157,7 @@ ConsoleUI::_boxLine(
 
 	std::tstring_t line = paddingLeft + a_text;
 
-	std::ssize_t delta = static_cast<std::ssize_t>(a_width - line.size());
+	auto delta = static_cast<std::ssize_t>(a_width - line.size());
 	if (delta < 0) {
 		line.resize(a_width - padingRight.size() - dot3.size());	// set padding
 		line += dot3;

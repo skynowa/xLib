@@ -290,8 +290,7 @@ Process::_currentParentId_impl()
         PROCESSINFOCLASS ProcessInformationClass,
         PVOID            ProcessInformation,
         ULONG            ProcessInformationLength,
-        PULONG           ReturnLength
-    );
+        PULONG           ReturnLength);
 
     const id_t invalidId = (DWORD)- 1;
 
@@ -306,8 +305,8 @@ Process::_currentParentId_impl()
 #else
     const PROCESSINFOCLASS    infoClass             = ProcessWow64Information;
 #endif
-    ULONG                     processInformation[6] = {};
-    DWORD                     returnSizeBytes       = {};
+    ULONG                     processInformation[6] {};
+    DWORD                     returnSizeBytes       {};
     Dll_NtQueryInformationProcess_t
     DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)
         dll.procAddress(xT("NtQueryInformationProcess"));

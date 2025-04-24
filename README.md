@@ -1,6 +1,8 @@
 # xLib - C++ cross-platform library
 
 ![GitHub Watchers](https://img.shields.io/github/watchers/skynowa/xLib)
+[![GitHub Stars](https://img.shields.io/github/stars/skynowa/xLib?color=ff69b4)](https://github.com/skynowa/xLib/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/skynowa/xLib?color=ff69b4)](https://github.com/skynowa/xLib/network)
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/skynowa/xLib/CI)
 
@@ -12,13 +14,15 @@
 
 [![Deploy Doxygen Documentation](https://github.com/skynowa/skynowa.github.io/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/skynowa/skynowa.github.io/actions/workflows/deploy-docs.yml)
 
-## Features
+-----
+
+## ✨ Features
 
 - Language: C++ 20
 - Platforms:
 
-    - Windows (XP >)
-    - Unix (Ubuntu 20.04, BSD, Apple (OSX))
+    - 🪟 Windows (XP >)
+    - 🖥️ Unix (🐧 Ubuntu 20.04, 🌊 BSD, 🍎 Apple (OSX))
 
 - Compilers:
     - GCC
@@ -26,21 +30,21 @@
     - MSVC
     - MinGW
 
-## Repositories
+## 📦 Repositories
 
 - https://github.com/skynowa/xLib
 - [Change Log](https://github.com/skynowa/xLib/blob/master/Docs/ChangeLog.md)
 
-## Dependencies
+## 🔗 Dependencies
 
 - https://github.com/skynowa/CMakeLib
 
-## Examples
+## 💡 Examples
 
 - [TODO] Impl
 - [Tests](https://github.com/skynowa/xLib/tree/master/Tests)
 
-## Documentation
+## 📑 Documentation
 
 - [GitHub Pages](https://skynowa.github.io/)
 - [Repository](https://github.com/skynowa/skynowa.github.io/actions)
