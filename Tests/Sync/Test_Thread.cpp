@@ -329,7 +329,7 @@ Test_Thread::unit()
 
     xTEST_CASE("isCurrent")
     {
-        Thread::id_t aulData[5][2] = {{0}};
+        Thread::id_t aulData[5][2] {};
 
         aulData[0][0] = (Thread::id_t)Thread::currentId();
         aulData[0][1] = (Thread::id_t)true;
