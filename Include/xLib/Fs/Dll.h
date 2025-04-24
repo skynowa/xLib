@@ -19,9 +19,9 @@ class Dll :
 {
 public:
 #if   xENV_WIN
-    using proc_address_t = FARPROC;
+    using symbol_address_t = FARPROC;
 #elif xENV_UNIX
-    using proc_address_t = void_t *;
+    using symbol_address_t = void_t *;
 #endif
 
 ///\name ctors, dtor
@@ -41,17 +41,17 @@ public:
     void_t load();
         ///< load
 
-	template<typename ProcAddressT>
-	ProcAddressT
+	template<typename SymbolAddressT>
+	SymbolAddressT
 	symbol(std::ctstring_t &procName) const
 	{
 		static_assert(
-			std::is_pointer_v<ProcAddressT> && std::is_function_v<std::remove_pointer_t<ProcAddressT>>,
+			std::is_pointer_v<SymbolAddressT> && std::is_function_v<std::remove_pointer_t<SymbolAddressT>>,
 			"symbol<T>: T must be a pointer to function type (e.g. Return (__stdcall *)(Args...))");
 
-		proc_address_t paRv = _procAddress_impl(procName);
+		symbol_address_t paRv = _symbolAddress_impl(procName);
 
-		return reinterpret_cast<ProcAddressT>(paRv);
+		return reinterpret_cast<SymbolAddressT>(paRv);
 	}
 
 private:
@@ -59,9 +59,9 @@ private:
     HandleDll       _handle;  ///< dll module handle
 
 xPLATFORM_IMPL:
-    void_t         _load_impl();
+    void_t           _load_impl();
         ///< load
-    proc_address_t _procAddress_impl(std::ctstring_t &procName) const;
+    symbol_address_t _symbolAddress_impl(std::ctstring_t &procName) const;
         ///< get address of an exported function or variable
 };
 
