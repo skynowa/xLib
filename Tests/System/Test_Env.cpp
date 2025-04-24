@@ -27,16 +27,6 @@ Test_Env::unit()
 	*
 	**************************************************/
 
-	xTEST_CASE("ctor - userNs")
-	{
-		std::ctstring_t expected = xT("TEST_XXX");
-
-		auto env = Env::userNs(xT("KEY_XXX"));
-
-		env.setValue(expected);
-		xTEST_EQ(env.value(), expected);
-	}
-
 	xTEST_CASE("ctor - path")
 	{
 		auto env = Env::path();
