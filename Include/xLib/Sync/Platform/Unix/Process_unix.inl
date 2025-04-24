@@ -356,7 +356,7 @@ Process::_idByHandle_impl(
     const handle_t &a_handle    ///< handle
 )
 {
-    id_t ulRv = static_cast<id_t>( a_handle );
+	auto ulRv = static_cast<id_t>( a_handle );
 
     return ulRv;
 }
@@ -366,7 +366,7 @@ Process::_handleById_impl(
     const id_t &a_id   ///< ID
 )
 {
-    handle_t hRv = static_cast<handle_t>( a_id );
+	auto hRv = static_cast<handle_t>( a_id );
 
     return hRv;
 }

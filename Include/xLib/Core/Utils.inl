@@ -204,9 +204,9 @@ Utils::roundIntT(
     T iRv {};
 
     if (a_value > 0.0) {
-        iRv = static_cast<T>( a_value + 0.5 );
+        iRv = static_cast<T>(a_value + 0.5);
     } else {
-        iRv = static_cast<T>( a_value - 0.5 );
+        iRv = static_cast<T>(a_value - 0.5);
     }
 
     return iRv;
@@ -235,7 +235,7 @@ Utils::enumIncT(
     const T &a_value
 )
 {
-    return static_cast<T>( static_cast<longlong_t>( a_value ) + 1 );
+    return static_cast<T>(static_cast<longlong_t>( a_value ) + 1);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -244,7 +244,7 @@ Utils::enumDecT(
     const T &a_value
 )
 {
-    return static_cast<T>( static_cast<longlong_t>( a_value ) - 1 );
+    return static_cast<T>(static_cast<longlong_t>( a_value ) - 1);
 }
 //-------------------------------------------------------------------------------------------------
 

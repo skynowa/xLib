@@ -201,7 +201,7 @@ Test_Utils::unit()
 
         for (size_t i = 0; i < Utils::arraySizeT(cdData); ++ i) {
             longlong_t liRv1 = Utils::roundIntT<longlong_t>(cdData[i][0]);
-            longlong_t liRv2 = static_cast<longlong_t>( cdData[i][1] );
+            auto       liRv2 = static_cast<longlong_t>( cdData[i][1] );
             xTEST_EQ(liRv1, liRv2);
         }
     }

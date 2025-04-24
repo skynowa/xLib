@@ -198,8 +198,8 @@ User::_getUserSID(
         return FALSE;
     }
 
-    PTOKEN_USER pTokenUser = reinterpret_cast<PTOKEN_USER>( data.get() );
-    DWORD       sidLength  = ::GetLengthSid(pTokenUser->User.Sid);
+    auto  pTokenUser = reinterpret_cast<PTOKEN_USER>( data.get() );
+    DWORD sidLength  = ::GetLengthSid(pTokenUser->User.Sid);
 
     heap_unique_ptr sidPtr( ::HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sidLength) );
 
@@ -244,7 +244,7 @@ User::_getUID(
         return static_cast<uint_t>(-1);	// TODO: uint_t cast
     }
 
-    uint_t ret = static_cast<uint_t>(-1);	// TODO: uint_t cast
+    auto ret = static_cast<uint_t>(-1);	// TODO: uint_t cast
 
     LPCWSTR p = ::wcsrchr(stringSid, L'-');
     if (p != nullptr &&

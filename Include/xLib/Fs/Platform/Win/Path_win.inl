@@ -42,7 +42,7 @@ Path::_dll_impl()
 {
     std::tstring_t sRv(maxSize() + 1, {});
 
-    HMODULE procAddress = reinterpret_cast<HMODULE>( &__ImageBase );
+    auto procAddress = reinterpret_cast<HMODULE>( &__ImageBase );
 
     DWORD stored = ::GetModuleFileName(procAddress, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(stored, 0UL);
