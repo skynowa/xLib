@@ -130,7 +130,7 @@ ProcessInfo::_commandLine_impl(
         {
             Dll dll;
             dll.load(xT("ntdll.dll"));
-            xCHECK_RET(!dll.isOk(), nullptr);
+            xCHECK_RET(!dll, nullptr);
 
             auto func = dll.symbol<func_t>(xT("NtQueryInformationProcess"));
             xTEST_PTR(func);
