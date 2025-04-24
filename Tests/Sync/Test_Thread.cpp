@@ -329,29 +329,18 @@ Test_Thread::unit()
 
     xTEST_CASE("isCurrent")
     {
-        Thread::id_t aulData[5][2] {};
+		const Data2<Thread::id_t, bool_t> datas []
+		{
+			{Thread::currentId(), true},
+			{(ulong_t)Thread::currentId() - 1, false},
+			{0,   false},
+			{- 1, false},
+			{- 1, false}
+		};
 
-        aulData[0][0] = (Thread::id_t)Thread::currentId();
-        aulData[0][1] = (Thread::id_t)true;
-
-        aulData[1][0] = (Thread::id_t)((ulong_t)Thread::currentId() - 1);
-        aulData[1][1] = (Thread::id_t)false;
-
-        aulData[2][0] = (Thread::id_t)0;
-        aulData[2][1] = (Thread::id_t)false;
-
-        aulData[3][0] = (Thread::id_t) - 1;
-        aulData[3][1] = (Thread::id_t)false;
-
-        aulData[4][0] = (Thread::id_t)- 1;
-        aulData[4][1] = (Thread::id_t)false;
-
-        for (std::size_t i = 0; i < xARRAY_SIZE(aulData); ++ i) {
-            const Thread::id_t culId = aulData[i][0];
-            auto               bRes  = static_cast<bool_t>( (ulong_t)aulData[i][1] );
-
-            m_bRv = Thread::isCurrent(culId);
-            xTEST(bRes);
+        for (const auto &[it_test, it_expect] : datas) {
+            m_bRv = Thread::isCurrent(it_test);
+            xTEST_EQ(m_bRv, it_expect);
         }
     }
 
