@@ -57,7 +57,7 @@ private:
         ///< format stack trace
 
 xPLATFORM_IMPL:
-	static constexpr std::size_t _framesMax
+	static inline constexpr std::size_t _framesMax
 	#if   xENV_WIN
 		#if (xOS_WIN_VER <= xOS_WIN_S03)
 		   /**
