@@ -154,6 +154,7 @@ Test_MySql::unit()
 			result.fetchRows(&rows);
 			xTEST_EQ(rows.size(), std::size_t(1));
 			xTEST_EQ(std::stoull(rows[0].begin()->second), std::size_t(34));
+			xTEST_EQ(conn.lastSql(), sql);
 		}
 
 		xTEST_CASE("store")
@@ -170,6 +171,7 @@ Test_MySql::unit()
 				// Cout() << xTRACE_VAR(it_row);
 			}
 
+			xTEST_EQ(conn.lastSql(), sql);
 		}
 	}
 

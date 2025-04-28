@@ -32,6 +32,8 @@ public:
 
     cHandleMySqlConn &get() const;
         ///< get handle
+    std::ctstring_t  &lastSql() const;
+        ///< last SQL query
 
 ///\name Connection
 ///\{

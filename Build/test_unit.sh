@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 
+UNIT_TESTS=(MySql)
 # UNIT_TESTS=(Thread)
-UNIT_TESTS=(Dll)
+# UNIT_TESTS=(Dll)
 # UNIT_TESTS=(Env)
 # UNIT_TESTS=(DateTime)
 # UNIT_TESTS=(Type)
