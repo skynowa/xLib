@@ -13,6 +13,26 @@ xTEST_UNIT(Test_SourceInfo)
 bool_t
 Test_SourceInfo::unit()
 {
+    xTEST_CASE("ctor")
+    {
+        const SourceInfo info(xFILE, xLINE, xFUNCTION, xCOUNTER);
+        if (1) {
+            Trace() << xTRACE_VAR(info.option().filePath);
+            Trace() << xTRACE_VAR(info.option().lineNum);
+            Trace() << xTRACE_VAR(info.option().funcName);
+            Trace() << xTRACE_VAR(info.option().counter);
+        }
+        xTEST_DIFF(info.option().filePath.find(xT("Test_SourceInfo.cpp")), std::tstring_t::npos);
+        xTEST_GR(info.option().lineNum, 0);
+        xTEST_DIFF(info.option().funcName.find(xT("Test_SourceInfo::unit()")), std::tstring_t::npos);
+        xTEST_GR(info.option().counter, 0);
+        xTEST(info.option().exprVar1.empty());
+        xTEST(info.option().exprVar2.empty());
+        xTEST(info.option().exprValue1.empty());
+        xTEST(info.option().exprValue2.empty());
+        xTEST(info.option().exprOp.empty());
+    }
+
     xTEST_CASE("all")
     {
         std::csize_t    var1 {100};

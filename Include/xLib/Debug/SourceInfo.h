@@ -36,11 +36,13 @@ class SourceInfo
 public:
 ///\name ctors, dtor
 ///\{
-	explicit  SourceInfo(cSourceInfoOption &option);
-	virtual  ~SourceInfo() = default;
+    explicit  SourceInfo(cSourceInfoOption &option);
+              SourceInfo(std::ctstring_t &filePath, culong_t lineNum, std::ctstring_t &funcName,
+                  culong_t counter);
+    virtual  ~SourceInfo() = default;
 
-	xNO_DEFAULT_CONSTRUCT(SourceInfo);
-	xNO_COPY_ASSIGN(SourceInfo);
+    xNO_DEFAULT_CONSTRUCT(SourceInfo);
+    xNO_COPY_ASSIGN(SourceInfo);
 ///\}
 
     cSourceInfoOption & option() const;
