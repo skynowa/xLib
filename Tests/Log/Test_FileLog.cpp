@@ -35,16 +35,16 @@ Test_FileLog::unit()
 
     xTEST_CASE("write(...)")
     {
-        log.write(ILog::Level::Off,  xT("\t%s, %d"), xLEX_TO_STR(ILog::L::::Unknown),    12345);
-        log.write(ILog::Level::Fatal,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Fatal),    12345);
-        log.write(ILog::Level::Warning,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Warning),    12345);
-        log.write(ILog::Level::Fatal, xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Fatal), 12345);
-        log.write(ILog::Level::Error,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Error),    12345);
-        log.write(ILog::Level::Warning,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Warning),  12345);
-        log.write(ILog::Level::Trace,   xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Trace),   12345);
-        log.write(ILog::Level::Info,     xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Info),     12345);
-        log.write(ILog::Level::Debug,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Debug),    12345);
-        log.write(ILog::Level::Trace,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Trace),    12345);
+        log.write(ILog::Level::Off,      xT("\t%s, %d"), xLEX_TO_STR(ILog::L::::Unknown), 12345);
+        log.write(ILog::Level::Critical, xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
+        log.write(ILog::Level::Warning,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
+        log.write(ILog::Level::Critical, xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
+        log.write(ILog::Level::Error,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Error), 12345);
+        log.write(ILog::Level::Warning,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
+        log.write(ILog::Level::Trace,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
+        log.write(ILog::Level::Info,     xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Info), 12345);
+        log.write(ILog::Level::Debug,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Debug), 12345);
+        log.write(ILog::Level::Trace,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
     }
 
     xTEST_CASE("clear")

@@ -138,4 +138,6 @@ protected:
  * - Singleton
  * - Log
  * - MT
+ *
+ * - DllApplication
  */

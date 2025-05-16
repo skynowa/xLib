@@ -125,9 +125,17 @@ Connection::rollback()
 Query
 Connection::query(
 	std::ctstring_t &a_sql
-) const
+)
 {
+	_lastSql = a_sql;
+
 	return Query(*this, a_sql);
+}
+//-------------------------------------------------------------------------------------------------
+std::ctstring_t &
+Connection::lastSql() const
+{
+	return _lastSql;
 }
 //-------------------------------------------------------------------------------------------------
 

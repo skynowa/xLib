@@ -69,8 +69,8 @@ ILog::_levelString(
 	case Level::Error:
 		sRv = xT("Error");
 		break;
-	case Level::Fatal:
-		sRv = xT("Fatal");
+	case Level::Critical:
+		sRv = xT("Critical");
 		break;
 	}
 

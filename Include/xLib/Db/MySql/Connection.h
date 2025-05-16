@@ -32,6 +32,8 @@ public:
 
     cHandleMySqlConn &get() const;
         ///< get handle
+    std::ctstring_t  &lastSql() const;
+        ///< last SQL query
 
 ///\name Connection
 ///\{
@@ -58,7 +60,7 @@ public:
 		///< commits the current transaction
 	void_t rollback();
 		///< rolls back the current transaction
-	Query  query(std::ctstring_t &sql) const;
+	Query  query(std::ctstring_t &sql);
 		///< get Query object
 ///\}
 
@@ -66,6 +68,7 @@ private:
     const Options   _options;		///< Connection data
     std::ctstring_t _optionsFile;	///< Connection data from file my.cnf
     HandleMySqlConn _conn;			///< handler for one database connection
+    std::tstring_t  _lastSql;		///< last SQL query
 
     void_t _init();
 		///< initiation

@@ -25,6 +25,16 @@ SourceInfo::SourceInfo(
 {
 }
 //-------------------------------------------------------------------------------------------------
+SourceInfo::SourceInfo(
+    std::ctstring_t &a_filePath,
+    culong_t         a_lineNum,
+    std::ctstring_t &a_funcName,
+    culong_t         a_counter
+) :
+	_option{a_filePath, a_lineNum, a_funcName, a_counter, {}, {}, {}, {}, {}}
+{
+}
+//-------------------------------------------------------------------------------------------------
 cSourceInfoOption &
 SourceInfo::option() const
 {

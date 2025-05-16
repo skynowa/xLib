@@ -1,6 +1,10 @@
 /**
  * \file  ILog.h
  * \brief logging
+ *
+ * \libs
+ *
+ * - https://userver.tech/df/d0c/md_en_2userver_2logging.html
  */
 
 
@@ -18,13 +22,13 @@ public:
 	enum class Level
         /// log level
 	{
-		Off     = 0,
-		Trace   = 1,
-		Debug   = 2,
-		Info    = 3,
-		Warning = 4,
-		Error   = 5,
-		Fatal   = 6
+		Off      = 0,
+		Trace    = 1,
+		Debug    = 2,
+		Info     = 3,
+		Warning  = 4,
+		Error    = 5,
+		Critical = 6
 	};
 	xUSING_CONST(Level);
 
@@ -56,7 +60,6 @@ private:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-
 /**
  * \file  ILog.h
  *
