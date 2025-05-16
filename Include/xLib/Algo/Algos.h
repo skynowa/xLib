@@ -1,6 +1,6 @@
 /**
- * \file   Algos.h
- * \brief  Algorithms
+ * \file  Algos.h
+ * \brief Algorithms
  */
 
 
