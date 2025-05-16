@@ -16,7 +16,7 @@ Test_SourceInfo::unit()
     xTEST_CASE("ctor")
     {
         const SourceInfo info(xFILE, xLINE, xFUNCTION, xCOUNTER);
-        if (1) {
+        if (0) {
             Trace() << xTRACE_VAR(info.option().filePath);
             Trace() << xTRACE_VAR(info.option().lineNum);
             Trace() << xTRACE_VAR(info.option().funcName);
