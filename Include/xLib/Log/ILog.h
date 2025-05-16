@@ -2,7 +2,9 @@
  * \file  ILog.h
  * \brief logging
  *
- * \lib   https://userver.tech/df/d0c/md_en_2userver_2logging.html
+ * \libs
+ *
+ * - https://userver.tech/df/d0c/md_en_2userver_2logging.html
  */
 
 
