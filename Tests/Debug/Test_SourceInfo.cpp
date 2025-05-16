@@ -46,6 +46,12 @@ Test_SourceInfo::unit()
         };
 
         SourceInfo _sourceInfo(option);
+		if (0) {
+			Trace() << xTRACE_VAR(_sourceInfo.format());
+			Trace() << xTRACE_VAR(_sourceInfo.at());
+			Trace() << xTRACE_VAR(_sourceInfo.expr());
+			Trace() << xTRACE_VAR(_sourceInfo.exprValues());
+		}
         xTEST(!_sourceInfo.option().filePath.empty());
         xTEST_GR(_sourceInfo.option().lineNum, 0UL);
         xTEST(!_sourceInfo.option().funcName.empty());
@@ -56,13 +62,6 @@ Test_SourceInfo::unit()
              xLEX_TO_STR(var1), op, xLEX_TO_STR(var2)));
         xTEST_EQ(_sourceInfo.exprValues(), Format::str(xT("{} {} {}"),
              std::to_string(var1), op, std::to_string(var2)));
-
-		if (0) {
-			Trace() << xTRACE_VAR(_sourceInfo.format());
-			Trace() << xTRACE_VAR(_sourceInfo.at());
-			Trace() << xTRACE_VAR(_sourceInfo.expr());
-			Trace() << xTRACE_VAR(_sourceInfo.exprValues());
-		}
     }
 
     return true;
