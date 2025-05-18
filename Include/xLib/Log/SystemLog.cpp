@@ -92,10 +92,7 @@ SystemLog::write(
     xCHECK_DO(!isEnabled(), return);
     xTEST_PTR(a_format);
 
-    Level level = Level::Off;
-    {
-        xCHECK_DO(a_level == Level::Trace, level = Level::Info);
-    }
+    const auto level = (a_level == Level::Trace) ? Level::Info : Level::Off;
 
     std::tstring_t msg;
     {
