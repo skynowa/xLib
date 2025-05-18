@@ -56,16 +56,16 @@ Test_SystemLog::unit()
     xTEST_CASE("write(...)")
     {
     #if xTEST_IGNORE
-        SystemLog().write(ILog::Level::Off,      xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Off), 12345);
-        SystemLog().write(ILog::Level::Critical, xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
-        SystemLog().write(ILog::Level::Warning,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
-        SystemLog().write(ILog::Level::Critical, xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
-        SystemLog().write(ILog::Level::Error,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Error), 12345);
-        SystemLog().write(ILog::Level::Warning,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
-        SystemLog().write(ILog::Level::Trace,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
-        SystemLog().write(ILog::Level::Info,     xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Info), 12345);
-        SystemLog().write(ILog::Level::Debug,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Debug), 12345);
-        SystemLog().write(ILog::Level::Trace,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
+        SystemLog().write(ILog::Level::Off,      xT("%s, %d"), xLEX_TO_STR(ILog::Level::Off), 12345);
+        SystemLog().write(ILog::Level::Critical, xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
+        SystemLog().write(ILog::Level::Warning,  xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
+        SystemLog().write(ILog::Level::Critical, xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
+        SystemLog().write(ILog::Level::Error,    xT("%s, %d"), xLEX_TO_STR(ILog::Level::Error), 12345);
+        SystemLog().write(ILog::Level::Warning,  xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
+        SystemLog().write(ILog::Level::Trace,    xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
+        SystemLog().write(ILog::Level::Info,     xT("%s, %d"), xLEX_TO_STR(ILog::Level::Info), 12345);
+        SystemLog().write(ILog::Level::Debug,    xT("%s, %d"), xLEX_TO_STR(ILog::Level::Debug), 12345);
+        SystemLog().write(ILog::Level::Trace,    xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
     #endif
     }
 
