@@ -46,7 +46,7 @@ public:
         ///< set enabled
 
     virtual void_t write(cLevel level, cptr_ctchar_t format, ...) const = 0;
-        ///< write to log
+        ///< write with EOL to log
 
     void_t trace(cptr_ctchar_t format, ...) const;
     void_t debug(cptr_ctchar_t format, ...) const;
