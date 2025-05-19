@@ -51,8 +51,7 @@ FileLog::FileLog(
     xTEST(_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
-/* virtual */
-FileLog::~FileLog()
+FileLog::~FileLog() /* final */
 {
 #if 0
 	write(Level::Trace, xT("%s"), _oss.str().c_str()); /// TODO: fix

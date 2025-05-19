@@ -32,7 +32,7 @@ public:
 			  FileLog();
 	explicit  FileLog(cLogSizes fileSizeMaxBytes);
 	explicit  FileLog(std::csize_t fileSizeMaxBytes);
-	virtual  ~FileLog();
+			 ~FileLog() final;
 ///\}
 
 ///\name operators

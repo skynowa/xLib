@@ -21,7 +21,7 @@ public:
 ///\{
 			  SystemLog();
 	explicit  SystemLog(std::ctstring_t &logName);
-	virtual  ~SystemLog();
+			 ~SystemLog() final;
 ///\}
 
 ///\name operators
