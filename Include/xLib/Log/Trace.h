@@ -7,7 +7,6 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Core/OStream.h>
 #include "ILog.h"
 //-------------------------------------------------------------------------------------------------
 namespace xl::core
@@ -41,9 +40,6 @@ public:
 ///\{
 	void_t write(cLevel level, cptr_ctchar_t format, ...) const final;
 ///\}
-
-private:
-    OStream _oss;
 
 xPLATFORM_IMPL:
     void_t _write_impl(std::ctstring_t &msg) const;

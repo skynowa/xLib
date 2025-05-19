@@ -19,7 +19,12 @@ FileLog::operator << (
     const T &valueT
 )
 {
-    _oss << valueT;
+#if 0
+	_oss << valueT;
+#else
+
+#endif
+
     return *this;
 }
 //-------------------------------------------------------------------------------------------------

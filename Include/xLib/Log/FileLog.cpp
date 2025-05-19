@@ -54,7 +54,17 @@ FileLog::FileLog(
 /* virtual */
 FileLog::~FileLog()
 {
-    write(Level::Trace, xT("%s"), _oss.str().c_str()); /// TODO: fix
+#if 0
+	write(Level::Trace, xT("%s"), _oss.str().c_str()); /// TODO: fix
+#else
+    // write
+    {
+        FileIO file(filePath());
+        file.open(FileIO::OpenMode::Append, false);
+        int_t iRv = file.write(xT("\n"));
+        xTEST_DIFF(iRv, - 1);
+    }
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 void_t

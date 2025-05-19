@@ -19,7 +19,11 @@ Trace::operator << (
     const T &a_valueT
 )
 {
-    _oss << a_valueT;
+#if 0
+	_oss << a_valueT;
+#else
+
+#endif
 
     return *this;
 }
