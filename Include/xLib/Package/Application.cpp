@@ -86,7 +86,7 @@ public:
             Signal::infoDescription(*a_info),
             StackTrace().str());
 
-        log.write(xT("%s\n"), msg.c_str());
+        log.trace(xT("%s\n"), msg.c_str());
 
         std::tcout << StackTrace().str() << std::endl;
 

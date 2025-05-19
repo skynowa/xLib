@@ -17,7 +17,7 @@ template<typename T>
 SystemLog &
 SystemLog::operator << (const T &valueT)
 {
-    _oss << valueT;
+    _oss << valueT; /// TODO: fix
     return *this;
 }
 //-------------------------------------------------------------------------------------------------

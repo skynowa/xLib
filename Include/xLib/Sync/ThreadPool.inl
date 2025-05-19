@@ -40,14 +40,14 @@ ThreadPool<T>::ThreadPool(
 
     // TODO: [skynowa] ThreadPool - a_isPaused()
 
-    // _s_log.write(xT("--------------------------------"));
-    // _s_log.write(xT("ThreadPool: construct"));
+    // _s_log.trace(xT("--------------------------------"));
+    // _s_log.trace(xT("ThreadPool: construct"));
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 ThreadPool<T>::~ThreadPool()
 {
-    _s_log.write(xT("ThreadPool: destroy"));
+    _s_log.trace(xT("ThreadPool: destroy"));
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ ThreadPool<T>::groupCreate(
     xTEST_NA(a_numTasks);
     xTEST_NA(a_maxRunningTasks);
 
-    xCHECK_DO(isRunning(), _s_log.write(xT("ThreadPool: is running")); return);
+    xCHECK_DO(isRunning(), _s_log.trace(xT("ThreadPool: is running")); return);
 
     //-------------------------------------
     //
@@ -99,7 +99,7 @@ template<typename T>
 void_t
 ThreadPool<T>::groupResume()
 {
-    xCHECK_DO(!isRunning(), _s_log.write(xT("ThreadPool: not running")); return);
+    xCHECK_DO(!isRunning(), _s_log.trace(xT("ThreadPool: not running")); return);
 
     //-------------------------------------
     //
@@ -107,7 +107,7 @@ ThreadPool<T>::groupResume()
         AutoMutex mutex(&_s_mutex);
 
         for (const auto &it : _tasks) {
-            xCHECK_DO(!it->isRunning(), _s_log.write(xT("Not running")); continue);
+            xCHECK_DO(!it->isRunning(), _s_log.trace(xT("Not running")); continue);
 
             it->resume();
         }
@@ -122,7 +122,7 @@ template<typename T>
 void_t
 ThreadPool<T>::groupPause()
 {
-    xCHECK_DO(!isRunning(), _s_log.write(xT("ThreadPool: not running")); return);
+    xCHECK_DO(!isRunning(), _s_log.trace(xT("ThreadPool: not running")); return);
 
     //-------------------------------------
     //
@@ -134,7 +134,7 @@ ThreadPool<T>::groupPause()
         AutoMutex mutex(&_s_mutex);
 
         for (const auto &it : _tasks) {
-            xCHECK_DO(!it->isRunning(), _s_log.write(xT("Not running")); continue);
+            xCHECK_DO(!it->isRunning(), _s_log.trace(xT("Not running")); continue);
 
             it->pause();
         }
@@ -151,7 +151,7 @@ ThreadPool<T>::groupExit(
 
     // TODO: [skynowa] ThreadPool<T>::groupExit() - a_timeoutMsec
 
-    xCHECK_DO(!isRunning(), _s_log.write(xT("ThreadPool: not running")); return);
+    xCHECK_DO(!isRunning(), _s_log.trace(xT("ThreadPool: not running")); return);
 
     //-------------------------------------
     //
@@ -163,7 +163,7 @@ ThreadPool<T>::groupExit(
         AutoMutex mutex(&_s_mutex);
 
         for (const auto &it : _tasks)    {
-            xCHECK_DO(!it->isRunning(), _s_log.write(xT("ThreadPool: not running"));
+            xCHECK_DO(!it->isRunning(), _s_log.trace(xT("ThreadPool: not running"));
                 continue);
 
             it->exit(/* a_timeoutMsec */);
@@ -179,7 +179,7 @@ ThreadPool<T>::groupKill(
 {
     xTEST_PTR(this);
 
-    xCHECK_DO(!isRunning(), _s_log.write(xT("ThreadPool: not running")); return);
+    xCHECK_DO(!isRunning(), _s_log.trace(xT("ThreadPool: not running")); return);
 
     //-------------------------------------
     //
@@ -187,7 +187,7 @@ ThreadPool<T>::groupKill(
         AutoMutex mutex(&_s_mutex);
 
         for (const auto &it : _tasks)    {
-            xCHECK_DO(!it->isRunning(), _s_log.write(xT("Not running")); continue);
+            xCHECK_DO(!it->isRunning(), _s_log.trace(xT("Not running")); continue);
 
             it->kill(a_timeoutMsec);
         }
@@ -204,7 +204,7 @@ ThreadPool<T>::groupWait(
     culong_t &a_timeoutMsec
 )
 {
-    xCHECK_DO(!isRunning(), _s_log.write(xT("ThreadPool: not running")); return);
+    xCHECK_DO(!isRunning(), _s_log.trace(xT("ThreadPool: not running")); return);
 
     //-------------------------------------
     //
@@ -212,7 +212,7 @@ ThreadPool<T>::groupWait(
         AutoMutex mutex(&_s_mutex);
 
         for (const auto &it : _tasks)    {
-            xCHECK_DO(!it->isRunning(), _s_log.write(xT("Not running")); continue);
+            xCHECK_DO(!it->isRunning(), _s_log.trace(xT("Not running")); continue);
 
             it->wait(a_timeoutMsec);
         }
@@ -272,7 +272,7 @@ ThreadPool<T>::setMaxTasks(
         size_t tasksForDec = _maxRunningTasks - a_num;
 
         xFOR_EACH_R_CONST(typename std::list<T *>, it, _tasks) {
-            xCHECK_DO(!(*it)->isRunning(), _s_log.write(xT("Not running")); continue);
+            xCHECK_DO(!(*it)->isRunning(), _s_log.trace(xT("Not running")); continue);
 
             #if   xENV_WIN
                 ::InterlockedExchange(&((*it)->tag), 1UL);
@@ -416,7 +416,7 @@ ThreadPool<T>::onRun(
 
         ++ _currTask;
 
-        ////_s_log.write(xT("_currTask == %i, _numTasks: %i\n"), _currTask, _numTasks);
+        ////_s_log.trace(xT("_currTask == %i, _numTasks: %i\n"), _currTask, _numTasks);
     }
 
     //-------------------------------------
@@ -431,8 +431,8 @@ ThreadPool<T>::onRun(
     }
     xTEST(_tasks.empty());
 
-    _s_log.write(xT("ThreadPool: Exit thread function"));
-    _s_log.write(xT("ThreadPool: List size: %u"), _tasks.size());
+    _s_log.trace(xT("ThreadPool: Exit thread function"));
+    _s_log.trace(xT("ThreadPool: List size: %u"), _tasks.size());
 
     return uiRes;
 }
@@ -508,7 +508,7 @@ ThreadPool<T>::_onEnterTask(
 
     //...
 
-    //_s_log.write(xT("_vOnEnterTask: #%i"), a_pthTask->index);
+    //_s_log.trace(xT("_vOnEnterTask: #%i"), a_pthTask->index);
 }
 //-------------------------------------------------------------------------------------------------
 template<typename T>
@@ -522,7 +522,7 @@ ThreadPool<T>::_onExitTask(
 
     _taskRemove(a_sender);
 
-    //_s_log.write(xT("_vOnExitTask stop: #%i"), a_pthTask->index);
+    //_s_log.trace(xT("_vOnExitTask stop: #%i"), a_pthTask->index);
 }
 //-------------------------------------------------------------------------------------------------
 

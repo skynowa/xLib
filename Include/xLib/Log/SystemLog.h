@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/OStream.h>
 #include "ILog.h"
 //-------------------------------------------------------------------------------------------------
 namespace xl::log
@@ -32,7 +33,6 @@ public:
 
 ///\name Overrides
 ///\{
-	void_t write(cptr_ctchar_t format, ...) const final;
 	void_t write(cLevel level, cptr_ctchar_t format, ...) const final;
 ///\}
 
@@ -40,6 +40,7 @@ private:
 #if xENV_WIN
     HANDLE _handle {xNATIVE_HANDLE_NULL}; ///< event log handle
 #endif
+    OStream _oss;
 
 xPLATFORM_IMPL:
     void_t _construct_impl(std::ctstring_t &logName);

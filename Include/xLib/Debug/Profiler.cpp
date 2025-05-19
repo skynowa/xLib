@@ -35,7 +35,7 @@ Profiler::Profiler()
 Profiler::~Profiler()
 {
     if ( !_log.filePath().empty() ) {
-        _log.write(xT("----------------------------------------"));
+        _log.trace(xT("----------------------------------------"));
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -101,7 +101,7 @@ Profiler::stop(
         sRv = FormatC::strV(a_comment, args);
         xVA_END(args);
 
-        _log.write(xT("%s: %s"), durationTime.c_str(), sRv.c_str());
+        _log.trace(xT("%s: %s"), durationTime.c_str(), sRv.c_str());
     }
 
     _isStarted = false;

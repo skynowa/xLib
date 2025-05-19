@@ -58,28 +58,9 @@ SystemLog::SystemLog(
 /* virtual */
 SystemLog::~SystemLog()
 {
-    write(xT("%s"), _oss.str().c_str());
+    write(ILog::Level::Trace, xT("%s"), _oss.str().c_str()); /// TODO: fix
 
     _destruct_impl();
-}
-//-------------------------------------------------------------------------------------------------
-/* virtual */
-void_t
-SystemLog::write(
-    cptr_ctchar_t a_format, ...
-) const
-{
-    xCHECK_DO(!isEnabled(),        return);
-    xCHECK_DO(a_format == nullptr, return);
-
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
-
-    write(Level::Trace, xT("%s"), msg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */

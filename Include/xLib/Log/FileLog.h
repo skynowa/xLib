@@ -9,6 +9,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/Core.h>
 #include <xLib/Core/Units.h>
+#include <xLib/Core/OStream.h>
 #include "ILog.h"
 //-------------------------------------------------------------------------------------------------
 namespace xl::log
@@ -48,7 +49,6 @@ public:
 
 ///\name Overrides
 ///\{
-	void_t         write(cptr_ctchar_t format, ...) const final;
 	void_t         write(cLevel level, cptr_ctchar_t format, ...) const final;
 ///\}
 
@@ -58,6 +58,7 @@ public:
         ///< delete
 
 private:
+    OStream        _oss;
     std::tstring_t _filePath;            ///< file path
     std::size_t    _fileSizeMaxBytes {}; ///< maximum file size in bytes
 

@@ -45,14 +45,18 @@ public:
     bool_t         isEnabled() const;
         ///< set enabled
 
-    virtual void_t write(cptr_ctchar_t format, ...) const = 0;
-        ///< write to log
     virtual void_t write(cLevel level, cptr_ctchar_t format, ...) const = 0;
         ///< write to log
 
+    void_t trace(cptr_ctchar_t format, ...) const;
+    void_t debug(cptr_ctchar_t format, ...) const;
+    void_t info(cptr_ctchar_t format, ...) const;
+    void_t warning(cptr_ctchar_t format, ...) const;
+    void_t error(cptr_ctchar_t format, ...) const;
+    void_t critical(cptr_ctchar_t format, ...) const;
+
 protected:
-    std::tostringstream_t _oss; ///< string stream
-    std::tstring_t        _levelString(cLevel level) const;
+    std::tstring_t _levelString(cLevel level) const;
 
 private:
     bool_t _isEnable {true};  ///< is enabled
