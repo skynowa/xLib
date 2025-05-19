@@ -60,7 +60,7 @@ SystemLog::~SystemLog() /* final */
 #if 0
 	write(ILog::Level::Trace, xT("%s"), _oss.str().c_str()); /// TODO: fix
 #else
-	write(Level::Trace, xT(""));
+	write(ILog::Level::Trace, xT(""));
 #endif
 
     _destruct_impl();
@@ -76,7 +76,7 @@ SystemLog::write(
     xCHECK_DO(!isEnabled(), return);
     xTEST_PTR(a_format);
 
-    const auto level = (a_level == Level::Trace) ? Level::Info : Level::Off;
+    const auto level = (a_level == ILog::Level::Trace) ? ILog::Level::Info : ILog::Level::Off;
 
     std::tstring_t msg;
     {

@@ -35,7 +35,7 @@ Trace::~Trace() /* final */
 #if 0
 	write(Level::Trace, xT("%s"), _oss.str().c_str()); /// TODO: fix
 #else
-	write(Level::Trace, xT(""));
+	write(ILog::Level::Trace, xT(""));
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ Trace::write(
         msg = FormatC::strV(a_format, args);
         xVA_END(args);
 
-        if (a_level == Level::Trace) {
+        if (a_level == ILog::Level::Trace) {
             // n/a
         } else {
             msg = _levelString(a_level) + xT(": ") + msg;
