@@ -35,12 +35,6 @@ public:
 			 ~FileLog() final;
 ///\}
 
-///\name operators
-///\{
-	template<typename T>
-	FileLog &      operator << (const T &valueT);
-///\}
-
     void_t         setFilePath(std::ctstring_t &filePath);
         ///< set log path
     std::tstring_t filePath() const;

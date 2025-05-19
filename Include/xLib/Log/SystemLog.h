@@ -24,12 +24,6 @@ public:
 			 ~SystemLog() final;
 ///\}
 
-///\name operators
-///\{
-	template<typename T>
-	SystemLog & operator << (const T &valueT);
-///\}
-
 ///\name Overrides
 ///\{
 	void_t write(cLevel level, cptr_ctchar_t format, ...) const final;
