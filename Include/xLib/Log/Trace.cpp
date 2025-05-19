@@ -36,7 +36,7 @@ Trace::~Trace()
 #if 0
 	write(Level::Trace, xT("%s"), _oss.str().c_str()); /// TODO: fix
 #else
-	_write_impl(xT(""));
+	write(Level::Trace, xT(""));
 #endif
 }
 //-------------------------------------------------------------------------------------------------

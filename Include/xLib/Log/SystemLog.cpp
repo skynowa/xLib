@@ -61,7 +61,7 @@ SystemLog::~SystemLog()
 #if 0
 	write(ILog::Level::Trace, xT("%s"), _oss.str().c_str()); /// TODO: fix
 #else
-	_write_impl(ILog::Level::Trace, xT(""));
+	write(Level::Trace, xT(""));
 #endif
 
     _destruct_impl();
