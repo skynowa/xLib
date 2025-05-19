@@ -57,7 +57,7 @@ public:
 
     // Template operator<< in base class (not virtual)
     template <typename T>
-    ILog & operator<<(const T& value)
+    ILog & operator << (const T& value)
     {
         std::ostringstream oss;
         oss << value;
