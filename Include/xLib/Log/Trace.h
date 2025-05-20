@@ -26,8 +26,8 @@ class Trace final :
 public:
 ///\name ctors, dtor
 ///\{
-	Trace() = default;
-	~Trace() final;
+             Trace() = default;
+    virtual ~Trace();
 ///\}
 
 ///\name Overrides

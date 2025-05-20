@@ -55,7 +55,8 @@ SystemLog::SystemLog(
     _construct_impl(a_logName);
 }
 //-------------------------------------------------------------------------------------------------
-SystemLog::~SystemLog() /* final */
+/* virtual */
+SystemLog::~SystemLog()
 {
 #if 0
 	write(ILog::Level::Trace, xT("%s"), _oss.str().c_str()); /// TODO: fix
