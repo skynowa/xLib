@@ -73,18 +73,12 @@ FileLog::~FileLog()
 #else
     // write
     {
-        FileIO file(filePath());
+        FileIO file(_filePath);
         file.open(FileIO::OpenMode::Append, false);
         int_t iRv = file.write(xT("\n"));
         xTEST_DIFF(iRv, - 1);
     }
 #endif
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-FileLog::filePath() const
-{
-    return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */

@@ -17,17 +17,11 @@ Test_FileLog::unit()
 
     FileLog log(filePath, FileLog::LogSizes::DefaultMb);
 
-    xTEST_CASE("filePath")
-    {
-        m_sRv = log.filePath();
-        xTEST_EQ(filePath, m_sRv);
-    }
-
     xTEST_CASE("write")
     {
         for (size_t i = 0; i < 10; ++ i) {
             log.write(ILog::Level::Trace, xT("simple log string: %s"), xT("qwerty01234567890"));
-            xTEST_GR(FileInfo( log.filePath() ).size(), longlong_t(0));
+            xTEST_GR(FileInfo(filePath).size(), longlong_t(0));
         }
     }
 
@@ -49,16 +43,16 @@ Test_FileLog::unit()
     {
 	#if 0
 		log.clear();
-		xTEST_EQ(FileInfo( log.filePath( )).size(), longlong_t(0));
-	#endif
+		xTEST_EQ(FileInfo(filePath).size(), longlong_t(0));
+    #endif
     }
 
     xTEST_CASE("remove")
     {
 	#if 0
 		log.remove();
-		xTEST(!FileInfo(log.filePath()).isExists());
-	#endif
+		xTEST(!FileInfo(filePath).isExists());
+    #endif
     }
 
     return true;
