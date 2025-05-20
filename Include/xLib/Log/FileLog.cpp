@@ -29,23 +29,26 @@ namespace xl::log
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-FileLog::FileLog() :
-	FileLog(LogSizes::DefaultMb)
+FileLog::FileLog(
+    std::ctstring_t &a_filePath
+) :
+	FileLog(a_filePath, LogSizes::DefaultMb)
 {
-    xTEST(_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 FileLog::FileLog(
-    cLogSizes a_fileSizeMaxBytes
+    std::ctstring_t &a_filePath,
+    cLogSizes        a_fileSizeMaxBytes
 ) :
-	FileLog( static_cast<std::size_t>(a_fileSizeMaxBytes) )
+	FileLog(a_filePath, static_cast<std::size_t>(a_fileSizeMaxBytes))
 {
-    xTEST(_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 FileLog::FileLog(
-    std::csize_t a_fileSizeMaxBytes
+    std::ctstring_t &a_filePath,
+    std::csize_t     a_fileSizeMaxBytes
 ) :
+    _filePath        (), // Set later
     _fileSizeMaxBytes(a_fileSizeMaxBytes)
 {
     xTEST(_filePath.empty());
