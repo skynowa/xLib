@@ -11,6 +11,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/OStream.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::log
 {
@@ -59,7 +60,7 @@ public:
     template <typename T>
     ILog & operator << (const T& value)
     {
-        std::ostringstream oss;
+        OStream oss;
         oss << value;
 
         write({}, xT("%s"), oss.str().c_str());  // Calls overridden method
