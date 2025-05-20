@@ -28,7 +28,7 @@ Test_FileLog::unit()
     xTEST_CASE("write")
     {
         for (size_t i = 0; i < 10; ++ i) {
-            log.write(xT("simple log string: %s"), xT("qwerty01234567890"));
+            log.write(ILog::Level::Trace, xT("simple log string: %s"), xT("qwerty01234567890"));
             xTEST_GR(FileInfo( log.filePath() ).size(), longlong_t(0));
         }
     }
