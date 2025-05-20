@@ -66,7 +66,7 @@ private:
  * \todo
  *
  * - https://oopscenities.net/2011/04/30/c-the-curiously-recurring-template-pattern/#more-21
- * - class LogMsg:
+ * - class LogItem:
  *
  *   - Date
  *   - Level
