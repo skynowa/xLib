@@ -32,7 +32,7 @@ public:
 			  FileLog();
 	explicit  FileLog(cLogSizes fileSizeMaxBytes);
 	explicit  FileLog(std::csize_t fileSizeMaxBytes);
-			 ~FileLog() final;
+	virtual  ~FileLog();
 ///\}
 
     void_t         setFilePath(std::ctstring_t &filePath);
