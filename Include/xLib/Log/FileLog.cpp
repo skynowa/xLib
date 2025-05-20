@@ -165,7 +165,7 @@ FileLog::_removeIfFull() const
     xCHECK_DO(!bRv, return);
 
     // remove log, if full
-    xCHECK_DO(FileInfo(filePath()).size() < static_cast<longlong_t>(_fileSizeMaxBytes), return);
+    xCHECK_DO(FileInfo(filePath()).size() < _fileSizeMaxBytes, return);
 
     remove();
 }
