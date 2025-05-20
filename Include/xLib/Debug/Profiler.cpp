@@ -59,9 +59,9 @@ Profiler::stop()
         xTEST_LESS_EQ(static_cast<clock_t>( 0 ), _duration);
     }
 
-    cdouble_t   durationMsec1 = (static_cast<double>( _duration ) /
-        static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
-    std::size_t durationMsec2 = Utils::roundIntT<std::size_t>( durationMsec1 );
+    cdouble_t    durationMsec1 = (static_cast<double>( _duration ) /
+        static_cast<double>(CLOCKS_PER_SEC)) * 1000.0;  // 1 sec = 1000 msec
+    std::csize_t durationMsec2 = Utils::roundIntT<std::size_t>( durationMsec1 );
 
     _isStarted = false;
 
