@@ -19,13 +19,12 @@ public:
 ///\name ctors, dtor
 ///\{
              Profiler();
+             Profiler(std::ctstring_t &logPath);
 	virtual ~Profiler();
 
 	xNO_COPY_ASSIGN(Profiler);
 ///\}
 
-    void_t         setLogPath(std::ctstring_t &logPath);
-        ///< set log path
     std::tstring_t logPath() const;
         ///< get log path
 

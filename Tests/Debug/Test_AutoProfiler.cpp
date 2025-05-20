@@ -1,5 +1,5 @@
 /**
- * \file   Test_AutoProfiler.cpp
+ * \file  Test_AutoProfiler.cpp
  * \brief
  */
 
@@ -24,7 +24,7 @@ Test_AutoProfiler::unit()
 		}
 
         for (size_t y = 0; y < 10; ++ y) {
-            AutoProfiler apfP(filePath, xT("\tVar y: %") xPR_SIZET, y);
+            AutoProfiler profiler(filePath, xT("\tVar y: %") xPR_SIZET, y);
 
             Thread::currentSleep(5UL);
         }

@@ -20,24 +20,24 @@ namespace xl::debug
 //-------------------------------------------------------------------------------------------------
 AutoProfiler::AutoProfiler(
     std::ctstring_t &a_filePath,
-    cptr_ctchar_t    a_comment, ...
-)
+    cptr_ctchar_t    a_msg, ...
+) :
+	_profiler(a_filePath)
 {
-    // format comment
+    // format msg
     va_list args;
-    xVA_START(args, a_comment);
-    _comment = FormatC::strV(a_comment, args);
+    xVA_START(args, a_msg);
+    _msg = FormatC::strV(a_msg, args);
     xVA_END(args);
 
     // start
-    _profiler.setLogPath(a_filePath);
     _profiler.start();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 AutoProfiler::~AutoProfiler()
 {
-    size_t uiRv = _profiler.stop(xT("%s"), _comment.c_str());
+    size_t uiRv = _profiler.stop(xT("%s"), _msg.c_str());
     xUNUSED(uiRv);
 }
 //-------------------------------------------------------------------------------------------------

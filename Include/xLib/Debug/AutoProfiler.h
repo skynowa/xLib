@@ -18,7 +18,7 @@ class AutoProfiler
 public:
 ///\name ctors, dtor
 ///\{
-			 AutoProfiler(std::ctstring_t &filePath, cptr_ctchar_t comment, ...);
+			 AutoProfiler(std::ctstring_t &filePath, cptr_ctchar_t msg, ...);
 	virtual ~AutoProfiler();
 
     xNO_DEFAULT_CONSTRUCT(AutoProfiler);
@@ -26,8 +26,8 @@ public:
 ///\}
 
 private:
-    Profiler       _profiler;   ///< profiler
-    std::tstring_t _comment;    ///< comment
+    Profiler       _profiler; ///< profiler
+    std::tstring_t _msg;      ///< message
 };
 
 } // namespace
