@@ -7,7 +7,6 @@
 #include "FsWatcher.h"
 
 #include <xLib/Core/Const.h>
-#include <xLib/Log/AutoLog.h>
 
 #if   xENV_WIN
     #include "Platform/Win/FsWatcher_win.inl"
