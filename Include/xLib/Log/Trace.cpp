@@ -71,7 +71,7 @@ Trace::write(
         msg = FormatC::strV(a_format, args);
         xVA_END(args);
 
-        if (a_level == Level::Trace) {
+        if (a_level == ILog::Level::Trace) {
             // n/a
         } else {
             msg = _levelString(a_level) + xT(": ") + msg;
