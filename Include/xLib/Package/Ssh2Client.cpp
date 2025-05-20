@@ -243,8 +243,7 @@ Ssh2Client::channelReadLine(
         if ( !stdErr.empty() ) {
             Trace() << "\n" << stdErr;
 
-            FileLog log;
-            log.setFilePath("./log.log");
+            FileLog log(xT("./log.log"));
             log << "\n" << stdErr << "\n";
         }
 
@@ -254,8 +253,7 @@ Ssh2Client::channelReadLine(
         if ( !stdErr.empty() ) {
             Trace() << "\n" << stdErr;
 
-            FileLog log;
-            log.setFilePath("./log.log");
+            FileLog log(xT("./log.log"));
             log << "\n" << stdErr << "\n\n\n";
         }
         break;

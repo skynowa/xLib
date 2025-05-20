@@ -15,12 +15,10 @@ Test_FileLog::unit()
 {
     std::ctstring_t filePath = option().tempDirPath + Const::slash() + xT("FileLog.log");
 
-    FileLog log(FileLog::LogSizes::DefaultMb);
+    FileLog log(filePath, FileLog::LogSizes::DefaultMb);
 
-    xTEST_CASE("setFilePath, filePath")
+    xTEST_CASE("filePath")
     {
-        log.setFilePath(filePath);
-
         m_sRv = log.filePath();
         xTEST_EQ(filePath, m_sRv);
     }

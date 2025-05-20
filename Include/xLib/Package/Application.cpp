@@ -49,8 +49,7 @@ public:
 
         // Trace() << Signal::decription(0) << "\n";
 
-        FileLog log(FileLog::LogSizes::DefaultMb);
-        log.setFilePath(xT("crash.log"));
+        FileLog log(xT("crash.log"), FileLog::LogSizes::DefaultMb);
 
         std::ctstring_t msg = Format::str(
             xT("Crash info:\n\n")
@@ -76,8 +75,7 @@ public:
         Trace() << Signal::infoDescription(*a_info) << "\n";
         Trace() << Signal::decription(0) << "\n";
 
-        FileLog log(FileLog::LogSizes::DefaultMb);
-        log.setFilePath(xT("crash.log"));
+        FileLog log(xT("crash.log"), FileLog::LogSizes::DefaultMb);
 
         std::ctstring_t msg = Format::str(
             xT("Crash info:\n\n")
