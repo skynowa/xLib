@@ -85,7 +85,7 @@ FileLog::write(
 {
     xCHECK_DO(!isEnabled(),        return);
     xCHECK_DO(a_format == nullptr, return);
-    xCHECK_DO(filePath().empty(),  return);
+    xCHECK_DO(_filePath.empty(),   return);
 
     std::tstring_t msg;
 
@@ -104,8 +104,8 @@ FileLog::write(
     cptr_ctchar_t a_format, ...
 ) const
 {
-    xCHECK_DO(!isEnabled(),       return);
-    xCHECK_DO(filePath().empty(), return);
+    xCHECK_DO(!isEnabled(),      return);
+    xCHECK_DO(_filePath.empty(), return);
 
     _removeIfFull();
 
@@ -129,7 +129,7 @@ FileLog::write(
 
     // write
     {
-        FileIO file(filePath());
+        FileIO file(_filePath);
         file.open(FileIO::OpenMode::Append, false);
         int_t iRv = file.write(xT("[%s] %s\n"), time.c_str(), msg.c_str());
         xTEST_DIFF(iRv, - 1);
@@ -139,7 +139,7 @@ FileLog::write(
 void_t
 FileLog::clear() const
 {
-    FileIO file(filePath());
+    FileIO file(_filePath);
     file.open(FileIO::OpenMode::Write);
     file.clear();
 }
@@ -147,7 +147,7 @@ FileLog::clear() const
 void_t
 FileLog::remove() const
 {
-    File(filePath()).remove();
+    File(_filePath).remove();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -161,11 +161,13 @@ FileLog::remove() const
 void_t
 FileLog::_removeIfFull() const
 {
-    bool_t bRv = FileInfo( filePath() ).isExists();
+	FileInfo info(_filePath);
+
+    bool_t bRv = info.isExists();
     xCHECK_DO(!bRv, return);
 
     // remove log, if full
-    xCHECK_DO(FileInfo(filePath()).size() < _fileSizeMaxBytes, return);
+    xCHECK_DO(info.size() < _fileSizeMaxBytes, return);
 
     remove();
 }
