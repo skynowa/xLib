@@ -44,7 +44,7 @@ Test_FileLog::unit()
 	#if 0
 		log.clear();
 		xTEST_EQ(FileInfo(filePath).size(), longlong_t(0));
-    #endif
+	#endif
     }
 
     xTEST_CASE("remove")
@@ -52,7 +52,7 @@ Test_FileLog::unit()
 	#if 0
 		log.remove();
 		xTEST(!FileInfo(filePath).isExists());
-    #endif
+	#endif
     }
 
     return true;
