@@ -51,6 +51,9 @@ FileLog::FileLog(
     _filePath        (), // Set later
     _fileSizeMaxBytes(a_fileSizeMaxBytes)
 {
+    xTEST(!a_filePath.empty());
+    xTEST_GR(a_fileSizeMaxBytes, 0);
+
     xTEST(_filePath.empty());
 
     if (a_filePath.find( Const::slash() ) == std::tstring_t::npos) {
@@ -58,6 +61,8 @@ FileLog::FileLog(
     } else {
         _filePath = a_filePath;
     }
+
+    xTEST(!_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
