@@ -24,11 +24,11 @@ public:
 	xNO_COPY_ASSIGN(Profiler);
 ///\}
 
-    void_t         start();
+    void_t start();
         ///< start measurement
-    size_t         stop();
+    size_t stop();
         ///< stop measurement
-    size_t         restart();
+    size_t restart();
         ///< stop, start measurement
 
 private:

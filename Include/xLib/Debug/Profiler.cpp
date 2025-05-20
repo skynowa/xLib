@@ -53,15 +53,15 @@ Profiler::stop()
     // stop, get duration
     {
         _stop = std::clock();
-        xTEST_DIFF(static_cast<clock_t>( - 1 ), _stop);
+        xTEST_DIFF(static_cast<clock_t>(- 1), _stop);
 
         _duration = _stop - _start;
-        xTEST_LESS_EQ(static_cast<clock_t>( 0 ), _duration);
+        xTEST_GR_EQ(_duration, static_cast<clock_t>(0));
     }
 
-    cdouble_t    durationMsec1 = (static_cast<double>( _duration ) /
+    cdouble_t    durationMsec1 = (static_cast<double>(_duration) /
         static_cast<double>(CLOCKS_PER_SEC)) * 1000.0;  // 1 sec = 1000 msec
-    std::csize_t durationMsec2 = Utils::roundIntT<std::size_t>( durationMsec1 );
+    std::csize_t durationMsec2 = Utils::roundIntT<std::size_t>(durationMsec1);
 
     _isStarted = false;
 
