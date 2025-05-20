@@ -27,31 +27,6 @@ namespace xl::debug
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Profiler::Profiler() :
-	Profiler(xT(""))
-{
-}
-//-------------------------------------------------------------------------------------------------
-Profiler::Profiler(
-	std::ctstring_t &a_logPath
-) :
-	_log(a_logPath)
-{
-}
-//-------------------------------------------------------------------------------------------------
-Profiler::~Profiler()
-{
-    if ( !_log.filePath().empty() ) {
-        _log.trace(xT("----------------------------------------"));
-    }
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Profiler::logPath() const
-{
-    return _log.filePath();
-}
-//-------------------------------------------------------------------------------------------------
 void_t
 Profiler::start()
 {
@@ -71,9 +46,7 @@ Profiler::start()
 }
 //-------------------------------------------------------------------------------------------------
 size_t
-Profiler::stop(
-    cptr_ctchar_t a_comment, ...
-)
+Profiler::stop()
 {
 	xTEST(_isStarted);
 
@@ -90,43 +63,18 @@ Profiler::stop(
         static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
     std::size_t durationMsec2 = Utils::roundIntT<std::size_t>( durationMsec1 );
 
-    // write to log
-    if ( !_log.filePath().empty() ) {
-        std::tstring_t  sRv;
-        std::ctstring_t durationTime = DateTime(durationMsec2).format(xT("%H:%M:%S"));
-
-        va_list args;
-        xVA_START(args, a_comment);
-        sRv = FormatC::strV(a_comment, args);
-        xVA_END(args);
-
-        _log.trace(xT("%s: %s"), durationTime.c_str(), sRv.c_str());
-    }
-
     _isStarted = false;
 
     return durationMsec2;
 }
 //-------------------------------------------------------------------------------------------------
 size_t
-Profiler::restart(
-    cptr_ctchar_t a_comment, ...
-)
+Profiler::restart()
 {
-    size_t uiRV = 0;
-
-    // format comment
-    std::tstring_t sRv;
-
-    if ( !_log.filePath().empty() ) {
-        va_list args;
-        xVA_START(args, a_comment);
-        sRv = FormatC::strV(a_comment, args);
-        xVA_END(args);
-    }
+    size_t uiRV {};
 
     // stop, start
-    uiRV = stop(xT("%s"), sRv.c_str());
+    uiRV = stop();
     start();
 
     return uiRV;
