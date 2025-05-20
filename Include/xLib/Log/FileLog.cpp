@@ -67,20 +67,6 @@ FileLog::~FileLog()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-void_t
-FileLog::setFilePath(
-    std::ctstring_t &a_filePath ///< full path or name
-)
-{
-    xTEST(!a_filePath.empty());
-
-    if (a_filePath.find( Const::slash() ) == std::tstring_t::npos) {
-        _filePath = Path::exe().dir() + Const::slash() + a_filePath;
-    } else {
-        _filePath = a_filePath;
-    }
-}
-//-------------------------------------------------------------------------------------------------
 std::tstring_t
 FileLog::filePath() const
 {
