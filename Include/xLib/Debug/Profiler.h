@@ -18,25 +18,20 @@ class Profiler
 public:
 ///\name ctors, dtor
 ///\{
-             Profiler();
-             Profiler(std::ctstring_t &logPath);
-	virtual ~Profiler();
+             Profiler() = default;
+	virtual ~Profiler() = default;
 
 	xNO_COPY_ASSIGN(Profiler);
 ///\}
 
-    std::tstring_t logPath() const;
-        ///< get log path
-
     void_t         start();
         ///< start measurement
-    size_t         stop(cptr_ctchar_t comment, ...);
+    size_t         stop();
         ///< stop measurement
-    size_t         restart(cptr_ctchar_t comment, ...);
+    size_t         restart();
         ///< stop, start measurement
 
 private:
-    FileLog      _log;          ///< file log
     bool_t       _isStarted {}; ///< is started
 
     std::clock_t _start {};     ///< start value
