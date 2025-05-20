@@ -35,7 +35,7 @@ Test_FileLog::unit()
 
     xTEST_CASE("write(...)")
     {
-        log.write(ILog::Level::Off,      xT("%s, %d"), xLEX_TO_STR(ILog::L::::Unknown), 12345);
+        log.write(ILog::Level::Off,      xT("%s, %d"), xLEX_TO_STR(ILog::Level::Unknown), 12345);
         log.write(ILog::Level::Critical, xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
         log.write(ILog::Level::Warning,  xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
         log.write(ILog::Level::Critical, xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
