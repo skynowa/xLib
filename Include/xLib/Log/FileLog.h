@@ -41,9 +41,6 @@ public:
 	FileLog &      operator << (const T &valueT);
 ///\}
 
-    std::tstring_t filePath() const;
-        ///< get log path
-
 ///\name Overrides
 ///\{
 	void_t         write(cptr_ctchar_t format, ...) const final;
