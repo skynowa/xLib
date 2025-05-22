@@ -35,15 +35,8 @@ public:
 	virtual  ~FileLog();
 ///\}
 
-///\name operators
-///\{
-	template<typename T>
-	FileLog &      operator << (const T &valueT);
-///\}
-
 ///\name Overrides
 ///\{
-	void_t         write(cptr_ctchar_t format, ...) const final;
 	void_t         write(cLevel level, cptr_ctchar_t format, ...) const final;
 ///\}
 
@@ -62,4 +55,3 @@ private:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-#include "FileLog.inl"

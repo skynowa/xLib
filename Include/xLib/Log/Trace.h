@@ -30,15 +30,8 @@ public:
 	virtual ~Trace();
 ///\}
 
-///\name operators
-///\{
-	template<typename T>
-	Trace &  operator << (const T &valueT);
-///\}
-
 ///\name Overrides
 ///\{
-	void_t write(cptr_ctchar_t format, ...) const final;
 	void_t write(cLevel level, cptr_ctchar_t format, ...) const final;
 ///\}
 
@@ -48,4 +41,3 @@ xPLATFORM_IMPL:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-#include "Trace.inl"
