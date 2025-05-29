@@ -1,5 +1,11 @@
 # Change Log {#id_changelog}
 
+## ilog-review (#454)
+
+- **Commit:** [b050d4669](https://github.com/skynowa/xLib/commit/b050d4669)
+- **Author:** skynowa
+- **Date:** 2025-05-29
+
 ## AutoProfiler-AutoLog: Profiler.cpp (+12) [17+/296-] - remove (#455)
 
 - **Commit:** [cc41249b7](https://github.com/skynowa/xLib/commit/cc41249b7)
