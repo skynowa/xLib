@@ -144,7 +144,7 @@ Path::_trashDir_impl()
 	// checks
 	{
 		if ( sRv.empty() ) {
-			Trace().write(Trace::Level::Warning, xT("%s - Can't detect"), xFUNCTION);
+			Trace().warning(xT("%s - Can't detect"), xFUNCTION);
 			return {};
 		}
 

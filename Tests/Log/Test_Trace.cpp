@@ -13,43 +13,20 @@ xTEST_UNIT(Test_Trace)
 bool_t
 Test_Trace::unit()
 {
-    xTEST_CASE("write")
-    {
-    #if xTEST_IGNORE
-        Trace::write(xT("\t%s: %d"), "test_str", 12345);
-    #endif
-    }
-
     xTEST_CASE("write(...)")
     {
-    #if xTEST_IGNORE
-        Trace().write(ILog::Level::Off,      xT("%s, %d"), xLEX_TO_STR(ILog::Level::Off), 12345);
-        Trace().write(ILog::Level::Critical, xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
-        Trace().write(ILog::Level::Warning,  xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
-        Trace().write(ILog::Level::Critical, xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
-        Trace().write(ILog::Level::Error,    xT("%s, %d"), xLEX_TO_STR(ILog::Level::Error), 12345);
-        Trace().write(ILog::Level::Warning,  xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
-        Trace().write(ILog::Level::Trace,    xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
-        Trace().write(ILog::Level::Info,     xT("%s, %d"), xLEX_TO_STR(ILog::Level::Info), 12345);
-        Trace().write(ILog::Level::Debug,    xT("%s, %d"), xLEX_TO_STR(ILog::Level::Debug), 12345);
-        Trace().write(ILog::Level::Trace,    xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
-    #endif
-    }
-
-    xTEST_CASE("xTRACE_VAR")
-    {
-    #if xTEST_IGNORE
-        std::tstring_t sData  = xT("data1");
-        ulong_t        ulData = 777UL;
-        double         aData  = 4.4;
-        cptr_ctchar_t  szData = xT("data2");
-
-        Trace()
-			<< xT("\t")
-			<< xTRACE_VAR(sData)
-			<< xTRACE_VAR(ulData)
-			<< xTRACE_VAR(aData)
-			<< xTRACE_VAR(szData);
+    #if 1 || xTEST_IGNORE
+        Trace log;
+        log.write(ILog::Level::Off, xT("%s, %d"), xLEX_TO_STR(ILog::Level::Off), 12345);
+        log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
+        log.warning(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
+        log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
+        log.error(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Error), 12345);
+        log.warning(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
+        log.trace(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
+        log.info(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Info), 12345);
+        log.debug(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Debug), 12345);
+        log.trace(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
     #endif
     }
 

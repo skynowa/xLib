@@ -13,12 +13,12 @@ xTEST_UNIT(Test_SystemLog)
 bool_t
 Test_SystemLog::unit()
 {
-    xTEST_CASE("SystemLog")
+    xTEST_CASE("ctor")
     {
         SystemLog log;
     }
 
-    xTEST_CASE("SystemLog")
+    xTEST_CASE("ctor")
     {
         std::tstring_t logName = xT("Simple_programm_name");
 
@@ -35,37 +35,20 @@ Test_SystemLog::unit()
         log.setEnabled(false);
     }
 
-    xTEST_CASE("write")
-    {
-        ILog::cLevel logLevel[]
-        {
-            ILog::Level::Critical, ILog::Level::Warning, ILog::Level::Critical,
-            ILog::Level::Error, ILog::Level::Warning, ILog::Level::Trace,
-            ILog::Level::Info, ILog::Level::Debug
-        };
-
-        SystemLog log;
-
-        for (size_t i = 0; i < xARRAY_SIZE(logLevel); ++ i) {
-        #if xTEST_IGNORE
-            log.write(logLevel[i], xT("%s%")xPR_SIZET, xT("This is test system log message #"), i);
-        #endif
-        }
-    }
-
     xTEST_CASE("write(...)")
     {
-    #if xTEST_IGNORE
-        SystemLog().write(ILog::Level::Off,      xT("%s, %d"), xLEX_TO_STR(ILog::Level::Off), 12345);
-        SystemLog().write(ILog::Level::Critical, xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
-        SystemLog().write(ILog::Level::Warning,  xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
-        SystemLog().write(ILog::Level::Critical, xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
-        SystemLog().write(ILog::Level::Error,    xT("%s, %d"), xLEX_TO_STR(ILog::Level::Error), 12345);
-        SystemLog().write(ILog::Level::Warning,  xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
-        SystemLog().write(ILog::Level::Trace,    xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
-        SystemLog().write(ILog::Level::Info,     xT("%s, %d"), xLEX_TO_STR(ILog::Level::Info), 12345);
-        SystemLog().write(ILog::Level::Debug,    xT("%s, %d"), xLEX_TO_STR(ILog::Level::Debug), 12345);
-        SystemLog().write(ILog::Level::Trace,    xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
+    #if 1 || xTEST_IGNORE
+        SystemLog log;
+        log.write(ILog::Level::Off, xT("%s, %d"), xLEX_TO_STR(ILog::Level::Off), 12345);
+        log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
+        log.warning(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
+        log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
+        log.error(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Error), 12345);
+        log.warning(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
+        log.trace(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
+        log.info(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Info), 12345);
+        log.debug(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Debug), 12345);
+        log.trace(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
     #endif
     }
 
