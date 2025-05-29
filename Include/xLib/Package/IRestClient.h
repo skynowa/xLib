@@ -30,7 +30,7 @@ protected:
 	std::size_t        _version {};
 	std::map_tstring_t _credentials;
 	fs::Config         _config;
-	log::FileLog       _log;
+	/// log::FileLog       _log;
 	std::tstring_t     _dirTmp;
 	curl::HttpClient   _http {false};
 };

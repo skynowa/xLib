@@ -294,8 +294,8 @@ Process::_currentParentId_impl()
 
     const id_t invalidId = (DWORD)- 1;
 
-    Dll dll;
-    dll.load(xT("ntdll.dll"));
+    Dll dll(xT("ntdll.dll"));
+    dll.load();
     xCHECK_RET(!dll, invalidId);
 
 #if xARCH_BITS_32

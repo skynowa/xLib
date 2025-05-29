@@ -10,7 +10,6 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Debug/Exception.h>
-#include <xLib/Log/Trace.h>
 #include <xLib/Log/FileLog.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>
@@ -37,7 +36,7 @@ public:
         xUNUSED(a_signal);
 
         xTRACE_FUNC;
-        // Trace() << Signal::decription(a_signal) << "\n";
+        // Cout() << Signal::decription(a_signal) << "\n";
 
         Application::exitFailure();
     }
@@ -47,10 +46,9 @@ public:
     {
         xTRACE_FUNC;
 
-        // Trace() << Signal::decription(0) << "\n";
+        // Cout() << Signal::decription(0) << "\n";
 
-        FileLog log(FileLog::LogSizes::DefaultMb);
-        log.setFilePath(xT("crash.log"));
+        FileLog log(xT("crash.log"), FileLog::LogSizes::DefaultMb);
 
         std::ctstring_t msg = Format::str(
             xT("Crash info:\n\n")
@@ -73,11 +71,10 @@ public:
 
         xTRACE_FUNC;
 
-        Trace() << Signal::infoDescription(*a_info) << "\n";
-        Trace() << Signal::decription(0) << "\n";
+        Cout() << Signal::infoDescription(*a_info) << "\n";
+        Cout() << Signal::decription(0) << "\n";
 
-        FileLog log(FileLog::LogSizes::DefaultMb);
-        log.setFilePath(xT("crash.log"));
+        FileLog log(xT("crash.log"), FileLog::LogSizes::DefaultMb);
 
         std::ctstring_t msg = Format::str(
             xT("Crash info:\n\n")
@@ -86,7 +83,7 @@ public:
             Signal::infoDescription(*a_info),
             StackTrace().str());
 
-        log.write(xT("%s\n"), msg.c_str());
+        log.trace(xT("%s\n"), msg.c_str());
 
         std::tcout << StackTrace().str() << std::endl;
 

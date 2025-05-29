@@ -27,32 +27,6 @@ namespace xl::debug
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Profiler::Profiler()
-{
-    _reset();
-}
-//-------------------------------------------------------------------------------------------------
-Profiler::~Profiler()
-{
-    if ( !_log.filePath().empty() ) {
-        _log.write(xT("----------------------------------------"));
-    }
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Profiler::setLogPath(
-    std::ctstring_t &a_logPath
-)
-{
-    _log.setFilePath(a_logPath);
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Profiler::logPath() const
-{
-    return _log.filePath();
-}
-//-------------------------------------------------------------------------------------------------
 void_t
 Profiler::start()
 {
@@ -72,37 +46,22 @@ Profiler::start()
 }
 //-------------------------------------------------------------------------------------------------
 size_t
-Profiler::stop(
-    cptr_ctchar_t a_comment, ...
-)
+Profiler::stop()
 {
 	xTEST(_isStarted);
 
     // stop, get duration
     {
         _stop = std::clock();
-        xTEST_DIFF(static_cast<clock_t>( - 1 ), _stop);
+        xTEST_DIFF(static_cast<clock_t>(- 1), _stop);
 
         _duration = _stop - _start;
-        xTEST_LESS_EQ(static_cast<clock_t>( 0 ), _duration);
+        xTEST_GR_EQ(_duration, static_cast<clock_t>(0));
     }
 
-    cdouble_t   durationMsec1 = (static_cast<double>( _duration ) /
-        static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
-    std::size_t durationMsec2 = Utils::roundIntT<std::size_t>( durationMsec1 );
-
-    // write to log
-    if ( !_log.filePath().empty() ) {
-        std::tstring_t  sRv;
-        std::ctstring_t durationTime = DateTime(durationMsec2).format(xT("%H:%M:%S"));
-
-        va_list args;
-        xVA_START(args, a_comment);
-        sRv = FormatC::strV(a_comment, args);
-        xVA_END(args);
-
-        _log.write(xT("%s: %s"), durationTime.c_str(), sRv.c_str());
-    }
+    cdouble_t    durationMsec1 = (static_cast<double>(_duration) /
+        static_cast<double>(CLOCKS_PER_SEC)) * 1000.0;  // 1 sec = 1000 msec
+    std::csize_t durationMsec2 = Utils::roundIntT<std::size_t>(durationMsec1);
 
     _isStarted = false;
 
@@ -110,24 +69,12 @@ Profiler::stop(
 }
 //-------------------------------------------------------------------------------------------------
 size_t
-Profiler::restart(
-    cptr_ctchar_t a_comment, ...
-)
+Profiler::restart()
 {
-    size_t uiRV = 0;
-
-    // format comment
-    std::tstring_t sRv;
-
-    if ( !_log.filePath().empty() ) {
-        va_list args;
-        xVA_START(args, a_comment);
-        sRv = FormatC::strV(a_comment, args);
-        xVA_END(args);
-    }
+    size_t uiRV {};
 
     // stop, start
-    uiRV = stop(xT("%s"), sRv.c_str());
+    uiRV = stop();
     start();
 
     return uiRV;

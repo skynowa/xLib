@@ -29,72 +29,45 @@ namespace xl::log
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-FileLog::FileLog() :
-    _fileSizeMaxBytes( static_cast<std::size_t>(LogSizes::DefaultMb) )
+FileLog::FileLog(
+    std::ctstring_t &a_filePath
+) :
+	FileLog(a_filePath, LogSizes::DefaultMb)
 {
-    xTEST(_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 FileLog::FileLog(
-    cLogSizes a_fileSizeMaxBytes
+    std::ctstring_t &a_filePath,
+    cLogSizes        a_fileSizeMaxBytes
 ) :
-    _fileSizeMaxBytes( static_cast<std::size_t>(a_fileSizeMaxBytes) )
+	FileLog(a_filePath, static_cast<std::size_t>(a_fileSizeMaxBytes))
 {
-    xTEST(_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 FileLog::FileLog(
-    std::csize_t a_fileSizeMaxBytes
+    std::ctstring_t &a_filePath,
+    std::csize_t     a_fileSizeMaxBytes
 ) :
+    _filePath        (), // Set later
     _fileSizeMaxBytes(a_fileSizeMaxBytes)
 {
-    xTEST(_filePath.empty());
-}
-//-------------------------------------------------------------------------------------------------
-/* virtual */
-FileLog::~FileLog()
-{
-    write(xT("%s"), _oss.str().c_str());
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-FileLog::setFilePath(
-    std::ctstring_t &a_filePath ///< full path or name
-)
-{
     xTEST(!a_filePath.empty());
+    xTEST_GR(a_fileSizeMaxBytes, 0);
+
+    xTEST(_filePath.empty());
 
     if (a_filePath.find( Const::slash() ) == std::tstring_t::npos) {
         _filePath = Path::exe().dir() + Const::slash() + a_filePath;
     } else {
         _filePath = a_filePath;
     }
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-FileLog::filePath() const
-{
-    return _filePath;
+
+    xTEST(!_filePath.empty());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-void_t
-FileLog::write(
-    cptr_ctchar_t a_format, ...
-) const
+FileLog::~FileLog()
 {
-    xCHECK_DO(!isEnabled(),        return);
-    xCHECK_DO(a_format == nullptr, return);
-    xCHECK_DO(filePath().empty(),  return);
-
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
-
-    write(Level::Trace, xT("%s"), msg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -104,8 +77,8 @@ FileLog::write(
     cptr_ctchar_t a_format, ...
 ) const
 {
-    xCHECK_DO(!isEnabled(),       return);
-    xCHECK_DO(filePath().empty(), return);
+    xCHECK_DO(!isEnabled(),      return);
+    xCHECK_DO(_filePath.empty(), return);
 
     _removeIfFull();
 
@@ -120,14 +93,16 @@ FileLog::write(
         msg = FormatC::strV(a_format, args);
         xVA_END(args);
 
-        if (a_level != Level::Trace) {
+        if (a_level == ILog::Level::Trace) {
+            // Skip
+        } else {
             msg = _levelString(a_level) + xT(": ") + msg;
         }
     }
 
     // write
     {
-        FileIO file(filePath());
+        FileIO file(_filePath);
         file.open(FileIO::OpenMode::Append, false);
         int_t iRv = file.write(xT("[%s] %s\n"), time.c_str(), msg.c_str());
         xTEST_DIFF(iRv, - 1);
@@ -137,7 +112,7 @@ FileLog::write(
 void_t
 FileLog::clear() const
 {
-    FileIO file(filePath());
+    FileIO file(_filePath);
     file.open(FileIO::OpenMode::Write);
     file.clear();
 }
@@ -145,7 +120,7 @@ FileLog::clear() const
 void_t
 FileLog::remove() const
 {
-    File(filePath()).remove();
+    File(_filePath).remove();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -159,11 +134,13 @@ FileLog::remove() const
 void_t
 FileLog::_removeIfFull() const
 {
-    bool_t bRv = FileInfo( filePath() ).isExists();
+	FileInfo info(_filePath);
+
+    bool_t bRv = info.isExists();
     xCHECK_DO(!bRv, return);
 
     // remove log, if full
-    xCHECK_DO(FileInfo(filePath()).size() < static_cast<longlong_t>(_fileSizeMaxBytes), return);
+    xCHECK_DO(info.size() < _fileSizeMaxBytes, return);
 
     remove();
 }

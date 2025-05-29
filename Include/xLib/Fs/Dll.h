@@ -49,9 +49,7 @@ public:
 			std::is_pointer_v<SymbolAddressT> && std::is_function_v<std::remove_pointer_t<SymbolAddressT>>,
 			"symbol<T>: T must be a pointer to function type (e.g. Return (__stdcall *)(Args...))");
 
-		symbol_address_t paRv = _symbolAddress_impl(procName);
-
-		return reinterpret_cast<SymbolAddressT>(paRv);
+		return reinterpret_cast<SymbolAddressT>( _symbolAddress_impl(procName) );
 	}
 
 private:

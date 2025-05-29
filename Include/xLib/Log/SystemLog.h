@@ -24,15 +24,8 @@ public:
 	virtual  ~SystemLog();
 ///\}
 
-///\name operators
-///\{
-	template<typename T>
-	SystemLog & operator << (const T &valueT);
-///\}
-
 ///\name Overrides
 ///\{
-	void_t write(cptr_ctchar_t format, ...) const final;
 	void_t write(cLevel level, cptr_ctchar_t format, ...) const final;
 ///\}
 
@@ -49,4 +42,3 @@ xPLATFORM_IMPL:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-#include "SystemLog.inl"

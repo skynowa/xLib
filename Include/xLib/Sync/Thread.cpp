@@ -10,7 +10,6 @@
 #include <xLib/Core/Utils.h>
 #include <xLib/System/Info/Cpu.h>
 #include <xLib/System/User.h>
-#include <xLib/Log/Trace.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Thread_win.inl"

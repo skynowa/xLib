@@ -34,7 +34,7 @@ watch(
     auto id = *(static_cast<long_t *>( a_param ));
     xUNUSED(id);
 
-    Trace() << Format::str(xT("watch(): starting thread {}"), id);
+    Cout() << Format::str(xT("watch(): starting thread {}"), id);
 
    /**
     * Lock mutex and wait for signal.  Note that the pthread_cond_wait
@@ -52,11 +52,11 @@ watch(
             iRv = ::pthread_cond_wait(&::cndCondition, &::mtMutex);
             xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
-            Trace() << Format::str(xT("watch(): thread: {} Condition signal received"), id);
+            Cout() << Format::str(xT("watch(): thread: {} Condition signal received"), id);
 
             ::counter += 125;
 
-            Trace() << Format::str(xT("watch(): thread: {} counter: {}"), id, ::counter);
+            Cout() << Format::str(xT("watch(): thread: {} counter: {}"), id, ::counter);
         }
     }
 
@@ -93,10 +93,10 @@ job(
                 iRv = ::pthread_cond_signal(&::cndCondition);
                 xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 
-                Trace() << Format::str(xT("job(): thread: {} counter: {} threshold reached"), id, ::counter);
+                Cout() << Format::str(xT("job(): thread: {} counter: {} threshold reached"), id, ::counter);
             }
 
-            Trace() << Format::str(xT("job(): thread: {} counter: {} unlocking mutex"), id, ::counter);
+            Cout() << Format::str(xT("job(): thread: {} counter: {} unlocking mutex"), id, ::counter);
         }
 
         iRv = ::pthread_mutex_unlock(&::mtMutex);
@@ -157,14 +157,14 @@ Test_Condition::unit()
 
     // wait for all threads to complete
 	{
-		Trace() << Format::str(xT("Main(): waited on {} threads..."), ::threadsNum);
+		Cout() << Format::str(xT("Main(): waited on {} threads..."), ::threadsNum);
 
 		for (size_t i = 0; i < ::threadsNum; ++ i) {
 			iRv = ::pthread_join(threads[i], nullptr);
 			xTEST_EQ_MSG(0, iRv, NativeError::format( static_cast<ulong_t>(iRv) ));
 		}
 
-		Trace() << Format::str(xT("Main(): waited on {} threads. Done"), ::threadsNum);
+		Cout() << Format::str(xT("Main(): waited on {} threads. Done"), ::threadsNum);
 	}
 
     // clean up

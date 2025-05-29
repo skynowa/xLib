@@ -13,7 +13,6 @@
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
-#include <xLib/Log/Trace.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/String.h>
 #include <xLib/Fs/Path.h>

@@ -75,7 +75,7 @@ Condition::_wait_impl(
 
             // handle overflow
             if (timeoutMs.tv_nsec >= 1000000000) {
-                Trace() << xT("xLib: Condition::vWait - handle overflow");
+                Cout() << xT("xLib: Condition::vWait - handle overflow");
 
                 ++ timeoutMs.tv_sec;
                 timeoutMs.tv_nsec -= 1000000000;

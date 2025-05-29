@@ -1,5 +1,23 @@
 # Change Log {#id_changelog}
 
+## ilog-review (#454)
+
+- **Commit:** [b050d4669](https://github.com/skynowa/xLib/commit/b050d4669)
+- **Author:** skynowa
+- **Date:** 2025-05-29
+
+## AutoProfiler-AutoLog: Profiler.cpp (+12) [17+/296-] - remove (#455)
+
+- **Commit:** [cc41249b7](https://github.com/skynowa/xLib/commit/cc41249b7)
+- **Author:** skynowa
+- **Date:** 2025-05-21
+
+## SourceInfo-review (#453)
+
+- **Commit:** [20ff2f4e2](https://github.com/skynowa/xLib/commit/20ff2f4e2)
+- **Author:** skynowa
+- **Date:** 2025-05-17
+
 ## env-namespace-fix (#451)
 
 - **Commit:** [8b83d3d0b](https://github.com/skynowa/xLib/commit/8b83d3d0b)

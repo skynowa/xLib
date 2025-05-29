@@ -15,48 +15,32 @@ Test_FileLog::unit()
 {
     std::ctstring_t filePath = option().tempDirPath + Const::slash() + xT("FileLog.log");
 
-    FileLog log(FileLog::LogSizes::DefaultMb);
-
-    xTEST_CASE("setFilePath, filePath")
-    {
-        log.setFilePath(filePath);
-
-        m_sRv = log.filePath();
-        xTEST_EQ(filePath, m_sRv);
-    }
-
-    xTEST_CASE("write")
-    {
-        for (size_t i = 0; i < 10; ++ i) {
-            log.write(xT("simple log string: %s"), xT("qwerty01234567890"));
-            xTEST_GR(FileInfo( log.filePath() ).size(), longlong_t(0));
-        }
-    }
+    FileLog log(filePath, FileLog::LogSizes::DefaultMb);
 
     xTEST_CASE("write(...)")
     {
-        log.write(ILog::Level::Off,      xT("\t%s, %d"), xLEX_TO_STR(ILog::L::::Unknown), 12345);
-        log.write(ILog::Level::Critical, xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
-        log.write(ILog::Level::Warning,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
-        log.write(ILog::Level::Critical, xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
-        log.write(ILog::Level::Error,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Error), 12345);
-        log.write(ILog::Level::Warning,  xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
-        log.write(ILog::Level::Trace,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
-        log.write(ILog::Level::Info,     xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Info), 12345);
-        log.write(ILog::Level::Debug,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Debug), 12345);
-        log.write(ILog::Level::Trace,    xT("\t%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
+        log.write(ILog::Level::Off, xT("%s, %d"), xLEX_TO_STR(ILog::Level::Unknown), 12345);
+        log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
+        log.warning(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
+        log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
+        log.error(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Error), 12345);
+        log.warning(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
+        log.trace(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
+        log.info(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Info), 12345);
+        log.debug(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Debug), 12345);
+        log.trace(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
     }
 
     xTEST_CASE("clear")
     {
-        log.clear();
-        xTEST_EQ(FileInfo( log.filePath( )).size(), longlong_t(0));
+		log.clear();
+		xTEST_EQ(FileInfo(filePath).size(), longlong_t(0));
     }
 
     xTEST_CASE("remove")
     {
-        log.remove();
-        xTEST(!FileInfo(log.filePath()).isExists());
+		log.remove();
+		xTEST(!FileInfo(filePath).isExists());
     }
 
     return true;

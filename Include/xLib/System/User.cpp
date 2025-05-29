@@ -7,7 +7,6 @@
 #include "User.h"
 
 #include <xLib/Core/Format.h>
-#include <xLib/Log/Trace.h>
 #include <xLib/System/Env.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/SourceInfo.h>

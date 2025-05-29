@@ -13,7 +13,6 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
-#include <xLib/Log/Trace.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Locale_win.inl"

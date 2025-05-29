@@ -29,26 +29,14 @@ public:
 
 ///\name ctors, dtor
 ///\{
-			  FileLog();
-	explicit  FileLog(cLogSizes fileSizeMaxBytes);
-	explicit  FileLog(std::csize_t fileSizeMaxBytes);
+			  FileLog(std::ctstring_t &filePath);
+	explicit  FileLog(std::ctstring_t &filePath, cLogSizes fileSizeMaxBytes);
+	explicit  FileLog(std::ctstring_t &filePath, std::csize_t fileSizeMaxBytes);
 	virtual  ~FileLog();
 ///\}
 
-///\name operators
-///\{
-	template<typename T>
-	FileLog &      operator << (const T &valueT);
-///\}
-
-    void_t         setFilePath(std::ctstring_t &filePath);
-        ///< set log path
-    std::tstring_t filePath() const;
-        ///< get log path
-
 ///\name Overrides
 ///\{
-	void_t         write(cptr_ctchar_t format, ...) const final;
 	void_t         write(cLevel level, cptr_ctchar_t format, ...) const final;
 ///\}
 
@@ -67,4 +55,3 @@ private:
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
-#include "FileLog.inl"
