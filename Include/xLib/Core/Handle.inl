@@ -11,7 +11,6 @@
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Core/Format.h>
-#include <xLib/Log/Trace.h>
 
 
 namespace xl::core

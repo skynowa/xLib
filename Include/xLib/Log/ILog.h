@@ -45,14 +45,32 @@ public:
     bool_t         isEnabled() const;
         ///< set enabled
 
-    virtual void_t write(cptr_ctchar_t format, ...) const = 0;
-        ///< write to log
     virtual void_t write(cLevel level, cptr_ctchar_t format, ...) const = 0;
-        ///< write to log
+        ///< write with EOL to log
+
+    void_t trace(cptr_ctchar_t format, ...) const;
+    void_t debug(cptr_ctchar_t format, ...) const;
+    void_t info(cptr_ctchar_t format, ...) const;
+    void_t warning(cptr_ctchar_t format, ...) const;
+    void_t error(cptr_ctchar_t format, ...) const;
+    void_t critical(cptr_ctchar_t format, ...) const;
+
+    // Template operator<< in base class (not virtual)
+#if 0
+	template <typename T>
+	ILog & operator << (const T& value)
+	{
+		OStream oss;
+		oss << value;
+
+		write({}, xT("%s"), oss.str().c_str());  // Calls overridden method
+
+		return *this;
+	}
+#endif
 
 protected:
-    std::tostringstream_t _oss; ///< string stream
-    std::tstring_t        _levelString(cLevel level) const;
+    std::tstring_t _levelString(cLevel level) const;
 
 private:
     bool_t _isEnable {true};  ///< is enabled

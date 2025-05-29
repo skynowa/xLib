@@ -13,7 +13,6 @@
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Sync/Process.h>
-#include <xLib/Log/Trace.h>
 #include <xLib/System/User.h>
 
 #if   xENV_WIN

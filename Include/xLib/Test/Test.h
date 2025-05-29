@@ -212,11 +212,11 @@
     ///< at this point debug code for variables is not applicable
 
 #define xTEST_GROUP(groupName) \
-	Trace() << xT("\n\t[") << xT(groupName) << xT("]")
+	Cout() << xT("\n\t[") << xT(groupName) << xT("]")
 	///< test group of cases
 
 #define xTEST_CASE(caseName) \
-	Trace() << xT("\tCase: ") << xT(caseName); \
+	Cout() << xT("\tCase: ") << xT(caseName); \
 	for (size_t caseLoops = 0; caseLoops < option().caseLoops; ++ caseLoops)
     ///< test case
 
@@ -257,15 +257,15 @@
             bRv = unit.run(); \
         } \
         catch (const xl::debug::Exception &a_xlibException) { \
-            Trace() << a_xlibException.what(); \
+            Cout() << a_xlibException.what(); \
             bRv = false; \
         } \
         catch (const std::exception &a_stdException) { \
-            Trace() << a_stdException.what(); \
+            Cout() << a_stdException.what(); \
             bRv = false; \
         } \
         catch (...) { \
-            Trace() << xT("Unknown error"); \
+            Cout() << xT("Unknown error"); \
             bRv = false; \
         } \
         \

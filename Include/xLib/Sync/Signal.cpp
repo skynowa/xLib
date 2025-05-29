@@ -15,7 +15,6 @@
 
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
-#include <xLib/Log/Trace.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/SourceInfo.h>
 #include <xLib/Debug/ErrorReport.h>
@@ -83,11 +82,11 @@ Signal::connect(
     for (const auto &it : a_signalNums) {
         switch (it) {
         case SIGKILL:
-			Trace() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
+        	Cout() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
 							xLEX_TO_STR(SIGKILL), SIGKILL);
 			continue;
 		case SIGSTOP:
-			Trace() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
+			Cout() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
 							xLEX_TO_STR(SIGSTOP), SIGSTOP);
             continue;
             break;
@@ -182,11 +181,11 @@ Signal::connectInfo(
     for (const auto &it : a_signalNums) {
         switch (it) {
         case SIGKILL:
-			Trace() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
+        	Cout() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
 							xLEX_TO_STR(SIGKILL), SIGKILL);
 			continue;
 		case SIGSTOP:
-			Trace() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
+			Cout() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
 							xLEX_TO_STR(SIGSTOP), SIGSTOP);
             continue;
             break;

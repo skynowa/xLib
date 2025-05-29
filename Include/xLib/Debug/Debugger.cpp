@@ -13,7 +13,6 @@
 #include <xLib/System/ConsoleUI.h>
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Exception.h>
-#include <xLib/Log/Trace.h>
 #include <xLib/Fs/Path.h>
 
 #if   xENV_WIN
@@ -70,7 +69,7 @@ Debugger::coreDumpsEnable(
     bool_t isEnable {};
     _coreDumpsEnable_impl(a_flag, &isEnable);
 
-    xCHECK_DO(!isEnable, Trace() << xT("xLib: Debugger::coreDumpsEnable() - n/a"));
+    xCHECK_DO(!isEnable, Cout() << xT("xLib: Debugger::coreDumpsEnable() - n/a"));
 }
 //-------------------------------------------------------------------------------------------------
 void_t
