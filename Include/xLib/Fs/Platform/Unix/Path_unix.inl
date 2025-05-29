@@ -6,6 +6,7 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/System/Env.h>
+#include <xLib/Log/Trace.h>
 
 namespace xl::fs
 {

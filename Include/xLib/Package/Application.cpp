@@ -10,7 +10,6 @@
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Debug/Exception.h>
-#include <xLib/Log/Trace.h>
 #include <xLib/Log/FileLog.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>

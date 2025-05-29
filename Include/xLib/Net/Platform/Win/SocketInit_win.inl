@@ -6,7 +6,6 @@
 
 #include <xLib/Test/Test.h>
 #include <xLib/Core/Format.h>
-#include <xLib/Log/Trace.h>
 #include <xLib/Debug/Debug.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StackTrace.h>
