@@ -11,7 +11,6 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Core/OStream.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::log
 {
