@@ -13,22 +13,6 @@ xTEST_UNIT(Test_Trace)
 bool_t
 Test_Trace::unit()
 {
-    xTEST_CASE("operator <<")
-    {
-    #if xTEST_IGNORE
-        Trace trace;
-
-        trace << xT("\tMsg: ") << 12345 << xT(' ') << Const::dot3();
-    #endif
-    }
-
-    xTEST_CASE("operator <<")
-    {
-    #if xTEST_IGNORE
-        Trace() << xT("\tMsg: ") << 12345 << xT(' ') << Const::dot3();
-    #endif
-    }
-
     xTEST_CASE("write")
     {
     #if xTEST_IGNORE

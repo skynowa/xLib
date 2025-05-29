@@ -58,12 +58,6 @@ SystemLog::SystemLog(
 /* virtual */
 SystemLog::~SystemLog()
 {
-#if 0
-	write(ILog::Level::Trace, xT("%s"), _oss.str().c_str()); /// TODO: fix
-#else
-	write(ILog::Level::Trace, xT(""));
-#endif
-
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------

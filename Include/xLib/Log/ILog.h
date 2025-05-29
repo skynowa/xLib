@@ -57,16 +57,18 @@ public:
     void_t critical(cptr_ctchar_t format, ...) const;
 
     // Template operator<< in base class (not virtual)
-    template <typename T>
-    ILog & operator << (const T& value)
-    {
-        OStream oss;
-        oss << value;
+#if 0
+	template <typename T>
+	ILog & operator << (const T& value)
+	{
+		OStream oss;
+		oss << value;
 
-        write({}, xT("%s"), oss.str().c_str());  // Calls overridden method
+		write({}, xT("%s"), oss.str().c_str());  // Calls overridden method
 
-        return *this;
-    }
+		return *this;
+	}
+#endif
 
 protected:
     std::tstring_t _levelString(cLevel level) const;

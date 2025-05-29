@@ -33,11 +33,6 @@ namespace xl::log
 /* virtual */
 Trace::~Trace()
 {
-#if 0
-	write(Level::Trace, xT("%s"), _oss.str().c_str()); /// TODO: fix
-#else
-	write(ILog::Level::Trace, xT(""));
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */

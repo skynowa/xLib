@@ -37,7 +37,7 @@ public:
         xUNUSED(a_signal);
 
         xTRACE_FUNC;
-        // Trace() << Signal::decription(a_signal) << "\n";
+        // Cout() << Signal::decription(a_signal) << "\n";
 
         Application::exitFailure();
     }
@@ -47,7 +47,7 @@ public:
     {
         xTRACE_FUNC;
 
-        // Trace() << Signal::decription(0) << "\n";
+        // Cout() << Signal::decription(0) << "\n";
 
         FileLog log(xT("crash.log"), FileLog::LogSizes::DefaultMb);
 
@@ -72,8 +72,8 @@ public:
 
         xTRACE_FUNC;
 
-        Trace() << Signal::infoDescription(*a_info) << "\n";
-        Trace() << Signal::decription(0) << "\n";
+        Cout() << Signal::infoDescription(*a_info) << "\n";
+        Cout() << Signal::decription(0) << "\n";
 
         FileLog log(xT("crash.log"), FileLog::LogSizes::DefaultMb);
 

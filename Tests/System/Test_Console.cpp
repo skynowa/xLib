@@ -41,7 +41,7 @@ Test_Console::unit()
 		m_sRv = console.read();
 		xTEST_NA(m_sRv);
     #else
-        Trace() << xT("[skip]");
+        Cout() << xT("[skip]");
 	#endif
     }
 
@@ -54,7 +54,7 @@ Test_Console::unit()
 
 		console.write(str);
     #else
-        Trace() << xT("[skip]");
+        Cout() << xT("[skip]");
 	#endif
     }
 
@@ -67,7 +67,7 @@ Test_Console::unit()
 
 		console.writeLine(str);
     #else
-        Trace() << xT("[skip]");
+        Cout() << xT("[skip]");
 	#endif
     }
 
@@ -80,7 +80,7 @@ Test_Console::unit()
 
 		console.writeLine(str);
     #else
-        Trace() << xT("[skip]");
+        Cout() << xT("[skip]");
 	#endif
     }
 
@@ -92,7 +92,7 @@ Test_Console::unit()
 		console.pause(3 * 1000UL);
 		console.pause(xTIMEOUT_INFINITE);
     #else
-        Trace() << xT("[skip]");
+        Cout() << xT("[skip]");
 	#endif
     }
 
@@ -103,7 +103,7 @@ Test_Console::unit()
 
 		console.clear();
     #else
-        Trace() << xT("[skip]");
+        Cout() << xT("[skip]");
 	#endif
     }
 
@@ -122,7 +122,7 @@ Test_Console::unit()
 			xTEST_EQ(m_sRv, title);
 		#endif
     #else
-        Trace() << xT("[skip]");
+        Cout() << xT("[skip]");
 	#endif
     }
 
@@ -139,7 +139,7 @@ Test_Console::unit()
 		m_sRv = console.title();
 		xTEST_EQ(m_sRv, title);
 	#else
-		Trace() << xT("[skip]");
+		Cout() << xT("[skip]");
 	#endif
     }
 #endif
@@ -152,7 +152,7 @@ Test_Console::unit()
 
 		console.centerWindow();
 	#else
-		Trace() << xT("[skip]");
+		Cout() << xT("[skip]");
 	#endif
     }
 #endif
@@ -165,7 +165,7 @@ Test_Console::unit()
 
 		console.setFullScreen();
 	#else
-		Trace() << xT("[skip]");
+		Cout() << xT("[skip]");
 	#endif
     }
 #endif
@@ -179,7 +179,7 @@ Test_Console::unit()
 		console.enableClose(false);
 		console.enableClose(true);
 	#else
-		Trace() << xT("[skip]");
+		Cout() << xT("[skip]");
 	#endif
     }
 #endif
