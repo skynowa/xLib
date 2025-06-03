@@ -83,6 +83,7 @@ private:
  *
  * \todo
  *
+ * - operator <<
  * - https://oopscenities.net/2011/04/30/c-the-curiously-recurring-template-pattern/#more-21
  * - class LogItem:
  *
@@ -98,7 +99,9 @@ private:
  *   - infoAdd
  *
  * - Setter proxy class
- * - operator <<
- * - write as trace(), debug(), info(), ...
  * - logIf() - with some condition
+ *
+ * \done
+ *
+ * - write as trace(), debug(), info(), ...
  */
