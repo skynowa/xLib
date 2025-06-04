@@ -35,7 +35,7 @@ public:
     *
     *******************************************************************************/
 
-    enum class Foreground
+    enum class FG
         /// foreground (text) color
     {
         Unknown = 0,
@@ -50,9 +50,9 @@ public:
         White,
         Gray
     };
-    xUSING_CONST(Foreground);
+    xUSING_CONST(FG);
 
-    enum class Background
+    enum class BG
         /// background color
     {
         Unknown = 0,
@@ -67,9 +67,9 @@ public:
         White,
         Gray
     };
-    xUSING_CONST(Background);
+    xUSING_CONST(BG);
 
-    enum class Attribute
+    enum class Attr
         /// text attribute
     {
         Unknown = 0,  ///< Unknown
@@ -81,15 +81,13 @@ public:
         Reverse,      ///< Invert the foreground and background colors
         Hidden        ///< Hidden (useful for passwords)
     };
-    xUSING_CONST(Attribute);
+    xUSING_CONST(Attr);
 
-    std::tstring_t setAttributes(cForeground foreground, cBackground background,
-                       cint_t attributes) const;
+    std::tstring_t setAttrs(cFG fg, cBG bg, cint_t attrs) const;
         ///< set text color
-    std::tstring_t clearAttributes() const;
+    std::tstring_t clearAttrs() const;
         ///< reset text color to default
-    std::tstring_t setAttributesText(cForeground foreground, cBackground background,
-                       cint_t attributes, std::ctstring_t &str) const;
+    std::tstring_t setAttrsText(cFG fg, cBG bg, cint_t attrs, std::ctstring_t &str) const;
         ///< set text color, text, reset text color to default
 
     /*******************************************************************************
@@ -105,11 +103,9 @@ public:
         ///< write line
     void_t         writeErrLine(std::ctstring_t &str) const;
         ///< write error message
-    void_t         write(cForeground foreground, cBackground background, cint_t attributes,
-                       std::ctstring_t &str) const;
+    void_t         write(cFG fg, cBG bg, cint_t attrs, std::ctstring_t &str) const;
         ///< write with colors
-    void_t         writeLine(cForeground foreground, cBackground background, cint_t attributes,
-                       std::ctstring_t &str) const;
+    void_t         writeLine(cFG fg, cBG bg, cint_t attrs, std::ctstring_t &str) const;
         ///< write with colors
     void_t         writeNl() const;
     	///< write new line (NL)
@@ -138,11 +134,11 @@ public:
 
 private:
 #if xENV_WIN
-    HWND                _wnd {};            ///< console window handle
-    HMENU               _menu {};           ///< console menu handle
-    HandleNativeInvalid _stdIn;             ///< standard input handle
-    HandleNativeInvalid _stdOut;            ///< standard output handle
-    WORD                _attributesDef {};  ///< default console attributes
+    HWND                _wnd {};      ///< console window handle
+    HMENU               _menu {};     ///< console menu handle
+    HandleNativeInvalid _stdIn;       ///< standard input handle
+    HandleNativeInvalid _stdOut;      ///< standard output handle
+    WORD                _attrsDef {}; ///< default console attributes
 
     HWND  _wndHandle();
         ///< get console window handle
@@ -154,6 +150,7 @@ private:
 		///< Say whether a given stream should be colorized or not
 	cbool_t _isEscapeValues {};
 		///< escaping values
+
     FILE  * _getStdStream(std::ctostream_t &stream) const;
 		///< Since C++ hasn't a true way to extract stream handler from the a given `std::ostream`
     bool_t  _isColorized(std::tostream_t &stream = std::cout) const;
@@ -168,9 +165,8 @@ private:
 xPLATFORM_IMPL:
     void_t         _construct_impl();
     void_t         _destruct_impl();
-    std::tstring_t _setAttributes_impl(cForeground foreground, cBackground background,
-                       cint_t attributes) const;
-    std::tstring_t _clearAttributes_impl() const;
+    std::tstring_t _setAttrs_impl(cFG fg, cBG bg, cint_t attrs) const;
+    std::tstring_t _clearAttrs_impl() const;
     std::tstring_t _read_impl() const;
     void_t         _write_impl(std::ctstring_t &str) const;
     void_t         _clear_impl() const;

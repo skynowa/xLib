@@ -36,122 +36,122 @@ Console::_destruct_impl()
  * https://misc.flogisoft.com/bash/tip_colors_and_formatting
  */
 std::tstring_t
-Console::_setAttributes_impl(
-    cForeground a_foreground,
-    cBackground a_background,
-    cint_t      a_attributes
+Console::_setAttrs_impl(
+    cFG    a_fg,
+    cBG    a_bg,
+    cint_t a_attrs
 ) const
 {
     std::tstring_t sRv;
 
-    Foreground foregroundColor {};
+    FG fgColor {};
     {
-        constexpr int_t foregroundColorDefault = 39;
-        constexpr int_t foregroundColorBlack   = 30;
-        constexpr int_t foregroundColorRed     = 31;
-        constexpr int_t foregroundColorBlue    = 34;
-        constexpr int_t foregroundColorGreen   = 32;
-        constexpr int_t foregroundColorCyan    = 36;
-        constexpr int_t foregroundColorMagenta = 35;
-        constexpr int_t foregroundColorYellow  = 33;
-        constexpr int_t foregroundColorWhite   = 37;
-        constexpr int_t foregroundColorGray    = 37;  // TODO: [skynowa] Console::setAttributes() - foregroundColorGray
+        constexpr int_t fgColorDefault = 39;
+        constexpr int_t fgColorBlack   = 30;
+        constexpr int_t fgColorRed     = 31;
+        constexpr int_t fgColorBlue    = 34;
+        constexpr int_t fgColorGreen   = 32;
+        constexpr int_t fgColorCyan    = 36;
+        constexpr int_t fgColorMagenta = 35;
+        constexpr int_t fgColorYellow  = 33;
+        constexpr int_t fgColorWhite   = 37;
+        constexpr int_t fgColorGray    = 37;  // TODO: [skynowa] Console::setAttrs() - fgColorGray
 
         int_t iRv {};
 
-        switch (a_foreground) {
-        case Foreground::Default:
-            iRv = foregroundColorDefault;
+        switch (a_fg) {
+        case FG::Default:
+            iRv = fgColorDefault;
             break;
-        case Foreground::Black:
-            iRv = foregroundColorBlack;
+        case FG::Black:
+            iRv = fgColorBlack;
             break;
-        case Foreground::Red:
-            iRv = foregroundColorRed;
+        case FG::Red:
+            iRv = fgColorRed;
             break;
-        case Foreground::Green:
-            iRv = foregroundColorGreen;
+        case FG::Green:
+            iRv = fgColorGreen;
             break;
-        case Foreground::Yellow:
-            iRv = foregroundColorYellow;
+        case FG::Yellow:
+            iRv = fgColorYellow;
             break;
-        case Foreground::Blue:
-            iRv = foregroundColorBlue;
+        case FG::Blue:
+            iRv = fgColorBlue;
             break;
-        case Foreground::Magenta:
-            iRv = foregroundColorMagenta;
+        case FG::Magenta:
+            iRv = fgColorMagenta;
             break;
-        case Foreground::Cyan:
-            iRv = foregroundColorCyan;
+        case FG::Cyan:
+            iRv = fgColorCyan;
             break;
-        case Foreground::White:
-            iRv = foregroundColorWhite;
+        case FG::White:
+            iRv = fgColorWhite;
             break;
-        case Foreground::Gray:
-            iRv = foregroundColorGray;
+        case FG::Gray:
+            iRv = fgColorGray;
             break;
-        case Foreground::Unknown:
+        case FG::Unknown:
         default:
             xTEST_FAIL;
             break;
         }
 
-        foregroundColor = static_cast<Foreground>( iRv );
+        fgColor = static_cast<FG>( iRv );
     }
 
-    Background backgroundColor {};
+    BG bgColor {};
     {
-        constexpr int_t backgroundColorDefault = 49;
-        constexpr int_t backgroundColorBlack   = 40;
-        constexpr int_t backgroundColorRed     = 41;
-        constexpr int_t backgroundColorBlue    = 44;
-        constexpr int_t backgroundColorGreen   = 42;
-        constexpr int_t backgroundColorCyan    = 46;
-        constexpr int_t backgroundColorMagenta = 45;
-        constexpr int_t backgroundColorYellow  = 43;
-        constexpr int_t backgroundColorWhite   = 47;
-        constexpr int_t backgroundColorGray    = 47; // TODO: [skynowa] Console::setAttributes() - Unix - backgroundColorGray
+        constexpr int_t bgColorDefault = 49;
+        constexpr int_t bgColorBlack   = 40;
+        constexpr int_t bgColorRed     = 41;
+        constexpr int_t bgColorBlue    = 44;
+        constexpr int_t bgColorGreen   = 42;
+        constexpr int_t bgColorCyan    = 46;
+        constexpr int_t bgColorMagenta = 45;
+        constexpr int_t bgColorYellow  = 43;
+        constexpr int_t bgColorWhite   = 47;
+        constexpr int_t bgColorGray    = 47; // TODO: [skynowa] Console::setAttrs() - Unix - bgColorGray
 
         int_t iRv {};
 
-        switch (a_background) {
-        case Background::Default:
-            iRv = backgroundColorDefault;
+        switch (a_bg) {
+        case BG::Default:
+            iRv = bgColorDefault;
             break;
-        case Background::Black:
-            iRv = backgroundColorBlack;
+        case BG::Black:
+            iRv = bgColorBlack;
             break;
-        case Background::Red:
-            iRv = backgroundColorRed;
+        case BG::Red:
+            iRv = bgColorRed;
             break;
-        case Background::Green:
-            iRv = backgroundColorGreen;
+        case BG::Green:
+            iRv = bgColorGreen;
             break;
-        case Background::Yellow:
-            iRv = backgroundColorYellow;
+        case BG::Yellow:
+            iRv = bgColorYellow;
             break;
-        case Background::Blue:
-            iRv = backgroundColorBlue;
+        case BG::Blue:
+            iRv = bgColorBlue;
             break;
-        case Background::Magenta:
-            iRv = backgroundColorMagenta;
+        case BG::Magenta:
+            iRv = bgColorMagenta;
             break;
-        case Background::Cyan:
-            iRv = backgroundColorCyan;
+        case BG::Cyan:
+            iRv = bgColorCyan;
             break;
-        case Background::White:
-            iRv = backgroundColorWhite;
+        case BG::White:
+            iRv = bgColorWhite;
             break;
-        case Background::Gray:
-            iRv = backgroundColorGray;
+        case BG::Gray:
+            iRv = bgColorGray;
             break;
-        case Background::Unknown:
+        case BG::Unknown:
         default:
             xTEST_FAIL;
             break;
         }
 
-        backgroundColor = static_cast<Background>( iRv );
+        bgColor = static_cast<BG>( iRv );
     }
 
     std::tstring_t attrs;
@@ -160,35 +160,35 @@ Console::_setAttributes_impl(
         // The attributes must be separated by a semicolon (“;”).
         std::vec_tstring_t values;
 
-        constexpr int_t attributeAllOff    = 0;
-        constexpr int_t attributeBold      = 1;
-        constexpr int_t attributeDim       = 2;
-        constexpr int_t attributeUnderline = 4;
-        constexpr int_t attributeBlink     = 5;
-        constexpr int_t attributeReverse   = 7;
-        constexpr int_t attributeHidden    = 8;
+        constexpr int_t attrAllOff    = 0;
+        constexpr int_t attrBold      = 1;
+        constexpr int_t attrDim       = 2;
+        constexpr int_t attrUnderline = 4;
+        constexpr int_t attrBlink     = 5;
+        constexpr int_t attrReverse   = 7;
+        constexpr int_t attrHidden    = 8;
 
-		Bitset bits(a_attributes);
+		Bitset bits(a_attrs);
 
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::AllOff)),    values.push_back( std::to_string(attributeAllOff) ));
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Bold)),      values.push_back( std::to_string(attributeBold) ));
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Dim)),       values.push_back( std::to_string(attributeDim) ));
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Underline)), values.push_back( std::to_string(attributeUnderline) ));
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Blink)),     values.push_back( std::to_string(attributeBlink) ));
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Reverse)),   values.push_back( std::to_string(attributeReverse) ));
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attribute::Hidden)),    values.push_back( std::to_string(attributeHidden) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::AllOff)),    values.push_back( std::to_string(attrAllOff) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Bold)),      values.push_back( std::to_string(attrBold) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Dim)),       values.push_back( std::to_string(attrDim) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Underline)), values.push_back( std::to_string(attrUnderline) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Blink)),     values.push_back( std::to_string(attrBlink) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Reverse)),   values.push_back( std::to_string(attrReverse) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Hidden)),    values.push_back( std::to_string(attrHidden) ));
 
 		attrs = String::join(values, xT(';'));
     }
 
-	sRv += _escapeValue( Format::str(xT("\033[{};{}m"), attrs, static_cast<int>(foregroundColor)) ); // TODO: [skynowa] StdStreamV2
-	sRv += _escapeValue( Format::str(xT("\033[{}m"), static_cast<int>(backgroundColor)) );           // TODO: [skynowa] StdStreamV2
+	sRv += _escapeValue( Format::str(xT("\033[{};{}m"), attrs, static_cast<int>(fgColor)) ); // TODO: [skynowa] StdStreamV2
+	sRv += _escapeValue( Format::str(xT("\033[{}m"), static_cast<int>(bgColor)) );           // TODO: [skynowa] StdStreamV2
 
 	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::_clearAttributes_impl() const
+Console::_clearAttrs_impl() const
 {
 	return _escapeValue(xT("\033[0;0m"));
 }
