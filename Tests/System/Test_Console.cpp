@@ -28,7 +28,6 @@ Test_Console::unit()
 		console.write( console.setAttrs(fg, bg, attrs) );
 		console.write(text);
 		console.writeLine( console.clearAttrs() );
-
 		console.writeLine(fg, bg, attrs, text);
     }
 

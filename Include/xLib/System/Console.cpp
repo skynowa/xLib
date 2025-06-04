@@ -83,10 +83,7 @@ Console::setAttrsText(
     std::ctstring_t &a_str
 ) const
 {
-	return
-		setAttrs(a_fg, a_bg, a_attrs) +
-		a_str +
-		clearAttrs();
+	return setAttrs(a_fg, a_bg, a_attrs) + a_str + clearAttrs();
 }
 //-------------------------------------------------------------------------------------------------
 
