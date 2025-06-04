@@ -76,7 +76,7 @@ FileLog::write(
     cptr_ctchar_t a_format, ...
 ) const /* final */
 {
-    xCHECK_DO(!isEnabled(),      return);
+    xCHECK_DO(!_isEnable,        return);
     xCHECK_DO(_filePath.empty(), return);
 
     _removeIfFull();

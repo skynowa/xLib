@@ -31,18 +31,12 @@ ILog::setEnabled(
     _isEnable = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
-ILog::isEnabled() const
-{
-    return _isEnable;
-}
-//-------------------------------------------------------------------------------------------------
 void_t
 ILog::trace(
 	cptr_ctchar_t a_format, ...
 ) const
 {
-    xCHECK_DO(!isEnabled(),        return);
+    xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
     std::tstring_t msg;
@@ -60,7 +54,7 @@ ILog::debug(
 	cptr_ctchar_t a_format, ...
 ) const
 {
-    xCHECK_DO(!isEnabled(),        return);
+    xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
     std::tstring_t msg;
@@ -78,7 +72,7 @@ ILog::info(
 	cptr_ctchar_t a_format, ...
 ) const
 {
-    xCHECK_DO(!isEnabled(),        return);
+    xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
     std::tstring_t msg;
@@ -96,7 +90,7 @@ ILog::warning(
 	cptr_ctchar_t a_format, ...
 ) const
 {
-    xCHECK_DO(!isEnabled(),        return);
+    xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
     std::tstring_t msg;
@@ -114,7 +108,7 @@ ILog::error(
 	cptr_ctchar_t a_format, ...
 ) const
 {
-    xCHECK_DO(!isEnabled(),        return);
+    xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
     std::tstring_t msg;
@@ -132,7 +126,7 @@ ILog::critical(
 	cptr_ctchar_t a_format, ...
 ) const
 {
-    xCHECK_DO(!isEnabled(),        return);
+    xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
     std::tstring_t msg;

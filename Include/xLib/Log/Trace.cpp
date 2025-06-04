@@ -41,7 +41,7 @@ Trace::write(
     cptr_ctchar_t a_format, ...
 ) const /* final */
 {
-    xCHECK_DO(!isEnabled(), return);
+    xCHECK_DO(!_isEnable, return);
 
     std::tstring_t msg;
     {

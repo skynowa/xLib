@@ -67,7 +67,7 @@ SystemLog::write(
     cptr_ctchar_t a_format, ...
 ) const /* final */
 {
-    xCHECK_DO(!isEnabled(), return);
+    xCHECK_DO(!_isEnable, return);
     xTEST_PTR(a_format);
 
     const auto level = (a_level == ILog::Level::Trace) ? ILog::Level::Info : ILog::Level::Off;
