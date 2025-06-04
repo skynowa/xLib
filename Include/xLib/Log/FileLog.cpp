@@ -70,12 +70,11 @@ FileLog::~FileLog()
 {
 }
 //-------------------------------------------------------------------------------------------------
-/* virtual */
 void_t
 FileLog::write(
     cLevel        a_level,
     cptr_ctchar_t a_format, ...
-) const
+) const /* final */
 {
     xCHECK_DO(!isEnabled(),      return);
     xCHECK_DO(_filePath.empty(), return);

@@ -35,12 +35,11 @@ Trace::~Trace()
 {
 }
 //-------------------------------------------------------------------------------------------------
-/* virtual */
 void_t
 Trace::write(
     cLevel        a_level,
     cptr_ctchar_t a_format, ...
-) const
+) const /* final */
 {
     xCHECK_DO(!isEnabled(), return);
 

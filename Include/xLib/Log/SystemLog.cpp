@@ -61,12 +61,11 @@ SystemLog::~SystemLog()
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-/* virtual */
 void_t
 SystemLog::write(
     cLevel        a_level,
     cptr_ctchar_t a_format, ...
-) const
+) const /* final */
 {
     xCHECK_DO(!isEnabled(), return);
     xTEST_PTR(a_format);

@@ -37,12 +37,12 @@ public:
 
 ///\name Overrides
 ///\{
-	void_t         write(cLevel level, cptr_ctchar_t format, ...) const final;
+	void_t write(cLevel level, cptr_ctchar_t format, ...) const final;
 ///\}
 
-    void_t         clear() const;
+    void_t clear() const;
         ///< clear content
-    void_t         remove() const;
+    void_t remove() const;
         ///< delete
 
 private:
