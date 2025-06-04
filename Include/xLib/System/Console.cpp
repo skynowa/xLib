@@ -28,7 +28,16 @@ namespace xl::system
 
 //-------------------------------------------------------------------------------------------------
 Console::Console() :
-	_isColorSupport{ _isColorized() }
+	Console(_isColorized(), true)
+{
+}
+//-------------------------------------------------------------------------------------------------
+Console::Console(
+	cbool_t a_isColorSupport, ///< force set color support (for PS1, etc)
+	cbool_t a_isEscapeValues  ///< escaping values (UNIX only)
+) :
+	_isColorSupport{a_isColorSupport},
+	_isEscapeValues{a_isEscapeValues}
 {
     _construct_impl();
 }
@@ -45,22 +54,6 @@ Console::~Console()
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-void
-Console::setColorSupport(
-	cbool_t a_flag
-)
-{
-	_isColorSupport = a_flag;
-}
-//-------------------------------------------------------------------------------------------------
-void
-Console::setEscapeValues(
-	cbool_t a_flag
-)
-{
-	_isEscapeValues = a_flag;
-}
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Console::setAttributes(

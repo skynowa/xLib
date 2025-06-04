@@ -24,6 +24,7 @@ public:
 ///\name ctors, dtor
 ///\{
 			 Console();
+			 Console(cbool_t isColorSupport, cbool_t isEscapeValues);
 	virtual ~Console();
 
 	xNO_COPY_ASSIGN(Console);
@@ -33,14 +34,6 @@ public:
     *   Attributes
     *
     *******************************************************************************/
-
-///\name options
-///\{
-	void setColorSupport(cbool_t flag);
-		///< force set color support (for PS1, etc)
-	void setEscapeValues(cbool_t flag);
-		///< escaping values (UNIX only)
-///\}
 
     enum class Foreground
         /// foreground (text) color
@@ -157,16 +150,16 @@ private:
         ///< get console menu handle
 #endif
 
-    bool_t _isColorSupport {};
+    cbool_t _isColorSupport {};
 		///< Say whether a given stream should be colorized or not
-	bool_t _isEscapeValues {};
+	cbool_t _isEscapeValues {};
 		///< escaping values
-    FILE  *_getStdStream(std::ctostream_t &stream) const;
+    FILE  * _getStdStream(std::ctostream_t &stream) const;
 		///< Since C++ hasn't a true way to extract stream handler from the a given `std::ostream`
-    bool_t _isColorized(std::tostream_t &stream = std::cout) const;
+    bool_t  _isColorized(std::tostream_t &stream = std::cout) const;
 		///< Say whether a given stream should be colorized or not.
 		///< It's always true for ATTY streams and may be true for streams marked with colorize flag
-    bool_t _isAtty(std::ctostream_t &stream) const;
+    bool_t  _isAtty(std::ctostream_t &stream) const;
         ///< Test whether a given `std::ostream` object refers to a terminal
 
 	std::tstring_t _escapeValue(std::ctstring_t &value) const;
@@ -176,7 +169,7 @@ xPLATFORM_IMPL:
     void_t         _construct_impl();
     void_t         _destruct_impl();
     std::tstring_t _setAttributes_impl(cForeground foreground, cBackground background,
-    					cint_t attributes) const;
+                       cint_t attributes) const;
     std::tstring_t _clearAttributes_impl() const;
     std::tstring_t _read_impl() const;
     void_t         _write_impl(std::ctstring_t &str) const;
