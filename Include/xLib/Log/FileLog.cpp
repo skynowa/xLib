@@ -7,7 +7,6 @@
 #include "FileLog.h"
 
 #include <xLib/Core/Const.h>
-#include <xLib/Core/FormatC.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StackTrace.h>

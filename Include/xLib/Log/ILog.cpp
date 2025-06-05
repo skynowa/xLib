@@ -6,8 +6,6 @@
 
 #include "ILog.h"
 
-#include <xLib/Core/FormatC.h>
-#include <xLib/Debug/Debug.h>
 
 namespace xl::log
 {
