@@ -46,7 +46,8 @@ public:
     virtual void_t write(cLevel level, cptr_ctchar_t format, ...) const = 0;
         ///< write with EOL to log
 
-    void_t trace(cptr_ctchar_t format, ...) const;
+    template<typename... Args>
+    void_t trace(cptr_ctchar_t format, Args&&... args) const;
     void_t debug(cptr_ctchar_t format, ...) const;
     void_t info(cptr_ctchar_t format, ...) const;
     void_t warning(cptr_ctchar_t format, ...) const;

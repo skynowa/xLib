@@ -31,9 +31,11 @@ ILog::setEnabled(
     _isEnable = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
+template<typename... Args>
 void_t
 ILog::trace(
-	cptr_ctchar_t a_format, ...
+	cptr_ctchar_t a_format,
+	Args&&...     a_args
 ) const
 {
     xCHECK_DO(!_isEnable,          return);
