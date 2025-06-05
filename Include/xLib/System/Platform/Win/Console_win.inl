@@ -29,13 +29,13 @@ Console::_construct_impl()
     xTEST(_stdOut.isValid());
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _stdOut.get());
 
-    // _attributesDef
+    // _attrsDef
     {
         CONSOLE_SCREEN_BUFFER_INFO info {};
         BOOL blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &info);
         xTEST_DIFF(blRv, FALSE);
 
-        _attributesDef = info.wAttributes;
+        _attrsDef = info.wAttributes;
     }
 
     _wnd = _wndHandle();
@@ -52,17 +52,17 @@ Console::_destruct_impl()
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::_setAttributes_impl(
-    cForeground a_foreground,
-    cBackground a_background,
-    cint_t      a_attributes
+Console::_setAttrs_impl(
+    cFG    a_fg,
+    cBG    a_bg,
+    cint_t a_attrs
 ) const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
     xTEST(_stdIn.isValid());
     xTEST(_stdOut.isValid());
 
-    Foreground foregroundColor {};
+    FG fgColor {};
     {
        /**
         * \code{.cpp}
@@ -85,136 +85,136 @@ Console::_setAttributes_impl(
         * \endcode
         */
 
-        constexpr WORD foregroundColorDefault {};
-        constexpr WORD foregroundColorBlack   {};
-        constexpr WORD foregroundColorRed     {FOREGROUND_RED};
-        constexpr WORD foregroundColorBlue    {FOREGROUND_BLUE};
-        constexpr WORD foregroundColorGreen   {FOREGROUND_GREEN};
-        constexpr WORD foregroundColorCyan    {FOREGROUND_GREEN | FOREGROUND_BLUE};
-        constexpr WORD foregroundColorMagenta {FOREGROUND_RED | FOREGROUND_BLUE};
-        constexpr WORD foregroundColorYellow  {FOREGROUND_RED | FOREGROUND_GREEN};
-        constexpr WORD foregroundColorWhite   {FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE};
-        constexpr WORD foregroundColorGray    {FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE};
+        constexpr WORD fgColorDefault {};
+        constexpr WORD fgColorBlack   {};
+        constexpr WORD fgColorRed     {FOREGROUND_RED};
+        constexpr WORD fgColorBlue    {FOREGROUND_BLUE};
+        constexpr WORD fgColorGreen   {FOREGROUND_GREEN};
+        constexpr WORD fgColorCyan    {FOREGROUND_GREEN | FOREGROUND_BLUE};
+        constexpr WORD fgColorMagenta {FOREGROUND_RED | FOREGROUND_BLUE};
+        constexpr WORD fgColorYellow  {FOREGROUND_RED | FOREGROUND_GREEN};
+        constexpr WORD fgColorWhite   {FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE};
+        constexpr WORD fgColorGray    {FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE};
 
         int_t iRv {};
 
-        switch (a_foreground) {
-        case Foreground::Default:
-            iRv = foregroundColorDefault;
+        switch (a_fg) {
+        case FG::Default:
+            iRv = fgColorDefault;
             break;
-        case Foreground::Black:
-            iRv = foregroundColorBlack;
+        case FG::Black:
+            iRv = fgColorBlack;
             break;
-        case Foreground::Red:
-            iRv = foregroundColorRed;
+        case FG::Red:
+            iRv = fgColorRed;
             break;
-        case Foreground::Green:
-            iRv = foregroundColorGreen;
+        case FG::Green:
+            iRv = fgColorGreen;
             break;
-        case Foreground::Yellow:
-            iRv = foregroundColorYellow;
+        case FG::Yellow:
+            iRv = fgColorYellow;
             break;
-        case Foreground::Blue:
-            iRv = foregroundColorBlue;
+        case FG::Blue:
+            iRv = fgColorBlue;
             break;
-        case Foreground::Magenta:
-            iRv = foregroundColorMagenta;
+        case FG::Magenta:
+            iRv = fgColorMagenta;
             break;
-        case Foreground::Cyan:
-            iRv = foregroundColorCyan;
+        case FG::Cyan:
+            iRv = fgColorCyan;
             break;
-        case Foreground::White:
-            iRv = foregroundColorWhite;
+        case FG::White:
+            iRv = fgColorWhite;
             break;
-        case Foreground::Gray:
-            iRv = foregroundColorGray;
+        case FG::Gray:
+            iRv = fgColorGray;
             break;
-        case Foreground::Unknown:
+        case FG::Unknown:
         default:
             xTEST_FAIL;
             break;
         }
 
-        foregroundColor = static_cast<Foreground>(iRv);
+        fgColor = static_cast<FG>(iRv);
     }
 
-    Background backgroundColor {};
+    BG bgColor {};
     {
-        constexpr WORD backgroundColorDefault {};
-        constexpr WORD backgroundColorBlack   {};
-        constexpr WORD backgroundColorRed     {BACKGROUND_RED};
-        constexpr WORD backgroundColorBlue    {BACKGROUND_BLUE};
-        constexpr WORD backgroundColorGreen   {BACKGROUND_GREEN};
-        constexpr WORD backgroundColorCyan    {BACKGROUND_GREEN | BACKGROUND_BLUE};
-        constexpr WORD backgroundColorMagenta {BACKGROUND_RED | BACKGROUND_BLUE};
-        constexpr WORD backgroundColorYellow  {BACKGROUND_RED | BACKGROUND_GREEN};
-        constexpr WORD backgroundColorWhite   {BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE};
-        constexpr WORD backgroundColorGray    {BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE};
+        constexpr WORD bgColorDefault {};
+        constexpr WORD bgColorBlack   {};
+        constexpr WORD bgColorRed     {BACKGROUND_RED};
+        constexpr WORD bgColorBlue    {BACKGROUND_BLUE};
+        constexpr WORD bgColorGreen   {BACKGROUND_GREEN};
+        constexpr WORD bgColorCyan    {BACKGROUND_GREEN | BACKGROUND_BLUE};
+        constexpr WORD bgColorMagenta {BACKGROUND_RED | BACKGROUND_BLUE};
+        constexpr WORD bgColorYellow  {BACKGROUND_RED | BACKGROUND_GREEN};
+        constexpr WORD bgColorWhite   {BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE};
+        constexpr WORD bgColorGray    {BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE};
 
         int_t iRv {};
 
-        switch (a_background) {
-        case Background::Default:
-            iRv = backgroundColorDefault;
+        switch (a_bg) {
+        case BG::Default:
+            iRv = bgColorDefault;
             break;
-        case Background::Black:
-            iRv = backgroundColorBlack;
+        case BG::Black:
+            iRv = bgColorBlack;
             break;
-        case Background::Red:
-            iRv = backgroundColorRed;
+        case BG::Red:
+            iRv = bgColorRed;
             break;
-        case Background::Green:
-            iRv = backgroundColorGreen;
+        case BG::Green:
+            iRv = bgColorGreen;
             break;
-        case Background::Yellow:
-            iRv = backgroundColorYellow;
+        case BG::Yellow:
+            iRv = bgColorYellow;
             break;
-        case Background::Blue:
-            iRv = backgroundColorBlue;
+        case BG::Blue:
+            iRv = bgColorBlue;
             break;
-        case Background::Magenta:
-            iRv = backgroundColorMagenta;
+        case BG::Magenta:
+            iRv = bgColorMagenta;
             break;
-        case Background::Cyan:
-            iRv = backgroundColorCyan;
+        case BG::Cyan:
+            iRv = bgColorCyan;
             break;
-        case Background::White:
-            iRv = backgroundColorWhite;
+        case BG::White:
+            iRv = bgColorWhite;
             break;
-        case Background::Gray:
-            iRv = backgroundColorGray;
+        case BG::Gray:
+            iRv = bgColorGray;
             break;
-        case Background::Unknown:
+        case BG::Unknown:
         default:
             xTEST_FAIL;
             break;
         }
 
-        backgroundColor = static_cast<Background>(iRv);
+        bgColor = static_cast<BG>(iRv);
     }
 
     WORD attrs {};
     {
-        constexpr WORD attributeAllOff    {};
-        constexpr WORD attributeBold      {FOREGROUND_INTENSITY};
-        constexpr WORD attributeDim       {}; // IMPL: dim
-        constexpr WORD attributeUnderline {}; xUNUSED(attributeUnderline); // not supported
-        constexpr WORD attributeBlink     {}; xUNUSED(attributeBlink);     // not supported
-        constexpr WORD attributeReverse   {}; xUNUSED(attributeReverse);   // not supported
-        constexpr WORD attributeHidden    {}; xUNUSED(attributeHidden);    // not supported
+        constexpr WORD attrAllOff    {};
+        constexpr WORD attrBold      {FOREGROUND_INTENSITY};
+        constexpr WORD attrDim       {}; // IMPL: dim
+        constexpr WORD attrUnderline {}; xUNUSED(attrUnderline); // not supported
+        constexpr WORD attrBlink     {}; xUNUSED(attrBlink);     // not supported
+        constexpr WORD attrReverse   {}; xUNUSED(attrReverse);   // not supported
+        constexpr WORD attrHidden    {}; xUNUSED(attrHidden);    // not supported
 
-        attrs |= static_cast<WORD>(foregroundColor);
-        attrs |= static_cast<WORD>(backgroundColor);
+        attrs |= static_cast<WORD>(fgColor);
+        attrs |= static_cast<WORD>(bgColor);
 
-        Bitset bits(a_attributes);
+        Bitset bits(a_attrs);
 
-        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::AllOff)),    attrs |= static_cast<WORD>(attributeAllOff));
-        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::Bold)),      attrs |= static_cast<WORD>(attributeBold));
-        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::Dim)),       /* attrs |= static_cast<WORD>(attributeDim) */);       // IMPL: dim
-        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::Underline)), /* attrs |= static_cast<WORD>(attributeUnderline) */); // not supported
-        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::Blink)),     /* attrs |= static_cast<WORD>(attributeBlink) */);     // not supported
-        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::Reverse)),   /* attrs |= static_cast<WORD>(attributeReverse) */);   // not supported
-        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attribute::Hidden)),    /* attrs |= static_cast<WORD>(attributeHidden) */);    // not supported
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attr::AllOff)),    attrs |= static_cast<WORD>(attrAllOff));
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attr::Bold)),      attrs |= static_cast<WORD>(attrBold));
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attr::Dim)),       /* attrs |= static_cast<WORD>(attrDim) */);       // IMPL: dim
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attr::Underline)), /* attrs |= static_cast<WORD>(attrUnderline) */); // not supported
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attr::Blink)),     /* attrs |= static_cast<WORD>(attrBlink) */);     // not supported
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attr::Reverse)),   /* attrs |= static_cast<WORD>(attrReverse) */);   // not supported
+        xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attr::Hidden)),    /* attrs |= static_cast<WORD>(attrHidden) */);    // not supported
     }
 
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), attrs);
@@ -224,13 +224,13 @@ Console::_setAttributes_impl(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::_clearAttributes_impl() const
+Console::_clearAttrs_impl() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
     xTEST(_stdIn.isValid());
     xTEST(_stdOut.isValid());
 
-    BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), _attributesDef);
+    BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), _attrsDef);
     xTEST_DIFF(blRv, FALSE);
 
     return {};
@@ -440,7 +440,7 @@ Console::enableClose(
 HWND
 Console::_wndHandle()
 {
-    HWND           hRv = nullptr;
+    HWND           hRv {};
     std::tstring_t newWndTitle;
     std::tstring_t oldWndTitle;
 

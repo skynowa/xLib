@@ -1,5 +1,11 @@
 # Change Log {#id_changelog}
 
+## variadic-va-impl (#457)
+
+- **Commit:** [9613bdf67](https://github.com/skynowa/xLib/commit/9613bdf67)
+- **Author:** skynowa
+- **Date:** 2025-06-05
+
 ## ilog-review (#454)
 
 - **Commit:** [b050d4669](https://github.com/skynowa/xLib/commit/b050d4669)

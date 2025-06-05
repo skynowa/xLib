@@ -7,8 +7,6 @@
 #include "Trace.h"
 
 #include <xLib/Core/Const.h>
-#include <xLib/Core/FormatC.h>
-#include <xLib/Core/Format.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>
@@ -35,26 +33,20 @@ Trace::~Trace()
 {
 }
 //-------------------------------------------------------------------------------------------------
-/* virtual */
 void_t
 Trace::write(
-    cLevel        a_level,
-    cptr_ctchar_t a_format, ...
-) const
+    cLevel           a_level,
+    std::ctstring_t &a_msg
+) const /* final */
 {
-    xCHECK_DO(!isEnabled(), return);
+    xCHECK_DO(!_isEnable, return);
 
     std::tstring_t msg;
     {
-        va_list args;
-        xVA_START(args, a_format);
-        msg = FormatC::strV(a_format, args);
-        xVA_END(args);
-
         if (a_level == ILog::Level::Trace) {
-            // n/a
+            msg = a_msg;
         } else {
-            msg = _levelString(a_level) + xT(": ") + msg;
+            msg = _levelString(a_level) + xT(": ") + a_msg;
         }
     }
 

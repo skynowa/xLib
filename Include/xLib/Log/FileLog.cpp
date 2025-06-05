@@ -7,7 +7,6 @@
 #include "FileLog.h"
 
 #include <xLib/Core/Const.h>
-#include <xLib/Core/FormatC.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StackTrace.h>
@@ -17,7 +16,6 @@
 #include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/File.h>
 #include <xLib/Fs/FileInfo.h>
-#include <xLib/Sync/AutoIpcMutex.h>
 
 
 namespace xl::log
@@ -70,14 +68,13 @@ FileLog::~FileLog()
 {
 }
 //-------------------------------------------------------------------------------------------------
-/* virtual */
 void_t
 FileLog::write(
-    cLevel        a_level,
-    cptr_ctchar_t a_format, ...
-) const
+    cLevel           a_level,
+    std::ctstring_t &a_msg
+) const /* final */
 {
-    xCHECK_DO(!isEnabled(),      return);
+    xCHECK_DO(!_isEnable,        return);
     xCHECK_DO(_filePath.empty(), return);
 
     _removeIfFull();
@@ -88,15 +85,10 @@ FileLog::write(
 
     std::tstring_t msg;
     {
-        va_list args;
-        xVA_START(args, a_format);
-        msg = FormatC::strV(a_format, args);
-        xVA_END(args);
-
         if (a_level == ILog::Level::Trace) {
-            // Skip
+            msg = a_msg;
         } else {
-            msg = _levelString(a_level) + xT(": ") + msg;
+            msg = _levelString(a_level) + xT(": ") + a_msg;
         }
     }
 

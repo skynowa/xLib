@@ -6,8 +6,6 @@
 
 #include "ILog.h"
 
-#include <xLib/Core/FormatC.h>
-#include <xLib/Debug/Debug.h>
 
 namespace xl::log
 {
@@ -29,120 +27,6 @@ ILog::setEnabled(
 )
 {
     _isEnable = a_flag;
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-ILog::isEnabled() const
-{
-    return _isEnable;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-ILog::trace(
-	cptr_ctchar_t a_format, ...
-) const
-{
-    xCHECK_DO(!isEnabled(),        return);
-    xCHECK_DO(a_format == nullptr, return);
-
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
-
-    write(Level::Trace, xT("%s"), msg.c_str());
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-ILog::debug(
-	cptr_ctchar_t a_format, ...
-) const
-{
-    xCHECK_DO(!isEnabled(),        return);
-    xCHECK_DO(a_format == nullptr, return);
-
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
-
-    write(Level::Debug, xT("%s"), msg.c_str());
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-ILog::info(
-	cptr_ctchar_t a_format, ...
-) const
-{
-    xCHECK_DO(!isEnabled(),        return);
-    xCHECK_DO(a_format == nullptr, return);
-
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
-
-    write(Level::Info, xT("%s"), msg.c_str());
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-ILog::warning(
-	cptr_ctchar_t a_format, ...
-) const
-{
-    xCHECK_DO(!isEnabled(),        return);
-    xCHECK_DO(a_format == nullptr, return);
-
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
-
-    write(Level::Warning, xT("%s"), msg.c_str());
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-ILog::error(
-	cptr_ctchar_t a_format, ...
-) const
-{
-    xCHECK_DO(!isEnabled(),        return);
-    xCHECK_DO(a_format == nullptr, return);
-
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
-
-    write(Level::Error, xT("%s"), msg.c_str());
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-ILog::critical(
-	cptr_ctchar_t a_format, ...
-) const
-{
-    xCHECK_DO(!isEnabled(),        return);
-    xCHECK_DO(a_format == nullptr, return);
-
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
-
-    write(Level::Critical, xT("%s"), msg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 

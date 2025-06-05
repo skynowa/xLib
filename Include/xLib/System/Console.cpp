@@ -28,7 +28,16 @@ namespace xl::system
 
 //-------------------------------------------------------------------------------------------------
 Console::Console() :
-	_isColorSupport{ _isColorized() }
+	Console(_isColorized(), false)
+{
+}
+//-------------------------------------------------------------------------------------------------
+Console::Console(
+	cbool_t a_isColorSupport, ///< force set color support (for PS1, etc)
+	cbool_t a_isEscapeValues  ///< escaping values (UNIX only)
+) :
+	_isColorSupport{a_isColorSupport},
+	_isEscapeValues{a_isEscapeValues}
 {
     _construct_impl();
 }
@@ -46,54 +55,35 @@ Console::~Console()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-void
-Console::setColorSupport(
-	cbool_t a_flag
-)
-{
-	_isColorSupport = a_flag;
-}
-//-------------------------------------------------------------------------------------------------
-void
-Console::setEscapeValues(
-	cbool_t a_flag
-)
-{
-	_isEscapeValues = a_flag;
-}
-//-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::setAttributes(
-    cForeground a_foreground,
-    cBackground a_background,
-    cint_t      a_attributes
+Console::setAttrs(
+    cFG    a_fg,
+    cBG    a_bg,
+    cint_t a_attrs
 ) const
 {
 	xCHECK_RET(!_isColorSupport, xT(""));
 
-    return _setAttributes_impl(a_foreground, a_background, a_attributes);
+    return _setAttrs_impl(a_fg, a_bg, a_attrs);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::clearAttributes() const
+Console::clearAttrs() const
 {
 	xCHECK_RET(!_isColorSupport, xT(""));
 
-    return _clearAttributes_impl();
+    return _clearAttrs_impl();
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::setAttributesText(
-    cForeground      a_foreground,
-    cBackground      a_background,
-    cint_t           a_attributes,
+Console::setAttrsText(
+    cFG              a_fg,
+    cBG              a_bg,
+    cint_t           a_attrs,
     std::ctstring_t &a_str
 ) const
 {
-	return
-		setAttributes(a_foreground, a_background, a_attributes) +
-		a_str +
-		clearAttributes();
+	return setAttrs(a_fg, a_bg, a_attrs) + a_str + clearAttrs();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -139,9 +129,9 @@ Console::writeErrLine(
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::write(
-    cForeground      a_foreground,
-    cBackground      a_background,
-    cint_t           a_attributes,
+    cFG              a_fg,
+    cBG              a_bg,
+    cint_t           a_attrs,
     std::ctstring_t &a_str
 ) const
 {
@@ -151,20 +141,20 @@ Console::write(
 	* Use sequence of write() methods, instead of concat strings
 	*/
 
-	write( setAttributes(a_foreground, a_background, a_attributes) );
+	write( setAttrs(a_fg, a_bg, a_attrs) );
 	write(a_str);
-	write( clearAttributes() );
+	write( clearAttrs() );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::writeLine(
-    cForeground      a_foreground,
-    cBackground      a_background,
-    cint_t           a_attributes,
+    cFG              a_fg,
+    cBG              a_bg,
+    cint_t           a_attrs,
     std::ctstring_t &a_str
 ) const
 {
-	write(a_foreground, a_background, a_attributes, a_str);
+	write(a_fg, a_bg, a_attrs, a_str);
 	writeNl();
 }
 //-------------------------------------------------------------------------------------------------

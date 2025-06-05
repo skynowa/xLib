@@ -6,8 +6,6 @@
 
 #include "SystemLog.h"
 
-#include <xLib/Core/FormatC.h>
-#include <xLib/Core/Format.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/ErrorReport.h>
@@ -61,27 +59,17 @@ SystemLog::~SystemLog()
     _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
-/* virtual */
 void_t
 SystemLog::write(
-    cLevel        a_level,
-    cptr_ctchar_t a_format, ...
-) const
+    cLevel           a_level,
+    std::ctstring_t &a_msg
+) const /* final */
 {
-    xCHECK_DO(!isEnabled(), return);
-    xTEST_PTR(a_format);
+    xCHECK_DO(!_isEnable, return);
 
     const auto level = (a_level == ILog::Level::Trace) ? ILog::Level::Info : ILog::Level::Off;
 
-    std::tstring_t msg;
-    {
-        va_list args;
-        xVA_START(args, a_format);
-        msg = FormatC::strV(a_format, args);
-        xVA_END(args);
-    }
-
-    _write_impl(level, msg);
+    _write_impl(level, a_msg);
 }
 //-------------------------------------------------------------------------------------------------
 
