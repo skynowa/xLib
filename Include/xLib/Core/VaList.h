@@ -16,10 +16,12 @@ class VaList
 public:
 ///\name ctors, dtor
 ///\{
+#if 0
 	VaList(cptr_ctchar_t format, ...)
 	{
 		xVA_START(_args, format);
 	}
+#endif
 
 	explicit VaList(va_list parentArgs)
 	{

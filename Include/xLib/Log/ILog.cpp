@@ -40,8 +40,17 @@ ILog::trace(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
+#if 0
 	VaList args(a_format);
 	std::ctstring_t msg = FormatC::strV(a_format, args.get());
+#else
+	std::tstring_t msg;
+
+	va_list args;
+	xVA_START(args, a_format);
+	msg = FormatC::strV(a_format, args);
+	xVA_END(args);
+#endif
 
     write(Level::Trace, xT("%s"), msg.c_str());
 }
@@ -54,8 +63,17 @@ ILog::debug(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
+#if 0
 	VaList args(a_format);
 	std::ctstring_t msg = FormatC::strV(a_format, args.get());
+#else
+	std::tstring_t msg;
+
+	va_list args;
+	xVA_START(args, a_format);
+	msg = FormatC::strV(a_format, args);
+	xVA_END(args);
+#endif
 
     write(Level::Debug, xT("%s"), msg.c_str());
 }
@@ -68,8 +86,17 @@ ILog::info(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
+#if 0
 	VaList args(a_format);
 	std::ctstring_t msg = FormatC::strV(a_format, args.get());
+#else
+    std::tstring_t msg;
+
+    va_list args;
+    xVA_START(args, a_format);
+    msg = FormatC::strV(a_format, args);
+    xVA_END(args);
+#endif
 
     write(Level::Info, xT("%s"), msg.c_str());
 }
@@ -82,8 +109,17 @@ ILog::warning(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
+#if 0
 	VaList args(a_format);
 	std::ctstring_t msg = FormatC::strV(a_format, args.get());
+#else
+	std::tstring_t msg;
+
+	va_list args;
+	xVA_START(args, a_format);
+	msg = FormatC::strV(a_format, args);
+	xVA_END(args);
+#endif
 
     write(Level::Warning, xT("%s"), msg.c_str());
 }
@@ -96,8 +132,17 @@ ILog::error(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
+#if 0
 	VaList args(a_format);
 	std::ctstring_t msg = FormatC::strV(a_format, args.get());
+#else
+    std::tstring_t msg;
+
+    va_list args;
+    xVA_START(args, a_format);
+    msg = FormatC::strV(a_format, args);
+    xVA_END(args);
+#endif
 
     write(Level::Error, xT("%s"), msg.c_str());
 }
@@ -110,8 +155,17 @@ ILog::critical(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
+#if 0
 	VaList args(a_format);
 	std::ctstring_t msg = FormatC::strV(a_format, args.get());
+#else
+	std::tstring_t msg;
+
+	va_list args;
+	xVA_START(args, a_format);
+	msg = FormatC::strV(a_format, args);
+	xVA_END(args);
+#endif
 
     write(Level::Critical, xT("%s"), msg.c_str());
 }

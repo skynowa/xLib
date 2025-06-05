@@ -75,8 +75,15 @@ SystemLog::write(
 
     std::tstring_t msg;
     {
+	#if 0
 		VaList args(a_format);
 		msg = FormatC::strV(a_format, args.get());
+	#else
+		va_list args;
+		xVA_START(args, a_format);
+		msg = FormatC::strV(a_format, args);
+		xVA_END(args);
+	#endif
     }
 
     _write_impl(level, msg);
