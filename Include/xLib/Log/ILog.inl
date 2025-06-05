@@ -26,19 +26,8 @@ ILog::trace(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-#if 0
-	std::tstring_t msg;
-
-	va_list args;
-	xVA_START(args, a_format);
-	msg = FormatC::strV(a_format, args);
-	xVA_END(args);
-
-	write(Level::Trace, xT("%s"), msg.c_str());
-#else
     std::ctstring_t msg = FormatC::str(a_format, std::forward<Args>(a_args)...);
     write(Level::Trace, msg);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 template<typename... Args>
@@ -51,19 +40,8 @@ ILog::debug(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-#if 0
-	std::tstring_t msg;
-
-	va_list args;
-	xVA_START(args, a_format);
-	msg = FormatC::strV(a_format, args);
-	xVA_END(args);
-
-	write(Level::Debug, xT("%s"), msg.c_str());
-#else
 	std::ctstring_t msg = FormatC::str(a_format, std::forward<Args>(a_args)...);
 	write(Level::Debug, msg);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 template<typename... Args>
@@ -76,19 +54,8 @@ ILog::info(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-#if 0
-	std::tstring_t msg;
-
-	va_list args;
-	xVA_START(args, a_format);
-	msg = FormatC::strV(a_format, args);
-	xVA_END(args);
-
-	write(Level::Info, xT("%s"), msg.c_str());
-#else
 	std::ctstring_t msg = FormatC::str(a_format, std::forward<Args>(a_args)...);
 	write(Level::Info, msg);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 template<typename... Args>
@@ -101,19 +68,8 @@ ILog::warning(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-#if 0
-	std::tstring_t msg;
-
-	va_list args;
-	xVA_START(args, a_format);
-	msg = FormatC::strV(a_format, args);
-	xVA_END(args);
-
-	write(Level::Warning, xT("%s"), msg.c_str());
-#else
 	std::ctstring_t msg = FormatC::str(a_format, std::forward<Args>(a_args)...);
 	write(Level::Warning, msg);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 template<typename... Args>
@@ -126,19 +82,8 @@ ILog::error(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-#if 0
-	std::tstring_t msg;
-
-	va_list args;
-	xVA_START(args, a_format);
-	msg = FormatC::strV(a_format, args);
-	xVA_END(args);
-
-	write(Level::Error, xT("%s"), msg.c_str());
-#else
 	std::ctstring_t msg = FormatC::str(a_format, std::forward<Args>(a_args)...);
 	write(Level::Error, msg);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 template<typename... Args>
@@ -151,19 +96,8 @@ ILog::critical(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-#if 0
-	std::tstring_t msg;
-
-	va_list args;
-	xVA_START(args, a_format);
-	msg = FormatC::strV(a_format, args);
-	xVA_END(args);
-
-	write(Level::Critical, xT("%s"), msg.c_str());
-#else
 	std::ctstring_t msg = FormatC::str(a_format, std::forward<Args>(a_args)...);
 	write(Level::Critical, msg);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 

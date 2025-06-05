@@ -43,7 +43,7 @@ public:
     void_t         setEnabled(cbool_t flag);
         ///< set enabled
 
-    virtual void_t write(cLevel level, std::ctstring_t &message) const = 0;
+    virtual void_t write(cLevel level, std::ctstring_t &msg) const = 0;
         ///< write with EOL to log
 
     template<typename... Args>
