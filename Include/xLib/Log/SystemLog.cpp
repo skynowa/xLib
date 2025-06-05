@@ -6,6 +6,7 @@
 
 #include "SystemLog.h"
 
+#include <xLib/Core/VaList.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Debug/NativeError.h>
@@ -74,10 +75,8 @@ SystemLog::write(
 
     std::tstring_t msg;
     {
-        va_list args;
-        xVA_START(args, a_format);
-        msg = FormatC::strV(a_format, args);
-        xVA_END(args);
+		VaList args(a_format);
+		msg = FormatC::strV(a_format, args.get());
     }
 
     _write_impl(level, msg);

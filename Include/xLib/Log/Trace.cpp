@@ -7,6 +7,7 @@
 #include "Trace.h"
 
 #include <xLib/Core/Const.h>
+#include <xLib/Core/VaList.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
 #include <xLib/Debug/NativeError.h>
@@ -45,10 +46,15 @@ Trace::write(
 
     std::tstring_t msg;
     {
-        va_list args;
-        xVA_START(args, a_format);
-        msg = FormatC::strV(a_format, args);
-        xVA_END(args);
+	#if 0
+		va_list args;
+		xVA_START(args, a_format);
+		msg = FormatC::strV(a_format, args);
+		xVA_END(args);
+	#else
+		VaList args(a_format);
+		msg = FormatC::strV(a_format, args.get());
+	#endif
 
         if (a_level == ILog::Level::Trace) {
             // n/a

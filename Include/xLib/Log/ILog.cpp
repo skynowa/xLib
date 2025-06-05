@@ -6,6 +6,7 @@
 
 #include "ILog.h"
 
+#include <xLib/Core/VaList.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Debug/Debug.h>
 
@@ -39,12 +40,8 @@ ILog::trace(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
+	VaList args(a_format);
+	std::ctstring_t msg = FormatC::strV(a_format, args.get());
 
     write(Level::Trace, xT("%s"), msg.c_str());
 }
@@ -57,12 +54,8 @@ ILog::debug(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
+	VaList args(a_format);
+	std::ctstring_t msg = FormatC::strV(a_format, args.get());
 
     write(Level::Debug, xT("%s"), msg.c_str());
 }
@@ -75,12 +68,8 @@ ILog::info(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
+	VaList args(a_format);
+	std::ctstring_t msg = FormatC::strV(a_format, args.get());
 
     write(Level::Info, xT("%s"), msg.c_str());
 }
@@ -93,12 +82,8 @@ ILog::warning(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
+	VaList args(a_format);
+	std::ctstring_t msg = FormatC::strV(a_format, args.get());
 
     write(Level::Warning, xT("%s"), msg.c_str());
 }
@@ -111,12 +96,8 @@ ILog::error(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
+	VaList args(a_format);
+	std::ctstring_t msg = FormatC::strV(a_format, args.get());
 
     write(Level::Error, xT("%s"), msg.c_str());
 }
@@ -129,12 +110,8 @@ ILog::critical(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-    std::tstring_t msg;
-
-    va_list args;
-    xVA_START(args, a_format);
-    msg = FormatC::strV(a_format, args);
-    xVA_END(args);
+	VaList args(a_format);
+	std::ctstring_t msg = FormatC::strV(a_format, args.get());
 
     write(Level::Critical, xT("%s"), msg.c_str());
 }

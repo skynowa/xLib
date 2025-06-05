@@ -7,6 +7,7 @@
 #include "FileLog.h"
 
 #include <xLib/Core/Const.h>
+#include <xLib/Core/VaList.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/DateTime.h>
 #include <xLib/Debug/NativeError.h>
@@ -87,10 +88,8 @@ FileLog::write(
 
     std::tstring_t msg;
     {
-        va_list args;
-        xVA_START(args, a_format);
-        msg = FormatC::strV(a_format, args);
-        xVA_END(args);
+		VaList args(a_format);
+		msg = FormatC::strV(a_format, args.get());
 
         if (a_level == ILog::Level::Trace) {
             // Skip
