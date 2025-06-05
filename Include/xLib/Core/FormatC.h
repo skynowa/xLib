@@ -22,8 +22,8 @@ public:
 	xNO_COPY_ASSIGN(FormatC);
 ///\}
 
-    static std::tstring_t str(cptr_ctchar_t format, ...);
-    static std::tstring_t strV(cptr_ctchar_t format, va_list args);
+    static std::tstring_t str(cptr_ctchar_t fmt, ...);
+    static std::tstring_t strV(cptr_ctchar_t fmt, va_list args);
 };
 
 } // namespace

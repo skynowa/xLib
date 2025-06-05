@@ -23,19 +23,19 @@ namespace xl::core
 /* static */
 std::tstring_t
 FormatC::str(
-    cptr_ctchar_t a_format, ///< string format
-    ...                     ///< arguments
+    cptr_ctchar_t a_fmt, ///< string format
+    ...                  ///< arguments
 )
 {
-    xTEST_NA(a_format);
+    xTEST_NA(a_fmt);
 
-    xCHECK_RET(a_format == nullptr, std::tstring_t());
+    xCHECK_RET(a_fmt == nullptr, std::tstring_t());
 
     std::tstring_t sRv;
 
     va_list args;
-    xVA_START(args, a_format);
-    sRv = strV(a_format, args);
+    xVA_START(args, a_fmt);
+    sRv = strV(a_fmt, args);
     xVA_END(args);
 
     return sRv;
@@ -44,20 +44,20 @@ FormatC::str(
 /* static */
 std::tstring_t
 FormatC::strV(
-    cptr_ctchar_t a_format,    ///< string format
-    va_list       a_args       ///< arguments
+    cptr_ctchar_t a_fmt, ///< string format
+    va_list       a_args ///< arguments
 )
 {
-    xTEST_NA(a_format);
+    xTEST_NA(a_fmt);
     xTEST_NA(a_args);
 
-    xCHECK_RET(a_format == nullptr, std::tstring_t());
+    xCHECK_RET(a_fmt == nullptr, std::tstring_t());
 
     std::size_t buffSize {};
     {
         va_list args;
         xVA_COPY(args, a_args);
-        cint_t iRv = xTVSNPRINTF(nullptr, 0, a_format, args);
+        cint_t iRv = xTVSNPRINTF(nullptr, 0, a_fmt, args);
         xVA_END(args);
 
         xSTD_VERIFY(iRv != - 1);
@@ -79,7 +79,7 @@ FormatC::strV(
     {
         va_list args;
         xVA_COPY(args, a_args);
-        cint_t iRv = xTVSNPRINTF(&buff.at(0), buffSize, a_format, args);
+        cint_t iRv = xTVSNPRINTF(&buff.at(0), buffSize, a_fmt, args);
         xVA_END(args);
 
         xSTD_VERIFY(iRv != - 1);
