@@ -40,12 +40,12 @@ ILog::trace(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-#if 0
-	VaList args(a_format);
-	std::ctstring_t msg = FormatC::strV(a_format, args.get());
-#else
 	std::tstring_t msg;
 
+#if 0
+	VaList args(a_format);
+	msg = FormatC::strV(a_format, args.get());
+#else
 	va_list args;
 	xVA_START(args, a_format);
 	msg = FormatC::strV(a_format, args);
@@ -63,12 +63,12 @@ ILog::debug(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-#if 0
-	VaList args(a_format);
-	std::ctstring_t msg = FormatC::strV(a_format, args.get());
-#else
 	std::tstring_t msg;
 
+#if 0
+	VaList args(a_format);
+	msg = FormatC::strV(a_format, args.get());
+#else
 	va_list args;
 	xVA_START(args, a_format);
 	msg = FormatC::strV(a_format, args);
@@ -86,12 +86,12 @@ ILog::info(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-#if 0
-	VaList args(a_format);
-	std::ctstring_t msg = FormatC::strV(a_format, args.get());
-#else
     std::tstring_t msg;
 
+#if 0
+	VaList args(a_format);
+	msg = FormatC::strV(a_format, args.get());
+#else
     va_list args;
     xVA_START(args, a_format);
     msg = FormatC::strV(a_format, args);
@@ -109,12 +109,12 @@ ILog::warning(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-#if 0
-	VaList args(a_format);
-	std::ctstring_t msg = FormatC::strV(a_format, args.get());
-#else
 	std::tstring_t msg;
 
+#if 0
+	VaList args(a_format);
+	msg = FormatC::strV(a_format, args.get());
+#else
 	va_list args;
 	xVA_START(args, a_format);
 	msg = FormatC::strV(a_format, args);
@@ -132,12 +132,12 @@ ILog::error(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-#if 0
-	VaList args(a_format);
-	std::ctstring_t msg = FormatC::strV(a_format, args.get());
-#else
     std::tstring_t msg;
 
+#if 0
+	VaList args(a_format);
+	msg = FormatC::strV(a_format, args.get());
+#else
     va_list args;
     xVA_START(args, a_format);
     msg = FormatC::strV(a_format, args);
@@ -155,12 +155,12 @@ ILog::critical(
     xCHECK_DO(!_isEnable,          return);
     xCHECK_DO(a_format == nullptr, return);
 
-#if 0
-	VaList args(a_format);
-	std::ctstring_t msg = FormatC::strV(a_format, args.get());
-#else
 	std::tstring_t msg;
 
+#if 0
+	VaList args(a_format);
+	msg = FormatC::strV(a_format, args.get());
+#else
 	va_list args;
 	xVA_START(args, a_format);
 	msg = FormatC::strV(a_format, args);
