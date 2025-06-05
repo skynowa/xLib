@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-# UNIT_TESTS=(Profiler)
+UNIT_TESTS=(Console)
 UNIT_TESTS=(Trace)
 # UNIT_TESTS=(FileLog)
 # UNIT_TESTS=(MySql)

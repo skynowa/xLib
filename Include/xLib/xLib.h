@@ -18,6 +18,7 @@
 #include <xLib/Core/Type/Types.h>
 #include <xLib/Core/Type/Type.h>
 #include <xLib/Core/Functions.h>
+#include <xLib/Core/VaList.h>
 #include <xLib/Core/ScopeExit.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Core/Const.h>
