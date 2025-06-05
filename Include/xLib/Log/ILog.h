@@ -47,17 +47,17 @@ public:
         ///< write with EOL to log
 
     template<typename... Args>
-    void_t trace(cptr_ctchar_t format, Args&&... args) const;
+    void_t trace(cptr_ctchar_t fmt, Args&&... args) const;
     template<typename... Args>
-    void_t debug(cptr_ctchar_t format, Args&&... args) const;
+    void_t debug(cptr_ctchar_t fmt, Args&&... args) const;
     template<typename... Args>
-    void_t info(cptr_ctchar_t format, Args&&... args) const;
+    void_t info(cptr_ctchar_t fmt, Args&&... args) const;
     template<typename... Args>
-    void_t warning(cptr_ctchar_t format, Args&&... args) const;
+    void_t warning(cptr_ctchar_t fmt, Args&&... args) const;
     template<typename... Args>
-    void_t error(cptr_ctchar_t format, Args&&... args) const;
+    void_t error(cptr_ctchar_t fmt, Args&&... args) const;
     template<typename... Args>
-    void_t critical(cptr_ctchar_t format, Args&&... args) const;
+    void_t critical(cptr_ctchar_t fmt, Args&&... args) const;
 
     // Template operator<< in base class (not virtual)
 #if 0

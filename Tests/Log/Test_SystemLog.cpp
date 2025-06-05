@@ -28,7 +28,6 @@ Test_SystemLog::unit()
     xTEST_CASE("setEnabled")
     {
         SystemLog log;
-
         log.setEnabled(true);
         log.setEnabled(false);
         log.setEnabled(true);
