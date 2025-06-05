@@ -72,8 +72,8 @@ FileLog::~FileLog()
 //-------------------------------------------------------------------------------------------------
 void_t
 FileLog::write(
-    cLevel        a_level,
-    cptr_ctchar_t a_format, ...
+    cLevel           a_level,
+    std::ctstring_t &a_msg
 ) const /* final */
 {
     xCHECK_DO(!_isEnable,        return);
@@ -87,15 +87,10 @@ FileLog::write(
 
     std::tstring_t msg;
     {
-        va_list args;
-        xVA_START(args, a_format);
-        msg = FormatC::strV(a_format, args);
-        xVA_END(args);
-
         if (a_level == ILog::Level::Trace) {
-            // Skip
+            msg = a_msg;
         } else {
-            msg = _levelString(a_level) + xT(": ") + msg;
+            msg = _levelString(a_level) + xT(": ") + a_msg;
         }
     }
 

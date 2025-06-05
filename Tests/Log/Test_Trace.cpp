@@ -17,7 +17,7 @@ Test_Trace::unit()
     {
     #if 1 || xTEST_IGNORE
         Trace log;
-        log.write(ILog::Level::Off, xT("%s, %d"), xLEX_TO_STR(ILog::Level::Off), 12345);
+        log.write(ILog::Level::Off, xT("test"));
         log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
         log.warning(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
         log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);

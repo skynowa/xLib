@@ -43,15 +43,21 @@ public:
     void_t         setEnabled(cbool_t flag);
         ///< set enabled
 
-    virtual void_t write(cLevel level, cptr_ctchar_t format, ...) const = 0;
+    virtual void_t write(cLevel level, std::ctstring_t &msg) const = 0;
         ///< write with EOL to log
 
-    void_t trace(cptr_ctchar_t format, ...) const;
-    void_t debug(cptr_ctchar_t format, ...) const;
-    void_t info(cptr_ctchar_t format, ...) const;
-    void_t warning(cptr_ctchar_t format, ...) const;
-    void_t error(cptr_ctchar_t format, ...) const;
-    void_t critical(cptr_ctchar_t format, ...) const;
+    template<typename... Args>
+    void_t trace(cptr_ctchar_t fmt, Args&&... args) const;
+    template<typename... Args>
+    void_t debug(cptr_ctchar_t fmt, Args&&... args) const;
+    template<typename... Args>
+    void_t info(cptr_ctchar_t fmt, Args&&... args) const;
+    template<typename... Args>
+    void_t warning(cptr_ctchar_t fmt, Args&&... args) const;
+    template<typename... Args>
+    void_t error(cptr_ctchar_t fmt, Args&&... args) const;
+    template<typename... Args>
+    void_t critical(cptr_ctchar_t fmt, Args&&... args) const;
 
     // Template operator<< in base class (not virtual)
 #if 0
@@ -74,6 +80,8 @@ protected:
 };
 
 } // namespace
+//-------------------------------------------------------------------------------------------------
+#include "ILog.inl"
 //-------------------------------------------------------------------------------------------------
 /**
  * \file  ILog.h

@@ -63,24 +63,15 @@ SystemLog::~SystemLog()
 //-------------------------------------------------------------------------------------------------
 void_t
 SystemLog::write(
-    cLevel        a_level,
-    cptr_ctchar_t a_format, ...
+    cLevel           a_level,
+    std::ctstring_t &a_msg
 ) const /* final */
 {
     xCHECK_DO(!_isEnable, return);
-    xTEST_PTR(a_format);
 
     const auto level = (a_level == ILog::Level::Trace) ? ILog::Level::Info : ILog::Level::Off;
 
-    std::tstring_t msg;
-    {
-        va_list args;
-        xVA_START(args, a_format);
-        msg = FormatC::strV(a_format, args);
-        xVA_END(args);
-    }
-
-    _write_impl(level, msg);
+    _write_impl(level, a_msg);
 }
 //-------------------------------------------------------------------------------------------------
 
