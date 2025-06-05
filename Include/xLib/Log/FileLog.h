@@ -37,7 +37,7 @@ public:
 
 ///\name Overrides
 ///\{
-	void_t write(cLevel level, cptr_ctchar_t format, ...) const final;
+	void_t write(cLevel level, std::ctstring_t &message) const final;
 ///\}
 
     void_t clear() const;
