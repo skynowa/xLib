@@ -1,6 +1,6 @@
 /**
- * \file   FileLog.cpp
- * \brief  logging to file
+ * \file  FileLog.cpp
+ * \brief logging to file
  */
 
 
@@ -96,7 +96,7 @@ FileLog::write(
     {
         FileIO file(_filePath);
         file.open(FileIO::OpenMode::Append, false);
-        int_t iRv = file.write(xT("[%s] %s\n"), time.c_str(), msg.c_str());
+        int_t iRv = file.write(xT("[%s] %s%s"), time.c_str(), msg.c_str(), Const::nl().c_str());
         xTEST_DIFF(iRv, - 1);
     }
 }

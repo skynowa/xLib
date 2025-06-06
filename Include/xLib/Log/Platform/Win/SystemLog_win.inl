@@ -1,6 +1,6 @@
 /**
- * \file   SystemLog.inl
- * \brief  logging to system log
+ * \file  SystemLog.inl
+ * \brief logging to system log
  */
 
 

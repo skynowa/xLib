@@ -1,6 +1,6 @@
 /**
- * \file   Test_Trace.cpp
- * \brief  test Trace
+ * \file  Test_Trace.cpp
+ * \brief test Trace
  */
 
 

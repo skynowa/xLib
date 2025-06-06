@@ -1,6 +1,6 @@
 /**
- * \file   Test_SystemLog.cpp
- * \brief  test SystemLogs
+ * \file  Test_SystemLog.cpp
+ * \brief test SystemLogs
  */
 
 
