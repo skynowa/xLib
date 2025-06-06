@@ -26,7 +26,7 @@ ILog::trace(
     xCHECK_DO(!_isEnable,       return);
     xCHECK_DO(a_fmt == nullptr, return);
 
-    std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
+    std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...) + Const::nl();
     write(Level::Trace, msg);
 }
 //-------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ ILog::debug(
     xCHECK_DO(!_isEnable,       return);
     xCHECK_DO(a_fmt == nullptr, return);
 
-	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
+	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...) + Const::nl();
 	write(Level::Debug, msg);
 }
 //-------------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ ILog::info(
     xCHECK_DO(!_isEnable,       return);
     xCHECK_DO(a_fmt == nullptr, return);
 
-	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
+	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...) + Const::nl();
 	write(Level::Info, msg);
 }
 //-------------------------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ ILog::warning(
     xCHECK_DO(!_isEnable,       return);
     xCHECK_DO(a_fmt == nullptr, return);
 
-	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
+	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...) + Const::nl();
 	write(Level::Warning, msg);
 }
 //-------------------------------------------------------------------------------------------------
@@ -82,7 +82,7 @@ ILog::error(
     xCHECK_DO(!_isEnable,       return);
     xCHECK_DO(a_fmt == nullptr, return);
 
-	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
+	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...) + Const::nl();
 	write(Level::Error, msg);
 }
 //-------------------------------------------------------------------------------------------------
@@ -96,7 +96,7 @@ ILog::critical(
     xCHECK_DO(!_isEnable,       return);
     xCHECK_DO(a_fmt == nullptr, return);
 
-	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
+	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...) + Const::nl();
 	write(Level::Critical, msg);
 }
 //-------------------------------------------------------------------------------------------------
