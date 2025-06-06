@@ -20,9 +20,21 @@ class TraceStream final
 public:
 ///\name ctors, dtor
 ///\{
-			 TraceStream();
-			 TraceStream(ILog::cLevel level);
-	virtual ~TraceStream();
+	TraceStream() :
+		TraceStream(ILog::Level::Trace)
+	{
+	}
+
+	TraceStream(ILog::cLevel a_level) :
+		_level{a_level}
+	{
+	}
+
+	~TraceStream()
+	{
+		Trace trace;
+		trace.write(_level, _os.str());
+	}
 
 	xNO_COPY_ASSIGN(TraceStream);
 ///\}
