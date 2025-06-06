@@ -45,9 +45,6 @@ ILog::_levelString(
 	std::tstring_t sRv;
 
 	switch (a_level) {
-	case Level::Off:
-		sRv = xT("Off");
-		break;
 	case Level::Trace:
 		sRv = xT("Trace");
 		break;

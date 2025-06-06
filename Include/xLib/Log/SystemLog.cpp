@@ -67,9 +67,7 @@ SystemLog::write(
 {
     xCHECK_DO(!_isEnable, return);
 
-    const auto level = (a_level == ILog::Level::Trace) ? ILog::Level::Info : ILog::Level::Off;
-
-    _write_impl(level, a_msg);
+    _write_impl(a_level, a_msg);
 }
 //-------------------------------------------------------------------------------------------------
 
