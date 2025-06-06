@@ -23,8 +23,7 @@ ILog::trace(
 	Args&&...     a_args
 ) const
 {
-    xCHECK_DO(!_isEnable,       return);
-    xCHECK_DO(a_fmt == nullptr, return);
+    xCHECK_DO(!_isEnable, return);
 
     std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
     write(Level::Trace, msg);
@@ -37,8 +36,7 @@ ILog::debug(
 	Args&&...     a_args
 ) const
 {
-    xCHECK_DO(!_isEnable,       return);
-    xCHECK_DO(a_fmt == nullptr, return);
+    xCHECK_DO(!_isEnable, return);
 
 	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
 	write(Level::Debug, msg);
@@ -51,8 +49,7 @@ ILog::info(
 	Args&&...     a_args
 ) const
 {
-    xCHECK_DO(!_isEnable,       return);
-    xCHECK_DO(a_fmt == nullptr, return);
+    xCHECK_DO(!_isEnable, return);
 
 	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
 	write(Level::Info, msg);
@@ -65,8 +62,7 @@ ILog::warning(
 	Args&&...     a_args
 ) const
 {
-    xCHECK_DO(!_isEnable,       return);
-    xCHECK_DO(a_fmt == nullptr, return);
+    xCHECK_DO(!_isEnable, return);
 
 	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
 	write(Level::Warning, msg);
@@ -79,8 +75,7 @@ ILog::error(
 	Args&&...     a_args
 ) const
 {
-    xCHECK_DO(!_isEnable,       return);
-    xCHECK_DO(a_fmt == nullptr, return);
+    xCHECK_DO(!_isEnable, return);
 
 	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
 	write(Level::Error, msg);
@@ -93,8 +88,7 @@ ILog::critical(
 	Args&&...     a_args
 ) const
 {
-    xCHECK_DO(!_isEnable,       return);
-    xCHECK_DO(a_fmt == nullptr, return);
+    xCHECK_DO(!_isEnable, return);
 
 	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
 	write(Level::Critical, msg);
