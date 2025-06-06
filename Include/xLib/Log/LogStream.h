@@ -60,12 +60,12 @@ private:
 	using SystemStream = LogStream<SystemLog, ILog::Level::Trace>;
 #else
 	#define LOG_STREAM_FACTORY(log)	\
-		using log##_##Trace    = LogStream<log, ILog::Level::Trace>; \
-		using log##_##Debug    = LogStream<log, ILog::Level::Debug>; \
-		using log##_##Info     = LogStream<log, ILog::Level::Info>; \
-		using log##_##Warning  = LogStream<log, ILog::Level::Warning>; \
-		using log##_##Error    = LogStream<log, ILog::Level::Error>; \
-		using log##_##Critical = LogStream<log, ILog::Level::Critical>
+		using log##Trace    = LogStream<log, ILog::Level::Trace>; \
+		using log##Debug    = LogStream<log, ILog::Level::Debug>; \
+		using log##Info     = LogStream<log, ILog::Level::Info>; \
+		using log##Warning  = LogStream<log, ILog::Level::Warning>; \
+		using log##Error    = LogStream<log, ILog::Level::Error>; \
+		using log##Critical = LogStream<log, ILog::Level::Critical>
 
 	LOG_STREAM_FACTORY(Trace);
 	LOG_STREAM_FACTORY(FileLog);
