@@ -47,6 +47,8 @@ public:
     virtual void_t write(cLevel level, std::ctstring_t &msg) const = 0;
         ///< write with EOL to log
 
+    void_t writeLine(cLevel level, std::ctstring_t &msg) const;
+
     template<typename... Args>
     void_t trace(cptr_ctchar_t fmt, Args&&... args) const;
     template<typename... Args>
