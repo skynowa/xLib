@@ -83,11 +83,11 @@ public:
     };
     xUSING_CONST(Attr);
 
-    std::tstring_t setAttrs(cFG fg, cBG bg, cint_t attrs) const;
+    std::tstring_t setAttrs(cFG fg, cBG bg, cAttr attrs) const;
         ///< set text color
     std::tstring_t clearAttrs() const;
         ///< reset text color to default
-    std::tstring_t setAttrsText(cFG fg, cBG bg, cint_t attrs, std::ctstring_t &str) const;
+    std::tstring_t setAttrsText(cFG fg, cBG bg, cAttr attrs, std::ctstring_t &str) const;
         ///< set text color, text, reset text color to default
 
     /*******************************************************************************
@@ -103,9 +103,9 @@ public:
         ///< write line
     void_t         writeErrLine(std::ctstring_t &str) const;
         ///< write error message
-    void_t         write(cFG fg, cBG bg, cint_t attrs, std::ctstring_t &str) const;
+    void_t         write(cFG fg, cBG bg, cAttr attrs, std::ctstring_t &str) const;
         ///< write with colors
-    void_t         writeLine(cFG fg, cBG bg, cint_t attrs, std::ctstring_t &str) const;
+    void_t         writeLine(cFG fg, cBG bg, cAttr attrs, std::ctstring_t &str) const;
         ///< write with colors
     void_t         writeNl() const;
     	///< write new line (NL)
@@ -164,7 +164,7 @@ private:
 xPLATFORM_IMPL:
     void_t         _construct_impl();
     void_t         _destruct_impl();
-    std::tstring_t _setAttrs_impl(cFG fg, cBG bg, cint_t attrs) const;
+    std::tstring_t _setAttrs_impl(cFG fg, cBG bg, cAttr attrs) const;
     std::tstring_t _clearAttrs_impl() const;
     std::tstring_t _read_impl() const;
     void_t         _write_impl(std::ctstring_t &str) const;
