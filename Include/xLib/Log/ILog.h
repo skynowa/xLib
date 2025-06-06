@@ -45,9 +45,10 @@ public:
         ///< set enabled
 
     virtual void_t write(cLevel level, std::ctstring_t &msg) const = 0;
-        ///< write with EOL to log
+        ///< write to log (without EOL)
 
     void_t writeLine(cLevel level, std::ctstring_t &msg) const;
+        ///< write to log (with EOL)
 
     template<typename... Args>
     void_t trace(cptr_ctchar_t fmt, Args&&... args) const;

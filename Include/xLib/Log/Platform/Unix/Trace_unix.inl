@@ -19,7 +19,7 @@ Trace::_write_impl(
     std::ctstring_t &a_msg
 ) const
 {
-    std::tcout << a_msg << std::endl;
+    std::tcout << a_msg;
 }
 //-------------------------------------------------------------------------------------------------
 
