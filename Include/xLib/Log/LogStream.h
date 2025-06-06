@@ -23,20 +23,7 @@ class LogStream final
 public:
 ///\name ctors, dtor
 ///\{
-
-#if 0
-	LogStream() :
-		LogStream(levelT)
-	{
-	}
-
-	LogStream(ILog::cLevel a_level) :
-		_level{a_level}
-	{
-	}
-#else
 	LogStream() = default;
-#endif
 
 	~LogStream()
 	{
@@ -67,9 +54,24 @@ private:
 	OStream      _os;
 };
 
-using TraceStream  = LogStream<Trace, ILog::Level::Trace>;
-using FileStream   = LogStream<FileLog, ILog::Level::Trace>;
-using SystemStream = LogStream<SystemLog, ILog::Level::Trace>;
+#if 0
+	using TraceStream  = LogStream<Trace,     ILog::Level::Trace>;
+	using FileStream   = LogStream<FileLog,   ILog::Level::Trace>;
+	using SystemStream = LogStream<SystemLog, ILog::Level::Trace>;
+#else
+	#define LOG_STREAM_FACTORY(log)	\
+		using log##_##Trace    = LogStream<log, ILog::Level::Trace>; \
+		using log##_##Debug    = LogStream<log, ILog::Level::Debug>; \
+		using log##_##Info     = LogStream<log, ILog::Level::Info>; \
+		using log##_##Warning  = LogStream<log, ILog::Level::Warning>; \
+		using log##_##Error    = LogStream<log, ILog::Level::Error>; \
+		using log##_##Critical = LogStream<log, ILog::Level::Critical>
+
+	LOG_STREAM_FACTORY(Trace);
+	LOG_STREAM_FACTORY(FileLog);
+	LOG_STREAM_FACTORY(SystemLog);
+#endif
+
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
