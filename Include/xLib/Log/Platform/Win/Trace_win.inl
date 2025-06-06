@@ -19,7 +19,7 @@ Trace::_write_impl(
     std::ctstring_t &a_msg
 ) const
 {
-    (void_t)::OutputDebugString( a_msg.c_str() );
+    (void_t)::OutputDebugString( (a_msg + Const::nl()).c_str() );
 
     std::tcout << a_msg << std::endl;
 }
