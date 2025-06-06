@@ -59,7 +59,7 @@ private:
 	using FileStream   = LogStream<FileLog,   ILog::Level::Trace>;
 	using SystemStream = LogStream<SystemLog, ILog::Level::Trace>;
 #else
-	#define LOG_STREAM_FACTORY(a_alias, a_log)	\
+	#define LOG_STREAM_FACTORY(a_alias, a_log) \
 		using a_alias           = LogStream<a_log, ILog::Level::Trace>; \
 		\
 		using a_alias##Trace    = LogStream<a_log, ILog::Level::Trace>; \
