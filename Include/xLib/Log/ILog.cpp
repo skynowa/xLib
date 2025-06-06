@@ -39,33 +39,19 @@ ILog::setEnabled(
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 ILog::_levelString(
-    cLevel a_level
+	cLevel a_level
 ) const
 {
-	std::tstring_t sRv;
-
 	switch (a_level) {
-	case Level::Trace:
-		sRv = xT("Trace");
-		break;
-	case Level::Debug:
-		sRv = xT("Debug");
-		break;
-	case Level::Info:
-		sRv = xT("Info");
-		break;
-	case Level::Warning:
-		sRv = xT("Warning");
-		break;
-	case Level::Error:
-		sRv = xT("Error");
-		break;
-	case Level::Critical:
-		sRv = xT("Critical");
-		break;
+	case Level::Trace:    return xT("Trace");
+	case Level::Debug:    return xT("Debug");
+	case Level::Info:     return xT("Info");
+	case Level::Warning:  return xT("Warning");
+	case Level::Error:    return xT("Error");
+	case Level::Critical: return xT("Critical");
 	}
 
-	return sRv;
+	return {};
 }
 //-------------------------------------------------------------------------------------------------
 

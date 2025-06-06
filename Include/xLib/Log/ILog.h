@@ -63,7 +63,7 @@ protected:
 protected:
     bool_t _isEnable {true};  ///< is enabled
 
-    std::tstring_t _levelString(cLevel level) const;
+	std::tstring_t _levelString(cLevel level) const;
 };
 
 } // namespace
