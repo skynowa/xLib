@@ -5,7 +5,6 @@
 
 
 #include <xLib/xLib.h>
-#include <xLib/Log/TraceStream.h> ///
 
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Trace)

@@ -1,6 +1,6 @@
 /**
- * \file  TraceStream.h
- * \brief Tracing to debugger, std::cout
+ * \file  LogStream.h
+ * \brief Logging to stream
  */
 
 
@@ -10,37 +10,40 @@
 #include <xLib/Core/OStream.h>
 #include "ILog.h"
 #include "Trace.h"
+#include "FileLog.h"
+#include "SystemLog.h"
 //-------------------------------------------------------------------------------------------------
 namespace xl::log
 {
 
-class TraceStream final
+template<class LogT>
+class LogStream final
 	/// Tracing to debugger, std::cout
 {
 public:
 ///\name ctors, dtor
 ///\{
-	TraceStream() :
-		TraceStream(ILog::Level::Trace)
+	LogStream() :
+		LogStream(ILog::Level::Trace)
 	{
 	}
 
-	TraceStream(ILog::cLevel a_level) :
+	LogStream(ILog::cLevel a_level) :
 		_level{a_level}
 	{
 	}
 
-	~TraceStream()
+	~LogStream()
 	{
-		Trace trace;
-		trace.write(_level, _os.str());
+		LogT log;
+		log.write(_level, _os.str());
 	}
 
-	xNO_COPY_ASSIGN(TraceStream);
+	xNO_COPY_ASSIGN(LogStream);
 ///\}
 
 	template<typename T>
-	TraceStream & operator << (const T &a_value)
+	LogStream & operator << (const T &a_value)
 	{
 		_os << a_value;
 		return *this;
@@ -50,6 +53,10 @@ private:
 	ILog::cLevel _level {};
 	OStream      _os;
 };
+
+using TraceStream  = LogStream<Trace>;
+using FileStream   = LogStream<FileLog>;
+using SystemStream = LogStream<SystemLog>;
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
