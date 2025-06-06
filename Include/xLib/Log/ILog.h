@@ -23,7 +23,7 @@ public:
 	enum class Level
         /// log level
 	{
-		Off      = 0,
+		Off      = 0,	/// TODO: Off
 		Trace    = 1,
 		Debug    = 2,
 		Info     = 3,
@@ -43,9 +43,6 @@ public:
 
     void_t         setEnabled(cbool_t flag);
         ///< set enabled
-
-    virtual void_t write(cLevel level, std::ctstring_t &msg) const = 0;
-        ///< write to log (with EOL)
 
     template<typename... Args>
     void_t trace(cptr_ctchar_t fmt, Args&&... args) const;
@@ -72,6 +69,10 @@ public:
 		return *this;
 	}
 #endif
+
+protected:
+    virtual void_t write(cLevel level, std::ctstring_t &msg) const = 0;
+        ///< write to log (with EOL)
 
 protected:
     bool_t _isEnable {true};  ///< is enabled

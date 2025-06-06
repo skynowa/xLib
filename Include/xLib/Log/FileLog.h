@@ -35,15 +35,16 @@ public:
 	virtual  ~FileLog();
 ///\}
 
-///\name Overrides
-///\{
-	void_t write(cLevel level, std::ctstring_t &msg) const final;
-///\}
-
     void_t clear() const;
         ///< clear content
     void_t remove() const;
         ///< delete
+
+protected:
+///\name Overrides
+///\{
+	void_t write(cLevel level, std::ctstring_t &msg) const final;
+///\}
 
 private:
     std::tstring_t _filePath;            ///< file path
