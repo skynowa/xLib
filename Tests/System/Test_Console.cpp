@@ -24,7 +24,7 @@ Test_Console::unit()
 			static_cast<int_t>(Console::Attr::Underline) |
 			static_cast<int_t>(Console::Attr::Reverse);
 
-        Console console;
+        Console console(true, true);
 		console.write( console.setAttrs(fg, bg, attrs) );
 		console.write(text);
 		console.writeLine( console.clearAttrs() );
