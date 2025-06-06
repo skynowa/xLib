@@ -15,7 +15,7 @@ Test_Trace::unit()
 {
     xTEST_CASE("write(...)")
     {
-    #if 1 || xTEST_IGNORE
+    #if 0 || xTEST_IGNORE
         Trace log;
         log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
         log.warning(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
@@ -34,9 +34,10 @@ Test_Trace::unit()
 		std::ctstring_t str     = xT("test");
 		int_t           integer = 777;
 
-		TraceStream() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		TraceStream(ILog::Level::Error) << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		TraceStream(ILog::Level::Warning) << "EOL->" << std::endl;
+		LogTrace() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		LogTraceTrace() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		LogTraceDebug() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		LogTraceError() << "EOL->" << std::endl;
     }
 
     return true;
