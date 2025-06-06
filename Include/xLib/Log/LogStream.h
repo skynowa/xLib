@@ -59,17 +59,19 @@ private:
 	using FileStream   = LogStream<FileLog,   ILog::Level::Trace>;
 	using SystemStream = LogStream<SystemLog, ILog::Level::Trace>;
 #else
-	#define LOG_STREAM_FACTORY(a_log)	\
-		using a_log##Trace    = LogStream<a_log, ILog::Level::Trace>; \
-		using a_log##Debug    = LogStream<a_log, ILog::Level::Debug>; \
-		using a_log##Info     = LogStream<a_log, ILog::Level::Info>; \
-		using a_log##Warning  = LogStream<a_log, ILog::Level::Warning>; \
-		using a_log##Error    = LogStream<a_log, ILog::Level::Error>; \
-		using a_log##Critical = LogStream<a_log, ILog::Level::Critical>
+	#define LOG_STREAM_FACTORY(a_alias, a_log)	\
+		using a_alias##_        = LogStream<a_log, ILog::Level::Trace>; \
+		\
+		using a_alias##Trace    = LogStream<a_log, ILog::Level::Trace>; \
+		using a_alias##Debug    = LogStream<a_log, ILog::Level::Debug>; \
+		using a_alias##Info     = LogStream<a_log, ILog::Level::Info>; \
+		using a_alias##Warning  = LogStream<a_log, ILog::Level::Warning>; \
+		using a_alias##Error    = LogStream<a_log, ILog::Level::Error>; \
+		using a_alias##Critical = LogStream<a_log, ILog::Level::Critical>
 
-	LOG_STREAM_FACTORY(Trace);
-	LOG_STREAM_FACTORY(FileLog);
-	LOG_STREAM_FACTORY(SystemLog);
+	LOG_STREAM_FACTORY(TraceLog, Trace);
+	LOG_STREAM_FACTORY(FileLog,  FileLog);
+	LOG_STREAM_FACTORY(SysLog,   SystemLog);
 
 	#undef LOG_STREAM_FACTORY
 #endif
