@@ -17,14 +17,23 @@ Test_Console::unit()
     {
         std::ctstring_t text = xT("AAA BBB CCC 123456 !@##$%^%^&*!!!");
 
-        auto fg = Console::FG::Green;
-        auto bg = Console::BG::Default;
-        auto attrs =
-			static_cast<int_t>(Console::Attr::Bold) |
-			static_cast<int_t>(Console::Attr::Underline) |
-			static_cast<int_t>(Console::Attr::Reverse);
+        const auto fg = Console::FG::Green;
+        const auto bg = Console::BG::Default;
+	#if 1
+		const auto attrs =
+			static_cast<Console::Attr>(
+				static_cast<int_t>(Console::Attr::Bold) |
+				static_cast<int_t>(Console::Attr::Underline) |
+				static_cast<int_t>(Console::Attr::Reverse)
+			);
+	#else
+		const auto attrs =
+				Console::Attr::Bold |
+				Console::Attr::Underline |
+				Console::Attr::Reverse;
+	#endif
 
-        Console console(true, true);
+        Console console(true, false);
 		console.write( console.setAttrs(fg, bg, attrs) );
 		console.write(text);
 		console.writeLine( console.clearAttrs() );

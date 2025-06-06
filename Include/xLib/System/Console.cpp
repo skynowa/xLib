@@ -57,9 +57,9 @@ Console::~Console()
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Console::setAttrs(
-    cFG    a_fg,
-    cBG    a_bg,
-    cint_t a_attrs
+    cFG   a_fg,
+    cBG   a_bg,
+    cAttr a_attrs
 ) const
 {
 	xCHECK_RET(!_isColorSupport, xT(""));
@@ -79,7 +79,7 @@ std::tstring_t
 Console::setAttrsText(
     cFG              a_fg,
     cBG              a_bg,
-    cint_t           a_attrs,
+    cAttr            a_attrs,
     std::ctstring_t &a_str
 ) const
 {
@@ -131,7 +131,7 @@ void_t
 Console::write(
     cFG              a_fg,
     cBG              a_bg,
-    cint_t           a_attrs,
+    cAttr            a_attrs,
     std::ctstring_t &a_str
 ) const
 {
@@ -150,7 +150,7 @@ void_t
 Console::writeLine(
     cFG              a_fg,
     cBG              a_bg,
-    cint_t           a_attrs,
+    cAttr            a_attrs,
     std::ctstring_t &a_str
 ) const
 {
