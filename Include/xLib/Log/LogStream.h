@@ -48,6 +48,12 @@ public:
 		return *this;
 	}
 
+	LogStream & operator << (std::tostream_t &(*a_manip)(std::tostream_t &))
+	{
+		_os << a_manip;
+		return *this;
+	}
+
 private:
 	ILog::cLevel _level {};
 	OStream      _os;
