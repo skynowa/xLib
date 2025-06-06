@@ -41,7 +41,7 @@ public:
 	xNO_COPY_ASSIGN(ILog);
 ///\}
 
-    void_t         setEnabled(cbool_t flag);
+    void_t setEnabled(cbool_t flag);
         ///< set enabled
 
     template<typename... Args>
@@ -56,19 +56,6 @@ public:
     void_t error(cptr_ctchar_t fmt, Args&&... args) const;
     template<typename... Args>
     void_t critical(cptr_ctchar_t fmt, Args&&... args) const;
-
-#if 1
-	template <typename T>
-	ILog & operator << (const T& value)
-	{
-		OStream os;
-		os << value;
-
-		write(Level::Trace, os.str()); // Calls overridden method
-
-		return *this;
-	}
-#endif
 
 protected:
     virtual void_t write(cLevel level, std::ctstring_t &msg) const = 0;

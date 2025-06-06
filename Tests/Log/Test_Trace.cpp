@@ -31,7 +31,7 @@ Test_Trace::unit()
 
     xTEST_CASE("operator <<")
     {
-	#if 1
+	#if 0
 		std::ctstring_t str     = xT("test");
 		int_t           integer = 777;
 
