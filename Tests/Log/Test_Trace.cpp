@@ -5,6 +5,7 @@
 
 
 #include <xLib/xLib.h>
+#include <xLib/Log/TraceStream.h> ///
 
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Trace)
@@ -36,6 +37,17 @@ Test_Trace::unit()
 		int_t           integer = 777;
 
 		Trace() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+	#endif
+    }
+
+    xTEST_CASE("operator <<")
+    {
+	#if 1
+		std::ctstring_t str     = xT("test");
+		int_t           integer = 777;
+
+		TraceStream() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		TraceStream(ILog::Level::Error) << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
 	#endif
     }
 

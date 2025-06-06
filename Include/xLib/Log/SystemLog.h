@@ -24,7 +24,6 @@ public:
 	virtual  ~SystemLog();
 ///\}
 
-protected:
 ///\name Overrides
 ///\{
 	void_t write(cLevel level, std::ctstring_t &msg) const final;
