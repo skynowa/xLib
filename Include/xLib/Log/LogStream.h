@@ -70,6 +70,8 @@ private:
 	LOG_STREAM_FACTORY(Trace);
 	LOG_STREAM_FACTORY(FileLog);
 	LOG_STREAM_FACTORY(SystemLog);
+
+	#undef LOG_STREAM_FACTORY
 #endif
 
 
