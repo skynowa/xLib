@@ -1,6 +1,6 @@
 /**
- * \file   Algos.cpp
- * \brief  Algorithms
+ * \file  Algos.cpp
+ * \brief Algorithms
  */
 
 
