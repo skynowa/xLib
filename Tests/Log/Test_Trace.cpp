@@ -35,8 +35,8 @@ Test_Trace::unit()
 		int_t           integer = 777;
 
 		TraceStream() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		TraceStream(ILog::Level::Error) << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		TraceStream(ILog::Level::Warning) << "EOL->" << std::endl;
+		TraceStream() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		TraceStream() << "EOL->" << std::endl;
     }
 
     return true;

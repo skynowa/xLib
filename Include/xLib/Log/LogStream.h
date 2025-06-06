@@ -16,15 +16,17 @@
 namespace xl::log
 {
 
-template<class LogT>
+template<class LogT, ILog::Level levelT>
 class LogStream final
 	/// Tracing to debugger, std::cout
 {
 public:
 ///\name ctors, dtor
 ///\{
+
+#if 0
 	LogStream() :
-		LogStream(ILog::Level::Trace)
+		LogStream(levelT)
 	{
 	}
 
@@ -32,6 +34,9 @@ public:
 		_level{a_level}
 	{
 	}
+#else
+	LogStream() = default;
+#endif
 
 	~LogStream()
 	{
@@ -58,13 +63,13 @@ public:
 ///\}
 
 private:
-	ILog::cLevel _level {};
+	ILog::cLevel _level {levelT};
 	OStream      _os;
 };
 
-using TraceStream  = LogStream<Trace>;
-using FileStream   = LogStream<FileLog>;
-using SystemStream = LogStream<SystemLog>;
+using TraceStream  = LogStream<Trace, ILog::Level::Trace>;
+using FileStream   = LogStream<FileLog, ILog::Level::Trace>;
+using SystemStream = LogStream<SystemLog, ILog::Level::Trace>;
 
 } // namespace
 //-------------------------------------------------------------------------------------------------
