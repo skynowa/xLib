@@ -34,9 +34,10 @@ Test_Trace::unit()
 		std::ctstring_t str     = xT("test");
 		int_t           integer = 777;
 
-		TraceLogTrace() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		TraceLogDebug() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		TraceLogError() << "EOL->" << std::endl;
+		LogTrace() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		LogTraceTrace() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		LogTraceDebug() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		LogTraceError() << "EOL->" << std::endl;
     }
 
     return true;

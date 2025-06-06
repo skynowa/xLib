@@ -60,7 +60,7 @@ private:
 	using SystemStream = LogStream<SystemLog, ILog::Level::Trace>;
 #else
 	#define LOG_STREAM_FACTORY(a_alias, a_log)	\
-		using a_alias##_        = LogStream<a_log, ILog::Level::Trace>; \
+		using a_alias           = LogStream<a_log, ILog::Level::Trace>; \
 		\
 		using a_alias##Trace    = LogStream<a_log, ILog::Level::Trace>; \
 		using a_alias##Debug    = LogStream<a_log, ILog::Level::Debug>; \
@@ -69,9 +69,9 @@ private:
 		using a_alias##Error    = LogStream<a_log, ILog::Level::Error>; \
 		using a_alias##Critical = LogStream<a_log, ILog::Level::Critical>
 
-	LOG_STREAM_FACTORY(TraceLog, Trace);
-	LOG_STREAM_FACTORY(FileLog,  FileLog);
-	LOG_STREAM_FACTORY(SysLog,   SystemLog);
+	LOG_STREAM_FACTORY(LogTrace, Trace);
+	LOG_STREAM_FACTORY(LogFile,  FileLog);
+	LOG_STREAM_FACTORY(LogSys,   SystemLog);
 
 	#undef LOG_STREAM_FACTORY
 #endif
