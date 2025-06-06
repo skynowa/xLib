@@ -11,6 +11,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/OStream.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::log
 {
@@ -59,15 +60,14 @@ public:
     template<typename... Args>
     void_t critical(cptr_ctchar_t fmt, Args&&... args) const;
 
-    // Template operator<< in base class (not virtual)
-#if 0
+#if 1
 	template <typename T>
 	ILog & operator << (const T& value)
 	{
-		OStream oss;
-		oss << value;
+		OStream os;
+		os << value;
 
-		write({}, xT("%s"), oss.str().c_str());  // Calls overridden method
+		write(Level::Trace, os.str()); // Calls overridden method
 
 		return *this;
 	}
