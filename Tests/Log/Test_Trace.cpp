@@ -30,6 +30,16 @@ Test_Trace::unit()
     #endif
     }
 
+    xTEST_CASE("operator <<")
+    {
+	#if 1
+		std::ctstring_t str     = xT("test");
+		int_t           integer = 777;
+
+		Trace() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+	#endif
+    }
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
