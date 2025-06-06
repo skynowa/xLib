@@ -35,8 +35,7 @@ public:
 
 	~LogStream()
 	{
-		LogT log;
-		log.write(_level, _os.str());
+		LogT().write(_level, _os.str());
 	}
 
 	xNO_COPY_ASSIGN(LogStream);
