@@ -170,13 +170,13 @@ Console::_setAttrs_impl(
 
 		Bitset bits(a_attrs);
 
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::AllOff)),    values.push_back( std::to_string(attrAllOff) ));
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Bold)),      values.push_back( std::to_string(attrBold) ));
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Dim)),       values.push_back( std::to_string(attrDim) ));
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Underline)), values.push_back( std::to_string(attrUnderline) ));
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Blink)),     values.push_back( std::to_string(attrBlink) ));
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Reverse)),   values.push_back( std::to_string(attrReverse) ));
-		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Hidden)),    values.push_back( std::to_string(attrHidden) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::AllOff)),    values.emplace_back( std::to_string(attrAllOff) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Bold)),      values.emplace_back( std::to_string(attrBold) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Dim)),       values.emplace_back( std::to_string(attrDim) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Underline)), values.emplace_back( std::to_string(attrUnderline) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Blink)),     values.emplace_back( std::to_string(attrBlink) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Reverse)),   values.emplace_back( std::to_string(attrReverse) ));
+		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Hidden)),    values.emplace_back( std::to_string(attrHidden) ));
 
 		attrs = String::join(values, xT(';'));
     }
