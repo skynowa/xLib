@@ -16,7 +16,7 @@
 namespace xl::log
 {
 
-template<class LogT, ILog::Level levelT>
+template<class LogT, ILog::Level level>
 class LogStream final
 	/// Tracing to debugger, std::cout
 {
@@ -63,7 +63,7 @@ public:
 ///\}
 
 private:
-	ILog::cLevel _level {levelT};
+	ILog::cLevel _level {level};
 	OStream      _os;
 };
 
