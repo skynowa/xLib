@@ -15,8 +15,7 @@
 namespace xl::internal::enums
 {
 
-//-------------------------------------------------------------------------------------------------
-Types<ILog::Level, std::ssize_t, 6> levels
+const Types<ILog::Level, std::ssize_t, 6> levels
 {{
 
 #if   xENV_WIN
