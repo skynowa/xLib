@@ -57,13 +57,13 @@ public:
     CrossT
     toCross(std::cssize_t a_value) const
     {
-        return static_cast<CrossT>( this->values[a_value].cross );
+        return static_cast<CrossT>(values[a_value].cross);
     }
         ///< implementation (native) value to crossplatform
     ImplT
     toImpl(std::cssize_t a_value) const
     {
-        return static_cast<ImplT>( this->values[a_value].impl );
+        return static_cast<ImplT>(values[a_value].impl);
     }
         ///< crossplatform value to implementation (native)
 };
