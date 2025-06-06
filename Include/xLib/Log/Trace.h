@@ -9,13 +9,6 @@
 #include <xLib/Core/Core.h>
 #include "ILog.h"
 //-------------------------------------------------------------------------------------------------
-namespace xl::core
-{
-
-class String;
-
-} // namespace
-
 namespace xl::log
 {
 
