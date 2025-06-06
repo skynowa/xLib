@@ -41,6 +41,8 @@ public:
 	xNO_COPY_ASSIGN(LogStream);
 ///\}
 
+///\name operators
+///\{
 	template<typename T>
 	LogStream & operator << (const T &a_value)
 	{
@@ -53,6 +55,7 @@ public:
 		_os << a_manip;
 		return *this;
 	}
+///\}
 
 private:
 	ILog::cLevel _level {};
