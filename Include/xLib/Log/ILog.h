@@ -75,7 +75,6 @@ protected:
  *
  * \todo
  *
- * - operator <<
  * - https://oopscenities.net/2011/04/30/c-the-curiously-recurring-template-pattern/#more-21
  * - class LogItem:
  *
@@ -96,4 +95,5 @@ protected:
  * \done
  *
  * - write as trace(), debug(), info(), ...
+ * - operator <<
  */
