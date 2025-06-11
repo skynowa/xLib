@@ -29,14 +29,15 @@ Test_Trace::unit()
     #endif
     }
 
-    xTEST_CASE("TraceStream")
+    xTEST_CASE("LogStream")
     {
 		std::ctstring_t str     = xT("test");
 		int_t           integer = 777;
 
-		TraceStream() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		TraceStream(ILog::Level::Error) << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		TraceStream(ILog::Level::Warning) << "EOL->" << std::endl;
+		LogTrace() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		LogTraceTrace() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		LogTraceDebug() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		LogTraceError() << "EOL->" << std::endl;
     }
 
     return true;
