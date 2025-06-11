@@ -7,6 +7,7 @@
  * - https://github.com/doctest/doctest
  * - https://github.com/google/fuzztest
  * - https://github.com/CxxTest/cxxtest
+ * - https://github.com/smikes/CppUnitLite
  */
 
 
