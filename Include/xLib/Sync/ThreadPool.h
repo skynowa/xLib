@@ -10,13 +10,6 @@
 #include <xLib/Sync/IpcSemaphore.h>
 #include <xLib/Sync/Thread.h>
 //-------------------------------------------------------------------------------------------------
-namespace xl::log
-{
-
-class Cout;
-
-} // namespace
-
 namespace xl::sync
 {
 
