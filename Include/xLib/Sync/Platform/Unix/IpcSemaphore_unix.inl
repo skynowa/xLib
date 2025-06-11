@@ -126,7 +126,7 @@ IpcSemaphore::_wait_impl(
 			_nativeError = errno;
 
 			if (iRv == - 1 && _nativeError == EINTR) {
-				Cout() << xT("Restart if interrupted by handler");
+				LogCout() << xT("Restart if interrupted by handler");
 				continue;
 			}
 

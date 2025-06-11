@@ -11,6 +11,7 @@
 #include <xLib/Core/Format.h>
 #include <xLib/Core/Utils.h>
 #include <xLib/Fs/Path.h>
+#include <xLib/Log/LogStream.h>
 
 #if   xENV_WIN
     #include "Platform/Win/StackTrace_win.inl"

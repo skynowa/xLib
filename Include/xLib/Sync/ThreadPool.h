@@ -13,7 +13,7 @@
 namespace xl::log
 {
 
-class Trace;
+class Cout;
 
 } // namespace
 
@@ -81,7 +81,7 @@ private:
 
     //static
     static Mutex   _s_mutex;
-    static Trace   _s_log;
+    static Cout    _s_log;
 
     void_t         _taskAdd(Thread *item);
     void_t         _taskRemove(Thread *item);

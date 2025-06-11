@@ -49,7 +49,7 @@ Test_DnsClient::unit()
 		std::tstring_t name;
 		std::tstring_t port;
         DnsClient::nameInfo(family, hostAddr, hostPort, &name, &port);
-        // Cout() << xTRACE_VAR_2(name, port) << std::endl;
+        // LogCout() << xTRACE_VAR_2(name, port) << std::endl;
         xTEST_EQ(name, std::tstring_t(xT("localhost")));
         xTEST_EQ(port, std::to_string(hostPort));
     }
@@ -198,7 +198,7 @@ Test_DnsClient::unit()
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-        	Cout() << xTRACE_VAR(data[i].test);
+        	LogCout() << xTRACE_VAR(data[i].test);
             m_bRv = DnsClient::isAddressIpv4(data[i].test);
             xSTD_VERIFY(m_bRv == data[i].expect);
             xTEST_EQ(m_bRv, data[i].expect);

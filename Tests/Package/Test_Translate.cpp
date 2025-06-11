@@ -15,7 +15,7 @@ bool_t
 Test_Translate::unit()
 {
 	if ( isGithubCI() ) {
-		Cout() << "GithubCI - skip";
+		LogCout() << "GithubCI - skip";
 		return true;
 	}
 
@@ -43,9 +43,9 @@ Test_Translate::unit()
 			xTEST(!langFrom.empty());
 			xTEST(!langTo.empty());
 
-			// Cout() << xTRACE_VAR(textToBrief);
-			// Cout() << xTRACE_VAR(textToDetail);
-			// Cout() << xTRACE_VAR(textToRaw);
+			// LogCout() << xTRACE_VAR(textToBrief);
+			// LogCout() << xTRACE_VAR(textToDetail);
+			// LogCout() << xTRACE_VAR(textToRaw);
 		} // for (datas)
 	}
 

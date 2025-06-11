@@ -649,7 +649,7 @@ Test_Format::unit()
         m_sRv = Format::str(xT("{}-{}"), value0, value1);
         xTEST_EQ(m_sRv, std::tstring_t(xT("abcde-zxcv")));
     #else
-        Cout() << xT("[skip]");
+        LogCout() << xT("[skip]");
     #endif
     }
 

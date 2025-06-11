@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "Trace.h"
+#include "Cout.h"
 #include "FileLog.h"
 #include "SystemLog.h"
 //-------------------------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ private:
     T               _log;
 };
 
-using AutoTrace     = AutoLog<Trace>;
+using AutoTrace     = AutoLog<Cout>;
 using AutoFileLog   = AutoLog<FileLog>;
 using AutoSystemLog = AutoLog<SystemLog>;
 

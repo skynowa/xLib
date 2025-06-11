@@ -8,8 +8,8 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/OStream.h>
-#include "ILog.h"
-#include "Trace.h"
+#include <xLib/Log/ILog.h>
+#include "Cout.h"
 #include "FileLog.h"
 #include "SystemLog.h"
 //-------------------------------------------------------------------------------------------------
@@ -69,9 +69,9 @@ private:
 		using a_alias##Error    = LogStream<a_log, ILog::Level::Error>; \
 		using a_alias##Critical = LogStream<a_log, ILog::Level::Critical>
 
-	LOG_STREAM_FACTORY(LogTrace, Trace);
-	LOG_STREAM_FACTORY(LogFile,  FileLog);
-	LOG_STREAM_FACTORY(LogSys,   SystemLog);
+	LOG_STREAM_FACTORY(LogCout, Cout);
+	LOG_STREAM_FACTORY(LogFile, FileLog);
+	LOG_STREAM_FACTORY(LogSys,  SystemLog);
 
 	#undef LOG_STREAM_FACTORY
 #endif

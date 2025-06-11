@@ -18,7 +18,7 @@ Test_SmtpClient::unit()
 {
 	// Local + Github env
 	if (true || isGithubCI()) {
-		Cout() << "GithubCI - skip";
+		LogCout() << "GithubCI - skip";
 		return true;
 	}
 

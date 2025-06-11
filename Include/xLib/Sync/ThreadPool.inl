@@ -4,6 +4,7 @@
  */
 
 
+#include <xLib/Log/LogStream.h>
 #include <xLib/Sync/Mutex.h>
 #include <xLib/Sync/AutoMutex.h>
 #include <xLib/Sync/Thread.h>
@@ -22,7 +23,7 @@ template<typename T>
 Mutex ThreadPool<T>::_s_mutex;
 
 template<typename T>
-Trace  ThreadPool<T>::_s_log;
+Cout  ThreadPool<T>::_s_log;
 //-------------------------------------------------------------------------------------------------
 template<typename T>
 ThreadPool<T>::ThreadPool(

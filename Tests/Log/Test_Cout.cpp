@@ -1,22 +1,22 @@
 /**
- * \file  Test_Trace.cpp
- * \brief test Trace
+ * \file  Test_Cout.cpp
+ * \brief test Cout
  */
 
 
 #include <xLib/xLib.h>
 
 //-------------------------------------------------------------------------------------------------
-xTEST_UNIT(Test_Trace)
+xTEST_UNIT(Test_Cout)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 bool_t
-Test_Trace::unit()
+Test_Cout::unit()
 {
     xTEST_CASE("write(...)")
     {
     #if 1 || xTEST_IGNORE
-        Trace log;
+        Cout log;
         log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
         log.warning(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
         log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
@@ -34,10 +34,10 @@ Test_Trace::unit()
 		std::ctstring_t str     = xT("test");
 		int_t           integer = 777;
 
-		LogTrace() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		LogTraceTrace() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		LogTraceDebug() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		LogTraceError() << "EOL->" << std::endl;
+		LogCout() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		LogCoutTrace() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		LogCoutDebug() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
+		LogCoutError() << "EOL->" << std::endl;
     }
 
     return true;
