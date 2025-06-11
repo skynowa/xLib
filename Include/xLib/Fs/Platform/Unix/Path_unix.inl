@@ -145,7 +145,7 @@ Path::_trashDir_impl()
 	// checks
 	{
 		if ( sRv.empty() ) {
-			Cout().warning(xT("%s - Can't detect"), xFUNCTION);
+			LogCoutWarning() << Format::str(xT("{} - Can't detect"), xFUNCTION);
 			return {};
 		}
 
