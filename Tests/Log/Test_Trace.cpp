@@ -15,7 +15,7 @@ Test_Trace::unit()
 {
     xTEST_CASE("write(...)")
     {
-    #if 0 || xTEST_IGNORE
+    #if 1 || xTEST_IGNORE
         Trace log;
         log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
         log.warning(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
@@ -29,7 +29,7 @@ Test_Trace::unit()
     #endif
     }
 
-    xTEST_CASE("TraceStream")
+    xTEST_CASE("LogStream")
     {
 		std::ctstring_t str     = xT("test");
 		int_t           integer = 777;
