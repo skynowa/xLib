@@ -26,7 +26,7 @@ Test_ProcessInfo::unit()
 
             ProcessInfo info(/* it */ Process::currentId());
             m_ulRv = info.cpuUsage();
-			// LogCout() << xT("\tProcessInfo::cpuUsage(): ") << m_ulRv;
+            // LogCout() << xT("\tProcessInfo::cpuUsage(): ") << m_ulRv;
         }
     }
 
