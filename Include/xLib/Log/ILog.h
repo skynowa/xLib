@@ -89,6 +89,7 @@ protected:
  *   - StackTrace
  *   - infoAdd
  *
+ * - Color support
  * - Setter proxy class
  * - logIf() - with some condition
  *
