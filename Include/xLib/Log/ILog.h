@@ -4,6 +4,7 @@
  *
  * \libs
  *
+ * - https://github.com/gabime/spdlog
  * - https://userver.tech/df/d0c/md_en_2userver_2logging.html
  */
 
