@@ -70,7 +70,7 @@ Debugger::coreDumpsEnable(
     bool_t isEnable {};
     _coreDumpsEnable_impl(a_flag, &isEnable);
 
-    xCHECK_DO(!isEnable, LogCout() << xT("xLib: Debugger::coreDumpsEnable() - n/a"));
+    xCHECK_DO(!isEnable, LogCoutWarning() << xT("xLib: Debugger::coreDumpsEnable() - n/a"));
 }
 //-------------------------------------------------------------------------------------------------
 void_t
