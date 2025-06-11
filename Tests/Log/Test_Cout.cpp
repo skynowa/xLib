@@ -17,30 +17,27 @@ Test_Cout::unit()
     {
     #if 1 || xTEST_IGNORE
         Cout log;
-        log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
-        log.warning(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
-        log.critical(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Critical), 12345);
-        log.error(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Error), 12345);
-        log.warning(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Warning), 12345);
-        log.trace(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
-        log.info(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Info), 12345);
-        log.debug(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Debug), 12345);
-        log.trace(xT("%s, %d"), xLEX_TO_STR(ILog::Level::Trace), 12345);
+        log.trace(xT("%s-%d"), xT("Trace"), 12345);
+        log.debug(xT("%s-%d"), xT("Debug"), 12345);
+        log.info(xT("%s-%d"), xT("Info"), 12345);
+        log.warning(xT("%s-%d"), xT("Warning"), 12345);
+        log.error(xT("%s-%d"), xT("Error"), 12345);
+        log.critical(xT("%s-%d"), xT("Critical"), 12345);
     #endif
     }
 
     xTEST_CASE("LogStream")
     {
 		std::ctstring_t str     = xT("test");
-		int_t           integer = 777;
+		std::csize_t    integer = 777;
 
-		LogCout() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		LogCoutTrace() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		LogCoutDebug() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		LogCoutInfo() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		LogCoutWarning() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		LogCoutError() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		LogCoutCritical() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer) << ", EOL->" << std::endl;
+		LogCout() << str << "-" << integer;
+		LogCoutTrace() << str << "-" << integer;
+		LogCoutDebug() << str << "-" << integer;
+		LogCoutInfo() << str << "-" << integer;
+		LogCoutWarning() << str << "-" << integer;
+		LogCoutError() << str << "-" << integer;
+		LogCoutCritical() << str << "-" << integer << ", EOL->" << std::endl;
     }
 
     return true;
