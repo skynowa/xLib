@@ -8,7 +8,7 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Core/OStream.h>
-#include <xLib/Log/ILog.h>
+#include "ILog.h"
 #include "Cout.h"
 #include "FileLog.h"
 #include "SystemLog.h"
