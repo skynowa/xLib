@@ -37,8 +37,8 @@ template<
 struct Type
     /// enum values
 {
-	const CrossT cross; ///< crossplatform value
-	const ImplT  impl;  ///< implementation (native) value
+	const CrossT cross {}; ///< crossplatform value
+	const ImplT  impl {};  ///< implementation (native) value
 };
 
 template<
@@ -51,7 +51,7 @@ class Types
 {
 public:
 	// TOOD: array -> map
-    const Type<CrossT, ImplT> values[SizeT];
+    const Type<CrossT, ImplT> values[SizeT] {};
         ///< crossplatform to implementation (native) values
 
     CrossT
