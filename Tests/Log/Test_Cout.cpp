@@ -40,7 +40,7 @@ Test_Cout::unit()
 		LogCoutInfo() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
 		LogCoutWarning() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
 		LogCoutError() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer);
-		LogCoutCritical() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer) << "EOL->" << std::endl;
+		LogCoutCritical() << xTRACE_VAR(str) << ", " << xTRACE_VAR(integer) << ", EOL->" << std::endl;
     }
 
     return true;
