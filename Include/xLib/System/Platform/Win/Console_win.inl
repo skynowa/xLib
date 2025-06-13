@@ -363,11 +363,11 @@ Console::centerWindow() const
     blRv = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &desktop, 0);
     xTEST_DIFF(blRv, FALSE);
 
-    int_t desktopX  = (desktop.right  - desktop.left) / 2;
-    int_t desktopY  = (desktop.bottom - desktop.top)  / 2;
-    int_t wndWidth  = (origin.right   - origin.left);
-    int_t wndHeight = (origin.bottom  - origin.top);
-    int_t x         = desktopX - wndWidth / 2;        if (x < 0) { x = 0; }
+    cint_t desktopX  = (desktop.right  - desktop.left) / 2;
+    cint_t desktopY  = (desktop.bottom - desktop.top)  / 2;
+    cint_t wndWidth  = (origin.right   - origin.left);
+    cint_t wndHeight = (origin.bottom  - origin.top);
+    cint_t x         = desktopX - wndWidth / 2;        if (x < 0) { x = 0; }
 
     blRv = ::MoveWindow(_wnd, x, desktopY - wndHeight / 2, wndWidth, wndHeight, true);
     xTEST_DIFF(blRv, FALSE);
@@ -475,9 +475,9 @@ Console::_menuHandle(
     _menu = ::GetSystemMenu(_wnd, a_isRevert);
 
     if (a_isRevert) {
-    	xTEST(_menu == nullptr);
+        xTEST(_menu == nullptr);
     } else {
-    	xTEST(_menu != nullptr);
+        xTEST(_menu != nullptr);
     }
 
     return _menu;
