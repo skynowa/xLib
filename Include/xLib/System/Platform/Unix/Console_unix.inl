@@ -36,7 +36,7 @@ Console::_destruct_impl()
  * https://misc.flogisoft.com/bash/tip_colors_and_formatting
  */
 std::tstring_t
-Console::_setAttrs_impl(
+Color::_setAttrs_impl(
     cFG   a_fg,
     cBG   a_bg,
     cAttr a_attrs
@@ -188,7 +188,7 @@ Console::_setAttrs_impl(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::_clearAttrs_impl() const
+Color::_clearAttrs_impl() const
 {
 	return _escapeValue(xT("\033[0;0m"));
 }
@@ -243,7 +243,9 @@ Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
 {
-    write( _escapeValue(Format::str(xT("\033]0;{}\a"), a_title)) );
+	Color color(true, true);
+
+    write( color._escapeValue(Format::str(xT("\033]0;{}\a"), a_title)) );
 }
 //-------------------------------------------------------------------------------------------------
 

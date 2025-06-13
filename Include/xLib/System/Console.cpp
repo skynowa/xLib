@@ -27,17 +27,7 @@ namespace xl::system
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Console::Console() :
-	Console(_isColorized(), false)
-{
-}
-//-------------------------------------------------------------------------------------------------
-Console::Console(
-	cbool_t a_isColorSupport, ///< force set color support (for PS1, etc)
-	cbool_t a_isEscapeValues  ///< escaping values (UNIX only)
-) :
-	_isColorSupport{a_isColorSupport},
-	_isEscapeValues{a_isEscapeValues}
+Console::Console()
 {
     _construct_impl();
 }
@@ -50,13 +40,22 @@ Console::~Console()
 
 
 /**************************************************************************************************
-*   Attributes
+*   Console::Color
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+Color::Color(
+	cbool_t a_isColorSupport, ///< force set color support (for PS1, etc)
+	cbool_t a_isEscapeValues  ///< escaping values (UNIX only)
+) :
+	_isColorSupport{a_isColorSupport},
+	_isEscapeValues{a_isEscapeValues}
+{
+}
+//-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::setAttrs(
+Color::setAttrs(
     cFG   a_fg,
     cBG   a_bg,
     cAttr a_attrs
@@ -68,7 +67,7 @@ Console::setAttrs(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::clearAttrs() const
+Color::clearAttrs() const
 {
 	xCHECK_RET(!_isColorSupport, xT(""));
 
@@ -76,7 +75,7 @@ Console::clearAttrs() const
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::setAttrsText(
+Color::setAttrsText(
     cFG              a_fg,
     cBG              a_bg,
     cAttr            a_attrs,
@@ -129,9 +128,9 @@ Console::writeErrLine(
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::write(
-    cFG              a_fg,
-    cBG              a_bg,
-    cAttr            a_attrs,
+    Color::cFG              a_fg,
+    Color::cBG              a_bg,
+    Color::cAttr            a_attrs,
     std::ctstring_t &a_str
 ) const
 {
@@ -141,16 +140,18 @@ Console::write(
 	* Use sequence of write() methods, instead of concat strings
 	*/
 
-	write( setAttrs(a_fg, a_bg, a_attrs) );
+	Color color(true, true);
+
+	write( color.setAttrs(a_fg, a_bg, a_attrs) );
 	write(a_str);
-	write( clearAttrs() );
+	write( color.clearAttrs() );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::writeLine(
-    cFG              a_fg,
-    cBG              a_bg,
-    cAttr            a_attrs,
+    Color::cFG              a_fg,
+    Color::cBG              a_bg,
+    Color::cAttr            a_attrs,
     std::ctstring_t &a_str
 ) const
 {
@@ -218,7 +219,7 @@ Console::setTitle(
 
 //-------------------------------------------------------------------------------------------------
 FILE *
-Console::_getStdStream(
+Color::_getStdStream(
 	std::ctostream_t &a_stream
 ) const
 {
@@ -235,7 +236,7 @@ Console::_getStdStream(
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Console::_isColorized(
+Color::_isColorized(
 	std::tostream_t &a_stream /* = std::cout */
 ) const
 {
@@ -256,7 +257,7 @@ Console::_isColorized(
 }
 //-------------------------------------------------------------------------------------------------
 bool_t
-Console::_isAtty(
+Color::_isAtty(
 	std::ctostream_t &a_stream
 ) const
 {
@@ -276,7 +277,7 @@ Console::_isAtty(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::_escapeValue(
+Color::_escapeValue(
 	std::ctstring_t &a_value
 ) const
 {
