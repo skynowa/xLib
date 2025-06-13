@@ -17,7 +17,7 @@ bool_t
 Test_Client::unit()
 {
 	if ( isGithubCI() ) {
-		Cout() << "GithubCI - skip";
+		LogCout() << "GithubCI - skip";
 		return true;
 	}
 

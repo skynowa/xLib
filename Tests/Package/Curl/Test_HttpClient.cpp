@@ -17,7 +17,7 @@ bool_t
 Test_HttpClient::unit()
 {
 	if ( isGithubCI() ) {
-		Cout() << "GithubCI - skip";
+		LogCout() << "GithubCI - skip";
 		return true;
 	}
 
@@ -57,7 +57,7 @@ Test_HttpClient::unit()
 		file.write(body, xl::fs::FileIO::OpenMode::BinWrite);
 
 		if (0) {
-			Cout()
+			LogCout()
 				<< xTRACE_VAR(optionIn.request)       << std::endl
 				<< xT("\n")
 				<< xTRACE_VAR(optionOut.contentType)  << std::endl
@@ -88,7 +88,7 @@ Test_HttpClient::unit()
 		xTEST(!optionOut.body.empty());
 
 		if (0) {
-			Cout()
+			LogCout()
 				<< xTRACE_VAR(optionIn.request)       << std::endl
 				<< xT("\n")
 				<< xTRACE_VAR(optionOut.contentType)  << std::endl

@@ -14,7 +14,7 @@ bool_t
 Test_Process::unit()
 {
 	if ( isGithubCI() ) {
-		Cout() << "GithubCI - skip";
+		LogCout() << "GithubCI - skip";
 		return true;
 	}
 
@@ -40,7 +40,7 @@ Test_Process::unit()
 
 		for (const auto &[it_filePath, it_params, it_isEnable] : datas) {
 			if (!it_isEnable) {
-				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_filePath);
+				LogCout() << xT("Skip UI test: ") << xTRACE_VAR(it_filePath);
 				continue;
 			}
 
@@ -79,7 +79,7 @@ Test_Process::unit()
 
 		for (const auto &[it_filePath, it_params, it_isEnable] : datas) {
 			if (!it_isEnable) {
-				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_filePath);
+				LogCout() << xT("Skip UI test: ") << xTRACE_VAR(it_filePath);
 				continue;
 			}
 
@@ -115,7 +115,7 @@ Test_Process::unit()
 
 		for (const auto &[it_filePath, it_params, it_isEnable] : datas) {
 			if (!it_isEnable) {
-				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_filePath);
+				LogCout() << xT("Skip UI test: ") << xTRACE_VAR(it_filePath);
 				continue;
 			}
 
@@ -219,7 +219,7 @@ Test_Process::unit()
 
 		for (auto &[it_filePath, it_params, it_envs, it_stdOut, it_stdError, it_isEnable] : datas) {
 			if (!it_isEnable) {
-				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_filePath);
+				LogCout() << xT("Skip UI test: ") << xTRACE_VAR(it_filePath);
 				continue;
 			}
 
@@ -254,7 +254,7 @@ Test_Process::unit()
 
 		for (const auto &[it_cmdLine, it_params, it_isEnable] : datas) {
 			if (!it_isEnable) {
-				Cout() << xT("Skip UI test: ") << xTRACE_VAR(it_cmdLine);
+				LogCout() << xT("Skip UI test: ") << xTRACE_VAR(it_cmdLine);
 				continue;
 			}
 

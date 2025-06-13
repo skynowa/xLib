@@ -14,6 +14,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Fs/Path.h>
+#include <xLib/Log/LogStream.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Debugger_win.inl"
@@ -69,7 +70,7 @@ Debugger::coreDumpsEnable(
     bool_t isEnable {};
     _coreDumpsEnable_impl(a_flag, &isEnable);
 
-    xCHECK_DO(!isEnable, Cout() << xT("xLib: Debugger::coreDumpsEnable() - n/a"));
+    xCHECK_DO(!isEnable, LogCoutWarning() << xT("xLib: Debugger::coreDumpsEnable() - n/a"));
 }
 //-------------------------------------------------------------------------------------------------
 void_t

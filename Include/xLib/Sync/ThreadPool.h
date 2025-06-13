@@ -10,13 +10,6 @@
 #include <xLib/Sync/IpcSemaphore.h>
 #include <xLib/Sync/Thread.h>
 //-------------------------------------------------------------------------------------------------
-namespace xl::log
-{
-
-class Trace;
-
-} // namespace
-
 namespace xl::sync
 {
 
@@ -81,7 +74,7 @@ private:
 
     //static
     static Mutex   _s_mutex;
-    static Trace   _s_log;
+    static Cout    _s_log;
 
     void_t         _taskAdd(Thread *item);
     void_t         _taskRemove(Thread *item);

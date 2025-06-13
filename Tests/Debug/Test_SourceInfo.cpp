@@ -17,10 +17,10 @@ Test_SourceInfo::unit()
     {
         const SourceInfo info(xFILE, xLINE, xFUNCTION, xCOUNTER);
         if (0) {
-            Cout() << xTRACE_VAR(info.option().filePath);
-            Cout() << xTRACE_VAR(info.option().lineNum);
-            Cout() << xTRACE_VAR(info.option().funcName);
-            Cout() << xTRACE_VAR(info.option().counter);
+            LogCout() << xTRACE_VAR(info.option().filePath);
+            LogCout() << xTRACE_VAR(info.option().lineNum);
+            LogCout() << xTRACE_VAR(info.option().funcName);
+            LogCout() << xTRACE_VAR(info.option().counter);
         }
         xTEST_DIFF(info.option().filePath.find(xT("Test_SourceInfo.cpp")), std::tstring_t::npos);
         xTEST_GR(info.option().lineNum, 0);
@@ -47,10 +47,10 @@ Test_SourceInfo::unit()
 
         SourceInfo _sourceInfo(option);
 		if (0) {
-			Cout() << xTRACE_VAR(_sourceInfo.format());
-			Cout() << xTRACE_VAR(_sourceInfo.at());
-			Cout() << xTRACE_VAR(_sourceInfo.expr());
-			Cout() << xTRACE_VAR(_sourceInfo.exprValues());
+			LogCout() << xTRACE_VAR(_sourceInfo.format());
+			LogCout() << xTRACE_VAR(_sourceInfo.at());
+			LogCout() << xTRACE_VAR(_sourceInfo.expr());
+			LogCout() << xTRACE_VAR(_sourceInfo.exprValues());
 		}
         xTEST(!_sourceInfo.option().filePath.empty());
         xTEST_GR(_sourceInfo.option().lineNum, 0UL);

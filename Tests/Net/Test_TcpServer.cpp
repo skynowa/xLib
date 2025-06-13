@@ -14,12 +14,12 @@ bool_t
 Test_TcpServer::unit()
 {
 	if ( isGithubCI() ) {
-		Cout() << "GithubCI - skip";
+		LogCout() << "GithubCI - skip";
 		return true;
 	}
 
 	if ( !isVpnActive() ) {
-		Cout() << "VPN off - skip";
+		LogCout() << "VPN off - skip";
 		return true;
 	}
 
@@ -56,7 +56,7 @@ Test_TcpServer::unit()
         ssize_t iRv = objClientSocket.receive(&szRecvBuff[0], xARRAY_SIZE(szRecvBuff), 0);
         xTEST_DIFF(iRv, (ssize_t)xSOCKET_ERROR);
 
-        // Cout() << std::tstring_t(szRecvBuff, static_cast<std::size_t>(iRv));
+        // LogCout() << std::tstring_t(szRecvBuff, static_cast<std::size_t>(iRv));
     }
 
     objClientSocket.close();

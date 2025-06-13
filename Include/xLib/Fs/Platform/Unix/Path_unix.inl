@@ -5,8 +5,8 @@
 
 
 #include <xLib/Core/Const.h>
+#include <xLib/Log/Cout.h>
 #include <xLib/System/Env.h>
-#include <xLib/Log/Trace.h>
 
 namespace xl::fs
 {
@@ -145,7 +145,7 @@ Path::_trashDir_impl()
 	// checks
 	{
 		if ( sRv.empty() ) {
-			Trace().warning(xT("%s - Can't detect"), xFUNCTION);
+			LogCoutWarning() << Format::str(xT("{} - Can't detect"), xFUNCTION);
 			return {};
 		}
 
@@ -354,8 +354,8 @@ Path::proc(
     // check for existence "/proc" directory
     {
         Dir proc(xT("/proc"));
-        xCHECK_MSG(!proc.isExists(), xT("::: xLib: warning (/proc dir not mount) :::"));
-        xCHECK_MSG(proc.isEmpty(),   xT("::: xLib: warning (/proc dir is empty) :::"));
+        xCHECK_DO(!proc.isExists(), LogCoutWarning() << xT("::: xLib: warning (/proc dir not mount) :::"));
+        xCHECK_DO(proc.isEmpty(),   LogCoutWarning() << xT("::: xLib: warning (/proc dir is empty) :::"));
     }
 
 	std::tifstream_t ifs(a_procPath);

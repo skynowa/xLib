@@ -8,6 +8,7 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/Fs/Path.h>
+#include <xLib/Log/LogStream.h>
 
 #if   xENV_WIN
     #include "Platform/Win/IpcSemaphore_win.inl"

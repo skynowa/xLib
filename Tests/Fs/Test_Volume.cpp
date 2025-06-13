@@ -39,7 +39,7 @@ Test_Volume::unit()
 
 		m_sRv = Volume("/").fileSystem();
 		xTEST(!m_sRv.empty());
-		Cout() << xTRACE_VAR(m_sRv);
+		LogCout() << xTRACE_VAR(m_sRv);
     }
 
     xTEST_CASE("label")
@@ -248,7 +248,7 @@ Test_Volume::unit()
             xTEST_DIFF(available, 0ULL);
             xTEST_DIFF(free, 0ULL);
 
-            // Cout() << xTRACE_VAR_3(available, total, free);
+            // LogCout() << xTRACE_VAR_3(available, total, free);
         }
 
         {
@@ -263,7 +263,7 @@ Test_Volume::unit()
             culonglong_t usedPct = (total - available) * 100 / total;
             xTEST_DIFF(usedPct, 0ULL);
 
-			// Cout() << xTRACE_VAR_4(total, available, free, usedPct);
+			// LogCout() << xTRACE_VAR_4(total, available, free, usedPct);
         }
     }
 
@@ -272,7 +272,7 @@ Test_Volume::unit()
         std::vec_tstring_t volumePaths;
         Volume::paths(&volumePaths);
         xTEST(!volumePaths.empty());
-        // Cout() << xTRACE_VAR(volumePaths);
+        // LogCout() << xTRACE_VAR(volumePaths);
     }
 
     return true;

@@ -14,21 +14,21 @@ class CLogger
 public:
     CLogger()
     {
-        // Cout() << xFUNCTION;
+        // LogCout() << xFUNCTION;
     }
     ~CLogger()
     {
-        // Cout() << xFUNCTION;
+        // LogCout() << xFUNCTION;
     }
 
     void_t open()
     {
-        // Cout() << xFUNCTION;
+        // LogCout() << xFUNCTION;
     }
 
     void_t  write()
     {
-        // Cout() << xFUNCTION;
+        // LogCout() << xFUNCTION;
     }
 };
 //-------------------------------------------------------------------------------------------------

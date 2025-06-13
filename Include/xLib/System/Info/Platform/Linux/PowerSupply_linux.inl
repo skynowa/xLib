@@ -84,7 +84,7 @@ PowerSupply::_status_impl() const
 
 	auto it = statuses.find(status);
 	if (it == statuses.cend()) {
-		Cout() << xUNKNOWN_VAR(status);
+		LogCout() << xUNKNOWN_VAR(status);
 		return static_cast<Status>(4);
 	}
 
