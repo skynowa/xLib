@@ -78,15 +78,15 @@ StackTrace::_get_impl(
 			functionName = xA2T( xl::demangleName(dlinfo.dli_sname) );
 
 			if (0) {
-				Cout() << "-----------------------------------";
-				Cout() << xTRACE_VAR(it_symbol);
-				Cout() << xTRACE_VAR(dlinfo.dli_saddr);
-				Cout() << xTRACE_VAR(functionName);
-				Cout() << "";
-				Cout() << xTRACE_VAR(data.filePath);
-				Cout() << xTRACE_VAR(data.functionName);
-				Cout() << xTRACE_VAR(data.sourceLine);
-				Cout() << "-----------------------------------\n";
+				LogCout() << "-----------------------------------";
+				LogCout() << xTRACE_VAR(it_symbol);
+				LogCout() << xTRACE_VAR(dlinfo.dli_saddr);
+				LogCout() << xTRACE_VAR(functionName);
+				LogCout() << "";
+				LogCout() << xTRACE_VAR(data.filePath);
+				LogCout() << xTRACE_VAR(data.functionName);
+				LogCout() << xTRACE_VAR(data.sourceLine);
+				LogCout() << "-----------------------------------\n";
 			}
         }
 
@@ -168,7 +168,7 @@ StackTrace::_addr2Line(
 		cmdLine = FormatC::str(xT("%s -o %.256s %p"), cmATOS_FILE_PATH, Path::exe().str().c_str(), a_symbolAddress);
 	#endif
 
-		/// Cout() << xTRACE_VAR(cmdLine);
+		/// LogCout() << xTRACE_VAR(cmdLine);
 	}
 
 	auto pipe = autoPipe(cmdLine, "r");

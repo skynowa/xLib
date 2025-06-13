@@ -1,5 +1,9 @@
 # TODOs
 
+## Idioms
+
+- Try to impl minimalistic/useful functionality
+
 ## C++20
 
 - [ ] Move to C++20

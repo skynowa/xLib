@@ -13,6 +13,7 @@
 #include <xLib/Log/FileLog.h>
 #include <xLib/Fs/Path.h>
 #include <xLib/Fs/Dir.h>
+#include <xLib/Log/LogStream.h>
 #include <xLib/System/ProcessInfo.h>
 #include <xLib/System/User.h>
 
@@ -36,7 +37,7 @@ public:
         xUNUSED(a_signal);
 
         xTRACE_FUNC;
-        // Cout() << Signal::decription(a_signal) << "\n";
+        // LogCout() << Signal::decription(a_signal) << "\n";
 
         Application::exitFailure();
     }
@@ -46,7 +47,7 @@ public:
     {
         xTRACE_FUNC;
 
-        // Cout() << Signal::decription(0) << "\n";
+        // LogCout() << Signal::decription(0) << "\n";
 
         FileLog log(xT("crash.log"), FileLog::LogSizes::DefaultMb);
 
@@ -71,8 +72,8 @@ public:
 
         xTRACE_FUNC;
 
-        Cout() << Signal::infoDescription(*a_info) << "\n";
-        Cout() << Signal::decription(0) << "\n";
+        LogCout() << Signal::infoDescription(*a_info) << "\n";
+        LogCout() << Signal::decription(0) << "\n";
 
         FileLog log(xT("crash.log"), FileLog::LogSizes::DefaultMb);
 

@@ -955,7 +955,7 @@ Test_String::unit()
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
             m_sRv = String::formatBytes(data[i].test);
-            // Cout() << xTRACE_VAR(m_sRv);
+            // LogCout() << xTRACE_VAR(m_sRv);
         }
     }
 

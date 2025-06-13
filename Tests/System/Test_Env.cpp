@@ -183,7 +183,7 @@ Test_Env::unit()
 
 		Envs envs(ns);
 		envs.setVars(envFilePath);
-		// Cout() << xTRACE_VAR(envs.vars());
+		// LogCout() << xTRACE_VAR(envs.vars());
 
 		for (const auto &[it_name, it_value] : vars) {
 			xTEST_EQ(envs[it_name], it_value);

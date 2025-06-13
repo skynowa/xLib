@@ -49,7 +49,7 @@ PoolThread::onRun(
     const auto param = *(static_cast<std::tstring_t *>(a_param));
     xTEST_EQ(param, ::thread_param);
 
-    Cout() << Format::str(xT("\n\tPoolThread: start #{}, param: {}"), tag(), param);
+    LogCout() << Format::str(xT("\n\tPoolThread: start #{}, param: {}"), tag(), param);
 
     uint_t uiRes {};
 
@@ -60,19 +60,19 @@ PoolThread::onRun(
     for (std::size_t i {}; i < 10; ++ i) {
         // interrupt point
         bRv = isTimeToExit();
-        xCHECK_DO(bRv, Cout() << xT("\tPoolThread: break") << tag());
+        xCHECK_DO(bRv, LogCout() << xT("\tPoolThread: break") << tag());
         xCHECK_DO(bRv, break);
 
         // jobs
         {
-            Cout() << xT("\t*");
+            LogCout() << xT("\t*");
 
             Thread::currentSleep(50UL);
             Thread::currentYield();
         }
     }
 
-    Cout() << xT("\tPoolThread: end #") << tag();
+    LogCout() << xT("\tPoolThread: end #") << tag();
 
     return uiRes;
 }

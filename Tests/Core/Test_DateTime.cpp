@@ -104,7 +104,7 @@ Test_DateTime::unit()
                 cint_t second = nonValid[i][5];
                 cint_t msec   = nonValid[i][6];
 
-                // Cout() << xTRACE_VAR_8(i, year, month, day, hour, minute, second, msec);
+                // LogCout() << xTRACE_VAR_8(i, year, month, day, hour, minute, second, msec);
 
                 m_bRv = DateTimeValidator::datetime(year, month, day, hour, minute, second, msec);
                 xTEST(!m_bRv);

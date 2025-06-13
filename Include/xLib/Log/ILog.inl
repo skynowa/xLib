@@ -19,8 +19,8 @@ namespace xl::log
 template<typename... Args>
 inline void_t
 ILog::trace(
-	cptr_ctchar_t a_fmt,
-	Args&&...     a_args
+	cptr_ctchar_t      a_fmt,
+	Args          &&...a_args
 ) const
 {
     xCHECK_DO(!_isEnable, return);
@@ -32,8 +32,8 @@ ILog::trace(
 template<typename... Args>
 inline void_t
 ILog::debug(
-	cptr_ctchar_t a_fmt,
-	Args&&...     a_args
+	cptr_ctchar_t      a_fmt,
+	Args          &&...a_args
 ) const
 {
     xCHECK_DO(!_isEnable, return);
@@ -45,8 +45,8 @@ ILog::debug(
 template<typename... Args>
 inline void_t
 ILog::info(
-	cptr_ctchar_t a_fmt,
-	Args&&...     a_args
+	cptr_ctchar_t      a_fmt,
+	Args          &&...a_args
 ) const
 {
     xCHECK_DO(!_isEnable, return);
@@ -58,8 +58,8 @@ ILog::info(
 template<typename... Args>
 inline void_t
 ILog::warning(
-	cptr_ctchar_t a_fmt,
-	Args&&...     a_args
+	cptr_ctchar_t      a_fmt,
+	Args          &&...a_args
 ) const
 {
     xCHECK_DO(!_isEnable, return);
@@ -71,8 +71,8 @@ ILog::warning(
 template<typename... Args>
 inline void_t
 ILog::error(
-	cptr_ctchar_t a_fmt,
-	Args&&...     a_args
+	cptr_ctchar_t      a_fmt,
+	Args          &&...a_args
 ) const
 {
     xCHECK_DO(!_isEnable, return);
@@ -84,8 +84,8 @@ ILog::error(
 template<typename... Args>
 inline void_t
 ILog::critical(
-	cptr_ctchar_t a_fmt,
-	Args&&...     a_args
+	cptr_ctchar_t      a_fmt,
+	Args          &&...a_args
 ) const
 {
     xCHECK_DO(!_isEnable, return);

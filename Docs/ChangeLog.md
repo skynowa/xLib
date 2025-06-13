@@ -1,5 +1,43 @@
 # Change Log {#id_changelog}
 
+## log-trace-as-cout (#462)
+
+- **Commit:** [4b86910a9](https://github.com/skynowa/xLib/commit/4b86910a9)
+- **Author:** skynowa
+- **Date:** 2025-06-13
+
+Log Trace transform to Cout
+
+## TraceStream-levels-impl (#461)
+
+- **Commit:** [46579ee79](https://github.com/skynowa/xLib/commit/46579ee79)
+- **Author:** skynowa
+- **Date:** 2025-06-11
+
+* TraceStream-levels: LogStream.h (+3) [14+/9-] - impl
+
+* TraceStream-levels: LogStream.h [2+/2-] - impl
+
+* TraceStream-levels: LogStream.h [18+/16-] - impl
+
+* TraceStream-levels: LogStream.h [6+/6-] - impl
+
+* TraceStream-levels: Test_Trace.cpp (+2) [6+/4-] - impl
+
+* TraceStream-levels: LogStream.h [7+/7-] - impl
+
+* TraceStream-levels: LogStream.h (+2) [15+/13-] - impl
+
+* TraceStream-levels: LogStream.h (+2) [8+/7-] - impl
+
+* TraceStream-levels: LogStream.h [1+/1-] - impl
+
+* TraceStream-levels: ILog.h [1+] - log(s)
+
+* TraceStream-levels: TODO.md [4+] - todo(s)
+
+* TraceStream-levels: Test_Trace.cpp [2+/2-] - test(s)
+
 ## variadic-va-impl (#457)
 
 - **Commit:** [9613bdf67](https://github.com/skynowa/xLib/commit/9613bdf67)

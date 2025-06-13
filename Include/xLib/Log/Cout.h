@@ -1,5 +1,5 @@
 /**
- * \file  Trace.h
+ * \file  Cout.h
  * \brief Tracing to debugger, std::cout
  */
 
@@ -12,15 +12,15 @@
 namespace xl::log
 {
 
-class Trace final :
+class Cout final :
     public ILog
     /// Tracing to debugger, std::cout
 {
 public:
 ///\name ctors, dtor
 ///\{
-			 Trace() = default;
-	virtual ~Trace();
+			 Cout() = default;
+	virtual ~Cout();
 ///\}
 
 ///\name Overrides

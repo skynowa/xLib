@@ -87,7 +87,6 @@ Unit::run()
 {
 	// temp dir
     std::ctstring_t tempDirPath = Path::exe().dir() + Const::slash() + _option.name;
-    // Cout() << xTRACE_VAR(tempDirPath);
 
     cbool_t isRandomPostfix {true};
     cbool_t isAutoDelete    {true};

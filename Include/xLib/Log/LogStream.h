@@ -9,29 +9,21 @@
 #include <xLib/Core/Core.h>
 #include <xLib/Core/OStream.h>
 #include "ILog.h"
-#include "Trace.h"
+#include "Cout.h"
 #include "FileLog.h"
 #include "SystemLog.h"
 //-------------------------------------------------------------------------------------------------
 namespace xl::log
 {
 
-template<class LogT>
+template<class LogT, ILog::Level level>
 class LogStream final
 	/// Tracing to debugger, std::cout
 {
 public:
 ///\name ctors, dtor
 ///\{
-	LogStream() :
-		LogStream(ILog::Level::Trace)
-	{
-	}
-
-	LogStream(ILog::cLevel a_level) :
-		_level{a_level}
-	{
-	}
+	LogStream() = default;
 
 	~LogStream()
 	{
@@ -58,13 +50,32 @@ public:
 ///\}
 
 private:
-	ILog::cLevel _level {};
+	ILog::cLevel _level {level};
 	OStream      _os;
 };
 
-using TraceStream  = LogStream<Trace>;
-using FileStream   = LogStream<FileLog>;
-using SystemStream = LogStream<SystemLog>;
+#if 0
+	using TraceStream  = LogStream<Trace,     ILog::Level::Trace>;
+	using FileStream   = LogStream<FileLog,   ILog::Level::Trace>;
+	using SystemStream = LogStream<SystemLog, ILog::Level::Trace>;
+#else
+	#define LOG_STREAM_FACTORY(a_alias, a_log) \
+		using a_alias           = LogStream<a_log, ILog::Level::Trace>; \
+		\
+		using a_alias##Trace    = LogStream<a_log, ILog::Level::Trace>; \
+		using a_alias##Debug    = LogStream<a_log, ILog::Level::Debug>; \
+		using a_alias##Info     = LogStream<a_log, ILog::Level::Info>; \
+		using a_alias##Warning  = LogStream<a_log, ILog::Level::Warning>; \
+		using a_alias##Error    = LogStream<a_log, ILog::Level::Error>; \
+		using a_alias##Critical = LogStream<a_log, ILog::Level::Critical>
+
+	LOG_STREAM_FACTORY(LogCout, Cout);
+	LOG_STREAM_FACTORY(LogFile, FileLog);
+	LOG_STREAM_FACTORY(LogSys,  SystemLog);
+
+	#undef LOG_STREAM_FACTORY
+#endif
+
 
 } // namespace
 //-------------------------------------------------------------------------------------------------

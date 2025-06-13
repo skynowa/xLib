@@ -38,8 +38,8 @@ foo(
 		const auto &sRv = stack.str();
 		xCHECK_RET(sRv.empty(), false);
 
-		Cout() << "\n:::::::::: StackTrace ::::::::::\n";
-		Cout() << sRv << "\n";
+		LogCout() << "\n:::::::::: StackTrace ::::::::::\n";
+		LogCout() << sRv << "\n";
 	}
 
 	return true;

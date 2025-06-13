@@ -43,12 +43,12 @@ ILog::_levelString(
 ) const
 {
 	switch (a_level) {
-	case Level::Trace:    return xT("Trace");
-	case Level::Debug:    return xT("Debug");
-	case Level::Info:     return xT("Info");
-	case Level::Warning:  return xT("Warning");
-	case Level::Error:    return xT("Error");
-	case Level::Critical: return xT("Critical");
+	case Level::Trace:    return xT("TRACE");
+	case Level::Debug:    return xT("DEBUG");
+	case Level::Info:     return xT("INFO");
+	case Level::Warning:  return xT("WARNING");
+	case Level::Error:    return xT("ERROR");
+	case Level::Critical: return xT("CRITICAL");
 	}
 
 	return {};
