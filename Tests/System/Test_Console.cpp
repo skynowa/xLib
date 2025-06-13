@@ -19,21 +19,13 @@ Test_Console::unit()
 
         const auto fg = Console::FG::Green;
         const auto bg = Console::BG::Default;
-	#if 1
+
 		const auto attrs =
 			static_cast<Console::Attr>(
 				static_cast<int_t>(Console::Attr::Bold) |
 				static_cast<int_t>(Console::Attr::Underline) |
 				static_cast<int_t>(Console::Attr::Dim)
 			);
-	#else
-		const auto attrs =
-			static_cast<Console::Attr>(
-				Console::Attr::Bold |
-				Console::Attr::Underline |
-				Console::Attr::Reverse
-			);
-	#endif
 
         Console console(true, false);
 		console.write( console.setAttrs(fg, bg, attrs) );
