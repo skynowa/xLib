@@ -312,25 +312,5 @@ Console::_setTitle_impl(
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
-Console::title() const
-{
-    xTEST(_stdIn.isValid());
-    xTEST(_stdOut.isValid());
-
-    std::tstring_t sRv;
-
-    constexpr DWORD buffSize           {1024UL};
-    tchar_t         buff[buffSize + 1] {};
-    DWORD           titleSize          {};
-
-    titleSize = ::GetConsoleTitle(buff, buffSize);
-    xTEST_LESS(0UL, titleSize);
-
-    sRv.assign(buff, titleSize);
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
 
 } // namespace

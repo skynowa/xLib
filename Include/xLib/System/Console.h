@@ -121,10 +121,6 @@ public:
 
     void_t         setTitle(std::ctstring_t &title) const;
         ///< set title string
-#if xENV_WIN
-    std::tstring_t title() const;
-        ///< get title string
-#endif
 
 private:
 #if xENV_WIN
