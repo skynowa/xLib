@@ -20,12 +20,10 @@ Test_Console::unit()
         const auto fg = Console::FG::Green;
         const auto bg = Console::BG::Default;
 
-		const auto attrs =
-			static_cast<Console::Attr>(
+		const auto attrs = static_cast<Console::Attr>(
 				static_cast<int_t>(Console::Attr::Bold) |
 				static_cast<int_t>(Console::Attr::Underline) |
-				static_cast<int_t>(Console::Attr::Dim)
-			);
+				static_cast<int_t>(Console::Attr::Dim));
 
         Console console(true, false);
 		console.write( console.setAttrs(fg, bg, attrs) );
