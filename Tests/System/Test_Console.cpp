@@ -19,7 +19,7 @@ Test_Console::unit()
 
         const auto fg = Console::FG::Green;
         const auto bg = Console::BG::Default;
-	#if 1
+	#if 0
 		const auto attrs =
 			static_cast<Console::Attr>(
 				static_cast<int_t>(Console::Attr::Bold) |
@@ -28,9 +28,11 @@ Test_Console::unit()
 			);
 	#else
 		const auto attrs =
+			static_cast<Console::Attr>(
 				Console::Attr::Bold |
 				Console::Attr::Underline |
-				Console::Attr::Reverse;
+				Console::Attr::Reverse
+			);
 	#endif
 
         Console console(true, false);

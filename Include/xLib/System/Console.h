@@ -69,7 +69,7 @@ public:
     };
     xUSING_CONST(BG);
 
-    enum class Attr
+    enum Attr
         /// text attribute
     {
         Unknown = 0,  ///< Unknown
