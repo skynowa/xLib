@@ -15,13 +15,13 @@
 namespace xl::sync
 {
 
-template<typename T>
+template<typename TaskT>
 class ThreadPool :
     public Thread
     /// thread pool
 {
 public:
-    using func_ptr_t = void_t (T::*)(void_t *);
+    using func_ptr_t = void_t (TaskT::*)(void_t *);
 
 ///\name ctors, dtor
 ///\{
@@ -64,7 +64,7 @@ private:
     cbool_t        _isGroupAutoDelete {};
 
     mutable IpcSemaphore _semaphore;
-    std::list<T *> _tasks;
+    std::list<TaskT *> _tasks;
 
     std::size_t    _maxRunningTasks {};
     std::size_t    _numTasks {};
