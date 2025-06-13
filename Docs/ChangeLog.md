@@ -1,5 +1,13 @@
 # Change Log {#id_changelog}
 
+## log-trace-as-cout (#462)
+
+- **Commit:** [4b86910a9](https://github.com/skynowa/xLib/commit/4b86910a9)
+- **Author:** skynowa
+- **Date:** 2025-06-13
+
+Log Trace transform to Cout
+
 ## TraceStream-levels-impl (#461)
 
 - **Commit:** [46579ee79](https://github.com/skynowa/xLib/commit/46579ee79)
