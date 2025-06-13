@@ -3,6 +3,7 @@
 
 UNIT_TESTS=(Console)
 UNIT_TESTS=(Cout)
+UNIT_TESTS=(ThreadPool)
 # UNIT_TESTS=(FileLog)
 # UNIT_TESTS=(MySql)
 # UNIT_TESTS=(Thread)
