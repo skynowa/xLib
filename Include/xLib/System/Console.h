@@ -17,27 +17,23 @@
 namespace xl::system
 {
 
-class Console
-    /// Shell console
+//-------------------------------------------------------------------------------------------------
+class Color
+	/// Shell console
 {
 public:
 ///\name ctors, dtor
 ///\{
-			 Console();
-			 Console(cbool_t isColorSupport, cbool_t isEscapeValues);
-	virtual ~Console();
+	Color(cbool_t isColorSupport, cbool_t isEscapeValues);
+   ~Color() = default;
 
-	xNO_COPY_ASSIGN(Console);
+	xNO_DEFAULT_CONSTRUCT(Color);
+	xNO_COPY_ASSIGN(Color);
 ///\}
 
-    /*******************************************************************************
-    *   Attributes
-    *
-    *******************************************************************************/
-
-    enum class FG
-        /// foreground (text) color
-    {
+	enum class FG
+		/// foreground (text) color
+	{
 		Unknown  = 0,
 		Default  = 1 << 0,
 		Black    = 1 << 1,
@@ -49,12 +45,12 @@ public:
 		Cyan     = 1 << 7,
 		White    = 1 << 8,
 		Gray     = 1 << 9
-    };
-    xUSING_CONST(FG);
+	};
+	xUSING_CONST(FG);
 
-    enum class BG
-        /// background color
-    {
+	enum class BG
+		/// background color
+	{
 		Unknown  = 0,
 		Default  = 1 << 0,
 		Black    = 1 << 1,
@@ -66,8 +62,8 @@ public:
 		Cyan     = 1 << 7,
 		White    = 1 << 8,
 		Gray     = 1 << 9
-    };
-    xUSING_CONST(BG);
+	};
+	xUSING_CONST(BG);
 
 	enum class Attr
 		/// text attribute
@@ -83,12 +79,47 @@ public:
 	};
 	xUSING_CONST(Attr);
 
-    std::tstring_t setAttrs(cFG fg, cBG bg, cAttr attrs) const;
-        ///< set text color
-    std::tstring_t clearAttrs() const;
-        ///< reset text color to default
-    std::tstring_t setAttrsText(cFG fg, cBG bg, cAttr attrs, std::ctstring_t &str) const;
-        ///< set text color, text, reset text color to default
+	std::tstring_t setAttrs(cFG fg, cBG bg, cAttr attrs) const;
+		///< set text color
+	std::tstring_t clearAttrs() const;
+		///< reset text color to default
+	std::tstring_t setAttrsText(cFG fg, cBG bg, cAttr attrs, std::ctstring_t &str) const;
+		///< set text color, text, reset text color to default
+
+private:
+    cbool_t _isColorSupport {};
+		///< Say whether a given stream should be colorized or not
+	cbool_t _isEscapeValues {};
+		///< escaping values
+
+xPLATFORM_IMPL:
+	std::tstring_t _setAttrs_impl(cFG fg, cBG bg, cAttr attrs) const;
+	std::tstring_t _clearAttrs_impl() const;
+
+    FILE  *        _getStdStream(std::ctostream_t &stream) const;
+		///< Since C++ hasn't a true way to extract stream handler from the a given `std::ostream`
+    bool_t         _isColorized(std::tostream_t &stream = std::cout) const;
+		///< Say whether a given stream should be colorized or not.
+		///< It's always true for ATTY streams and may be true for streams marked with colorize flag
+    bool_t         _isAtty(std::ctostream_t &stream) const;
+        ///< Test whether a given `std::ostream` object refers to a terminal
+
+public:
+	std::tstring_t _escapeValue(std::ctstring_t &value) const;
+		///< escape by "\[...\]"
+};
+//-------------------------------------------------------------------------------------------------
+class Console
+    /// Shell console
+{
+public:
+///\name ctors, dtor
+///\{
+			 Console();
+	virtual ~Console();
+
+	xNO_COPY_ASSIGN(Console);
+///\}
 
     /*******************************************************************************
     *   Actions
@@ -103,9 +134,9 @@ public:
         ///< write line
     void_t         writeErrLine(std::ctstring_t &str) const;
         ///< write error message
-    void_t         write(cFG fg, cBG bg, cAttr attrs, std::ctstring_t &str) const;
+    void_t         write(Color::cFG fg, Color::cBG bg, Color::cAttr attrs, std::ctstring_t &str) const;
         ///< write with colors
-    void_t         writeLine(cFG fg, cBG bg, cAttr attrs, std::ctstring_t &str) const;
+    void_t         writeLine(Color::cFG fg, Color::cBG bg, Color::cAttr attrs, std::ctstring_t &str) const;
         ///< write with colors
     void_t         writeNl() const;
     	///< write new line (NL)
@@ -146,26 +177,9 @@ private:
         ///< get console menu handle
 #endif
 
-    cbool_t _isColorSupport {};
-		///< Say whether a given stream should be colorized or not
-	cbool_t _isEscapeValues {};
-		///< escaping values
-
-    FILE  *        _getStdStream(std::ctostream_t &stream) const;
-		///< Since C++ hasn't a true way to extract stream handler from the a given `std::ostream`
-    bool_t         _isColorized(std::tostream_t &stream = std::cout) const;
-		///< Say whether a given stream should be colorized or not.
-		///< It's always true for ATTY streams and may be true for streams marked with colorize flag
-    bool_t         _isAtty(std::ctostream_t &stream) const;
-        ///< Test whether a given `std::ostream` object refers to a terminal
-	std::tstring_t _escapeValue(std::ctstring_t &value) const;
-		///< escape by "\[...\]"
-
 xPLATFORM_IMPL:
     void_t         _construct_impl();
     void_t         _destruct_impl();
-    std::tstring_t _setAttrs_impl(cFG fg, cBG bg, cAttr attrs) const;
-    std::tstring_t _clearAttrs_impl() const;
     std::tstring_t _read_impl() const;
     void_t         _write_impl(std::ctstring_t &str) const;
     void_t         _clear_impl() const;

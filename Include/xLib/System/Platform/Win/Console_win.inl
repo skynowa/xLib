@@ -52,7 +52,7 @@ Console::_destruct_impl()
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::_setAttrs_impl(
+Color::_setAttrs_impl(
     cFG   a_fg,
     cBG   a_bg,
     cAttr a_attrs
@@ -224,7 +224,7 @@ Console::_setAttrs_impl(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Console::_clearAttrs_impl() const
+Color::_clearAttrs_impl() const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
     xTEST(_stdIn.isValid());
