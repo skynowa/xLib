@@ -53,29 +53,25 @@ private:
 	ILog::cLevel _level {level};
 	OStream      _os;
 };
+//-------------------------------------------------------------------------------------------------
+///\name Log stream factory
+///\{
+#define LOG_STREAM_FACTORY(a_alias, a_log) \
+	using a_alias           = LogStream<a_log, ILog::Level::Trace>; \
+	\
+	using a_alias##Trace    = LogStream<a_log, ILog::Level::Trace>; \
+	using a_alias##Debug    = LogStream<a_log, ILog::Level::Debug>; \
+	using a_alias##Info     = LogStream<a_log, ILog::Level::Info>; \
+	using a_alias##Warning  = LogStream<a_log, ILog::Level::Warning>; \
+	using a_alias##Error    = LogStream<a_log, ILog::Level::Error>; \
+	using a_alias##Critical = LogStream<a_log, ILog::Level::Critical>
 
-#if 0
-	using TraceStream  = LogStream<Trace,     ILog::Level::Trace>;
-	using FileStream   = LogStream<FileLog,   ILog::Level::Trace>;
-	using SystemStream = LogStream<SystemLog, ILog::Level::Trace>;
-#else
-	#define LOG_STREAM_FACTORY(a_alias, a_log) \
-		using a_alias           = LogStream<a_log, ILog::Level::Trace>; \
-		\
-		using a_alias##Trace    = LogStream<a_log, ILog::Level::Trace>; \
-		using a_alias##Debug    = LogStream<a_log, ILog::Level::Debug>; \
-		using a_alias##Info     = LogStream<a_log, ILog::Level::Info>; \
-		using a_alias##Warning  = LogStream<a_log, ILog::Level::Warning>; \
-		using a_alias##Error    = LogStream<a_log, ILog::Level::Error>; \
-		using a_alias##Critical = LogStream<a_log, ILog::Level::Critical>
+LOG_STREAM_FACTORY(LogCout, Cout);
+LOG_STREAM_FACTORY(LogFile, FileLog);
+LOG_STREAM_FACTORY(LogSys,  SystemLog);
 
-	LOG_STREAM_FACTORY(LogCout, Cout);
-	LOG_STREAM_FACTORY(LogFile, FileLog);
-	LOG_STREAM_FACTORY(LogSys,  SystemLog);
-
-	#undef LOG_STREAM_FACTORY
-#endif
-
-
+#undef LOG_STREAM_FACTORY
+///\}
+//-------------------------------------------------------------------------------------------------
 } // namespace
 //-------------------------------------------------------------------------------------------------
