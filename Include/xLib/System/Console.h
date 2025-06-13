@@ -38,56 +38,56 @@ public:
     enum class FG
         /// foreground (text) color
     {
-        Unknown = 0,
-        Default,
-        Black,
-        Red,
-        Green,
-        Yellow,
-        Blue,
-        Magenta,
-        Cyan,
-        White,
-        Gray
+		Unknown  = 0,
+		Default  = 1 << 0,
+		Black    = 1 << 1,
+		Red      = 1 << 2,
+		Green    = 1 << 3,
+		Yellow   = 1 << 4,
+		Blue     = 1 << 5,
+		Magenta  = 1 << 6,
+		Cyan     = 1 << 7,
+		White    = 1 << 8,
+		Gray     = 1 << 9
     };
     xUSING_CONST(FG);
 
     enum class BG
         /// background color
     {
-        Unknown = 0,
-        Default,
-        Black,
-        Red,
-        Green,
-        Yellow,
-        Blue,
-        Magenta,
-        Cyan,
-        White,
-        Gray
+		Unknown  = 0,
+		Default  = 1 << 0,
+		Black    = 1 << 1,
+		Red      = 1 << 2,
+		Green    = 1 << 3,
+		Yellow   = 1 << 4,
+		Blue     = 1 << 5,
+		Magenta  = 1 << 6,
+		Cyan     = 1 << 7,
+		White    = 1 << 8,
+		Gray     = 1 << 9
     };
     xUSING_CONST(BG);
 
-    enum class Attr
-        /// text attribute
-    {
-        Unknown = 0,  ///< Unknown
-        AllOff,       ///< Reset all attributes
-        Bold,         ///< Bold/Bright
-        Dim,          ///< Dim
-        Underline,    ///< Underlined
-        Blink,        ///< Blink (not work with most of the terminal emulators)
-        Reverse,      ///< Invert the foreground and background colors
-        Hidden        ///< Hidden (useful for passwords)
-    };
-    xUSING_CONST(Attr);
+	enum class Attr
+		/// text attribute
+	{
+		Unknown    = 0,      ///< Unknown
+		AllOff     = 1 << 0, ///< Reset all attributes
+		Bold       = 1 << 1, ///< Bold/Bright
+		Dim        = 1 << 2, ///< Dim
+		Underline  = 1 << 3, ///< Underlined
+		Blink      = 1 << 4, ///< Blink (not work with most of the terminal emulators)
+		Reverse    = 1 << 5, ///< Invert the foreground and background colors
+		Hidden     = 1 << 6  ///< Hidden (useful for passwords)
+	};
+	xUSING_CONST(Attr);
 
-    std::tstring_t setAttrs(cFG fg, cBG bg, cint_t attrs) const;
+    std::tstring_t setAttrs(cFG fg, cBG bg, cAttr attrs) const;
         ///< set text color
     std::tstring_t clearAttrs() const;
         ///< reset text color to default
-    std::tstring_t setAttrsText(cFG fg, cBG bg, cint_t attrs, std::ctstring_t &str) const;
+    std::tstring_t setAttrsText(cFG fg, cBG bg, cAttr attrs, std::ctstring_t &str) const;
         ///< set text color, text, reset text color to default
 
     /*******************************************************************************
@@ -103,9 +103,9 @@ public:
         ///< write line
     void_t         writeErrLine(std::ctstring_t &str) const;
         ///< write error message
-    void_t         write(cFG fg, cBG bg, cint_t attrs, std::ctstring_t &str) const;
+    void_t         write(cFG fg, cBG bg, cAttr attrs, std::ctstring_t &str) const;
         ///< write with colors
-    void_t         writeLine(cFG fg, cBG bg, cint_t attrs, std::ctstring_t &str) const;
+    void_t         writeLine(cFG fg, cBG bg, cAttr attrs, std::ctstring_t &str) const;
         ///< write with colors
     void_t         writeNl() const;
     	///< write new line (NL)
@@ -164,7 +164,7 @@ private:
 xPLATFORM_IMPL:
     void_t         _construct_impl();
     void_t         _destruct_impl();
-    std::tstring_t _setAttrs_impl(cFG fg, cBG bg, cint_t attrs) const;
+    std::tstring_t _setAttrs_impl(cFG fg, cBG bg, cAttr attrs) const;
     std::tstring_t _clearAttrs_impl() const;
     std::tstring_t _read_impl() const;
     void_t         _write_impl(std::ctstring_t &str) const;

@@ -53,9 +53,9 @@ Console::_destruct_impl()
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Console::_setAttrs_impl(
-    cFG    a_fg,
-    cBG    a_bg,
-    cint_t a_attrs
+    cFG   a_fg,
+    cBG   a_bg,
+    cAttr a_attrs
 ) const
 {
     xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
@@ -206,7 +206,7 @@ Console::_setAttrs_impl(
         attrs |= static_cast<WORD>(fgColor);
         attrs |= static_cast<WORD>(bgColor);
 
-        Bitset bits(a_attrs);
+        Bitset bits( static_cast<WORD>(a_attrs) );
 
         xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attr::AllOff)),    attrs |= static_cast<WORD>(attrAllOff));
         xCHECK_DO(bits.isSetBit(static_cast<WORD>(Attr::Bold)),      attrs |= static_cast<WORD>(attrBold));

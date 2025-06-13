@@ -37,9 +37,9 @@ Console::_destruct_impl()
  */
 std::tstring_t
 Console::_setAttrs_impl(
-    cFG    a_fg,
-    cBG    a_bg,
-    cint_t a_attrs
+    cFG   a_fg,
+    cBG   a_bg,
+    cAttr a_attrs
 ) const
 {
     std::tstring_t sRv;
@@ -168,7 +168,7 @@ Console::_setAttrs_impl(
         constexpr int_t attrReverse   = 7;
         constexpr int_t attrHidden    = 8;
 
-		Bitset bits(a_attrs);
+		Bitset bits( static_cast<int_t>(a_attrs) );
 
 		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::AllOff)),    values.emplace_back( std::to_string(attrAllOff) ));
 		xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Bold)),      values.emplace_back( std::to_string(attrBold) ));
