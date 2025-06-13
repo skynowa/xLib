@@ -27,7 +27,7 @@ Console::_construct_impl()
 
     _stdOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
     xTEST(_stdOut.isValid());
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, _stdOut.get());
+    xTEST_DIFF(_stdOut.get(), xNATIVE_HANDLE_NULL);
 
     // _attrsDef
     {
@@ -423,8 +423,8 @@ Console::enableClose(
         blRv = ::EnableMenuItem(_menuHandle(false), SC_CLOSE, MF_ENABLED);
         xTEST_DIFF(TRUE, blRv);
 
-        blRv = ::SetWindowPos(_wndHandle(), nullptr, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE |
-            SWP_NOZORDER | SWP_DRAWFRAME);
+        blRv = ::SetWindowPos(_wnd, nullptr, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER |
+            SWP_DRAWFRAME);
         xTEST_DIFF(blRv, FALSE);
     }
 }
