@@ -38,50 +38,50 @@ public:
     enum class FG
         /// foreground (text) color
     {
-        Unknown = 0,
-        Default,
-        Black,
-        Red,
-        Green,
-        Yellow,
-        Blue,
-        Magenta,
-        Cyan,
-        White,
-        Gray
+		Unknown  = 0,
+		Default  = 1 << 0,
+		Black    = 1 << 1,
+		Red      = 1 << 2,
+		Green    = 1 << 3,
+		Yellow   = 1 << 4,
+		Blue     = 1 << 5,
+		Magenta  = 1 << 6,
+		Cyan     = 1 << 7,
+		White    = 1 << 8,
+		Gray     = 1 << 9
     };
     xUSING_CONST(FG);
 
     enum class BG
         /// background color
     {
-        Unknown = 0,
-        Default,
-        Black,
-        Red,
-        Green,
-        Yellow,
-        Blue,
-        Magenta,
-        Cyan,
-        White,
-        Gray
+		Unknown  = 0,
+		Default  = 1 << 0,
+		Black    = 1 << 1,
+		Red      = 1 << 2,
+		Green    = 1 << 3,
+		Yellow   = 1 << 4,
+		Blue     = 1 << 5,
+		Magenta  = 1 << 6,
+		Cyan     = 1 << 7,
+		White    = 1 << 8,
+		Gray     = 1 << 9
     };
     xUSING_CONST(BG);
 
-    enum Attr
-        /// text attribute
-    {
-        Unknown = 0,  ///< Unknown
-        AllOff,       ///< Reset all attributes
-        Bold,         ///< Bold/Bright
-        Dim,          ///< Dim
-        Underline,    ///< Underlined
-        Blink,        ///< Blink (not work with most of the terminal emulators)
-        Reverse,      ///< Invert the foreground and background colors
-        Hidden        ///< Hidden (useful for passwords)
-    };
-    xUSING_CONST(Attr);
+	enum class Attr
+		/// text attribute
+	{
+		Unknown    = 0,      ///< Unknown
+		AllOff     = 1 << 0, ///< Reset all attributes
+		Bold       = 1 << 1, ///< Bold/Bright
+		Dim        = 1 << 2, ///< Dim
+		Underline  = 1 << 3, ///< Underlined
+		Blink      = 1 << 4, ///< Blink (not work with most of the terminal emulators)
+		Reverse    = 1 << 5, ///< Invert the foreground and background colors
+		Hidden     = 1 << 6  ///< Hidden (useful for passwords)
+	};
+	xUSING_CONST(Attr);
 
     std::tstring_t setAttrs(cFG fg, cBG bg, cAttr attrs) const;
         ///< set text color
