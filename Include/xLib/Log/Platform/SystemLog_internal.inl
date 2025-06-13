@@ -17,7 +17,6 @@ namespace xl::internal::enums
 
 constexpr Types<ILog::Level, std::ssize_t, 6> levels
 {{
-
 #if   xENV_WIN
     {ILog::Level::Trace,    EVENTLOG_SUCCESS},
     {ILog::Level::Debug,    EVENTLOG_SUCCESS},
@@ -33,7 +32,6 @@ constexpr Types<ILog::Level, std::ssize_t, 6> levels
     {ILog::Level::Error,    LOG_ERR},     // error conditions
     {ILog::Level::Critical, LOG_CRIT}     // critical conditions
 #endif
-
 }};
 //-------------------------------------------------------------------------------------------------
 
