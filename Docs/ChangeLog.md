@@ -1,5 +1,13 @@
 # Change Log {#id_changelog}
 
+## Console-Attrs (#460)
+
+- **Commit:** [07dc70945](https://github.com/skynowa/xLib/commit/07dc70945)
+- **Author:** skynowa
+- **Date:** 2025-06-14
+
+Console attributes review/impl/fix
+
 ## log-trace-as-cout (#462)
 
 - **Commit:** [4b86910a9](https://github.com/skynowa/xLib/commit/4b86910a9)
