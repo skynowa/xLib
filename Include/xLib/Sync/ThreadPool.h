@@ -7,23 +7,21 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Sync/IpcSemaphore.h>
 #include <xLib/Sync/Thread.h>
+#include <xLib/Sync/IpcSemaphore.h>
+#include <xLib/Sync/Mutex.h>
+#include <xLib/Log/LogStream.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::sync
 {
 
-class Mutex;
-class AutoMutex;
-class Thread;
-
-template<typename T>
+template<typename TaskT>
 class ThreadPool :
     public Thread
     /// thread pool
 {
 public:
-    using func_ptr_t = void_t (T::*)(void_t *);
+    using func_ptr_t = void_t (TaskT::*)(void_t *);
 
 ///\name ctors, dtor
 ///\{
@@ -31,9 +29,9 @@ public:
 				cbool_t isGroupAutoDelete);
 	virtual ~ThreadPool();
 
+    xNO_DEFAULT_CONSTRUCT(ThreadPool);
     xNO_COPY_ASSIGN(ThreadPool);
 ///\}
-
 
     // groups
     void_t      groupCreate(cuint_t &stackSize, const func_ptr_t funcPtr, void_t *param,
@@ -66,13 +64,13 @@ private:
     cbool_t        _isGroupAutoDelete {};
 
     mutable IpcSemaphore _semaphore;
-    std::list<T *> _tasks;
+    std::list<TaskT *> _tasks;
 
     std::size_t    _maxRunningTasks {};
     std::size_t    _numTasks {};
     std::size_t    _currTask {};
 
-    //static
+    // static
     static Mutex   _s_mutex;
     static Cout    _s_log;
 
