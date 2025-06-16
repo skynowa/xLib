@@ -128,9 +128,9 @@ Console::writeErrLine(
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::write(
-    Color::cFG              a_fg,
-    Color::cBG              a_bg,
-    Color::cAttr            a_attrs,
+    Color::cFG       a_fg,
+    Color::cBG       a_bg,
+    Color::cAttr     a_attrs,
     std::ctstring_t &a_str
 ) const
 {
@@ -149,9 +149,9 @@ Console::write(
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::writeLine(
-    Color::cFG              a_fg,
-    Color::cBG              a_bg,
-    Color::cAttr            a_attrs,
+    Color::cFG       a_fg,
+    Color::cBG       a_bg,
+    Color::cAttr     a_attrs,
     std::ctstring_t &a_str
 ) const
 {
