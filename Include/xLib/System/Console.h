@@ -147,14 +147,13 @@ public:
     void_t         clear() const;
         ///< clear
 
-private:
+xPLATFORM_IMPL:
 #if xENV_WIN
     HandleNativeInvalid _stdIn;       ///< standard input handle
     HandleNativeInvalid _stdOut;      ///< standard output handle
     WORD                _attrsDef {}; ///< default console attributes
 #endif
 
-xPLATFORM_IMPL:
     void_t         _ctor_impl();
     void_t         _dtor_impl();
     std::tstring_t _read_impl() const;

@@ -13,36 +13,10 @@ namespace xl::system
 {
 
 /**************************************************************************************************
-*    public
+*    Color
 *
 **************************************************************************************************/
 
-//-------------------------------------------------------------------------------------------------
-void_t
-Console::_ctor_impl()
-{
-    _stdIn = ::GetStdHandle(STD_INPUT_HANDLE);
-    xTEST(_stdIn.isValid());
-
-    _stdOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
-    xTEST(_stdOut.isValid());
-
-    // _attrsDef
-    {
-        CONSOLE_SCREEN_BUFFER_INFO info {};
-        BOOL blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &info);
-        xTEST_DIFF(blRv, FALSE);
-
-        _attrsDef = info.wAttributes;
-    }
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Console::_dtor_impl()
-{
-    (native_handle_t)_stdIn.detach();
-    (native_handle_t)_stdOut.detach();
-}
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Color::_set_impl(
@@ -225,6 +199,40 @@ Color::_clear_impl() const
     xTEST_DIFF(blRv, FALSE);
 
     return {};
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*    Console
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+void_t
+Console::_ctor_impl()
+{
+    _stdIn = ::GetStdHandle(STD_INPUT_HANDLE);
+    xTEST(_stdIn.isValid());
+
+    _stdOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
+    xTEST(_stdOut.isValid());
+
+    // _attrsDef
+    {
+        CONSOLE_SCREEN_BUFFER_INFO info {};
+        BOOL blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &info);
+        xTEST_DIFF(blRv, FALSE);
+
+        _attrsDef = info.wAttributes;
+    }
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Console::_dtor_impl()
+{
+    (native_handle_t)_stdIn.detach();
+    (native_handle_t)_stdOut.detach();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
