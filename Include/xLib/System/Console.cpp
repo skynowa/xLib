@@ -105,11 +105,11 @@ Color::_getStdStream(
 	std::ctostream_t &a_stream
 ) const
 {
-    if      (&a_stream == &std::cout) {
+    if      (&a_stream == &std::tcout) {
         return stdout;
     }
-    else if (&a_stream == &std::cerr ||
-             &a_stream == &std::clog)
+    else if (&a_stream == &std::tcerr ||
+             &a_stream == &std::tclog)
     {
         return stderr;
     }
