@@ -105,7 +105,7 @@ xPLATFORM_IMPL:
 
     FILE  *        _getStdStream(std::ctostream_t &stream) const;
 		///< Since C++ hasn't a true way to extract stream handler from the a given `std::ostream`
-    bool_t         _isColorized(std::tostream_t &stream = std::cout) const;
+    bool_t         _isColorized(std::tostream_t &stream = std::tcout) const;
 		///< Say whether a given stream should be colorized or not.
 		///< It's always true for ATTY streams and may be true for streams marked with colorize flag
     bool_t         _isAtty(std::ctostream_t &stream) const;
@@ -156,10 +156,10 @@ xPLATFORM_IMPL:
 
     void_t         _ctor_impl();
     void_t         _dtor_impl();
+    void_t         _setTitle_impl(std::ctstring_t &title) const;
     std::tstring_t _read_impl() const;
     void_t         _write_impl(std::ctstring_t &str) const;
     void_t         _clear_impl() const;
-    void_t         _setTitle_impl(std::ctstring_t &title) const;
 };
 
 } // namespace

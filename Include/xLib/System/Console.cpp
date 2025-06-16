@@ -42,9 +42,9 @@ Color::Color(
 Color::Color(
 	cbool_t a_isColorSupport, ///< force set color support (for PS1, etc)
 	cbool_t a_isEscapeValues, ///< escaping values (UNIX only)
-	cFG     a_fg,             ///<
-	cBG     a_bg,             ///<
-	cAttr   a_attrs           ///<
+	cFG     a_fg,             ///< foreground color
+	cBG     a_bg,             ///< background color
+	cAttr   a_attrs           ///< text attributes
 ) :
 	_isColorSupport{a_isColorSupport},
 	_isEscapeValues{a_isEscapeValues},
@@ -119,7 +119,7 @@ Color::_getStdStream(
 //-------------------------------------------------------------------------------------------------
 bool_t
 Color::_isColorized(
-	std::tostream_t &a_stream /* = std::cout */
+	std::tostream_t &a_stream /* = std::tcout */
 ) const
 {
    /**
