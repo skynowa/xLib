@@ -31,7 +31,8 @@ Test_Console::unit()
 		console.write( color.set() );
 		console.write(text);
 		console.writeLine( color.clear() );
-		console.writeLine(fg, bg, attrs, text);
+
+		console.writeLine(color, text);
     }
 
     xTEST_CASE("read")

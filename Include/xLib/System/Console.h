@@ -132,9 +132,9 @@ public:
         ///< write line
     void_t         writeErrLine(std::ctstring_t &str) const;
         ///< write error message
-    void_t         write(Color::cFG fg, Color::cBG bg, Color::cAttr attrs, std::ctstring_t &str) const;
+    void_t         write(const Color &color, std::ctstring_t &str) const;
         ///< write with colors
-    void_t         writeLine(Color::cFG fg, Color::cBG bg, Color::cAttr attrs, std::ctstring_t &str) const;
+    void_t         writeLine(const Color &color, std::ctstring_t &str) const;
         ///< write with colors
     void_t         writeNl() const;
     	///< write new line (NL)

@@ -210,9 +210,7 @@ Console::writeErrLine(
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::write(
-    Color::cFG       a_fg,
-    Color::cBG       a_bg,
-    Color::cAttr     a_attrs,
+	const Color     &a_color,
     std::ctstring_t &a_str
 ) const
 {
@@ -222,22 +220,18 @@ Console::write(
 	* Use sequence of write() methods, instead of concat strings
 	*/
 
-	Color color(true, false, a_fg, a_bg, a_attrs);
-
-	write( color.set() );
+	write( a_color.set() );
 	write(a_str);
-	write( color.clear() );
+	write( a_color.clear() );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::writeLine(
-    Color::cFG       a_fg,
-    Color::cBG       a_bg,
-    Color::cAttr     a_attrs,
+	const Color     &a_color,
     std::ctstring_t &a_str
 ) const
 {
-	write(a_fg, a_bg, a_attrs, a_str);
+	write(a_color, a_str);
 	writeNl();
 }
 //-------------------------------------------------------------------------------------------------
