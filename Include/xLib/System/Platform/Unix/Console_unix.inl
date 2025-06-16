@@ -36,7 +36,7 @@ Console::_dtor_impl()
  * https://misc.flogisoft.com/bash/tip_colors_and_formatting
  */
 std::tstring_t
-Color::_setAttrs_impl(
+Color::_set_impl(
     cFG   a_fg,
     cBG   a_bg,
     cAttr a_attrs
@@ -55,7 +55,7 @@ Color::_setAttrs_impl(
         constexpr int_t fgColorMagenta = 35;
         constexpr int_t fgColorYellow  = 33;
         constexpr int_t fgColorWhite   = 37;
-        constexpr int_t fgColorGray    = 37;  // TODO: [skynowa] Console::setAttrs() - fgColorGray
+        constexpr int_t fgColorGray    = 37;  // TODO: [skynowa] Console::set() - fgColorGray
 
         int_t iRv {};
 
@@ -110,7 +110,7 @@ Color::_setAttrs_impl(
         constexpr int_t bgColorMagenta = 45;
         constexpr int_t bgColorYellow  = 43;
         constexpr int_t bgColorWhite   = 47;
-        constexpr int_t bgColorGray    = 47; // TODO: [skynowa] Console::setAttrs() - Unix - bgColorGray
+        constexpr int_t bgColorGray    = 47; // TODO: [skynowa] Console::set() - Unix - bgColorGray
 
         int_t iRv {};
 
@@ -181,16 +181,16 @@ Color::_setAttrs_impl(
 		attrs = String::join(values, xT(';'));
     }
 
-	sRv += _escapeValue( Format::str(xT("\033[{};{}m"), attrs, static_cast<int>(fgColor)) ); // TODO: [skynowa] StdStreamV2
-	sRv += _escapeValue( Format::str(xT("\033[{}m"), static_cast<int>(bgColor)) );           // TODO: [skynowa] StdStreamV2
+	sRv += escape( Format::str(xT("\033[{};{}m"), attrs, static_cast<int>(fgColor)) ); // TODO: [skynowa] StdStreamV2
+	sRv += escape( Format::str(xT("\033[{}m"), static_cast<int>(bgColor)) );           // TODO: [skynowa] StdStreamV2
 
 	return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Color::_clearAttrs_impl() const
+Color::_clear_impl() const
 {
-	return _escapeValue(xT("\033[0;0m"));
+	return escape(xT("\033[0;0m"));
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -245,7 +245,7 @@ Console::_setTitle_impl(
 {
 	Color color(true, true);
 
-    write( color._escapeValue(Format::str(xT("\033]0;{}\a"), a_title)) );
+	write( color.escape(Format::str(xT("\033]0;{}\a"), a_title)) );
 }
 //-------------------------------------------------------------------------------------------------
 

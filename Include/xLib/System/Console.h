@@ -22,15 +22,6 @@ class Color
 	/// Shell console
 {
 public:
-///\name ctors, dtor
-///\{
-	Color(cbool_t isColorSupport, cbool_t isEscapeValues);
-   ~Color() = default;
-
-	xNO_DEFAULT_CONSTRUCT(Color);
-	xNO_COPY_ASSIGN(Color);
-///\}
-
 	enum class FG
 		/// foreground (text) color
 	{
@@ -79,12 +70,24 @@ public:
 	};
 	xUSING_CONST(Attr);
 
-	std::tstring_t setAttrs(cFG fg, cBG bg, cAttr attrs) const;
+///\name ctors, dtor
+///\{
+	Color(cbool_t isColorSupport, cbool_t isEscapeValues);
+	Color(cbool_t isColorSupport, cbool_t isEscapeValues, cFG fg, cBG bg, cAttr attrs);
+   ~Color() = default;
+
+	xNO_DEFAULT_CONSTRUCT(Color);
+	xNO_COPY_ASSIGN(Color);
+///\}
+
+	std::tstring_t set() const;
 		///< set text color
-	std::tstring_t clearAttrs() const;
+	std::tstring_t clear() const;
 		///< reset text color to default
-	std::tstring_t setAttrsText(cFG fg, cBG bg, cAttr attrs, std::ctstring_t &str) const;
+	std::tstring_t setText(std::ctstring_t &str) const;
 		///< set text color, text, reset text color to default
+	std::tstring_t escape(std::ctstring_t &str) const;
+		///< escape by "\[...\]"
 
 private:
     cbool_t _isColorSupport {};
@@ -92,9 +95,13 @@ private:
 	cbool_t _isEscapeValues {};
 		///< escaping values
 
+	cFG   _fg {FG::Default};
+	cBG   _bg {BG::Default};
+	cAttr _attrs {Attr::AllOff};
+
 xPLATFORM_IMPL:
-	std::tstring_t _setAttrs_impl(cFG fg, cBG bg, cAttr attrs) const;
-	std::tstring_t _clearAttrs_impl() const;
+	std::tstring_t _set_impl(cFG fg, cBG bg, cAttr attrs) const;
+	std::tstring_t _clear_impl() const;
 
     FILE  *        _getStdStream(std::ctostream_t &stream) const;
 		///< Since C++ hasn't a true way to extract stream handler from the a given `std::ostream`
@@ -103,10 +110,6 @@ xPLATFORM_IMPL:
 		///< It's always true for ATTY streams and may be true for streams marked with colorize flag
     bool_t         _isAtty(std::ctostream_t &stream) const;
         ///< Test whether a given `std::ostream` object refers to a terminal
-
-public:
-	std::tstring_t _escapeValue(std::ctstring_t &value) const;
-		///< escape by "\[...\]"
 };
 //-------------------------------------------------------------------------------------------------
 class Console

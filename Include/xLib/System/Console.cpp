@@ -32,39 +32,64 @@ Color::Color(
 	cbool_t a_isEscapeValues  ///< escaping values (UNIX only)
 ) :
 	_isColorSupport{a_isColorSupport},
-	_isEscapeValues{a_isEscapeValues}
+	_isEscapeValues{a_isEscapeValues},
+	_fg            {FG::Default},
+	_bg            {BG::Default},
+	_attrs         {Attr::AllOff}
+{
+}
+//-------------------------------------------------------------------------------------------------
+Color::Color(
+	cbool_t a_isColorSupport, ///< force set color support (for PS1, etc)
+	cbool_t a_isEscapeValues, ///< escaping values (UNIX only)
+	cFG     a_fg,             ///<
+	cBG     a_bg,             ///<
+	cAttr   a_attrs           ///<
+) :
+	_isColorSupport{a_isColorSupport},
+	_isEscapeValues{a_isEscapeValues},
+	_fg            {a_fg},
+	_bg            {a_bg},
+	_attrs         {a_attrs}
 {
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Color::setAttrs(
-    cFG   a_fg,
-    cBG   a_bg,
-    cAttr a_attrs
-) const
+Color::set() const
 {
 	xCHECK_RET(!_isColorSupport, xT(""));
 
-    return _setAttrs_impl(a_fg, a_bg, a_attrs);
+    return _set_impl(_fg, _bg, _attrs);
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Color::clearAttrs() const
+Color::clear() const
 {
 	xCHECK_RET(!_isColorSupport, xT(""));
 
-    return _clearAttrs_impl();
+    return _clear_impl();
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Color::setAttrsText(
-    cFG              a_fg,
-    cBG              a_bg,
-    cAttr            a_attrs,
+Color::setText(
     std::ctstring_t &a_str
 ) const
 {
-	return setAttrs(a_fg, a_bg, a_attrs) + a_str + clearAttrs();
+	return set() + a_str + clear();
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Color::escape(
+	std::ctstring_t &a_str
+) const
+{
+#if xENV_UNIX
+	xCHECK_RET(!_isEscapeValues, a_str);
+
+	return xT("\\[") + a_str + xT("\\]");
+#else
+	return a_value;
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -140,11 +165,11 @@ Console::write(
 	* Use sequence of write() methods, instead of concat strings
 	*/
 
-	Color color(true, false);
+	Color color(true, false, a_fg, a_bg, a_attrs);
 
-	write( color.setAttrs(a_fg, a_bg, a_attrs) );
+	write( color.set() );
 	write(a_str);
-	write( color.clearAttrs() );
+	write( color.clear() );
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -274,20 +299,6 @@ Color::_isAtty(
     }
 
     return static_cast<bool_t>( xISATTY(xFILENO(stdStream)) );
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Color::_escapeValue(
-	std::ctstring_t &a_value
-) const
-{
-#if xENV_UNIX
-	xCHECK_RET(!_isEscapeValues, a_value);
-
-	return xT("\\[") + a_value + xT("\\]");
-#else
-	return a_value;
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -45,7 +45,7 @@ Console::_dtor_impl()
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Color::_setAttrs_impl(
+Color::_set_impl(
     cFG   a_fg,
     cBG   a_bg,
     cAttr a_attrs
@@ -216,7 +216,7 @@ Color::_setAttrs_impl(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Color::_clearAttrs_impl() const
+Color::_clear_impl() const
 {
     xTEST(_stdIn.isValid());
     xTEST(_stdOut.isValid());

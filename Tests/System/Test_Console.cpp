@@ -13,7 +13,7 @@ xTEST_UNIT(Test_Console)
 bool_t
 Test_Console::unit()
 {
-    xTEST_CASE("setAttrs")
+    xTEST_CASE("set")
     {
         std::ctstring_t text = xT("AAA BBB CCC 123456 !@##$%^%^&*!!!");
 
@@ -25,12 +25,12 @@ Test_Console::unit()
 				static_cast<int_t>(Color::Attr::Underline) |
 				static_cast<int_t>(Color::Attr::Dim));
 
-		Color color(true, false);
+		Color color(true, false, fg, bg, attrs);
 
         Console console;
-		console.write( color.setAttrs(fg, bg, attrs) );
+		console.write( color.set() );
 		console.write(text);
-		console.writeLine( color.clearAttrs() );
+		console.writeLine( color.clear() );
 		console.writeLine(fg, bg, attrs, text);
     }
 
