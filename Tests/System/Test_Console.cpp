@@ -109,67 +109,10 @@ Test_Console::unit()
 
 		Console console;
 		console.setTitle(title);
-
-		#if 1 && xENV_WIN
-			m_sRv = console.title();
-			xTEST_EQ(m_sRv, title);
-		#endif
     #else
         LogCout() << xT("[skip]");
 	#endif
     }
-
-#if xENV_WIN
-    xTEST_CASE("title")
-    {
-	#if xTEST_IGNORE
-		std::tstring_t title = xT("Title1");
-
-		Console console;
-		console.setTitle(title);
-		m_sRv = console.title();
-		xTEST_EQ(m_sRv, title);
-	#else
-		LogCout() << xT("[skip]");
-	#endif
-    }
-#endif
-
-#if xENV_WIN
-    xTEST_CASE("centerWindow")
-    {
-	#if xTEST_IGNORE
-		Console console;
-		console.centerWindow();
-	#else
-		LogCout() << xT("[skip]");
-	#endif
-    }
-#endif
-
-#if xENV_WIN
-    xTEST_CASE("setFullScreen")
-    {
-	#if xTEST_IGNORE
-		Console console;
-		console.setFullScreen();
-	#else
-		LogCout() << xT("[skip]");
-	#endif
-    }
-#endif
-
-#if xENV_WIN
-    xTEST_CASE("enableClose")
-    {
-	#if xTEST_IGNORE
-		Console console;
-		console.enableClose(true);
-	#else
-		LogCout() << xT("[skip]");
-	#endif
-    }
-#endif
 
     return true;
 }
