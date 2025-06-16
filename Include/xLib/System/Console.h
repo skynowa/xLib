@@ -160,8 +160,8 @@ private:
 #endif
 
 xPLATFORM_IMPL:
-    void_t         _construct_impl();
-    void_t         _destruct_impl();
+    void_t         _ctor_impl();
+    void_t         _dtor_impl();
     std::tstring_t _read_impl() const;
     void_t         _write_impl(std::ctstring_t &str) const;
     void_t         _clear_impl() const;
