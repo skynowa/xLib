@@ -22,7 +22,7 @@ namespace xl::system
 {
 
 /**************************************************************************************************
-*   Console::Color
+*   Color
 *
 **************************************************************************************************/
 
@@ -95,7 +95,72 @@ Color::escape(
 
 
 /**************************************************************************************************
-*    public
+*   private
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+FILE *
+Color::_getStdStream(
+	std::ctostream_t &a_stream
+) const
+{
+    if      (&a_stream == &std::cout) {
+        return stdout;
+    }
+    else if (&a_stream == &std::cerr ||
+             &a_stream == &std::clog)
+    {
+        return stderr;
+    }
+
+    return nullptr;
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Color::_isColorized(
+	std::tostream_t &a_stream /* = std::cout */
+) const
+{
+   /**
+	* An index to be used to access a private storage of I/O streams. See
+	* colorize / nocolorize I/O manipulators for details
+	*/
+	static const int colorizeIndex = std::ios_base::xalloc();
+	if ( static_cast<bool_t>(a_stream.iword(colorizeIndex)) ) {
+		return true;
+	}
+
+	if ( _isAtty(a_stream) ) {
+		return true;
+	}
+
+    return false;
+}
+//-------------------------------------------------------------------------------------------------
+bool_t
+Color::_isAtty(
+	std::ctostream_t &a_stream
+) const
+{
+    FILE *stdStream = _getStdStream(a_stream);
+    if (stdStream == nullptr) {
+       /**
+		* Unfortunately, fileno() ends with segmentation fault
+		* if invalid file descriptor is passed. So we need to
+		* handle this case gracefully and assume it's not a tty
+		* if standard stream is not detected, and 0 is returned
+		*/
+
+        return false;
+    }
+
+    return static_cast<bool_t>( xISATTY(xFILENO(stdStream)) );
+}
+//-------------------------------------------------------------------------------------------------
+
+/**************************************************************************************************
+*    Console
 *
 **************************************************************************************************/
 
@@ -109,14 +174,6 @@ Console::~Console()
 {
     _dtor_impl();
 }
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*   Actions
-*
-**************************************************************************************************/
-
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Console::read() const
@@ -219,86 +276,12 @@ Console::clear() const
     _clear_impl();
 }
 //-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*   UI
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
 void_t
 Console::setTitle(
     std::ctstring_t &a_title
 ) const
 {
     _setTitle_impl(a_title);
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*   private
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-FILE *
-Color::_getStdStream(
-	std::ctostream_t &a_stream
-) const
-{
-    if      (&a_stream == &std::cout) {
-        return stdout;
-    }
-    else if (&a_stream == &std::cerr ||
-             &a_stream == &std::clog)
-    {
-        return stderr;
-    }
-
-    return nullptr;
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-Color::_isColorized(
-	std::tostream_t &a_stream /* = std::cout */
-) const
-{
-   /**
-	* An index to be used to access a private storage of I/O streams. See
-	* colorize / nocolorize I/O manipulators for details
-	*/
-	static const int colorizeIndex = std::ios_base::xalloc();
-	if ( static_cast<bool_t>(a_stream.iword(colorizeIndex)) ) {
-		return true;
-	}
-
-	if ( _isAtty(a_stream) ) {
-		return true;
-	}
-
-    return false;
-}
-//-------------------------------------------------------------------------------------------------
-bool_t
-Color::_isAtty(
-	std::ctostream_t &a_stream
-) const
-{
-    FILE *stdStream = _getStdStream(a_stream);
-    if (stdStream == nullptr) {
-       /**
-		* Unfortunately, fileno() ends with segmentation fault
-		* if invalid file descriptor is passed. So we need to
-		* handle this case gracefully and assume it's not a tty
-		* if standard stream is not detected, and 0 is returned
-		*/
-
-        return false;
-    }
-
-    return static_cast<bool_t>( xISATTY(xFILENO(stdStream)) );
 }
 //-------------------------------------------------------------------------------------------------
 
