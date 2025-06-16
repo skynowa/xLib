@@ -140,7 +140,7 @@ Console::write(
 	* Use sequence of write() methods, instead of concat strings
 	*/
 
-	Color color(true, true);
+	Color color(true, false);
 
 	write( color.setAttrs(a_fg, a_bg, a_attrs) );
 	write(a_str);
