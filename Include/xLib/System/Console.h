@@ -47,6 +47,7 @@ public:
 		Gray     = 10
     };
     xUSING_CONST(FG);
+
 	enum class BG
 		/// background color
 	{
