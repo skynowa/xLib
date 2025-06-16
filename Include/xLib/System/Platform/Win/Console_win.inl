@@ -245,9 +245,9 @@ Console::_read_impl() const
 
     std::tstring_t sRv;
 
-    DWORD     read               {};
-    constexpr ulong_t buffSize   {1024UL * 4UL};
-    tchar_t   buff[buffSize + 1] {};
+    DWORD           read               {};
+    constexpr DWORD buffSize           {1024UL * 4UL};
+    tchar_t         buff[buffSize + 1] {};
 
     BOOL blRv = ::ReadConsole(_stdIn.get(), &buff[0], buffSize, &read, nullptr);
     xTEST_DIFF(blRv, FALSE);
