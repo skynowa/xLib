@@ -193,31 +193,6 @@ Color::_clear_impl() const
 	return escape(xT("\033[0;0m"));
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
-Console::_read_impl() const
-{
-    std::tstring_t sRv;
-
-    // BUG: Console::_read_impl()
-    std::tcin >> sRv;
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Console::_write_impl(
-    std::ctstring_t &a_str
-) const
-{
-    std::tcout << a_str << std::flush;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Console::_clear_impl() const
-{
-    writeLine( Const::ff() );
-}
-//-------------------------------------------------------------------------------------------------
 /**
  * Change the title of a terminal
  *
@@ -246,6 +221,31 @@ Console::_setTitle_impl(
 	Color color(true, true);
 
 	write( color.escape(Format::str(xT("\033]0;{}\a"), a_title)) );
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Console::_read_impl() const
+{
+    std::tstring_t sRv;
+
+    // BUG: Console::_read_impl()
+    std::tcin >> sRv;
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Console::_write_impl(
+    std::ctstring_t &a_str
+) const
+{
+    std::tcout << a_str << std::flush;
+}
+//-------------------------------------------------------------------------------------------------
+void_t
+Console::_clear_impl() const
+{
+    writeLine( Const::ff() );
 }
 //-------------------------------------------------------------------------------------------------
 

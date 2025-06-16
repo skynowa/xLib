@@ -227,6 +227,18 @@ Color::_clear_impl() const
     return {};
 }
 //-------------------------------------------------------------------------------------------------
+void_t
+Console::_setTitle_impl(
+    std::ctstring_t &a_title
+) const
+{
+    xTEST(_stdIn.isValid());
+    xTEST(_stdOut.isValid());
+
+    BOOL blRv = ::SetConsoleTitle( a_title.c_str() );
+    xTEST_DIFF(blRv, FALSE);
+}
+//-------------------------------------------------------------------------------------------------
 std::tstring_t
 Console::_read_impl() const
 {
@@ -297,18 +309,6 @@ Console::_clear_impl() const
 
     // put the cursor at (0, 0)
     blRv = ::SetConsoleCursorPosition(_stdOut.get(), coordScreen );
-    xTEST_DIFF(blRv, FALSE);
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Console::_setTitle_impl(
-    std::ctstring_t &a_title
-) const
-{
-    xTEST(_stdIn.isValid());
-    xTEST(_stdOut.isValid());
-
-    BOOL blRv = ::SetConsoleTitle( a_title.c_str() );
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------

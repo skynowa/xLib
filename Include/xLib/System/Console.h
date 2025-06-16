@@ -124,6 +124,10 @@ public:
 	xNO_COPY_ASSIGN(Console);
 ///\}
 
+    // UI
+    void_t         setTitle(std::ctstring_t &title) const;
+        ///< set title string
+
     std::tstring_t read() const;
         ///< read
     void_t         write(std::ctstring_t &str) const;
@@ -142,10 +146,6 @@ public:
         ///< pause with timeout (msec)
     void_t         clear() const;
         ///< clear
-
-    // UI
-    void_t         setTitle(std::ctstring_t &title) const;
-        ///< set title string
 
 private:
 #if xENV_WIN
