@@ -23,11 +23,9 @@ Console::_construct_impl()
 {
     _stdIn = ::GetStdHandle(STD_INPUT_HANDLE);
     xTEST(_stdIn.isValid());
-    xTEST_DIFF(_stdIn.get(), xNATIVE_HANDLE_NULL);
 
     _stdOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
     xTEST(_stdOut.isValid());
-    xTEST_DIFF(_stdOut.get(), xNATIVE_HANDLE_NULL);
 
     // _attrsDef
     {
@@ -37,11 +35,6 @@ Console::_construct_impl()
 
         _attrsDef = info.wAttributes;
     }
-
-    _wnd = _wndHandle();
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-
-    // _menu - n/a
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -58,7 +51,6 @@ Console::_setAttrs_impl(
     cAttr a_attrs
 ) const
 {
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
     xTEST(_stdIn.isValid());
     xTEST(_stdOut.isValid());
 
@@ -226,7 +218,6 @@ Console::_setAttrs_impl(
 std::tstring_t
 Console::_clearAttrs_impl() const
 {
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
     xTEST(_stdIn.isValid());
     xTEST(_stdOut.isValid());
 
@@ -239,7 +230,6 @@ Console::_clearAttrs_impl() const
 std::tstring_t
 Console::_read_impl() const
 {
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
     xTEST(_stdIn.isValid());
     xTEST(_stdOut.isValid());
 
@@ -262,7 +252,6 @@ Console::_write_impl(
     std::ctstring_t &a_str
 ) const
 {
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
     xTEST(_stdIn.isValid());
     xTEST(_stdOut.isValid());
 
@@ -278,7 +267,6 @@ Console::_write_impl(
 void_t
 Console::_clear_impl() const
 {
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
     xTEST(_stdIn.isValid());
     xTEST(_stdOut.isValid());
 
@@ -317,170 +305,11 @@ Console::_setTitle_impl(
     std::ctstring_t &a_title
 ) const
 {
-    xTEST_NA(_wnd);
     xTEST(_stdIn.isValid());
     xTEST(_stdOut.isValid());
 
     BOOL blRv = ::SetConsoleTitle( a_title.c_str() );
     xTEST_DIFF(blRv, FALSE);
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Console::title() const
-{
-    xTEST_NA(_wnd);
-    xTEST(_stdIn.isValid());
-    xTEST(_stdOut.isValid());
-
-    std::tstring_t sRv;
-
-    constexpr DWORD buffSize           {1024UL};
-    tchar_t         buff[buffSize + 1] {};
-    DWORD           titleSize          {};
-
-    titleSize = ::GetConsoleTitle(buff, buffSize);
-    xTEST_LESS(0UL, titleSize);
-
-    sRv.assign(buff, titleSize);
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Console::centerWindow() const
-{
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST(_stdIn.isValid());
-    xTEST(_stdOut.isValid());
-
-    BOOL blRv {};
-
-    RECT origin  {};
-    blRv = ::GetWindowRect(_wnd, &origin);
-    xTEST_DIFF(blRv, FALSE);
-
-    RECT desktop {};
-    blRv = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &desktop, 0);
-    xTEST_DIFF(blRv, FALSE);
-
-    cint_t desktopX  = (desktop.right  - desktop.left) / 2;
-    cint_t desktopY  = (desktop.bottom - desktop.top)  / 2;
-    cint_t wndWidth  = (origin.right   - origin.left);
-    cint_t wndHeight = (origin.bottom  - origin.top);
-    cint_t x         = desktopX - wndWidth / 2;        if (x < 0) { x = 0; }
-
-    blRv = ::MoveWindow(_wnd, x, desktopY - wndHeight / 2, wndWidth, wndHeight, true);
-    xTEST_DIFF(blRv, FALSE);
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Console::setFullScreen() const
-{
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST(_stdIn.isValid());
-    xTEST(_stdOut.isValid());
-
-    COORD coord = ::GetLargestConsoleWindowSize(_stdOut.get());
-    xTEST(coord.X != 0 && coord.Y != 0);
-
-    coord.X -= 2;
-    coord.Y -= 2;
-
-    SMALL_RECT smallRec {};
-    smallRec.Left   = 0;
-    smallRec.Top    = 0;
-    smallRec.Right  = coord.X - 2;
-    smallRec.Bottom = coord.Y - 2;
-
-    BOOL blRv = ::SetConsoleScreenBufferSize(_stdOut.get(), coord);
-    xTEST_DIFF(blRv, FALSE);
-
-    blRv = ::SetConsoleWindowInfo(_stdOut.get(), true, &smallRec);
-    xTEST_DIFF(blRv, FALSE);
-
-    centerWindow();
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Console::enableClose(
-    cbool_t a_flag
-)
-{
-    xTEST_DIFF(_wnd, xWND_NATIVE_HANDLE_NULL);
-    xTEST(_stdIn.isValid());
-    xTEST(_stdOut.isValid());
-
-    _menu = _menuHandle(false);
-    xTEST(_menu != nullptr);
-
-    if (!a_flag) {
-        BOOL blRv = ::DeleteMenu(_menu, SC_CLOSE, MF_BYCOMMAND);
-        xTEST_DIFF(blRv, FALSE);
-    } else {
-        BOOL blRv = ::AppendMenu(_menu, SC_CLOSE, MF_BYCOMMAND, xT(""));
-        xTEST_DIFF(blRv, FALSE);
-
-        blRv = ::EnableMenuItem(_menuHandle(false), SC_CLOSE, MF_ENABLED);
-        xTEST_DIFF(TRUE, blRv);
-
-        blRv = ::SetWindowPos(_wnd, nullptr, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER |
-            SWP_DRAWFRAME);
-        xTEST_DIFF(blRv, FALSE);
-    }
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*    private
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-HWND
-Console::_wndHandle()
-{
-    HWND           hRv {};
-    std::tstring_t newWndTitle;
-    std::tstring_t oldWndTitle;
-
-    // fetch current window title.
-    oldWndTitle = title();
-    xTEST(!oldWndTitle.empty());
-
-    // format a "unique" szNewWndTitle.
-    newWndTitle = Format::str(xT("{}/{}"), ::GetTickCount(), ::GetCurrentProcessId());
-
-    // change current window title.
-    setTitle(newWndTitle);
-
-    // ensure window title has been updated.
-    Thread::currentSleep(50UL);
-
-    // look for NewWindowTitle.
-    hRv = ::FindWindow(nullptr, newWndTitle.c_str());
-    xTEST_DIFF(hRv, xWND_NATIVE_HANDLE_NULL);
-
-    // restore original window title.
-    setTitle(oldWndTitle);
-
-    return hRv;
-}
-//-------------------------------------------------------------------------------------------------
-HMENU
-Console::_menuHandle(
-    cbool_t a_isRevert
-)
-{
-    _menu = ::GetSystemMenu(_wnd, a_isRevert);
-
-    if (a_isRevert) {
-        xTEST(_menu == nullptr);
-    } else {
-        xTEST(_menu != nullptr);
-    }
-
-    return _menu;
 }
 //-------------------------------------------------------------------------------------------------
 
