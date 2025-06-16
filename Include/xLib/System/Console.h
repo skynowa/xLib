@@ -35,35 +35,34 @@ public:
 		/// foreground (text) color
 	{
 		Unknown  = 0,
-		Default  = 1 << 0,
-		Black    = 1 << 1,
-		Red      = 1 << 2,
-		Green    = 1 << 3,
-		Yellow   = 1 << 4,
-		Blue     = 1 << 5,
-		Magenta  = 1 << 6,
-		Cyan     = 1 << 7,
-		White    = 1 << 8,
-		Gray     = 1 << 9
-	};
-	xUSING_CONST(FG);
-
+		Default  = 1,
+		Black    = 2,
+		Red      = 3,
+		Green    = 4,
+		Yellow   = 5,
+		Blue     = 6,
+		Magenta  = 7,
+		Cyan     = 8,
+		White    = 9,
+		Gray     = 10
+    };
+    xUSING_CONST(FG);
 	enum class BG
 		/// background color
 	{
 		Unknown  = 0,
-		Default  = 1 << 0,
-		Black    = 1 << 1,
-		Red      = 1 << 2,
-		Green    = 1 << 3,
-		Yellow   = 1 << 4,
-		Blue     = 1 << 5,
-		Magenta  = 1 << 6,
-		Cyan     = 1 << 7,
-		White    = 1 << 8,
-		Gray     = 1 << 9
-	};
-	xUSING_CONST(BG);
+		Default  = 1,
+		Black    = 2,
+		Red      = 3,
+		Green    = 4,
+		Yellow   = 5,
+		Blue     = 6,
+		Magenta  = 7,
+		Cyan     = 8,
+		White    = 9,
+		Gray     = 10
+    };
+    xUSING_CONST(BG);
 
 	enum class Attr
 		/// text attribute
