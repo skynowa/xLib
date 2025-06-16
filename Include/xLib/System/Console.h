@@ -151,29 +151,12 @@ public:
 
     void_t         setTitle(std::ctstring_t &title) const;
         ///< set title string
-#if xENV_WIN
-    std::tstring_t title() const;
-        ///< get title string
-    void_t         centerWindow() const;
-        ///< align to center
-    void_t         setFullScreen() const;
-        ///< set full screen
-    void_t         enableClose(cbool_t flag);
-        ///< enable close button
-#endif
 
 private:
 #if xENV_WIN
-    HWND                _wnd {};      ///< console window handle
-    HMENU               _menu {};     ///< console menu handle
     HandleNativeInvalid _stdIn;       ///< standard input handle
     HandleNativeInvalid _stdOut;      ///< standard output handle
     WORD                _attrsDef {}; ///< default console attributes
-
-    HWND  _wndHandle();
-        ///< get console window handle
-    HMENU _menuHandle(cbool_t isRevert);
-        ///< get console menu handle
 #endif
 
 xPLATFORM_IMPL:
