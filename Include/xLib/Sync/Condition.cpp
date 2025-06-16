@@ -34,7 +34,7 @@ namespace xl::sync
 /* virtual */
 Condition::~Condition()
 {
-    _destruct_impl();
+    _dtor_impl();
 }
 //-------------------------------------------------------------------------------------------------
 void_t

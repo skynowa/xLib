@@ -18,7 +18,7 @@ namespace xl::log
 
 //-------------------------------------------------------------------------------------------------
 void_t
-SystemLog::_construct_impl(
+SystemLog::_ctor_impl(
     std::ctstring_t &a_logName
 )
 {
@@ -26,7 +26,7 @@ SystemLog::_construct_impl(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-SystemLog::_destruct_impl()
+SystemLog::_dtor_impl()
 {
     (void_t)::closelog();
 }

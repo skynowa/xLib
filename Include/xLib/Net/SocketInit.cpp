@@ -34,12 +34,12 @@ SocketInit::SocketInit(
     cushort_t a_versionMinor
 )
 {
-    _construct_impl(a_versionMajor, a_versionMinor);
+    _ctor_impl(a_versionMajor, a_versionMinor);
 }
 //-------------------------------------------------------------------------------------------------
 SocketInit::~SocketInit()
 {
-    _destruct_impl();
+    _dtor_impl();
 }
 //-------------------------------------------------------------------------------------------------
 

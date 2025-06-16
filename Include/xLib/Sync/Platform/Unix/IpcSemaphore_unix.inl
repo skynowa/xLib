@@ -16,13 +16,13 @@ namespace xl::sync
 
 //-------------------------------------------------------------------------------------------------
 void_t
-IpcSemaphore::_construct_impl()
+IpcSemaphore::_ctor_impl()
 {
     // sem_init
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-IpcSemaphore::_destruct_impl()
+IpcSemaphore::_dtor_impl()
 {
     int_t iRv = ::sem_close(_handle);  _handle = nullptr;
     xTEST_DIFF(iRv, - 1);

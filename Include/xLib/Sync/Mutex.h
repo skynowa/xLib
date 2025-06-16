@@ -44,7 +44,7 @@ private:
     handle_t _handle {};   ///< mutex native handle
 
 xPLATFORM_IMPL:
-    void_t _destruct_impl();
+    void_t _dtor_impl();
     void_t _create_impl();
     void_t _lock_impl();
     bool_t _tryLock_impl();

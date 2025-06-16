@@ -19,7 +19,7 @@ namespace xl::system
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Console::_construct_impl()
+Console::_ctor_impl()
 {
     _stdIn = ::GetStdHandle(STD_INPUT_HANDLE);
     xTEST(_stdIn.isValid());
@@ -38,7 +38,7 @@ Console::_construct_impl()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Console::_destruct_impl()
+Console::_dtor_impl()
 {
     (native_handle_t)_stdIn.detach();
     (native_handle_t)_stdOut.detach();

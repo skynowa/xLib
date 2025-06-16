@@ -14,7 +14,7 @@ namespace xl::crypt
 
 //-------------------------------------------------------------------------------------------------
 void_t
-StdSeedPolicy::_construct_impl()
+StdSeedPolicy::_ctor_impl()
 {
     xNA
 }
@@ -42,7 +42,7 @@ StdSeedPolicy::_next_impl()
 
 //-------------------------------------------------------------------------------------------------
 void_t
-NativeSeedPolicy::_construct_impl()
+NativeSeedPolicy::_ctor_impl()
 {
 #if cmHAVE_SRANDOM_R
     int_t iRv = 0;
@@ -61,7 +61,7 @@ NativeSeedPolicy::_construct_impl()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-NativeSeedPolicy::_destruct_impl()
+NativeSeedPolicy::_dtor_impl()
 {
 #if (cmHAVE_SRANDOM_R && cmHAVE_RANDOM_R)
     _data = {};

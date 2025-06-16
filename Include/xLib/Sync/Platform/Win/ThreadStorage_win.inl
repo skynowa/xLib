@@ -20,13 +20,13 @@ ThreadStorage::_indexInvalid_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-ThreadStorage::_construct_impl()
+ThreadStorage::_ctor_impl()
 {
     _index = ::TlsAlloc();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-ThreadStorage::_destruct_impl()
+ThreadStorage::_dtor_impl()
 {
     BOOL blRv = ::TlsFree(_index);
     xTEST_DIFF(blRv, FALSE);

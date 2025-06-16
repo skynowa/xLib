@@ -27,8 +27,8 @@ public:
 ///\}
 
 xPLATFORM_IMPL:
-    void_t   _construct_impl(cushort_t versionMajor, cushort_t versionMinor) const;
-    void_t   _destruct_impl() const;
+    void_t   _ctor_impl(cushort_t versionMajor, cushort_t versionMinor) const;
+    void_t   _dtor_impl() const;
 };
 
 } // namespace

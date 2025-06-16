@@ -33,7 +33,7 @@ namespace xl::sync
 /* virtual */
 Mutex::~Mutex()
 {
-	_destruct_impl();
+	_dtor_impl();
 }
 //-------------------------------------------------------------------------------------------------
 const Mutex::handle_t &

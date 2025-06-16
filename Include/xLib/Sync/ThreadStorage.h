@@ -48,8 +48,8 @@ private:
 
 xPLATFORM_IMPL:
     index_t  _indexInvalid_impl() const;
-    void_t   _construct_impl();
-    void_t   _destruct_impl();
+    void_t   _ctor_impl();
+    void_t   _dtor_impl();
     bool_t   _isSet_impl() const;
     void_t  *_value_impl() const;
     void_t   _setValue_impl(void_t **value) const;
