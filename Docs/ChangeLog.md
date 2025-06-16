@@ -1,5 +1,13 @@
 # Change Log {#id_changelog}
 
+## console-win-review (#464)
+
+- **Commit:** [7e3ed682f](https://github.com/skynowa/xLib/commit/7e3ed682f)
+- **Author:** skynowa
+- **Date:** 2025-06-16
+
+[Win] Console - rm extra ONLY Windows functionality
+
 ## Console-Attrs (#460)
 
 - **Commit:** [07dc70945](https://github.com/skynowa/xLib/commit/07dc70945)
