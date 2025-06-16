@@ -14,7 +14,7 @@ namespace xl::crypt
 
 //-------------------------------------------------------------------------------------------------
 void_t
-StdSeedPolicy::_construct_impl()
+StdSeedPolicy::_ctor_impl()
 {
     (void_t)std::srand(_seed);
 }
@@ -41,7 +41,7 @@ StdSeedPolicy::_next_impl()
 
 //-------------------------------------------------------------------------------------------------
 void_t
-NativeSeedPolicy::_construct_impl()
+NativeSeedPolicy::_ctor_impl()
 {
     _hProv = 0;
 
@@ -51,7 +51,7 @@ NativeSeedPolicy::_construct_impl()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-NativeSeedPolicy::_destruct_impl()
+NativeSeedPolicy::_dtor_impl()
 {
     BOOL blRv = ::CryptReleaseContext(_hProv, 0UL);   _hProv = 0;
     xTEST_DIFF(blRv, FALSE);

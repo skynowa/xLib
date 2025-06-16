@@ -30,14 +30,14 @@ IpcSemaphore::IpcSemaphore()
 {
     xTEST(!_isValid());
 
-    _construct_impl();
+    _ctor_impl();
 }
 //-------------------------------------------------------------------------------------------------
 IpcSemaphore::~IpcSemaphore()
 {
     xTEST(_isValid());
 
-    _destruct_impl();
+    _dtor_impl();
 }
 //-------------------------------------------------------------------------------------------------
 long_t

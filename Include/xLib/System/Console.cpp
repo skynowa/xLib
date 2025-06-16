@@ -39,12 +39,12 @@ Console::Console(
 	_isColorSupport{a_isColorSupport},
 	_isEscapeValues{a_isEscapeValues}
 {
-    _construct_impl();
+    _ctor_impl();
 }
 //-------------------------------------------------------------------------------------------------
 Console::~Console()
 {
-    _destruct_impl();
+    _dtor_impl();
 }
 //-------------------------------------------------------------------------------------------------
 

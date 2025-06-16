@@ -135,7 +135,7 @@ private:
     uint_t   _exitStatus {};    ///< exit code
 
 xPLATFORM_IMPL:
-    void_t         _destruct_impl();
+    void_t         _dtor_impl();
     void_t         _create_impl(std::ctstring_t &filePath, std::cvec_tstring_t &params,
                         const std::set<std::pair_tstring_t> &envs, std::tstring_t *stdOut,
                         std::tstring_t *stdError);

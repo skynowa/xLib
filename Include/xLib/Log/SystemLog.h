@@ -35,8 +35,8 @@ private:
 #endif
 
 xPLATFORM_IMPL:
-    void_t _construct_impl(std::ctstring_t &logName);
-    void_t _destruct_impl();
+    void_t _ctor_impl(std::ctstring_t &logName);
+    void_t _dtor_impl();
     void_t _write_impl(cLevel level, std::ctstring_t &msg) const;
 };
 

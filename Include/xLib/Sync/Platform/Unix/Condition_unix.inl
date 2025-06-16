@@ -14,7 +14,7 @@ namespace xl::sync
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Condition::_destruct_impl()
+Condition::_dtor_impl()
 {
     int_t iRv = - 1;
 

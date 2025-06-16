@@ -46,7 +46,7 @@ private:
 #endif
 
 xPLATFORM_IMPL:
-    void_t _destruct_impl();
+    void_t _dtor_impl();
     void_t _create_impl();
     void_t _wait_impl(culong_t &timeoutMs);
     void_t _signal_impl();

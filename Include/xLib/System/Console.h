@@ -145,8 +145,8 @@ private:
 		///< escape by "\[...\]"
 
 xPLATFORM_IMPL:
-    void_t         _construct_impl();
-    void_t         _destruct_impl();
+    void_t         _ctor_impl();
+    void_t         _dtor_impl();
     std::tstring_t _setAttrs_impl(cFG fg, cBG bg, cAttr attrs) const;
     std::tstring_t _clearAttrs_impl() const;
     std::tstring_t _read_impl() const;
