@@ -1,5 +1,5 @@
 /**
- * \file  Console_unix.inl
+ * \file  Color_unix.inl
  * \brief Shell console
  */
 
