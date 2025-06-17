@@ -19,7 +19,7 @@ namespace xl::system
 
 //-------------------------------------------------------------------------------------------------
 class Color
-	/// Shell console
+	/// Shell console color
 {
 public:
 	enum class FG
