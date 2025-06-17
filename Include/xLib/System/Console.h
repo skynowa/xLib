@@ -1,11 +1,6 @@
 /**
  * \file  Console.h
  * \brief Shell console
- *
- * \libs
- *
- * - https://github.com/ikalnytskyi/termcolor/blob/master/include/termcolor/termcolor.hpp
- * - https://github.com/yurablok/colored-cout/blob/master/colored_cout.h
  */
 
 
