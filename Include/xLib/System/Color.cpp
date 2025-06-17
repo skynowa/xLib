@@ -30,11 +30,7 @@ Color::Color(
 	cbool_t a_isColorSupport, ///< force set color support (for PS1, etc)
 	cbool_t a_isEscapeValues  ///< escaping values (UNIX only)
 ) :
-	_isColorSupport{a_isColorSupport},
-	_isEscapeValues{a_isEscapeValues},
-	_fg            {FG::Default},
-	_bg            {BG::Default},
-	_attrs         {Attr::AllOff}
+	Color(a_isColorSupport, a_isEscapeValues, FG::Default, BG::Default, Attr::AllOff)
 {
 }
 //-------------------------------------------------------------------------------------------------
