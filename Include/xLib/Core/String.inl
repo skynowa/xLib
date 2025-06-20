@@ -4,13 +4,17 @@
  */
 
 
-#include <xLib/Test/Test.h>
-#include <xLib/Debug/Debug.h>
-#include <xLib/Debug/NativeError.h>
-#include <xLib/Debug/SourceInfo.h>
-#include <xLib/Debug/ErrorReport.h>
-#include <xLib/Debug/Debugger.h>
-#include <xLib/Debug/StackTrace.h>
+#if 0
+	#include <xLib/Test/Test.h>
+	#include <xLib/Debug/Debug.h>
+	#include <xLib/Debug/NativeError.h>
+	#include <xLib/Debug/SourceInfo.h>
+	#include <xLib/Debug/ErrorReport.h>
+	#include <xLib/Debug/Debugger.h>
+	#include <xLib/Debug/StackTrace.h>
+#else
+	#include <xLib/Test/TestMsg.h>
+#endif
 
 
 namespace xl::core
