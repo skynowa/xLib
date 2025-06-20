@@ -75,7 +75,7 @@ Console::write(
 ) const
 {
    /**
-	* Unix vs Windows implementation
+	* Windows vs Unix implementation
 	*
 	* Use sequence of write() methods, instead of concat strings
 	*/
