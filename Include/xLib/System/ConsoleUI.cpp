@@ -53,7 +53,7 @@ ConsoleUI::msgBox(
 		}
 	}
 
-	_console.writeLine();
+	_console.writeNl();
 	_console.writeLine(Format::str(xT("+{}+"), std::tstring_t(width - 2, xT('-'))));
 	_console.writeLine(Format::str(xT("|{}|"), std::tstring_t(width - 2, xT(' '))));
 	_console.write(title);
@@ -61,7 +61,7 @@ ConsoleUI::msgBox(
 	_console.write(multiText);
 	_console.writeLine(Format::str(xT("|{}|"), std::tstring_t(width - 2, xT(' '))));
 	_console.writeLine(Format::str(xT("+{}+"), std::tstring_t(width - 2, xT('-'))));
-	_console.writeLine();
+	_console.writeNl();
 	_console.write(Format::str(xT("\nAbort ({}), Ignore ({}), Retry ({}): "),
 		cmdAbort, cmdIgnore, cmdRetry));
 

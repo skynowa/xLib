@@ -34,10 +34,8 @@ public:
         ///< read
     void_t         write(std::ctstring_t &str) const;
         ///< write
-    void_t         writeLine(std::ctstring_t &str = {}) const;
+    void_t         writeLine(std::ctstring_t &str) const;
         ///< write line
-    void_t         writeErrLine(std::ctstring_t &str) const;
-        ///< write error message
     void_t         write(const Color &color, std::ctstring_t &str) const;
         ///< write with colors
     void_t         writeLine(const Color &color, std::ctstring_t &str) const;

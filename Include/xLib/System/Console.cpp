@@ -61,21 +61,11 @@ Console::write(
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::writeLine(
-    std::ctstring_t &a_str /* = {} */
+    std::ctstring_t &a_str
 ) const
 {
     write(a_str);
     writeNl();
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Console::writeErrLine(
-    std::ctstring_t &a_str
-) const
-{
-    writeLine(xT("Error: ") + a_str);
-
-    pause(xTIMEOUT_INFINITE);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
