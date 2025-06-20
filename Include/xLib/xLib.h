@@ -128,6 +128,7 @@
 // System
 #include <xLib/System/CmdOptions.h>
 #include <xLib/System/Console.h>
+#include <xLib/System/Color.h>
 #include <xLib/System/ConsoleUI.h>
 #include <xLib/System/Env.h>
 #include <xLib/System/ProcessInfo.h>
