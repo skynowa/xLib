@@ -28,6 +28,9 @@ public:
 	void_t write(cLevel level, std::ctstring_t &msg) const final;
 ///\}
 
+private:
+	cbool_t _isColorSupport {true};
+
 xPLATFORM_IMPL:
     void_t _write_impl(std::ctstring_t &msg) const;
 };
