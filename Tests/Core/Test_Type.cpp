@@ -15,7 +15,7 @@ Test_Type::unit()
 {
     xTEST_CASE("ctors")
     {
-		Cout()
+		LogCout()
 			<< xT("Print types:")      << std::endl
 			<< xTYPE_NAME_GET(m_fRv)   << std::endl
 			<< xTYPE_NAME_GET(m_sRv)   << std::endl
@@ -23,7 +23,7 @@ Test_Type::unit()
 			<< xTYPE_NAME_GET(m_mmsRv) << std::endl
 			<< xTYPE_NAME_GET(m_vsRv)  << std::endl << std::endl;
 
-		Cout()
+		LogCout()
 			<< xT("Print vars:")   << std::endl
 			<< xTRACE_VAR(m_fRv)   << std::endl
 			<< xTRACE_VAR(m_sRv)   << std::endl
@@ -33,7 +33,7 @@ Test_Type::unit()
 
 		// TODO: review
 		if (0) {
-			Cout()
+			LogCout()
 				<< Type<float>(float()).name() << std::endl
 				<< Type<std::string>(std::string()).name() << std::endl
 				<< Type<std::map_tstring_t>(std::map_tstring_t()).name() << std::endl

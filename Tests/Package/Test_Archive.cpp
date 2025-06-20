@@ -15,7 +15,7 @@ bool_t
 Test_Archive::unit()
 {
 	if ( isGithubCI() ) {
-		Cout() << "GithubCI - skip";
+		LogCout() << "GithubCI - skip";
 		return true;
 	}
 
@@ -102,7 +102,7 @@ Test_Archive::unit()
 				isAutoDetectType);
 			xTEST(m_bRv);
 		} else {
-			Cout() << "[TODO]";
+			LogCout() << "[TODO]";
 		}
 	}
 

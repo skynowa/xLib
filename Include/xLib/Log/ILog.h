@@ -4,6 +4,7 @@
  *
  * \libs
  *
+ * - https://github.com/gabime/spdlog
  * - https://userver.tech/df/d0c/md_en_2userver_2logging.html
  */
 
@@ -11,6 +12,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/Core/OStream.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::log
 {
@@ -22,13 +24,12 @@ public:
 	enum class Level
         /// log level
 	{
-		Off      = 0,
-		Trace    = 1,
-		Debug    = 2,
-		Info     = 3,
-		Warning  = 4,
-		Error    = 5,
-		Critical = 6
+		Trace    = 0,
+		Debug    = 1,
+		Info     = 2,
+		Warning  = 3,
+		Error    = 4,
+		Critical = 5
 	};
 	xUSING_CONST(Level);
 
@@ -40,43 +41,30 @@ public:
 	xNO_COPY_ASSIGN(ILog);
 ///\}
 
-    void_t         setEnabled(cbool_t flag);
+    void_t setEnabled(cbool_t flag);
         ///< set enabled
 
+    template<typename... Args>
+    void_t trace(cptr_ctchar_t fmt, Args &&... args) const;
+    template<typename... Args>
+    void_t debug(cptr_ctchar_t fmt, Args &&... args) const;
+    template<typename... Args>
+    void_t info(cptr_ctchar_t fmt, Args &&... args) const;
+    template<typename... Args>
+    void_t warning(cptr_ctchar_t fmt, Args &&... args) const;
+    template<typename... Args>
+    void_t error(cptr_ctchar_t fmt, Args &&... args) const;
+    template<typename... Args>
+    void_t critical(cptr_ctchar_t fmt, Args &&... args) const;
+
+protected:
     virtual void_t write(cLevel level, std::ctstring_t &msg) const = 0;
-        ///< write with EOL to log
-
-    template<typename... Args>
-    void_t trace(cptr_ctchar_t fmt, Args&&... args) const;
-    template<typename... Args>
-    void_t debug(cptr_ctchar_t fmt, Args&&... args) const;
-    template<typename... Args>
-    void_t info(cptr_ctchar_t fmt, Args&&... args) const;
-    template<typename... Args>
-    void_t warning(cptr_ctchar_t fmt, Args&&... args) const;
-    template<typename... Args>
-    void_t error(cptr_ctchar_t fmt, Args&&... args) const;
-    template<typename... Args>
-    void_t critical(cptr_ctchar_t fmt, Args&&... args) const;
-
-    // Template operator<< in base class (not virtual)
-#if 0
-	template <typename T>
-	ILog & operator << (const T& value)
-	{
-		OStream oss;
-		oss << value;
-
-		write({}, xT("%s"), oss.str().c_str());  // Calls overridden method
-
-		return *this;
-	}
-#endif
+        ///< write to log (with EOL)
 
 protected:
     bool_t _isEnable {true};  ///< is enabled
 
-    std::tstring_t _levelString(cLevel level) const;
+	std::tstring_t _levelString(cLevel level) const;
 };
 
 } // namespace
@@ -88,7 +76,6 @@ protected:
  *
  * \todo
  *
- * - operator <<
  * - https://oopscenities.net/2011/04/30/c-the-curiously-recurring-template-pattern/#more-21
  * - class LogItem:
  *
@@ -103,10 +90,12 @@ protected:
  *   - StackTrace
  *   - infoAdd
  *
+ * - Color support
  * - Setter proxy class
  * - logIf() - with some condition
  *
  * \done
  *
  * - write as trace(), debug(), info(), ...
+ * - operator <<
  */

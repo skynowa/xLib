@@ -12,6 +12,7 @@
 #include <xLib/System/ProcessInfo.h>
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Dir.h>
+#include <xLib/Log/LogStream.h>
 #include <xLib/Sync/Process.h>
 #include <xLib/System/User.h>
 

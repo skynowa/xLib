@@ -7,6 +7,7 @@
  * - https://github.com/doctest/doctest
  * - https://github.com/google/fuzztest
  * - https://github.com/CxxTest/cxxtest
+ * - https://github.com/smikes/CppUnitLite
  */
 
 
@@ -278,11 +279,11 @@ class Debugger;
     ///< at this point debug code for variables is not applicable
 
 #define xTEST_GROUP(groupName) \
-	Cout() << xT("\n\t[") << xT(groupName) << xT("]")
+	LogCout() << xT("\n\t[") << xT(groupName) << xT("]")
 	///< test group of cases
 
 #define xTEST_CASE(caseName) \
-	Cout() << xT("\tCase: ") << xT(caseName); \
+	LogCout() << xT("\tCase: ") << xT(caseName); \
 	for (size_t caseLoops = 0; caseLoops < option().caseLoops; ++ caseLoops)
     ///< test case
 
@@ -323,15 +324,15 @@ class Debugger;
             bRv = unit.run(); \
         } \
         catch (const xl::debug::Exception &a_xlibException) { \
-            Cout() << a_xlibException.what(); \
+            LogCout() << a_xlibException.what(); \
             bRv = false; \
         } \
         catch (const std::exception &a_stdException) { \
-            Cout() << a_stdException.what(); \
+            LogCout() << a_stdException.what(); \
             bRv = false; \
         } \
         catch (...) { \
-            Cout() << xT("Unknown error"); \
+            LogCout() << xT("Unknown error"); \
             bRv = false; \
         } \
         \

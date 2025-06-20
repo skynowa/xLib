@@ -121,7 +121,7 @@ Translate::run(
 			std::ctstring_t  encodingOut  = encoding;
 
 			xCHECK_DO(query.size() > querySizeMax,
-				Cout() << xT("Warning: ") << xTRACE_VAR_2(querySizeMax, query.size()));
+				LogCout() << xT("Warning: ") << xTRACE_VAR_2(querySizeMax, query.size()));
 
 			const std::map_tstring_t request
 			{
@@ -133,7 +133,7 @@ Translate::run(
 				{xT("q"),  query}
 			};
 
-			// Cout() << xTRACE_VAR(request);
+			// LogCout() << xTRACE_VAR(request);
 
 			for (const auto &[param, value] : request) {
 				dataIn.request += param + xT("=") + _http.escape(value) + xT("&");
@@ -152,7 +152,7 @@ Translate::run(
 	bRv = _http.get(dataIn, &dataOut);
 	xTEST(bRv);
 	if ( !_http.isSuccess(dataOut) ) {
-		// Cout() << xTRACE_VAR(dataOut.body);
+		// LogCout() << xTRACE_VAR(dataOut.body);
 
 		*out_textToBrief  = Format::str(xT("Error: {}"), dataOut.responseCode);
 		*out_textToDetail = Format::str(xT("Error: {}"), dataOut.responseCode);
@@ -168,7 +168,7 @@ Translate::run(
 	xTEST(!dataOut.body.empty());
 
 #if 0
-	Cout()
+	LogCout()
 		<< xTRACE_VAR(dataIn.request)   << std::endl
 		<< xT("\n")
 		<< xTRACE_VAR(dataOut.contentType)  << std::endl
@@ -206,8 +206,8 @@ Translate::_langsDetect(
     cbool_t is_log = false;
 
 	if (is_log) {
-		Cout() << xTRACE_VAR(a_text);
-		Cout() << xTRACE_VAR(a_text.size());
+		LogCout() << xTRACE_VAR(a_text);
+		LogCout() << xTRACE_VAR(a_text.size());
 	}
 
     std::size_t countEn {};
@@ -222,7 +222,7 @@ Translate::_langsDetect(
 			const auto letterLower = letter.toLower().get();
 			/// TODO: letterLower.isAlpha() - for RU text not work
 			if (0) {
-				Cout() << xTRACE_VAR(letter.isAlpha());
+				LogCout() << xTRACE_VAR(letter.isAlpha());
 				xCHECK_DO(!letter.isAlpha(), continue);
 			}
 
@@ -230,8 +230,8 @@ Translate::_langsDetect(
 			xCHECK_DO(lettersRu.find(letterLower) != std::tstring_t::npos, ++ countRu);
 
 			if (is_log) {
-				Cout() << xTRACE_VAR(countEn);
-				Cout() << xTRACE_VAR(countRu);
+				LogCout() << xTRACE_VAR(countEn);
+				LogCout() << xTRACE_VAR(countRu);
 			}
 		}
 	}
@@ -246,7 +246,7 @@ Translate::_langsDetect(
         *out_langTo   = Language::Ru;
 
 		if (is_log) {
-			Cout() << "Langs: en-ru";
+			LogCout() << "Langs: en-ru";
 		}
     }
     else if (isRu) {
@@ -254,12 +254,12 @@ Translate::_langsDetect(
         *out_langTo   = Language::En;
 
 		if (is_log) {
-			Cout() << "Langs: ru-en";
+			LogCout() << "Langs: ru-en";
 		}
     }
     else if (isMixed) {
 		if (is_log) {
-			Cout() << "Langs: mixed-mixed";
+			LogCout() << "Langs: mixed-mixed";
 		}
 
         cbool_t isPreferEn = (countEn >= countRu);
@@ -270,7 +270,7 @@ Translate::_langsDetect(
             *out_langTo   = Language::Ru;
 
 			if (is_log) {
-				Cout() << "Langs (prefer): en-ru";
+				LogCout() << "Langs (prefer): en-ru";
 			}
         }
         else if (isPreferRu) {
@@ -278,7 +278,7 @@ Translate::_langsDetect(
             *out_langTo   = Language::En;
 
 			if (is_log) {
-				Cout() << "Langs (prefer): ru-en";
+				LogCout() << "Langs (prefer): ru-en";
 			}
         }
         else {
@@ -291,15 +291,15 @@ Translate::_langsDetect(
         *out_langTo   = Language::Auto;
 
 		if (is_log) {
-			Cout() << "Langs: unknown-unknown";
+			LogCout() << "Langs: unknown-unknown";
 		}
     }
     else {
         *out_langFrom = Language::Unknown;
         *out_langTo   = Language::Unknown;
 
-		Cout() << xTRACE_VAR(countEn);
-		Cout() << xTRACE_VAR(countRu);
+		LogCout() << xTRACE_VAR(countEn);
+		LogCout() << xTRACE_VAR(countRu);
 
         xTEST(false);
     }

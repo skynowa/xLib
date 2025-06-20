@@ -8,6 +8,7 @@
 
 #include <xLib/Core/Const.h>
 #include <xLib/Fs/Path.h>
+#include <xLib/Log/LogStream.h>
 
 #if   xENV_WIN
     #include "Platform/Win/IpcSemaphore_win.inl"
@@ -29,14 +30,14 @@ IpcSemaphore::IpcSemaphore()
 {
     xTEST(!_isValid());
 
-    _construct_impl();
+    _ctor_impl();
 }
 //-------------------------------------------------------------------------------------------------
 IpcSemaphore::~IpcSemaphore()
 {
     xTEST(_isValid());
 
-    _destruct_impl();
+    _dtor_impl();
 }
 //-------------------------------------------------------------------------------------------------
 long_t

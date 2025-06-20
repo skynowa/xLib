@@ -14,7 +14,7 @@ namespace xl::sync
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Process::_destruct_impl()
+Process::_dtor_impl()
 {
     BOOL blRv = FALSE;
 

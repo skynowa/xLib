@@ -1,10 +1,10 @@
 /**
- * \file  Trace.cpp
+ * \file  Cout.cpp
  * \brief Tracing to debugger, std::cout
  */
 
 
-#include "Trace.h"
+#include "Cout.h"
 
 #include <xLib/Core/Const.h>
 #include <xLib/Debug/NativeError.h>
@@ -13,9 +13,9 @@
 #include <xLib/Debug/Debugger.h>
 
 #if   xENV_WIN
-    #include "Platform/Win/Trace_win.inl"
+    #include "Platform/Win/Cout_win.inl"
 #elif xENV_UNIX
-    #include "Platform/Unix/Trace_unix.inl"
+    #include "Platform/Unix/Cout_unix.inl"
 #endif
 
 
@@ -29,12 +29,12 @@ namespace xl::log
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-Trace::~Trace()
+Cout::~Cout()
 {
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-Trace::write(
+Cout::write(
     cLevel           a_level,
     std::ctstring_t &a_msg
 ) const /* final */

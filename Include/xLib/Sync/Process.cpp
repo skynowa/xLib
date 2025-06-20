@@ -14,6 +14,7 @@
 #include <xLib/Fs/FileInfo.h>
 #include <xLib/Fs/Dll.h>
 #include <xLib/Fs/Finder.h>
+#include <xLib/Log/LogStream.h>
 #include <xLib/Sync/Thread.h>
 #include <xLib/System/Env.h>
 
@@ -48,7 +49,7 @@ Process::Process()
 /* virtual */
 Process::~Process()
 {
-    _destruct_impl();
+    _dtor_impl();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -61,9 +62,9 @@ Process::create(
 )
 {
 #if 0
-	Cout() << xTRACE_VAR(a_filePath) << std::endl;
-	Cout() << xTRACE_VAR(a_params) << std::endl;
-	Cout() << xTRACE_VAR(a_envs) << std::endl;
+	LogCout() << xTRACE_VAR(a_filePath) << std::endl;
+	LogCout() << xTRACE_VAR(a_params) << std::endl;
+	LogCout() << xTRACE_VAR(a_envs) << std::endl;
 #endif
 
 	xTEST(!a_filePath.empty());
@@ -73,9 +74,9 @@ Process::create(
     xTEST_NA(out_stdError);
 
 	xCHECK_DO(!FileInfo(a_filePath).isExists(),
-		Cout() << xTRACE_VAR(a_filePath) << xT(" not exists"); return);
+		LogCout() << xTRACE_VAR(a_filePath) << xT(" not exists"); return);
 	xCHECK_DO(!FileType(a_filePath).isExecutable(),
-		Cout() << xTRACE_VAR(a_filePath) << xT(" not executable"); return);
+		LogCout() << xTRACE_VAR(a_filePath) << xT(" not executable"); return);
 
     _create_impl(a_filePath, a_params, a_envs, out_stdOut, out_stdError);
 }
@@ -103,7 +104,7 @@ Process::kill(
 		return;
 	}
 
-	Cout() << xT("Kill: ") << xTRACE_VAR(_pid) << std::endl;
+	LogCout() << xT("Kill: ") << xTRACE_VAR(_pid) << std::endl;
 
     _kill_impl(a_timeoutMsec);
 }

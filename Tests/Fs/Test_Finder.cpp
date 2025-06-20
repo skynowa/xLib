@@ -100,7 +100,7 @@ Test_Finder::unit()
                 entries.push_back(finder.entryName());
             }
 
-            // Cout() << filter << "\n" << xTRACE_VAR(rootDirPath) << entries;
+            // LogCout() << filter << "\n" << xTRACE_VAR(rootDirPath) << entries;
             xTEST_EQ(it_data.expect, entries.size());
         }
     }
@@ -112,7 +112,7 @@ Test_Finder::unit()
             m_vsRv.clear();
 
             Finder::dirs(rootDirPath, Const::maskAll(), false, &m_vsRv);
-            // Cout() << m_vsRv;
+            // LogCout() << m_vsRv;
             xTEST_EQ(dirs.size(), m_vsRv.size());
         }
 
@@ -121,7 +121,7 @@ Test_Finder::unit()
             m_vsRv.clear();
 
             Finder::dirs(rootDirPath, Const::maskAll(), true, &m_vsRv);
-            // Cout() << m_vsRv;
+            // LogCout() << m_vsRv;
             xTEST_EQ(size_t(6), m_vsRv.size());
         }
     }
@@ -149,7 +149,7 @@ Test_Finder::unit()
                 m_vsRv.clear();
 
                 Finder::files(rootDirPath, it_data.test, false, &m_vsRv);
-                // Cout() << m_vsRv;
+                // LogCout() << m_vsRv;
                 xTEST_EQ(it_data.expect, m_vsRv.size());
             }
         }
@@ -175,7 +175,7 @@ Test_Finder::unit()
                 m_vsRv.clear();
 
                 Finder::files(rootDirPath, it_data.test, true, &m_vsRv);
-                // Cout() << m_vsRv;
+                // LogCout() << m_vsRv;
                 xTEST_EQ(it_data.expect, m_vsRv.size());
             }
         }
@@ -208,7 +208,7 @@ Test_Finder::unit()
 
 		for (const auto &it_data : data) {
 			m_sRv = Finder::file(it_data.dirPaths, it_data.fileName, it_data.isRecursively);
-			// Cout() << xTRACE_VAR(m_sRv);
+			// LogCout() << xTRACE_VAR(m_sRv);
 			xTEST_EQ(m_sRv, it_data.expect);
 		}
 	}

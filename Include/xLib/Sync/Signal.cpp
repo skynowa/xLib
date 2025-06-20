@@ -20,6 +20,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/Debugger.h>
+#include <xLib/Log/LogStream.h>
 
 #if xENV_UNIX
 
@@ -82,11 +83,11 @@ Signal::connect(
     for (const auto &it : a_signalNums) {
         switch (it) {
         case SIGKILL:
-        	Cout() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
+        	LogCoutWarning() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
 							xLEX_TO_STR(SIGKILL), SIGKILL);
 			continue;
 		case SIGSTOP:
-			Cout() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
+			LogCoutWarning() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
 							xLEX_TO_STR(SIGSTOP), SIGSTOP);
             continue;
             break;
@@ -181,11 +182,11 @@ Signal::connectInfo(
     for (const auto &it : a_signalNums) {
         switch (it) {
         case SIGKILL:
-        	Cout() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
+        	LogCoutWarning() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
 							xLEX_TO_STR(SIGKILL), SIGKILL);
 			continue;
 		case SIGSTOP:
-			Cout() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
+			LogCoutWarning() << Format::str(xT("xLib: Signal {} ({}) cannot be caught or ignored"),
 							xLEX_TO_STR(SIGSTOP), SIGSTOP);
             continue;
             break;

@@ -1,6 +1,6 @@
 /**
- * \file   Trace.inl
- * \brief  tracer
+ * \file  Cout.inl
+ * \brief tracer
  */
 
 
@@ -15,7 +15,7 @@ namespace xl::log
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-Trace::_write_impl(
+Cout::_write_impl(
     std::ctstring_t &a_msg
 ) const
 {

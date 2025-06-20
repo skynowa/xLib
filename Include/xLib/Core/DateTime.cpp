@@ -564,9 +564,9 @@ DateTime::format(
 	date.tm_isdst = {};
 
 #if 0
-	Cout() << date;
-	Cout() << xTRACE_VAR(a_format);
-	Cout() << xTRACE_VAR(a_formatMsec);
+	LogCout() << date;
+	LogCout() << xTRACE_VAR(a_format);
+	LogCout() << xTRACE_VAR(a_formatMsec);
 #endif
 
 	tchar_t buff[80 + 1] {};

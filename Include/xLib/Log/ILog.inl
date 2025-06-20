@@ -19,12 +19,11 @@ namespace xl::log
 template<typename... Args>
 inline void_t
 ILog::trace(
-	cptr_ctchar_t a_fmt,
-	Args&&...     a_args
+	cptr_ctchar_t      a_fmt,
+	Args          &&...a_args
 ) const
 {
-    xCHECK_DO(!_isEnable,       return);
-    xCHECK_DO(a_fmt == nullptr, return);
+    xCHECK_DO(!_isEnable, return);
 
     std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
     write(Level::Trace, msg);
@@ -33,12 +32,11 @@ ILog::trace(
 template<typename... Args>
 inline void_t
 ILog::debug(
-	cptr_ctchar_t a_fmt,
-	Args&&...     a_args
+	cptr_ctchar_t      a_fmt,
+	Args          &&...a_args
 ) const
 {
-    xCHECK_DO(!_isEnable,       return);
-    xCHECK_DO(a_fmt == nullptr, return);
+    xCHECK_DO(!_isEnable, return);
 
 	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
 	write(Level::Debug, msg);
@@ -47,12 +45,11 @@ ILog::debug(
 template<typename... Args>
 inline void_t
 ILog::info(
-	cptr_ctchar_t a_fmt,
-	Args&&...     a_args
+	cptr_ctchar_t      a_fmt,
+	Args          &&...a_args
 ) const
 {
-    xCHECK_DO(!_isEnable,       return);
-    xCHECK_DO(a_fmt == nullptr, return);
+    xCHECK_DO(!_isEnable, return);
 
 	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
 	write(Level::Info, msg);
@@ -61,12 +58,11 @@ ILog::info(
 template<typename... Args>
 inline void_t
 ILog::warning(
-	cptr_ctchar_t a_fmt,
-	Args&&...     a_args
+	cptr_ctchar_t      a_fmt,
+	Args          &&...a_args
 ) const
 {
-    xCHECK_DO(!_isEnable,       return);
-    xCHECK_DO(a_fmt == nullptr, return);
+    xCHECK_DO(!_isEnable, return);
 
 	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
 	write(Level::Warning, msg);
@@ -75,12 +71,11 @@ ILog::warning(
 template<typename... Args>
 inline void_t
 ILog::error(
-	cptr_ctchar_t a_fmt,
-	Args&&...     a_args
+	cptr_ctchar_t      a_fmt,
+	Args          &&...a_args
 ) const
 {
-    xCHECK_DO(!_isEnable,       return);
-    xCHECK_DO(a_fmt == nullptr, return);
+    xCHECK_DO(!_isEnable, return);
 
 	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
 	write(Level::Error, msg);
@@ -89,12 +84,11 @@ ILog::error(
 template<typename... Args>
 inline void_t
 ILog::critical(
-	cptr_ctchar_t a_fmt,
-	Args&&...     a_args
+	cptr_ctchar_t      a_fmt,
+	Args          &&...a_args
 ) const
 {
-    xCHECK_DO(!_isEnable,       return);
-    xCHECK_DO(a_fmt == nullptr, return);
+    xCHECK_DO(!_isEnable, return);
 
 	std::ctstring_t msg = FormatC::str(a_fmt, std::forward<Args>(a_args)...);
 	write(Level::Critical, msg);

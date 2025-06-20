@@ -58,7 +58,7 @@ Test_Path::unit()
     	const Path path = Path::trashDir();
 
 		std::ctstring_t &sRv = path.str();
-		Cout() << xPRINT_VAR(sRv);
+		LogCout() << xPRINT_VAR(sRv);
 
 		if ( isGithubCI() ) {
 			xTEST(sRv.empty());
@@ -1044,7 +1044,7 @@ Test_Path::unit()
 
 		for (const auto &it_data : data) {
 			m_sRv = Path(it_data.filePath).brief(it_data.leftDirsNum, it_data.rightDirsNum).str();
-			// Cout() << xTRACE_VAR_2(m_sRv, it_data.expect) << "<<<";
+			// LogCout() << xTRACE_VAR_2(m_sRv, it_data.expect) << "<<<";
 			xTEST_EQ(m_sRv, it_data.expect);
 		}
 	}

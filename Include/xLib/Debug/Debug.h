@@ -37,13 +37,13 @@
     { if (expr) { do_expr; } }
     ///< check expression and do instructions
 #define xCHECK_MSG(expr, comment) \
-    { if (expr) { xl::core::Cout() << (comment); } }
+    { if (expr) { xl::log::LogCout() << (comment); } }
     ///< check expression and show message with comment
 #define xCHECK_MSG_RET(expr, comment, return_expr) \
-    { if (expr) { xl::core::Cout() << (comment); return (return_expr); } }
+    { if (expr) { xl::log::LogCout() << (comment); return (return_expr); } }
     ///< check expression, show message with comment and return value
 #define xCHECK_MSG_DO(expr, comment, do_expr) \
-    { if (expr) { xl::core::Cout() << (comment); do_expr; } }
+    { if (expr) { xl::log::LogCout() << (comment); do_expr; } }
     ///< check expression, show message with comment and do instructions
 #define xCHECK_NA(var) \
     ;
@@ -99,7 +99,7 @@
     { \
         xl::debug::SourceInfo sourceInfo(xFILE, xLINE, xFUNCTION, xCOUNTER); \
         \
-        xl::core::Cout() \
+        xl::log::LogCout() \
             << xT("\t::: ")  << sourceInfo.at() << xT(", ") \
             << xT("error: ") << NativeError::format() << xT(" :::"); \
     }
@@ -108,7 +108,7 @@
     { \
         xl::debug::SourceInfo sourceInfo(xFILE, xLINE, xFUNCTION, xCOUNTER); \
         \
-        xl::core::Cout() \
+        xl::log::LogCout() \
             << xT("\t::: ") << sourceInfo.option().funcName << xT(" :::"); \
     }
     ///< trace function (use Trace)
@@ -116,7 +116,7 @@
     { \
         xl::debug::SourceInfo sourceInfo(xFILE, xLINE, xFUNCTION, xCOUNTER); \
         \
-        xl::core::Cout() \
+        xl::log::LogCout() \
             << xT("\t::: ") << sourceInfo.option().funcName << xT(": ") << xTRACE_VAR(v) << xT(" :::"); \
     }
     ///< trace function variable (use Trace)
@@ -124,7 +124,7 @@
     { \
         xl::debug::SourceInfo sourceInfo(xFILE, xLINE, xFUNCTION, xCOUNTER); \
         \
-        xl::core::Cout() \
+        xl::log::LogCout() \
             << xT("\t::: ") << sourceInfo.option().funcName << xT(": Not implemented :::"); \
     }
     ///< trace not implemented message
@@ -132,7 +132,7 @@
     { \
         xl::debug::SourceInfo sourceInfo(xFILE, xLINE, xFUNCTION, xCOUNTER); \
         \
-        xl::core::Cout() \
+        xl::log::LogCout() \
             << xT("\t::: ") << sourceInfo.option().funcName << xT(": OS not supported :::"); \
     }
     ///< trace OS specific not supported message

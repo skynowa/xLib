@@ -12,6 +12,7 @@
 #include <xLib/Core/Utils.h>
 #include <xLib/Fs/Dir.h>
 #include <xLib/Fs/FileIO.h>
+#include <xLib/Log/LogStream.h>
 
 #if   xENV_WIN
     #include <xLib/System/Info/Platform/Win/PowerSupply_win.inl>

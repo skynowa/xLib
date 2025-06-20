@@ -150,7 +150,7 @@ GitClient::gitlabRepoGroupName() const
 	* \endcode
 	*/
 	std::ctstring_t &url = repoUrl();
-	// Cout() << xTRACE_VAR(url);
+	// LogCout() << xTRACE_VAR(url);
 
 	constexpr std::array protos
 	{
@@ -171,18 +171,18 @@ GitClient::gitlabRepoGroupName() const
 			xTEST_NA(a_sepRight);
 
 			size_t delimPosStop = a_str.rfind(a_sepRight);
-			// Cout() << xTRACE_VAR(delimPosStop);
+			// LogCout() << xTRACE_VAR(delimPosStop);
 			xCHECK_RET(delimPosStop == std::tstring_t::npos, std::tstring_t());
 
 			delimPosStop += a_sepRight.size() - 1;
 
 			size_t delimPosStart  = a_str.rfind(a_sepLeft, delimPosStop - 1);
-			// Cout() << xTRACE_VAR(delimPosStart);
+			// LogCout() << xTRACE_VAR(delimPosStart);
 			xCHECK_RET(delimPosStart == std::tstring_t::npos, std::tstring_t());
 			xCHECK_RET(delimPosStart >= delimPosStop,         std::tstring_t());
 
 			sRv = a_str.substr(delimPosStart + a_sepLeft.size(), delimPosStop - delimPosStart - 1);
-			// Cout() << xTRACE_VAR(sRv);
+			// LogCout() << xTRACE_VAR(sRv);
 
 			return sRv;
 		}
@@ -429,8 +429,8 @@ GitClient::modifiedFiles(
 
 	_gitExecute(params, &stdOut, &stdError);
 #if 0
-	Cout() << xTRACE_VAR(stdOut);
-	Cout() << xTRACE_VAR(stdError);
+	LogCout() << xTRACE_VAR(stdOut);
+	LogCout() << xTRACE_VAR(stdError);
 #endif
 
 	std::vec_tstring_t values;
@@ -474,8 +474,8 @@ GitClient::trackedFiles(
 
 	_gitExecute(params_master_diff, &stdOut, &stdError);
 #if 0
-	Cout() << xTRACE_VAR(stdOut);
-	Cout() << xTRACE_VAR(stdError);
+	LogCout() << xTRACE_VAR(stdOut);
+	LogCout() << xTRACE_VAR(stdError);
 #endif
 
 	std::vec_tstring_t values;

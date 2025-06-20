@@ -14,7 +14,7 @@ namespace xl::sync
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Condition::_destruct_impl()
+Condition::_dtor_impl()
 {
     int_t iRv = - 1;
 
@@ -75,7 +75,7 @@ Condition::_wait_impl(
 
             // handle overflow
             if (timeoutMs.tv_nsec >= 1000000000) {
-                Cout() << xT("xLib: Condition::vWait - handle overflow");
+            	LogCoutWarning() << xT("xLib: Condition::vWait - handle overflow");
 
                 ++ timeoutMs.tv_sec;
                 timeoutMs.tv_nsec -= 1000000000;

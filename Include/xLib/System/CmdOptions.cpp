@@ -43,7 +43,7 @@ CmdOptions::parse(
 	xUNUSED(a_usage);
 
 	// a_args: {host-name=0, date=0, time=1, test, =}
-	// Cout() << xTRACE_VAR(a_args);
+	// LogCout() << xTRACE_VAR(a_args);
 
 	std::cstring_t delimiter = xT("=");
 
@@ -75,7 +75,7 @@ CmdOptions::parse(
 		}
 	} // for (a_args)
 
-	// Cout() << xTRACE_VAR(_params);
+	// LogCout() << xTRACE_VAR(_params);
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -142,7 +142,7 @@ Thread::_setPriority_impl(
 ) const
 {
     if ( !User().isAdmin() ) {
-    	Cout() << xT("::: xLib: warning (Thread::setPriority fail, need root) :::");
+    	LogCoutWarning() << xT("::: xLib: warning (Thread::setPriority fail, need root) :::");
         return;
     }
 

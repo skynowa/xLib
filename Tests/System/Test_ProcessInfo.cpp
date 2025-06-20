@@ -26,7 +26,7 @@ Test_ProcessInfo::unit()
 
             ProcessInfo info(/* it */ Process::currentId());
             m_ulRv = info.cpuUsage();
-			// Cout() << xT("\tProcessInfo::cpuUsage(): ") << m_ulRv;
+            // LogCout() << xT("\tProcessInfo::cpuUsage(): ") << m_ulRv;
         }
     }
 
@@ -41,7 +41,7 @@ Test_ProcessInfo::unit()
 
             ProcessInfo info(/* it */ Process::currentId());
             m_ulRv = info.ramUsage();
-            // Cout() << xT("\tProcessInfo::ramUsage(): ") << m_ulRv;
+            // LogCout() << xT("\tProcessInfo::ramUsage(): ") << m_ulRv;
         }
     }
 
@@ -56,7 +56,7 @@ Test_ProcessInfo::unit()
 
             ProcessInfo info(/* it */ Process::currentId());
             m_ulRv = info.ioBytes();
-            // Cout() << xT("\tProcessInfo::ioBytes(): ") << m_ulRv;
+            // LogCout() << xT("\tProcessInfo::ioBytes(): ") << m_ulRv;
         }
     }
 

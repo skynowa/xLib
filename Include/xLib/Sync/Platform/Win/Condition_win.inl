@@ -14,9 +14,9 @@ namespace xl::sync
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Condition::_destruct_impl()
+Condition::_dtor_impl()
 {
-    // TODO: [skynowa] Condition::_destruct_impl()
+    // TODO: [skynowa] Condition::_dtor_impl()
     xTRACE_NOT_IMPLEMENTED
 }
 //-------------------------------------------------------------------------------------------------

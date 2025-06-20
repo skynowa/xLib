@@ -1,6 +1,6 @@
 /**
- * \file   SystemLog.inl
- * \brief  logging to system log
+ * \file  SystemLog.inl
+ * \brief logging to system log
  */
 
 
@@ -14,7 +14,7 @@ namespace xl::log
 
 //-------------------------------------------------------------------------------------------------
 void_t
-SystemLog::_construct_impl(
+SystemLog::_ctor_impl(
     std::ctstring_t &a_logName
 )
 {
@@ -23,7 +23,7 @@ SystemLog::_construct_impl(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-SystemLog::_destruct_impl()
+SystemLog::_dtor_impl()
 {
     xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
 

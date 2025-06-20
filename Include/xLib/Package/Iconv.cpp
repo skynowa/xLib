@@ -16,6 +16,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/StackTrace.h>
 #include <xLib/Debug/Debugger.h>
+#include <xLib/Log/LogStream.h>
 #include <xLib/Test/Test.h>
 
 //-------------------------------------------------------------------------------------------------
@@ -104,7 +105,7 @@ Iconv::convert(
 		if (uiRv == (size_t)-1) {
 			if      (errno == E2BIG)  {
 				// ignore this error
-				Cout() << xT("E2BIG - Argument list too long");
+				LogCout() << xT("E2BIG - Argument list too long");
 			}
 			else if (_isSkipErrors) {
 				// skip character
@@ -138,13 +139,13 @@ Iconv::_reportError() const
 {
 	switch (errno) {
 	case EILSEQ:
-		Cout() << xT("EILSEQ - Illegal byte sequence");
+		LogCout() << xT("EILSEQ - Illegal byte sequence");
 		break;
 	case EINVAL:
-		Cout() << xT("EINVAL - Invalid argument");
+		LogCout() << xT("EINVAL - Invalid argument");
 		break;
 	default:
-		Cout() << xT("Unknown error");
+		LogCout() << xT("Unknown error");
 		break;
 	}
 }

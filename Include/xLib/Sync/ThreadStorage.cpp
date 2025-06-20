@@ -34,7 +34,7 @@ ThreadStorage::ThreadStorage()
 {
 	xTEST(!isValid());
 
-    _construct_impl();
+    _ctor_impl();
 
     xTEST(isValid());
 }
@@ -44,7 +44,7 @@ ThreadStorage::~ThreadStorage()
 {
     xTEST(isValid());
 
-    _destruct_impl();
+    _dtor_impl();
 
     xTEST(!isValid());
 }

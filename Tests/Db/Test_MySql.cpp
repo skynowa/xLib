@@ -32,12 +32,12 @@ bool_t
 Test_MySql::unit()
 {
 	if ( isGithubCI() ) {
-		Cout() << "GithubCI - skip";
+		LogCout() << "GithubCI - skip";
 		return true;
 	}
 
 	if ( !isVpnActive() ) {
-		Cout() << "VPN off - skip";
+		LogCout() << "VPN off - skip";
 		return true;
 	}
 
@@ -59,15 +59,15 @@ Test_MySql::unit()
 			std::vec_tstring_t dbNames;
 
 			db.show(xT("%a%"), &dbNames);
-			// Cout() << xTRACE_VAR(dbNames);
+			// LogCout() << xTRACE_VAR(dbNames);
 			xTEST(!dbNames.empty());
 
 			db.show(xT("%XXXXXXXXXXx%"), &dbNames);
-			// Cout() << xTRACE_VAR(dbNames);
+			// LogCout() << xTRACE_VAR(dbNames);
 			xTEST(dbNames.empty());
 
 			db.show(&dbNames);
-			// Cout() << xTRACE_VAR(dbNames);
+			// LogCout() << xTRACE_VAR(dbNames);
 			xTEST(!dbNames.empty());
 		}
 
@@ -80,7 +80,7 @@ Test_MySql::unit()
 		xTEST_CASE("create")
 		{
 			if (options.isFabrica()) {
-				Cout() << xT("n/a");
+				LogCout() << xT("n/a");
 			} else {
 				/// db.create();
 				/// xTEST(db.isExists());
@@ -90,7 +90,7 @@ Test_MySql::unit()
 		xTEST_CASE("drop")
 		{
 			if (options.isFabrica()) {
-				Cout() << xT("n/a");
+				LogCout() << xT("n/a");
 			} else {
 				/// db.drop();
 				/// xTEST(!db.isExists());
@@ -168,7 +168,7 @@ Test_MySql::unit()
 
 			for (const auto &it_row : rows) {
 				xUNUSED(it_row);
-				// Cout() << xTRACE_VAR(it_row);
+				// LogCout() << xTRACE_VAR(it_row);
 			}
 
 			xTEST_EQ(conn.lastSql(), sql);

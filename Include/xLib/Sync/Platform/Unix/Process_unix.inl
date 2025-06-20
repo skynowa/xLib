@@ -19,7 +19,7 @@ namespace xl::sync
 
 //-------------------------------------------------------------------------------------------------
 void_t
-Process::_destruct_impl()
+Process::_dtor_impl()
 {
     xNA;
 }
@@ -57,14 +57,14 @@ Process::_create_impl(
 	// Create process
 	const pid_t pid = ::fork();
 	if      (pid == -1) {
-		// Cout() << "\n::::: ChildError :::::";
+		// LogCout() << "\n::::: ChildError :::::";
 
 		xTEST(false);
 		std::exit(EXIT_FAILURE);
 	}
 	// Child
 	else if (pid == 0) {
-		// Cout() << "\n::::: ChildOk :::::";
+		// LogCout() << "\n::::: ChildOk :::::";
 
 		std::vector<char *> cmds;
 		{
@@ -126,13 +126,13 @@ Process::_create_impl(
 		cint_t status = ::execve(xT2A(a_filePath).c_str(), cmd, env);
 		xTEST_DIFF(status, - 1);
 
-		// Cout() << "\n::::: ChildOk - Finished :::::";
+		// LogCout() << "\n::::: ChildOk - Finished :::::";
 
 		(void_t)::_exit(status);  // not std::exit()
 	}
 	// Parent
 	else if (pid > 0) {
-		// Cout() << "\n::::: ParentOk :::::";
+		// LogCout() << "\n::::: ParentOk :::::";
 		// printf("[PARENT] PID: %lld, parent PID: %d\n", getpid(), pid);
 
 		// read
@@ -166,7 +166,7 @@ Process::_create_impl(
 	_handle = pid;
 	_pid    = pid;
 
-	// Cout() << "\n::::: Finished :::::";
+	// LogCout() << "\n::::: Finished :::::";
 }
 //-------------------------------------------------------------------------------------------------
 /**
@@ -202,7 +202,7 @@ Process::_wait_impl(
 			* EINVAL - The value of options is incorrect
 			*/
 
-			Cout() << "wait() - error";
+			LogCout() << "wait() - error";
 
 			_exitStatus = static_cast<uint_t>( NativeError::get() );
 			waitStatus  = WaitStatus::Failed;
@@ -213,7 +213,7 @@ Process::_wait_impl(
 			* whose status information is not available, waitpid() returns 0
 			*/
 
-			// Cout() << "Child - running";
+			// LogCout() << "Child - running";
 		}
 		else {
 		   /**
@@ -225,23 +225,23 @@ Process::_wait_impl(
 			xTEST_GR(iRv, 0);
 
 			if      ( WIFEXITED(status) ) {
-				// Cout() << "Child - exited status: " << WEXITSTATUS(status) << " (" << status << ")";
+				// LogCout() << "Child - exited status: " << WEXITSTATUS(status) << " (" << status << ")";
 
 				// WEXITSTATUS - macro should be employed only if WIFEXITED returned true
 				_exitStatus = static_cast<uint_t>( WEXITSTATUS(status) );
 				waitStatus  = WaitStatus::Ok;
 			}
 			else if ( WIFSIGNALED(status) ) {
-				Cout() << "Child - killed by signal " << WTERMSIG(status);
+				LogCout() << "Child - killed by signal " << WTERMSIG(status);
 			}
 			else if ( WIFSTOPPED(status) ) {
-				Cout() << "Child - stopped by signal " << WSTOPSIG(status);
+				LogCout() << "Child - stopped by signal " << WSTOPSIG(status);
 			}
 			else if ( WIFCONTINUED(status) ) {
-				Cout() << "Child - continued";
+				LogCout() << "Child - continued";
 			}
 			else {
-				Cout() << "Child - did not exit successfully";
+				LogCout() << "Child - did not exit successfully";
 
 				_exitStatus = static_cast<uint_t>( NativeError::get() );
 				waitStatus  = WaitStatus::Abandoned;
@@ -320,7 +320,7 @@ Process::_isExists_impl() const
 	int_t iRv = ::kill(_pid, sigExistence);
 	xTEST_DIFF(iRv, - 1);
 
-	// Cout() << xTRACE_VAR_4(_pid, iRv, errno, isRunning(_pid)) << std::endl;
+	// LogCout() << xTRACE_VAR_4(_pid, iRv, errno, isRunning(_pid)) << std::endl;
 
 	if (iRv >= 0) {
 		return true;

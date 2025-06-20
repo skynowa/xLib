@@ -14,7 +14,7 @@ namespace xl::net
 
 //-------------------------------------------------------------------------------------------------
 void_t
-SocketInit::_construct_impl(
+SocketInit::_ctor_impl(
     cushort_t a_versionMajor,
     cushort_t a_versionMinor
 ) const
@@ -24,7 +24,7 @@ SocketInit::_construct_impl(
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-SocketInit::_destruct_impl() const
+SocketInit::_dtor_impl() const
 {
     xNA;
 }

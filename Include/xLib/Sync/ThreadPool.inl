@@ -4,10 +4,7 @@
  */
 
 
-#include <xLib/Sync/Mutex.h>
 #include <xLib/Sync/AutoMutex.h>
-#include <xLib/Sync/Thread.h>
-
 
 namespace xl::sync
 {
@@ -18,14 +15,14 @@ namespace xl::sync
 ***************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename T>
-Mutex ThreadPool<T>::_s_mutex;
+template<typename TaskT>
+Mutex ThreadPool<TaskT>::_s_mutex;
 
-template<typename T>
-Trace  ThreadPool<T>::_s_log;
+template<typename TaskT>
+Cout  ThreadPool<TaskT>::_s_log;
 //-------------------------------------------------------------------------------------------------
-template<typename T>
-ThreadPool<T>::ThreadPool(
+template<typename TaskT>
+ThreadPool<TaskT>::ThreadPool(
     cbool_t a_isPaused,
     cbool_t a_isAutoDelete,
     cbool_t a_isGroupPaused,
@@ -43,8 +40,8 @@ ThreadPool<T>::ThreadPool(
     // _s_log.trace(xT("ThreadPool: construct"));
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
-ThreadPool<T>::~ThreadPool()
+template<typename TaskT>
+ThreadPool<TaskT>::~ThreadPool()
 {
     _s_log.trace(xT("ThreadPool: destroy"));
 }
@@ -57,9 +54,9 @@ ThreadPool<T>::~ThreadPool()
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 void_t
-ThreadPool<T>::groupCreate(
+ThreadPool<TaskT>::groupCreate(
     cuint_t          &a_stackSize,
     const func_ptr_t  a_funcPtr,
     void_t           *a_param,
@@ -67,7 +64,7 @@ ThreadPool<T>::groupCreate(
     std::csize_t     &a_maxRunningTasks
 )
 {
-    xTEST_NA(a_stackSize); // TODO: [skynowa] ThreadPool<T>::groupCreate() - MaxValue
+    xTEST_NA(a_stackSize); // TODO: [skynowa] ThreadPool<TaskT>::groupCreate() - MaxValue
     xTEST_NA(a_funcPtr);
     xTEST_NA(a_param);
     xTEST_NA(a_numTasks);
@@ -94,9 +91,9 @@ ThreadPool<T>::groupCreate(
 	}
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 void_t
-ThreadPool<T>::groupResume()
+ThreadPool<TaskT>::groupResume()
 {
     xCHECK_DO(!isRunning(), _s_log.trace(xT("ThreadPool: not running")); return);
 
@@ -117,9 +114,9 @@ ThreadPool<T>::groupResume()
     resume();
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 void_t
-ThreadPool<T>::groupPause()
+ThreadPool<TaskT>::groupPause()
 {
     xCHECK_DO(!isRunning(), _s_log.trace(xT("ThreadPool: not running")); return);
 
@@ -140,15 +137,15 @@ ThreadPool<T>::groupPause()
     }
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 void_t
-ThreadPool<T>::groupExit(
+ThreadPool<TaskT>::groupExit(
     culong_t &a_timeoutMsec
 )
 {
     xUNUSED(a_timeoutMsec);
 
-    // TODO: [skynowa] ThreadPool<T>::groupExit() - a_timeoutMsec
+    // TODO: [skynowa] ThreadPool<TaskT>::groupExit() - a_timeoutMsec
 
     xCHECK_DO(!isRunning(), _s_log.trace(xT("ThreadPool: not running")); return);
 
@@ -170,9 +167,9 @@ ThreadPool<T>::groupExit(
     }
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 void_t
-ThreadPool<T>::groupKill(
+ThreadPool<TaskT>::groupKill(
     culong_t &a_timeoutMsec
 )
 {
@@ -197,9 +194,9 @@ ThreadPool<T>::groupKill(
     kill(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 void_t
-ThreadPool<T>::groupWait(
+ThreadPool<TaskT>::groupWait(
     culong_t &a_timeoutMsec
 )
 {
@@ -230,18 +227,18 @@ ThreadPool<T>::groupWait(
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 size_t
-ThreadPool<T>::maxTasks() const
+ThreadPool<TaskT>::maxTasks() const
 {
     // n/a
 
     return _maxRunningTasks;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 void_t
-ThreadPool<T>::setMaxTasks(
+ThreadPool<TaskT>::setMaxTasks(
     std::csize_t &a_num
 )
 {
@@ -270,7 +267,7 @@ ThreadPool<T>::setMaxTasks(
         size_t count       = 0U;
         size_t tasksForDec = _maxRunningTasks - a_num;
 
-        xFOR_EACH_R_CONST(typename std::list<T *>, it, _tasks) {
+        xFOR_EACH_R_CONST(typename std::list<TaskT *>, it, _tasks) {
             xCHECK_DO(!(*it)->isRunning(), _s_log.trace(xT("Not running")); continue);
 
             #if   xENV_WIN
@@ -301,18 +298,18 @@ ThreadPool<T>::setMaxTasks(
     xTEST_FAIL;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 size_t
-ThreadPool<T>::numTasks() const
+ThreadPool<TaskT>::numTasks() const
 {
     // n/a
 
     return _numTasks;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 void_t
-ThreadPool<T>::setNumTasks(
+ThreadPool<TaskT>::setNumTasks(
     std::csize_t &a_num
 )
 {
@@ -321,9 +318,9 @@ ThreadPool<T>::setNumTasks(
     _numTasks = a_num;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 bool_t
-ThreadPool<T>::isEmpty() const
+ThreadPool<TaskT>::isEmpty() const
 {
     AutoMutex mutex(&_s_mutex);
 
@@ -333,9 +330,9 @@ ThreadPool<T>::isEmpty() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 bool_t
-ThreadPool<T>::isFull() const
+ThreadPool<TaskT>::isFull() const
 {
     // xTEST_EQ(CONDITION);
 
@@ -349,9 +346,9 @@ ThreadPool<T>::isFull() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 size_t
-ThreadPool<T>::size() const
+ThreadPool<TaskT>::size() const
 {
     // xTEST_EQ(CONDITION);
 
@@ -371,9 +368,9 @@ ThreadPool<T>::size() const
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 uint_t
-ThreadPool<T>::onRun(
+ThreadPool<TaskT>::onRun(
     void_t *a_param
 ) /* override */
 {
@@ -444,9 +441,9 @@ ThreadPool<T>::onRun(
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 void_t
-ThreadPool<T>::_taskAdd(
+ThreadPool<TaskT>::_taskAdd(
     Thread *a_item
 )
 {
@@ -454,7 +451,7 @@ ThreadPool<T>::_taskAdd(
 
     // TODO: [skynowa] ThreadPool - a_item
 
-    T *task = new T(_isGroupAutoDelete);
+    auto *task = new TaskT(_isGroupAutoDelete);
 
     task->index = _currTask;
     // TODO: [skynowa] task->vAttachHandler_OnEnter( xCLOSURE(this, &ThreadPool::_vOnEnterTask) );
@@ -469,13 +466,13 @@ ThreadPool<T>::_taskAdd(
     }
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 void_t
-ThreadPool<T>::_taskRemove(
+ThreadPool<TaskT>::_taskRemove(
     Thread *a_item
 )
 {
-	auto task = static_cast<T *>( a_item );
+	auto task = static_cast<TaskT *>( a_item );
     xTEST_PTR(task);
     xTEST(task->isRunning());
 
@@ -496,9 +493,9 @@ ThreadPool<T>::_taskRemove(
     xTEST_PTR(task);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 void_t
-ThreadPool<T>::_onEnterTask(
+ThreadPool<TaskT>::_onEnterTask(
     Thread *a_sender
 )
 {
@@ -510,9 +507,9 @@ ThreadPool<T>::_onEnterTask(
     //_s_log.trace(xT("_vOnEnterTask: #%i"), a_pthTask->index);
 }
 //-------------------------------------------------------------------------------------------------
-template<typename T>
+template<typename TaskT>
 void_t
-ThreadPool<T>::_onExitTask(
+ThreadPool<TaskT>::_onExitTask(
     Thread *a_sender
 )
 {

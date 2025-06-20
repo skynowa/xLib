@@ -5,6 +5,7 @@
 
 
 #include <xLib/Core/String.h>
+#include <xLib/Log/LogStream.h>
 
 namespace xl::fs
 {
@@ -77,7 +78,7 @@ Config::setValue(
 		value = String::cast( std::tstring_t(a_value.cbegin(), a_value.cend()), 16);
 	}
 	else {
-		Cout() << xTRACE_VAR(a_value);
+		LogCout() << xTRACE_VAR(a_value);
 
 		value = a_value;
 	}

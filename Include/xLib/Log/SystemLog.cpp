@@ -43,20 +43,20 @@ namespace xl::log
 //-------------------------------------------------------------------------------------------------
 SystemLog::SystemLog()
 {
-    _construct_impl( Path::exe().fileBaseName() );
+    _ctor_impl( Path::exe().fileBaseName() );
 }
 //-------------------------------------------------------------------------------------------------
 SystemLog::SystemLog(
     std::ctstring_t &a_logName
 )
 {
-    _construct_impl(a_logName);
+    _ctor_impl(a_logName);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 SystemLog::~SystemLog()
 {
-    _destruct_impl();
+    _dtor_impl();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -67,9 +67,7 @@ SystemLog::write(
 {
     xCHECK_DO(!_isEnable, return);
 
-    const auto level = (a_level == ILog::Level::Trace) ? ILog::Level::Info : ILog::Level::Off;
-
-    _write_impl(level, a_msg);
+    _write_impl(a_level, a_msg);
 }
 //-------------------------------------------------------------------------------------------------
 

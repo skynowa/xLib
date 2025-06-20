@@ -91,9 +91,10 @@
 
 // Log
 #include <xLib/Log/ILog.h>
-#include <xLib/Log/Trace.h>
+#include <xLib/Log/Cout.h>
 #include <xLib/Log/FileLog.h>
 #include <xLib/Log/SystemLog.h>
+#include <xLib/Log/LogStream.h>
 
 // Net
 #include <xLib/Net/SocketInit.h>
@@ -127,6 +128,7 @@
 // System
 #include <xLib/System/CmdOptions.h>
 #include <xLib/System/Console.h>
+#include <xLib/System/Color.h>
 #include <xLib/System/ConsoleUI.h>
 #include <xLib/System/Env.h>
 #include <xLib/System/ProcessInfo.h>

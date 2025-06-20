@@ -55,7 +55,7 @@ public:
         ///< get integer in the range between 0 and RAND_MAX
 
 xPLATFORM_IMPL:
-    void_t _construct_impl();
+    void_t _ctor_impl();
     long_t _next_impl();
 };
 //-------------------------------------------------------------------------------------------------
@@ -85,8 +85,8 @@ private:
 #endif
 
 xPLATFORM_IMPL:
-    void_t _construct_impl();
-    void_t _destruct_impl();
+    void_t _ctor_impl();
+    void_t _dtor_impl();
     long_t _next_impl();
 };
 //-------------------------------------------------------------------------------------------------

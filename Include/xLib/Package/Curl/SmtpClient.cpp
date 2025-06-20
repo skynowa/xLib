@@ -6,6 +6,8 @@
 
 #include <xLib/Package/Curl/SmtpClient.h>
 
+#include <xLib/Log/LogStream.h>
+
 //-------------------------------------------------------------------------------------------------
 namespace xl::package::curl
 {
@@ -45,7 +47,7 @@ void_t
 SmtpClient::request()
 {
 #if 0
-	Cout()
+	LogCout()
 		<< xTRACE_VAR(_url)      << "\n"
 		<< xTRACE_VAR(_caPath)   << "\n"
 		<< xTRACE_VAR(_userName) << "\n"
@@ -141,7 +143,7 @@ SmtpClient::request()
 		_subject,
 		_body);
 
-	Cout()
+	LogCout()
 		<< "mimeMsg:\n"
 		<< "--------------------------------------------------\n"
 		<< mimeMsg

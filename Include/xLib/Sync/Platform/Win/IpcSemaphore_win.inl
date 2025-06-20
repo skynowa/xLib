@@ -14,13 +14,13 @@ namespace xl::sync
 
 //-------------------------------------------------------------------------------------------------
 void_t
-IpcSemaphore::_construct_impl()
+IpcSemaphore::_ctor_impl()
 {
     xNA;
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-IpcSemaphore::_destruct_impl()
+IpcSemaphore::_dtor_impl()
 {
 	xTEST(_isValid());
 

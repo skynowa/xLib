@@ -6,6 +6,8 @@
 
 #include "Event.h"
 
+#include <xLib/Log/LogStream.h>
+
 #if   xENV_WIN
     #include "Platform/Win/Event_win.inl"
 #elif xENV_UNIX

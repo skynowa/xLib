@@ -8,6 +8,7 @@
 
 #include <xLib/Core/String.h>
 #include <xLib/Core/Utils.h>
+#include <xLib/Log/LogStream.h>
 #include <xLib/System/Info/Cpu.h>
 #include <xLib/System/User.h>
 

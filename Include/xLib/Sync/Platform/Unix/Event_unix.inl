@@ -112,7 +112,7 @@ Event::_wait_impl(
 
                 // handle overflow
                 if (timeoutMsec.tv_nsec >= 1000000000) {
-                	Cout() << xT("::: xLib: Event::osWait - handle overflow :::");
+                	LogCoutWarning() << xT("::: xLib: Event::osWait - handle overflow :::");
 
                     ++ timeoutMsec.tv_sec;
                     timeoutMsec.tv_nsec -= 1000000000;
@@ -131,7 +131,7 @@ Event::_wait_impl(
         // } else {
         //    iRv = 0;
         // }
-        Cout() << xTRACE_VAR(iRv);
+        LogCout() << xTRACE_VAR(iRv);
 
         // adjust signaled member
         switch (iRv) {

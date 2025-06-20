@@ -20,7 +20,7 @@ ThreadStorage::_indexInvalid_impl() const
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-ThreadStorage::_construct_impl()
+ThreadStorage::_ctor_impl()
 {
     index_t index = _indexInvalid_impl();
 
@@ -31,7 +31,7 @@ ThreadStorage::_construct_impl()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-ThreadStorage::_destruct_impl()
+ThreadStorage::_dtor_impl()
 {
     int_t iRv = ::pthread_key_delete(_index);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));

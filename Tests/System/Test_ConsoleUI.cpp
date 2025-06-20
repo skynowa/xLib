@@ -24,7 +24,7 @@ Test_ConsoleUI::unit()
 		ConsoleUI::cResult rRes = ui.msgBox(title, text);
 		xUNUSED(rRes);
 	#else
-		Cout() << xT("[skip]");
+		LogCout() << xT("[skip]");
 	#endif
 	}
 
@@ -38,7 +38,7 @@ Test_ConsoleUI::unit()
 
 		ui.promptBox(title, text, isVisible, &answer);
 	#else
-		Cout() << xT("[skip]");
+		LogCout() << xT("[skip]");
 	#endif
 	}
 

@@ -183,44 +183,6 @@ protected:
 	struct TuplePrint<T, 1>;
 };
 //-------------------------------------------------------------------------------------------------
-class Cout :
-	public OStream
-    /// print std::cout
-{
-public:
-///\name ctors, dtor
-///\{
-	Cout() = default;
-   ~Cout() override
-	{
-		std::tcout << std::endl;
-	}
-
-	xNO_COPY_ASSIGN(Cout);
-///\}
-
-	template<typename T>
-	Cout & operator << (const T a_value)
-	{
-		OStream::operator << (a_value);
-
-		std::tcout << OStream::str();
-
-		OStream::str({});
-		OStream::clear();
-
-		return *this;
-	}
-
-	Cout & operator << (std::tostream_t& (*a_os)(std::tostream_t &))
-	{
-		/// this->_os << a_os;
-		a_os(std::tcout);
-
-		return *this;
-	}
-        ///< print std::endl
-};
 
 } // namespace
 //-------------------------------------------------------------------------------------------------

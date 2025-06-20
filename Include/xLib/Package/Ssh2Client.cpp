@@ -12,6 +12,7 @@
 #include <xLib/Net/DnsClient.h>
 #include <xLib/Debug/NativeError.h>
 #include <xLib/Debug/ErrorReport.h>
+#include <xLib/Log/LogStream.h>
 
 
 namespace xl::package
@@ -239,14 +240,14 @@ Ssh2Client::channelReadLine(
         break;
     case Ssh2ClientOption::StdFormat::sfHtml:
         if ( !stdErr.empty() ) {
-            Cout() << "\n" << stdErr;
+            LogCout() << "\n" << stdErr;
         }
 
         _convertStdToHtml(&stdOut);
         _convertStdToHtml(&stdErr);
 
         if ( !stdErr.empty() ) {
-            Cout() << "\n" << stdErr;
+            LogCout() << "\n" << stdErr;
         }
         break;
     case Ssh2ClientOption::StdFormat::sfUnknown:
@@ -278,10 +279,10 @@ Ssh2Client::_channelStdStreamReadLine(
         ssize_t read = 0;
         if (a_stdOutOrErr) {
             read = ::libssh2_channel_read(_channel, block, blockSizeMin);
-            // Cout() << "stdout: " << xTRACE_VAR(read);
+            // LogCout() << "stdout: " << xTRACE_VAR(read);
         } else {
             read = ::libssh2_channel_read_stderr(_channel, block, blockSizeMin);
-            // Cout() << "stderr: " << xTRACE_VAR(read);
+            // LogCout() << "stderr: " << xTRACE_VAR(read);
         }
 
         if (read == LIBSSH2_ERROR_EAGAIN) {
@@ -293,7 +294,7 @@ Ssh2Client::_channelStdStreamReadLine(
 
         *a_isChannelEof = static_cast<bool_t>( ::libssh2_channel_eof(_channel) );
         if (*a_isChannelEof && read == 0) {
-            Cout() << "libssh2_channel_eof: breaking";
+            LogCout() << "libssh2_channel_eof: breaking";
             break;
         }
 

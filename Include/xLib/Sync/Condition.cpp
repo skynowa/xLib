@@ -13,6 +13,7 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/Debug/StackTrace.h>
+#include <xLib/Log/LogStream.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Condition_win.inl"
@@ -33,7 +34,7 @@ namespace xl::sync
 /* virtual */
 Condition::~Condition()
 {
-    _destruct_impl();
+    _dtor_impl();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
