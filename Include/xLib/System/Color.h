@@ -97,8 +97,8 @@ private:
 	cbool_t _isEscapeValues {};
 		///< escaping values
 
-	cFG   _fg {FG::Default};
-	cBG   _bg {BG::Default};
+	cFG   _fg    {FG::Default};
+	cBG   _bg    {BG::Default};
 	cAttr _attrs {Attr::AllOff};
 
 xPLATFORM_IMPL:
