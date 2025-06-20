@@ -65,7 +65,7 @@ Color::clear() const
     return _clear_impl();
 }
 //-------------------------------------------------------------------------------------------------
-#if 0
+#if xENV_UNIX
 
 std::tstring_t
 Color::setText(
