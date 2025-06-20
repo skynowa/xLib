@@ -65,13 +65,17 @@ Color::clear() const
     return _clear_impl();
 }
 //-------------------------------------------------------------------------------------------------
+#if 0
+
 std::tstring_t
 Color::setText(
-    std::ctstring_t &a_str
+	std::ctstring_t &a_str
 ) const
 {
 	return set() + a_str + clear();
 }
+
+#endif
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Color::escape(
