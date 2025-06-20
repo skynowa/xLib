@@ -94,16 +94,16 @@ Console::_clear_impl() const
     xTEST(_stdIn.isValid());
     xTEST(_stdOut.isValid());
 
-    COORD                      coordScreen  {}; // here's where we'll home the cursor
-    DWORD                      charsWritten {};
-    CONSOLE_SCREEN_BUFFER_INFO csbi         {}; // to get buffer info
-    DWORD                      conSize      {}; // number of chars cells in the current buffer
-
     // get the number of character cells in the current buffer
+    CONSOLE_SCREEN_BUFFER_INFO csbi {};
     BOOL blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &csbi);
     xTEST_DIFF(blRv, FALSE);
 
-    conSize = csbi.dwSize.X * csbi.dwSize.Y;
+    // number of chars cells in the current buffer
+    const DWORD conSize = csbi.dwSize.X * csbi.dwSize.Y;
+
+    COORD coordScreen  {}; // here's where we'll home the cursor
+    DWORD charsWritten {};
 
     // fill the entire screen with blanks
     blRv = ::FillConsoleOutputCharacter(_stdOut.get(), xT(' '), conSize, coordScreen,
@@ -120,7 +120,7 @@ Console::_clear_impl() const
     xTEST_DIFF(blRv, FALSE);
 
     // put the cursor at (0, 0)
-    blRv = ::SetConsoleCursorPosition(_stdOut.get(), coordScreen );
+    blRv = ::SetConsoleCursorPosition(_stdOut.get(), coordScreen);
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
