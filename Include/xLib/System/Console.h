@@ -42,7 +42,7 @@ public:
         ///< write with colors
     void_t         writeNl() const;
     	///< write new line (NL)
-    void_t         pause(culong_t &timeoutMsec) const;
+    void_t         pause(culong_t timeoutMsec) const;
         ///< pause with timeout (msec)
     void_t         clear() const;
         ///< clear

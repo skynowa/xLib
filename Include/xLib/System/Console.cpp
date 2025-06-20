@@ -109,7 +109,7 @@ Console::writeNl() const
 //-------------------------------------------------------------------------------------------------
 void_t
 Console::pause(
-    culong_t &a_timeoutMsec
+    culong_t a_timeoutMsec
 ) const
 {
     std::tstring_t msg;
