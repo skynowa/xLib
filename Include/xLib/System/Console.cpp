@@ -91,7 +91,7 @@ Console::write(
 	*/
 
 #if   xENV_WIN
-	a_color.set();
+	(void_t)a_color.set();
 #elif xENV_UNIX
 	write( a_color.set() );
 #endif
@@ -99,7 +99,7 @@ Console::write(
 	write(a_str);
 
 #if   xENV_WIN
-	a_color.clear();
+	(void_t)a_color.clear();
 #elif xENV_UNIX
 	write( a_color.clear() );
 #endif
