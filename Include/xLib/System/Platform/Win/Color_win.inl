@@ -181,7 +181,7 @@ Color::_set_impl(
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), attrs);
     xTEST_DIFF(blRv, FALSE);
 
-    return {}; // not need for Windows
+    return {}; // n/a for Windows
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
@@ -193,7 +193,7 @@ Color::_clear_impl() const
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), _attrsDef);
     xTEST_DIFF(blRv, FALSE);
 
-    return {}; // not need for Windows
+    return {}; // n/a for Windows
 }
 //-------------------------------------------------------------------------------------------------
 
