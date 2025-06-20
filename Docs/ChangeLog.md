@@ -1,5 +1,13 @@
 # Change Log {#id_changelog}
 
+## console-attrs-split (#463)
+
+- **Commit:** [9dc29667e](https://github.com/skynowa/xLib/commit/9dc29667e)
+- **Author:** skynowa
+- **Date:** 2025-06-20
+
+Console / Color - split
+
 ## console-win-review (#464)
 
 - **Commit:** [7e3ed682f](https://github.com/skynowa/xLib/commit/7e3ed682f)
