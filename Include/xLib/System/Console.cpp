@@ -90,9 +90,19 @@ Console::write(
 	* Use sequence of write() methods, instead of concat strings
 	*/
 
+#if   xENV_WIN
+	a_color.set();
+#elif xENV_UNIX
 	write( a_color.set() );
+#endif
+
 	write(a_str);
+
+#if   xENV_WIN
+	a_color.clear();
+#elif xENV_UNIX
 	write( a_color.clear() );
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 void_t
