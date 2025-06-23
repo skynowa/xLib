@@ -16,6 +16,7 @@ namespace xl::internal::enums
 {
 
 constexpr Types<ILog::Level, std::ssize_t, 6> levels
+	///< Get item <Cross, Impl> by array index
 {{
 #if   xENV_WIN
     {ILog::Level::Trace,    EVENTLOG_SUCCESS},
