@@ -22,7 +22,7 @@ SystemLog::_ctor_impl(
     std::ctstring_t &a_logName
 )
 {
-    (void_t)::openlog(a_logName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
+    (void_t)::openlog(xT2A(a_logName).c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
