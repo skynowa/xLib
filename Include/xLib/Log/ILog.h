@@ -29,7 +29,7 @@ public:
 		Info     = 2,
 		Warning  = 3,
 		Error    = 4,
-		Critical = 5
+		Critical = 5	/// TODO: as CRIT, FATAL
 	};
 	xUSING_CONST(Level);
 
