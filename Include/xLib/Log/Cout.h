@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
+#include <xLib/System/Console.h>
 #include "ILog.h"
 //-------------------------------------------------------------------------------------------------
 namespace xl::log
@@ -30,6 +31,8 @@ public:
 
 private:
 	cbool_t _isColorSupport {true};
+
+	Console _console;
 
 xPLATFORM_IMPL:
     void_t _write_impl(std::ctstring_t &msg) const;

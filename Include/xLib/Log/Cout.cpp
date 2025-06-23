@@ -12,7 +12,6 @@
 #include <xLib/Debug/ErrorReport.h>
 #include <xLib/Debug/Debugger.h>
 #include <xLib/System/Color.h>
-#include <xLib/System/Console.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Cout_win.inl"
@@ -24,13 +23,14 @@
 namespace
 {
 
-constexpr auto attrBold = Color::Attr::Bold;
-
-const Color clBlackOnGreen  (true, false, Color::FG::Black, Color::BG::Green, attrBold);
-const Color clWhiteOnBlue   (true, false, Color::FG::White, Color::BG::Blue, attrBold);
-const Color clBlackOnYellow (true, false, Color::FG::Black, Color::BG::Yellow, attrBold);
-const Color clWhiteOnRed    (true, false, Color::FG::White, Color::BG::Red, attrBold);
-const Color clWhiteOnMagenta(true, false, Color::FG::White, Color::BG::Magenta, attrBold);
+///\name Colors
+///\{
+const Color clBlackOnGreen  (true, false, Color::FG::Black, Color::BG::Green,   Color::Attr::Bold);
+const Color clWhiteOnBlue   (true, false, Color::FG::White, Color::BG::Blue,    Color::Attr::Bold);
+const Color clBlackOnYellow (true, false, Color::FG::Black, Color::BG::Yellow,  Color::Attr::Bold);
+const Color clWhiteOnRed    (true, false, Color::FG::White, Color::BG::Red,     Color::Attr::Bold);
+const Color clWhiteOnMagenta(true, false, Color::FG::White, Color::BG::Magenta, Color::Attr::Bold);
+///\}
 
 }
 //-------------------------------------------------------------------------------------------------
@@ -61,17 +61,13 @@ Cout::write(
 		std::tstring_t levelStr = _levelString(a_level);
 
 		if (_isColorSupport) {
-
-
-			Console console;
-
 			switch (a_level) {
-				case Level::Trace:    xNA;                                       break;
-				case Level::Debug:    console.write(clBlackOnGreen,   levelStr); break;
-				case Level::Info:     console.write(clWhiteOnBlue,    levelStr); break;
-				case Level::Warning:  console.write(clBlackOnYellow,  levelStr); break;
-				case Level::Error:    console.write(clWhiteOnRed,     levelStr); break;
-				case Level::Critical: console.write(clWhiteOnMagenta, levelStr); break;
+				case Level::Trace:    xNA;                                          break;
+				case Level::Debug:    _console.write(::clBlackOnGreen,   levelStr); break;
+				case Level::Info:     _console.write(::clWhiteOnBlue,    levelStr); break;
+				case Level::Warning:  _console.write(::clBlackOnYellow,  levelStr); break;
+				case Level::Error:    _console.write(::clWhiteOnRed,     levelStr); break;
+				case Level::Critical: _console.write(::clWhiteOnMagenta, levelStr); break;
 			}
 
 			msg = xT(": ") + a_msg;

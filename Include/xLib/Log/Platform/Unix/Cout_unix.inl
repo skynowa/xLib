@@ -22,8 +22,7 @@ Cout::_write_impl(
 #if 0
 	std::tcout << a_msg << std::endl;
 #else
-	Console console;
-	console.writeLine(a_msg);
+	_console.writeLine(a_msg);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
