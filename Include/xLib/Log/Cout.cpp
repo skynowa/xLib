@@ -20,7 +20,20 @@
     #include "Platform/Unix/Cout_unix.inl"
 #endif
 
+//-------------------------------------------------------------------------------------------------
+namespace
+{
 
+constexpr auto attrBold = Color::Attr::Bold;
+
+const Color clBlackOnGreen  (true, false, Color::FG::Black, Color::BG::Green, attrBold);
+const Color clWhiteOnBlue   (true, false, Color::FG::White, Color::BG::Blue, attrBold);
+const Color clBlackOnYellow (true, false, Color::FG::Black, Color::BG::Yellow, attrBold);
+const Color clWhiteOnRed    (true, false, Color::FG::White, Color::BG::Red, attrBold);
+const Color clWhiteOnMagenta(true, false, Color::FG::White, Color::BG::Magenta, attrBold);
+
+}
+//-------------------------------------------------------------------------------------------------
 namespace xl::log
 {
 
@@ -48,13 +61,7 @@ Cout::write(
 		std::tstring_t levelStr = _levelString(a_level);
 
 		if (_isColorSupport) {
-			constexpr auto attrBold = Color::Attr::Bold;
 
-			const Color clBlackOnGreen  (true, false, Color::FG::Black, Color::BG::Green, attrBold);
-			const Color clWhiteOnBlue   (true, false, Color::FG::White, Color::BG::Blue, attrBold);
-			const Color clBlackOnYellow (true, false, Color::FG::Black, Color::BG::Yellow, attrBold);
-			const Color clWhiteOnRed    (true, false, Color::FG::White, Color::BG::Red, attrBold);
-			const Color clWhiteOnMagenta(true, false, Color::FG::White, Color::BG::Magenta, attrBold);
 
 			Console console;
 
