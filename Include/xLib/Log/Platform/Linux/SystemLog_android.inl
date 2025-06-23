@@ -1,5 +1,5 @@
 /**
- * \file  SystemLog.inl
+ * \file  SystemLog_android.inl
  * \brief logging to system log
  */
 
