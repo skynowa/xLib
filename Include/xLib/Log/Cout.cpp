@@ -59,7 +59,7 @@ Cout::write(
 			Console console;
 
 			switch (a_level) {
-				case Level::Trace:    break;
+				case Level::Trace:    xNA;                                       break;
 				case Level::Debug:    console.write(clBlackOnGreen,   levelStr); break;
 				case Level::Info:     console.write(clWhiteOnBlue,    levelStr); break;
 				case Level::Warning:  console.write(clBlackOnYellow,  levelStr); break;
