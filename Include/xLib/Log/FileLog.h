@@ -29,9 +29,9 @@ public:
 
 ///\name ctors, dtor
 ///\{
-			  FileLog(std::ctstring_t &filePath);
-	explicit  FileLog(std::ctstring_t &filePath, cLogSizes fileSizeMaxBytes);
-	explicit  FileLog(std::ctstring_t &filePath, std::csize_t fileSizeMaxBytes);
+    explicit  FileLog(std::ctstring_t &filePath);
+              FileLog(std::ctstring_t &filePath, cLogSizes fileSizeMaxBytes);
+              FileLog(std::ctstring_t &filePath, std::csize_t fileSizeMaxBytes);
 	virtual  ~FileLog();
 ///\}
 
