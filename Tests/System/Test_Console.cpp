@@ -17,10 +17,10 @@ Test_Console::unit()
     {
         std::ctstring_t text = xT("AAA BBB CCC 123456 !@##$%^%^&*!!!");
 
-        const auto fg = Color::FG::Green;
-        const auto bg = Color::BG::Default;
+        constexpr auto fg = Color::FG::Green;
+        constexpr auto bg = Color::BG::Default;
 
-        const auto attrs = static_cast<Color::Attr>(
+        constexpr auto attrs = static_cast<Color::Attr>(
                 static_cast<int_t>(Color::Attr::Bold) |
                 static_cast<int_t>(Color::Attr::Underline) |
                 static_cast<int_t>(Color::Attr::Dim));

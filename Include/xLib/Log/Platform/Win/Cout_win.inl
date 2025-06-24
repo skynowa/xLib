@@ -1,5 +1,5 @@
 /**
- * \file  Cout.inl
+ * \file  Cout_win.inl
  * \brief tracer
  */
 
@@ -21,7 +21,7 @@ Cout::_write_impl(
 {
     (void_t)::OutputDebugString( (a_msg + Const::nl()).c_str() );
 
-    std::tcout << a_msg << std::endl;
+	_console.writeLine(a_msg);
 }
 //-------------------------------------------------------------------------------------------------
 

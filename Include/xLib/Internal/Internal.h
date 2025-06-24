@@ -34,7 +34,7 @@ template<
 	typename CrossT,
 	typename ImplT
 	>
-struct Type
+struct Item
     /// enum values
 {
 	const CrossT cross {}; ///< crossplatform value
@@ -51,19 +51,19 @@ class Types
 {
 public:
 	// TOOD: array -> map
-    const Type<CrossT, ImplT> values[SizeT] {};
+    const Item<CrossT, ImplT> items[SizeT] {};
         ///< crossplatform to implementation (native) values
 
     CrossT
-    toCross(std::cssize_t a_value) const
+    toCross(std::cssize_t a_idx) const
     {
-        return static_cast<CrossT>(values[a_value].cross);
+        return static_cast<CrossT>(items[a_idx].cross);
     }
         ///< implementation (native) value to crossplatform
     ImplT
-    toImpl(std::cssize_t a_value) const
+    toImpl(std::cssize_t a_idx) const
     {
-        return static_cast<ImplT>(values[a_value].impl);
+        return static_cast<ImplT>(items[a_idx].impl);
     }
         ///< crossplatform value to implementation (native)
 };
