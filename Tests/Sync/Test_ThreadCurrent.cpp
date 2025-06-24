@@ -15,14 +15,14 @@ Test_Thread::unit()
 {
      xTEST_CASE("isCurrent")
     {
-		const Data2<Thread::id_t, bool_t> datas []
-		{
-			{ThreadCurrent::currentId(), true},
-			{(ulong_t)ThreadCurrent::currentId() - 1, false},
-			{0,   false},
-			{- 1, false},
-			{- 1, false}
-		};
+        const Data2<Thread::id_t, bool_t> datas []
+        {
+            {ThreadCurrent::currentId(), true},
+            {(ulong_t)ThreadCurrent::currentId() - 1, false},
+            {0,   false},
+            {- 1, false},
+            {- 1, false}
+        };
 
         for (const auto &[it_test, it_expect] : datas) {
             m_bRv = ThreadCurrent::isCurrent(it_test);
@@ -56,7 +56,7 @@ Test_Thread::unit()
 
     xTEST_CASE("yield")
     {
-    	ThreadCurrent::currentYield();
+        ThreadCurrent::currentYield();
     }
 
     xTEST_CASE("sleep")
