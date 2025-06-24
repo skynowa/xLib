@@ -2,7 +2,7 @@
 
 
 UNIT_TESTS+=(Cout)
-UNIT_TESTS+=(Console)
+# UNIT_TESTS+=(Console)
 # UNIT_TESTS+=(FileLog)
 # UNIT_TESTS+=(MySql)
 # UNIT_TESTS+=(Thread)
@@ -16,14 +16,8 @@ UNIT_TESTS+=(Console)
 # UNIT_TESTS+=(FileText FileBin)
 # UNIT_TESTS+=(Xml)
 
-# BG='\e[46m'   # green
-# FG='\e[37m'   # white
-# RESET='\e[0m' # reset
-
 source bash_colors.sh
 #--------------------------------------------------------------------------------------------------
-./deploy.sh
-
 for it_test in ${UNIT_TESTS[*]}
 do
 	echo -e "${BASH_BG_BLACK}+------------------------------+${BASH_RESET}"

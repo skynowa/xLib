@@ -11,11 +11,16 @@ cd ${DIR_BUILD}
 
 # build
 SUDO="sudo"
-PARAM_QUIET="-q" # Make
 
 if [[ "${OSTYPE}" == "win"* || "${OSTYPE}" == "msys"* ]]; then
 	SUDO=""
-	PARAM_QUIET="/verbosity:minimal" # MSBuild
 fi
 
-${SUDO} cmake --build . --target install --config Release -- ${PARAM_QUIET}
+${SUDO} cmake --build . --target install --config Release > /dev/null
+
+err=$?
+if [ $err -eq 0 ]; then
+    echo "Deploy - OK"
+else
+    echo "Deploy - Error: $err"
+fi
