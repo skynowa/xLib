@@ -94,7 +94,6 @@ protected:
  *   - StackTrace
  *   - infoAdd
  *
- * - Color support
  * - Setter proxy class
  * - logIf() - with some condition
  *
@@ -102,4 +101,5 @@ protected:
  *
  * - write as trace(), debug(), info(), ...
  * - operator <<
+ * - Color support
  */
