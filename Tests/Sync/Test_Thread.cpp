@@ -36,9 +36,9 @@ Worker::onRun(
 {
     xUNUSED(data);
 
-    #if xTEST_IGNORE
-        xTRACEV(xT("\n\tCWorkThread: start #%lu"), index);
-    #endif
+#if xTEST_IGNORE
+	xTRACEV(xT("\n\tCWorkThread: start #%lu"), index);
+#endif
 
     uint_t uiRes {};
     bool_t bRv {};
@@ -129,7 +129,7 @@ Test_Thread::unit()
     //-------------------------------------
     //priority
 
-    xTEST_CASE("vSetPriority, tpGetPriority")
+    xTEST_CASE("setPriority, priority")
     {
         const auto ctpPriority = Thread::Priority::tpLowest;
 
@@ -247,7 +247,7 @@ Test_Thread::unit()
 
     xTEST_CASE("open")
     {
-	// TEST: Thread::open()
+        // TEST: Thread::open()
 	#if xTODO
 		m_hRv = Thread::open(THREAD_ALL_ACCESS, false, Thread::ulGetCurrentId());
 		xTEST_PTR(m_hRv);
@@ -256,7 +256,7 @@ Test_Thread::unit()
 
     xTEST_CASE("open")
     {
-	// TEST: Thread::open()
+        // TEST: Thread::open()
 	#if xTODO
 		THandle hRv = Thread::open(culong_t culAccess, cbool_t cbInheritHandle, culong_t culId);
 	#endif
@@ -271,7 +271,7 @@ Test_Thread::unit()
         xTEST(!m_bRv);
     }
 
-    xTEST_CASE("vPause")
+    xTEST_CASE("pause")
     {
 		m_bRv = worker->isPaused();
 		xTEST(!m_bRv);
@@ -289,7 +289,7 @@ Test_Thread::unit()
 
     xTEST_CASE("exit")
     {
-	// TEST: Thread::exit()
+    	// TEST: Thread::exit()
 	#if xTODO
 		m_bRv = worker->exit(xTIMEOUT_INFINITE);
 		xTEST(m_bRv);
