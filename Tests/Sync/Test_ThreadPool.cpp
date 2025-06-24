@@ -67,8 +67,8 @@ PoolThread::onRun(
         {
             LogCout() << xT("\t*");
 
-            Thread::currentSleep(50UL);
-            Thread::currentYield();
+            ThreadCurrent::currentSleep(50UL);
+            ThreadCurrent::currentYield();
         }
     }
 
