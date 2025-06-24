@@ -19,11 +19,7 @@ Cout::_write_impl(
     std::ctstring_t &a_msg
 ) const
 {
-#if 0
-	std::tcout << a_msg << std::endl;
-#else
 	_console.writeLine(a_msg);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -21,11 +21,7 @@ Cout::_write_impl(
 {
     (void_t)::OutputDebugString( (a_msg + Const::nl()).c_str() );
 
-#if 0
-	std::tcout << a_msg << std::endl;
-#else
 	_console.writeLine(a_msg);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 
