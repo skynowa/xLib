@@ -167,8 +167,7 @@ public:
         ///< sleep
 
 protected:
-    // BUG: Thread::onRun() - must pure virtual
-    virtual uint_t  onRun(void_t *param) /* = 0 */;
+    virtual uint_t onRun(void_t *param) = 0;
         ///< work thread function, must be override
 
     // events
@@ -184,9 +183,7 @@ private:
     xUSING_CONST(exit_status_t);
 
     // constants
-    static culong_t _s_stillActiveTimeoutMsec = 2UL;
-        ///< still active timeout (msec)
-    static culong_t _s_exitTimeoutMsec = 5000UL;
+    static culong_t _exitTimeoutMsec {5000UL};
         ///< exit timeout (msec)
 
     // thread data
