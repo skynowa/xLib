@@ -97,7 +97,7 @@ Console::writeLine(
 ) const
 {
 	write(a_color, a_str);
-	writeNl();
+	writeNl();	// EOL - n/a for coloring
 }
 //-------------------------------------------------------------------------------------------------
 void_t
