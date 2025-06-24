@@ -1,5 +1,13 @@
 # Change Log {#id_changelog}
 
+## log-cout-with-colors (#465)
+
+- **Commit:** [fef92238c](https://github.com/skynowa/xLib/commit/fef92238c)
+- **Author:** skynowa
+- **Date:** 2025-06-24
+
+Log Cout - using colors
+
 ## console-attrs-split (#463)
 
 - **Commit:** [9dc29667e](https://github.com/skynowa/xLib/commit/9dc29667e)
