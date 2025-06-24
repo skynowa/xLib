@@ -1,5 +1,13 @@
 # Change Log {#id_changelog}
 
+## thread-current-impl (#466)
+
+- **Commit:** [10988467e](https://github.com/skynowa/xLib/commit/10988467e)
+- **Author:** skynowa
+- **Date:** 2025-06-24
+
+ThreadCurrent - impl
+
 ## log-cout-with-colors (#465)
 
 - **Commit:** [fef92238c](https://github.com/skynowa/xLib/commit/fef92238c)
