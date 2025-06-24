@@ -9,20 +9,20 @@
 //-------------------------------------------------------------------------------------------------
 xTEST_UNIT(Test_Thread)
 //-------------------------------------------------------------------------------------------------
-class Worker final :
+class CWorkThread :
     public Thread
 {
 public:
 	size_t index {};
 
-	explicit  Worker(cbool_t isAutoDelete);
-	virtual  ~Worker() = default;
+	explicit  CWorkThread(cbool_t isAutoDelete);
+	virtual  ~CWorkThread() = default;
 
 protected:
 	uint_t onRun(void_t *data) final;
 };
 //-------------------------------------------------------------------------------------------------
-Worker::Worker(
+CWorkThread::CWorkThread(
     cbool_t a_isAutoDelete
 ) :
     Thread(a_isAutoDelete)
@@ -30,7 +30,7 @@ Worker::Worker(
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
-Worker::onRun(
+CWorkThread::onRun(
     void_t *data
 )
 {
@@ -86,33 +86,33 @@ Test_Thread::unit()
     cbool_t cbIsPaused   = true;
     cbool_t cbAutoDelete = false;
 
-   auto *worker = new Worker(cbAutoDelete);
+   auto *pthT = new CWorkThread(cbAutoDelete);
 
-    worker->setTag(0);
-    /// worker->vOnExit2  = vOnExitHandle;
+    pthT->setTag(0);
+    ////pthT->vOnExit2  = vOnExitHandle;
 
     cuint_t stackSizeBytes {16384 * 2};
     size_t  uiParam        {1000};
-    worker->create(cbIsPaused, stackSizeBytes, &uiParam);
+    pthT->create(cbIsPaused, stackSizeBytes, &uiParam);
 
     xTEST_CASE("create")
     {
-        m_bRv = worker->isPaused();
+        m_bRv = pthT->isPaused();
         xTEST_EQ(cbIsPaused, m_bRv);
     }
 
     xTEST_CASE("flags")
     {
-        m_bRv = worker->isCreated();
+        m_bRv = pthT->isCreated();
         xTEST(m_bRv);
 
-        m_bRv = worker->isRunning();
+        m_bRv = pthT->isRunning();
         xTEST(m_bRv);
 
-        m_bRv = worker->isPaused();
+        m_bRv = pthT->isPaused();
         xTEST_DIFF(m_bRv, false /* cbIsPaused */);
 
-        m_bRv = worker->isExited();
+        m_bRv = pthT->isExited();
         xTEST(!m_bRv);
     }
 
@@ -120,28 +120,28 @@ Test_Thread::unit()
     {
         // TEST: Thread::messages()
         #if xTODO
-            m_bRv = worker->postMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
-            m_bRv = worker->sendMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
-            m_bRv = worker->postThreadMessage(WM_TEST_MSG_1, 0, 0);
+            m_bRv = pthT->postMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
+            m_bRv = pthT->sendMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
+            m_bRv = pthT->postThreadMessage(WM_TEST_MSG_1, 0, 0);
         #endif
     }
 
     //-------------------------------------
     //priority
 
-    xTEST_CASE("setPriority, priority")
+    xTEST_CASE("vSetPriority, tpGetPriority")
     {
         const auto ctpPriority = Thread::Priority::tpLowest;
 
         #if   xENV_WIN
-            worker->setPriority(ctpPriority);
+            pthT->setPriority(ctpPriority);
 
-            const Thread::Priority tpRv = worker->priority();
+            const Thread::Priority tpRv = pthT->priority();
             xTEST_EQ((longlong_t)tpRv, (longlong_t)ctpPriority);
         #elif xENV_UNIX
-            worker->setPriority(ctpPriority);
+            pthT->setPriority(ctpPriority);
 
-            const Thread::Priority _ctpPriority = worker->priority();
+            const Thread::Priority _ctpPriority = pthT->priority();
             // TODO: xTEST_EQ((longlong_t)tpRv, (longlong_t)ctpPriority);
         #endif
     }
@@ -149,8 +149,8 @@ Test_Thread::unit()
     xTEST_CASE("priorityUp, priorityDown")
     {
         #if   xENV_WIN
-            worker->priorityUp();
-            worker->priorityDown();
+            pthT->priorityUp();
+            pthT->priorityDown();
         #elif xENV_UNIX
 
         #endif
@@ -159,7 +159,7 @@ Test_Thread::unit()
     xTEST_CASE("isPriorityBoost")
     {
         #if   xENV_WIN
-            m_bRv = worker->isPriorityBoost();
+            m_bRv = pthT->isPriorityBoost();
             xTEST(m_bRv);
         #elif xENV_UNIX
 
@@ -169,14 +169,14 @@ Test_Thread::unit()
     xTEST_CASE("setPriorityBoost")
     {
         #if   xENV_WIN
-            worker->setPriorityBoost(false);
+            pthT->setPriorityBoost(false);
 
-            m_bRv = worker->isPriorityBoost();
+            m_bRv = pthT->isPriorityBoost();
             xTEST(!m_bRv);
 
-            worker->setPriorityBoost(true);
+            pthT->setPriorityBoost(true);
 
-            m_bRv = worker->isPriorityBoost();
+            m_bRv = pthT->isPriorityBoost();
             xTEST(m_bRv);
         #elif xENV_UNIX
 
@@ -191,16 +191,16 @@ Test_Thread::unit()
         culong_t num = info::Cpu().num();
 
         for (ulong_t i = 0; i < num; ++ i) {
-            worker->setCpuAffinity(static_cast<int_t>(i));
+            pthT->setCpuAffinity(static_cast<int_t>(i));
         }
     }
 
     xTEST_CASE("setCpuIdeal, cpuIdeal")
     {
         #if   xENV_WIN
-            worker->setCpuIdeal(0);
+            pthT->setCpuIdeal(0);
 
-            m_ulRv = worker->cpuIdeal();
+            m_ulRv = pthT->cpuIdeal();
             xTEST(info::Cpu().num() > m_ulRv);
         #elif xENV_UNIX
 
@@ -218,31 +218,31 @@ Test_Thread::unit()
 
     xTEST_CASE("handle")
     {
-        Thread::handle_t hRv = worker->handle();
+        Thread::handle_t hRv = pthT->handle();
         xTEST_DIFF(0UL, (ulonglong_t)hRv);
     }
 
     xTEST_CASE("id")
     {
-        Thread::id_t idRes = worker->id();
+        Thread::id_t idRes = pthT->id();
         xTEST_DIFF(0UL, (ulonglong_t)idRes);
     }
 
     xTEST_CASE("isCurrent")
     {
-        m_bRv = worker->isCurrent();
+        m_bRv = pthT->isCurrent();
         xTEST(m_bRv);
     }
 
     xTEST_CASE("exitStatus")
     {
-        m_ulRv = worker->exitStatus();
+        m_ulRv = pthT->exitStatus();
         // n/a
     }
 
     xTEST_CASE("setDebugName")
     {
-        worker->setDebugName(xT("Thread_Test_Name"));
+        pthT->setDebugName(xT("Thread_Test_Name"));
     }
 
     xTEST_CASE("open")
@@ -265,25 +265,25 @@ Test_Thread::unit()
     //-------------------------------------
     xTEST_CASE("resume")
     {
-        worker->resume();
+        pthT->resume();
 
-        m_bRv = worker->isPaused();
+        m_bRv = pthT->isPaused();
         xTEST(!m_bRv);
     }
 
     xTEST_CASE("vPause")
     {
-		m_bRv = worker->isPaused();
+		m_bRv = pthT->isPaused();
 		xTEST(!m_bRv);
 
-		worker->pause();
+		pthT->pause();
 
-		m_bRv = worker->isPaused();
+		m_bRv = pthT->isPaused();
 		xTEST(m_bRv);
 
-		worker->resume();
+		pthT->resume();
 
-		m_bRv = worker->isPaused();
+		m_bRv = pthT->isPaused();
 		xTEST(!m_bRv);
     }
 
@@ -291,7 +291,7 @@ Test_Thread::unit()
     {
         // TEST: Thread::exit()
         #if xTODO
-            m_bRv = worker->exit(xTIMEOUT_INFINITE);
+            m_bRv = pthT->exit(xTIMEOUT_INFINITE);
             xTEST(m_bRv);
         #endif
     }
@@ -300,13 +300,13 @@ Test_Thread::unit()
     {
         // TEST: Thread::kill()
         #if xTODO
-            worker->kill(xTIMEOUT_INFINITE);
+            pthT->kill(xTIMEOUT_INFINITE);
         #endif
     }
 
     xTEST_CASE("exitStatus")
     {
-        ulong_t ulRv = worker->exitStatus();
+        ulong_t ulRv = pthT->exitStatus();
         xUNUSED(ulRv);
         #if xTEST_IGNORE
             xTRACEV("\tulGetExitStatus(): %lu", ulRv);
@@ -316,13 +316,13 @@ Test_Thread::unit()
     xTEST_CASE("exitStatus")
     {
     #if xTODO
-        worker->wait(xTIMEOUT_INFINITE);
+        pthT->wait(xTIMEOUT_INFINITE);
     #endif
     }
 
     if (!cbAutoDelete) {
-        xTEST_PTR(worker);
-        Utils::ptrDeleteT(worker);
+        xTEST_PTR(pthT);
+        Utils::ptrDeleteT(pthT);
     }
 
     xTEST_CASE("isCurrent")
@@ -393,6 +393,8 @@ Test_Thread::unit()
             dtTime2 = DateTime::current();
 
             xTEST_GR_EQ(dtTime2.toMsec(), dtTime1.toMsec());
+            // xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sormat(DateTime::ftTime).c_str(),
+            //    dtTime2.format(DateTime::ftTime).c_str());
         }
     }
 
