@@ -58,7 +58,7 @@ Cout::write(
 
     std::tstring_t msg;
     {
-		std::tstring_t levelStr = _levelString(a_level);
+		std::tstring_t levelStr = _levelIcon(a_level);
 
 		if (_isColorSupport) {
 			switch (a_level) {

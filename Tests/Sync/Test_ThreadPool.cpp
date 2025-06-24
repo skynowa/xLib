@@ -1,6 +1,6 @@
 /**
- * \file   Test_ThreadPool.cpp
- * \brief  test ThreadPool
+ * \file  Test_ThreadPool.cpp
+ * \brief test ThreadPool
  */
 
 
@@ -16,23 +16,23 @@ std::ctstring_t thread_param = xT("param1");
 
 }
 //-------------------------------------------------------------------------------------------------
-class PoolThread :
+class Worker :
     public Thread
 {
 public:
     std::size_t index {};
 
-    explicit  PoolThread(cbool_t isAutoDelete);
-    virtual  ~PoolThread() = default;
+    explicit  Worker(cbool_t isAutoDelete);
+    virtual  ~Worker() = default;
 
-    xNO_DEFAULT_CONSTRUCT(PoolThread);
-    xNO_COPY_ASSIGN(PoolThread);
+    xNO_DEFAULT_CONSTRUCT(Worker);
+    xNO_COPY_ASSIGN(Worker);
 
 protected:
     uint_t onRun(void_t *param) final;
 };
 //-------------------------------------------------------------------------------------------------
-PoolThread::PoolThread(
+Worker::Worker(
     cbool_t a_isAutoDelete
 ) :
     Thread(a_isAutoDelete)
@@ -40,7 +40,7 @@ PoolThread::PoolThread(
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
-PoolThread::onRun(
+Worker::onRun(
     void_t *a_param
 )
 {
@@ -58,7 +58,6 @@ PoolThread::onRun(
     xTEST(bRv);
 
     for (std::size_t i {}; i < 10; ++ i) {
-        // interrupt point
         bRv = isTimeToExit();
         xCHECK_DO(bRv, LogCout() << xT("\tPoolThread: break") << tag());
         xCHECK_DO(bRv, break);
@@ -67,8 +66,8 @@ PoolThread::onRun(
         {
             LogCout() << xT("\t*");
 
-            Thread::currentSleep(50UL);
-            Thread::currentYield();
+            ThreadCurrent::sleep(50UL);
+            ThreadCurrent::yield();
         }
     }
 
@@ -91,11 +90,11 @@ Test_ThreadPool::unit()
     cbool_t      isGroupAutoDelete {true};
     std::csize_t tasks_num         {3};
 
-    ThreadPool<PoolThread> *pool {};
+    ThreadPool<Worker> *pool {};
 
 	xTEST_CASE("ctor")
 	{
-    	pool = new ThreadPool<PoolThread>(isPaused, isAutoDelete, isGroupPaused, isGroupAutoDelete);
+    	pool = new ThreadPool<Worker>(isPaused, isAutoDelete, isGroupPaused, isGroupAutoDelete);
 	}
 
     xTEST_CASE("numTasks/setNumTasks")

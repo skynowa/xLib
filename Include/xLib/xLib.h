@@ -120,6 +120,7 @@
 #include <xLib/Sync/Pipe.h>
 #include <xLib/Sync/Sleeper.h>
 #include <xLib/Sync/Thread.h>
+#include <xLib/Sync/ThreadCurrent.h>
 #include <xLib/Sync/ThreadPool.h>
 #include <xLib/Sync/ThreadStorage.h>
 #include <xLib/Sync/Process.h>

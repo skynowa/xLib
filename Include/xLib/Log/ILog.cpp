@@ -54,5 +54,22 @@ ILog::_levelString(
 	return {};
 }
 //-------------------------------------------------------------------------------------------------
+std::tstring_t
+ILog::_levelIcon(
+	cLevel a_level
+) const
+{
+	switch (a_level) {
+	case Level::Trace:    return xT("🔍 ");
+	case Level::Debug:    return xT("🛠️ ");
+	case Level::Info:     return xT("ℹ️ ");
+	case Level::Warning:  return xT("⚠️ ");
+	case Level::Error:    return xT("❌");
+	case Level::Critical: return xT("❗");
+	}
+
+	return {};
+}
+//-------------------------------------------------------------------------------------------------
 
 } // namespace

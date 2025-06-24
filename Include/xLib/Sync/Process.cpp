@@ -15,7 +15,7 @@
 #include <xLib/Fs/Dll.h>
 #include <xLib/Fs/Finder.h>
 #include <xLib/Log/LogStream.h>
-#include <xLib/Sync/Thread.h>
+#include <xLib/Sync/ThreadCurrent.h>
 #include <xLib/System/Env.h>
 
 #if   xENV_WIN

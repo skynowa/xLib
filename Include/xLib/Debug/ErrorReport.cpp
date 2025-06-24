@@ -11,7 +11,7 @@
 #include <xLib/Core/DateTime.h>
 #include <xLib/Debug/SourceInfo.h>
 #include <xLib/Fs/Path.h>
-#include <xLib/Sync/Thread.h>
+#include <xLib/Sync/ThreadCurrent.h>
 
 //-------------------------------------------------------------------------------------------------
 namespace
@@ -95,7 +95,7 @@ ErrorReport::_construct(
 #elif xENV_UNIX
     _processId        = static_cast<ulong_t>( ::getpid() );
 #endif
-    _threadId         = (ulong_t)Thread::currentId();
+    _threadId         = (ulong_t)ThreadCurrent::id();
 
     _sourceFilePath   = Path(option.filePath).brief(::reportWidthMax).toUnix(false).str();
     _sourceLineNum    = option.lineNum;

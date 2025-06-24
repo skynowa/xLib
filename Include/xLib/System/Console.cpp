@@ -9,7 +9,7 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
-#include <xLib/Sync/Thread.h>
+#include <xLib/Sync/ThreadCurrent.h>
 #include <xLib/System/Color.h>
 
 #if   xENV_WIN
@@ -64,8 +64,7 @@ Console::writeLine(
     std::ctstring_t &a_str
 ) const
 {
-    write(a_str);
-    writeNl();
+    write(a_str + Const::nl());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -97,8 +96,7 @@ Console::writeLine(
     std::ctstring_t &a_str
 ) const
 {
-	write(a_color, a_str);
-	writeNl();
+	write(a_color, a_str + Const::nl());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
@@ -126,7 +124,7 @@ Console::pause(
 
         writeLine(msg);
 
-        Thread::currentSleep(a_timeoutMsec);
+        ThreadCurrent::sleep(a_timeoutMsec);
     }
 }
 //-------------------------------------------------------------------------------------------------

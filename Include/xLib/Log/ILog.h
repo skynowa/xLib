@@ -64,7 +64,11 @@ protected:
 protected:
     bool_t _isEnable {true};  ///< is enabled
 
+///\name Level views (choose any you like)
+///\{
 	std::tstring_t _levelString(cLevel level) const;
+	std::tstring_t _levelIcon(cLevel level) const;
+///\}
 };
 
 } // namespace

@@ -183,7 +183,7 @@ Process::_wait_impl(
     WaitStatus waitStatus = WaitStatus::Failed;
 
     // TODO: [skynowa] Process::_wait_impl() - a_timeoutMsec
-    // Thread::currentSleep(a_timeoutMsec);
+    // ThreadCurrent::sleep(a_timeoutMsec);
 
     pid_t iRv {-1};
 
@@ -261,7 +261,7 @@ Process::_kill_impl(
     int_t iRv = ::kill(_pid, SIGKILL);
     xTEST_DIFF(iRv, - 1);
 
-    Thread::currentSleep(a_timeoutMsec);
+    ThreadCurrent::sleep(a_timeoutMsec);
 
     _exitStatus = 0U;
 }
