@@ -1,8 +1,13 @@
 /**
- * \file  SystemLog.inl
+ * \file  SystemLog_unix.inl
  * \brief logging to system log
  */
 
+
+#if xOS_ANDROID
+	#include <android/log.h>
+	// libs: -llog
+#endif
 
 namespace xl::log
 {

@@ -17,20 +17,7 @@
     #include "Platform/Win/SystemLog_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/SystemLog_unix.inl"
-
-    #if   xENV_LINUX
-        #if   xOS_LINUX
-
-        #elif xOS_ANDROID
-            #include "Platform/Linux/SystemLog_android.inl"
-        #endif
-    #elif xENV_BSD
-
-    #elif xENV_APPLE
-
-    #endif
 #endif
-
 
 namespace xl::log
 {
