@@ -466,48 +466,6 @@ Thread::_open_impl(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-bool_t
-Thread::_isCurrent_impl(
-    cid_t &a_id
-)
-{
-    bool_t bRv = (currentId() == a_id);
-
-    return bRv;
-}
-//-------------------------------------------------------------------------------------------------
-Thread::id_t
-Thread::_currentId_impl()
-{
-    id_t ulRv = ::GetCurrentThreadId();
-    xTEST_LESS(0UL, ulRv);
-
-    return ulRv;
-}
-//-------------------------------------------------------------------------------------------------
-Thread::handle_t
-Thread::_currentHandle_impl()
-{
-    handle_t hRv = ::GetCurrentThread();
-    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
-
-    return hRv;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Thread::_currentYield_impl()
-{
-    (void_t)::SwitchToThread();
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Thread::_currentSleep_impl(
-    culong_t a_timeoutMsec
-)
-{
-    (void_t)::Sleep(a_timeoutMsec);
-}
-//-------------------------------------------------------------------------------------------------
 /* static */
 int_t
 Thread::_priorityMin_impl()

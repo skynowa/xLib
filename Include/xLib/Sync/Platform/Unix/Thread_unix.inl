@@ -305,61 +305,6 @@ Thread::_open_impl(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-bool_t
-Thread::_isCurrent_impl(
-    cid_t &a_id
-)
-{
-    bool_t bRv = ::pthread_equal(currentId(), a_id);
-
-    return bRv;
-}
-//-------------------------------------------------------------------------------------------------
-Thread::id_t
-Thread::_currentId_impl()
-{
-    id_t ulRv = ::pthread_self();
-    xTEST(isIdValid(ulRv));
-
-    return ulRv;
-}
-//-------------------------------------------------------------------------------------------------
-Thread::handle_t
-Thread::_currentHandle_impl()
-{
-    handle_t hRv = ::pthread_self();
-    xTEST(isHandleValid(hRv));
-
-    return hRv;
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Thread::_currentYield_impl()
-{
-    int_t iRv = ::sched_yield();
-    xTEST_DIFF_MSG(iRv, - 1, NativeError::format( static_cast<ulong_t>(iRv) ));
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Thread::_currentSleep_impl(
-    culong_t a_timeoutMsec
-)
-{
-    timespec timeSleep  {};
-    timespec timeRemain {};
-
-    timeSleep.tv_sec  = a_timeoutMsec / 1000;
-    timeSleep.tv_nsec = (a_timeoutMsec % 1000) * (1000 * 1000);
-
-    for ( ; ; ) {
-        int_t iRv = ::nanosleep(&timeSleep, &timeRemain);
-        xTEST_NA(iRv);
-        xCHECK_DO(!(- 1 == iRv && EINTR == NativeError::get()), break);
-
-        timeSleep = timeRemain;
-    }
-}
-//-------------------------------------------------------------------------------------------------
 /* static */
 int_t
 Thread::_priorityMin_impl()
