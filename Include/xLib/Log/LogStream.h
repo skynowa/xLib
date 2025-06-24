@@ -18,7 +18,7 @@ namespace xl::log
 
 template<class LogT, ILog::Level level>
 class LogStream final
-	/// Tracing to debugger, std::cout
+	/// Logging to stream
 {
 public:
 ///\name ctors, dtor
