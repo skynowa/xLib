@@ -7,7 +7,6 @@
 #pragma once
 
 #include <xLib/Core/Core.h>
-#include <xLib/Core/Handle.h>
 #include <xLib/Sync/Thread.h>
 //-------------------------------------------------------------------------------------------------
 namespace xl::sync

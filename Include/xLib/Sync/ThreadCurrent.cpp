@@ -32,24 +32,18 @@ ThreadCurrent::isCurrent(
 Thread::id_t
 ThreadCurrent::id()
 {
-    // n/a
-
     return _id_impl();
 }
 //-------------------------------------------------------------------------------------------------
 Thread::handle_t
 ThreadCurrent::handle()
 {
-    // n/a
-
     return _handle_impl();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
 ThreadCurrent::yield()
 {
-    // n/a
-
 	_yield_impl();
 }
 //-------------------------------------------------------------------------------------------------
@@ -58,8 +52,6 @@ ThreadCurrent::sleep(
     culong_t a_timeoutMsec
 )
 {
-    // n/a
-
     xCHECK_DO(a_timeoutMsec == 0UL, return);
 
     _sleep_impl(a_timeoutMsec);
