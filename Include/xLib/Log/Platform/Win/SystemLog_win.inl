@@ -1,5 +1,5 @@
 /**
- * \file  SystemLog.inl
+ * \file  SystemLog_win.inl
  * \brief logging to system log
  */
 
