@@ -45,7 +45,7 @@ Thread::~Thread()
 
         // TODO: [skynowa] Thread::~Thread()
     #if xTODO
-        kill(_exitTimeoutMsec);
+        kill(_s_exitTimeoutMsec);
     #endif
     }
 
@@ -566,6 +566,38 @@ Thread::currentSleep(
     xCHECK_DO(a_timeoutMsec == 0UL, return);
 
     _currentSleep_impl(a_timeoutMsec);
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*    protected: events
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+/* virtual */
+uint_t
+Thread::onRun(
+    void_t *a_param
+) /* = 0 */
+{
+    xUNUSED(a_param);
+
+    xTEST_FAIL_MSG(xT("It's virtual method"));
+
+    uint_t uiRv {};
+
+#if xTEMP_DISABLED
+    for ( ; ; ) {
+        bool_t bRv = isTimeToExit();
+        xCHECK_DO(bRv, break);
+
+        //...
+    }
+#endif
+
+    return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
 

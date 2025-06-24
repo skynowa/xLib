@@ -36,7 +36,9 @@ CWorkThread::onRun(
 {
     xUNUSED(data);
 
-    LogCout() << xT("\n\tCWorkThread: start #") << index;
+    #if xTEST_IGNORE
+        xTRACEV(xT("\n\tCWorkThread: start #%lu"), index);
+    #endif
 
     uint_t uiRes {};
     bool_t bRv {};
