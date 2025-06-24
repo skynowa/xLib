@@ -164,8 +164,9 @@ Color::_set_impl(
         attrs = String::join(values, xT(';'));
     }
 
-    sRv += escape( Format::str(xT("\033[{};{}m"), attrs, static_cast<int>(fgColor)) ); // TODO: [skynowa] StdStreamV2
-    sRv += escape( Format::str(xT("\033[{}m"), static_cast<int>(bgColor)) );           // TODO: [skynowa] StdStreamV2
+    // TODO: [skynowa] StdStreamV2
+    sRv = escape( Format::str(xT("\033[{};{};{}m"), attrs, static_cast<int>(fgColor),
+        static_cast<int>(bgColor)) );
 
     return sRv;
 }
