@@ -6,11 +6,6 @@
 
 #include "Cout.h"
 
-#include <xLib/Core/Const.h>
-#include <xLib/Debug/NativeError.h>
-#include <xLib/Debug/StackTrace.h>
-#include <xLib/Debug/ErrorReport.h>
-#include <xLib/Debug/Debugger.h>
 #include <xLib/System/Color.h>
 
 #if   xENV_WIN
