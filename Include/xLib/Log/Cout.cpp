@@ -25,11 +25,11 @@ namespace
 
 ///\name Colors
 ///\{
-const Color clBlackOnGreen  (true, false, Color::FG::Black, Color::BG::Green,   Color::Attr::Bold);
-const Color clWhiteOnBlue   (true, false, Color::FG::White, Color::BG::Blue,    Color::Attr::Bold);
-const Color clBlackOnYellow (true, false, Color::FG::Black, Color::BG::Yellow,  Color::Attr::Bold);
-const Color clWhiteOnRed    (true, false, Color::FG::White, Color::BG::Red,     Color::Attr::Bold);
-const Color clWhiteOnMagenta(true, false, Color::FG::White, Color::BG::Magenta, Color::Attr::Bold);
+constexpr Color clBlackOnGreen  (true, false, Color::FG::Black, Color::BG::Green,   Color::Attr::Bold);
+constexpr Color clWhiteOnBlue   (true, false, Color::FG::White, Color::BG::Blue,    Color::Attr::Bold);
+constexpr Color clBlackOnYellow (true, false, Color::FG::Black, Color::BG::Yellow,  Color::Attr::Bold);
+constexpr Color clWhiteOnRed    (true, false, Color::FG::White, Color::BG::Red,     Color::Attr::Bold);
+constexpr Color clWhiteOnMagenta(true, false, Color::FG::White, Color::BG::Magenta, Color::Attr::Bold);
 ///\}
 
 }

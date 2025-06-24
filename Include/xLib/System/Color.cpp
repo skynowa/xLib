@@ -26,29 +26,6 @@ namespace xl::system
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-Color::Color(
-	cbool_t a_isColorSupport, ///< force set color support (for PS1, etc)
-	cbool_t a_isEscapeValues  ///< escaping values (UNIX only)
-) :
-	Color(a_isColorSupport, a_isEscapeValues, FG::Default, BG::Default, Attr::AllOff)
-{
-}
-//-------------------------------------------------------------------------------------------------
-Color::Color(
-	cbool_t a_isColorSupport, ///< force set color support (for PS1, etc)
-	cbool_t a_isEscapeValues, ///< escaping values (UNIX only)
-	cFG     a_fg,             ///< foreground color
-	cBG     a_bg,             ///< background color
-	cAttr   a_attrs           ///< text attributes
-) :
-	_isColorSupport{a_isColorSupport},
-	_isEscapeValues{a_isEscapeValues},
-	_fg            {a_fg},
-	_bg            {a_bg},
-	_attrs         {a_attrs}
-{
-}
-//-------------------------------------------------------------------------------------------------
 std::tstring_t
 Color::set() const
 {
