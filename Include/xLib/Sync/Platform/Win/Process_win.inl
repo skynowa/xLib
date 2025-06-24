@@ -113,7 +113,7 @@ Process::_kill_impl(
     for ( ; ; ) {
         xCHECK_DO(!isExists(), break);
 
-        Thread::currentSleep(a_timeoutMsec);
+        ThreadCurrent::currentSleep(a_timeoutMsec);
     }
 }
 //-------------------------------------------------------------------------------------------------

@@ -154,18 +154,6 @@ public:
     static handle_t open(culong_t access, cbool_t isInheritHandle, cid_t &id);
         ///< opens an existing thread object
 
-    // current thread
-    static bool_t   isCurrent(cid_t id);
-        ///< is current id
-    static id_t     currentId();
-        ///< get the thread identifier of the calling thread
-    static handle_t currentHandle();
-        ///< get pseudo handle for the calling thread
-    static void_t   currentYield();
-        ///< yield
-    static void_t   currentSleep(culong_t timeoutMsec);
-        ///< sleep
-
 protected:
     // BUG: Thread::onRun() - must pure virtual
     virtual uint_t  onRun(void_t *param) /* = 0 */;

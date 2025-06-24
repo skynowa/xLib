@@ -22,7 +22,7 @@
 
 #include <xLib/Fs/FileIO.h>
 #include <xLib/Fs/Finder.h>
-#include <xLib/Sync/Thread.h>
+#include <xLib/Sync/ThreadCurrent.h>
 
 
 namespace xl::fs
@@ -120,7 +120,7 @@ FsWatcher::watch(
 {
     _watch_impl();
 
-    Thread::currentSleep(a_timeoutMsec);
+    ThreadCurrent::currentSleep(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
 void_t
