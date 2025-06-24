@@ -118,7 +118,7 @@ Test_Thread::unit()
 
     xTEST_CASE("messages")
     {
-	// TEST: Thread::messages()
+    	// TEST: Thread::messages()
 	#if xTODO
 		m_bRv = worker->postMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
 		m_bRv = worker->sendMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
@@ -298,7 +298,7 @@ Test_Thread::unit()
 
     xTEST_CASE("kill")
     {
-	// TEST: Thread::kill()
+    	// TEST: Thread::kill()
 	#if xTODO
 		worker->kill(xTIMEOUT_INFINITE);
 	#endif
