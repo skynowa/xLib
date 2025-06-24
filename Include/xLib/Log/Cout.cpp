@@ -70,7 +70,11 @@ Cout::write(
 				case Level::Critical: _console.write(::clWhiteOnMagenta, levelStr); break;
 			}
 
-			msg = xT(": ") + a_msg;
+			if (a_level != Level::Trace) {
+				msg += xT(": ");
+			}
+
+			msg += a_msg;
 		} else {
 			msg = levelStr + xT(": ") + a_msg;
 		}
