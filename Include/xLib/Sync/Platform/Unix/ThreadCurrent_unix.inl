@@ -53,13 +53,14 @@ ThreadCurrent::_sleep_impl(
     culong_t a_timeoutMsec
 )
 {
-    timespec timeSleep  {};
-    timespec timeRemain {};
-
-    timeSleep.tv_sec  = a_timeoutMsec / 1000;
-    timeSleep.tv_nsec = (a_timeoutMsec % 1000) * (1000 * 1000);
+    timespec timeSleep
+    {
+        .tv_sec  = a_timeoutMsec / 1000,
+        .tv_nsec = (a_timeoutMsec % 1000) * (1000 * 1000)
+    };
 
     for ( ; ; ) {
+    	timespec timeRemain {};
         int_t iRv = ::nanosleep(&timeSleep, &timeRemain);
         xTEST_NA(iRv);
         xCHECK_DO(!(- 1 == iRv && EINTR == NativeError::get()), break);
