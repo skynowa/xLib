@@ -65,7 +65,7 @@ ILog::_levelIcon(
 	case Level::Info:     return xT("ℹ️ ");
 	case Level::Warning:  return xT("⚠️ ");
 	case Level::Error:    return xT("❌");
-	case Level::Critical: return xT("🚨");
+	case Level::Critical: return xT("❗");
 	}
 
 	return {};
