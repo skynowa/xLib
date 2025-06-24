@@ -1,6 +1,6 @@
 /**
- * \file  ThreadCurrent.inl
- * \brief thread
+ * \file  ThreadCurrent_win.inl
+ * \brief Current thread
  */
 
 
@@ -19,12 +19,7 @@ ThreadCurrent::_isCurrent_impl(
 	Thread::cid_t &a_id
 )
 {
-	/// TODO: impl
-#if 0
 	bool_t bRv = (currentId() == a_id);
-#else
-	bool_t bRv = true;
-#endif
 
     return bRv;
 }

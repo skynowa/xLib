@@ -1,6 +1,6 @@
 /**
- * \file  ThreadCurrent.inl
- * \brief thread
+ * \file  ThreadCurrent_unix.inl
+ * \brief Current thread
  */
 
 
