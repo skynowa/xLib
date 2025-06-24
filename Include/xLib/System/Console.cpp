@@ -97,8 +97,7 @@ Console::writeLine(
     std::ctstring_t &a_str
 ) const
 {
-	write(a_color, a_str);
-	writeNl();
+	write(a_color, a_str + Const::nl());
 }
 //-------------------------------------------------------------------------------------------------
 void_t
