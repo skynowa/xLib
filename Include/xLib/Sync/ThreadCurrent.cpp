@@ -6,18 +6,11 @@
 
 #include "ThreadCurrent.h"
 
-#include <xLib/Core/String.h>
-#include <xLib/Core/Utils.h>
-#include <xLib/Log/LogStream.h>
-#include <xLib/System/Info/Cpu.h>
-#include <xLib/System/User.h>
-
 #if   xENV_WIN
     #include "Platform/Win/ThreadCurrent_win.inl"
 #elif xENV_UNIX
     #include "Platform/Unix/ThreadCurrent_unix.inl"
 #endif
-
 
 namespace xl::sync
 {
