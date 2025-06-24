@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 
-# UNIT_TESTS+=(Cout)
-# UNIT_TESTS+=(Console)
+UNIT_TESTS+=(Cout)
+UNIT_TESTS+=(Console)
 # UNIT_TESTS+=(FileLog)
 # UNIT_TESTS+=(MySql)
-UNIT_TESTS+=(Thread)
-UNIT_TESTS+=(ThreadCurrent)
+# UNIT_TESTS+=(Thread)
+# UNIT_TESTS+=(ThreadCurrent)
 # UNIT_TESTS+=(Dll)
 # UNIT_TESTS+=(Env)
 # UNIT_TESTS+=(DateTime)
