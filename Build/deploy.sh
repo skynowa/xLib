@@ -11,9 +11,11 @@ cd ${DIR_BUILD}
 
 # build
 SUDO="sudo"
+PARAM_QUIET="-q" # Make
 
 if [[ "${OSTYPE}" == "win"* || "${OSTYPE}" == "msys"* ]]; then
 	SUDO=""
+	PARAM_QUIET="/verbosity:minimal" # MSBuild
 fi
 
-${SUDO} cmake --build . --target install --config Release
+${SUDO} cmake --build . --target install --config Release -- ${PARAM_QUIET}
