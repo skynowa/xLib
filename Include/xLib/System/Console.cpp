@@ -124,7 +124,7 @@ Console::pause(
 
         writeLine(msg);
 
-        ThreadCurrent::currentSleep(a_timeoutMsec);
+        ThreadCurrent::sleep(a_timeoutMsec);
     }
 }
 //-------------------------------------------------------------------------------------------------

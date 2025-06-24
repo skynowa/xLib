@@ -95,7 +95,7 @@ File::tryRemove(
         }
         xCATCH_ALL
 
-        ThreadCurrent::currentSleep(a_timeoutMsec);
+        ThreadCurrent::sleep(a_timeoutMsec);
     }
 }
 //-------------------------------------------------------------------------------------------------

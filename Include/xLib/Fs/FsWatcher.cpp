@@ -120,7 +120,7 @@ FsWatcher::watch(
 {
     _watch_impl();
 
-    ThreadCurrent::currentSleep(a_timeoutMsec);
+    ThreadCurrent::sleep(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
 void_t

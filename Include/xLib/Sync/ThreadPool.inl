@@ -423,7 +423,7 @@ ThreadPool<TaskT>::onRun(
     for ( ; ; ) {
         xCHECK_DO(isEmpty(), break);
 
-        ThreadCurrent::currentSleep(500UL);
+        ThreadCurrent::sleep(500UL);
     }
     xTEST(_tasks.empty());
 

@@ -273,7 +273,7 @@ Dir::tryRemove(
         bRv = _tryRemove_impl();
         xCHECK_DO(bRv, break);
 
-        ThreadCurrent::currentSleep(a_timeoutMsec);
+        ThreadCurrent::sleep(a_timeoutMsec);
     }
 
     xTEST(!isExists());

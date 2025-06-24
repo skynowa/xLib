@@ -95,7 +95,7 @@ ErrorReport::_construct(
 #elif xENV_UNIX
     _processId        = static_cast<ulong_t>( ::getpid() );
 #endif
-    _threadId         = (ulong_t)ThreadCurrent::currentId();
+    _threadId         = (ulong_t)ThreadCurrent::id();
 
     _sourceFilePath   = Path(option.filePath).brief(::reportWidthMax).toUnix(false).str();
     _sourceLineNum    = option.lineNum;

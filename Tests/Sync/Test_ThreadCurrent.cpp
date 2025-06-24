@@ -17,8 +17,8 @@ Test_Thread::unit()
     {
         const Data2<Thread::id_t, bool_t> datas []
         {
-            {ThreadCurrent::currentId(), true},
-            {(ulong_t)ThreadCurrent::currentId() - 1, false},
+            {ThreadCurrent::id(), true},
+            {(ulong_t)ThreadCurrent::id() - 1, false},
             {0,   false},
             {- 1, false},
             {- 1, false}
@@ -30,33 +30,33 @@ Test_Thread::unit()
         }
     }
 
-    xTEST_CASE("currentId")
+    xTEST_CASE("id")
     {
-        Thread::id_t idRes = ThreadCurrent::currentId();
+        Thread::id_t idRes = ThreadCurrent::id();
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
     xTEST_CASE("handle")
     {
-        Thread::handle_t hRv = ThreadCurrent::currentHandle();
+        Thread::handle_t hRv = ThreadCurrent::handle();
         xTEST_DIFF((ulonglong_t)hRv, 0ULL);
     }
 
     xTEST_CASE("id")
     {
-        Thread::id_t idRes = ThreadCurrent::currentId();
+        Thread::id_t idRes = ThreadCurrent::id();
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
     xTEST_CASE("handle")
     {
-        Thread::handle_t hRv = ThreadCurrent::currentHandle();
+        Thread::handle_t hRv = ThreadCurrent::handle();
         xTEST_LESS(0ULL, (ulonglong_t)hRv);
     }
 
     xTEST_CASE("yield")
     {
-        ThreadCurrent::currentYield();
+        ThreadCurrent::yield();
     }
 
     xTEST_CASE("sleep")
@@ -75,7 +75,7 @@ Test_Thread::unit()
             DateTime dtTime1;
             dtTime1 = DateTime::current();
 
-            ThreadCurrent::currentSleep(cuiMsec);
+            ThreadCurrent::sleep(cuiMsec);
 
             DateTime dtTime2;
             dtTime2 = DateTime::current();

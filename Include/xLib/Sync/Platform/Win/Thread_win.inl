@@ -59,7 +59,7 @@ Thread::_kill_impl(
         ulong_t ulRv = exitStatus();
         xCHECK_DO(ulRv != STILL_ACTIVE, break);
 
-        currentSleep(a_timeoutMsec);
+        sleep(a_timeoutMsec);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -202,7 +202,7 @@ Thread::tryPostThreadMessage(
             static_cast<LPARAM>( a_param2 ));
 
         xCHECK_RET(blRv != FALSE, true);
-        xCHECK_DO (blRv == FALSE, currentSleep(a_attempTimeoutMsec));
+        xCHECK_DO (blRv == FALSE, sleep(a_attempTimeoutMsec));
     }
 
     return false;

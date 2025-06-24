@@ -19,13 +19,13 @@ ThreadCurrent::_isCurrent_impl(
 	Thread::cid_t &a_id
 )
 {
-	bool_t bRv = (currentId() == a_id);
+	bool_t bRv = (id() == a_id);
 
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
 Thread::id_t
-ThreadCurrent::_currentId_impl()
+ThreadCurrent::_id_impl()
 {
     id_t ulRv = ::GetCurrentThreadId();
     xTEST_LESS(0UL, ulRv);
@@ -34,7 +34,7 @@ ThreadCurrent::_currentId_impl()
 }
 //-------------------------------------------------------------------------------------------------
 Thread::handle_t
-ThreadCurrent::_currentHandle_impl()
+ThreadCurrent::_handle_impl()
 {
 	Thread::handle_t hRv = ::GetCurrentThread();
     xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
@@ -43,13 +43,13 @@ ThreadCurrent::_currentHandle_impl()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-ThreadCurrent::_currentYield_impl()
+ThreadCurrent::_yield_impl()
 {
     (void_t)::SwitchToThread();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-ThreadCurrent::_currentSleep_impl(
+ThreadCurrent::_sleep_impl(
     culong_t a_timeoutMsec
 )
 {

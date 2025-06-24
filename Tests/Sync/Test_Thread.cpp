@@ -59,8 +59,8 @@ Worker::onRun(
 			xTRACE(xT("\t*"));
 		#endif
 
-			ThreadCurrent::currentSleep(50UL);
-			ThreadCurrent::currentYield();
+			ThreadCurrent::sleep(50UL);
+			ThreadCurrent::yield();
         }
     }
 

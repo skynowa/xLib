@@ -19,7 +19,7 @@ Test_Profiler::unit()
         profiler.start();
 
         for (size_t i = 0; i < 4; ++ i) {
-        	ThreadCurrent::currentSleep(5UL);
+        	ThreadCurrent::sleep(5UL);
             m_stRv = profiler.restart();
         }
 

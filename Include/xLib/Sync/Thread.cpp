@@ -466,7 +466,7 @@ Thread::id() const
 bool_t
 Thread::isCurrent() const
 {
-    return ThreadCurrent::isCurrent( ThreadCurrent::currentId() );
+    return ThreadCurrent::isCurrent( ThreadCurrent::id() );
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
@@ -602,7 +602,7 @@ Thread::_func(
     xCHECK_RET(self == nullptr, exit_status_t{}); // 0 - as error
 
     // handle must be valid
-    ThreadCurrent::currentSleep(waitVaildHandleTimeoutMsec);
+    ThreadCurrent::sleep(waitVaildHandleTimeoutMsec);
 
     Event::ObjectState osRv = self->_eventStarter->wait(notInfiniteTimeoutMsec);
     xTEST(osRv == Event::ObjectState::osSignaled);

@@ -54,7 +54,7 @@ Thread::_kill_impl(
     int_t iRv = ::pthread_kill(_id, SIGALRM);
     xTEST_EQ_MSG(iRv, 0, NativeError::format( static_cast<ulong_t>(iRv) ));
 
-    ThreadCurrent::currentSleep(a_timeoutMsec);
+    ThreadCurrent::sleep(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
 void_t

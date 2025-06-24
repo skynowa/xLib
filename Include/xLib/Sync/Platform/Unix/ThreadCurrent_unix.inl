@@ -18,13 +18,13 @@ ThreadCurrent::_isCurrent_impl(
 	Thread::cid_t &a_id
 )
 {
-    bool_t bRv = ::pthread_equal(currentId(), a_id);
+    bool_t bRv = ::pthread_equal(id(), a_id);
 
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
 Thread::id_t
-ThreadCurrent::_currentId_impl()
+ThreadCurrent::_id_impl()
 {
     id_t ulRv = ::pthread_self();
     //-- xTEST(isIdValid(ulRv));
@@ -33,7 +33,7 @@ ThreadCurrent::_currentId_impl()
 }
 //-------------------------------------------------------------------------------------------------
 Thread::handle_t
-ThreadCurrent::_currentHandle_impl()
+ThreadCurrent::_handle_impl()
 {
 	Thread::handle_t hRv = ::pthread_self();
     //-- xTEST(isHandleValid(hRv));
@@ -42,14 +42,14 @@ ThreadCurrent::_currentHandle_impl()
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-ThreadCurrent::_currentYield_impl()
+ThreadCurrent::_yield_impl()
 {
     int_t iRv = ::sched_yield();
     xTEST_DIFF_MSG(iRv, - 1, NativeError::format( static_cast<ulong_t>(iRv) ));
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-ThreadCurrent::_currentSleep_impl(
+ThreadCurrent::_sleep_impl(
     culong_t a_timeoutMsec
 )
 {

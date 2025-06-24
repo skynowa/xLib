@@ -30,31 +30,31 @@ ThreadCurrent::isCurrent(
 }
 //-------------------------------------------------------------------------------------------------
 Thread::id_t
-ThreadCurrent::currentId()
+ThreadCurrent::id()
 {
     // n/a
 
-    return _currentId_impl();
+    return _id_impl();
 }
 //-------------------------------------------------------------------------------------------------
 Thread::handle_t
-ThreadCurrent::currentHandle()
+ThreadCurrent::handle()
 {
     // n/a
 
-    return _currentHandle_impl();
+    return _handle_impl();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-ThreadCurrent::currentYield()
+ThreadCurrent::yield()
 {
     // n/a
 
-    _currentYield_impl();
+	_yield_impl();
 }
 //-------------------------------------------------------------------------------------------------
 void_t
-ThreadCurrent::currentSleep(
+ThreadCurrent::sleep(
     culong_t a_timeoutMsec
 )
 {
@@ -62,7 +62,7 @@ ThreadCurrent::currentSleep(
 
     xCHECK_DO(a_timeoutMsec == 0UL, return);
 
-    _currentSleep_impl(a_timeoutMsec);
+    _sleep_impl(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
 

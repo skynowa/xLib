@@ -68,13 +68,13 @@ Test_IpcSemaphore::unit()
 		xTEST_EQ(iRv, 0);
 	#endif
 
-		ThreadCurrent::currentSleep(10);
+		ThreadCurrent::sleep(10);
     }
 
     xTEST_CASE("post")
     {
         for (size_t i = 0; i < ::valuesNum; ++ i) {
-        	ThreadCurrent::currentSleep(1);
+        	ThreadCurrent::sleep(1);
 
             semaphore.post();
             semaphore.post();
@@ -85,7 +85,7 @@ Test_IpcSemaphore::unit()
     {
     }
 
-    ThreadCurrent::currentSleep(10);
+    ThreadCurrent::sleep(10);
 
     return true;
 }

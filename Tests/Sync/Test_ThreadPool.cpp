@@ -66,8 +66,8 @@ Worker::onRun(
         {
             LogCout() << xT("\t*");
 
-            ThreadCurrent::currentSleep(50UL);
-            ThreadCurrent::currentYield();
+            ThreadCurrent::sleep(50UL);
+            ThreadCurrent::yield();
         }
     }
 
