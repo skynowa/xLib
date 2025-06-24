@@ -12,10 +12,15 @@
 #include <xLib/Core/Units.h>
 #include <xLib/Core/FormatC.h>
 #include <xLib/Core/Format.h>
-#include <xLib/Debug/NativeError.h>
-#include <xLib/Debug/StackTrace.h>
-#include <xLib/Debug/ErrorReport.h>
-#include <xLib/Debug/Debugger.h>
+
+#if 0
+	#include <xLib/Debug/NativeError.h>
+	#include <xLib/Debug/StackTrace.h>
+	#include <xLib/Debug/ErrorReport.h>
+	#include <xLib/Debug/Debugger.h>
+#else
+	#include <xLib/Test/TestMsg.h>
+#endif
 
 #if   xENV_WIN
     #include "Platform/Win/DateTime_win.inl"

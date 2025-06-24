@@ -13,44 +13,92 @@
 
 #pragma once
 
-//-------------------------------------------------------------------------------------------------
-#define xTEST_EQ_MSG_PRIVATE(op, val1, val2, msg) \
-	if ( !((val1) op (val2)) ) { \
-		culong_t         nativeError__ { NativeError::get() }; \
-		\
-		cSourceInfoOption sourceInfoOption__ \
-		{ \
-			xFILE, xLINE, xFUNCTION, xCOUNTER, \
-			xT(#val1), xT(#val2), \
-			Format::str(xT("{}"), val1), Format::str(xT("{}"), val2), \
-			xLEX_TO_STR(op) \
-		}; \
-		\
-		SourceInfo       sourceInfo__(sourceInfoOption__); \
-		std::ctstring_t &stackTrace__ = StackTrace().str(); \
-		\
-		ErrorReport report__(nativeError__, sourceInfo__, stackTrace__, (msg)); \
-		Debugger().reportMake(report__); \
-	}
+#ifndef XLIB_TEST_TEST_H
+#define XLIB_TEST_TEST_H
 
-#define xTEST_PTR_MSG_PRIVATE(op, ptr, msg) \
-    if ( !(ptr op nullptr) ) { \
-        culong_t         nativeError__ { NativeError::get() }; \
-        \
-        cSourceInfoOption sourceInfoOption__ \
-        { \
-            xFILE, xLINE, xFUNCTION, xCOUNTER, \
-            xT(#ptr), xLEX_TO_STR(nullptr), \
-            Format::str(xT("{}"), ptr), xT("nullptr"), \
-            xLEX_TO_STR(op) \
-        }; \
-        \
-        SourceInfo       sourceInfo__(sourceInfoOption__); \
-        std::ctstring_t &stackTrace__ = StackTrace().str(); \
-        \
-        ErrorReport report__(nativeError__, sourceInfo__, stackTrace__, (msg)); \
-        Debugger().reportMake(report__); \
-    }
+//-------------------------------------------------------------------------------------------------
+#if 0
+
+namespace core
+{
+
+template<typename StreamT>
+class FormatT;
+
+}
+
+namespace xl::debug
+{
+
+class ErrorReport;
+class SourceInfoOption;
+class SourceInfo;
+class StackTrace;
+class Debugger;
+
+}
+
+#endif
+//-------------------------------------------------------------------------------------------------
+#if 0
+	#define xTEST_EQ_MSG_PRIVATE(op, val1, val2, msg) \
+		if ( !((val1) op (val2)) ) { \
+			culong_t         nativeError__ { NativeError::get() }; \
+			\
+			cSourceInfoOption sourceInfoOption__ \
+			{ \
+				xFILE, xLINE, xFUNCTION, xCOUNTER, \
+				xT(#val1), xT(#val2), \
+				Format::str(xT("{}"), val1), Format::str(xT("{}"), val2), \
+				xLEX_TO_STR(op) \
+			}; \
+			\
+			SourceInfo       sourceInfo__(sourceInfoOption__); \
+			std::ctstring_t &stackTrace__ = StackTrace().str(); \
+			\
+			ErrorReport report__(nativeError__, sourceInfo__, stackTrace__, (msg)); \
+			Debugger().reportMake(report__); \
+		}
+#else
+	#define xTEST_EQ_MSG_PRIVATE(op, val1, val2, msg) \
+		if ( !((val1) op (val2)) ) { \
+			testEqMsg_impl( \
+				NativeError::get(), \
+				xFILE, \
+				xLINE, \
+				xFUNCTION, \
+				xCOUNTER, \
+				xT(#val1), \
+				xT(#val2), \
+				val1, \
+				val2, \
+				xLEX_TO_STR(op) \
+				msg); \
+		}
+#endif
+
+#if 0
+	#define xTEST_PTR_MSG_PRIVATE(op, ptr, msg) \
+		if ( !(ptr op nullptr) ) { \
+			culong_t         nativeError__ { NativeError::get() }; \
+			\
+			cSourceInfoOption sourceInfoOption__ \
+			{ \
+				xFILE, xLINE, xFUNCTION, xCOUNTER, \
+				xT(#ptr), xLEX_TO_STR(nullptr), \
+				Format::str(xT("{}"), ptr), xT("nullptr"), \
+				xLEX_TO_STR(op) \
+			}; \
+			\
+			SourceInfo       sourceInfo__(sourceInfoOption__); \
+			std::ctstring_t &stackTrace__ = StackTrace().str(); \
+			\
+			ErrorReport report__(nativeError__, sourceInfo__, stackTrace__, (msg)); \
+			Debugger().reportMake(report__); \
+		}
+#else
+	#define xTEST_PTR_MSG_PRIVATE(op, ptr, msg) {}
+#endif
 
 #define xTEST_EQ_MSG_IMPL(val1, val2, msg) \
 	xTEST_EQ_MSG_PRIVATE(==, val1, val2, msg)
@@ -70,17 +118,35 @@
 #define xTEST_PTR_FAIL_MSG_IMPL(ptr, msg) \
 	xTEST_PTR_MSG_PRIVATE(==, ptr, msg)
 
-#define xTEST_FAIL_MSG_IMPL(msg) \
-    if (true) { \
-        culong_t          nativeError__ { NativeError::get() }; \
-        cSourceInfoOption sourceInfoOption__ {xFILE, xLINE, xFUNCTION, xCOUNTER, \
-            xLEX_TO_STR(false), {}, {}, {}, {}}; \
-        SourceInfo        sourceInfo__(sourceInfoOption__); \
-        std::ctstring_t  &stackTrace__ = StackTrace().str(); \
-        \
-        ErrorReport report__(nativeError__, sourceInfo__, stackTrace__, (msg)); \
-        Debugger().reportMake(report__); \
-    }
+#if 0
+	#define xTEST_FAIL_MSG_IMPL(msg) \
+		if (true) { \
+			culong_t          nativeError__ { NativeError::get() }; \
+			cSourceInfoOption sourceInfoOption__ {xFILE, xLINE, xFUNCTION, xCOUNTER, \
+				xLEX_TO_STR(false), {}, {}, {}, {}}; \
+			SourceInfo        sourceInfo__(sourceInfoOption__); \
+			std::ctstring_t  &stackTrace__ = StackTrace().str(); \
+			\
+			ErrorReport report__(nativeError__, sourceInfo__, stackTrace__, (msg)); \
+			Debugger().reportMake(report__); \
+		}
+#else
+	#define xTEST_FAIL_MSG_IMPL(msg) \
+		if (true) { \
+			testEqMsg_impl( \
+				NativeError::get(), \
+				xFILE, \
+				xLINE, \
+				xFUNCTION, \
+				xCOUNTER, \
+				{}, \
+				{}, \
+				{}, \
+				{}, \
+				"false" \
+				msg); \
+		}
+#endif
 
 #define xTEST_EQ(val1, val2) \
 	xTEST_EQ_MSG_IMPL      (val1, val2, xT(""))
@@ -282,6 +348,11 @@
                 << __FUNCTION__ << ": (" << #expr << ")" << std::endl; \
         } \
     }
+//-------------------------------------------------------------------------------------------------
+#include <xLib/Test/TestMsg.cpp>
+//-------------------------------------------------------------------------------------------------
+#endif
+
 //-------------------------------------------------------------------------------------------------
 /**
  * \file  Test.h

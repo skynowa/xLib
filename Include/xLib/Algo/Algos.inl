@@ -4,7 +4,7 @@
  */
 
 
-#include <xLib/Core/Utils.h>
+// #include <xLib/Core/Utils.h>
 
 
 namespace xl::algos
@@ -79,7 +79,7 @@ Algos::deleteAll(
 )
 {
     for (const auto &it : a_cont) {
-        Utils::ptrDeleteT(it);
+        // Utils::ptrDeleteT(it);
     }
 }
 //-------------------------------------------------------------------------------------------------
