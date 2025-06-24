@@ -12,7 +12,7 @@
 #include <xLib/Fs/FileType.h>
 #include <xLib/Debug/Exception.h>
 #include <xLib/Crypt/Random.h>
-#include <xLib/Sync/Thread.h>
+#include <xLib/Sync/ThreadCurrent.h>
 
 #if   xENV_WIN
     #include "Platform/Win/File_win.inl"
@@ -95,7 +95,7 @@ File::tryRemove(
         }
         xCATCH_ALL
 
-        Thread::currentSleep(a_timeoutMsec);
+        ThreadCurrent::currentSleep(a_timeoutMsec);
     }
 }
 //-------------------------------------------------------------------------------------------------

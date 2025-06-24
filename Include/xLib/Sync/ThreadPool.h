@@ -8,6 +8,7 @@
 
 #include <xLib/Core/Core.h>
 #include <xLib/Sync/Thread.h>
+#include <xLib/Sync/ThreadCurrent.h>
 #include <xLib/Sync/IpcSemaphore.h>
 #include <xLib/Sync/Mutex.h>
 #include <xLib/Log/LogStream.h>

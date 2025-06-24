@@ -14,7 +14,7 @@
 #include <xLib/Fs/FileType.h>
 #include <xLib/System/Env.h>
 #include <xLib/Fs/Finder.h>
-#include <xLib/Sync/Thread.h>
+#include <xLib/Sync/ThreadCurrent.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Dir_win.inl"
@@ -273,7 +273,7 @@ Dir::tryRemove(
         bRv = _tryRemove_impl();
         xCHECK_DO(bRv, break);
 
-        Thread::currentSleep(a_timeoutMsec);
+        ThreadCurrent::currentSleep(a_timeoutMsec);
     }
 
     xTEST(!isExists());

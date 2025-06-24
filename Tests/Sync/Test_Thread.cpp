@@ -48,7 +48,6 @@ CWorkThread::onRun(
     xTEST(bRv);
 
     for (size_t i = 0; i < 10; ++ i) {
-        // interrupt point
         bRv = isTimeToExit();
         #if xTEST_IGNORE
             xCHECK_DO(bRv, xTRACE(xT("\tCWorkThread: break")));
@@ -61,8 +60,8 @@ CWorkThread::onRun(
                 xTRACE(xT("\t*"));
             #endif
 
-            Thread::currentSleep(50UL);
-            Thread::currentYield();
+			ThreadCurrent::currentSleep(50UL);
+			ThreadCurrent::currentYield();
         }
     }
 
@@ -325,79 +324,6 @@ Test_Thread::unit()
     if (!cbAutoDelete) {
         xTEST_PTR(pthT);
         Utils::ptrDeleteT(pthT);
-    }
-
-    xTEST_CASE("isCurrent")
-    {
-		const Data2<Thread::id_t, bool_t> datas []
-		{
-			{Thread::currentId(), true},
-			{(ulong_t)Thread::currentId() - 1, false},
-			{0,   false},
-			{- 1, false},
-			{- 1, false}
-		};
-
-        for (const auto &[it_test, it_expect] : datas) {
-            m_bRv = Thread::isCurrent(it_test);
-            xTEST_EQ(m_bRv, it_expect);
-        }
-    }
-
-    xTEST_CASE("currentId")
-    {
-        Thread::id_t idRes = Thread::currentId();
-        xTEST_LESS(0UL, (ulong_t)idRes);
-    }
-
-    xTEST_CASE("handle")
-    {
-        Thread::handle_t hRv = Thread::currentHandle();
-        xTEST_DIFF((ulonglong_t)hRv, 0ULL);
-    }
-
-    xTEST_CASE("id")
-    {
-        Thread::id_t idRes = Thread::currentId();
-        xTEST_LESS(0UL, (ulong_t)idRes);
-    }
-
-    xTEST_CASE("handle")
-    {
-        Thread::handle_t hRv = Thread::currentHandle();
-        xTEST_LESS(0ULL, (ulonglong_t)hRv);
-    }
-
-    xTEST_CASE("yield")
-    {
-        Thread::currentYield();
-    }
-
-    xTEST_CASE("sleep")
-    {
-        culong_t caulData[]
-        {
-            0,
-            1
-            // ULONG_MIN,
-            // ULONG_MAX
-        };
-
-        for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
-            culong_t cuiMsec = caulData[i];
-
-            DateTime dtTime1;
-            dtTime1 = DateTime::current();
-
-            Thread::currentSleep(cuiMsec);
-
-            DateTime dtTime2;
-            dtTime2 = DateTime::current();
-
-            xTEST_GR_EQ(dtTime2.toMsec(), dtTime1.toMsec());
-            // xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sormat(DateTime::ftTime).c_str(),
-            //    dtTime2.format(DateTime::ftTime).c_str());
-        }
     }
 
     return true;

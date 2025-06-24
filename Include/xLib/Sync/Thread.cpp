@@ -11,6 +11,7 @@
 #include <xLib/Log/LogStream.h>
 #include <xLib/System/Info/Cpu.h>
 #include <xLib/System/User.h>
+#include <xLib/Sync/ThreadCurrent.h>
 
 #if   xENV_WIN
     #include "Platform/Win/Thread_win.inl"
@@ -99,7 +100,7 @@ Thread::create(
 
     // start
     _create_impl(a_stackSizeBytes);
-    xTEST(!isCurrent(_id));
+    xTEST(!ThreadCurrent::isCurrent(_id));
 
     // states
     {
@@ -465,7 +466,7 @@ Thread::id() const
 bool_t
 Thread::isCurrent() const
 {
-    return isCurrent( currentId() );
+    return ThreadCurrent::isCurrent( ThreadCurrent::currentId() );
 }
 //-------------------------------------------------------------------------------------------------
 ulong_t
@@ -514,58 +515,6 @@ Thread::open(
     xTEST(isIdValid(a_id));
 
     return _open_impl(a_access, a_isInheritHandle, a_id);
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*   public
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-bool_t
-Thread::isCurrent(
-    cid_t a_id
-)
-{
-    return _isCurrent_impl(a_id);
-}
-//-------------------------------------------------------------------------------------------------
-Thread::id_t
-Thread::currentId()
-{
-    // n/a
-
-    return _currentId_impl();
-}
-//-------------------------------------------------------------------------------------------------
-Thread::handle_t
-Thread::currentHandle()
-{
-    // n/a
-
-    return _currentHandle_impl();
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Thread::currentYield()
-{
-    // n/a
-
-    _currentYield_impl();
-}
-//-------------------------------------------------------------------------------------------------
-void_t
-Thread::currentSleep(
-    culong_t a_timeoutMsec
-)
-{
-    // n/a
-
-    xCHECK_DO(a_timeoutMsec == 0UL, return);
-
-    _currentSleep_impl(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -653,7 +602,7 @@ Thread::_func(
     xCHECK_RET(self == nullptr, exit_status_t{}); // 0 - as error
 
     // handle must be valid
-    currentSleep(waitVaildHandleTimeoutMsec);
+    ThreadCurrent::currentSleep(waitVaildHandleTimeoutMsec);
 
     Event::ObjectState osRv = self->_eventStarter->wait(notInfiniteTimeoutMsec);
     xTEST(osRv == Event::ObjectState::osSignaled);

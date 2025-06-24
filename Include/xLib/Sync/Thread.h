@@ -154,18 +154,6 @@ public:
     static handle_t open(culong_t access, cbool_t isInheritHandle, cid_t &id);
         ///< opens an existing thread object
 
-    // current thread
-    static bool_t   isCurrent(cid_t id);
-        ///< is current id
-    static id_t     currentId();
-        ///< get the thread identifier of the calling thread
-    static handle_t currentHandle();
-        ///< get pseudo handle for the calling thread
-    static void_t   currentYield();
-        ///< yield
-    static void_t   currentSleep(culong_t timeoutMsec);
-        ///< sleep
-
 protected:
     // BUG: Thread::onRun() - must pure virtual
     virtual uint_t  onRun(void_t *param) /* = 0 */;
@@ -240,11 +228,6 @@ xPLATFORM_IMPL:
     void_t   _setDebugName_impl(std::ctstring_t &name) const;
 
     static handle_t _open_impl(culong_t access, cbool_t isInheritHandle, cid_t &id);
-    static bool_t   _isCurrent_impl(cid_t &id);
-    static id_t     _currentId_impl();
-    static handle_t _currentHandle_impl();
-    static void_t   _currentYield_impl();
-    static void_t   _currentSleep_impl(culong_t timeoutMsec);
     static int_t    _priorityMin_impl();
     static int_t    _priorityMax_impl();
 };

@@ -9,7 +9,7 @@
 #include <xLib/Core/Const.h>
 #include <xLib/Core/String.h>
 #include <xLib/Core/Format.h>
-#include <xLib/Sync/Thread.h>
+#include <xLib/Sync/ThreadCurrent.h>
 #include <xLib/System/Color.h>
 
 #if   xENV_WIN
@@ -124,7 +124,7 @@ Console::pause(
 
         writeLine(msg);
 
-        Thread::currentSleep(a_timeoutMsec);
+        ThreadCurrent::currentSleep(a_timeoutMsec);
     }
 }
 //-------------------------------------------------------------------------------------------------
