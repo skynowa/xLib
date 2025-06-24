@@ -46,7 +46,7 @@ Thread::~Thread()
 
         // TODO: [skynowa] Thread::~Thread()
     #if xTODO
-        kill(_s_exitTimeoutMsec);
+        kill(_exitTimeoutMsec);
     #endif
     }
 

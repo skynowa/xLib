@@ -172,9 +172,7 @@ private:
     xUSING_CONST(exit_status_t);
 
     // constants
-    static culong_t _s_stillActiveTimeoutMsec = 2UL;
-        ///< still active timeout (msec)
-    static culong_t _s_exitTimeoutMsec = 5000UL;
+    static culong_t _exitTimeoutMsec {5000UL};
         ///< exit timeout (msec)
 
     // thread data
