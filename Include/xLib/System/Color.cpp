@@ -30,6 +30,8 @@ Color::set() const
 {
 	xCHECK_RET(!_isColorSupport, xT(""));
 
+    _enableAnsiColors();
+
     std::tstring_t sRv;
 
     FG fgColor {};
