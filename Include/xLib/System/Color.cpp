@@ -36,31 +36,19 @@ Color::set() const
 
     FG fgColor {};
     {
-        constexpr int_t fgColorDefault = 39;
-        constexpr int_t fgColorBlack   = 30;
-        constexpr int_t fgColorRed     = 31;
-        constexpr int_t fgColorBlue    = 34;
-        constexpr int_t fgColorGreen   = 32;
-        constexpr int_t fgColorCyan    = 36;
-        constexpr int_t fgColorMagenta = 35;
-        constexpr int_t fgColorYellow  = 33;
-        constexpr int_t fgColorWhite   = 37;
-        constexpr int_t fgColorGray    = 37;  // TODO: [skynowa] Console::set() - fgColorGray
-
         int_t iRv {};
 
         switch (_fg) {
-        case FG::Default: iRv = fgColorDefault; break;
-        case FG::Black:   iRv = fgColorBlack;   break;
-        case FG::Red:     iRv = fgColorRed;     break;
-        case FG::Green:   iRv = fgColorGreen;   break;
-        case FG::Yellow:  iRv = fgColorYellow;  break;
-        case FG::Blue:    iRv = fgColorBlue;    break;
-        case FG::Magenta: iRv = fgColorMagenta; break;
-        case FG::Cyan:    iRv = fgColorCyan;    break;
-        case FG::White:   iRv = fgColorWhite;   break;
-        case FG::Gray:    iRv = fgColorGray;    break;
-        case FG::Unknown: xTEST_FAIL;           break;
+        case FG::Default: iRv = 39;   break;
+        case FG::Black:   iRv = 30;   break;
+        case FG::Red:     iRv = 31;   break;
+        case FG::Green:   iRv = 32;   break;
+        case FG::Yellow:  iRv = 33;   break;
+        case FG::Blue:    iRv = 34;   break;
+        case FG::Magenta: iRv = 35;   break;
+        case FG::Cyan:    iRv = 36;   break;
+        case FG::White:   iRv = 37;   break;
+        case FG::Gray:    iRv = 90;   break;
         }
 
         fgColor = static_cast<FG>( iRv );
@@ -68,31 +56,19 @@ Color::set() const
 
     BG bgColor {};
     {
-        constexpr int_t bgColorDefault = 49;
-        constexpr int_t bgColorBlack   = 40;
-        constexpr int_t bgColorRed     = 41;
-        constexpr int_t bgColorBlue    = 44;
-        constexpr int_t bgColorGreen   = 42;
-        constexpr int_t bgColorCyan    = 46;
-        constexpr int_t bgColorMagenta = 45;
-        constexpr int_t bgColorYellow  = 43;
-        constexpr int_t bgColorWhite   = 47;
-        constexpr int_t bgColorGray    = 47; // TODO: [skynowa] Console::set() - Unix - bgColorGray
-
         int_t iRv {};
 
         switch (_bg) {
-        case BG::Default: iRv = bgColorDefault; break;
-        case BG::Black:   iRv = bgColorBlack;   break;
-        case BG::Red:     iRv = bgColorRed;     break;
-        case BG::Green:   iRv = bgColorGreen;   break;
-        case BG::Yellow:  iRv = bgColorYellow;  break;
-        case BG::Blue:    iRv = bgColorBlue;    break;
-        case BG::Magenta: iRv = bgColorMagenta; break;
-        case BG::Cyan:    iRv = bgColorCyan;    break;
-        case BG::White:   iRv = bgColorWhite;   break;
-        case BG::Gray:    iRv = bgColorGray;    break;
-        case BG::Unknown: xTEST_FAIL;           break;
+        case BG::Default: iRv = 49;   break;
+        case BG::Black:   iRv = 40;   break;
+        case BG::Red:     iRv = 41;   break;
+        case BG::Green:   iRv = 42;   break;
+        case BG::Yellow:  iRv = 43;   break;
+        case BG::Blue:    iRv = 44;   break;
+        case BG::Magenta: iRv = 45;   break;
+        case BG::Cyan:    iRv = 46;   break;
+        case BG::White:   iRv = 47;   break;
+        case BG::Gray:    iRv = 100;  break;
         }
 
         bgColor = static_cast<BG>( iRv );

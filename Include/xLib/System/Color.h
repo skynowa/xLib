@@ -25,34 +25,32 @@ public:
 	enum class FG
 		/// foreground (text) color
 	{
-		Unknown  = 0,
-		Default  = 1,
-		Black    = 2,
-		Red      = 3,
-		Green    = 4,
-		Yellow   = 5,
-		Blue     = 6,
-		Magenta  = 7,
-		Cyan     = 8,
-		White    = 9,
-		Gray     = 10
+		Default  = 0,
+		Black    = 1,
+		Red      = 2,
+		Green    = 3,
+		Yellow   = 4,
+		Blue     = 5,
+		Magenta  = 6,
+		Cyan     = 7,
+		White    = 8,
+		Gray     = 9
     };
     xUSING_CONST(FG);
 
 	enum class BG
 		/// background color
 	{
-		Unknown  = 0,
-		Default  = 1,
-		Black    = 2,
-		Red      = 3,
-		Green    = 4,
-		Yellow   = 5,
-		Blue     = 6,
-		Magenta  = 7,
-		Cyan     = 8,
-		White    = 9,
-		Gray     = 10
+		Default  = 0,
+		Black    = 1,
+		Red      = 2,
+		Green    = 3,
+		Yellow   = 4,
+		Blue     = 5,
+		Magenta  = 6,
+		Cyan     = 7,
+		White    = 8,
+		Gray     = 9
     };
     xUSING_CONST(BG);
 
