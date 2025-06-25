@@ -25,7 +25,7 @@ Test_Console::unit()
                 static_cast<int_t>(Color::Attr::Underline) |
                 static_cast<int_t>(Color::Attr::Dim));
 
-        Color color(true, false, fg, bg, attrs);
+        constexpr Color color(true, false, fg, bg, attrs);
 
         Console console;
         console.write( color.set() );
