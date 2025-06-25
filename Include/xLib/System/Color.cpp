@@ -127,7 +127,6 @@ Color::_set_impl(
             iRv = fgColorGray;
             break;
         case FG::Unknown:
-        default:
             xTEST_FAIL;
             break;
         }
@@ -182,7 +181,6 @@ Color::_set_impl(
             iRv = bgColorGray;
             break;
         case BG::Unknown:
-        default:
             xTEST_FAIL;
             break;
         }
