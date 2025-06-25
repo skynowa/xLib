@@ -121,13 +121,6 @@ private:
 	cBG   _bg    {BG::Default};
 	cAttr _attrs {Attr::AllOff};
 
-xPLATFORM_IMPL:
-#if xENV_WIN
-    HandleNativeInvalid _stdIn;       ///< standard input handle
-    HandleNativeInvalid _stdOut;      ///< standard output handle
-    WORD                _attrsDef {}; ///< default console attributes
-#endif
-
 	std::tstring_t _set_impl(cFG fg, cBG bg, cAttr attrs) const;
 	std::tstring_t _clear_impl() const;
 
