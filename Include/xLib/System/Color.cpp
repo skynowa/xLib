@@ -80,23 +80,14 @@ Color::set() const
         // The attributes must be separated by a semicolon (“;”).
         std::vec_tstring_t values;
 
-        constexpr int_t attrAllOff    = 0;
-        constexpr int_t attrBold      = 1;
-        constexpr int_t attrDim       = 2;
-        constexpr int_t attrUnderline = 4;
-        constexpr int_t attrBlink     = 5;
-        constexpr int_t attrReverse   = 7;
-        constexpr int_t attrHidden    = 8;
-
         Bitset bits( static_cast<int_t>(_attrs) );
-
-        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::AllOff)),    values.emplace_back( std::to_string(attrAllOff) ));
-        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Bold)),      values.emplace_back( std::to_string(attrBold) ));
-        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Dim)),       values.emplace_back( std::to_string(attrDim) ));
-        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Underline)), values.emplace_back( std::to_string(attrUnderline) ));
-        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Blink)),     values.emplace_back( std::to_string(attrBlink) ));
-        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Reverse)),   values.emplace_back( std::to_string(attrReverse) ));
-        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Hidden)),    values.emplace_back( std::to_string(attrHidden) ));
+        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Reset)),     values.emplace_back(xT("0")));
+        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Bold)),      values.emplace_back(xT("1")));
+        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Dim)),       values.emplace_back(xT("2")));
+        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Underline)), values.emplace_back(xT("4")));
+        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Blink)),     values.emplace_back(xT("5")));
+        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Reverse)),   values.emplace_back(xT("7")));
+        xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Hidden)),    values.emplace_back(xT("8")));
 
         attrs = String::join(values, xT(';'));
     }

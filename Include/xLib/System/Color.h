@@ -58,7 +58,7 @@ public:
 		/// text attribute
 	{
 		Unknown    = 0,      ///< Unknown
-		AllOff     = 1 << 0, ///< Reset all attributes
+		Reset      = 1 << 0, ///< Reset all attributes
 		Bold       = 1 << 1, ///< Bold/Bright
 		Dim        = 1 << 2, ///< Dim
 		Underline  = 1 << 3, ///< Underlined
@@ -74,7 +74,7 @@ public:
 		cbool_t a_isColorSupport, ///< force set color support (for PS1, etc)
 		cbool_t a_isEscapeValues  ///< escaping values (UNIX only)
 	) :
-		Color(a_isColorSupport, a_isEscapeValues, FG::Default, BG::Default, Attr::AllOff)
+		Color(a_isColorSupport, a_isEscapeValues, FG::Default, BG::Default, Attr::Reset)
 	{
 	};
 
@@ -114,7 +114,7 @@ private:
 		///< escaping values
 	cFG     _fg    {FG::Default};
 	cBG     _bg    {BG::Default};
-	cAttr   _attrs {Attr::AllOff};
+	cAttr   _attrs {Attr::Reset};
 
     FILE * _getStdStream(std::ctostream_t &stream) const;
 		///< Since C++ hasn't a true way to extract stream handler from the a given `std::ostream`
