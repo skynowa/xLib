@@ -36,8 +36,6 @@ Color::clear() const
     return _clear_impl();
 }
 //-------------------------------------------------------------------------------------------------
-#if xENV_UNIX
-
 std::tstring_t
 Color::setText(
 	std::ctstring_t &a_str
@@ -45,8 +43,6 @@ Color::setText(
 {
 	return set() + a_str + clear();
 }
-
-#endif
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
 Color::escape(

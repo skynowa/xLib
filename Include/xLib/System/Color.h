@@ -104,10 +104,8 @@ public:
 		///< set text color
 	std::tstring_t clear() const;
 		///< reset text color to default
-#if xENV_UNIX
 	std::tstring_t setText(std::ctstring_t &str) const;
 		///< set text color, text, reset text color to default
-#endif
 	std::tstring_t escape(std::ctstring_t &str) const;
 		///< escape by "\[...\]"
 
