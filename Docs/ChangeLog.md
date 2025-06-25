@@ -1,5 +1,13 @@
 # Change Log {#id_changelog}
 
+## console-color-platform (#467)
+
+- **Commit:** [bd04409c6](https://github.com/skynowa/xLib/commit/bd04409c6)
+- **Author:** skynowa
+- **Date:** 2025-06-25
+
+Console Color - use ANSI color on Windows too
+
 ## thread-current-impl (#466)
 
 - **Commit:** [10988467e](https://github.com/skynowa/xLib/commit/10988467e)
