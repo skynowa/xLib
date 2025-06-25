@@ -51,7 +51,7 @@ Color::set() const
         case FG::Gray:    iRv = 90;   break;
         }
 
-        fgColor = static_cast<FG>( iRv );
+        fgColor = static_cast<FG>(iRv);
     }
 
     BG bgColor {};
@@ -71,7 +71,7 @@ Color::set() const
         case BG::Gray:    iRv = 100;  break;
         }
 
-        bgColor = static_cast<BG>( iRv );
+        bgColor = static_cast<BG>(iRv);
     }
 
     std::tstring_t attrs;
@@ -215,13 +215,14 @@ Color::_enableAnsiColors() const
 	HandleNativeInvalid stdOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
     xTEST(stdOut.isValid());
 
-    DWORD dwMode = 0;
+    DWORD dwMode {};
     BOOL blRv = ::GetConsoleMode(stdOut.get(), &dwMode);
     xTEST_DIFF(blRv, FALSE);
 
     dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
 
-    ::SetConsoleMode(stdOut.get(), dwMode);
+    blRv = ::SetConsoleMode(stdOut.get(), dwMode);
+    xTEST_DIFF(blRv, FALSE);
 
     isEnabled = true;
 #elif xENV_UNIX
