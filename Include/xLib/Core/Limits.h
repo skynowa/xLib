@@ -61,7 +61,8 @@
 	#elif defined(_SC_LINE_MAX)
 		#define xLINE_MAX ( _SC_LINE_MAX )
 	#else
-		#error xLib: xLINE_MAX not defined
+		#define xLINE_MAX ( 2048 )
+			///< custom define
 	#endif
 #endif
 ///\}
@@ -77,7 +78,8 @@
 	#elif defined(_SC_PAGE_SIZE)
 		#define xPAGE_SIZE ( _SC_PAGE_SIZE )
 	#else
-		#error xLib: xPAGE_SIZE not defined
+		#define xPAGE_SIZE ( 30 )
+			///< custom define
 	#endif
 #endif
 ///\}
@@ -98,7 +100,8 @@
 #if defined(SOMAXCONN)
 	#define xSOCKET_LISTEN_CONNECTIONS_MAX ( SOMAXCONN )
 #else
-	#error xLib: xSOCKET_LISTEN_CONNECTIONS_MAX not defined
+	#define xSOCKET_LISTEN_CONNECTIONS_MAX ( 4096 )
+		///< custom define
 #endif
 ///\}
 //-------------------------------------------------------------------------------------------------
