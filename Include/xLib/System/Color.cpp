@@ -50,39 +50,17 @@ Color::set() const
         int_t iRv {};
 
         switch (_fg) {
-        case FG::Default:
-            iRv = fgColorDefault;
-            break;
-        case FG::Black:
-            iRv = fgColorBlack;
-            break;
-        case FG::Red:
-            iRv = fgColorRed;
-            break;
-        case FG::Green:
-            iRv = fgColorGreen;
-            break;
-        case FG::Yellow:
-            iRv = fgColorYellow;
-            break;
-        case FG::Blue:
-            iRv = fgColorBlue;
-            break;
-        case FG::Magenta:
-            iRv = fgColorMagenta;
-            break;
-        case FG::Cyan:
-            iRv = fgColorCyan;
-            break;
-        case FG::White:
-            iRv = fgColorWhite;
-            break;
-        case FG::Gray:
-            iRv = fgColorGray;
-            break;
-        case FG::Unknown:
-            xTEST_FAIL;
-            break;
+        case FG::Default: iRv = fgColorDefault; break;
+        case FG::Black:   iRv = fgColorBlack;   break;
+        case FG::Red:     iRv = fgColorRed;     break;
+        case FG::Green:   iRv = fgColorGreen;   break;
+        case FG::Yellow:  iRv = fgColorYellow;  break;
+        case FG::Blue:    iRv = fgColorBlue;    break;
+        case FG::Magenta: iRv = fgColorMagenta; break;
+        case FG::Cyan:    iRv = fgColorCyan;    break;
+        case FG::White:   iRv = fgColorWhite;   break;
+        case FG::Gray:    iRv = fgColorGray;    break;
+        case FG::Unknown: xTEST_FAIL;           break;
         }
 
         fgColor = static_cast<FG>( iRv );
@@ -104,39 +82,17 @@ Color::set() const
         int_t iRv {};
 
         switch (_bg) {
-        case BG::Default:
-            iRv = bgColorDefault;
-            break;
-        case BG::Black:
-            iRv = bgColorBlack;
-            break;
-        case BG::Red:
-            iRv = bgColorRed;
-            break;
-        case BG::Green:
-            iRv = bgColorGreen;
-            break;
-        case BG::Yellow:
-            iRv = bgColorYellow;
-            break;
-        case BG::Blue:
-            iRv = bgColorBlue;
-            break;
-        case BG::Magenta:
-            iRv = bgColorMagenta;
-            break;
-        case BG::Cyan:
-            iRv = bgColorCyan;
-            break;
-        case BG::White:
-            iRv = bgColorWhite;
-            break;
-        case BG::Gray:
-            iRv = bgColorGray;
-            break;
-        case BG::Unknown:
-            xTEST_FAIL;
-            break;
+        case BG::Default: iRv = bgColorDefault; break;
+        case BG::Black:   iRv = bgColorBlack;   break;
+        case BG::Red:     iRv = bgColorRed;     break;
+        case BG::Green:   iRv = bgColorGreen;   break;
+        case BG::Yellow:  iRv = bgColorYellow;  break;
+        case BG::Blue:    iRv = bgColorBlue;    break;
+        case BG::Magenta: iRv = bgColorMagenta; break;
+        case BG::Cyan:    iRv = bgColorCyan;    break;
+        case BG::White:   iRv = bgColorWhite;   break;
+        case BG::Gray:    iRv = bgColorGray;    break;
+        case BG::Unknown: xTEST_FAIL;           break;
         }
 
         bgColor = static_cast<BG>( iRv );
