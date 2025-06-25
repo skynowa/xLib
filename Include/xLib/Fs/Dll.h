@@ -1,7 +1,12 @@
 /**
  * \file  Dll.h
  * \brief dynamic linking loader
+ *
+ * \libs
+ *
+ * - https://github.com/apolukhin/Boost.DLL/blob/develop/example/tutorial9/tutorial9.cpp
  */
+
 
 
 #pragma once
