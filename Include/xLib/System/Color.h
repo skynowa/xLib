@@ -119,9 +119,6 @@ private:
 	cBG   _bg    {BG::Default};
 	cAttr _attrs {Attr::AllOff};
 
-	std::tstring_t _set_impl(cFG fg, cBG bg, cAttr attrs) const;
-	std::tstring_t _clear_impl() const;
-
     FILE  *        _getStdStream(std::ctostream_t &stream) const;
 		///< Since C++ hasn't a true way to extract stream handler from the a given `std::ostream`
     bool_t         _isColorized(std::tostream_t &stream = std::tcout) const;
@@ -129,6 +126,9 @@ private:
 		///< It's always true for ATTY streams and may be true for streams marked with colorize flag
     bool_t         _isAtty(std::ctostream_t &stream) const;
         ///< Test whether a given `std::ostream` object refers to a terminal
+
+xPLATFORM_IMPL:
+	void_t _enableAnsiColors() const;
 };
 
 } // namespace

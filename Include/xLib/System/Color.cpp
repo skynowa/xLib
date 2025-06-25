@@ -15,53 +15,7 @@ namespace xl::system
 {
 
 /**************************************************************************************************
-*   Color
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Color::set() const
-{
-	xCHECK_RET(!_isColorSupport, xT(""));
-
-    return _set_impl(_fg, _bg, _attrs);
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Color::clear() const
-{
-	xCHECK_RET(!_isColorSupport, xT(""));
-
-    return _clear_impl();
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Color::setText(
-	std::ctstring_t &a_str
-) const
-{
-	return set() + a_str + clear();
-}
-//-------------------------------------------------------------------------------------------------
-std::tstring_t
-Color::escape(
-	std::ctstring_t &a_str
-) const
-{
-#if xENV_UNIX
-	xCHECK_RET(!_isEscapeValues, a_str);
-
-	return xT("\\[") + a_str + xT("\\]");
-#else
-	return a_str;
-#endif
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*    Impl
+* public
 *
 **************************************************************************************************/
 
@@ -72,12 +26,10 @@ Color::escape(
  * https://misc.flogisoft.com/bash/tip_colors_and_formatting
  */
 std::tstring_t
-Color::_set_impl(
-    cFG   a_fg,
-    cBG   a_bg,
-    cAttr a_attrs
-) const
+Color::set() const
 {
+	xCHECK_RET(!_isColorSupport, xT(""));
+
     std::tstring_t sRv;
 
     FG fgColor {};
@@ -95,7 +47,7 @@ Color::_set_impl(
 
         int_t iRv {};
 
-        switch (a_fg) {
+        switch (_fg) {
         case FG::Default:
             iRv = fgColorDefault;
             break;
@@ -149,7 +101,7 @@ Color::_set_impl(
 
         int_t iRv {};
 
-        switch (a_bg) {
+        switch (_bg) {
         case BG::Default:
             iRv = bgColorDefault;
             break;
@@ -202,7 +154,7 @@ Color::_set_impl(
         constexpr int_t attrReverse   = 7;
         constexpr int_t attrHidden    = 8;
 
-        Bitset bits( static_cast<int_t>(a_attrs) );
+        Bitset bits( static_cast<int_t>(_attrs) );
 
         xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::AllOff)),    values.emplace_back( std::to_string(attrAllOff) ));
         xCHECK_DO(bits.isSetBit(static_cast<int_t>(Attr::Bold)),      values.emplace_back( std::to_string(attrBold) ));
@@ -223,9 +175,33 @@ Color::_set_impl(
 }
 //-------------------------------------------------------------------------------------------------
 std::tstring_t
-Color::_clear_impl() const
+Color::clear() const
 {
+	xCHECK_RET(!_isColorSupport, xT(""));
+
     return escape(xT("\033[0m"));
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Color::setText(
+	std::ctstring_t &a_str
+) const
+{
+	return set() + a_str + clear();
+}
+//-------------------------------------------------------------------------------------------------
+std::tstring_t
+Color::escape(
+	std::ctstring_t &a_str
+) const
+{
+#if xENV_UNIX
+	xCHECK_RET(!_isEscapeValues, a_str);
+
+	return xT("\\[") + a_str + xT("\\]");
+#else
+	return a_str;
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -292,6 +268,40 @@ Color::_isAtty(
     }
 
     return static_cast<bool_t>( xISATTY(xFILENO(stdStream)) );
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   xPLATFORM_IMPL
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+void_t
+Color::_enableAnsiColors() const
+{
+#if   xENV_WIN
+    static bool isEnabled = false;
+    if (isEnabled) {
+    	return;
+    }
+
+	HandleNativeInvalid stdOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
+    xTEST(stdOut.isValid());
+
+    DWORD dwMode = 0;
+    BOOL blRv = ::GetConsoleMode(stdOut.get(), &dwMode);
+    xTEST_DIFF(blRv, FALSE);
+
+    dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+
+    ::SetConsoleMode(stdOut.get(), dwMode);
+
+    isEnabled = true;
+#elif xENV_UNIX
+    xNA;
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
